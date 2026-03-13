@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script defer data-domain="pandas.pydata.org" src="https://views.scientific-python.org/js/script.js"></script>
+        <title>pandas - Python Data Analysis Library</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel='shortcut icon' type='image/x-icon' id='favicon-tag' href='../static/img/favicon.ico'/>
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+              integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+              crossorigin="anonymous">
+        
+            <link rel="stylesheet"
+                  href="../static/css/pandas.css">
+        
+            <link rel="stylesheet"
+                  href="../static/css/codehilite.css">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="../."><img alt="" src="../static/img/pandas_white.svg"/></a>
+
+                    <div class="collapse navbar-collapse" id="nav-content">   
+                        <ul class="navbar-nav ms-auto">
+                            
+                                
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle"
+                                           data-bs-toggle="dropdown"
+                                           id="about-us"
+                                           href="#"
+                                           role="button"
+                                           aria-haspopup="true"
+                                           aria-expanded="false">About us</a>
+                                        <div class="dropdown-menu" aria-labelledby="about-us">
+                                        
+                                            <a class="dropdown-item" href="../about/">About pandas</a>
+                                        
+                                            <a class="dropdown-item" href="../about/roadmap.html">Project roadmap</a>
+                                        
+                                            <a class="dropdown-item" href="../about/governance.html">Governance</a>
+                                        
+                                            <a class="dropdown-item" href="../about/team.html">Team</a>
+                                        
+                                            <a class="dropdown-item" href="../about/sponsors.html">Sponsors</a>
+                                        
+                                            <a class="dropdown-item" href="../about/citing.html">Citing and logo</a>
+                                        
+                                        </div>
+                                    </li>
+                                
+                            
+                                
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../getting_started.html">Getting started</a>
+                                    </li>
+                                
+                            
+                                
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../docs/">Documentation</a>
+                                    </li>
+                                
+                            
+                                
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle"
+                                           data-bs-toggle="dropdown"
+                                           id="community"
+                                           href="#"
+                                           role="button"
+                                           aria-haspopup="true"
+                                           aria-expanded="false">Community</a>
+                                        <div class="dropdown-menu" aria-labelledby="community">
+                                        
+                                            <a class="dropdown-item" href="../community/blog/">Blog</a>
+                                        
+                                            <a class="dropdown-item" href="https://stackoverflow.com/questions/tagged/pandas">Ask a question (StackOverflow)</a>
+                                        
+                                            <a class="dropdown-item" href="../community/coc.html">Code of conduct</a>
+                                        
+                                            <a class="dropdown-item" href="../community/ecosystem.html">Ecosystem</a>
+                                        
+                                            <a class="dropdown-item" href="../community/benchmarks.html">Benchmarks</a>
+                                        
+                                        </div>
+                                    </li>
+                                
+                            
+                                
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="../contribute.html">Contribute</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main role="main">
+            
+            <div class="container container-main">
+                <h1 id="pdep-5-norowindex">PDEP-5: NoRowIndex<a class="headerlink" href="#pdep-5-norowindex" title="Permanent link"> #</a></h1>
+<ul>
+<li>Created: 14 November 2022</li>
+<li>Status: Withdrawn</li>
+<li>Discussion: <a href="https://github.com/pandas-dev/pandas/pull/49693">#49693</a></li>
+<li>Author: <a href="https://github.com/MarcoGorelli">Marco Gorelli</a></li>
+<li>Revision: 2</li>
+</ul>
+<div class="toc"><span class="toctitle">Table of Contents</span><ul>
+<li><a href="#abstract">Abstract</a></li>
+<li><a href="#motivation">Motivation</a></li>
+<li><a href="#scope">Scope</a></li>
+<li><a href="#detailed-description">Detailed Description</a><ul>
+<li><a href="#norowindexappend">NoRowIndex.append</a></li>
+<li><a href="#slicing-a-norowindex">Slicing a NoRowIndex</a></li>
+<li><a href="#aligning-norowindexs">Aligning NoRowIndexs</a></li>
+<li><a href="#columns-cannot-be-norowindex">Columns cannot be NoRowIndex</a></li>
+<li><a href="#dataframeformatter-and-seriesformatter-changes">DataFrameFormatter and SeriesFormatter changes</a></li>
+</ul>
+</li>
+<li><a href="#usage-and-impact">Usage and Impact</a></li>
+<li><a href="#implementation">Implementation</a></li>
+<li><a href="#likely-faq">Likely FAQ</a></li>
+<li><a href="#reasons-for-withdrawal">Reasons for withdrawal</a></li>
+<li><a href="#related-proposals">Related proposals</a></li>
+<li><a href="#pdep-history">PDEP History</a></li>
+</ul>
+</div>
+<h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link"> #</a></h2>
+<p>The suggestion is to add a <code>NoRowIndex</code> class. Internally, it would act a bit like
+a <code>RangeIndex</code>, but some methods would be stricter. This would be one
+step towards enabling users who do not want to think about indices to not need to.</p>
+<h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link"> #</a></h2>
+<p>The Index can be a source of confusion and frustration for pandas users. For example, let's consider the inputs</p>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span><span class="p">[</span><span class="mi">37</span><span class="p">]:</span> <span class="n">ser1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+
+<span class="n">In</span><span class="p">[</span><span class="mi">38</span><span class="p">]:</span> <span class="n">ser2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</code></pre></div>
+
+<p>Then:</p>
+<ul>
+<li>it can be unexpected that adding <code>Series</code> with the same length (but different indices) produces <code>NaN</code>s in the result (https://stackoverflow.com/q/66094702/4451315):</li>
+</ul>
+<p><code>python
+  In [41]: ser1 + ser2
+  Out[41]:
+  1    20.0
+  2    30.0
+  3    40.0
+  4     NaN
+  5     NaN
+  dtype: float64</code></p>
+<ul>
+<li>
+<p>concatenation, even with <code>ignore_index=True</code>, still aligns on the index (https://github.com/pandas-dev/pandas/issues/25349):</p>
+<p><code>python
+In [42]: pd.concat([ser1, ser2], axis=1, ignore_index=True)
+Out[42]:
+      0     1
+1  10.0  10.0
+2  15.0  15.0
+3  20.0  20.0
+5  25.0   NaN
+4   NaN  25.0</code></p>
+</li>
+<li>
+<p>it can be frustrating to have to repeatedly call <code>.reset_index()</code> (https://twitter.com/chowthedog/status/1559946277315641345):</p>
+</li>
+</ul>
+<p><code>python
+  In [3]: ser1.reset_index(drop=True) + ser2.reset_index(drop=True)
+  Out[3]:
+  0    20
+  1    30
+  2    40
+  3    50
+  dtype: int64</code></p>
+<p>If a user did not want to think about row labels (which they may have ended up after slicing / concatenating operations),
+then <code>NoRowIndex</code> would enable the above to work in a more intuitive
+manner (details and examples to follow below).</p>
+<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link"> #</a></h2>
+<p>This proposal deals exclusively with the <code>NoRowIndex</code> class. To allow users to fully "opt-out" of having to think
+about row labels, the following could also be useful:
+- a <code>pd.set_option('mode.no_row_index', True)</code> mode which would default to creating new <code>DataFrame</code>s and
+  <code>Series</code> with <code>NoRowIndex</code> instead of <code>RangeIndex</code>;
+- giving <code>as_index</code> options to methods which currently create an index
+  (e.g. <code>value_counts</code>, <code>.sum()</code>, <code>.pivot_table</code>) to just insert a new column instead of creating an
+  <code>Index</code>.</p>
+<p>However, neither of the above will be discussed here.</p>
+<h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link"> #</a></h2>
+<p>The core pandas code would change as little as possible. The additional complexity should be handled
+within the <code>NoRowIndex</code> object. It would act just like <code>RangeIndex</code>, but would be a bit stricter
+in some cases:
+- <code>name</code> could only be <code>None</code>;
+- <code>start</code> could only be <code>0</code>, <code>step</code> <code>1</code>;
+- when appending one <code>NoRowIndex</code> to another <code>NoRowIndex</code>, the result would still be <code>NoRowIndex</code>.
+  Appending a <code>NoRowIndex</code> to any other index (or vice-versa) would raise;
+- the <code>NoRowIndex</code> class would be preserved under slicing;
+- a <code>NoRowIndex</code> could only be aligned with another <code>Index</code> if it's also <code>NoRowIndex</code> and if it's of the same length;
+- <code>DataFrame</code> columns cannot be <code>NoRowIndex</code> (so <code>transpose</code> would need some adjustments when called on a <code>NoRowIndex</code> <code>DataFrame</code>);
+- <code>insert</code> and <code>delete</code> should raise. As a consequence, if <code>df</code> is a <code>DataFrame</code> with a
+  <code>NoRowIndex</code>, then <code>df.drop</code> with <code>axis=0</code> would always raise;
+- arithmetic operations (e.g. <code>NoRowIndex(3) + 2</code>) would always raise;
+- when printing a <code>DataFrame</code>/<code>Series</code> with a <code>NoRowIndex</code>, then the row labels would not be printed;
+- a <code>MultiIndex</code> could not be created with a <code>NoRowIndex</code> as one of its levels.</p>
+<p>Let's go into more detail for some of these. In the examples that follow, the <code>NoRowIndex</code> will be passed explicitly,
+but this is not how users would be expected to use it (see "Usage and Impact" section for details).</p>
+<h3 id="norowindexappend">NoRowIndex.append<a class="headerlink" href="#norowindexappend" title="Permanent link"> #</a></h3>
+<p>If one has two <code>DataFrame</code>s with <code>NoRowIndex</code>, then one would expect that concatenating them would
+result in a <code>DataFrame</code> which still has <code>NoRowIndex</code>. To do this, the following rule could be introduced:</p>
+<blockquote>
+<p>If appending a <code>NoRowIndex</code> of length <code>y</code> to a <code>NoRowIndex</code> of length <code>x</code>, the result will be a
+  <code>NoRowIndex</code> of length <code>x + y</code>.</p>
+</blockquote>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">NoRowIndex</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">NoRowIndex</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">df1</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span>
+ <span class="n">a</span>  <span class="n">b</span>
+ <span class="mi">1</span>  <span class="mi">4</span>
+ <span class="mi">2</span>  <span class="mi">5</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">df2</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span>
+ <span class="n">a</span>  <span class="n">b</span>
+ <span class="mi">4</span>  <span class="mi">0</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">])</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">10</span><span class="p">]:</span>
+ <span class="n">a</span>  <span class="n">b</span>
+ <span class="mi">1</span>  <span class="mi">4</span>
+ <span class="mi">2</span>  <span class="mi">5</span>
+ <span class="mi">4</span>  <span class="mi">0</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">])</span><span class="o">.</span><span class="n">index</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">NoRowIndex</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Appending anything other than another <code>NoRowIndex</code> would raise.</p>
+<h3 id="slicing-a-norowindex">Slicing a <code>NoRowIndex</code><a class="headerlink" href="#slicing-a-norowindex" title="Permanent link"> #</a></h3>
+<p>If one has a <code>DataFrame</code> with <code>NoRowIndex</code>, then one would expect that a slice of it would still have
+a <code>NoRowIndex</code>. This could be accomplished with:</p>
+<blockquote>
+<p>If a slice of length <code>x</code> is taken from a <code>NoRowIndex</code> of length <code>y</code>, then one gets a
+ <code>NoRowIndex</code> of length <code>x</code>. Label-based slicing would not be allowed.</p>
+</blockquote>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">NoRowIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">13</span><span class="p">]:</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">b</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">NoRowIndex</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Slicing by label, however, would be disallowed:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">IndexError</span><span class="p">:</span> <span class="n">Cannot</span> <span class="n">use</span> <span class="n">label</span><span class="o">-</span><span class="n">based</span> <span class="n">indexing</span> <span class="n">on</span> <span class="n">NoRowIndex</span><span class="err">!</span>
+</code></pre></div>
+
+<p>Note too that:
+- other uses of <code>.loc</code>, such as boolean masks, would still be allowed (see F.A.Q);
+- <code>.iloc</code> and <code>.iat</code> would keep working as before;
+- <code>.at</code> would raise.</p>
+<h3 id="aligning-norowindexs">Aligning <code>NoRowIndex</code>s<a class="headerlink" href="#aligning-norowindexs" title="Permanent link"> #</a></h3>
+<p>To minimise surprises, the rule would be:</p>
+<blockquote>
+<p>A <code>NoRowIndex</code> can only be aligned with another <code>NoRowIndex</code> of the same length.
+Attempting to align it with anything else would raise.</p>
+</blockquote>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">ser1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">NoRowIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">ser2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">NoRowIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">ser1</span> <span class="o">+</span> <span class="n">ser2</span>  <span class="c1"># works!</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span>
+<span class="mi">5</span>
+<span class="mi">7</span>
+<span class="mi">9</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">ser1</span> <span class="o">+</span> <span class="n">ser2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># errors!</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">Cannot</span> <span class="n">join</span> <span class="n">NoRowIndex</span> <span class="n">of</span> <span class="n">different</span> <span class="n">lengths</span>
+</code></pre></div>
+
+<h3 id="columns-cannot-be-norowindex">Columns cannot be NoRowIndex<a class="headerlink" href="#columns-cannot-be-norowindex" title="Permanent link"> #</a></h3>
+<p>This proposal deals exclusively with allowing users to not need to think about
+row labels. There's no suggestion to remove the column labels.</p>
+<p>In particular, calling <code>transpose</code> on a <code>NoRowIndex</code> <code>DataFrame</code>
+would error. The error would come with a helpful error message, informing
+users that they should first set an index. E.g.:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">NoRowIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">df</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="p">:</span> <span class="n">Columns</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">NoRowIndex</span><span class="o">.</span>
+<span class="n">If</span> <span class="n">you</span> <span class="n">got</span> <span class="n">here</span> <span class="n">via</span> <span class="err">`</span><span class="n">transpose</span><span class="err">`</span> <span class="ow">or</span> <span class="n">an</span> <span class="err">`</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="err">`</span> <span class="n">operation</span><span class="p">,</span> <span class="n">then</span> <span class="n">you</span> <span class="n">should</span> <span class="n">first</span> <span class="nb">set</span> <span class="n">an</span> <span class="n">index</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">:</span> <span class="err">`</span><span class="n">df</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_df</span><span class="p">:</span> <span class="n">_df</span><span class="o">.</span><span class="n">set_axis</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">RangeIndex</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_df</span><span class="p">))))</span><span class="err">`</span>
+</code></pre></div>
+
+<h3 id="dataframeformatter-and-seriesformatter-changes">DataFrameFormatter and SeriesFormatter changes<a class="headerlink" href="#dataframeformatter-and-seriesformatter-changes" title="Permanent link"> #</a></h3>
+<p>When printing an object with a <code>NoRowIndex</code>, then the row labels would not be shown:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">NoRowIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">df</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">16</span><span class="p">]:</span>
+ <span class="n">a</span>  <span class="n">b</span>
+ <span class="mi">1</span>  <span class="mi">4</span>
+ <span class="mi">2</span>  <span class="mi">5</span>
+ <span class="mi">3</span>  <span class="mi">6</span>
+</code></pre></div>
+
+<p>Of the above changes, this may be the only one that would need implementing within
+<code>DataFrameFormatter</code> / <code>SerieFormatter</code>, as opposed to within <code>NoRowIndex</code>.</p>
+<h2 id="usage-and-impact">Usage and Impact<a class="headerlink" href="#usage-and-impact" title="Permanent link"> #</a></h2>
+<p>Users would not be expected to work with the <code>NoRowIndex</code> class itself directly.
+Usage would probably involve a mode which would change how the <code>default_index</code>
+function to return a <code>NoRowIndex</code> rather than a <code>RangeIndex</code>.
+Then, if a <code>mode.no_row_index</code> option was introduced and a user opted in to it with</p>
+<div class="codehilite"><pre><span></span><code><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;mode.no_row_index&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<p>then the following would all create a <code>DataFrame</code> with a <code>NoRowIndex</code> (as they
+all call <code>default_index</code>):</p>
+<ul>
+<li><code>df.reset_index()</code>;</li>
+<li><code>pd.concat([df1, df2], ignore_index=True)</code></li>
+<li><code>df1.merge(df2, on=col)</code>;</li>
+<li><code>df = pd.DataFrame({'col_1': [1, 2, 3]})</code></li>
+</ul>
+<p>Further discussion of such a mode is out-of-scope for this proposal. A <code>NoRowIndex</code> would
+just be a first step towards getting there.</p>
+<h2 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link"> #</a></h2>
+<p>Draft pull request showing proof of concept: https://github.com/pandas-dev/pandas/pull/49693.</p>
+<p>Note that implementation details could well change even if this PDEP were
+accepted. For example, <code>NoRowIndex</code> would not necessarily need to subclass
+<code>RangeIndex</code>, and it would not necessarily need to be accessible to the user
+(<code>df.index</code> could well return <code>None</code>)</p>
+<h2 id="likely-faq">Likely FAQ<a class="headerlink" href="#likely-faq" title="Permanent link"> #</a></h2>
+<p><strong>Q: Could not users just use <code>RangeIndex</code>? Why do we need a new class?</strong></p>
+<p><strong>A</strong>: <code>RangeIndex</code> is not preserved under slicing and appending, e.g.:
+  ```python
+  In[1]: ser = pd.Series([1, 2, 3])</p>
+<p>In[2]: ser[ser != 2].index
+  Out[2]: Int64Index([0, 2], dtype="int64")
+  <code>`
+  If someone does not want to think about row labels and starts off
+  with a</code>RangeIndex``, they'll very quickly lose it.</p>
+<p><strong>Q: Are indices not really powerful?</strong></p>
+<p><strong>A:</strong> Yes! And they're also confusing to many users, even experienced developers.
+  Often users are using <code>.reset_index</code> to avoid issues with indices and alignment.
+  Such users would benefit from being able to not think about indices
+  and alignment. Indices would be here to stay, and <code>NoRowIndex</code> would not be the
+  default.</p>
+<p><strong>Q: How could one switch a <code>NoRowIndex</code> <code>DataFrame</code> back to one with an index?</strong></p>
+<p><strong>A:</strong> The simplest way would probably be:
+  <code>python
+  df.set_axis(pd.RangeIndex(len(df)))</code>
+  There's probably no need to introduce a new method for this.</p>
+<p>Conversely, to get rid of the index, then if the <code>mode.no_row_index</code> option was introduced, then
+  one could simply do <code>df.reset_index(drop=True)</code>.</p>
+<p><strong>Q: How would <code>tz_localize</code> and other methods which operate on the index work on a <code>NoRowIndex</code> <code>DataFrame</code>?</strong></p>
+<p><strong>A:</strong> Same way they work on other <code>NumericIndex</code>s, which would typically be to raise:</p>
+<p>```python
+  In [2]: ser.tz_localize('UTC')</p>
+<hr />
+<p>TypeError: index is not a valid DatetimeIndex or PeriodIndex
+  ```</p>
+<p><strong>Q: Why not let transpose switch <code>NoRowIndex</code> to <code>RangeIndex</code> under the hood before swapping index and columns?</strong></p>
+<p><strong>A:</strong> This is the kind of magic that can lead to surprising behaviour that's
+  difficult to debug. For example, <code>df.transpose().transpose()</code> would not
+  round-trip. It's easy enough to set an index after all, better to "force" users
+  to be intentional about what they want and end up with fewer surprises later
+  on.</p>
+<p><strong>Q: What would df.sum(), and other methods which introduce an index, return?</strong></p>
+<p><strong>A:</strong> Such methods would still set an index and would work the same way they
+  do now. There may be some way to change that (e.g. introducing <code>as_index</code>
+  arguments and introducing a mode to set its default) but that's out of scope
+  for this particular PDEP.</p>
+<p><strong>Q: How would a user opt-in to a <code>NoRowIndex</code> DataFrame?</strong></p>
+<p><strong>A:</strong> This PDEP would only allow it via the constructor, passing
+  <code>index=NoRowIndex(len(df))</code>. A mode could be introduced to toggle
+  making that the default, but would be out-of-scope for the current PDEP.</p>
+<p><strong>Q: Would <code>.loc</code> stop working?</strong></p>
+<p><strong>A:</strong> No. It would only raise if used for label-based selection. Other uses
+  of <code>.loc</code>, such as <code>df.loc[:, col_1]</code> or <code>df.loc[boolean_mask, col_1]</code>, would
+  continue working.</p>
+<p><strong>Q: What's unintuitive about <code>Series</code> aligning indices when summing?</strong></p>
+<p><strong>A:</strong> Not sure, but I once asked a group of experienced developers what the
+  output of
+  <code>python
+  ser1 = pd.Series([1, 1, 1], index=[1, 2, 3])
+  ser2 = pd.Series([1, 1, 1], index=[3, 4, 5])
+  print(ser1 + ser2)</code>
+  would be, and <em>nobody</em> got it right.</p>
+<h2 id="reasons-for-withdrawal">Reasons for withdrawal<a class="headerlink" href="#reasons-for-withdrawal" title="Permanent link"> #</a></h2>
+<p>After some discussions, it has become clear there is not enough for support for the proposal in its current state.
+In short, it would add too much complexity to justify the potential benefits. It would unacceptably increase
+the maintenance burden, the testing requirements, and the benefits would be minimal.</p>
+<p>Concretely:
+- maintenance burden: it would not be possible to handle all the complexity within the <code>NoRowIndex</code> class itself, some
+  extra logic would need to go into the pandas core codebase, which is already very complex and hard to maintain;
+- the testing burden would be too high. Properly testing this would mean almost doubling the size of the test suite.
+  Coverage for options already is not great: for example <a href="https://github.com/pandas-dev/pandas/issues/49732">this issue</a>
+  was caused by a PR which passed CI, but CI did not (and still does not) cover that option (plotting backends);
+- it will not benefit most users, as users do not tend to use nor discover options which are not the default;
+- it would be difficult to reconcile with some existing behaviours: for example, <code>df.sum()</code> returns a Series with the
+  column names in the index.</p>
+<p>In order to make no-index the pandas default and have a chance of benefiting users, a more comprehensive set of changes
+would need to made at the same time. This would require a proposal much larger in scope, and would be a much more radical change.
+It may be that this proposal will be revisited in the future, but in its current state (as an option) it cannot be accepted.</p>
+<p>This has still been a useful exercise, though, as it has resulted in two related proposals (see below).</p>
+<h2 id="related-proposals">Related proposals<a class="headerlink" href="#related-proposals" title="Permanent link"> #</a></h2>
+<ul>
+<li>Deprecate automatic alignment, at least in some cases: https://github.com/pandas-dev/pandas/issues/49939;</li>
+<li><code>.value_counts</code> behaviour change: https://github.com/pandas-dev/pandas/issues/49497</li>
+</ul>
+<h2 id="pdep-history">PDEP History<a class="headerlink" href="#pdep-history" title="Permanent link"> #</a></h2>
+<ul>
+<li>14 November 2022: Initial draft</li>
+<li>18 November 2022: First revision (limited the proposal to a new class, leaving a <code>mode</code> to a separate proposal)</li>
+<li>14 December 2022: Withdrawal (difficulty reconciling with some existing methods, lack of strong support,
+  maintenance burden increasing unjustifiably)</li>
+</ul>
+            </div>
+            
+        </main>
+        <footer class="container pt-4 pt-md-5 border-top">
+            <ul class="list-inline social-buttons float-end">
+                <li class="list-inline-item">
+                    <a href="https://t.me/s/pandas_dev">
+                        <i class="fab bi bi-telegram"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="https://fosstodon.org/@pandas_dev" rel="me">
+                        <i class="fab bi bi-mastodon"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="https://x.com/pandas_dev">
+                        <i class="fab bi bi-twitter-x"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="https://github.com/pandas-dev/pandas">
+                        <i class="fab bi bi-github"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="https://stackoverflow.com/questions/tagged/pandas">
+                        <i class="fab bi bi-stack-overflow"></i>
+                    </a>
+                </li>
+            </ul>
+            <p>
+                &copy; 2026 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+            </p>
+        </footer>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" 
+                crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            const faviconTag = document.getElementById('favicon-tag');
+            const matcher = window.matchMedia('(prefers-color-scheme:dark)');
+            
+            const onUpdate = () => {
+                if (matcher.matches) faviconTag.href = "..//static/img/favicon_white.ico";
+                else faviconTag.href = "..//static/img/favicon.ico";
+            };
+            
+            onUpdate();
+            
+            matcher.addEventListener('change', onUpdate);
+        </script>
+    </body>
+</html>
