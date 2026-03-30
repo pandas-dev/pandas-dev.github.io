@@ -673,7 +673,7 @@ to return datetime like properties are explained in a dedicated section on the  
 </div><ul class="task-bullet">
     <li><p>What is the average <span class="math notranslate nohighlight">\(NO_2\)</span> concentration for each day of the week for each of the measurement locations?</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">air_quality</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
-<span class="gp">   ....: </span>    <span class="p">[</span><span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekday</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">])[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gp">   ....: </span>    <span class="p">[</span><span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day_of_week</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">])[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="gp">   ....: </span>
 <span class="gh">Out[13]: </span>
 <span class="go">datetime  location          </span>
@@ -695,7 +695,7 @@ to return datetime like properties are explained in a dedicated section on the  
 <a class="reference internal" href="06_calculate_statistics.html#min-tut-06-stats"><span class="std std-ref">tutorial on statistics calculation</span></a>?
 Here, we want to calculate a given statistic (e.g. mean <span class="math notranslate nohighlight">\(NO_2\)</span>)
 <strong>for each weekday</strong> and <strong>for each measurement location</strong>. To group on
-weekdays, we use the datetime property <code class="docutils literal notranslate"><span class="pre">weekday</span></code> (with Monday=0 and
+weekdays, we use the datetime property <code class="docutils literal notranslate"><span class="pre">day_of_week</span></code> (with Monday=0 and
 Sunday=6) of pandas <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code>, which is also accessible by the
 <code class="docutils literal notranslate"><span class="pre">dt</span></code> accessor. The grouping on both locations and weekdays can be done
 to split the calculation of the mean on each of these combinations.</p>
@@ -756,7 +756,7 @@ achieved by the <code class="docutils literal notranslate"><span class="pre">set
 functionalities. For example, we do not need the <code class="docutils literal notranslate"><span class="pre">dt</span></code> accessor to get
 the time series properties, but have these properties available on the
 index directly:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">no_2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">no_2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">weekday</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">no_2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">no_2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">day_of_week</span>
 <span class="gh">Out[20]: </span>
 <span class="go">(Index([2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019,</span>
 <span class="go">        ...</span>

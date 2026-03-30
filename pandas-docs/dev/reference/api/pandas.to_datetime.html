@@ -561,7 +561,7 @@
 <h1>pandas.to_datetime<a class="headerlink" href="#pandas-to-datetime" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.to_datetime">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">to_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dayfirst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yearfirst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">utc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unix'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/core/tools/datetimes.py#L690-L1084"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.to_datetime" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">to_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dayfirst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yearfirst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">utc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unix'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/core/tools/datetimes.py#L709-L1120"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.to_datetime" title="Link to this definition">#</a></dt>
 <dd><p>Convert argument to datetime.</p>
 <p>This function converts a scalar, array-like, <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or
 <a class="reference internal" href="pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>/dict-like to a pandas datetime object.</p>
@@ -628,6 +628,15 @@ and you should probably use it along with <cite>dayfirst</cite>.</p></li>
 <p class="admonition-title">Note</p>
 <p>If a <a class="reference internal" href="pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> is passed, then <cite>format</cite> has no effect.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">format</span></code>, any datetime components not present in the
+format string default to <code class="docutils literal notranslate"><span class="pre">1900-01-01</span> <span class="pre">00:00:00</span></code>, consistent with
+Python’s <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime.strptime" title="(in Python v3.14)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">datetime.datetime.strptime()</span></code></a> behavior. For example,
+<code class="docutils literal notranslate"><span class="pre">to_datetime([&quot;1&quot;,</span> <span class="pre">&quot;2&quot;],</span> <span class="pre">format=&quot;%d&quot;)</span></code> returns dates in January 1900.
+The <code class="docutils literal notranslate"><span class="pre">origin</span></code> parameter does not affect string parsing via <code class="docutils literal notranslate"><span class="pre">format</span></code>;
+it only applies to numeric input interpreted through <code class="docutils literal notranslate"><span class="pre">unit</span></code>.</p>
+</div>
 </dd>
 <dt><strong>exact</strong><span class="classifier">bool, default True</span></dt><dd><p>Control how <cite>format</cite> is used:</p>
 <ul class="simple">
@@ -638,12 +647,14 @@ string.</p></li>
 <p>Cannot be used alongside <code class="docutils literal notranslate"><span class="pre">format='ISO8601'</span></code> or <code class="docutils literal notranslate"><span class="pre">format='mixed'</span></code>.</p>
 </dd>
 <dt><strong>unit</strong><span class="classifier">str, default ‘ns’</span></dt><dd><p>The unit of the arg (D,s,ms,us,ns) denote the unit, which is an
-integer or float number. This will be based off the origin.
+integer or float number. This will be based off the <code class="docutils literal notranslate"><span class="pre">origin</span></code>.
 Example, with <code class="docutils literal notranslate"><span class="pre">unit='ms'</span></code> and <code class="docutils literal notranslate"><span class="pre">origin='unix'</span></code>, this would calculate
-the number of milliseconds to the unix epoch start.</p>
+the number of milliseconds to the unix epoch start.
+Only applicable to numeric input; has no effect when <code class="docutils literal notranslate"><span class="pre">format</span></code>
+is specified.</p>
 </dd>
 <dt><strong>origin</strong><span class="classifier">scalar, default ‘unix’</span></dt><dd><p>Define the reference date. The numeric values would be parsed as number
-of units (defined by <cite>unit</cite>) since this reference date.</p>
+of units (defined by <code class="docutils literal notranslate"><span class="pre">unit</span></code>) since this reference date.</p>
 <ul class="simple">
 <li><p>If <code class="xref py py-const docutils literal notranslate"><span class="pre">'unix'</span></code> (or POSIX) time; origin is set to 1970-01-01.</p></li>
 <li><p>If <code class="xref py py-const docutils literal notranslate"><span class="pre">'julian'</span></code>, unit must be <code class="xref py py-const docutils literal notranslate"><span class="pre">'D'</span></code>, and origin is set to
@@ -654,6 +665,12 @@ string), origin is set to Timestamp identified by origin.</p></li>
 <li><p>If a float or integer, origin is the difference
 (in units determined by the <code class="docutils literal notranslate"><span class="pre">unit</span></code> argument) relative to 1970-01-01.</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This parameter only affects numeric input used with <code class="docutils literal notranslate"><span class="pre">unit</span></code>.
+It does not affect string parsing via <code class="docutils literal notranslate"><span class="pre">format</span></code>. See the <code class="docutils literal notranslate"><span class="pre">format</span></code>
+parameter for how defaults are handled during string parsing.</p>
+</div>
 </dd>
 <dt><strong>cache</strong><span class="classifier">bool, default True</span></dt><dd><p>If <code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code>, use a cache of unique, converted dates to apply the
 datetime conversion. May produce significant speed-up when parsing

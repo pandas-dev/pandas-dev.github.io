@@ -611,26 +611,21 @@ example.</p></li>
 will emit a warning.</p>
 </li>
 </ul>
-<p>The utility script <code class="docutils literal notranslate"><span class="pre">scripts/validate_docstrings.py</span></code> can be used to get a csv
-summary of the API documentation. And also validate common errors in the docstring
-of a specific class, function or method. The summary also compares the list of
-methods documented in the files in <code class="docutils literal notranslate"><span class="pre">doc/source/reference</span></code> (which is used to generate
-the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/api.html">API Reference</a> page)
-and the actual public methods.
-This will identify methods documented in <code class="docutils literal notranslate"><span class="pre">doc/source/reference</span></code> that are not actually
-class methods, and existing methods that are not documented in <code class="docutils literal notranslate"><span class="pre">doc/source/reference</span></code>.</p>
+<p>Docstring validation — both standard numpydoc checks and pandas-specific conventions
+— is enforced automatically during the Sphinx
+documentation build via <code class="docutils literal notranslate"><span class="pre">numpydoc_validation_checks</span></code> in <code class="docutils literal notranslate"><span class="pre">doc/source/conf.py</span></code>.</p>
 </section>
 <section id="updating-a-pandas-docstring">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">Updating a pandas docstring</a><a class="headerlink" href="#updating-a-pandas-docstring" title="Link to this heading">#</a></h2>
 <p>When improving a single function or method’s docstring, it is not necessarily
 needed to build the full documentation (see next section).
-However, there is a script that checks a docstring (for example for the <code class="docutils literal notranslate"><span class="pre">DataFrame.mean</span></code> method):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">scripts</span><span class="o">/</span><span class="n">validate_docstrings</span><span class="o">.</span><span class="n">py</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">mean</span>
+You can validate a single docstring — including both standard numpydoc checks and
+pandas-specific conventions (GL04, PD01, SA05, EX04) — by building a single-page
+doc:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">doc</span><span class="o">/</span><span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">warnings</span><span class="o">-</span><span class="n">are</span><span class="o">-</span><span class="n">errors</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">browser</span> <span class="o">--</span><span class="n">single</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">mean</span>
 </pre></div>
 </div>
-<p>This script will indicate some formatting errors if present, and will also
-run and test the examples included in the docstring.
-Check the <a class="reference internal" href="contributing_docstring.html#docstring"><span class="std std-ref">pandas docstring guide</span></a> for a detailed guide
+<p>Check the <a class="reference internal" href="contributing_docstring.html#docstring"><span class="std std-ref">pandas docstring guide</span></a> for a detailed guide
 on how to format the docstring.</p>
 <p>The examples in the docstring (‘doctests’) must be valid Python code,
 that in a deterministic way returns the presented output, and that can be

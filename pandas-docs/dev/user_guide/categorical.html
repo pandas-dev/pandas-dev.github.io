@@ -1611,7 +1611,7 @@ of length “1”.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The is in contrast to R’s <code class="docutils literal notranslate"><span class="pre">factor</span></code> function, where <code class="docutils literal notranslate"><span class="pre">factor(c(1,2,3))[1]</span></code>
+<p>This is in contrast to R’s <code class="docutils literal notranslate"><span class="pre">factor</span></code> function, where <code class="docutils literal notranslate"><span class="pre">factor(c(1,2,3))[1]</span></code>
 returns a single value <code class="docutils literal notranslate"><span class="pre">factor</span></code>.</p>
 </div>
 <p>To get a single value <code class="docutils literal notranslate"><span class="pre">Series</span></code> of type <code class="docutils literal notranslate"><span class="pre">category</span></code>, you pass in a list with
@@ -1929,18 +1929,18 @@ categoricals of the same categories and order information
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">208</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">union_categoricals</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/dtypes/concat.py:335,</span> in <span class="ni">union_categoricals</span><span class="nt">(to_union, sort_categories, ignore_order)</span>
-<span class="g g-Whitespace">    </span><span class="mi">333</span>     <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">ordered</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">to_union</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">334</span>         <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;to union ordered Categoricals, all categories must be the same&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">335</span>         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">336</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Categorical.ordered must be the same&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">338</span> <span class="k">if</span> <span class="n">ignore_order</span><span class="p">:</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/dtypes/concat.py:343,</span> in <span class="ni">union_categoricals</span><span class="nt">(to_union, sort_categories, ignore_order)</span>
+<span class="g g-Whitespace">    </span><span class="mi">341</span>     <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">ordered</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">to_union</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">342</span>         <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;to union ordered Categoricals, all categories must be the same&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">343</span>         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Categorical.ordered must be the same&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span> <span class="k">if</span> <span class="n">ignore_order</span><span class="p">:</span>
 
 <span class="ne">TypeError</span>: to union ordered Categoricals, all categories must be the same
 </pre></div>
 </div>
 <p>Ordered categoricals with different categories or orderings can be combined by
-using the <code class="docutils literal notranslate"><span class="pre">ignore_ordered=True</span></code> argument.</p>
+using the <code class="docutils literal notranslate"><span class="pre">ignore_order=True</span></code> argument.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [209]: </span><span class="n">a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="gp">In [210]: </span><span class="n">b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

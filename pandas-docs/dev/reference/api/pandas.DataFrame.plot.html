@@ -749,7 +749,9 @@ option <code class="docutils literal notranslate"><span class="pre">plotting.bac
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>data</strong><span class="classifier">Series or DataFrame</span></dt><dd><p>The object for which the method is called.</p>
+<dt><strong>*args</strong></dt><dd><p>Positional arguments to pass to the plotting backend.</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Keyword arguments to pass to the plotting backend.</p>
 </dd>
 </dl>
 </dd>
@@ -865,9 +867,6 @@ option <code class="docutils literal notranslate"><span class="pre">plotting.bac
 <tr class="row-even"><td><p><strong>backend</strong></p></td>
 <td><p>(str, default None) Backend to use instead of the backend specified in the option <code class="docutils literal notranslate"><span class="pre">plotting.backend</span></code>. For instance, ‘matplotlib’. Alternatively, to specify the <code class="docutils literal notranslate"><span class="pre">plotting.backend</span></code> for the whole session, set <code class="docutils literal notranslate"><span class="pre">pd.options.plotting.backend</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>**kwargs</strong></p></td>
-<td><p>Options to pass to matplotlib plotting method.</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -945,7 +944,9 @@ From 0 (left/bottom-end) to 1 (right/top-end). Default is 0.5
 </figure>
 <p>For DataFrameGroupBy:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;col1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s2">&quot;col2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;col2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;DataFrameGroupBy Plot&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plot</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;col2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;DataFrameGroupBy Plot&quot;</span>
+<span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 <figure class="align-default">

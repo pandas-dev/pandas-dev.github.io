@@ -871,7 +871,7 @@
 <h1>pandas.Series.dt.tz_localize<a class="headerlink" href="#pandas-series-dt-tz-localize" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.Series.dt.tz_localize">
-<span class="sig-prename descclassname"><span class="pre">Series.dt.</span></span><span class="sig-name descname"><span class="pre">tz_localize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambiguous</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonexistent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/core/arrays/datetimes.py#L951-L1134"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.dt.tz_localize" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Series.dt.</span></span><span class="sig-name descname"><span class="pre">tz_localize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambiguous</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonexistent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/core/arrays/datetimes.py#L1007-L1190"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.dt.tz_localize" title="Link to this definition">#</a></dt>
 <dd><p>Localize tz-naive Datetime Array/Index to tz-aware Datetime Array/Index.</p>
 <p>This method takes a time zone (tz) naive Datetime Array/Index object
 and makes this time zone aware. It does not move the time to another
@@ -881,7 +881,7 @@ zone unaware object from an aware object. To that end, pass <cite>tz=None</cite>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>tz</strong><span class="classifier">str, zoneinfo.ZoneInfo,, pytz.timezone, dateutil.tz.tzfile, datetime.tzinfo or None</span></dt><dd><p>Time zone to convert timestamps to. Passing <code class="docutils literal notranslate"><span class="pre">None</span></code> will
+<dt><strong>tz</strong><span class="classifier">str, zoneinfo.ZoneInfo, pytz.timezone, dateutil.tz.tzfile, datetime.tzinfo or None</span></dt><dd><p>Time zone to convert timestamps to. Passing <code class="docutils literal notranslate"><span class="pre">None</span></code> will
 remove the time zone information preserving local time.</p>
 </dd>
 <dt><strong>ambiguous</strong><span class="classifier">‘infer’, ‘NaT’, bool array, default ‘raise’</span></dt><dd><p>When clocks moved backward due to DST, ambiguous times may arise.
@@ -901,7 +901,7 @@ ambiguous times)</p></li>
 times.</p></li>
 </ul>
 </dd>
-<dt><strong>nonexistent</strong><span class="classifier">‘shift_forward’, ‘shift_backward, ‘NaT’, timedelta, default ‘raise’</span></dt><dd><p>A nonexistent time does not exist in a particular timezone
+<dt><strong>nonexistent</strong><span class="classifier">‘shift_forward’, ‘shift_backward’, ‘NaT’, timedelta, default ‘raise’</span></dt><dd><p>A nonexistent time does not exist in a particular timezone
 where clocks moved forward due to DST.</p>
 <ul class="simple">
 <li><p>‘shift_forward’ will shift the nonexistent time forward to the
@@ -995,7 +995,7 @@ pass an ndarray to the ambiguous parameter to set the DST explicitly</p>
 </div>
 <p>If the DST transition causes nonexistent times, you can shift these
 dates forward or backwards with a timedelta object or <cite>‘shift_forward’</cite>
-or <cite>‘shift_backwards’</cite>.</p>
+or <cite>‘shift_backward’</cite>.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;2015-03-29 02:30:00&#39;</span><span class="p">,</span>
 <span class="gp">... </span>                              <span class="s1">&#39;2015-03-29 03:30:00&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;M8[ns]&quot;</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="s1">&#39;Europe/Warsaw&#39;</span><span class="p">,</span> <span class="n">nonexistent</span><span class="o">=</span><span class="s1">&#39;shift_forward&#39;</span><span class="p">)</span>

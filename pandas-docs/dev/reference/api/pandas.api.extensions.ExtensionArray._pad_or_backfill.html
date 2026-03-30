@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pandas.api.extensions.ExtensionArray._reduce" href="pandas.api.extensions.ExtensionArray._reduce.html" />
-    <link rel="prev" title="pandas.api.extensions.ExtensionArray._hash_pandas_object" href="pandas.api.extensions.ExtensionArray._hash_pandas_object.html" />
+    <link rel="prev" title="pandas.api.extensions.ExtensionArray._is_monotonic_increasing" href="pandas.api.extensions.ExtensionArray._is_monotonic_increasing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -492,6 +492,8 @@
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._from_sequence.html">pandas.api.extensions.ExtensionArray._from_sequence</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._from_sequence_of_strings.html">pandas.api.extensions.ExtensionArray._from_sequence_of_strings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._hash_pandas_object.html">pandas.api.extensions.ExtensionArray._hash_pandas_object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._is_monotonic_decreasing.html">pandas.api.extensions.ExtensionArray._is_monotonic_decreasing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._is_monotonic_increasing.html">pandas.api.extensions.ExtensionArray._is_monotonic_increasing</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">pandas.api.extensions.ExtensionArray._pad_or_backfill</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._reduce.html">pandas.api.extensions.ExtensionArray._reduce</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._values_for_argsort.html">pandas.api.extensions.ExtensionArray._values_for_argsort</a></li>
@@ -577,7 +579,7 @@
 <h1>pandas.api.extensions.ExtensionArray._pad_or_backfill<a class="headerlink" href="#pandas-api-extensions-extensionarray-pad-or-backfill" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.api.extensions.ExtensionArray._pad_or_backfill">
-<span class="sig-prename descclassname"><span class="pre">ExtensionArray.</span></span><span class="sig-name descname"><span class="pre">_pad_or_backfill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_area</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/core/arrays/base.py#L1244-L1332"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.ExtensionArray._pad_or_backfill" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">ExtensionArray.</span></span><span class="sig-name descname"><span class="pre">_pad_or_backfill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_area</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/core/arrays/base.py#L1247-L1335"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.ExtensionArray._pad_or_backfill" title="Link to this definition">#</a></dt>
 <dd><p>Pad or backfill values, used by Series/DataFrame ffill and bfill.</p>
 <p>This method propagates the last valid observation forward (pad/ffill)
 or the next valid observation backward (backfill/bfill) to fill NaN
@@ -659,12 +661,12 @@ present.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="pandas.api.extensions.ExtensionArray._hash_pandas_object.html"
+       href="pandas.api.extensions.ExtensionArray._is_monotonic_increasing.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">pandas.api.extensions.ExtensionArray._hash_pandas_object</p>
+        <p class="prev-next-title">pandas.api.extensions.ExtensionArray._is_monotonic_increasing</p>
       </div>
     </a>
     <a class="right-next"

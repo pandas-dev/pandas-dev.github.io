@@ -492,6 +492,8 @@
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._from_sequence.html">pandas.api.extensions.ExtensionArray._from_sequence</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._from_sequence_of_strings.html">pandas.api.extensions.ExtensionArray._from_sequence_of_strings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._hash_pandas_object.html">pandas.api.extensions.ExtensionArray._hash_pandas_object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._is_monotonic_decreasing.html">pandas.api.extensions.ExtensionArray._is_monotonic_decreasing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._is_monotonic_increasing.html">pandas.api.extensions.ExtensionArray._is_monotonic_increasing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._pad_or_backfill.html">pandas.api.extensions.ExtensionArray._pad_or_backfill</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._reduce.html">pandas.api.extensions.ExtensionArray._reduce</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray._values_for_argsort.html">pandas.api.extensions.ExtensionArray._values_for_argsort</a></li>
@@ -670,7 +672,7 @@ may be stored directly inside a <code class="xref py py-class docutils literal n
 <td><p>Return an ExtensionArray performing an accumulation operation.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._concat_same_type.html#pandas.api.extensions.ExtensionArray._concat_same_type" title="pandas.api.extensions.ExtensionArray._concat_same_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_concat_same_type</span></code></a>(to_concat)</p></td>
-<td><p>Concatenate multiple array of this dtype.</p></td>
+<td><p>Concatenate multiple arrays of this dtype.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._explode.html#pandas.api.extensions.ExtensionArray._explode" title="pandas.api.extensions.ExtensionArray._explode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_explode</span></code></a>()</p></td>
 <td><p>Transform each element of list-like to a row.</p></td>
@@ -689,6 +691,12 @@ may be stored directly inside a <code class="xref py py-class docutils literal n
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._hash_pandas_object.html#pandas.api.extensions.ExtensionArray._hash_pandas_object" title="pandas.api.extensions.ExtensionArray._hash_pandas_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_hash_pandas_object</span></code></a>(*, encoding, hash_key, ...)</p></td>
 <td><p>Hook for hash_pandas_object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._is_monotonic_decreasing.html#pandas.api.extensions.ExtensionArray._is_monotonic_decreasing" title="pandas.api.extensions.ExtensionArray._is_monotonic_decreasing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_is_monotonic_decreasing</span></code></a></p></td>
+<td><p>Return True if the array values are monotonically decreasing.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._is_monotonic_increasing.html#pandas.api.extensions.ExtensionArray._is_monotonic_increasing" title="pandas.api.extensions.ExtensionArray._is_monotonic_increasing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_is_monotonic_increasing</span></code></a></p></td>
+<td><p>Return True if the array values are monotonically increasing.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._pad_or_backfill.html#pandas.api.extensions.ExtensionArray._pad_or_backfill" title="pandas.api.extensions.ExtensionArray._pad_or_backfill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_pad_or_backfill</span></code></a>(*, method[, limit, ...])</p></td>
 <td><p>Pad or backfill values, used by Series/DataFrame ffill and bfill.</p></td>
@@ -732,7 +740,7 @@ implemented by subclasses:</p>
 <li><p>interpolate</p></li>
 </ul>
 <p>A default repr displaying the type, (truncated) data, length,
-and dtype is provided. It can be customized or replaced by
+and dtype is provided. It can be customized or replaced
 by overriding:</p>
 <ul class="simple">
 <li><p>__repr__ : A default repr for the ExtensionArray.</p></li>

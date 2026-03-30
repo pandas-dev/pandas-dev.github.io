@@ -62,7 +62,7 @@
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.DatetimeIndex.inferred_freq" href="pandas.DatetimeIndex.inferred_freq.html" />
+    <link rel="next" title="pandas.DatetimeIndex.asi8" href="pandas.DatetimeIndex.asi8.html" />
     <link rel="prev" title="pandas.DatetimeIndex.is_year_end" href="pandas.DatetimeIndex.is_year_end.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -752,9 +752,6 @@
     
     <li class="breadcrumb-item"><a href="../indexing.html" class="nav-link">Index objects</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="pandas.DatetimeIndex.html" class="nav-link">pandas.DatetimeIndex</a></li>
-    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pandas.DatetimeIndex.is_leap_year</span></li>
   </ul>
 </nav>
@@ -776,54 +773,8 @@
 <h1>pandas.DatetimeIndex.is_leap_year<a class="headerlink" href="#pandas-datetimeindex-is-leap-year" title="Link to this heading">#</a></h1>
 <dl class="py property">
 <dt class="sig sig-object py" id="pandas.DatetimeIndex.is_leap_year">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DatetimeIndex.</span></span><span class="sig-name descname"><span class="pre">is_leap_year</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/core/indexes/extension.py#L70-L78"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.is_leap_year" title="Link to this definition">#</a></dt>
-<dd><p>Boolean indicator if the date belongs to a leap year.</p>
-<p>A leap year is a year, which has 366 days (instead of 365) including
-29th of February as an intercalary day.
-Leap years are years which are multiples of four with the exception
-of years divisible by 100 but not by 400.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>Series or ndarray</dt><dd><p>Booleans indicating if dates belong to a leap year.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="pandas.DatetimeIndex.is_year_end.html#pandas.DatetimeIndex.is_year_end" title="pandas.DatetimeIndex.is_year_end"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatetimeIndex.is_year_end</span></code></a></dt><dd><p>Indicate whether the date is the last day of the year.</p>
-</dd>
-<dt><a class="reference internal" href="pandas.DatetimeIndex.is_year_start.html#pandas.DatetimeIndex.is_year_start" title="pandas.DatetimeIndex.is_year_start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatetimeIndex.is_year_start</span></code></a></dt><dd><p>Indicate whether the date is the first day of a year.</p>
-</dd>
-</dl>
-</div>
-<p class="rubric">Examples</p>
-<p>This method is available on Series with datetime values under
-the <code class="docutils literal notranslate"><span class="pre">.dt</span></code> accessor, and directly on DatetimeIndex.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2012-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2015-01-01&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;YE&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span>
-<span class="go">DatetimeIndex([&#39;2012-12-31&#39;, &#39;2013-12-31&#39;, &#39;2014-12-31&#39;],</span>
-<span class="go">              dtype=&#39;datetime64[us]&#39;, freq=&#39;YE-DEC&#39;)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">is_leap_year</span>
-<span class="go">array([ True, False, False])</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dates_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dates_series</span>
-<span class="go">0   2012-12-31</span>
-<span class="go">1   2013-12-31</span>
-<span class="go">2   2014-12-31</span>
-<span class="go">dtype: datetime64[us]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dates_series</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">is_leap_year</span>
-<span class="go">0     True</span>
-<span class="go">1    False</span>
-<span class="go">2    False</span>
-<span class="go">dtype: bool</span>
-</pre></div>
-</div>
-</dd></dl>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DatetimeIndex.</span></span><span class="sig-name descname"><span class="pre">is_leap_year</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/core/indexes/datetimes.py#L398-L400"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.is_leap_year" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 </section>
 
@@ -847,11 +798,11 @@ the <code class="docutils literal notranslate"><span class="pre">.dt</span></cod
       </div>
     </a>
     <a class="right-next"
-       href="pandas.DatetimeIndex.inferred_freq.html"
+       href="pandas.DatetimeIndex.asi8.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">pandas.DatetimeIndex.inferred_freq</p>
+        <p class="prev-next-title">pandas.DatetimeIndex.asi8</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

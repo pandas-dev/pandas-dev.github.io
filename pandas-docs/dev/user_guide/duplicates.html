@@ -577,33 +577,33 @@ duplicates present. The output can’t be determined, and so pandas raises.</p>
 <span class="g g-Whitespace">   </span><span class="mi">5700</span>         <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">5701</span>     <span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5480,</span> in <span class="ni">NDFrame.reindex</span><span class="nt">(self, labels, index, columns, axis, method, copy, level, fill_value, limit, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5477</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_multi</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5479</span> <span class="c1"># perform the reindex on the axes</span>
-<span class="ne">-&gt; </span><span class="mi">5480</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_axes</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">5481</span>     <span class="n">axes</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">fill_value</span>
-<span class="g g-Whitespace">   </span><span class="mi">5482</span> <span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;reindex&quot;</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5492,</span> in <span class="ni">NDFrame.reindex</span><span class="nt">(self, labels, index, columns, axis, method, copy, level, fill_value, limit, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5489</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_multi</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5491</span> <span class="c1"># perform the reindex on the axes</span>
+<span class="ne">-&gt; </span><span class="mi">5492</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_axes</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5493</span>     <span class="n">axes</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">fill_value</span>
+<span class="g g-Whitespace">   </span><span class="mi">5494</span> <span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;reindex&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5502,</span> in <span class="ni">NDFrame._reindex_axes</span><span class="nt">(self, axes, level, limit, tolerance, method, fill_value)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5499</span>     <span class="k">continue</span>
-<span class="g g-Whitespace">   </span><span class="mi">5501</span> <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">5502</span> <span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">5503</span>     <span class="n">labels</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span>
-<span class="g g-Whitespace">   </span><span class="mi">5504</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5506</span> <span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis_number</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5507</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">_reindex_with_indexers</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">5508</span>     <span class="p">{</span><span class="n">axis</span><span class="p">:</span> <span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span><span class="p">]},</span>
-<span class="g g-Whitespace">   </span><span class="mi">5509</span>     <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_value</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">5510</span>     <span class="n">allow_dups</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">5511</span> <span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5514,</span> in <span class="ni">NDFrame._reindex_axes</span><span class="nt">(self, axes, level, limit, tolerance, method, fill_value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5511</span>     <span class="k">continue</span>
+<span class="g g-Whitespace">   </span><span class="mi">5513</span> <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">5514</span> <span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5515</span>     <span class="n">labels</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span>
+<span class="g g-Whitespace">   </span><span class="mi">5516</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5518</span> <span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis_number</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5519</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">_reindex_with_indexers</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5520</span>     <span class="p">{</span><span class="n">axis</span><span class="p">:</span> <span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span><span class="p">]},</span>
+<span class="g g-Whitespace">   </span><span class="mi">5521</span>     <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_value</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5522</span>     <span class="n">allow_dups</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5523</span> <span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4321,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4318</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cannot handle a non-unique multi-index!&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4319</span> <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unique</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4320</span>     <span class="c1"># GH#42568</span>
-<span class="ne">-&gt; </span><span class="mi">4321</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cannot reindex on an axis with duplicate labels&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4322</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4323</span>     <span class="n">indexer</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_indexer_non_unique</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4347,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4344</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cannot handle a non-unique multi-index!&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4345</span> <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unique</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4346</span>     <span class="c1"># GH#42568</span>
+<span class="ne">-&gt; </span><span class="mi">4347</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cannot reindex on an axis with duplicate labels&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4348</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4349</span>     <span class="n">indexer</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_indexer_non_unique</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
 
 <span class="ne">ValueError</span>: cannot reindex on an axis with duplicate labels
 </pre></div>
@@ -722,11 +722,11 @@ will be raised.</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span><span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:449,</span> in <span class="ni">NDFrame.set_flags</span><span class="nt">(self, copy, allows_duplicate_labels)</span>
-<span class="g g-Whitespace">    </span><span class="mi">447</span> <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">448</span> <span class="k">if</span> <span class="n">allows_duplicate_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">449</span>     <span class="n">df</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s2">&quot;allows_duplicate_labels&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">allows_duplicate_labels</span>
-<span class="g g-Whitespace">    </span><span class="mi">450</span> <span class="k">return</span> <span class="n">df</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:450,</span> in <span class="ni">NDFrame.set_flags</span><span class="nt">(self, copy, allows_duplicate_labels)</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span> <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span> <span class="k">if</span> <span class="n">allows_duplicate_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">450</span>     <span class="n">df</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="s2">&quot;allows_duplicate_labels&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">allows_duplicate_labels</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span> <span class="k">return</span> <span class="n">df</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/flags.py:121,</span> in <span class="ni">Flags.__setitem__</span><span class="nt">(self, key, value)</span>
 <span class="g g-Whitespace">    </span><span class="mi">119</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keys</span><span class="p">:</span>
@@ -739,10 +739,10 @@ will be raised.</p>
 <span class="ne">--&gt; </span><span class="mi">108</span>         <span class="n">ax</span><span class="o">.</span><span class="n">_maybe_check_unique</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allows_duplicate_labels</span> <span class="o">=</span> <span class="n">value</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:713,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">710</span> <span class="n">duplicates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_duplicate_message</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">713</span> <span class="k">raise</span> <span class="n">DuplicateLabelError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:714,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="n">duplicates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_duplicate_message</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">712</span> <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">714</span> <span class="k">raise</span> <span class="n">DuplicateLabelError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
 <span class="ne">DuplicateLabelError</span>: Index has duplicates.
       <span class="n">positions</span>
@@ -814,41 +814,35 @@ labels or performing an operation that introduces duplicate labels on a <code cl
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">28</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/frame.py:6319,</span> in <span class="ni">DataFrame.rename</span><span class="nt">(self, mapper, index, columns, axis, copy, inplace, level, errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6200</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">6201</span><span class="sd"> Rename columns or index labels.</span>
-<span class="g g-Whitespace">   </span><span class="mi">6202</span><span class="sd"> </span>
-<span class="sd">   (...)   6316 4  3  6</span>
-<span class="g g-Whitespace">   </span><span class="mi">6317</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">6318</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_copy_deprecation</span><span class="p">(</span><span class="n">copy</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">6319</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_rename</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">6320</span>     <span class="n">mapper</span><span class="o">=</span><span class="n">mapper</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">6321</span>     <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">6322</span>     <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">6323</span>     <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">6324</span>     <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">6325</span>     <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">6326</span>     <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">6327</span> <span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/frame.py:6348,</span> in <span class="ni">DataFrame.rename</span><span class="nt">(self, mapper, index, columns, axis, copy, inplace, level, errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6229</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">6230</span><span class="sd"> Rename columns or index labels.</span>
+<span class="g g-Whitespace">   </span><span class="mi">6231</span><span class="sd"> </span>
+<span class="sd">   (...)   6345 4  3  6</span>
+<span class="g g-Whitespace">   </span><span class="mi">6346</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">6347</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_copy_deprecation</span><span class="p">(</span><span class="n">copy</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">6348</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_rename</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">6349</span>     <span class="n">mapper</span><span class="o">=</span><span class="n">mapper</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">6350</span>     <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">6351</span>     <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">6352</span>     <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">6353</span>     <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">6354</span>     <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">6355</span>     <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">6356</span> <span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1055,</span> in <span class="ni">NDFrame._rename</span><span class="nt">(self, mapper, index, columns, axis, inplace, level, errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>     <span class="k">return</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1054</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1055</span>     <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;rename&quot;</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1056,</span> in <span class="ni">NDFrame._rename</span><span class="nt">(self, mapper, index, columns, axis, inplace, level, errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1054</span>     <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1055</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1056</span>     <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;rename&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:6175,</span> in <span class="ni">NDFrame.__finalize__</span><span class="nt">(self, other, method, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6169</span> <span class="k">if</span> <span class="n">other</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">6170</span>     <span class="c1"># We want attrs propagation to have minimal performance</span>
-<span class="g g-Whitespace">   </span><span class="mi">6171</span>     <span class="c1"># impact if attrs are not used; i.e. attrs is an empty dict.</span>
-<span class="g g-Whitespace">   </span><span class="mi">6172</span>     <span class="c1"># One could make the deepcopy unconditionally, but a deepcopy</span>
-<span class="g g-Whitespace">   </span><span class="mi">6173</span>     <span class="c1"># of an empty dict is 50x more expensive than the empty check.</span>
-<span class="g g-Whitespace">   </span><span class="mi">6174</span>     <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">6175</span> <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">allows_duplicate_labels</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">6176</span>     <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">allows_duplicate_labels</span>
-<span class="g g-Whitespace">   </span><span class="mi">6177</span>     <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">allows_duplicate_labels</span>
-<span class="g g-Whitespace">   </span><span class="mi">6178</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6179</span> <span class="c1"># For subclasses using _metadata.</span>
-<span class="g g-Whitespace">   </span><span class="mi">6180</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">_metadata</span><span class="p">):</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:6190,</span> in <span class="ni">NDFrame.__finalize__</span><span class="nt">(self, other, method, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6187</span> <span class="c1"># Since new objects always start with allows_duplicate_labels=True,</span>
+<span class="g g-Whitespace">   </span><span class="mi">6188</span> <span class="c1"># we only need to act when other has it set to False.</span>
+<span class="g g-Whitespace">   </span><span class="mi">6189</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">other</span><span class="o">.</span><span class="n">_flags</span><span class="o">.</span><span class="n">_allows_duplicate_labels</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">6190</span>     <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">allows_duplicate_labels</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="g g-Whitespace">   </span><span class="mi">6191</span> <span class="c1"># For subclasses using _metadata.</span>
+<span class="g g-Whitespace">   </span><span class="mi">6192</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">_metadata</span><span class="p">):</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/flags.py:108,</span> in <span class="ni">Flags.allows_duplicate_labels</span><span class="nt">(self, value)</span>
 <span class="g g-Whitespace">    </span><span class="mi">106</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
@@ -856,10 +850,10 @@ labels or performing an operation that introduces duplicate labels on a <code cl
 <span class="ne">--&gt; </span><span class="mi">108</span>         <span class="n">ax</span><span class="o">.</span><span class="n">_maybe_check_unique</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allows_duplicate_labels</span> <span class="o">=</span> <span class="n">value</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:713,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">710</span> <span class="n">duplicates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_duplicate_message</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">713</span> <span class="k">raise</span> <span class="n">DuplicateLabelError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:714,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="n">duplicates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_duplicate_message</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">712</span> <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">714</span> <span class="k">raise</span> <span class="n">DuplicateLabelError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
 <span class="ne">DuplicateLabelError</span>: Index has duplicates.
       <span class="n">positions</span>
@@ -904,24 +898,18 @@ operations.</p>
 <span class="g g-Whitespace">   </span><span class="mi">5413</span> <span class="k">else</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">5414</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_name</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1055,</span> in <span class="ni">NDFrame._rename</span><span class="nt">(self, mapper, index, columns, axis, inplace, level, errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>     <span class="k">return</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1054</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1055</span>     <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;rename&quot;</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1056,</span> in <span class="ni">NDFrame._rename</span><span class="nt">(self, mapper, index, columns, axis, inplace, level, errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1054</span>     <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1055</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1056</span>     <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;rename&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:6175,</span> in <span class="ni">NDFrame.__finalize__</span><span class="nt">(self, other, method, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6169</span> <span class="k">if</span> <span class="n">other</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">6170</span>     <span class="c1"># We want attrs propagation to have minimal performance</span>
-<span class="g g-Whitespace">   </span><span class="mi">6171</span>     <span class="c1"># impact if attrs are not used; i.e. attrs is an empty dict.</span>
-<span class="g g-Whitespace">   </span><span class="mi">6172</span>     <span class="c1"># One could make the deepcopy unconditionally, but a deepcopy</span>
-<span class="g g-Whitespace">   </span><span class="mi">6173</span>     <span class="c1"># of an empty dict is 50x more expensive than the empty check.</span>
-<span class="g g-Whitespace">   </span><span class="mi">6174</span>     <span class="bp">self</span><span class="o">.</span><span class="n">attrs</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">attrs</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">6175</span> <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">allows_duplicate_labels</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">6176</span>     <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">allows_duplicate_labels</span>
-<span class="g g-Whitespace">   </span><span class="mi">6177</span>     <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">allows_duplicate_labels</span>
-<span class="g g-Whitespace">   </span><span class="mi">6178</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6179</span> <span class="c1"># For subclasses using _metadata.</span>
-<span class="g g-Whitespace">   </span><span class="mi">6180</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">_metadata</span><span class="p">):</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:6190,</span> in <span class="ni">NDFrame.__finalize__</span><span class="nt">(self, other, method, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6187</span> <span class="c1"># Since new objects always start with allows_duplicate_labels=True,</span>
+<span class="g g-Whitespace">   </span><span class="mi">6188</span> <span class="c1"># we only need to act when other has it set to False.</span>
+<span class="g g-Whitespace">   </span><span class="mi">6189</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">other</span><span class="o">.</span><span class="n">_flags</span><span class="o">.</span><span class="n">_allows_duplicate_labels</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">6190</span>     <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">allows_duplicate_labels</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="g g-Whitespace">   </span><span class="mi">6191</span> <span class="c1"># For subclasses using _metadata.</span>
+<span class="g g-Whitespace">   </span><span class="mi">6192</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">_metadata</span><span class="p">):</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/flags.py:108,</span> in <span class="ni">Flags.allows_duplicate_labels</span><span class="nt">(self, value)</span>
 <span class="g g-Whitespace">    </span><span class="mi">106</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
@@ -929,10 +917,10 @@ operations.</p>
 <span class="ne">--&gt; </span><span class="mi">108</span>         <span class="n">ax</span><span class="o">.</span><span class="n">_maybe_check_unique</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allows_duplicate_labels</span> <span class="o">=</span> <span class="n">value</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:713,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">710</span> <span class="n">duplicates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_duplicate_message</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">713</span> <span class="k">raise</span> <span class="n">DuplicateLabelError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:714,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="n">duplicates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_duplicate_message</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">712</span> <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">714</span> <span class="k">raise</span> <span class="n">DuplicateLabelError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
 <span class="ne">DuplicateLabelError</span>: Index has duplicates.
       <span class="n">positions</span>

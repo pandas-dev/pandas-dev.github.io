@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new in 3.0.2 (March XX, 2026) &#8212; pandas  documentation</title>
+    <title>What’s new in 3.0.2 (March 30, 2026) &#8212; pandas  documentation</title>
   
   
   
@@ -438,7 +438,7 @@
     
     <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="v3.1.0.html">What’s new in 3.1.0 (Month XX, 2026)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">What’s new in 3.0.2 (March XX, 2026)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">What’s new in 3.0.2 (March 30, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.1.html">What’s new in 3.0.1 (February 17, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.0.html">What’s new in 3.0.0 (January 21, 2026)</a></li>
 </ul>
@@ -651,7 +651,7 @@
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">Release notes</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">What’s new in 3.0.2 (March XX, 2026)</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">What’s new in 3.0.2 (March 30, 2026)</span></li>
   </ul>
 </nav>
 </div>
@@ -668,8 +668,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="what-s-new-in-3-0-2-march-xx-2026">
-<span id="whatsnew-302"></span><h1>What’s new in 3.0.2 (March XX, 2026)<a class="headerlink" href="#what-s-new-in-3-0-2-march-xx-2026" title="Link to this heading">#</a></h1>
+  <section id="what-s-new-in-3-0-2-march-30-2026">
+<span id="whatsnew-302"></span><h1>What’s new in 3.0.2 (March 30, 2026)<a class="headerlink" href="#what-s-new-in-3-0-2-march-30-2026" title="Link to this heading">#</a></h1>
 <p>These are the changes in pandas 3.0.2. See <a class="reference internal" href="index.html#release"><span class="std std-ref">Release notes</span></a> for a full changelog
 including other versions of pandas.</p>
 <section id="enhancements">
@@ -681,21 +681,29 @@ including other versions of pandas.</p>
 <section id="fixed-regressions">
 <span id="whatsnew-302-regressions"></span><h2>Fixed regressions<a class="headerlink" href="#fixed-regressions" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.HDFStore.select.html#pandas.HDFStore.select" title="pandas.HDFStore.select"><code class="xref py py-meth docutils literal notranslate"><span class="pre">HDFStore.select()</span></code></a> where the <code class="docutils literal notranslate"><span class="pre">where</span></code> clause on a datetime index silently returned empty results when the index had non-nanosecond resolution (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64310">GH 64310</a>)</p></li>
-<li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.Series.interpolate.html#pandas.Series.interpolate" title="pandas.Series.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.interpolate()</span></code></a> where <code class="docutils literal notranslate"><span class="pre">limit_direction=&quot;both&quot;</span></code> with <code class="docutils literal notranslate"><span class="pre">limit</span></code> greater than the Series length raised <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64322">GH 64322</a>)</p></li>
+<li><p>Fixed a regression in <a class="reference internal" href="../reference/api/pandas.json_normalize.html#pandas.json_normalize" title="pandas.json_normalize"><code class="xref py py-func docutils literal notranslate"><span class="pre">json_normalize()</span></code></a> that caused top-level missing entries to raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>. Missing entries are once again interpreted as empty records (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64188">GH 64188</a>)</p></li>
+<li><p>Fixed a regression in <a class="reference internal" href="../reference/api/pandas.DataFrame.sort_index.html#pandas.DataFrame.sort_index" title="pandas.DataFrame.sort_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.sort_index()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.sort_index.html#pandas.Series.sort_index" title="pandas.Series.sort_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.sort_index()</span></code></a> raising <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code> when called with <code class="docutils literal notranslate"><span class="pre">level=</span></code> on a <a class="reference internal" href="../reference/api/pandas.RangeIndex.html#pandas.RangeIndex" title="pandas.RangeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">RangeIndex</span></code></a> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64383">GH 64383</a>)</p></li>
+<li><p>Fixed a regression in <a class="reference internal" href="../reference/api/pandas.DataFrame.sum.html#pandas.DataFrame.sum" title="pandas.DataFrame.sum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.sum()</span></code></a> on empty DataFrames with a mix of numeric and string dtypes (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64657">GH 64657</a>)</p></li>
+<li><p>Fixed a regression in <a class="reference internal" href="../reference/api/pandas.HDFStore.select.html#pandas.HDFStore.select" title="pandas.HDFStore.select"><code class="xref py py-meth docutils literal notranslate"><span class="pre">HDFStore.select()</span></code></a> where the <code class="docutils literal notranslate"><span class="pre">where</span></code> clause on a datetime index silently returned empty results when the index had non-nanosecond resolution (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64310">GH 64310</a>)</p></li>
+<li><p>Fixed a regression in <a class="reference internal" href="../reference/api/pandas.Series.interpolate.html#pandas.Series.interpolate" title="pandas.Series.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.interpolate()</span></code></a> where <code class="docutils literal notranslate"><span class="pre">limit_direction=&quot;both&quot;</span></code> with <code class="docutils literal notranslate"><span class="pre">limit</span></code> greater than the Series length raised <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64322">GH 64322</a>)</p></li>
+<li><p>Fixed a regression in <a class="reference internal" href="../reference/api/pandas.Series.str.find.html#pandas.Series.str.find" title="pandas.Series.str.find"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.str.find()</span></code></a> returning byte offsets instead of character offsets for multi-byte UTF-8 characters (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64123">GH 64123</a>)</p></li>
+<li><p>Fixed performance regression in assigning into a string column with string data (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64530">GH 64530</a>)</p></li>
 </ul>
 <section id="bug-fixes">
 <span id="whatsnew-302-bug-fixes"></span><h3>Bug fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference internal" href="../reference/api/pandas.col.html#pandas.col" title="pandas.col"><code class="xref py py-func docutils literal notranslate"><span class="pre">col()</span></code></a> and expressions derived from it failed with power (<code class="docutils literal notranslate"><span class="pre">**</span></code>) and matrix multiplication (<code class="docutils literal notranslate"><span class="pre">&#64;</span></code>) operators (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64267">GH 64267</a>)</p></li>
-<li><p>Assigning <code class="xref py py-attr docutils literal notranslate"><span class="pre">pd.NA</span></code> to a string column could trigger a PyArrow error and corrupt data (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64320">GH 64320</a>)</p></li>
-<li><p>Bug when using <a class="reference internal" href="../reference/api/pandas.col.html#pandas.col" title="pandas.col"><code class="xref py py-func docutils literal notranslate"><span class="pre">col()</span></code></a> with Python functions <code class="xref py py-func docutils literal notranslate"><span class="pre">bool()</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#iter" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">iter()</span></code></a>, <code class="xref py py-func docutils literal notranslate"><span class="pre">copy()</span></code>, and <code class="xref py py-func docutils literal notranslate"><span class="pre">deepcopy()</span></code> either failed or produced incorrect results; these now all raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64267">GH 64267</a>)</p></li>
+<li><p>Fixed a bug in <a class="reference internal" href="../reference/api/pandas.Series.var.html#pandas.Series.var" title="pandas.Series.var"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.var()</span></code></a> computing the variance of complex numbers incorrectly (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/62421">GH 62421</a>)</p></li>
+<li><p>Fixed a bug in the <a class="reference internal" href="../reference/api/pandas.Series.sum.html#pandas.Series.sum" title="pandas.Series.sum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sum()</span></code></a> method with python-backed string dtype returning incorrect value for an empty Series and ignoring the <code class="docutils literal notranslate"><span class="pre">min_count</span></code> argument (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64683">GH 64683</a>)</p></li>
+<li><p>Fixed a bug when using <a class="reference internal" href="../reference/api/pandas.col.html#pandas.col" title="pandas.col"><code class="xref py py-func docutils literal notranslate"><span class="pre">col()</span></code></a> with Python functions <code class="docutils literal notranslate"><span class="pre">bool()</span></code>, <code class="docutils literal notranslate"><span class="pre">iter()</span></code>, <code class="docutils literal notranslate"><span class="pre">copy()</span></code>, and <code class="docutils literal notranslate"><span class="pre">deepcopy()</span></code> either failed or produced incorrect results; these now all raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64267">GH 64267</a>)</p></li>
+<li><p>Fixed a bug where <a class="reference internal" href="../reference/api/pandas.col.html#pandas.col" title="pandas.col"><code class="xref py py-func docutils literal notranslate"><span class="pre">col()</span></code></a> and expressions derived from it failed with power (<code class="docutils literal notranslate"><span class="pre">**</span></code>) and matrix multiplication (<code class="docutils literal notranslate"><span class="pre">&#64;</span></code>) operators (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64267">GH 64267</a>)</p></li>
+<li><p>Fixed a bug where <a class="reference internal" href="../reference/api/pandas.DataFrame.div.html#pandas.DataFrame.div" title="pandas.DataFrame.div"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.div()</span></code></a> ignored the <code class="docutils literal notranslate"><span class="pre">axis</span></code> argument when used with <code class="docutils literal notranslate"><span class="pre">level</span></code> for MultiIndex columns (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64428">GH 64428</a>)</p></li>
+<li><p>Fixed a bug where assigning <a class="reference internal" href="../reference/api/pandas.NA.html#pandas.NA" title="pandas.NA"><code class="xref py py-class docutils literal notranslate"><span class="pre">NA</span></code></a> to a string column could trigger a PyArrow error and corrupt data (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64320">GH 64320</a>)</p></li>
 </ul>
 </section>
 </section>
 <section id="contributors">
 <span id="whatsnew-302-contributors"></span><h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">#</a></h2>
-<p>A total of 90 people contributed patches to this release.  People with a
+<p>A total of 115 people contributed patches to this release.  People with a
 “+” by their names contributed a patch for the first time.
 </p>
 <ul class="simple">
@@ -703,6 +711,7 @@ including other versions of pandas.</p>
 <li><p>Adam Ormondroyd</p></li>
 <li><p>Agnus Paul +</p></li>
 <li><p>Aidan Feldman</p></li>
+<li><p>Alex Lubbock</p></li>
 <li><p>Amey Darokar +</p></li>
 <li><p>An1k4et +</p></li>
 <li><p>Angel98518 +</p></li>
@@ -712,23 +721,33 @@ including other versions of pandas.</p>
 <li><p>Arthur Wigo</p></li>
 <li><p>BitToby</p></li>
 <li><p>Boris Bilich +</p></li>
+<li><p>Boris-Adrian Descubes +</p></li>
 <li><p>Brock</p></li>
 <li><p>Chaitanya Dasari +</p></li>
 <li><p>Christian Rivera V. +</p></li>
 <li><p>Christine P. Chai</p></li>
+<li><p>Claude Opus 4.6 (1M context) +</p></li>
 <li><p>Claude Opus 4.6 +</p></li>
 <li><p>Claude Sonnet 4.6 +</p></li>
 <li><p>Clément Pit-Claudel +</p></li>
 <li><p>Co-Messi +</p></li>
+<li><p>Copilot +</p></li>
 <li><p>David Hills +</p></li>
 <li><p>DavideRagazzon +</p></li>
+<li><p>Denis Karadaş</p></li>
+<li><p>Denis Washington +</p></li>
 <li><p>Devpriya Dave +</p></li>
 <li><p>Doug McGeehan +</p></li>
 <li><p>Dr Alex Mitre +</p></li>
 <li><p>Eric Chen</p></li>
+<li><p>Fadi Younes +</p></li>
 <li><p>GitTensor Miner +</p></li>
+<li><p>Harikrishna KP +</p></li>
+<li><p>Imgyu Kim +</p></li>
 <li><p>Irv Lustig</p></li>
 <li><p>Jacob Peacock</p></li>
+<li><p>Jai +</p></li>
+<li><p>Jai Fadia +</p></li>
 <li><p>Jan Sprengel +</p></li>
 <li><p>Jarvis +</p></li>
 <li><p>Jeongmin Gil</p></li>
@@ -738,13 +757,17 @@ including other versions of pandas.</p>
 <li><p>Joris Van den Bossche</p></li>
 <li><p>Julian Harbeck</p></li>
 <li><p>Julian-Harbeck</p></li>
+<li><p>Kamil Kostrzewa +</p></li>
 <li><p>Kumar Aditya +</p></li>
+<li><p>Marcus Read +</p></li>
 <li><p>Mars-aliens +</p></li>
+<li><p>Matt +</p></li>
 <li><p>Matthew Roeschke</p></li>
 <li><p>Mohamed Adhil +</p></li>
 <li><p>Nabanita Borah +</p></li>
 <li><p>Natalia Mokeeva</p></li>
 <li><p>Nathan Goldbaum</p></li>
+<li><p>Nikita +</p></li>
 <li><p>Ofosu Osei +</p></li>
 <li><p>Philipp A. +</p></li>
 <li><p>Philipp Angerer +</p></li>
@@ -756,22 +779,28 @@ including other versions of pandas.</p>
 <li><p>Ruifeng Zheng</p></li>
 <li><p>SHIGRAF SALIK +</p></li>
 <li><p>Sanchit Rishi</p></li>
+<li><p>Sarah Rajgoli +</p></li>
 <li><p>Scott Shambaugh +</p></li>
 <li><p>Shiyang +</p></li>
+<li><p>Shubham Goel +</p></li>
 <li><p>Thierry Moisan</p></li>
+<li><p>Tim Sweña (Swast)</p></li>
 <li><p>Timo +</p></li>
 <li><p>Tuhin Sharma</p></li>
+<li><p>Varun Chawla +</p></li>
 <li><p>Vedant Madane +</p></li>
 <li><p>Vignesh A +</p></li>
 <li><p>Vikram Kumar</p></li>
 <li><p>Vishwas +</p></li>
 <li><p>William Andrea</p></li>
 <li><p>Xiao Yuan</p></li>
+<li><p>Yang Song +</p></li>
 <li><p>Yasunori Morishima（盛島康徳） +</p></li>
 <li><p>Yogitha +</p></li>
 <li><p>Yusuf Mohammad +</p></li>
 <li><p>alberto +</p></li>
 <li><p>alm</p></li>
+<li><p>copilot-swe-agent[bot] +</p></li>
 <li><p>cui +</p></li>
 <li><p>dependabot[bot]</p></li>
 <li><p>ellatso +</p></li>
@@ -781,10 +810,14 @@ including other versions of pandas.</p>
 <li><p>jeffreykenneth</p></li>
 <li><p>kei-0021 +</p></li>
 <li><p>littleKitchen +</p></li>
+<li><p>moktamd +</p></li>
 <li><p>mroeschke</p></li>
+<li><p>pierreeurope +</p></li>
 <li><p>pre-commit-ci[bot]</p></li>
 <li><p>rgttrhhyj +</p></li>
 <li><p>roeimed0</p></li>
+<li><p>saudadehx +</p></li>
+<li><p>saudademjj +</p></li>
 <li><p>skalwaghe_56</p></li>
 <li><p>vme50 +</p></li>
 <li><p>yogitha-star +</p></li>

@@ -754,56 +754,9 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pandas.Period.dayofweek">
 <span class="sig-prename descclassname"><span class="pre">Period.</span></span><span class="sig-name descname"><span class="pre">dayofweek</span></span><a class="headerlink" href="#pandas.Period.dayofweek" title="Link to this definition">#</a></dt>
-<dd><p>Day of the week the period lies in, with Monday=0 and Sunday=6.</p>
-<p>If the period frequency is lower than daily (e.g. hourly), and the
-period spans over multiple days, the day at the start of the period is
-used.</p>
-<p>If the frequency is higher than daily (e.g. monthly), the last day
-of the period is used.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>int</dt><dd><p>Day of the week.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="pandas.Period.day_of_week.html#pandas.Period.day_of_week" title="pandas.Period.day_of_week"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.day_of_week</span></code></a></dt><dd><p>Day of the week the period lies in.</p>
-</dd>
-<dt><a class="reference internal" href="pandas.Period.weekday.html#pandas.Period.weekday" title="pandas.Period.weekday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.weekday</span></code></a></dt><dd><p>Alias of Period.day_of_week.</p>
-</dd>
-<dt><a class="reference internal" href="pandas.Period.day.html#pandas.Period.day" title="pandas.Period.day"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.day</span></code></a></dt><dd><p>Day of the month.</p>
-</dd>
-<dt><a class="reference internal" href="pandas.Period.dayofyear.html#pandas.Period.dayofyear" title="pandas.Period.dayofyear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.dayofyear</span></code></a></dt><dd><p>Day of the year.</p>
-</dd>
-</dl>
-</div>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">per</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s1">&#39;2017-12-31 22:00&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">per</span><span class="o">.</span><span class="n">day_of_week</span>
-<span class="go">6</span>
-</pre></div>
-</div>
-<p>For periods that span over multiple days, the day at the beginning of
-the period is returned.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">per</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s1">&#39;2017-12-31 22:00&#39;</span><span class="p">,</span> <span class="s1">&#39;4h&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">per</span><span class="o">.</span><span class="n">day_of_week</span>
-<span class="go">6</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">per</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">day_of_week</span>
-<span class="go">6</span>
-</pre></div>
-</div>
-<p>For periods with a frequency higher than days, the last day of the
-period is returned.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">per</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s1">&#39;2018-01&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">per</span><span class="o">.</span><span class="n">day_of_week</span>
-<span class="go">2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">per</span><span class="o">.</span><span class="n">end_time</span><span class="o">.</span><span class="n">day_of_week</span>
-<span class="go">2</span>
-</pre></div>
+<dd><p>Return day of the week.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 3.1.0: </span>Use <a class="reference internal" href="pandas.Period.day_of_week.html#pandas.Period.day_of_week" title="pandas.Period.day_of_week"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Period.day_of_week</span></code></a> instead.</p>
 </div>
 </dd></dl>
 

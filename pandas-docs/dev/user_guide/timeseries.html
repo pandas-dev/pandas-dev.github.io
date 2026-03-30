@@ -925,12 +925,12 @@ option, see the Python <a class="reference external" href="https://docs.python.o
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">61</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">&#39;2009/07/31&#39;</span><span class="p">,</span> <span class="s1">&#39;asd&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;raise&#39;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/tools/datetimes.py:1075,</span> in <span class="ni">to_datetime</span><span class="nt">(arg, errors, dayfirst, yearfirst, utc, format, exact, unit, origin, cache)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1073</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">_convert_and_box_cache</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">cache_array</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1074</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1075</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">convert_listlike</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1076</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1077</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">convert_listlike</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">arg</span><span class="p">]),</span> <span class="nb">format</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/tools/datetimes.py:1111,</span> in <span class="ni">to_datetime</span><span class="nt">(arg, errors, dayfirst, yearfirst, utc, format, exact, unit, origin, cache)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1109</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">_convert_and_box_cache</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">cache_array</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1110</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1111</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">convert_listlike</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1112</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1113</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">convert_listlike</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">arg</span><span class="p">]),</span> <span class="nb">format</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/tools/datetimes.py:435,</span> in <span class="ni">_convert_listlike_datetimes</span><span class="nt">(arg, format, name, utc, unit, errors, dayfirst, yearfirst, exact)</span>
 <span class="g g-Whitespace">    </span><span class="mi">433</span> <span class="c1"># `format` could be inferred, or user didn&#39;t ask for mixed-format parsing.</span>
@@ -1212,11 +1212,11 @@ of those specified will not be generated:</p>
 
 <span class="gp">In [92]: </span><span class="n">pd</span><span class="o">.</span><span class="n">bdate_range</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="gh">Out[92]: </span>
-<span class="go">DatetimeIndex([&#39;2011-12-06&#39;, &#39;2011-12-07&#39;, &#39;2011-12-08&#39;, &#39;2011-12-09&#39;,</span>
-<span class="go">               &#39;2011-12-12&#39;, &#39;2011-12-13&#39;, &#39;2011-12-14&#39;, &#39;2011-12-15&#39;,</span>
-<span class="go">               &#39;2011-12-16&#39;, &#39;2011-12-19&#39;, &#39;2011-12-20&#39;, &#39;2011-12-21&#39;,</span>
-<span class="go">               &#39;2011-12-22&#39;, &#39;2011-12-23&#39;, &#39;2011-12-26&#39;, &#39;2011-12-27&#39;,</span>
-<span class="go">               &#39;2011-12-28&#39;, &#39;2011-12-29&#39;, &#39;2011-12-30&#39;],</span>
+<span class="go">DatetimeIndex([&#39;2011-12-05&#39;, &#39;2011-12-06&#39;, &#39;2011-12-07&#39;, &#39;2011-12-08&#39;,</span>
+<span class="go">               &#39;2011-12-09&#39;, &#39;2011-12-12&#39;, &#39;2011-12-13&#39;, &#39;2011-12-14&#39;,</span>
+<span class="go">               &#39;2011-12-15&#39;, &#39;2011-12-16&#39;, &#39;2011-12-19&#39;, &#39;2011-12-20&#39;,</span>
+<span class="go">               &#39;2011-12-21&#39;, &#39;2011-12-22&#39;, &#39;2011-12-23&#39;, &#39;2011-12-26&#39;,</span>
+<span class="go">               &#39;2011-12-27&#39;, &#39;2011-12-28&#39;, &#39;2011-12-29&#39;, &#39;2011-12-30&#39;],</span>
 <span class="go">              dtype=&#39;datetime64[us]&#39;, freq=&#39;B&#39;)</span>
 
 <span class="gp">In [93]: </span><span class="n">pd</span><span class="o">.</span><span class="n">bdate_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -1955,7 +1955,7 @@ into <code class="docutils literal notranslate"><span class="pre">freq</span></c
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../reference/api/pandas.tseries.offsets.Week.html#pandas.tseries.offsets.Week" title="pandas.tseries.offsets.Week"><code class="xref py py-class docutils literal notranslate"><span class="pre">Week</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">'W'</span></code></p></td>
-<td><p>one week, optionally anchored on a day of the week</p></td>
+<td><p>one week, optionally anchored on a day of the week (the anchor day is the last day of the weekly period)</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../reference/api/pandas.tseries.offsets.WeekOfMonth.html#pandas.tseries.offsets.WeekOfMonth" title="pandas.tseries.offsets.WeekOfMonth"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeekOfMonth</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">'WOM'</span></code></p></td>
@@ -2284,7 +2284,7 @@ calendars which account for local holidays and local weekend conventions.</p>
 <p>Let’s map to the weekday names:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [200]: </span><span class="n">dts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">bday_egypt</span><span class="p">)</span>
 
-<span class="gp">In [201]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dts</span><span class="o">.</span><span class="n">weekday</span><span class="p">,</span> <span class="n">dts</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="s2">&quot;Mon Tue Wed Thu Fri Sat Sun&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+<span class="gp">In [201]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dts</span><span class="o">.</span><span class="n">day_of_week</span><span class="p">,</span> <span class="n">dts</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="s2">&quot;Mon Tue Wed Thu Fri Sat Sun&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
 <span class="gh">Out[201]: </span>
 <span class="go">2013-04-30    Tue</span>
 <span class="go">2013-05-02    Thu</span>
@@ -2512,7 +2512,7 @@ frequencies. We will refer to these aliases as <em>offset aliases</em>.</p>
 <td><p>calendar day frequency</p></td>
 </tr>
 <tr class="row-odd"><td><p>W</p></td>
-<td><p>weekly frequency</p></td>
+<td><p>weekly frequency (default anchored to Sunday, i.e. W-SUN)</p></td>
 </tr>
 <tr class="row-even"><td><p>ME</p></td>
 <td><p>month end frequency</p></td>
@@ -2644,7 +2644,7 @@ frequencies. We will refer to these aliases as <em>period aliases</em>.</p>
 <td><p>calendar day frequency</p></td>
 </tr>
 <tr class="row-even"><td><p>W</p></td>
-<td><p>weekly frequency</p></td>
+<td><p>weekly frequency (default anchored to Sunday, i.e. W-SUN)</p></td>
 </tr>
 <tr class="row-odd"><td><p>M</p></td>
 <td><p>monthly frequency</p></td>
@@ -2730,25 +2730,25 @@ most functions:</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>W-SUN</p></td>
-<td><p>weekly frequency (Sundays). Same as ‘W’</p></td>
+<td><p>weekly frequency, week ends on Sunday. Same as ‘W’</p></td>
 </tr>
 <tr class="row-odd"><td><p>W-MON</p></td>
-<td><p>weekly frequency (Mondays)</p></td>
+<td><p>weekly frequency, week ends on Monday</p></td>
 </tr>
 <tr class="row-even"><td><p>W-TUE</p></td>
-<td><p>weekly frequency (Tuesdays)</p></td>
+<td><p>weekly frequency, week ends on Tuesday</p></td>
 </tr>
 <tr class="row-odd"><td><p>W-WED</p></td>
-<td><p>weekly frequency (Wednesdays)</p></td>
+<td><p>weekly frequency, week ends on Wednesday</p></td>
 </tr>
 <tr class="row-even"><td><p>W-THU</p></td>
-<td><p>weekly frequency (Thursdays)</p></td>
+<td><p>weekly frequency, week ends on Thursday</p></td>
 </tr>
 <tr class="row-odd"><td><p>W-FRI</p></td>
-<td><p>weekly frequency (Fridays)</p></td>
+<td><p>weekly frequency, week ends on Friday</p></td>
 </tr>
 <tr class="row-even"><td><p>W-SAT</p></td>
-<td><p>weekly frequency (Saturdays)</p></td>
+<td><p>weekly frequency, week ends on Saturday</p></td>
 </tr>
 <tr class="row-odd"><td><p>(B)Q(E)(S)-DEC</p></td>
 <td><p>quarterly frequency, year ends in December. Same as ‘QE’</p></td>
@@ -3048,7 +3048,7 @@ or calendars with additional rules.</p>
 <span class="gp">In [283]: </span><span class="n">cal</span><span class="o">.</span><span class="n">rules</span>
 <span class="gh">Out[283]: </span>
 <span class="go">[Holiday: Memorial Day (month=5, day=31, offset=&lt;DateOffset: weekday=MO(-1)&gt;),</span>
-<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f48b368c360&gt;),</span>
+<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f8cfbb20ea0&gt;),</span>
 <span class="go"> Holiday: Columbus Day (month=10, day=1, offset=&lt;DateOffset: weekday=MO(+2)&gt;)]</span>
 
 <span class="gp">In [284]: </span><span class="n">new_cal</span> <span class="o">=</span> <span class="n">HolidayCalendarFactory</span><span class="p">(</span><span class="s2">&quot;NewExampleCalendar&quot;</span><span class="p">,</span> <span class="n">cal</span><span class="p">,</span> <span class="n">USLaborDay</span><span class="p">)</span>
@@ -3057,7 +3057,7 @@ or calendars with additional rules.</p>
 <span class="gh">Out[285]: </span>
 <span class="go">[Holiday: Labor Day (month=9, day=1, offset=&lt;DateOffset: weekday=MO(+1)&gt;),</span>
 <span class="go"> Holiday: Memorial Day (month=5, day=31, offset=&lt;DateOffset: weekday=MO(-1)&gt;),</span>
-<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f48b368c360&gt;),</span>
+<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f8cfbb20ea0&gt;),</span>
 <span class="go"> Holiday: Columbus Day (month=10, day=1, offset=&lt;DateOffset: weekday=MO(+2)&gt;)]</span>
 </pre></div>
 </div>
@@ -3788,9 +3788,9 @@ frequency. Arithmetic is not allowed between <code class="docutils literal notra
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [373]: </span><span class="n">p</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">Minute</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/period.pyx:1916,</span> in <span class="ni">pandas._libs.tslibs.period._Period._add_timedeltalike_scalar</span><span class="nt">()</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/period.pyx:1955,</span> in <span class="ni">pandas._libs.tslibs.period._Period._add_timedeltalike_scalar</span><span class="nt">()</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/timedeltas.pyx:284,</span> in <span class="ni">pandas._libs.tslibs.timedeltas.delta_to_nanoseconds</span><span class="nt">()</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/timedeltas.pyx:285,</span> in <span class="ni">pandas._libs.tslibs.timedeltas.delta_to_nanoseconds</span><span class="nt">()</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/np_datetime.pyx:762,</span> in <span class="ni">pandas._libs.tslibs.np_datetime.convert_reso</span><span class="nt">()</span>
 
@@ -3802,9 +3802,9 @@ frequency. Arithmetic is not allowed between <code class="docutils literal notra
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">373</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">p</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">Minute</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/period.pyx:1937,</span> in <span class="ni">pandas._libs.tslibs.period._Period.__add__</span><span class="nt">()</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/period.pyx:1976,</span> in <span class="ni">pandas._libs.tslibs.period._Period.__add__</span><span class="nt">()</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/period.pyx:1918,</span> in <span class="ni">pandas._libs.tslibs.period._Period._add_timedeltalike_scalar</span><span class="nt">()</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/period.pyx:1957,</span> in <span class="ni">pandas._libs.tslibs.period._Period._add_timedeltalike_scalar</span><span class="nt">()</span>
 
 <span class="ne">IncompatibleFrequency</span>: Input cannot be converted to Period(freq=h)
 </pre></div>
@@ -3822,9 +3822,9 @@ frequency. Arithmetic is not allowed between <code class="docutils literal notra
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">376</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">p</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthBegin</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/period.pyx:1939,</span> in <span class="ni">pandas._libs.tslibs.period._Period.__add__</span><span class="nt">()</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/period.pyx:1978,</span> in <span class="ni">pandas._libs.tslibs.period._Period.__add__</span><span class="nt">()</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/period.pyx:1929,</span> in <span class="ni">pandas._libs.tslibs.period._Period._add_offset</span><span class="nt">()</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/period.pyx:1968,</span> in <span class="ni">pandas._libs.tslibs.period._Period._add_offset</span><span class="nt">()</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/period.pyx:1774,</span> in <span class="ni">pandas._libs.tslibs.period.PeriodMixin._require_matching_unit</span><span class="nt">()</span>
 
@@ -4499,20 +4499,20 @@ twice within one day (“clocks fall back”). The following options are availab
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">481</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">rng_hourly</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="s1">&#39;US/Eastern&#39;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimes.py:548,</span> in <span class="ni">DatetimeIndex.tz_localize</span><span class="nt">(self, tz, ambiguous, nonexistent)</span>
-<span class="g g-Whitespace">    </span><span class="mi">403</span> <span class="k">def</span><span class="w"> </span><span class="nf">tz_localize</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">404</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">405</span>     <span class="n">tz</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="n">ambiguous</span><span class="p">:</span> <span class="n">TimeAmbiguous</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">407</span>     <span class="n">nonexistent</span><span class="p">:</span> <span class="n">TimeNonexistent</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">408</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">409</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">410</span><span class="sd">     Localize tz-naive Datetime Array/Index to tz-aware Datetime Array/Index.</span>
-<span class="g g-Whitespace">    </span><span class="mi">411</span><span class="sd"> </span>
-<span class="sd">   (...)    546     dtype: datetime64[ns, Europe/Warsaw]</span>
-<span class="g g-Whitespace">    </span><span class="mi">547</span><span class="sd">     &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
-<span class="ne">--&gt; </span><span class="mi">548</span>     <span class="n">arr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">ambiguous</span><span class="p">,</span> <span class="n">nonexistent</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">549</span>     <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_simple_new</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimes.py:670,</span> in <span class="ni">DatetimeIndex.tz_localize</span><span class="nt">(self, tz, ambiguous, nonexistent)</span>
+<span class="g g-Whitespace">    </span><span class="mi">525</span> <span class="k">def</span><span class="w"> </span><span class="nf">tz_localize</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">526</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">527</span>     <span class="n">tz</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">528</span>     <span class="n">ambiguous</span><span class="p">:</span> <span class="n">TimeAmbiguous</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">529</span>     <span class="n">nonexistent</span><span class="p">:</span> <span class="n">TimeNonexistent</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">530</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">531</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">532</span><span class="sd">     Localize tz-naive Datetime Array/Index to tz-aware Datetime Array/Index.</span>
+<span class="g g-Whitespace">    </span><span class="mi">533</span><span class="sd"> </span>
+<span class="sd">   (...)    668     dtype: datetime64[ns, Europe/Warsaw]</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span><span class="sd">     &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+<span class="ne">--&gt; </span><span class="mi">670</span>     <span class="n">arr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">ambiguous</span><span class="p">,</span> <span class="n">nonexistent</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">671</span>     <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_simple_new</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/_mixins.py:81,</span> in <span class="ni">ravel_compat.&lt;locals&gt;.method</span><span class="nt">(self, *args, **kwargs)</span>
 <span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">meth</span><span class="p">)</span>
@@ -4522,18 +4522,18 @@ twice within one day (“clocks fall back”). The following options are availab
 <span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="n">flags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ndarray</span><span class="o">.</span><span class="n">flags</span>
 <span class="g g-Whitespace">     </span><span class="mi">84</span>     <span class="n">flat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="s2">&quot;K&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/datetimes.py:1116,</span> in <span class="ni">DatetimeArray.tz_localize</span><span class="nt">(self, tz, ambiguous, nonexistent)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1113</span>     <span class="n">tz</span> <span class="o">=</span> <span class="n">timezones</span><span class="o">.</span><span class="n">maybe_get_tz</span><span class="p">(</span><span class="n">tz</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1114</span>     <span class="c1"># Convert to UTC</span>
-<span class="ne">-&gt; </span><span class="mi">1116</span>     <span class="n">new_dates</span> <span class="o">=</span> <span class="n">tzconversion</span><span class="o">.</span><span class="n">tz_localize_to_utc</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1117</span>         <span class="bp">self</span><span class="o">.</span><span class="n">asi8</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1118</span>         <span class="n">tz</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1119</span>         <span class="n">ambiguous</span><span class="o">=</span><span class="n">ambiguous</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1120</span>         <span class="n">nonexistent</span><span class="o">=</span><span class="n">nonexistent</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1121</span>         <span class="n">creso</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_creso</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1122</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1123</span> <span class="n">new_dates_dt64</span> <span class="o">=</span> <span class="n">new_dates</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;M8[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1124</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tz_to_dtype</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/datetimes.py:1172,</span> in <span class="ni">DatetimeArray.tz_localize</span><span class="nt">(self, tz, ambiguous, nonexistent)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1169</span>     <span class="n">tz</span> <span class="o">=</span> <span class="n">timezones</span><span class="o">.</span><span class="n">maybe_get_tz</span><span class="p">(</span><span class="n">tz</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1170</span>     <span class="c1"># Convert to UTC</span>
+<span class="ne">-&gt; </span><span class="mi">1172</span>     <span class="n">new_dates</span> <span class="o">=</span> <span class="n">tzconversion</span><span class="o">.</span><span class="n">tz_localize_to_utc</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1173</span>         <span class="bp">self</span><span class="o">.</span><span class="n">asi8</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1174</span>         <span class="n">tz</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1175</span>         <span class="n">ambiguous</span><span class="o">=</span><span class="n">ambiguous</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1176</span>         <span class="n">nonexistent</span><span class="o">=</span><span class="n">nonexistent</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1177</span>         <span class="n">creso</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_creso</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1178</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1179</span> <span class="n">new_dates_dt64</span> <span class="o">=</span> <span class="n">new_dates</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;M8[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1180</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tz_to_dtype</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/tzconversion.pyx:372,</span> in <span class="ni">pandas._libs.tslibs.tzconversion.tz_localize_to_utc</span><span class="nt">()</span>
 
@@ -4585,20 +4585,20 @@ can be controlled by the <code class="docutils literal notranslate"><span class=
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">486</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dti</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="s1">&#39;Europe/Warsaw&#39;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimes.py:548,</span> in <span class="ni">DatetimeIndex.tz_localize</span><span class="nt">(self, tz, ambiguous, nonexistent)</span>
-<span class="g g-Whitespace">    </span><span class="mi">403</span> <span class="k">def</span><span class="w"> </span><span class="nf">tz_localize</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">404</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">405</span>     <span class="n">tz</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="n">ambiguous</span><span class="p">:</span> <span class="n">TimeAmbiguous</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">407</span>     <span class="n">nonexistent</span><span class="p">:</span> <span class="n">TimeNonexistent</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">408</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">409</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">410</span><span class="sd">     Localize tz-naive Datetime Array/Index to tz-aware Datetime Array/Index.</span>
-<span class="g g-Whitespace">    </span><span class="mi">411</span><span class="sd"> </span>
-<span class="sd">   (...)    546     dtype: datetime64[ns, Europe/Warsaw]</span>
-<span class="g g-Whitespace">    </span><span class="mi">547</span><span class="sd">     &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
-<span class="ne">--&gt; </span><span class="mi">548</span>     <span class="n">arr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">ambiguous</span><span class="p">,</span> <span class="n">nonexistent</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">549</span>     <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_simple_new</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimes.py:670,</span> in <span class="ni">DatetimeIndex.tz_localize</span><span class="nt">(self, tz, ambiguous, nonexistent)</span>
+<span class="g g-Whitespace">    </span><span class="mi">525</span> <span class="k">def</span><span class="w"> </span><span class="nf">tz_localize</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">526</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">527</span>     <span class="n">tz</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">528</span>     <span class="n">ambiguous</span><span class="p">:</span> <span class="n">TimeAmbiguous</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">529</span>     <span class="n">nonexistent</span><span class="p">:</span> <span class="n">TimeNonexistent</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">530</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">531</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">532</span><span class="sd">     Localize tz-naive Datetime Array/Index to tz-aware Datetime Array/Index.</span>
+<span class="g g-Whitespace">    </span><span class="mi">533</span><span class="sd"> </span>
+<span class="sd">   (...)    668     dtype: datetime64[ns, Europe/Warsaw]</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span><span class="sd">     &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
+<span class="ne">--&gt; </span><span class="mi">670</span>     <span class="n">arr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">ambiguous</span><span class="p">,</span> <span class="n">nonexistent</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">671</span>     <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_simple_new</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/_mixins.py:81,</span> in <span class="ni">ravel_compat.&lt;locals&gt;.method</span><span class="nt">(self, *args, **kwargs)</span>
 <span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">meth</span><span class="p">)</span>
@@ -4608,18 +4608,18 @@ can be controlled by the <code class="docutils literal notranslate"><span class=
 <span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="n">flags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ndarray</span><span class="o">.</span><span class="n">flags</span>
 <span class="g g-Whitespace">     </span><span class="mi">84</span>     <span class="n">flat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="s2">&quot;K&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/datetimes.py:1116,</span> in <span class="ni">DatetimeArray.tz_localize</span><span class="nt">(self, tz, ambiguous, nonexistent)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1113</span>     <span class="n">tz</span> <span class="o">=</span> <span class="n">timezones</span><span class="o">.</span><span class="n">maybe_get_tz</span><span class="p">(</span><span class="n">tz</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1114</span>     <span class="c1"># Convert to UTC</span>
-<span class="ne">-&gt; </span><span class="mi">1116</span>     <span class="n">new_dates</span> <span class="o">=</span> <span class="n">tzconversion</span><span class="o">.</span><span class="n">tz_localize_to_utc</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1117</span>         <span class="bp">self</span><span class="o">.</span><span class="n">asi8</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1118</span>         <span class="n">tz</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1119</span>         <span class="n">ambiguous</span><span class="o">=</span><span class="n">ambiguous</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1120</span>         <span class="n">nonexistent</span><span class="o">=</span><span class="n">nonexistent</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1121</span>         <span class="n">creso</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_creso</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1122</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1123</span> <span class="n">new_dates_dt64</span> <span class="o">=</span> <span class="n">new_dates</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;M8[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1124</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tz_to_dtype</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/datetimes.py:1172,</span> in <span class="ni">DatetimeArray.tz_localize</span><span class="nt">(self, tz, ambiguous, nonexistent)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1169</span>     <span class="n">tz</span> <span class="o">=</span> <span class="n">timezones</span><span class="o">.</span><span class="n">maybe_get_tz</span><span class="p">(</span><span class="n">tz</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1170</span>     <span class="c1"># Convert to UTC</span>
+<span class="ne">-&gt; </span><span class="mi">1172</span>     <span class="n">new_dates</span> <span class="o">=</span> <span class="n">tzconversion</span><span class="o">.</span><span class="n">tz_localize_to_utc</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1173</span>         <span class="bp">self</span><span class="o">.</span><span class="n">asi8</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1174</span>         <span class="n">tz</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1175</span>         <span class="n">ambiguous</span><span class="o">=</span><span class="n">ambiguous</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1176</span>         <span class="n">nonexistent</span><span class="o">=</span><span class="n">nonexistent</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1177</span>         <span class="n">creso</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_creso</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1178</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1179</span> <span class="n">new_dates_dt64</span> <span class="o">=</span> <span class="n">new_dates</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;M8[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1180</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tz_to_dtype</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/_libs/tslibs/tzconversion.pyx:432,</span> in <span class="ni">pandas._libs.tslibs.tzconversion.tz_localize_to_utc</span><span class="nt">()</span>
 
