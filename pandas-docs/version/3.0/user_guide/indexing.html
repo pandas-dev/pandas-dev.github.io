@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Indexing and selecting data &#8212; pandas 3.0.2 documentation</title>
+    <title>Indexing and selecting data &#8212; pandas 3.0.3 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=3f474186"></script>
+    <script src="../_static/documentation_options.js?v=9b3fc59f"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="PyArrow Functionality" href="pyarrow.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.0.2" />
+  <meta name="docsearch:version" content="3.0.3" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.0.2 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.0.2 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.0.3 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.0.3 documentation - Home"/>
   
   
 </a></div>
@@ -1575,20 +1575,15 @@ A list of indexers where any element is out of bounds will raise an
 <span class="g g-Whitespace">   </span><span class="mi">1737</span>     <span class="c1"># re-raise with different error message, e.g. test_getitem_ndarray_3d</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:4101,</span> in <span class="ni">NDFrame.take</span><span class="nt">(self, indices, axis, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4099</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">4101</span> <span class="n">new_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">take</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">4102</span>     <span class="n">indices</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">4103</span>     <span class="n">axis</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_block_manager_axis</span><span class="p">(</span><span class="n">axis</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">4104</span>     <span class="n">verify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">4105</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4106</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor_from_mgr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">new_data</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">4107</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;take&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">4108</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4099</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4100</span> 
+<span class="ne">-&gt; </span><span class="mi">4101</span>         <span class="n">new_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">take</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">4102</span>             <span class="n">indices</span><span class="p">,</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/internals/managers.py:1066,</span> in <span class="ni">BaseBlockManager.take</span><span class="nt">(self, indexer, axis, verify)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1065</span> <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
-<span class="ne">-&gt; </span><span class="mi">1066</span> <span class="n">indexer</span> <span class="o">=</span> <span class="n">maybe_convert_indices</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="n">verify</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1068</span> <span class="n">new_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">indexer</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/internals/managers.py:1074,</span> in <span class="ni">BaseBlockManager.take</span><span class="nt">(self, indexer, axis, verify)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1073</span> <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
+<span class="ne">-&gt; </span><span class="mi">1074</span> <span class="n">indexer</span> <span class="o">=</span> <span class="n">maybe_convert_indices</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="n">verify</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1076</span> <span class="n">new_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">indexer</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexers/utils.py:284,</span> in <span class="ni">maybe_convert_indices</span><span class="nt">(indices, n, verify)</span>
 <span class="g g-Whitespace">    </span><span class="mi">283</span>     <span class="k">if</span> <span class="n">mask</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
@@ -1860,24 +1855,23 @@ without using a temporary variable.</p>
 <span class="g g-Whitespace">   </span><span class="mi">5533</span>     <span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5476,</span> in <span class="ni">NDFrame.reindex</span><span class="nt">(self, labels, index, columns, axis, method, copy, level, fill_value, limit, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5473</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_multi</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5475</span> <span class="c1"># perform the reindex on the axes</span>
-<span class="ne">-&gt; </span><span class="mi">5476</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_axes</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">5477</span>     <span class="n">axes</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">fill_value</span>
-<span class="g g-Whitespace">   </span><span class="mi">5478</span> <span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;reindex&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5472</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_needs_reindex_multi</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">5473</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_multi</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5474</span> 
+<span class="g g-Whitespace">   </span><span class="mi">5475</span>         <span class="c1"># perform the reindex on the axes</span>
+<span class="ne">-&gt; </span><span class="mi">5476</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_axes</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5477</span>             <span class="n">axes</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">fill_value</span>
+<span class="g g-Whitespace">   </span><span class="mi">5478</span>         <span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;reindex&quot;</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5498,</span> in <span class="ni">NDFrame._reindex_axes</span><span class="nt">(self, axes, level, limit, tolerance, method, fill_value)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5495</span>     <span class="k">continue</span>
-<span class="g g-Whitespace">   </span><span class="mi">5497</span> <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">5498</span> <span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">5499</span>     <span class="n">labels</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span>
-<span class="g g-Whitespace">   </span><span class="mi">5500</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5502</span> <span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis_number</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5503</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">_reindex_with_indexers</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">5504</span>     <span class="p">{</span><span class="n">axis</span><span class="p">:</span> <span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span><span class="p">]},</span>
-<span class="g g-Whitespace">   </span><span class="mi">5505</span>     <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_value</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">5506</span>     <span class="n">allow_dups</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">5507</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5494</span>             <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">5495</span>                 <span class="k">continue</span>
+<span class="g g-Whitespace">   </span><span class="mi">5496</span> 
+<span class="g g-Whitespace">   </span><span class="mi">5497</span>             <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">5498</span>             <span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5499</span>                 <span class="n">labels</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span>
+<span class="g g-Whitespace">   </span><span class="mi">5500</span>             <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5501</span> 
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4253,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4250</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cannot handle a non-unique multi-index!&quot;</span><span class="p">)</span>
@@ -1930,24 +1924,23 @@ axis, and then reindex.</p>
 <span class="g g-Whitespace">   </span><span class="mi">5533</span>     <span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5476,</span> in <span class="ni">NDFrame.reindex</span><span class="nt">(self, labels, index, columns, axis, method, copy, level, fill_value, limit, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5473</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_multi</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5475</span> <span class="c1"># perform the reindex on the axes</span>
-<span class="ne">-&gt; </span><span class="mi">5476</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_axes</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">5477</span>     <span class="n">axes</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">fill_value</span>
-<span class="g g-Whitespace">   </span><span class="mi">5478</span> <span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;reindex&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5472</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_needs_reindex_multi</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">5473</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_multi</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5474</span> 
+<span class="g g-Whitespace">   </span><span class="mi">5475</span>         <span class="c1"># perform the reindex on the axes</span>
+<span class="ne">-&gt; </span><span class="mi">5476</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_axes</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5477</span>             <span class="n">axes</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">fill_value</span>
+<span class="g g-Whitespace">   </span><span class="mi">5478</span>         <span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;reindex&quot;</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5498,</span> in <span class="ni">NDFrame._reindex_axes</span><span class="nt">(self, axes, level, limit, tolerance, method, fill_value)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5495</span>     <span class="k">continue</span>
-<span class="g g-Whitespace">   </span><span class="mi">5497</span> <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">5498</span> <span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">5499</span>     <span class="n">labels</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span>
-<span class="g g-Whitespace">   </span><span class="mi">5500</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5502</span> <span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis_number</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5503</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">_reindex_with_indexers</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">5504</span>     <span class="p">{</span><span class="n">axis</span><span class="p">:</span> <span class="p">[</span><span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span><span class="p">]},</span>
-<span class="g g-Whitespace">   </span><span class="mi">5505</span>     <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_value</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">5506</span>     <span class="n">allow_dups</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">5507</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5494</span>             <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">5495</span>                 <span class="k">continue</span>
+<span class="g g-Whitespace">   </span><span class="mi">5496</span> 
+<span class="g g-Whitespace">   </span><span class="mi">5497</span>             <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">5498</span>             <span class="n">new_index</span><span class="p">,</span> <span class="n">indexer</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5499</span>                 <span class="n">labels</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span>
+<span class="g g-Whitespace">   </span><span class="mi">5500</span>             <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5501</span> 
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4253,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4250</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cannot handle a non-unique multi-index!&quot;</span><span class="p">)</span>
@@ -2956,7 +2949,7 @@ having to specify which frame you’re interested in querying</p>
 <span class="gp">In [268]: </span><span class="n">expr</span> <span class="o">=</span> <span class="s1">&#39;0.0 &lt;= a &lt;= c &lt;= 0.5&#39;</span>
 
 <span class="gp">In [269]: </span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="p">[</span><span class="n">df</span><span class="p">,</span> <span class="n">df2</span><span class="p">])</span>
-<span class="gh">Out[269]: </span><span class="go">&lt;map at 0x7fab25751c60&gt;</span>
+<span class="gh">Out[269]: </span><span class="go">&lt;map at 0x7fb2f59e2bf0&gt;</span>
 </pre></div>
 </div>
 </section>
