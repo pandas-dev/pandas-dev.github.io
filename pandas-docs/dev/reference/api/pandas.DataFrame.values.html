@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.DataFrame.values &#8212; pandas  documentation</title>
+    <title>pandas.DataFrame.values &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/documentation_options.js?v=724d5388"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.DataFrame.select_dtypes" href="pandas.DataFrame.select_dtypes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas  documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas  documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
   
   
 </a></div>
@@ -742,11 +742,20 @@
 <h1>pandas.DataFrame.values<a class="headerlink" href="#pandas-dataframe-values" title="Link to this heading">#</a></h1>
 <dl class="py property">
 <dt class="sig sig-object py" id="pandas.DataFrame.values">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">values</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/core/frame.py#L18704-L18782"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.values" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">values</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L18902-L19013"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.values" title="Link to this definition">#</a></dt>
 <dd><p>Return a Numpy representation of the DataFrame.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>We recommend using <a class="reference internal" href="pandas.DataFrame.to_numpy.html#pandas.DataFrame.to_numpy" title="pandas.DataFrame.to_numpy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_numpy()</span></code></a> instead.</p>
+<p>We recommend using <a class="reference internal" href="pandas.DataFrame.to_numpy.html#pandas.DataFrame.to_numpy" title="pandas.DataFrame.to_numpy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_numpy()</span></code></a> instead.
+<code class="docutils literal notranslate"><span class="pre">.values</span></code> offers no way to control the output <code class="docutils literal notranslate"><span class="pre">dtype</span></code>, copy
+semantics, or the value used to fill missing entries, while
+<a class="reference internal" href="pandas.DataFrame.to_numpy.html#pandas.DataFrame.to_numpy" title="pandas.DataFrame.to_numpy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_numpy()</span></code></a> exposes those as the <code class="docutils literal notranslate"><span class="pre">dtype</span></code>,
+<code class="docutils literal notranslate"><span class="pre">copy</span></code>, and <code class="docutils literal notranslate"><span class="pre">na_value</span></code> arguments. The mutability of the
+result also depends on the DataFrame’s internal block layout:
+when the DataFrame is backed by a single block the result is a
+read-only view (writes raise); when there are multiple blocks
+the result is a writable copy whose mutations do not propagate
+back to the DataFrame.</p>
 </div>
 <p>Only the values in the DataFrame will be returned, the axes labels
 will be removed.</p>
@@ -770,6 +779,14 @@ will be removed.</p>
 </dl>
 </div>
 <p class="rubric">Notes</p>
+<p>The returned array is not intended to be written to. When the
+DataFrame is backed by a single NumPy array (single dtype, single
+block), the result is a read-only view; when the DataFrame has
+multiple internal blocks (e.g. after adding a new column), the
+result is a copy and modifications to it will not be reflected in
+the original DataFrame. Use <a class="reference internal" href="pandas.DataFrame.to_numpy.html#pandas.DataFrame.to_numpy" title="pandas.DataFrame.to_numpy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_numpy()</span></code></a> for more
+explicit control over copy behavior, or use <a class="reference internal" href="pandas.DataFrame.iloc.html#pandas.DataFrame.iloc" title="pandas.DataFrame.iloc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataFrame.iloc</span></code></a>
+to modify values in-place.</p>
 <p>The dtype will be a lower-common-denominator dtype (implicit
 upcasting); that is to say if the dtypes (even of numeric types)
 are mixed, the one that accommodates all will be chosen. Use this
@@ -818,6 +835,21 @@ mixed types (e.g., object).</p>
 <span class="go">array([[&#39;parrot&#39;, 24.0, &#39;second&#39;],</span>
 <span class="go">       [&#39;lion&#39;, 80.5, 1],</span>
 <span class="go">       [&#39;monkey&#39;, nan, None]], dtype=object)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">DataFrame.to_numpy</span></code> produces the same array by default, but lets
+you choose how missing values are represented and request a
+guaranteed copy:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df3</span><span class="o">.</span><span class="n">values</span>
+<span class="go">array([[ 1.,  3.],</span>
+<span class="go">       [ 2., nan]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df3</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">na_value</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">array([[ 1.,  3.],</span>
+<span class="go">       [ 2., -1.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df3</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">array([[ 1.,  3.],</span>
+<span class="go">       [ 2., nan]], dtype=float32)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -903,7 +935,7 @@ mixed types (e.g., object).</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.read_html &#8212; pandas  documentation</title>
+    <title>pandas.read_html &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/documentation_options.js?v=724d5388"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.io.json.build_table_schema" href="pandas.io.json.build_table_schema.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas  documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas  documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
   
   
 </a></div>
@@ -444,6 +444,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_csv.html">pandas.read_csv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.to_csv.html">pandas.DataFrame.to_csv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_fwf.html">pandas.read_fwf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.html">pandas.io.parsers.TextFileReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.read.html">pandas.io.parsers.TextFileReader.read</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.get_chunk.html">pandas.io.parsers.TextFileReader.get_chunk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.close.html">pandas.io.parsers.TextFileReader.close</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_clipboard.html">pandas.read_clipboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.to_clipboard.html">pandas.DataFrame.to_clipboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_excel.html">pandas.read_excel</a></li>
@@ -582,8 +586,11 @@
 <h1>pandas.read_html<a class="headerlink" href="#pandas-read-html" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.read_html">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">io</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.+'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flavor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skiprows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thousands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decimal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_default_na</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">displayed_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extract_links</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype_backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/io/html.py#L1022-L1250"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_html" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">io</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.+'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flavor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skiprows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thousands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decimal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_default_na</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">displayed_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extract_links</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype_backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/html.py#L1022-L1254"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_html" title="Link to this definition">#</a></dt>
 <dd><p>Read HTML tables into a <code class="docutils literal notranslate"><span class="pre">list</span></code> of <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> objects.</p>
+<p>This function requires one of the following libraries:
+<a class="reference external" href="https://lxml.de/">lxml</a>, <a class="reference external" href="https://github.com/html5lib/html5lib-python">html5lib</a>,
+or <a class="reference external" href="https://www.crummy.com/software/BeautifulSoup/">beautifulsoup4</a>.</p>
 <p>This function searches for <code class="docutils literal notranslate"><span class="pre">&lt;table&gt;</span></code> elements within an HTML document
 and parses their rows and columns into DataFrames. It can read from a URL,
 a file path, or a raw HTML string, and supports filtering tables by
@@ -614,7 +621,7 @@ make the columns headers.</p>
 </dd>
 <dt><strong>index_col</strong><span class="classifier">int or list-like, optional</span></dt><dd><p>The column (or list of columns) to use to create the index.</p>
 </dd>
-<dt><strong>skiprows</strong><span class="classifier">int, list-like or slice, optional</span></dt><dd><p>Number of rows to skip after parsing the column integer. 0-based. If a
+<dt><strong>skiprows</strong><span class="classifier">int, list-like or slice, optional</span></dt><dd><p>Number of rows to skip after parsing the header. 0-based. If a
 sequence of integers or a slice is given, will skip the rows indexed by
 that sequence.  Note that a single element sequence means ‘skip the nth
 row’ whereas an integer means ‘skip n rows’.</p>
@@ -810,7 +817,7 @@ It might return an empty list in case of inputs with single row and
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

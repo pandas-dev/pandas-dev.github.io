@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Merge, join, concatenate and compare &#8212; pandas  documentation</title>
+    <title>Merge, join, concatenate and compare &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/documentation_options.js?v=724d5388"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="MultiIndex / advanced indexing" href="advanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas  documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas  documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
   
   
 </a></div>
@@ -1224,48 +1224,48 @@ and unexpected key duplication.</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">71</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;outer&quot;</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">&quot;one_to_one&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/reshape/merge.py:386,</span> in <span class="ni">merge</span><span class="nt">(left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)</span>
-<span class="g g-Whitespace">    </span><span class="mi">372</span>     <span class="k">return</span> <span class="n">_cross_merge</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">373</span>         <span class="n">left_df</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">374</span>         <span class="n">right_df</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">383</span>         <span class="n">validate</span><span class="o">=</span><span class="n">validate</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">384</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">385</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">386</span>     <span class="n">op</span> <span class="o">=</span> <span class="n">_MergeOperation</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">387</span>         <span class="n">left_df</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">388</span>         <span class="n">right_df</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">389</span>         <span class="n">how</span><span class="o">=</span><span class="n">how</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">390</span>         <span class="n">on</span><span class="o">=</span><span class="n">on</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">391</span>         <span class="n">left_on</span><span class="o">=</span><span class="n">left_on</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">392</span>         <span class="n">right_on</span><span class="o">=</span><span class="n">right_on</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">393</span>         <span class="n">left_index</span><span class="o">=</span><span class="n">left_index</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">394</span>         <span class="n">right_index</span><span class="o">=</span><span class="n">right_index</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">395</span>         <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">396</span>         <span class="n">suffixes</span><span class="o">=</span><span class="n">suffixes</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">397</span>         <span class="n">indicator</span><span class="o">=</span><span class="n">indicator</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">398</span>         <span class="n">validate</span><span class="o">=</span><span class="n">validate</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">399</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">400</span>     <span class="k">return</span> <span class="n">op</span><span class="o">.</span><span class="n">get_result</span><span class="p">()</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/reshape/merge.py:388,</span> in <span class="ni">merge</span><span class="nt">(left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)</span>
+<span class="g g-Whitespace">    </span><span class="mi">374</span>     <span class="k">return</span> <span class="n">_cross_merge</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span>         <span class="n">left_df</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">376</span>         <span class="n">right_df</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">385</span>         <span class="n">validate</span><span class="o">=</span><span class="n">validate</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">388</span>     <span class="n">op</span> <span class="o">=</span> <span class="n">_MergeOperation</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">389</span>         <span class="n">left_df</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">390</span>         <span class="n">right_df</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">391</span>         <span class="n">how</span><span class="o">=</span><span class="n">how</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">392</span>         <span class="n">on</span><span class="o">=</span><span class="n">on</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">393</span>         <span class="n">left_on</span><span class="o">=</span><span class="n">left_on</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">394</span>         <span class="n">right_on</span><span class="o">=</span><span class="n">right_on</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">395</span>         <span class="n">left_index</span><span class="o">=</span><span class="n">left_index</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">396</span>         <span class="n">right_index</span><span class="o">=</span><span class="n">right_index</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span>         <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">398</span>         <span class="n">suffixes</span><span class="o">=</span><span class="n">suffixes</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">399</span>         <span class="n">indicator</span><span class="o">=</span><span class="n">indicator</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span>         <span class="n">validate</span><span class="o">=</span><span class="n">validate</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">402</span>     <span class="k">return</span> <span class="n">op</span><span class="o">.</span><span class="n">get_result</span><span class="p">()</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/reshape/merge.py:1022,</span> in <span class="ni">_MergeOperation.__init__</span><span class="nt">(self, left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, indicator, validate)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1018</span> <span class="c1"># If argument passed to validate,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1019</span> <span class="c1"># check if columns specified as unique</span>
-<span class="g g-Whitespace">   </span><span class="mi">1020</span> <span class="c1"># are in fact unique.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1021</span> <span class="k">if</span> <span class="n">validate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1022</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_validate_validate_kwd</span><span class="p">(</span><span class="n">validate</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/reshape/merge.py:1024,</span> in <span class="ni">_MergeOperation.__init__</span><span class="nt">(self, left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, indicator, validate)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1020</span> <span class="c1"># If argument passed to validate,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1021</span> <span class="c1"># check if columns specified as unique</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span> <span class="c1"># are in fact unique.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="k">if</span> <span class="n">validate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1024</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_validate_validate_kwd</span><span class="p">(</span><span class="n">validate</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/reshape/merge.py:1992,</span> in <span class="ni">_MergeOperation._validate_validate_kwd</span><span class="nt">(self, validate)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1987</span>         <span class="k">raise</span> <span class="n">MergeError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1988</span>             <span class="s2">&quot;Merge keys are not unique in left dataset; not a one-to-one merge&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1989</span>             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">left_error_msg</span><span class="p">(</span><span class="n">left_join_index</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1990</span>         <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1991</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">right_unique</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1992</span>         <span class="k">raise</span> <span class="n">MergeError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1993</span>             <span class="s2">&quot;Merge keys are not unique in right dataset; not a one-to-one merge&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1994</span>             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">right_error_msg</span><span class="p">(</span><span class="n">right_join_index</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1995</span>         <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1997</span> <span class="k">elif</span> <span class="n">validate</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;one_to_many&quot;</span><span class="p">,</span> <span class="s2">&quot;1:m&quot;</span><span class="p">]:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1998</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">left_unique</span><span class="p">:</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/reshape/merge.py:1983,</span> in <span class="ni">_MergeOperation._validate_validate_kwd</span><span class="nt">(self, validate)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1978</span>         <span class="k">raise</span> <span class="n">MergeError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1979</span>             <span class="s2">&quot;Merge keys are not unique in left dataset; not a one-to-one merge&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1980</span>             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">left_error_msg</span><span class="p">(</span><span class="n">left_join_index</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1981</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1982</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">right_unique</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1983</span>         <span class="k">raise</span> <span class="n">MergeError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1984</span>             <span class="s2">&quot;Merge keys are not unique in right dataset; not a one-to-one merge&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1985</span>             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">right_error_msg</span><span class="p">(</span><span class="n">right_join_index</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1986</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1988</span> <span class="k">elif</span> <span class="n">validate</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;one_to_many&quot;</span><span class="p">,</span> <span class="s2">&quot;1:m&quot;</span><span class="p">]:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1989</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">left_unique</span><span class="p">:</span>
 
 <span class="ne">MergeError</span>: Merge keys are not unique in right dataset; not a one-to-one merge
 <span class="n">Duplicates</span> <span class="ow">in</span> <span class="n">right</span><span class="p">:</span>
@@ -2107,7 +2107,7 @@ omitted from the result. The remaining differences will be aligned on columns.</
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

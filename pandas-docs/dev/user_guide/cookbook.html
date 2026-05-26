@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Cookbook &#8212; pandas  documentation</title>
+    <title>Cookbook &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/documentation_options.js?v=724d5388"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Migration Guides" href="migration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas  documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas  documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
   
   
 </a></div>
@@ -530,9 +530,7 @@
                   
   <section id="cookbook">
 <span id="id1"></span><h1>Cookbook<a class="headerlink" href="#cookbook" title="Link to this heading">#</a></h1>
-<p>This is a repository for <em>short and sweet</em> examples and links for useful pandas recipes.
-We encourage users to add to this documentation.</p>
-<p>Adding interesting links and/or inline examples to this section is a great <em>First Pull Request</em>.</p>
+<p>This is a repository for <em>short and sweet</em> examples and links for useful pandas recipes.</p>
 <p>Simplified, condensed, new-user friendly, in-line examples have been inserted where possible to
 augment the Stack-Overflow and GitHub links.  Many of the links contain expanded information,
 above what the in-line examples offer.</p>
@@ -2142,8 +2140,8 @@ of the individual frames into a list, and then combine the frames in the list us
 <span class="gp">   .....: </span><span class="n">ds</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="gp">   .....: </span><span class="o">%</span><span class="k">timeit</span> pd.to_datetime(ds)
 <span class="gp">   .....: </span>
-<span class="go">4.64 ms +- 929 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
-<span class="go">2.05 ms +- 164 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">3.07 ms +- 14.9 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">2.49 ms +- 7.5 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 </section>
@@ -2265,7 +2263,7 @@ csv file and creating a store by chunks, with date parsing as well.
 
 <span class="gp">In [211]: </span><span class="n">store</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s2">&quot;test.h5&quot;</span><span class="p">)</span>
 
-<span class="gp">In [212]: </span><span class="n">store</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">&quot;df&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+<span class="gp">In [212]: </span><span class="n">store</span><span class="p">[</span><span class="s2">&quot;df&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span>
 
 <span class="go"># you can store an arbitrary Python object via pickle</span>
 <span class="gp">In [213]: </span><span class="n">store</span><span class="o">.</span><span class="n">get_storer</span><span class="p">(</span><span class="s2">&quot;df&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">my_attribute</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
@@ -2705,7 +2703,7 @@ For the case that we would drop NA values, we can simply remove those values fir
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

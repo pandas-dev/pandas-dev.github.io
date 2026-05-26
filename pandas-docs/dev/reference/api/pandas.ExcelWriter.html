@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.ExcelWriter &#8212; pandas  documentation</title>
+    <title>pandas.ExcelWriter &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/documentation_options.js?v=724d5388"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.io.formats.style.Styler.to_excel" href="pandas.io.formats.style.Styler.to_excel.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas  documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas  documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
   
   
 </a></div>
@@ -444,6 +444,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_csv.html">pandas.read_csv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.to_csv.html">pandas.DataFrame.to_csv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_fwf.html">pandas.read_fwf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.html">pandas.io.parsers.TextFileReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.read.html">pandas.io.parsers.TextFileReader.read</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.get_chunk.html">pandas.io.parsers.TextFileReader.get_chunk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.close.html">pandas.io.parsers.TextFileReader.close</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_clipboard.html">pandas.read_clipboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.to_clipboard.html">pandas.DataFrame.to_clipboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_excel.html">pandas.read_excel</a></li>
@@ -582,25 +586,37 @@
 <h1>pandas.ExcelWriter<a class="headerlink" href="#pandas-excelwriter" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pandas.ExcelWriter">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">ExcelWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datetime_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">if_sheet_exists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/__init__.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.ExcelWriter" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">ExcelWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datetime_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">if_sheet_exists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/excel/_base.py#L968-L1435"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.ExcelWriter" title="Link to this definition">#</a></dt>
 <dd><p>Class for writing DataFrame objects into excel sheets.</p>
-<p>Default is to use:</p>
+<p>The default <code class="docutils literal notranslate"><span class="pre">engine</span></code> is chosen based on the file extension. The values
+below are the engine strings (i.e. valid values for the <code class="docutils literal notranslate"><span class="pre">engine</span></code>
+keyword); the package each one wraps is shown in parentheses:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://pypi.org/project/XlsxWriter/">xlsxwriter</a> for xlsx files if xlsxwriter
-is installed otherwise <a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a></p></li>
-<li><p><a class="reference external" href="https://pypi.org/project/odfpy/">odf</a> for ods files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;xlsxwriter&quot;</span></code> (<a class="reference external" href="https://pypi.org/project/XlsxWriter/">XlsxWriter</a>) if installed, otherwise
+<code class="docutils literal notranslate"><span class="pre">&quot;openpyxl&quot;</span></code> (<a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.xlsm</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;openpyxl&quot;</span></code> (<a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.ods</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;odf&quot;</span></code> (<a class="reference external" href="https://pypi.org/project/odfpy/">odfpy</a>).</p></li>
 </ul>
+<p>These defaults can be overridden via the <code class="docutils literal notranslate"><span class="pre">engine</span></code> argument or by
+setting the <code class="docutils literal notranslate"><span class="pre">io.excel.&lt;extension&gt;.writer</span></code> option.</p>
 <p>See <a class="reference internal" href="pandas.DataFrame.to_excel.html#pandas.DataFrame.to_excel" title="pandas.DataFrame.to_excel"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_excel()</span></code></a> for typical usage.</p>
 <p>The writer should be used as a context manager. Otherwise, call <cite>close()</cite> to save
 and close any opened file handles.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>path</strong><span class="classifier">str or typing.BinaryIO</span></dt><dd><p>Path to xls or xlsx or ods file.</p>
+<dd class="field-odd"><dl>
+<dt><strong>path</strong><span class="classifier">str or typing.BinaryIO</span></dt><dd><p>Path to xlsx, xlsm, or ods file.</p>
 </dd>
-<dt><strong>engine</strong><span class="classifier">str (optional)</span></dt><dd><p>Engine to use for writing. If None, defaults to
-<code class="docutils literal notranslate"><span class="pre">io.excel.&lt;extension&gt;.writer</span></code>.  NOTE: can only be passed as a keyword
-argument.</p>
+<dt><strong>engine</strong><span class="classifier">{‘openpyxl’, ‘xlsxwriter’, ‘odf’}, optional</span></dt><dd><p>Engine to use for writing, given as the engine string (not the
+package name). Which engines are accepted depends on the file
+extension:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;openpyxl&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;xlsxwriter&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.xlsm</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;openpyxl&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.ods</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;odf&quot;</span></code> (provided by the <code class="docutils literal notranslate"><span class="pre">odfpy</span></code> package).</p></li>
+</ul>
+<p>If None, defaults to <code class="docutils literal notranslate"><span class="pre">io.excel.&lt;extension&gt;.writer</span></code>.  NOTE: can only
+be passed as a keyword argument.</p>
 </dd>
 <dt><strong>date_format</strong><span class="classifier">str, default None</span></dt><dd><p>Format string for dates written into Excel files (e.g. ‘YYYY-MM-DD’).</p>
 </dd>
@@ -626,13 +642,16 @@ exists (append mode only).</p>
 but possibly over top of, the existing contents.</p></li>
 </ul>
 </dd>
-<dt><strong>engine_kwargs</strong><span class="classifier">dict, optional</span></dt><dd><p>Keyword arguments to be passed into the engine. These will be passed to
-the following functions of the respective engines:</p>
+<dt><strong>engine_kwargs</strong><span class="classifier">dict, optional</span></dt><dd><p>Keyword arguments to be passed into the engine. The bullets below
+are keyed by the <code class="docutils literal notranslate"><span class="pre">engine</span></code> string (not the package name); for
+each engine, <code class="docutils literal notranslate"><span class="pre">engine_kwargs</span></code> is forwarded as follows:</p>
 <ul class="simple">
-<li><p>xlsxwriter: <code class="docutils literal notranslate"><span class="pre">xlsxwriter.Workbook(file,</span> <span class="pre">**engine_kwargs)</span></code></p></li>
-<li><p>openpyxl (write mode): <code class="docutils literal notranslate"><span class="pre">openpyxl.Workbook(**engine_kwargs)</span></code></p></li>
-<li><p>openpyxl (append mode): <code class="docutils literal notranslate"><span class="pre">openpyxl.load_workbook(file,</span> <span class="pre">**engine_kwargs)</span></code></p></li>
-<li><p>odf: <code class="docutils literal notranslate"><span class="pre">odf.opendocument.OpenDocumentSpreadsheet(**engine_kwargs)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;xlsxwriter&quot;</span></code>: <code class="docutils literal notranslate"><span class="pre">xlsxwriter.Workbook(file,</span> <span class="pre">**engine_kwargs)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;openpyxl&quot;</span></code> (write mode): <code class="docutils literal notranslate"><span class="pre">openpyxl.Workbook(**engine_kwargs)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;openpyxl&quot;</span></code> (append mode):
+<code class="docutils literal notranslate"><span class="pre">openpyxl.load_workbook(file,</span> <span class="pre">**engine_kwargs)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;odf&quot;</span></code>:
+<code class="docutils literal notranslate"><span class="pre">odf.opendocument.OpenDocumentSpreadsheet(**engine_kwargs)</span></code></p></li>
 </ul>
 </dd>
 </dl>
@@ -872,7 +891,7 @@ openpyxl’s <code class="docutils literal notranslate"><span class="pre">load_w
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

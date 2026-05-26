@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Version 0.21.0 (October 27, 2017) &#8212; pandas  documentation</title>
+    <title>Version 0.21.0 (October 27, 2017) &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/documentation_options.js?v=724d5388"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Version 0.21.1 (December 12, 2017)" href="v0.21.1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas  documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas  documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
   
   
 </a></div>
@@ -438,6 +438,10 @@
     
     <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="v3.1.0.html">What’s new in 3.1.0 (Month XX, 2026)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="v3.0.4.html">What’s new in 3.0.4 (June XX 2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="v3.0.3.html">What’s new in 3.0.3 (May 11, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.2.html">What’s new in 3.0.2 (March 30, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.1.html">What’s new in 3.0.1 (February 17, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.0.html">What’s new in 3.0.0 (January 21, 2026)</a></li>
@@ -776,14 +780,14 @@ to native types, but not any coercive conversions. For example:</p>
 <span class="go">A     int64</span>
 <span class="go">B    object</span>
 <span class="go">C       str</span>
-<span class="go">Length: 3, dtype: object</span>
+<span class="go">dtype: object</span>
 
 <span class="gp">In [3]: </span><span class="n">df</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">()</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[3]: </span>
 <span class="go">A    int64</span>
 <span class="go">B    int64</span>
 <span class="go">C      str</span>
-<span class="go">Length: 3, dtype: object</span>
+<span class="go">dtype: object</span>
 </pre></div>
 </div>
 <p>Note that column <code class="docutils literal notranslate"><span class="pre">'C'</span></code> was not converted - only scalar numeric types
@@ -798,7 +802,7 @@ using the <a class="reference internal" href="../reference/api/pandas.to_numeric
 <span class="go">A    int64</span>
 <span class="go">B    int64</span>
 <span class="go">C    int64</span>
-<span class="go">Length: 3, dtype: object</span>
+<span class="go">dtype: object</span>
 </pre></div>
 </div>
 </section>
@@ -839,15 +843,11 @@ alternative to specifying the <code class="docutils literal notranslate"><span c
 <span class="go">0  0  1  2  3</span>
 <span class="go">1  4  5  6  7</span>
 
-<span class="go">[2 rows x 4 columns]</span>
-
 <span class="gp">In [9]: </span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gh">Out[9]: </span>
 <span class="go">   A  D</span>
 <span class="go">0  0  3</span>
 <span class="go">1  4  7</span>
-
-<span class="go">[2 rows x 2 columns]</span>
 
 <span class="go"># the following is now equivalent</span>
 <span class="gp">In [10]: </span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">])</span>
@@ -855,8 +855,6 @@ alternative to specifying the <code class="docutils literal notranslate"><span c
 <span class="go">   A  D</span>
 <span class="go">0  0  3</span>
 <span class="go">1  4  7</span>
-
-<span class="go">[2 rows x 2 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -875,16 +873,12 @@ the <code class="docutils literal notranslate"><span class="pre">axis</span></co
 <span class="go">1  2  5</span>
 <span class="go">2  3  6</span>
 
-<span class="go">[3 rows x 2 columns]</span>
-
 <span class="gp">In [13]: </span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
 <span class="gh">Out[13]: </span>
 <span class="go">                A  B</span>
-<span class="go">94360696756520  1  4</span>
-<span class="go">94360696756552  2  5</span>
-<span class="go">94360696756584  3  6</span>
-
-<span class="go">[3 rows x 2 columns]</span>
+<span class="go">93922873364904  1  4</span>
+<span class="go">93922873364936  2  5</span>
+<span class="go">93922873364968  3  6</span>
 </pre></div>
 </div>
 <p>And <code class="docutils literal notranslate"><span class="pre">reindex</span></code>:</p>
@@ -895,27 +889,21 @@ the <code class="docutils literal notranslate"><span class="pre">axis</span></co
 <span class="go">1  2  5 NaN</span>
 <span class="go">2  3  6 NaN</span>
 
-<span class="go">[3 rows x 3 columns]</span>
-
 <span class="gp">In [15]: </span><span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
 <span class="gh">Out[15]: </span>
 <span class="go">     A    B</span>
 <span class="go">0  1.0  4.0</span>
 <span class="go">1  2.0  5.0</span>
 <span class="go">3  NaN  NaN</span>
-
-<span class="go">[3 rows x 2 columns]</span>
 </pre></div>
 </div>
 <p>The “index, columns” style continues to work as before.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span>
 <span class="gh">Out[16]: </span>
 <span class="go">                a  b</span>
-<span class="go">94360696756520  1  4</span>
-<span class="go">94360696756552  2  5</span>
-<span class="go">94360696756584  3  6</span>
-
-<span class="go">[3 rows x 2 columns]</span>
+<span class="go">93922873364904  1  4</span>
+<span class="go">93922873364936  2  5</span>
+<span class="go">93922873364968  3  6</span>
 
 <span class="gp">In [17]: </span><span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">])</span>
 <span class="gh">Out[17]: </span>
@@ -923,8 +911,6 @@ the <code class="docutils literal notranslate"><span class="pre">axis</span></co
 <span class="go">0  1.0  4.0 NaN</span>
 <span class="go">1  2.0  5.0 NaN</span>
 <span class="go">3  NaN  NaN NaN</span>
-
-<span class="go">[3 rows x 3 columns]</span>
 </pre></div>
 </div>
 <p>We <em>highly</em> encourage using named arguments to avoid confusion when using either
@@ -950,7 +936,7 @@ when converting string data to a <code class="docutils literal notranslate"><spa
 <span class="go">1    b</span>
 <span class="go">2    c</span>
 <span class="go">3    a</span>
-<span class="go">Length: 4, dtype: category</span>
+<span class="go">dtype: category</span>
 <span class="go">Categories (4, str): [&#39;a&#39; &lt; &#39;b&#39; &lt; &#39;c&#39; &lt; &#39;d&#39;]</span>
 </pre></div>
 </div>
@@ -1010,8 +996,6 @@ code more readable.</p>
 <span class="go">     Store    Product  Revenue  Quantity</span>
 <span class="go">0  Store_2  Product_2    32.09         7</span>
 <span class="go">1  Store_1  Product_3    14.20         1</span>
-
-<span class="go">[2 rows x 4 columns]</span>
 </pre></div>
 </div>
 <p>Now, to find prices per store/product, we can simply do:</p>
@@ -1024,8 +1008,6 @@ code more readable.</p>
 <span class="go">Store                                   </span>
 <span class="go">Store_1       6.73       6.72       7.14</span>
 <span class="go">Store_2       7.59       6.98       7.23</span>
-
-<span class="go">[2 rows x 3 columns]</span>
 </pre></div>
 </div>
 <p>See the <a class="reference internal" href="../user_guide/groupby.html#groupby-pipe"><span class="std std-ref">documentation</span></a> for more.</p>
@@ -1204,7 +1186,7 @@ This warning will trigger on a <code class="docutils literal notranslate"><span 
 <span class="go">0    1</span>
 <span class="go">1    2</span>
 <span class="go">2    3</span>
-<span class="go">Length: 3, dtype: int64</span>
+<span class="go">dtype: int64</span>
 </pre></div>
 </div>
 <p>Previous behavior</p>
@@ -1237,7 +1219,7 @@ This warning will trigger on a <code class="docutils literal notranslate"><span 
 <span class="go">1    2.0</span>
 <span class="go">2    3.0</span>
 <span class="go">3    NaN</span>
-<span class="go">Length: 3, dtype: float64</span>
+<span class="go">dtype: float64</span>
 </pre></div>
 </div>
 <p>Selection with all keys found is unchanged.</p>
@@ -1245,7 +1227,7 @@ This warning will trigger on a <code class="docutils literal notranslate"><span 
 <span class="gh">Out[38]: </span>
 <span class="go">1    2</span>
 <span class="go">2    3</span>
-<span class="go">Length: 2, dtype: int64</span>
+<span class="go">dtype: int64</span>
 </pre></div>
 </div>
 </section>
@@ -1269,7 +1251,7 @@ named <code class="docutils literal notranslate"><span class="pre">.isna()</span
 <span class="go">0    1</span>
 <span class="go">1    2</span>
 <span class="go">2    3</span>
-<span class="go">Length: 3, dtype: int64</span>
+<span class="go">dtype: int64</span>
 </pre></div>
 </div>
 <p>Previously:</p>
@@ -1313,7 +1295,7 @@ act like a boolean numpy array indexer. (<a class="extlink-issue reference exter
 <span class="go">False    1</span>
 <span class="go">True     2</span>
 <span class="go">False    3</span>
-<span class="go">Length: 3, dtype: int64</span>
+<span class="go">dtype: int64</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [59]: </span><span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])]</span>
@@ -1330,7 +1312,7 @@ act like a boolean numpy array indexer. (<a class="extlink-issue reference exter
 <span class="gh">Out[47]: </span>
 <span class="go">False    1</span>
 <span class="go">False    3</span>
-<span class="go">Length: 2, dtype: int64</span>
+<span class="go">dtype: int64</span>
 </pre></div>
 </div>
 <p>Furthermore, previously if you had an index that was non-numeric (e.g. strings), then a boolean Index would raise a <code class="docutils literal notranslate"><span class="pre">KeyError</span></code>.
@@ -1343,7 +1325,7 @@ This will now be treated as a boolean indexer.</p>
 <span class="go">a    1</span>
 <span class="go">b    2</span>
 <span class="go">c    3</span>
-<span class="go">Length: 3, dtype: int64</span>
+<span class="go">dtype: int64</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [39]: </span><span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])]</span>
@@ -1355,7 +1337,7 @@ This will now be treated as a boolean indexer.</p>
 <span class="gh">Out[50]: </span>
 <span class="go">a    1</span>
 <span class="go">c    3</span>
-<span class="go">Length: 2, dtype: int64</span>
+<span class="go">dtype: int64</span>
 </pre></div>
 </div>
 </section>
@@ -1391,7 +1373,7 @@ This will now be treated as a boolean indexer.</p>
 <span class="gh">Out[54]: </span>
 <span class="go">2017Q1    2.5</span>
 <span class="go">2017Q3    8.5</span>
-<span class="go">Freq: 2Q-DEC, Length: 2, dtype: float64</span>
+<span class="go">Freq: 2Q-DEC, dtype: float64</span>
 
 <span class="gp">In [55]: </span><span class="n">resampled</span><span class="o">.</span><span class="n">index</span>
 <span class="gh">Out[55]: </span><span class="go">PeriodIndex([&#39;2017Q1&#39;, &#39;2017Q3&#39;], dtype=&#39;period[2Q-DEC]&#39;)</span>
@@ -1579,7 +1561,7 @@ length 2+ levels, so a <a class="reference internal" href="../reference/api/pand
 <span class="go">0   2013-01-01 00:00:00+00:00</span>
 <span class="go">1   2013-01-01 00:00:00+00:00</span>
 <span class="go">2   2013-01-01 00:00:00+00:00</span>
-<span class="go">Length: 3, dtype: datetime64[us, UTC]</span>
+<span class="go">dtype: datetime64[us, UTC]</span>
 </pre></div>
 </div>
 <p>Additionally, DataFrames with datetime columns that were parsed by <a class="reference internal" href="../reference/api/pandas.read_sql_table.html#pandas.read_sql_table" title="pandas.read_sql_table"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_sql_table()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.read_sql_query.html#pandas.read_sql_query" title="pandas.read_sql_query"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_sql_query()</span></code></a> will also be localized to UTC only if the original SQL columns were timezone aware datetime columns.</p>
@@ -1703,8 +1685,6 @@ raise an <code class="docutils literal notranslate"><span class="pre">AttributeE
 <span class="go">     A</span>
 <span class="go">bar  2</span>
 <span class="go">baz  3</span>
-
-<span class="go">[2 rows x 1 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -2262,7 +2242,7 @@ so an approximation is used instead (<a class="extlink-issue reference external"
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

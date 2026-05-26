@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.Timedelta.ceil &#8212; pandas  documentation</title>
+    <title>pandas.Timedelta.ceil &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/documentation_options.js?v=724d5388"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.Timedelta.as_unit" href="pandas.Timedelta.as_unit.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas  documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas  documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
   
   
 </a></div>
@@ -760,8 +760,8 @@ frequency, rounding toward positive infinity.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>freq</strong><span class="classifier">str</span></dt><dd><p>Frequency string indicating the ceiling resolution. Must be a fixed
-frequency like ‘s’ (second) not ‘ME’ (month end). See
+<dt><strong>freq</strong><span class="classifier">str or timedelta</span></dt><dd><p>Frequency string or timedelta value indicating the ceiling resolution.
+Must be a fixed frequency like ‘s’ (second) not ‘ME’ (month end). See
 <a class="reference internal" href="../../user_guide/timeseries.html#timeseries-offset-aliases"><span class="std std-ref">frequency aliases</span></a> for
 a list of possible <cite>freq</cite> values.</p>
 </dd>
@@ -779,7 +779,9 @@ a list of possible <cite>freq</cite> values.</p>
 <dl class="simple">
 <dt><a class="reference internal" href="pandas.Timedelta.floor.html#pandas.Timedelta.floor" title="pandas.Timedelta.floor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.floor</span></code></a></dt><dd><p>Floor the Timedelta to the specified resolution.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.Timedelta.round.html#pandas.Timedelta.round" title="pandas.Timedelta.round"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.round</span></code></a></dt><dd><p>Round the Timedelta to the nearest specified resolution.</p>
+<dt><a class="reference internal" href="pandas.Timedelta.round.html#pandas.Timedelta.round" title="pandas.Timedelta.round"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.round</span></code></a></dt><dd><p>Round the Timedelta to the specified resolution.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Timestamp.ceil.html#pandas.Timestamp.ceil" title="pandas.Timestamp.ceil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.ceil</span></code></a></dt><dd><p>Similar method for Timestamp objects.</p>
 </dd>
 </dl>
 </div>
@@ -788,6 +790,11 @@ a list of possible <cite>freq</cite> values.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">td</span>
 <span class="go">Timedelta(&#39;0 days 00:00:01.001000&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">td</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="go">Timedelta(&#39;0 days 00:00:02&#39;)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">freq</span></code> can also be a timedelta value:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">td</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s1">&#39;1s&#39;</span><span class="p">))</span>
 <span class="go">Timedelta(&#39;0 days 00:00:02&#39;)</span>
 </pre></div>
 </div>
@@ -874,7 +881,7 @@ a list of possible <cite>freq</cite> values.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

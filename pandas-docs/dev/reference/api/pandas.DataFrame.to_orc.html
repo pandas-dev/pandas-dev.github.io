@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.DataFrame.to_orc &#8212; pandas  documentation</title>
+    <title>pandas.DataFrame.to_orc &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/documentation_options.js?v=724d5388"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.read_orc" href="pandas.read_orc.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas  documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas  documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
   
   
 </a></div>
@@ -444,6 +444,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_csv.html">pandas.read_csv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.to_csv.html">pandas.DataFrame.to_csv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_fwf.html">pandas.read_fwf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.html">pandas.io.parsers.TextFileReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.read.html">pandas.io.parsers.TextFileReader.read</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.get_chunk.html">pandas.io.parsers.TextFileReader.get_chunk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.close.html">pandas.io.parsers.TextFileReader.close</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_clipboard.html">pandas.read_clipboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.to_clipboard.html">pandas.DataFrame.to_clipboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_excel.html">pandas.read_excel</a></li>
@@ -582,20 +586,27 @@
 <h1>pandas.DataFrame.to_orc<a class="headerlink" href="#pandas-dataframe-to-orc" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.DataFrame.to_orc">
-<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">to_orc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pyarrow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/core/frame.py#L2979-L3071"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.to_orc" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">to_orc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pyarrow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L2993-L3094"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.to_orc" title="Link to this definition">#</a></dt>
 <dd><p>Write a DataFrame to the Optimized Row Columnar (ORC) format.</p>
 <p>ORC is a self-describing, type-aware columnar file format designed
 for Hadoop workloads. It provides efficient compression and encoding
 schemes, making it well-suited for large-scale data storage and
 analytics. This method requires the <code class="docutils literal notranslate"><span class="pre">pyarrow</span></code> library.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>path</strong><span class="classifier">str, file-like object or None, default None</span></dt><dd><p>If a string, it will be used as Root Directory path
+<dd class="field-odd"><dl>
+<dt><strong>path</strong><span class="classifier">str, file-like object or None, default None</span></dt><dd><p>If a string, it will be used as the root directory path
 when writing a partitioned dataset. By file-like object,
 we refer to objects with a write() method, such as a file handle
 (e.g. via builtin open function). If path is None,
 a bytes object is returned.</p>
+<p>The string could be a URL. Valid URL schemes include http, ftp, s3,
+gs, and file. For file URLs, a host is expected. A local file could be:
+<code class="docutils literal notranslate"><span class="pre">file://localhost/path/to/table.orc</span></code>. A remote example could be:
+<code class="docutils literal notranslate"><span class="pre">s3://bucket/path/to/table.orc</span></code>.</p>
+<p>Certain URL schemes may require additional packages. For example, S3
+URLs require the <code class="docutils literal notranslate"><span class="pre">s3fs</span></code> library. See
+<a class="reference internal" href="../../getting_started/install.html#install-optional-dependencies"><span class="std std-ref">Optional dependencies</span></a> for a full list.</p>
 </dd>
 <dt><strong>engine</strong><span class="classifier">{‘pyarrow’}, default ‘pyarrow’</span></dt><dd><p>ORC library to use.</p>
 </dd>
@@ -607,7 +618,7 @@ the RangeIndex will be stored as a range in the metadata so it
 doesn’t require much space and is faster. Other indexes will
 be included as columns in the file output.</p>
 </dd>
-<dt><strong>engine_kwargs</strong><span class="classifier">dict[str, Any] or None, default None</span></dt><dd><p>Additional keyword arguments passed to <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.orc.write_table.html#pyarrow.orc.write_table" title="(in Apache Arrow v23.0.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyarrow.orc.write_table()</span></code></a>.</p>
+<dt><strong>engine_kwargs</strong><span class="classifier">dict[str, Any] or None, default None</span></dt><dd><p>Additional keyword arguments passed to <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.orc.write_table.html#pyarrow.orc.write_table" title="(in Apache Arrow v24.0.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pyarrow.orc.write_table()</span></code></a>.</p>
 </dd>
 </dl>
 </dd>
@@ -754,7 +765,7 @@ dataframe is converted into ORC files.</p></li>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

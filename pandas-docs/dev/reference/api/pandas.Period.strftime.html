@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.Period.strftime &#8212; pandas  documentation</title>
+    <title>pandas.Period.strftime &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/documentation_options.js?v=724d5388"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.Period.now" href="pandas.Period.now.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas  documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas  documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
   
   
 </a></div>
@@ -755,11 +755,15 @@
 <dt class="sig sig-object py" id="pandas.Period.strftime">
 <span class="sig-prename descclassname"><span class="pre">Period.</span></span><span class="sig-name descname"><span class="pre">strftime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pandas.Period.strftime" title="Link to this definition">#</a></dt>
 <dd><p>Returns a formatted string representation of the <a class="reference internal" href="pandas.Period.html#pandas.Period" title="pandas.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a>.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 3.1.0: </span>The <code class="docutils literal notranslate"><span class="pre">%n</span></code> directive for nanoseconds is deprecated; use <code class="docutils literal notranslate"><span class="pre">%N</span></code> instead.
+<code class="docutils literal notranslate"><span class="pre">%n</span></code> conflicts with the POSIX standard meaning of a newline character.</p>
+</div>
 <p><code class="docutils literal notranslate"><span class="pre">fmt</span></code> must be <code class="docutils literal notranslate"><span class="pre">None</span></code> or a string containing one or several directives.
 When <code class="docutils literal notranslate"><span class="pre">None</span></code>, the format will be determined from the frequency of the Period.
 The method recognizes the same directives as the <a class="reference external" href="https://docs.python.org/3/library/time.html#time.strftime" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">time.strftime()</span></code></a>
 function of the standard Python distribution, as well as the specific
-additional directives <code class="docutils literal notranslate"><span class="pre">%f</span></code>, <code class="docutils literal notranslate"><span class="pre">%F</span></code>, <code class="docutils literal notranslate"><span class="pre">%q</span></code>, <code class="docutils literal notranslate"><span class="pre">%l</span></code>, <code class="docutils literal notranslate"><span class="pre">%u</span></code>, <code class="docutils literal notranslate"><span class="pre">%n</span></code>.
+additional directives <code class="docutils literal notranslate"><span class="pre">%f</span></code>, <code class="docutils literal notranslate"><span class="pre">%F</span></code>, <code class="docutils literal notranslate"><span class="pre">%q</span></code>, <code class="docutils literal notranslate"><span class="pre">%l</span></code>, <code class="docutils literal notranslate"><span class="pre">%u</span></code>, <code class="docutils literal notranslate"><span class="pre">%N</span></code>.
 (formatting &amp; docs originally from scikits.timeries).</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -858,12 +862,17 @@ AM or PM.</p></td>
 [000000,999999].</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%n</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%N</span></code></p></td>
 <td><p>Nanosecond as a decimal number
 [000000000,999999999].</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%U</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%n</span></code></p></td>
+<td><p>Nanosecond as a decimal number
+[000000000,999999999].</p></td>
+<td><p>(6)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%U</span></code></p></td>
 <td><p>Week number of the year
 (Sunday as the first day of
 the week) as a decimal number
@@ -873,12 +882,12 @@ Sunday are considered to be in
 week 0.</p></td>
 <td><p>(5)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%w</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%w</span></code></p></td>
 <td><p>Weekday as a decimal number
 [0(Sunday),6].</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%W</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%W</span></code></p></td>
 <td><p>Week number of the year
 (Monday as the first day of
 the week) as a decimal number
@@ -888,32 +897,32 @@ Monday are considered to be in
 week 0.</p></td>
 <td><p>(5)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%x</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%x</span></code></p></td>
 <td><p>Locale’s appropriate date
 representation.</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%X</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%X</span></code></p></td>
 <td><p>Locale’s appropriate time
 representation.</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%y</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%y</span></code></p></td>
 <td><p>Year without century as a
 decimal number [00,99].</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%Y</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%Y</span></code></p></td>
 <td><p>Year with century as a decimal
 number.</p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%Z</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%Z</span></code></p></td>
 <td><p>Time zone name (no characters
 if no time zone exists).</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%%</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%%</span></code></p></td>
 <td><p>A literal <code class="docutils literal notranslate"><span class="pre">'%'</span></code> character.</p></td>
 <td></td>
 </tr>
@@ -963,6 +972,9 @@ if the <code class="docutils literal notranslate"><span class="pre">%I</span></c
 seconds and the (very rare) double leap seconds.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">%U</span></code> and <code class="docutils literal notranslate"><span class="pre">%W</span></code> directives are only used in calculations
 when the day of the week and the year are specified.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">%n</span></code> directive is deprecated since pandas 3.1.0; use
+<code class="docutils literal notranslate"><span class="pre">%N</span></code> instead. <code class="docutils literal notranslate"><span class="pre">%n</span></code> is a newline directive in C <code class="docutils literal notranslate"><span class="pre">strftime</span></code>
+(and Python’s <code class="docutils literal notranslate"><span class="pre">time.strftime</span></code> / <code class="docutils literal notranslate"><span class="pre">datetime.strftime</span></code>).</p></li>
 </ol>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">Period</span>
@@ -1063,7 +1075,7 @@ when the day of the week and the year are specified.</p></li>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

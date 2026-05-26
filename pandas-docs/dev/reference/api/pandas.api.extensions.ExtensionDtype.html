@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.api.extensions.ExtensionDtype &#8212; pandas  documentation</title>
+    <title>pandas.api.extensions.ExtensionDtype &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/documentation_options.js?v=724d5388"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,18 +55,18 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.api.extensions.ExtensionArray" href="pandas.api.extensions.ExtensionArray.html" />
+    <link rel="next" title="pandas.api.extensions.ExtensionDtype.kind" href="pandas.api.extensions.ExtensionDtype.kind.html" />
     <link rel="prev" title="pandas.api.extensions.register_index_accessor" href="pandas.api.extensions.register_index_accessor.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas  documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas  documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
   
   
 </a></div>
@@ -456,7 +456,17 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.api.extensions.register_dataframe_accessor.html">pandas.api.extensions.register_dataframe_accessor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.api.extensions.register_series_accessor.html">pandas.api.extensions.register_series_accessor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.api.extensions.register_index_accessor.html">pandas.api.extensions.register_index_accessor</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">pandas.api.extensions.ExtensionDtype</a></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">pandas.api.extensions.ExtensionDtype</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.kind.html">pandas.api.extensions.ExtensionDtype.kind</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.na_value.html">pandas.api.extensions.ExtensionDtype.na_value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.name.html">pandas.api.extensions.ExtensionDtype.name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.names.html">pandas.api.extensions.ExtensionDtype.names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.type.html">pandas.api.extensions.ExtensionDtype.type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.construct_array_type.html">pandas.api.extensions.ExtensionDtype.construct_array_type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.construct_from_string.html">pandas.api.extensions.ExtensionDtype.construct_from_string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.is_dtype.html">pandas.api.extensions.ExtensionDtype.is_dtype</a></li>
+</ul>
+</details></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.api.extensions.ExtensionArray.html">pandas.api.extensions.ExtensionArray</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.arrays.NumpyExtensionArray.html">pandas.arrays.NumpyExtensionArray</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.api.indexers.check_array_indexer.html">pandas.api.indexers.check_array_indexer</a></li>
@@ -534,12 +544,48 @@
 <h1>pandas.api.extensions.ExtensionDtype<a class="headerlink" href="#pandas-api-extensions-extensiondtype" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pandas.api.extensions.ExtensionDtype">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.api.extensions.</span></span><span class="sig-name descname"><span class="pre">ExtensionDtype</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/api/extensions/__init__.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.ExtensionDtype" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.api.extensions.</span></span><span class="sig-name descname"><span class="pre">ExtensionDtype</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/dtypes/base.py#L45-L465"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.ExtensionDtype" title="Link to this definition">#</a></dt>
 <dd><p>A custom data type, to be paired with an ExtensionArray.</p>
 <p>This enables support for third-party and custom dtypes within the
 pandas ecosystem. By implementing this interface and pairing it with a custom
 <cite>ExtensionArray</cite>, users can create rich data types that integrate cleanly
 with pandas operations, such as grouping, joining, or aggregation.</p>
+<p class="rubric">Attributes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.kind.html#pandas.api.extensions.ExtensionDtype.kind" title="pandas.api.extensions.ExtensionDtype.kind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kind</span></code></a></p></td>
+<td><p>A character code (one of 'biufcmMOSUV'), default 'O'</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.na_value.html#pandas.api.extensions.ExtensionDtype.na_value" title="pandas.api.extensions.ExtensionDtype.na_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">na_value</span></code></a></p></td>
+<td><p>Default NA value to use for this type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.name.html#pandas.api.extensions.ExtensionDtype.name" title="pandas.api.extensions.ExtensionDtype.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<td><p>A string identifying the data type.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.names.html#pandas.api.extensions.ExtensionDtype.names" title="pandas.api.extensions.ExtensionDtype.names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">names</span></code></a></p></td>
+<td><p>Ordered list of field names, or None if there are no fields.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.type.html#pandas.api.extensions.ExtensionDtype.type" title="pandas.api.extensions.ExtensionDtype.type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">type</span></code></a></p></td>
+<td><p>The scalar type for the array, e.g. <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.construct_array_type.html#pandas.api.extensions.ExtensionDtype.construct_array_type" title="pandas.api.extensions.ExtensionDtype.construct_array_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">construct_array_type</span></code></a>()</p></td>
+<td><p>Return the array type associated with this dtype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.construct_from_string.html#pandas.api.extensions.ExtensionDtype.construct_from_string" title="pandas.api.extensions.ExtensionDtype.construct_from_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">construct_from_string</span></code></a>(string)</p></td>
+<td><p>Construct this type from a string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.is_dtype.html#pandas.api.extensions.ExtensionDtype.is_dtype" title="pandas.api.extensions.ExtensionDtype.is_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_dtype</span></code></a>(dtype)</p></td>
+<td><p>Check if we match 'dtype'.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
@@ -595,48 +641,6 @@ ExtensionArray for this dtype and the passed values:</p>
 Methods and properties required by the interface raise
 <code class="docutils literal notranslate"><span class="pre">pandas.errors.AbstractMethodError</span></code> and no <code class="docutils literal notranslate"><span class="pre">register</span></code> method is
 provided for registering virtual subclasses.</p>
-<p class="rubric">Attributes</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_class</span></code></p></td>
-<td><p>The Index subclass to return from Index.__new__ when this dtype is encountered.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">kind</span></code></p></td>
-<td><p>A character code (one of 'biufcmMOSUV'), default 'O'</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">na_value</span></code></p></td>
-<td><p>Default NA value to use for this type.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></p></td>
-<td><p>A string identifying the data type.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">names</span></code></p></td>
-<td><p>Ordered list of field names, or None if there are no fields.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">type</span></code></p></td>
-<td><p>The scalar type for the array, e.g. <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p class="rubric">Methods</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">construct_array_type</span></code>()</p></td>
-<td><p>Return the array type associated with this dtype.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">construct_from_string</span></code>(string)</p></td>
-<td><p>Construct this type from a string.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code>(shape)</p></td>
-<td><p>Construct an ExtensionArray of this dtype with the given shape.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_dtype</span></code>(dtype)</p></td>
-<td><p>Check if we match 'dtype'.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
 </dd></dl>
 
 </section>
@@ -661,11 +665,11 @@ provided for registering virtual subclasses.</p>
       </div>
     </a>
     <a class="right-next"
-       href="pandas.api.extensions.ExtensionArray.html"
+       href="pandas.api.extensions.ExtensionDtype.kind.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">pandas.api.extensions.ExtensionArray</p>
+        <p class="prev-next-title">pandas.api.extensions.ExtensionDtype.kind</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -720,7 +724,7 @@ provided for registering virtual subclasses.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

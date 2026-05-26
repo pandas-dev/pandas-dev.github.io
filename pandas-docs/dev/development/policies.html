@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Policies &#8212; pandas  documentation</title>
+    <title>Policies &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/documentation_options.js?v=724d5388"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Developer" href="developer.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas  documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas  documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
   
   
 </a></div>
@@ -529,17 +529,42 @@ and how to migrate existing code to the new behavior.</p>
 <p>Whenever possible, a deprecation path will be provided rather than an outright
 breaking change.</p>
 <p>pandas will introduce deprecations in <strong>minor</strong> releases. These deprecations
-will preserve the existing behavior while emitting a warning that provide
+will preserve the existing behavior while emitting a warning that provides
 guidance on:</p>
 <ul class="simple">
-<li><p>How to achieve similar behavior if an alternative is available</p></li>
+<li><p>How to achieve similar behavior if an alternative is available.</p></li>
 <li><p>The pandas version in which the deprecation will be enforced.</p></li>
 </ul>
 <p>We will not introduce new deprecations in patch releases.</p>
 <p>Deprecations will only be enforced in <strong>major</strong> releases. For example, if a
-behavior is deprecated in pandas 1.2.0, it will continue to work, with a
-warning, for all releases in the 1.x series. The behavior will change and the
-deprecation removed in the next major release (2.0.0).</p>
+behavior is deprecated in pandas 3.1.0, it will continue to work, with a
+warning, for all releases in the 3.x series. The behavior will change and the
+deprecation removed in the next major release (4.0.0).</p>
+<section id="deprecation-warnings">
+<h3>Deprecation warnings<a class="headerlink" href="#deprecation-warnings" title="Link to this heading">#</a></h3>
+<p>Following <a class="reference external" href="https://pandas.pydata.org/pdeps/0017-backwards-compatibility-and-deprecation-policy.html">PDEP-17</a>, pandas uses a three-stage deprecation policy:</p>
+<ol class="arabic simple">
+<li><p>When a deprecation is first introduced in a minor release, it emits a
+<a class="reference internal" href="../reference/api/pandas.errors.PandasDeprecationWarning.html#pandas.errors.PandasDeprecationWarning" title="pandas.errors.PandasDeprecationWarning"><code class="xref py py-class docutils literal notranslate"><span class="pre">PandasDeprecationWarning</span></code></a>. By default, Python hides
+<code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code> outside the <code class="docutils literal notranslate"><span class="pre">__main__</span></code> module, so end users
+typically will not see these warnings unless they explicitly opt in. This
+gives downstream libraries time to migrate before their users are notified.</p></li>
+<li><p>In the final minor release before the next major version, the warning is
+promoted to <a class="reference internal" href="../reference/api/pandas.errors.PandasFutureWarning.html#pandas.errors.PandasFutureWarning" title="pandas.errors.PandasFutureWarning"><code class="xref py py-class docutils literal notranslate"><span class="pre">PandasFutureWarning</span></code></a>, which Python shows
+by default. End users see these warnings and have one minor release in
+which to update their code.</p></li>
+<li><p>The deprecated behavior is removed in the next major release.</p></li>
+</ol>
+<p>All warnings about upcoming changes inherit from
+<a class="reference internal" href="../reference/api/pandas.errors.PandasChangeWarning.html#pandas.errors.PandasChangeWarning" title="pandas.errors.PandasChangeWarning"><code class="xref py py-class docutils literal notranslate"><span class="pre">PandasChangeWarning</span></code></a>. Users can filter or surface
+warnings using the following subclasses:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../reference/api/pandas.errors.Pandas4Warning.html#pandas.errors.Pandas4Warning" title="pandas.errors.Pandas4Warning"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pandas4Warning</span></code></a> — changes that will be enforced in pandas 4.0.</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.errors.Pandas5Warning.html#pandas.errors.Pandas5Warning" title="pandas.errors.Pandas5Warning"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pandas5Warning</span></code></a> — changes that will be enforced in pandas 5.0.</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.errors.PandasPendingDeprecationWarning.html#pandas.errors.PandasPendingDeprecationWarning" title="pandas.errors.PandasPendingDeprecationWarning"><code class="xref py py-class docutils literal notranslate"><span class="pre">PandasPendingDeprecationWarning</span></code></a> — emits a <code class="docutils literal notranslate"><span class="pre">PendingDeprecationWarning</span></code>, regardless of target version.</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.errors.PandasDeprecationWarning.html#pandas.errors.PandasDeprecationWarning" title="pandas.errors.PandasDeprecationWarning"><code class="xref py py-class docutils literal notranslate"><span class="pre">PandasDeprecationWarning</span></code></a> — emits a <code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code>, regardless of target version.</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.errors.PandasFutureWarning.html#pandas.errors.PandasFutureWarning" title="pandas.errors.PandasFutureWarning"><code class="xref py py-class docutils literal notranslate"><span class="pre">PandasFutureWarning</span></code></a> — emits a <code class="docutils literal notranslate"><span class="pre">FutureWarning</span></code>, regardless of target version.</p></li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>pandas will sometimes make <em>behavior changing</em> bug fixes, as part of
@@ -550,6 +575,7 @@ tracker or mailing list.</p>
 </div>
 <p>These policies do not apply to features marked as <strong>experimental</strong> in the documentation.
 pandas may change the behavior of experimental features at any time.</p>
+</section>
 </section>
 <section id="python-support">
 <span id="policies-python-support"></span><h2>Python support<a class="headerlink" href="#python-support" title="Link to this heading">#</a></h2>
@@ -608,7 +634,10 @@ pandas may change the behavior of experimental features at any time.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-policy">Version policy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-policy">Version policy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deprecation-warnings">Deprecation warnings</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-support">Python support</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security-policy">Security policy</a></li>
 </ul>
@@ -642,7 +671,7 @@ pandas may change the behavior of experimental features at any time.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

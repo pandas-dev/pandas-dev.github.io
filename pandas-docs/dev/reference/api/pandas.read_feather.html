@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.read_feather &#8212; pandas  documentation</title>
+    <title>pandas.read_feather &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/documentation_options.js?v=724d5388"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.HDFStore.walk" href="pandas.HDFStore.walk.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas  documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas  documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
   
   
 </a></div>
@@ -444,6 +444,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_csv.html">pandas.read_csv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.to_csv.html">pandas.DataFrame.to_csv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_fwf.html">pandas.read_fwf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.html">pandas.io.parsers.TextFileReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.read.html">pandas.io.parsers.TextFileReader.read</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.get_chunk.html">pandas.io.parsers.TextFileReader.get_chunk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.io.parsers.TextFileReader.close.html">pandas.io.parsers.TextFileReader.close</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_clipboard.html">pandas.read_clipboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.to_clipboard.html">pandas.DataFrame.to_clipboard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_excel.html">pandas.read_excel</a></li>
@@ -582,8 +586,10 @@
 <h1>pandas.read_feather<a class="headerlink" href="#pandas-read-feather" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.read_feather">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_feather</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype_backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v/pandas/io/feather_format.py#L80-L181"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_feather" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_feather</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype_backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/feather_format.py#L73-L163"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_feather" title="Link to this definition">#</a></dt>
 <dd><p>Load a feather-format object from the file path.</p>
+<p>This function requires the <a class="reference external" href="https://arrow.apache.org/docs/python/">pyarrow</a>
+library.</p>
 <p>Feather is particularly useful for scenarios that require efficient
 serialization and deserialization of tabular data. It supports
 schema preservation, making it a reliable choice for use cases
@@ -598,6 +604,9 @@ and choosing the backend for data types.</p>
 object implementing a binary <code class="docutils literal notranslate"><span class="pre">read()</span></code> function. The string could be a URL.
 Valid URL schemes include http, ftp, s3, gs and file. For file URLs, a host is
 expected. A local file could be: <code class="docutils literal notranslate"><span class="pre">file://localhost/path/to/table.feather</span></code>.</p>
+<p>Certain URL schemes may require additional packages. For example, S3
+URLs require the <code class="docutils literal notranslate"><span class="pre">s3fs</span></code> library. See
+<a class="reference internal" href="../../getting_started/install.html#install-optional-dependencies"><span class="std std-ref">Optional dependencies</span></a> for a full list.</p>
 </dd>
 <dt><strong>columns</strong><span class="classifier">sequence, default None</span></dt><dd><p>If not provided, all columns are read.</p>
 </dd>
@@ -734,7 +743,7 @@ is as follows:</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Essential basic functionality &#8212; pandas  documentation</title>
+    <title>Essential basic functionality &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/documentation_options.js?v=724d5388"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -57,7 +57,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -68,7 +68,7 @@
     <link rel="prev" title="Intro to data structures" href="dsintro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
   </head>
   
   
@@ -135,8 +135,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas  documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas  documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
   
   
 </a></div>
@@ -817,6 +817,9 @@ either match on the <em>index</em> or <em>columns</em> via the <strong>axis</str
 <span class="go">2     a            NaN -1.493173 -2.385688</span>
 </pre></div>
 </div>
+<p>When operating with a plain Python list, pandas aligns it to the <strong>columns</strong>
+of the DataFrame (not the rows); to broadcast row-wise, pass <code class="docutils literal notranslate"><span class="pre">axis=0</span></code> to
+the explicit method, e.g. <code class="docutils literal notranslate"><span class="pre">df.add([1,</span> <span class="pre">2,</span> <span class="pre">3],</span> <span class="pre">axis=0)</span></code>.</p>
 <p>Series and Index also support the <a class="reference external" href="https://docs.python.org/3/library/functions.html#divmod" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">divmod()</span></code></a> builtin. This function takes
 the floor division and modulo operation at the same time returning a two-tuple
 of the same type as the left hand side. For example:</p>
@@ -1026,36 +1029,36 @@ or values is ambiguous.</p>
 <span class="gp">   ....: </span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-55-318d08b2571a&gt;</span> in <span class="ni">?</span><span class="nt">()</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">55</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">if</span> <span class="n">df</span><span class="p">:</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="nb">print</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nn">~/work/pandas/pandas/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1498</span>     <span class="nd">@final</span>
-<span class="g g-Whitespace">   </span><span class="mi">1499</span>     <span class="k">def</span><span class="w"> </span><span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1500</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1501</span>             <span class="sa">f</span><span class="s2">&quot;The truth value of a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is ambiguous. &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1502</span>             <span class="s2">&quot;Use a.empty, a.bool(), a.item(), a.any() or a.all().&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1503</span>         <span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1505,</span> in <span class="ni">NDFrame.__bool__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1503</span>     <span class="nd">@final</span>
+<span class="g g-Whitespace">   </span><span class="mi">1504</span>     <span class="k">def</span><span class="w"> </span><span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1505</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1506</span>             <span class="sa">f</span><span class="s2">&quot;The truth value of a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is ambiguous. &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1507</span>             <span class="s2">&quot;Use a.empty, a.item(), a.any() or a.all().&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1508</span>         <span class="p">)</span>
 
-<span class="ne">ValueError</span>: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+<span class="ne">ValueError</span>: The truth value of a DataFrame is ambiguous. Use a.empty, a.item(), a.any() or a.all().
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [56]: </span><span class="n">df</span> <span class="ow">and</span> <span class="n">df2</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-56-b241b64bb471&gt;</span> in <span class="ni">?</span><span class="nt">()</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">56</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="ow">and</span> <span class="n">df2</span>
 
-<span class="nn">~/work/pandas/pandas/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1498</span>     <span class="nd">@final</span>
-<span class="g g-Whitespace">   </span><span class="mi">1499</span>     <span class="k">def</span><span class="w"> </span><span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1500</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1501</span>             <span class="sa">f</span><span class="s2">&quot;The truth value of a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is ambiguous. &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1502</span>             <span class="s2">&quot;Use a.empty, a.bool(), a.item(), a.any() or a.all().&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1503</span>         <span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1505,</span> in <span class="ni">NDFrame.__bool__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1503</span>     <span class="nd">@final</span>
+<span class="g g-Whitespace">   </span><span class="mi">1504</span>     <span class="k">def</span><span class="w"> </span><span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1505</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1506</span>             <span class="sa">f</span><span class="s2">&quot;The truth value of a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is ambiguous. &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1507</span>             <span class="s2">&quot;Use a.empty, a.item(), a.any() or a.all().&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1508</span>         <span class="p">)</span>
 
-<span class="ne">ValueError</span>: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+<span class="ne">ValueError</span>: The truth value of a DataFrame is ambiguous. Use a.empty, a.item(), a.any() or a.all().
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="gotchas.html#gotchas-truth"><span class="std std-ref">gotchas</span></a> for a more detailed discussion.</p>
@@ -1156,17 +1159,20 @@ raise a ValueError:</p>
 <span class="g g-Whitespace">     </span><span class="mi">88</span>     <span class="n">other</span> <span class="o">=</span> <span class="n">ensure_wrapped_if_datetimelike</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">90</span> <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/arraylike.py:42,</span> in <span class="ni">OpsMixin.__eq__</span><span class="nt">(self, other)</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="nd">@unpack_zerodim_and_defer</span><span class="p">(</span><span class="s2">&quot;__eq__&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">42</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cmp_method</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">eq</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/arraylike.py:45,</span> in <span class="ni">OpsMixin.__eq__</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="nd">@unpack_zerodim_and_defer</span><span class="p">(</span><span class="s2">&quot;__eq__&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>  <span class="c1"># type: ignore[override]</span>
+<span class="ne">---&gt; </span><span class="mi">45</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cmp_method</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">eq</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:6987,</span> in <span class="ni">Series._cmp_method</span><span class="nt">(self, other, op)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6984</span> <span class="n">res_name</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">get_op_result_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6986</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Series</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indexed_same</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">6987</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can only compare identically-labeled Series objects&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6989</span> <span class="n">lvalues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span>
-<span class="g g-Whitespace">   </span><span class="mi">6990</span> <span class="n">rvalues</span> <span class="o">=</span> <span class="n">extract_array</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">extract_numpy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">extract_range</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:7028,</span> in <span class="ni">Series._cmp_method</span><span class="nt">(self, other, op)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7024</span>     <span class="k">def</span><span class="w"> </span><span class="nf">_cmp_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Series</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7025</span>         <span class="n">res_name</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">get_op_result_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7026</span> 
+<span class="g g-Whitespace">   </span><span class="mi">7027</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Series</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indexed_same</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">7028</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can only compare identically-labeled Series objects&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7029</span> 
+<span class="g g-Whitespace">   </span><span class="mi">7030</span>         <span class="n">lvalues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span>
+<span class="g g-Whitespace">   </span><span class="mi">7031</span>         <span class="n">rvalues</span> <span class="o">=</span> <span class="n">extract_array</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">extract_numpy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">extract_range</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="ne">ValueError</span>: Can only compare identically-labeled Series objects
 
@@ -1181,17 +1187,20 @@ raise a ValueError:</p>
 <span class="g g-Whitespace">     </span><span class="mi">88</span>     <span class="n">other</span> <span class="o">=</span> <span class="n">ensure_wrapped_if_datetimelike</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">90</span> <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/arraylike.py:42,</span> in <span class="ni">OpsMixin.__eq__</span><span class="nt">(self, other)</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="nd">@unpack_zerodim_and_defer</span><span class="p">(</span><span class="s2">&quot;__eq__&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">42</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cmp_method</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">eq</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/arraylike.py:45,</span> in <span class="ni">OpsMixin.__eq__</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="nd">@unpack_zerodim_and_defer</span><span class="p">(</span><span class="s2">&quot;__eq__&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>  <span class="c1"># type: ignore[override]</span>
+<span class="ne">---&gt; </span><span class="mi">45</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cmp_method</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">eq</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:6987,</span> in <span class="ni">Series._cmp_method</span><span class="nt">(self, other, op)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6984</span> <span class="n">res_name</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">get_op_result_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6986</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Series</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indexed_same</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">6987</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can only compare identically-labeled Series objects&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6989</span> <span class="n">lvalues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span>
-<span class="g g-Whitespace">   </span><span class="mi">6990</span> <span class="n">rvalues</span> <span class="o">=</span> <span class="n">extract_array</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">extract_numpy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">extract_range</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:7028,</span> in <span class="ni">Series._cmp_method</span><span class="nt">(self, other, op)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7024</span>     <span class="k">def</span><span class="w"> </span><span class="nf">_cmp_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Series</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7025</span>         <span class="n">res_name</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">get_op_result_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7026</span> 
+<span class="g g-Whitespace">   </span><span class="mi">7027</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Series</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indexed_same</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">7028</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can only compare identically-labeled Series objects&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7029</span> 
+<span class="g g-Whitespace">   </span><span class="mi">7030</span>         <span class="n">lvalues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span>
+<span class="g g-Whitespace">   </span><span class="mi">7031</span>         <span class="n">rvalues</span> <span class="o">=</span> <span class="n">extract_array</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">extract_numpy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">extract_range</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="ne">ValueError</span>: Can only compare identically-labeled Series objects
 </pre></div>
@@ -1738,16 +1747,19 @@ and <a class="reference internal" href="../reference/api/pandas.qcut.html#pandas
 
 <span class="gp">In [131]: </span><span class="n">factor</span>
 <span class="gh">Out[131]: </span>
-<span class="go">[(-0.251, 0.464], (-0.968, -0.251], (0.464, 1.179], (-0.251, 0.464], (-0.968, -0.251], ..., (-0.251, 0.464], (-0.968, -0.251], (-0.968, -0.251], (-0.968, -0.251], (-0.968, -0.251]]</span>
+<span class="go">[(-0.251, 0.464], (-0.968, -0.251], (0.464, 1.179], (-0.251, 0.464],</span>
+<span class="go"> (-0.968, -0.251], ..., (-0.251, 0.464], (-0.968, -0.251], (-0.968, -0.251],</span>
+<span class="go"> (-0.968, -0.251], (-0.968, -0.251]]</span>
 <span class="go">Length: 20</span>
-<span class="go">Categories (4, interval[float64, right]): [(-0.968, -0.251] &lt; (-0.251, 0.464] &lt; (0.464, 1.179] &lt;</span>
-<span class="go">                                           (1.179, 1.893]]</span>
+<span class="go">Categories (4, interval[float64, right]): [(-0.968, -0.251] &lt; (-0.251, 0.464] &lt;</span>
+<span class="go">                                           (0.464, 1.179] &lt; (1.179, 1.893]]</span>
 
 <span class="gp">In [132]: </span><span class="n">factor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 
 <span class="gp">In [133]: </span><span class="n">factor</span>
 <span class="gh">Out[133]: </span>
-<span class="go">[(0, 1], (-1, 0], (0, 1], (0, 1], (-1, 0], ..., (-1, 0], (-1, 0], (-1, 0], (-1, 0], (-1, 0]]</span>
+<span class="go">[(0, 1], (-1, 0], (0, 1], (0, 1], (-1, 0], ..., (-1, 0], (-1, 0], (-1, 0],</span>
+<span class="go"> (-1, 0], (-1, 0]]</span>
 <span class="go">Length: 20</span>
 <span class="go">Categories (4, interval[int64, right]): [(-5, -1] &lt; (-1, 0] &lt; (0, 1] &lt; (1, 5]]</span>
 </pre></div>
@@ -1760,10 +1772,12 @@ normally distributed data into equal-size quartiles like so:</p>
 
 <span class="gp">In [136]: </span><span class="n">factor</span>
 <span class="gh">Out[136]: </span>
-<span class="go">[(0.569, 1.184], (-2.278, -0.301], (-2.278, -0.301], (0.569, 1.184], (0.569, 1.184], ..., (-0.301, 0.569], (1.184, 2.346], (1.184, 2.346], (-0.301, 0.569], (-2.278, -0.301]]</span>
+<span class="go">[(0.569, 1.184], (-2.278, -0.301], (-2.278, -0.301], (0.569, 1.184],</span>
+<span class="go"> (0.569, 1.184], ..., (-0.301, 0.569], (1.184, 2.346], (1.184, 2.346],</span>
+<span class="go"> (-0.301, 0.569], (-2.278, -0.301]]</span>
 <span class="go">Length: 30</span>
-<span class="go">Categories (4, interval[float64, right]): [(-2.278, -0.301] &lt; (-0.301, 0.569] &lt; (0.569, 1.184] &lt;</span>
-<span class="go">                                           (1.184, 2.346]]</span>
+<span class="go">Categories (4, interval[float64, right]): [(-2.278, -0.301] &lt; (-0.301, 0.569] &lt;</span>
+<span class="go">                                           (0.569, 1.184] &lt; (1.184, 2.346]]</span>
 </pre></div>
 </div>
 <p>We can also pass infinite values to define the bins:</p>
@@ -1773,7 +1787,8 @@ normally distributed data into equal-size quartiles like so:</p>
 
 <span class="gp">In [139]: </span><span class="n">factor</span>
 <span class="gh">Out[139]: </span>
-<span class="go">[(-inf, 0.0], (0.0, inf], (0.0, inf], (-inf, 0.0], (-inf, 0.0], ..., (-inf, 0.0], (-inf, 0.0], (-inf, 0.0], (0.0, inf], (0.0, inf]]</span>
+<span class="go">[(-inf, 0.0], (0.0, inf], (0.0, inf], (-inf, 0.0], (-inf, 0.0], ..., (-inf, 0.0],</span>
+<span class="go"> (-inf, 0.0], (-inf, 0.0], (0.0, inf], (0.0, inf]]</span>
 <span class="go">Length: 20</span>
 <span class="go">Categories (2, interval[float64, right]): [(-inf, 0.0] &lt; (0.0, inf]]</span>
 </pre></div>
@@ -3272,7 +3287,7 @@ This will return a Series, indexed like the existing Series.</p>
 <span class="go">dtype: datetime64[us]</span>
 </pre></div>
 </div>
-<p>You can easily produces tz aware transformations:</p>
+<p>You can easily produce tz aware transformations:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [278]: </span><span class="n">stz</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="s2">&quot;US/Eastern&quot;</span><span class="p">)</span>
 
 <span class="gp">In [279]: </span><span class="n">stz</span>
@@ -4318,7 +4333,9 @@ hard conversion of objects to a specified type:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [393]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;5us&quot;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">&quot;1day&quot;</span><span class="p">)]</span>
 
 <span class="gp">In [394]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-<span class="gh">Out[394]: </span><span class="go">TimedeltaIndex([&#39;0 days 00:00:00.000005&#39;, &#39;1 days 00:00:00&#39;], dtype=&#39;timedelta64[us]&#39;, freq=None)</span>
+<span class="gh">Out[394]: </span>
+<span class="go">TimedeltaIndex([&#39;0 days 00:00:00.000005&#39;, &#39;1 days 00:00:00&#39;],</span>
+<span class="go">               dtype=&#39;timedelta64[us]&#39;, freq=None)</span>
 </pre></div>
 </div>
 </li>
@@ -4530,10 +4547,10 @@ dtypes:</p>
 
 <span class="gp">In [435]: </span><span class="n">df</span>
 <span class="gh">Out[435]: </span>
-<span class="go">  string  int64  uint8  ...  uint64  other_dates            tz_aware_dates</span>
-<span class="go">0      a      1      3  ...       3   2013-01-01 2013-01-01 00:00:00-05:00</span>
-<span class="go">1      b      2      4  ...       4   2013-01-02 2013-01-02 00:00:00-05:00</span>
-<span class="go">2      c      3      5  ...       5   2013-01-03 2013-01-03 00:00:00-05:00</span>
+<span class="go">  string  int64  uint8  ...  uint64 other_dates            tz_aware_dates</span>
+<span class="go">0      a      1      3  ...       3  2013-01-01 2013-01-01 00:00:00-05:00</span>
+<span class="go">1      b      2      4  ...       4  2013-01-02 2013-01-02 00:00:00-05:00</span>
+<span class="go">2      c      3      5  ...       5  2013-01-03 2013-01-03 00:00:00-05:00</span>
 
 <span class="go">[3 rows x 12 columns]</span>
 </pre></div>
@@ -4806,7 +4823,7 @@ NumPy hierarchy and won’t show up with the above function.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     <br/>
   </p>
 </div>
