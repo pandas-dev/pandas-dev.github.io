@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new in 2.0.0 (April 3, 2023) &#8212; pandas 3.0.3 documentation</title>
+    <title>What’s new in 2.0.0 (April 3, 2023) &#8212; pandas 3.0.4 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=9b3fc59f"></script>
+    <script src="../_static/documentation_options.js?v=50b65552"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="What’s new in 2.0.1 (April 24, 2023)" href="v2.0.1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.0.3" />
+  <meta name="docsearch:version" content="3.0.4" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.0.3 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.0.3 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.0.4 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.0.4 documentation - Home"/>
   
   
 </a></div>
@@ -437,6 +437,7 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="v3.0.4.html">What’s new in 3.0.4 (June 28, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.3.html">What’s new in 3.0.3 (May 11, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.2.html">What’s new in 3.0.2 (March 30, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.1.html">What’s new in 3.0.1 (February 17, 2026)</a></li>
@@ -1224,19 +1225,19 @@ ignoring the requested dtype:</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ser</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;datetime64[D]&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:6541,</span> in <span class="ni">NDFrame.astype</span><span class="nt">(self, dtype, copy, errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6537</span>             <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">ser</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ser</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
-<span class="g g-Whitespace">   </span><span class="mi">6538</span> 
-<span class="g g-Whitespace">   </span><span class="mi">6539</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">6540</span>             <span class="c1"># else, only a single dtype is given</span>
-<span class="ne">-&gt; </span><span class="mi">6541</span>             <span class="n">new_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6542</span>             <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor_from_mgr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">new_data</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6543</span>             <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;astype&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6544</span> 
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:6529,</span> in <span class="ni">NDFrame.astype</span><span class="nt">(self, dtype, copy, errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6525</span>             <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">ser</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ser</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+<span class="g g-Whitespace">   </span><span class="mi">6526</span> 
+<span class="g g-Whitespace">   </span><span class="mi">6527</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6528</span>             <span class="c1"># else, only a single dtype is given</span>
+<span class="ne">-&gt; </span><span class="mi">6529</span>             <span class="n">new_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6530</span>             <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor_from_mgr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">new_data</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6531</span>             <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;astype&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6532</span> 
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/internals/managers.py:614,</span> in <span class="ni">BaseBlockManager.astype</span><span class="nt">(self, dtype, errors)</span>
-<span class="g g-Whitespace">    </span><span class="mi">613</span> <span class="k">def</span><span class="w"> </span><span class="nf">astype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">614</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="s2">&quot;astype&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/internals/managers.py:627,</span> in <span class="ni">BaseBlockManager.astype</span><span class="nt">(self, dtype, errors)</span>
+<span class="g g-Whitespace">    </span><span class="mi">626</span> <span class="k">def</span><span class="w"> </span><span class="nf">astype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">627</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="s2">&quot;astype&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/internals/managers.py:445,</span> in <span class="ni">BaseBlockManager.apply</span><span class="nt">(self, f, align_keys, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">443</span>         <span class="n">applied</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1325,19 +1326,19 @@ to a floating point format.</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">35</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ser</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;timedelta64[D]&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:6541,</span> in <span class="ni">NDFrame.astype</span><span class="nt">(self, dtype, copy, errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6537</span>             <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">ser</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ser</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
-<span class="g g-Whitespace">   </span><span class="mi">6538</span> 
-<span class="g g-Whitespace">   </span><span class="mi">6539</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">6540</span>             <span class="c1"># else, only a single dtype is given</span>
-<span class="ne">-&gt; </span><span class="mi">6541</span>             <span class="n">new_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6542</span>             <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor_from_mgr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">new_data</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6543</span>             <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;astype&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6544</span> 
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:6529,</span> in <span class="ni">NDFrame.astype</span><span class="nt">(self, dtype, copy, errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6525</span>             <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">ser</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ser</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+<span class="g g-Whitespace">   </span><span class="mi">6526</span> 
+<span class="g g-Whitespace">   </span><span class="mi">6527</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6528</span>             <span class="c1"># else, only a single dtype is given</span>
+<span class="ne">-&gt; </span><span class="mi">6529</span>             <span class="n">new_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6530</span>             <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor_from_mgr</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">new_data</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6531</span>             <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;astype&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6532</span> 
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/internals/managers.py:614,</span> in <span class="ni">BaseBlockManager.astype</span><span class="nt">(self, dtype, errors)</span>
-<span class="g g-Whitespace">    </span><span class="mi">613</span> <span class="k">def</span><span class="w"> </span><span class="nf">astype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">614</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="s2">&quot;astype&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/internals/managers.py:627,</span> in <span class="ni">BaseBlockManager.astype</span><span class="nt">(self, dtype, errors)</span>
+<span class="g g-Whitespace">    </span><span class="mi">626</span> <span class="k">def</span><span class="w"> </span><span class="nf">astype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">627</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="s2">&quot;astype&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/internals/managers.py:445,</span> in <span class="ni">BaseBlockManager.apply</span><span class="nt">(self, f, align_keys, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">443</span>         <span class="n">applied</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>

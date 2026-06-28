@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Essential basic functionality &#8212; pandas 3.0.3 documentation</title>
+    <title>Essential basic functionality &#8212; pandas 3.0.4 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=9b3fc59f"></script>
+    <script src="../_static/documentation_options.js?v=50b65552"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -68,7 +68,7 @@
     <link rel="prev" title="Intro to data structures" href="dsintro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.0.3" />
+  <meta name="docsearch:version" content="3.0.4" />
   </head>
   
   
@@ -135,8 +135,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.0.3 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.0.3 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.0.4 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.0.4 documentation - Home"/>
   
   
 </a></div>
@@ -607,7 +607,7 @@ of elements to display is five, but you may pass a custom number.</p>
 <p>pandas objects (<a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>, <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>, <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>) can be
 thought of as containers for arrays, which hold the actual data and do the
 actual computation. For many types, the underlying array is a
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>. However, pandas and 3rd party libraries may <em>extend</em>
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>. However, pandas and 3rd party libraries may <em>extend</em>
 NumPy’s type system to add support for custom arrays
 (see <a class="reference internal" href="#basics-dtypes"><span class="std std-ref">dtypes</span></a>).</p>
 <p>To get the actual data inside a <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a> or <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>, use
@@ -642,13 +642,13 @@ or <code class="xref py py-meth docutils literal notranslate"><span class="pre">
 an <a class="reference internal" href="../reference/api/pandas.api.extensions.ExtensionArray.html#pandas.api.extensions.ExtensionArray" title="pandas.api.extensions.ExtensionArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtensionArray</span></code></a>, <a class="reference internal" href="../reference/api/pandas.Series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_numpy()</span></code></a>
 may involve copying data and coercing values. See <a class="reference internal" href="#basics-dtypes"><span class="std std-ref">dtypes</span></a> for more.</p>
 <p><a class="reference internal" href="../reference/api/pandas.Series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_numpy()</span></code></a> gives some control over the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> of the
-resulting <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>. For example, consider datetimes with timezones.
+resulting <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>. For example, consider datetimes with timezones.
 NumPy doesn’t have a dtype to represent timezone-aware datetimes, so there
 are two possibly useful representations:</p>
 <ol class="arabic simple">
-<li><p>An object-dtype <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> with <a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> objects, each
+<li><p>An object-dtype <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> with <a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> objects, each
 with the correct <code class="docutils literal notranslate"><span class="pre">tz</span></code>.</p></li>
-<li><p>A <code class="docutils literal notranslate"><span class="pre">datetime64[ns]</span></code> -dtype <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>, where the values have
+<li><p>A <code class="docutils literal notranslate"><span class="pre">datetime64[ns]</span></code> -dtype <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>, where the values have
 been converted to UTC and the timezone discarded.</p></li>
 </ol>
 <p>Timezones may be preserved with <code class="docutils literal notranslate"><span class="pre">dtype=object</span></code>:</p>
@@ -1031,13 +1031,13 @@ or values is ambiguous.</p>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">if</span> <span class="n">df</span><span class="p">:</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="nb">print</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1513,</span> in <span class="ni">NDFrame.__bool__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1511</span>     <span class="nd">@final</span>
-<span class="g g-Whitespace">   </span><span class="mi">1512</span>     <span class="k">def</span><span class="w"> </span><span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1513</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1514</span>             <span class="sa">f</span><span class="s2">&quot;The truth value of a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is ambiguous. &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1515</span>             <span class="s2">&quot;Use a.empty, a.bool(), a.item(), a.any() or a.all().&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1516</span>         <span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1501,</span> in <span class="ni">NDFrame.__bool__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1499</span>     <span class="nd">@final</span>
+<span class="g g-Whitespace">   </span><span class="mi">1500</span>     <span class="k">def</span><span class="w"> </span><span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1501</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1502</span>             <span class="sa">f</span><span class="s2">&quot;The truth value of a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is ambiguous. &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1503</span>             <span class="s2">&quot;Use a.empty, a.bool(), a.item(), a.any() or a.all().&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1504</span>         <span class="p">)</span>
 
 <span class="ne">ValueError</span>: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
 </pre></div>
@@ -1048,13 +1048,13 @@ or values is ambiguous.</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">56</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="ow">and</span> <span class="n">df2</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1513,</span> in <span class="ni">NDFrame.__bool__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1511</span>     <span class="nd">@final</span>
-<span class="g g-Whitespace">   </span><span class="mi">1512</span>     <span class="k">def</span><span class="w"> </span><span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1513</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1514</span>             <span class="sa">f</span><span class="s2">&quot;The truth value of a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is ambiguous. &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1515</span>             <span class="s2">&quot;Use a.empty, a.bool(), a.item(), a.any() or a.all().&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1516</span>         <span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1501,</span> in <span class="ni">NDFrame.__bool__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1499</span>     <span class="nd">@final</span>
+<span class="g g-Whitespace">   </span><span class="mi">1500</span>     <span class="k">def</span><span class="w"> </span><span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1501</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1502</span>             <span class="sa">f</span><span class="s2">&quot;The truth value of a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is ambiguous. &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1503</span>             <span class="s2">&quot;Use a.empty, a.bool(), a.item(), a.any() or a.all().&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1504</span>         <span class="p">)</span>
 
 <span class="ne">ValueError</span>: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
 </pre></div>
@@ -3707,7 +3707,7 @@ ambiguity error in a future version.</p>
 <section id="searchsorted">
 <span id="basics-searchsorted"></span><h3>searchsorted<a class="headerlink" href="#searchsorted" title="Link to this heading">#</a></h3>
 <p>Series has the <a class="reference internal" href="../reference/api/pandas.Series.searchsorted.html#pandas.Series.searchsorted" title="pandas.Series.searchsorted"><code class="xref py py-meth docutils literal notranslate"><span class="pre">searchsorted()</span></code></a> method, which works similarly to
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.searchsorted.html#numpy.ndarray.searchsorted" title="(in NumPy v2.4)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.ndarray.searchsorted()</span></code></a>.</p>
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.searchsorted.html#numpy.ndarray.searchsorted" title="(in NumPy v2.5)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.ndarray.searchsorted()</span></code></a>.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [327]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
 <span class="gp">In [328]: </span><span class="n">ser</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
