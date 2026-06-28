@@ -156,6 +156,11 @@ authors to coordinate on the namespace.</p>
 <td><code>Series</code></td>
 </tr>
 <tr>
+<td><a href="https://dataframes.bigquery.dev/">bigframes</a></td>
+<td><code>bigquery</code></td>
+<td><code>DataFrame</code></td>
+</tr>
+<tr>
 <td><a href="https://altair-viz.github.io/pdvega/">pdvega</a></td>
 <td><code>vgplot</code></td>
 <td><code>Series</code>, <code>DataFrame</code></td>
@@ -194,6 +199,11 @@ authors to coordinate on the namespace.</p>
 <td><a href="https://github.com/alteryx/woodwork">woodwork</a></td>
 <td><code>slice</code></td>
 <td><code>Series</code>, <code>DataFrame</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/aalhajmee/pd-money">pd-money</a></td>
+<td><code>money</code></td>
+<td><code>Series</code></td>
 </tr>
 </tbody>
 </table>
@@ -451,6 +461,26 @@ Bodo also provides a SQL engine that can query distributed pandas dataframes eff
 <span class="n">process_data</span><span class="p">()</span>
 </code></pre></div>
 
+<h4 id="bigquery-dataframes"><a href="https://dataframes.bigquery.dev/">BigQuery DataFrames</a><a class="headerlink" href="#bigquery-dataframes" title="Permanent link"> #</a></h4>
+<p>BigQuery DataFrames compiles pandas-compatible expressions to run on the BigQuery engine.
+It can also compile to Polars for local data, if the hybrid engine is enabled. This allows
+you to use the pandas API without moving data out of BigQuery, as well as scale your
+local pandas workloads to BigQuery's petabyte-scale engine.</p>
+<p>It also provides a <code>bigquery</code> accessor, exposing BigQuery-native
+functionality to pandas objects such as
+<a href="https://dataframes.bigquery.dev/reference/api/bigframes.bigquery.ai.forecast.html"><code>pandas.DataFrame.bigquery.ai.forecast(...)</code></a>,
+which provides access to Google's foundational model for time series prediction.</p>
+<p>To get started, install the <code>bigframes</code> package, then run:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">bigframes.pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bpd</span>
+
+<span class="n">bpd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="s2">&quot;your-google-cloud-project-id&quot;</span>
+<span class="n">bpd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="s2">&quot;US&quot;</span>
+<span class="n">bpd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">order_mode</span> <span class="o">=</span> <span class="s2">&quot;partial&quot;</span>  <span class="c1"># Recommended for performance.</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">bpd</span><span class="o">.</span><span class="n">read_pandas</span><span class="p">(</span><span class="n">pd_df</span><span class="p">)</span>
+<span class="c1"># ... your pandas-compatible code here ...</span>
+</code></pre></div>
+
 <h4 id="dask"><a href="https://docs.dask.org">Dask</a><a class="headerlink" href="#dask" title="Permanent link"> #</a></h4>
 <p>Dask is a flexible parallel computing library for analytics. Dask
 provides a familiar <code>DataFrame</code> interface for out-of-core, parallel and
@@ -483,6 +513,8 @@ time-consuming tasks like ingesting data (<code>read_csv</code>, <code>read_exce
 to make data processing pipelines more readable and robust.
 Dataframes contain information that pandera explicitly validates at runtime. This is useful in
 production-critical data pipelines or reproducible research settings.</p>
+<h4 id="pd-money"><a href="https://github.com/aalhajmee/pd-money">pd-money</a><a class="headerlink" href="#pd-money" title="Permanent link"> #</a></h4>
+<p>A comprehensive extension for financial data cleaning, performance analysis, and valuation.</p>
 <h4 id="pyjanitor"><a href="https://github.com/pyjanitor-devs/pyjanitor">pyjanitor</a><a class="headerlink" href="#pyjanitor" title="Permanent link"> #</a></h4>
 <p>Pyjanitor provides a clean API for cleaning data, using method chaining.</p>
 <h2 id="development-tools-for-pandas">Development tools for pandas<a class="headerlink" href="#development-tools-for-pandas" title="Permanent link"> #</a></h2>
