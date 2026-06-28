@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new in 1.0.0 (January 29, 2020) &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
+    <title>What’s new in 1.0.0 (January 29, 2020) &#8212; pandas 3.1.0.dev0+1159.gd7b577e035 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=724d5388"></script>
+    <script src="../_static/documentation_options.js?v=1f5455be"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="What’s new in 1.0.1 (February 5, 2020)" href="v1.0.1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1159.gd7b577e035" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
   
   
 </a></div>
@@ -440,7 +440,7 @@
 <li class="toctree-l1"><a class="reference internal" href="v3.1.0.html">What’s new in 3.1.0 (Month XX, 2026)</a></li>
 </ul>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="v3.0.4.html">What’s new in 3.0.4 (June XX 2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="v3.0.4.html">What’s new in 3.0.4 (June 28, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.3.html">What’s new in 3.0.3 (May 11, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.2.html">What’s new in 3.0.2 (March 30, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.1.html">What’s new in 3.0.1 (February 17, 2026)</a></li>
@@ -750,7 +750,7 @@ data types and the new string data type (<a class="extlink-issue reference exter
 <span class="go">0       1</span>
 <span class="go">1       2</span>
 <span class="go">2    &lt;NA&gt;</span>
-<span class="go">dtype: Int64</span>
+<span class="go">Length: 3, dtype: Int64</span>
 
 <span class="gp">In [5]: </span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 <span class="gh">Out[5]: </span><span class="go">&lt;NA&gt;</span>
@@ -800,7 +800,7 @@ than <code class="docutils literal notranslate"><span class="pre">string</span><
 <span class="go">0     abc</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2     def</span>
-<span class="go">dtype: string</span>
+<span class="go">Length: 3, dtype: string</span>
 </pre></div>
 </div>
 <p>You can use the alias <code class="docutils literal notranslate"><span class="pre">&quot;string&quot;</span></code> as well.</p>
@@ -811,7 +811,7 @@ than <code class="docutils literal notranslate"><span class="pre">string</span><
 <span class="go">0     abc</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2     def</span>
-<span class="go">dtype: string</span>
+<span class="go">Length: 3, dtype: string</span>
 </pre></div>
 </div>
 <p>The usual string accessor methods work. Where appropriate, the return type
@@ -821,13 +821,13 @@ of the Series or columns of a DataFrame will also have string dtype.</p>
 <span class="go">0     ABC</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2     DEF</span>
-<span class="go">dtype: string</span>
+<span class="go">Length: 3, dtype: string</span>
 
 <span class="gp">In [13]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[13]: </span>
 <span class="go">0    string</span>
 <span class="go">1    string</span>
-<span class="go">dtype: object</span>
+<span class="go">Length: 2, dtype: object</span>
 </pre></div>
 </div>
 <p>String accessor methods returning integers will return a value with <a class="reference internal" href="../reference/api/pandas.Int64Dtype.html#pandas.Int64Dtype" title="pandas.Int64Dtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int64Dtype</span></code></a></p>
@@ -836,7 +836,7 @@ of the Series or columns of a DataFrame will also have string dtype.</p>
 <span class="go">0       1</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2       0</span>
-<span class="go">dtype: Int64</span>
+<span class="go">Length: 3, dtype: Int64</span>
 </pre></div>
 </div>
 <p>We recommend explicitly using the <code class="docutils literal notranslate"><span class="pre">string</span></code> data type when working with strings.
@@ -855,7 +855,7 @@ can store missing values as well by keeping track of this in a separate mask.
 <span class="go">0     True</span>
 <span class="go">1    False</span>
 <span class="go">2     &lt;NA&gt;</span>
-<span class="go">dtype: boolean</span>
+<span class="go">Length: 3, dtype: boolean</span>
 </pre></div>
 </div>
 <p>You can use the alias <code class="docutils literal notranslate"><span class="pre">&quot;boolean&quot;</span></code> as well.</p>
@@ -866,7 +866,7 @@ can store missing values as well by keeping track of this in a separate mask.
 <span class="go">0     True</span>
 <span class="go">1    False</span>
 <span class="go">2     &lt;NA&gt;</span>
-<span class="go">dtype: boolean</span>
+<span class="go">Length: 3, dtype: boolean</span>
 </pre></div>
 </div>
 </section>
@@ -889,12 +889,14 @@ have been introduced. (<a class="extlink-issue reference external" href="https:/
 <span class="go">1  NaN  2.0  False</span>
 <span class="go">2  def  NaN   True</span>
 
+<span class="go">[3 rows x 3 columns]</span>
+
 <span class="gp">In [20]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[20]: </span>
 <span class="go">x        str</span>
 <span class="go">y    float64</span>
 <span class="go">z       bool</span>
-<span class="go">dtype: object</span>
+<span class="go">Length: 3, dtype: object</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="n">converted</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span>
@@ -906,12 +908,14 @@ have been introduced. (<a class="extlink-issue reference external" href="https:/
 <span class="go">1  &lt;NA&gt;     2  False</span>
 <span class="go">2   def  &lt;NA&gt;   True</span>
 
+<span class="go">[3 rows x 3 columns]</span>
+
 <span class="gp">In [23]: </span><span class="n">converted</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[23]: </span>
 <span class="go">x     string</span>
 <span class="go">y      Int64</span>
 <span class="go">z    boolean</span>
-<span class="go">dtype: object</span>
+<span class="go">Length: 3, dtype: object</span>
 </pre></div>
 </div>
 <p>This is especially useful after reading in data using readers such as <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a>
@@ -976,17 +980,17 @@ via the level.</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mi</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;new name&quot;</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:1840,</span> in <span class="ni">Index.name</span><span class="nt">(self, value)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1836</span> <span class="nd">@name</span><span class="o">.</span><span class="n">setter</span>
-<span class="g g-Whitespace">   </span><span class="mi">1837</span> <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Hashable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1838</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_no_setting_name</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1839</span>         <span class="c1"># Used in MultiIndex.levels to avoid silently ignoring name updates.</span>
-<span class="ne">-&gt; </span><span class="mi">1840</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1841</span>             <span class="s2">&quot;Cannot set name on a level of a MultiIndex. Use &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1842</span>             <span class="s2">&quot;&#39;MultiIndex.set_names&#39; instead.&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1843</span>         <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1844</span>     <span class="n">maybe_extract_name</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1845</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">value</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:1853,</span> in <span class="ni">Index.name</span><span class="nt">(self, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1849</span> <span class="nd">@name</span><span class="o">.</span><span class="n">setter</span>
+<span class="g g-Whitespace">   </span><span class="mi">1850</span> <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Hashable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1851</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_no_setting_name</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1852</span>         <span class="c1"># Used in MultiIndex.levels to avoid silently ignoring name updates.</span>
+<span class="ne">-&gt; </span><span class="mi">1853</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1854</span>             <span class="s2">&quot;Cannot set name on a level of a MultiIndex. Use &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1855</span>             <span class="s2">&quot;&#39;MultiIndex.set_names&#39; instead.&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1856</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1857</span>     <span class="n">maybe_extract_name</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1858</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">value</span>
 
 <span class="ne">RuntimeError</span>: Cannot set name on a level of a MultiIndex. Use &#39;MultiIndex.set_names&#39; instead.
 
@@ -1076,10 +1080,14 @@ supplying the <code class="docutils literal notranslate"><span class="pre">axis<
 <span class="go">   0</span>
 <span class="go">1  1</span>
 
+<span class="go">[1 rows x 1 columns]</span>
+
 <span class="gp">In [32]: </span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gh">Out[32]: </span>
 <span class="go">   1</span>
 <span class="go">0  1</span>
+
+<span class="go">[1 rows x 1 columns]</span>
 </pre></div>
 </div>
 <p>If you would like to update both the index and column labels, be sure to use the respective
@@ -1088,6 +1096,8 @@ keywords.</p>
 <span class="gh">Out[33]: </span>
 <span class="go">   2</span>
 <span class="go">1  1</span>
+
+<span class="go">[1 rows x 1 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -1323,6 +1333,8 @@ scalar values in the result are instances of the extension dtype’s scalar type
 <span class="go">            A</span>
 <span class="go">2000-01-01  a</span>
 <span class="go">2000-01-02  b</span>
+
+<span class="go">[2 rows x 1 columns]</span>
 </pre></div>
 </div>
 <p><em>pandas 0.25.x</em></p>
@@ -1352,6 +1364,8 @@ depending on how the results are cast back to the original dtype.</p>
 <span class="gh">Out[51]: </span>
 <span class="go">            A</span>
 <span class="go">2000-01-01  c</span>
+
+<span class="go">[1 rows x 1 columns]</span>
 </pre></div>
 </div>
 </section>

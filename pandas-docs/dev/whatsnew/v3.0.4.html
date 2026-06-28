@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new in 3.0.4 (June XX 2026) &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
+    <title>What’s new in 3.0.4 (June 28, 2026) &#8212; pandas 3.1.0.dev0+1159.gd7b577e035 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=724d5388"></script>
+    <script src="../_static/documentation_options.js?v=1f5455be"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="What’s new in 3.1.0 (Month XX, 2026)" href="v3.1.0.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1159.gd7b577e035" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
   
   
 </a></div>
@@ -440,7 +440,7 @@
 <li class="toctree-l1"><a class="reference internal" href="v3.1.0.html">What’s new in 3.1.0 (Month XX, 2026)</a></li>
 </ul>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">What’s new in 3.0.4 (June XX 2026)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">What’s new in 3.0.4 (June 28, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.3.html">What’s new in 3.0.3 (May 11, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.2.html">What’s new in 3.0.2 (March 30, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.1.html">What’s new in 3.0.1 (February 17, 2026)</a></li>
@@ -655,7 +655,7 @@
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">Release notes</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">What’s new in 3.0.4 (June XX 2026)</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">What’s new in 3.0.4 (June 28, 2026)</span></li>
   </ul>
 </nav>
 </div>
@@ -672,188 +672,51 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="what-s-new-in-3-0-4-june-xx-2026">
-<span id="whatsnew-304"></span><h1>What’s new in 3.0.4 (June XX 2026)<a class="headerlink" href="#what-s-new-in-3-0-4-june-xx-2026" title="Link to this heading">#</a></h1>
+  <section id="what-s-new-in-3-0-4-june-28-2026">
+<span id="whatsnew-304"></span><h1>What’s new in 3.0.4 (June 28, 2026)<a class="headerlink" href="#what-s-new-in-3-0-4-june-28-2026" title="Link to this heading">#</a></h1>
 <p>These are the changes in pandas 3.0.4. See <a class="reference internal" href="index.html#release"><span class="std std-ref">Release notes</span></a> for a full changelog
 including other versions of pandas.</p>
 <section id="fixed-regressions">
 <span id="whatsnew-304-regressions"></span><h2>Fixed regressions<a class="headerlink" href="#fixed-regressions" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Fixed a performance regression in <a class="reference internal" href="../reference/api/pandas.Series.searchsorted.html#pandas.Series.searchsorted" title="pandas.Series.searchsorted"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.searchsorted()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Index.searchsorted.html#pandas.Index.searchsorted" title="pandas.Index.searchsorted"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Index.searchsorted()</span></code></a> with the string dtype, where a full <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> NA scan made the operation much slower than the binary search itself (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/65837">GH 65837</a>)</p></li>
+<li><p>Fixed a regression in <a class="reference internal" href="../reference/api/pandas.Series.isin.html#pandas.Series.isin" title="pandas.Series.isin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">isin()</span></code></a> raising an error when checking for <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code> with <code class="docutils literal notranslate"><span class="pre">ArrowDtype</span></code>, which also affected <a class="reference internal" href="../reference/api/pandas.DataFrame.drop.html#pandas.DataFrame.drop" title="pandas.DataFrame.drop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.drop()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">ArrowDtype</span></code>-backed indexes (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/63304">GH 63304</a>)</p></li>
+<li><p>Fixed a regression in arithmetic operations involving <a class="reference internal" href="../reference/api/pandas.StringDtype.html#pandas.StringDtype" title="pandas.StringDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">StringDtype</span></code></a> and custom Python objects incorrectly raising instead of returning object-dtype results (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/64107">GH 64107</a>)</p></li>
+<li><p>Fixed a regression in localizing timestamps beyond the year 2100 when using <code class="docutils literal notranslate"><span class="pre">zoneinfo</span></code> timezones (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/65733">GH 65733</a>)</p></li>
+<li><p>Fixed a regression in setting into a DataFrame with MultiIndex columns and mixed-dtype level silently doing nothing (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/65118">GH 65118</a>)</p></li>
+</ul>
 </section>
 <section id="bug-fixes">
 <span id="whatsnew-304-bug-fixes"></span><h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Fixed a bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.iloc.html#pandas.DataFrame.iloc" title="pandas.DataFrame.iloc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.iloc()</span></code></a> silently ignoring the assignment when setting values with an unordered or duplicated column indexer on a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> whose values are referenced by another object (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/65446">GH 65446</a>)</p></li>
+<li><p>Fixed a bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.to_sql.html#pandas.DataFrame.to_sql" title="pandas.DataFrame.to_sql"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_sql()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.read_sql_table.html#pandas.read_sql_table" title="pandas.read_sql_table"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_sql_table()</span></code></a> when using an ADBC engine where table and schema names were not quoted as SQL identifiers, causing failures for identifiers containing spaces or reserved words, and making it vulnerable to SQL injection (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/65065">GH 65065</a>)</p></li>
+<li><p>Fixed a bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.str.__getitem__()</span></code> raising <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> when underlying array is <code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowExtensionArray</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/65112">GH 65112</a>)</p></li>
+<li><p>Fixed a bug in <a class="reference internal" href="../reference/api/pandas.Series.str.match.html#pandas.Series.str.match" title="pandas.Series.str.match"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.str.match()</span></code></a> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">Index.str.match()</span></code> with PyArrow-backed string dtypes where a leading <code class="docutils literal notranslate"><span class="pre">^</span></code> only anchored the first branch of an alternation pattern (e.g. <code class="docutils literal notranslate"><span class="pre">r&quot;^foo|bar&quot;</span></code>) (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/66069">GH 66069</a>)</p></li>
+<li><p>Fixed a bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.eval.html#pandas.DataFrame.eval" title="pandas.DataFrame.eval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">eval()</span></code></a> not honoring Copy-on-Write with the Python engine when columns were reused in the expression, causing unexpected mutation of the original <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/65664">GH 65664</a>)</p></li>
+<li><p>Fixed a bug in arithmetic adding or subtracting a non-tick <a class="reference internal" href="../reference/api/pandas.tseries.offsets.DateOffset.html#pandas.tseries.offsets.DateOffset" title="pandas.DateOffset"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateOffset</span></code></a> (e.g. <code class="xref py py-class docutils literal notranslate"><span class="pre">offsets.MonthEnd</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">offsets.QuarterEnd</span></code>) to datetime data that could cause a segmentation fault when another thread was running concurrently, e.g. under <code class="docutils literal notranslate"><span class="pre">pytest-xdist</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/66031">GH 66031</a>)</p></li>
+</ul>
 </section>
 <section id="contributors">
 <span id="whatsnew-304-contributors"></span><h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">#</a></h2>
-<p>A total of 166 people contributed patches to this release.  People with a
+<p>A total of 14 people contributed patches to this release.  People with a
 “+” by their names contributed a patch for the first time.
 </p>
 <ul class="simple">
-<li><p>AKSHAY +</p></li>
-<li><p>ANAND VENUGOPAL +</p></li>
-<li><p>Abhinav</p></li>
-<li><p>Abinesh N</p></li>
-<li><p>Adam Ormondroyd</p></li>
-<li><p>Agnus Paul +</p></li>
-<li><p>Aidan Feldman</p></li>
-<li><p>Albert Y. Shih</p></li>
-<li><p>Alex Lubbock</p></li>
-<li><p>Alissa +</p></li>
-<li><p>Alissa Josy +</p></li>
-<li><p>Amey Darokar +</p></li>
-<li><p>Ammar Alhajmee +</p></li>
-<li><p>An1k4et</p></li>
-<li><p>Angel98518 +</p></li>
-<li><p>Aniket Vijay Vishwakarma</p></li>
-<li><p>Ankit Sharma +</p></li>
-<li><p>Antareep Sarkar +</p></li>
-<li><p>Anzin Mohammed +</p></li>
-<li><p>Arthur Wigo</p></li>
-<li><p>Arzaan Ul Mairaj +</p></li>
-<li><p>Ashish_singh +</p></li>
-<li><p>BitToby</p></li>
-<li><p>Boris Bilich</p></li>
-<li><p>Boris-Adrian Descubes +</p></li>
-<li><p>Brock</p></li>
-<li><p>Chaitanya Dasari +</p></li>
-<li><p>Christian Rivera V. +</p></li>
-<li><p>Christine P. Chai</p></li>
-<li><p>Claude Opus 4.6 (1M context) +</p></li>
-<li><p>Claude Opus 4.6 +</p></li>
-<li><p>Claude Opus 4.7 (1M context) +</p></li>
-<li><p>Claude Opus 4.7 +</p></li>
-<li><p>Claude Sonnet 4.6 +</p></li>
-<li><p>Clément Pit-Claudel +</p></li>
-<li><p>Co-Messi +</p></li>
-<li><p>Contributor +</p></li>
-<li><p>Copilot +</p></li>
-<li><p>David Hills +</p></li>
-<li><p>DavideRagazzon +</p></li>
-<li><p>Deeptimaan Banerjee +</p></li>
-<li><p>Denis Karadaş</p></li>
-<li><p>Denis Washington +</p></li>
-<li><p>Devpriya Dave +</p></li>
-<li><p>Dhruv Singla +</p></li>
-<li><p>Dhruvil Darji +</p></li>
-<li><p>Dipayan Dey +</p></li>
-<li><p>Doug McGeehan +</p></li>
-<li><p>Dr Alex Mitre</p></li>
-<li><p>Eric Chen</p></li>
-<li><p>Fadi Younes</p></li>
+<li><p>Alberto Cardenas +</p></li>
+<li><p>Claude Opus 4.8 (1M context) +</p></li>
+<li><p>Elliott Sales de Andrade</p></li>
 <li><p>GAUTAM V DATLA +</p></li>
-<li><p>Gal +</p></li>
-<li><p>GitTensor Miner +</p></li>
-<li><p>Harikrishna KP</p></li>
-<li><p>Harry Wu +</p></li>
-<li><p>Imgyu Kim +</p></li>
-<li><p>Irv Lustig</p></li>
-<li><p>Jacob Peacock</p></li>
-<li><p>Jai +</p></li>
-<li><p>Jai Fadia +</p></li>
-<li><p>Jan Sprengel +</p></li>
-<li><p>Janosh Riebesell</p></li>
-<li><p>Jarvis +</p></li>
 <li><p>Jeongmin Gil</p></li>
-<li><p>Jiro Matsuzawa</p></li>
-<li><p>Joaquín Rivero</p></li>
-<li><p>Joey Kim +</p></li>
-<li><p>John Patrick Gallagher +</p></li>
 <li><p>Joris Van den Bossche</p></li>
-<li><p>Julian Harbeck</p></li>
-<li><p>Julian-Harbeck</p></li>
-<li><p>Kamil Kostrzewa +</p></li>
-<li><p>Katze2664 +</p></li>
-<li><p>Kumar Aditya +</p></li>
-<li><p>Marcus Read +</p></li>
-<li><p>Mars-aliens +</p></li>
-<li><p>Matt +</p></li>
-<li><p>Matt Delengowski</p></li>
+<li><p>Lumberbot (aka Jack)</p></li>
 <li><p>Matthew Roeschke</p></li>
-<li><p>Mohamed Adhil +</p></li>
-<li><p>Mrinal Kadam +</p></li>
-<li><p>Nabanita Borah +</p></li>
-<li><p>Natalia Mokeeva</p></li>
-<li><p>Nathan Goldbaum</p></li>
-<li><p>Nikita +</p></li>
-<li><p>Ofosu Osei +</p></li>
-<li><p>Oskar Seweryn +</p></li>
-<li><p>Paulo Almeida +</p></li>
-<li><p>Philipp A. +</p></li>
-<li><p>Philipp Angerer +</p></li>
-<li><p>Praneeth Kodumagulla +</p></li>
-<li><p>R. Tyler Croy +</p></li>
-<li><p>Rami Abdelrazzaq +</p></li>
-<li><p>RamiR +</p></li>
-<li><p>Randolf Scholz</p></li>
 <li><p>Richard Shadrach</p></li>
-<li><p>Robsdedude</p></li>
-<li><p>Ruifeng Zheng</p></li>
-<li><p>Rustam Ali</p></li>
-<li><p>SALCAN</p></li>
-<li><p>SHIGRAF SALIK +</p></li>
-<li><p>Sachin Mahajan +</p></li>
-<li><p>Saikat Bera +</p></li>
-<li><p>Sanchit Rishi</p></li>
-<li><p>Sanker +</p></li>
-<li><p>Sarah Rajgoli +</p></li>
-<li><p>Scott Shambaugh</p></li>
-<li><p>Shadi Mahmoudian +</p></li>
-<li><p>Sharl0tteIsTaken +</p></li>
-<li><p>Shiyang +</p></li>
-<li><p>Shubham Goel +</p></li>
-<li><p>Stan Ulbrych +</p></li>
-<li><p>Thierry Moisan</p></li>
-<li><p>Tim Sweña (Swast)</p></li>
-<li><p>Timo +</p></li>
-<li><p>Tuhin Sharma</p></li>
-<li><p>Varun Chawla +</p></li>
-<li><p>Vedant Madane +</p></li>
-<li><p>Vignesh A +</p></li>
-<li><p>Vikram Kumar</p></li>
-<li><p>Vincent08199 +</p></li>
-<li><p>Vishwas +</p></li>
-<li><p>William Andrea</p></li>
-<li><p>Xiao Yuan</p></li>
-<li><p>Yang Song +</p></li>
-<li><p>Yasunori Morishima（盛島康徳） +</p></li>
-<li><p>Yogitha +</p></li>
-<li><p>Yusuf Mohammad +</p></li>
-<li><p>alberto +</p></li>
-<li><p>aliru +</p></li>
-<li><p>alm</p></li>
-<li><p>copilot-swe-agent[bot] +</p></li>
-<li><p>csz022 +</p></li>
-<li><p>cui +</p></li>
+<li><p>Thomas H</p></li>
 <li><p>dependabot[bot]</p></li>
-<li><p>ellatso +</p></li>
-<li><p>evensong +</p></li>
-<li><p>fumoboy007 +</p></li>
 <li><p>github-actions[bot]</p></li>
-<li><p>iRAFEEK +</p></li>
-<li><p>ishanvaibhav +</p></li>
 <li><p>jbrockmendel</p></li>
-<li><p>jeffreykenneth</p></li>
-<li><p>kei-0021 +</p></li>
-<li><p>littleKitchen +</p></li>
-<li><p>mapanahi +</p></li>
-<li><p>moktamd</p></li>
-<li><p>mroeschke</p></li>
-<li><p>mv-python +</p></li>
-<li><p>nikhill +</p></li>
-<li><p>pierreeurope +</p></li>
-<li><p>pre-commit-ci[bot]</p></li>
-<li><p>rgttrhhyj +</p></li>
-<li><p>roeimed0</p></li>
-<li><p>saudadehx +</p></li>
-<li><p>saudademjj +</p></li>
-<li><p>sdejhgfu +</p></li>
-<li><p>skalwaghe_56</p></li>
-<li><p>sun-0-set +</p></li>
-<li><p>tamhahn +</p></li>
-<li><p>tianlangqin +</p></li>
-<li><p>tinezivic +</p></li>
-<li><p>vme50</p></li>
-<li><p>yogitha-star +</p></li>
-<li><p>Álvaro Kothe</p></li>
+<li><p>pandas Development Team</p></li>
 </ul>
 </section>
 </section>

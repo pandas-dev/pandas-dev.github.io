@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Input/output &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
+    <title>Input/output &#8212; pandas 3.1.0.dev0+1159.gd7b577e035 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=724d5388"></script>
+    <script src="../_static/documentation_options.js?v=1f5455be"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="API reference" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1159.gd7b577e035" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
   
   
 </a></div>
@@ -472,11 +472,21 @@
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.read_hdf.html">pandas.read_hdf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.put.html">pandas.HDFStore.put</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.append.html">pandas.HDFStore.append</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.append_to_multiple.html">pandas.HDFStore.append_to_multiple</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.get.html">pandas.HDFStore.get</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.select.html">pandas.HDFStore.select</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.select_as_coordinates.html">pandas.HDFStore.select_as_coordinates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.select_as_multiple.html">pandas.HDFStore.select_as_multiple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.select_column.html">pandas.HDFStore.select_column</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.remove.html">pandas.HDFStore.remove</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.create_table_index.html">pandas.HDFStore.create_table_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.copy.html">pandas.HDFStore.copy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.flush.html">pandas.HDFStore.flush</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.info.html">pandas.HDFStore.info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.is_open.html">pandas.HDFStore.is_open</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.keys.html">pandas.HDFStore.keys</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.groups.html">pandas.HDFStore.groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.get_storer.html">pandas.HDFStore.get_storer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.HDFStore.walk.html">pandas.HDFStore.walk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.read_feather.html">pandas.read_feather</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.DataFrame.to_feather.html">pandas.DataFrame.to_feather</a></li>
@@ -785,20 +795,50 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.HDFStore.append.html#pandas.HDFStore.append" title="pandas.HDFStore.append"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.append</span></code></a>(key, value[, format, axes, ...])</p></td>
 <td><p>Append to Table in file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.HDFStore.get.html#pandas.HDFStore.get" title="pandas.HDFStore.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.get</span></code></a>(key)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.HDFStore.append_to_multiple.html#pandas.HDFStore.append_to_multiple" title="pandas.HDFStore.append_to_multiple"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.append_to_multiple</span></code></a>(d, value, selector)</p></td>
+<td><p>Append to multiple tables.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.HDFStore.get.html#pandas.HDFStore.get" title="pandas.HDFStore.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.get</span></code></a>(key)</p></td>
 <td><p>Retrieve pandas object stored in file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.HDFStore.select.html#pandas.HDFStore.select" title="pandas.HDFStore.select"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.select</span></code></a>(key[, where, start, stop, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.HDFStore.select.html#pandas.HDFStore.select" title="pandas.HDFStore.select"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.select</span></code></a>(key[, where, start, stop, ...])</p></td>
 <td><p>Retrieve pandas object stored in file, optionally based on where criteria.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.HDFStore.select_as_coordinates.html#pandas.HDFStore.select_as_coordinates" title="pandas.HDFStore.select_as_coordinates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.select_as_coordinates</span></code></a>(key[, where, ...])</p></td>
+<td><p>Return the selection as an Index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.HDFStore.select_as_multiple.html#pandas.HDFStore.select_as_multiple" title="pandas.HDFStore.select_as_multiple"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.select_as_multiple</span></code></a>(keys[, where, ...])</p></td>
+<td><p>Retrieve pandas objects from multiple tables.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.HDFStore.select_column.html#pandas.HDFStore.select_column" title="pandas.HDFStore.select_column"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.select_column</span></code></a>(key, column[, start, ...])</p></td>
+<td><p>Return a single column from the table.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.HDFStore.remove.html#pandas.HDFStore.remove" title="pandas.HDFStore.remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.remove</span></code></a>(key[, where, start, stop])</p></td>
+<td><p>Remove pandas object partially by specifying the where condition.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.HDFStore.create_table_index.html#pandas.HDFStore.create_table_index" title="pandas.HDFStore.create_table_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.create_table_index</span></code></a>(key[, columns, ...])</p></td>
+<td><p>Create a pytables index on the table.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.HDFStore.copy.html#pandas.HDFStore.copy" title="pandas.HDFStore.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.copy</span></code></a>(file[, mode, propindexes, ...])</p></td>
+<td><p>Copy the existing store to a new file, updating in place.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.HDFStore.flush.html#pandas.HDFStore.flush" title="pandas.HDFStore.flush"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.flush</span></code></a>([fsync])</p></td>
+<td><p>Force all buffered modifications to be written to disk.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.HDFStore.info.html#pandas.HDFStore.info" title="pandas.HDFStore.info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.info</span></code></a>()</p></td>
 <td><p>Print detailed information on the store.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.HDFStore.keys.html#pandas.HDFStore.keys" title="pandas.HDFStore.keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.keys</span></code></a>([include])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.HDFStore.is_open.html#pandas.HDFStore.is_open" title="pandas.HDFStore.is_open"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.is_open</span></code></a></p></td>
+<td><p>Return a boolean indicating whether the file is open.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.HDFStore.keys.html#pandas.HDFStore.keys" title="pandas.HDFStore.keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.keys</span></code></a>([include])</p></td>
 <td><p>Return a list of keys corresponding to objects stored in HDFStore.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.HDFStore.groups.html#pandas.HDFStore.groups" title="pandas.HDFStore.groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.groups</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.HDFStore.groups.html#pandas.HDFStore.groups" title="pandas.HDFStore.groups"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.groups</span></code></a>()</p></td>
 <td><p>Return a list of all the top-level nodes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.HDFStore.get_storer.html#pandas.HDFStore.get_storer" title="pandas.HDFStore.get_storer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.get_storer</span></code></a>(key)</p></td>
+<td><p>Return the storer object for a key.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.HDFStore.walk.html#pandas.HDFStore.walk" title="pandas.HDFStore.walk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HDFStore.walk</span></code></a>([where])</p></td>
 <td><p>Walk the pytables group hierarchy for pandas objects.</p></td>

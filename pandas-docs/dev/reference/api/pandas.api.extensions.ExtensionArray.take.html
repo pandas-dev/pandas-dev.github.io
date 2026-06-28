@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.api.extensions.ExtensionArray.take &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
+    <title>pandas.api.extensions.ExtensionArray.take &#8212; pandas 3.1.0.dev0+1159.gd7b577e035 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=724d5388"></script>
+    <script src="../../_static/documentation_options.js?v=1f5455be"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -63,10 +63,10 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pandas.api.extensions.ExtensionArray.tolist" href="pandas.api.extensions.ExtensionArray.tolist.html" />
-    <link rel="prev" title="pandas.api.extensions.ExtensionArray.shift" href="pandas.api.extensions.ExtensionArray.shift.html" />
+    <link rel="prev" title="pandas.api.extensions.ExtensionArray.sort" href="pandas.api.extensions.ExtensionArray.sort.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1159.gd7b577e035" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
   
   
 </a></div>
@@ -480,6 +480,7 @@
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray.repeat.html">pandas.api.extensions.ExtensionArray.repeat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray.searchsorted.html">pandas.api.extensions.ExtensionArray.searchsorted</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray.shift.html">pandas.api.extensions.ExtensionArray.shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray.sort.html">pandas.api.extensions.ExtensionArray.sort</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">pandas.api.extensions.ExtensionArray.take</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray.tolist.html">pandas.api.extensions.ExtensionArray.tolist</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pandas.api.extensions.ExtensionArray.unique.html">pandas.api.extensions.ExtensionArray.unique</a></li>
@@ -579,7 +580,7 @@
 <h1>pandas.api.extensions.ExtensionArray.take<a class="headerlink" href="#pandas-api-extensions-extensionarray-take" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.api.extensions.ExtensionArray.take">
-<span class="sig-prename descclassname"><span class="pre">ExtensionArray.</span></span><span class="sig-name descname"><span class="pre">take</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/arrays/base.py#L1923-L2025"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.ExtensionArray.take" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">ExtensionArray.</span></span><span class="sig-name descname"><span class="pre">take</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/arrays/base.py#L1971-L2073"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.ExtensionArray.take" title="Link to this definition">#</a></dt>
 <dd><p>Take elements from an array.</p>
 <p>This method selects elements from the array at the specified
 indices, optionally handling negative indices as missing values
@@ -593,7 +594,7 @@ when <code class="docutils literal notranslate"><span class="pre">allow_fill=Tru
 <ul class="simple">
 <li><p>False: negative values in <cite>indices</cite> indicate positional indices
 from the right (the default). This is similar to
-<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.take.html#numpy.take" title="(in NumPy v2.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.take()</span></code></a>.</p></li>
+<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.take.html#numpy.take" title="(in NumPy v2.5)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.take()</span></code></a>.</p></li>
 <li><p>True: negative values in <cite>indices</cite> indicate
 missing values. These values are set to <cite>fill_value</cite>. Any other
 other negative values raise a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p></li>
@@ -629,7 +630,7 @@ and <cite>allow_fill</cite> is True.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.take.html#numpy.take" title="(in NumPy v2.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.take</span></code></a></dt><dd><p>Take elements from an array along an axis.</p>
+<dt><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.take.html#numpy.take" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.take</span></code></a></dt><dd><p>Take elements from an array along an axis.</p>
 </dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.extensions.take</span></code></dt><dd><p>Take elements from an array.</p>
 </dd>
@@ -681,12 +682,12 @@ extension array to object dtype. This uses the helper method
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="pandas.api.extensions.ExtensionArray.shift.html"
+       href="pandas.api.extensions.ExtensionArray.sort.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">pandas.api.extensions.ExtensionArray.shift</p>
+        <p class="prev-next-title">pandas.api.extensions.ExtensionArray.sort</p>
       </div>
     </a>
     <a class="right-next"

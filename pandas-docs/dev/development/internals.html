@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Internals &#8212; pandas 3.1.0.dev0+974.ge652ee88a5 documentation</title>
+    <title>Internals &#8212; pandas 3.1.0.dev0+1159.gd7b577e035 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=724d5388"></script>
+    <script src="../_static/documentation_options.js?v=1f5455be"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas maintenance" href="maintaining.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+974.ge652ee88a5" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1159.gd7b577e035" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+974.ge652ee88a5 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
   
   
 </a></div>
@@ -438,9 +438,7 @@
     
     <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to pandas</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="contributing_environment.html">Creating a development environment</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing_environment.html">Creating a development environment</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="contributing_documentation.html">Contributing to the documentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="contributing_docstring.html">pandas docstring guide</a></li>
 </ul>
@@ -525,21 +523,22 @@ intended for developers of pandas itself.</p>
 <p>In pandas there are a few objects implemented which can serve as valid
 containers for the axis labels:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>: the generic “ordered set” object, an ndarray of object dtype
-assuming nothing about its contents. The labels must be hashable (and
-likely immutable) and unique. Populates a dict of label to location in
-Cython to do <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> lookups.</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>: the generic “ordered set” object, holding axis labels of
+any supported dtype (numpy numeric dtypes, <code class="docutils literal notranslate"><span class="pre">object</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>, or an
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ExtensionArray</span></code> dtype). The labels must be hashable (and
+likely immutable) but need not be unique. Populates a dict of label
+to location in Cython to do <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> lookups.</p></li>
 <li><p><a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a>: the standard hierarchical index object</p></li>
-<li><p><a class="reference internal" href="../reference/api/pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code></a>: An Index object with <a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> boxed elements (impl are the int64 values)</p></li>
-<li><p><a class="reference internal" href="../reference/api/pandas.TimedeltaIndex.html#pandas.TimedeltaIndex" title="pandas.TimedeltaIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code></a>: An Index object with <a class="reference internal" href="../reference/api/pandas.Timedelta.html#pandas.Timedelta" title="pandas.Timedelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timedelta</span></code></a> boxed elements (impl are the in64 values)</p></li>
-<li><p><a class="reference internal" href="../reference/api/pandas.PeriodIndex.html#pandas.PeriodIndex" title="pandas.PeriodIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">PeriodIndex</span></code></a>: An Index object with Period elements</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code></a>: An <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a> object backed by a <code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeArray</span></code>, exposing <a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> boxed elements</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.TimedeltaIndex.html#pandas.TimedeltaIndex" title="pandas.TimedeltaIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code></a>: An <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a> object backed by a <code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaArray</span></code>, exposing <a class="reference internal" href="../reference/api/pandas.Timedelta.html#pandas.Timedelta" title="pandas.Timedelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timedelta</span></code></a> boxed elements</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.PeriodIndex.html#pandas.PeriodIndex" title="pandas.PeriodIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">PeriodIndex</span></code></a>: An <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a> object backed by a <code class="xref py py-class docutils literal notranslate"><span class="pre">PeriodArray</span></code>, exposing <a class="reference internal" href="../reference/api/pandas.Period.html#pandas.Period" title="pandas.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a> boxed elements</p></li>
 </ul>
 <p>There are functions that make the creation of a regular index easy:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../reference/api/pandas.date_range.html#pandas.date_range" title="pandas.date_range"><code class="xref py py-func docutils literal notranslate"><span class="pre">date_range()</span></code></a>: fixed frequency date range generated from a time rule or
-DateOffset. An ndarray of Python datetime objects</p></li>
+DateOffset. Returns a <a class="reference internal" href="../reference/api/pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code></a>.</p></li>
 <li><p><a class="reference internal" href="../reference/api/pandas.period_range.html#pandas.period_range" title="pandas.period_range"><code class="xref py py-func docutils literal notranslate"><span class="pre">period_range()</span></code></a>: fixed frequency date range generated from a time rule or
-DateOffset. An ndarray of <a class="reference internal" href="../reference/api/pandas.Period.html#pandas.Period" title="pandas.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a> objects, representing timespans</p></li>
+DateOffset. Returns a <a class="reference internal" href="../reference/api/pandas.PeriodIndex.html#pandas.PeriodIndex" title="pandas.PeriodIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">PeriodIndex</span></code></a> of <a class="reference internal" href="../reference/api/pandas.Period.html#pandas.Period" title="pandas.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a> objects, representing timespans.</p></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -587,7 +586,7 @@ that this is true, but if you compute the levels and codes yourself, please be c
 datetimes with a timezone, so we have multiple notions of “values”. For 1-D
 containers (<code class="docutils literal notranslate"><span class="pre">Index</span></code> classes and <code class="docutils literal notranslate"><span class="pre">Series</span></code>) we have the following convention:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cls._values</span></code> refers is the “best possible” array. This could be an
+<li><p><code class="docutils literal notranslate"><span class="pre">cls._values</span></code> is the “best possible” array. This could be an
 <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> or <code class="docutils literal notranslate"><span class="pre">ExtensionArray</span></code>.</p></li>
 </ul>
 <p>So, for example, <code class="docutils literal notranslate"><span class="pre">Series[category]._values</span></code> is a <code class="docutils literal notranslate"><span class="pre">Categorical</span></code>.</p>
