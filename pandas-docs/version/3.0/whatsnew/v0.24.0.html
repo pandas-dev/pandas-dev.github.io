@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new in 0.24.0 (January 25, 2019) &#8212; pandas 3.0.4 documentation</title>
+    <title>What’s new in 0.24.0 (January 25, 2019) &#8212; pandas 3.0.5 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=50b65552"></script>
+    <script src="../_static/documentation_options.js?v=f4ced14b"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="What’s new in 0.24.1 (February 3, 2019)" href="v0.24.1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.0.4" />
+  <meta name="docsearch:version" content="3.0.5" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.0.4 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.0.4 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.0.5 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.0.5 documentation - Home"/>
   
   
 </a></div>
@@ -437,6 +437,7 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="v3.0.5.html">What’s new in 3.0.5 (July 22, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.4.html">What’s new in 3.0.4 (June 28, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.3.html">What’s new in 3.0.3 (May 11, 2026)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v3.0.2.html">What’s new in 3.0.2 (March 30, 2026)</a></li>
@@ -710,7 +711,7 @@ marker of <code class="docutils literal notranslate"><span class="pre">np.nan</s
 <span class="go">0       1</span>
 <span class="go">1       2</span>
 <span class="go">2    &lt;NA&gt;</span>
-<span class="go">dtype: Int64</span>
+<span class="go">Length: 3, dtype: Int64</span>
 </pre></div>
 </div>
 <p>Operations on these dtypes will propagate <code class="docutils literal notranslate"><span class="pre">NaN</span></code> as other pandas operations.</p>
@@ -720,7 +721,7 @@ marker of <code class="docutils literal notranslate"><span class="pre">np.nan</s
 <span class="go">0       2</span>
 <span class="go">1       3</span>
 <span class="go">2    &lt;NA&gt;</span>
-<span class="go">dtype: Int64</span>
+<span class="go">Length: 3, dtype: Int64</span>
 
 <span class="go"># comparison</span>
 <span class="gp">In [4]: </span><span class="n">s</span> <span class="o">==</span> <span class="mi">1</span>
@@ -728,14 +729,14 @@ marker of <code class="docutils literal notranslate"><span class="pre">np.nan</s
 <span class="go">0     True</span>
 <span class="go">1    False</span>
 <span class="go">2     &lt;NA&gt;</span>
-<span class="go">dtype: boolean</span>
+<span class="go">Length: 3, dtype: boolean</span>
 
 <span class="go"># indexing</span>
 <span class="gp">In [5]: </span><span class="n">s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 <span class="gh">Out[5]: </span>
 <span class="go">1       2</span>
 <span class="go">2    &lt;NA&gt;</span>
-<span class="go">dtype: Int64</span>
+<span class="go">Length: 2, dtype: Int64</span>
 
 <span class="go"># operate with other dtypes</span>
 <span class="gp">In [6]: </span><span class="n">s</span> <span class="o">+</span> <span class="n">s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;Int8&#39;</span><span class="p">)</span>
@@ -743,7 +744,7 @@ marker of <code class="docutils literal notranslate"><span class="pre">np.nan</s
 <span class="go">0    &lt;NA&gt;</span>
 <span class="go">1       4</span>
 <span class="go">2    &lt;NA&gt;</span>
-<span class="go">dtype: Int64</span>
+<span class="go">Length: 3, dtype: Int64</span>
 
 <span class="go"># coerce when needed</span>
 <span class="gp">In [7]: </span><span class="n">s</span> <span class="o">+</span> <span class="mf">0.01</span>
@@ -751,7 +752,7 @@ marker of <code class="docutils literal notranslate"><span class="pre">np.nan</s
 <span class="go">0    1.01</span>
 <span class="go">1    2.01</span>
 <span class="go">2    &lt;NA&gt;</span>
-<span class="go">dtype: Float64</span>
+<span class="go">Length: 3, dtype: Float64</span>
 </pre></div>
 </div>
 <p>These dtypes can operate as part of a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
@@ -764,12 +765,14 @@ marker of <code class="docutils literal notranslate"><span class="pre">np.nan</s
 <span class="go">1     2  1  a</span>
 <span class="go">2  &lt;NA&gt;  3  b</span>
 
+<span class="go">[3 rows x 3 columns]</span>
+
 <span class="gp">In [10]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[10]: </span>
 <span class="go">A    Int64</span>
 <span class="go">B    int64</span>
 <span class="go">C      str</span>
-<span class="go">dtype: object</span>
+<span class="go">Length: 3, dtype: object</span>
 </pre></div>
 </div>
 <p>These dtypes can be merged, reshaped, and casted.</p>
@@ -778,14 +781,14 @@ marker of <code class="docutils literal notranslate"><span class="pre">np.nan</s
 <span class="go">A    Int64</span>
 <span class="go">B    int64</span>
 <span class="go">C      str</span>
-<span class="go">dtype: object</span>
+<span class="go">Length: 3, dtype: object</span>
 
 <span class="gp">In [12]: </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 <span class="gh">Out[12]: </span>
 <span class="go">0    1.0</span>
 <span class="go">1    2.0</span>
 <span class="go">2    NaN</span>
-<span class="go">Name: A, dtype: float64</span>
+<span class="go">Name: A, Length: 3, dtype: float64</span>
 </pre></div>
 </div>
 <p>Reduction and groupby operations such as <code class="docutils literal notranslate"><span class="pre">sum</span></code> work.</p>
@@ -794,14 +797,14 @@ marker of <code class="docutils literal notranslate"><span class="pre">np.nan</s
 <span class="go">A      3</span>
 <span class="go">B      5</span>
 <span class="go">C    aab</span>
-<span class="go">dtype: object</span>
+<span class="go">Length: 3, dtype: object</span>
 
 <span class="gp">In [14]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="gh">Out[14]: </span>
 <span class="go">B</span>
 <span class="go">1    3</span>
 <span class="go">3    0</span>
-<span class="go">Name: A, dtype: Int64</span>
+<span class="go">Name: A, Length: 2, dtype: Int64</span>
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -840,10 +843,10 @@ a new ndarray of period objects each time.</p>
 <span class="go">       Period(&#39;2000-01-03&#39;, &#39;D&#39;), Period(&#39;2000-01-04&#39;, &#39;D&#39;)], dtype=object)</span>
 
 <span class="gp">In [19]: </span><span class="nb">id</span><span class="p">(</span><span class="n">idx</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="gh">Out[19]: </span><span class="go">140547114585136</span>
+<span class="gh">Out[19]: </span><span class="go">140045123812112</span>
 
 <span class="gp">In [20]: </span><span class="nb">id</span><span class="p">(</span><span class="n">idx</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="gh">Out[20]: </span><span class="go">140547114585520</span>
+<span class="gh">Out[20]: </span><span class="go">140045120269328</span>
 </pre></div>
 </div>
 <p>If you need an actual NumPy array, use <a class="reference internal" href="../reference/api/pandas.Series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.to_numpy()</span></code></a> or <a class="reference internal" href="../reference/api/pandas.Index.to_numpy.html#pandas.Index.to_numpy" title="pandas.Index.to_numpy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Index.to_numpy()</span></code></a>.</p>
@@ -936,7 +939,7 @@ is a float.</p>
 <span class="go">2    (2, 3]</span>
 <span class="go">3    (3, 4]</span>
 <span class="go">4    (4, 5]</span>
-<span class="go">dtype: interval</span>
+<span class="go">Length: 5, dtype: interval</span>
 
 <span class="gp">In [32]: </span><span class="n">ser</span><span class="o">.</span><span class="n">dtype</span>
 <span class="gh">Out[32]: </span><span class="go">interval[int64, right]</span>
@@ -952,7 +955,7 @@ is a float.</p>
 <span class="go">2    2000-01-03</span>
 <span class="go">3    2000-01-04</span>
 <span class="go">4    2000-01-05</span>
-<span class="go">dtype: period[D]</span>
+<span class="go">Length: 5, dtype: period[D]</span>
 
 <span class="gp">In [35]: </span><span class="n">pser</span><span class="o">.</span><span class="n">dtype</span>
 <span class="gh">Out[35]: </span><span class="go">period[D]</span>
@@ -1017,6 +1020,8 @@ for more.</p>
 <span class="go">K0  X0 Y0  A0  B0  C0  D0</span>
 <span class="go">    X1 Y0  A1  B1  C0  D0</span>
 <span class="go">K1  X2 Y1  A2  B2  C1  D1</span>
+
+<span class="go">[3 rows x 4 columns]</span>
 </pre></div>
 </div>
 <p>For earlier versions this can be done using the following.</p>
@@ -1029,6 +1034,8 @@ for more.</p>
 <span class="go">K0  X0 Y0  A0  B0  C0  D0</span>
 <span class="go">    X1 Y0  A1  B1  C0  D0</span>
 <span class="go">K1  X2 Y1  A2  B2  C1  D1</span>
+
+<span class="go">[3 rows x 4 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -1066,7 +1073,9 @@ value. (<a class="extlink-issue reference external" href="https://github.com/pan
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [46]: </span><span class="n">result</span>
 <span class="gh">Out[46]: </span>
 <span class="go">[   A  B  C</span>
-<span class="go"> 0  1  1  2]</span>
+<span class="go"> 0  1  1  2</span>
+<span class="go"> </span>
+<span class="go"> [1 rows x 3 columns]]</span>
 </pre></div>
 </div>
 </section>
@@ -1084,7 +1093,7 @@ convenient way to apply users’ predefined styling functions, and can help redu
 <span class="gp">   ....: </span>
 
 <span class="gp">In [49]: </span><span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">format_and_align</span><span class="p">)</span><span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s1">&#39;Summary of results.&#39;</span><span class="p">)</span>
-<span class="gh">Out[49]: </span><span class="go">&lt;pandas.io.formats.style.Styler at 0x7fd38f80d850&gt;</span>
+<span class="gh">Out[49]: </span><span class="go">&lt;pandas.io.formats.style.Styler at 0x7f5ec85ed410&gt;</span>
 </pre></div>
 </div>
 <p>Similar methods already exist for other classes in pandas, including <a class="reference internal" href="../reference/api/pandas.DataFrame.pipe.html#pandas.DataFrame.pipe" title="pandas.DataFrame.pipe"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.pipe()</span></code></a>,
@@ -1116,6 +1125,8 @@ of a <code class="docutils literal notranslate"><span class="pre">MultiIndex</sp
 <span class="go">   D  E   6</span>
 <span class="go">      F   7</span>
 
+<span class="go">[8 rows x 1 columns]</span>
+
 <span class="gp">In [53]: </span><span class="n">df</span><span class="o">.</span><span class="n">rename_axis</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;CD&#39;</span><span class="p">:</span> <span class="s1">&#39;New&#39;</span><span class="p">})</span>
 <span class="gh">Out[53]: </span>
 <span class="go">           N</span>
@@ -1128,6 +1139,8 @@ of a <code class="docutils literal notranslate"><span class="pre">MultiIndex</sp
 <span class="go">       F   5</span>
 <span class="go">   D   E   6</span>
 <span class="go">       F   7</span>
+
+<span class="go">[8 rows x 1 columns]</span>
 </pre></div>
 </div>
 <p>See the <a class="reference internal" href="../user_guide/advanced.html#advanced-index-names"><span class="std std-ref">Advanced documentation on renaming</span></a> for more details.</p>
@@ -1601,6 +1614,8 @@ be the same as in the previous version of pandas.</p>
 <span class="go">A  1  0.50</span>
 <span class="go">A  2  0.75</span>
 
+<span class="go">[2 rows x 2 columns]</span>
+
 <span class="gp">In [73]: </span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
@@ -1711,6 +1726,8 @@ all-<code class="docutils literal notranslate"><span class="pre">NaT</span></cod
 <span class="gh">Out[83]: </span>
 <span class="go">       0</span>
 <span class="go">0 1 days</span>
+
+<span class="go">[1 rows x 1 columns]</span>
 </pre></div>
 </div>
 <p><em>Previous behavior</em>:</p>
@@ -1752,6 +1769,8 @@ operations has been changed to match the arithmetic operations in these cases.
 <span class="go">0  0  1</span>
 <span class="go">1  2  3</span>
 <span class="go">2  4  5</span>
+
+<span class="go">[3 rows x 2 columns]</span>
 </pre></div>
 </div>
 <p><em>Previous behavior</em>:</p>
@@ -1800,12 +1819,16 @@ operations has been changed to match the arithmetic operations in these cases.
 <span class="go">1  False  False</span>
 <span class="go">2  False  False</span>
 
+<span class="go">[3 rows x 2 columns]</span>
+
 <span class="gp">In [88]: </span><span class="n">df</span> <span class="o">+</span> <span class="n">arr</span><span class="p">[[</span><span class="mi">0</span><span class="p">],</span> <span class="p">:]</span>
 <span class="gh">Out[88]: </span>
 <span class="go">   0  1</span>
 <span class="go">0  0  2</span>
 <span class="go">1  2  4</span>
 <span class="go">2  4  6</span>
+
+<span class="go">[3 rows x 2 columns]</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># Comparison operations and arithmetic operations both broadcast.</span>
@@ -1816,12 +1839,16 @@ operations has been changed to match the arithmetic operations in these cases.
 <span class="go">1  False  False</span>
 <span class="go">2  False  False</span>
 
+<span class="go">[3 rows x 2 columns]</span>
+
 <span class="gp">In [90]: </span><span class="n">df</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="gh">Out[90]: </span>
 <span class="go">   0  1</span>
 <span class="go">0  1  3</span>
 <span class="go">1  3  5</span>
 <span class="go">2  5  7</span>
+
+<span class="go">[3 rows x 2 columns]</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># Comparison operations and arithmetic operations both raise ValueError.</span>
@@ -1850,6 +1877,8 @@ broadcast.  (<a class="extlink-issue reference external" href="https://github.co
 <span class="go">0  0  1</span>
 <span class="go">1  2  3</span>
 <span class="go">2  4  5</span>
+
+<span class="go">[3 rows x 2 columns]</span>
 </pre></div>
 </div>
 <p><em>Previous behavior</em>:</p>
@@ -1869,12 +1898,16 @@ broadcast.  (<a class="extlink-issue reference external" href="https://github.co
 <span class="go">1  2  4</span>
 <span class="go">2  4  6</span>
 
+<span class="go">[3 rows x 2 columns]</span>
+
 <span class="gp">In [95]: </span><span class="n">df</span> <span class="o">+</span> <span class="n">arr</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]]</span>   <span class="c1"># 1 column, 3 rows</span>
 <span class="gh">Out[95]: </span>
 <span class="go">   0   1</span>
 <span class="go">0  1   2</span>
 <span class="go">1  5   6</span>
 <span class="go">2  9  10</span>
+
+<span class="go">[3 rows x 2 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -1928,7 +1961,7 @@ other than another <code class="docutils literal notranslate"><span class="pre">
 <span class="go">0    0.0</span>
 <span class="go">1    1.0</span>
 <span class="go">2    NaN</span>
-<span class="go">dtype: float64</span>
+<span class="go">Length: 6, dtype: float64</span>
 </pre></div>
 </div>
 </section>
@@ -2184,7 +2217,7 @@ timezone attached</p>
 <span class="gh">Out[102]: </span>
 <span class="go">0   2000-01-01 00:00:00+01:00</span>
 <span class="go">1   2000-01-02 00:00:00+01:00</span>
-<span class="go">dtype: datetime64[us, CET]</span>
+<span class="go">Length: 2, dtype: datetime64[us, CET]</span>
 </pre></div>
 </div>
 <p>The default behavior remains the same, but issues a warning</p>
