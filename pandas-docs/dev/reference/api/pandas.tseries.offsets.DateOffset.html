@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.tseries.offsets.DateOffset &#8212; pandas 3.1.0.dev0+1159.gd7b577e035 documentation</title>
+    <title>pandas.tseries.offsets.DateOffset &#8212; pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=1f5455be"></script>
+    <script src="../../_static/documentation_options.js?v=af721e9a"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Date offsets" href="../offset_frequency.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1159.gd7b577e035" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1386.gcb2086a1a4" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
   
   
 </a></div>
@@ -1142,6 +1142,7 @@
 </ul>
 </details></li>
 
+
 <li class="toctree-l1"><a class="reference internal" href="../window.html">Window</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../groupby.html">GroupBy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../resampling.html">Resampling</a></li>
@@ -1285,10 +1286,18 @@ component can be used to replace certain component of the timestamp.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference external" href="https://matplotlib.org/stable/api/dates_api.html#matplotlib.dates.relativedelta" title="(in Matplotlib v3.11.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dateutil.relativedelta.relativedelta</span></code></a></dt><dd><p>The relativedelta type is designed to be applied to an existing datetime and can replace specific components of that datetime, or represents an interval of time.</p>
+<dt><a class="reference external" href="https://matplotlib.org/stable/api/dates_api.html#matplotlib.dates.relativedelta" title="(in Matplotlib v3.11.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dateutil.relativedelta.relativedelta</span></code></a></dt><dd><p>The relativedelta type is designed to be applied to an existing datetime and can replace specific components of that datetime, or represents an interval of time.</p>
 </dd>
 </dl>
 </div>
+<p class="rubric">Notes</p>
+<p>When added to a <code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code> or datetime <code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code>, a
+<code class="docutils literal notranslate"><span class="pre">DateOffset</span></code> is applied to each entry independently. Calendar components
+such as <code class="docutils literal notranslate"><span class="pre">months</span></code> and <code class="docutils literal notranslate"><span class="pre">years</span></code> do not represent a fixed duration, so
+evenly spaced input dates are not guaranteed to remain evenly spaced: dates
+that would fall on a nonexistent day are clamped to the end of the month.
+For example, adding <code class="docutils literal notranslate"><span class="pre">DateOffset(months=1)</span></code> to both <code class="docutils literal notranslate"><span class="pre">2018-01-30</span></code> and
+<code class="docutils literal notranslate"><span class="pre">2018-01-31</span></code> yields <code class="docutils literal notranslate"><span class="pre">2018-02-28</span></code> in each case.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas.tseries.offsets</span><span class="w"> </span><span class="kn">import</span> <span class="n">DateOffset</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2017-01-01 09:10:11&#39;</span><span class="p">)</span>

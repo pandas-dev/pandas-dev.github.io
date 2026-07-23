@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Cookbook &#8212; pandas 3.1.0.dev0+1159.gd7b577e035 documentation</title>
+    <title>Cookbook &#8212; pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=1f5455be"></script>
+    <script src="../_static/documentation_options.js?v=af721e9a"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Migration Guides" href="migration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1159.gd7b577e035" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1386.gcb2086a1a4" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
   
   
 </a></div>
@@ -2135,13 +2135,13 @@ of the individual frames into a list, and then combine the frames in the list us
 <span class="go">3  2000      1    4</span>
 <span class="go">4  2000      1    5</span>
 
-<span class="gp">In [203]: </span><span class="o">%</span><span class="k">timeit</span> pd.to_datetime(df.year * 10000 + df.month * 100 + df.day, format=&#39;%Y%m%d&#39;)
+<span class="gp">In [203]: </span><span class="o">%</span><span class="k">timeit</span> pd.to_datetime((df.year * 10000 + df.month * 100 + df.day).astype(str), format=&#39;%Y%m%d&#39;)
 <span class="gp">   .....: </span><span class="n">ds</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%04d%02d%02d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;day&quot;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">   .....: </span><span class="n">ds</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="gp">   .....: </span><span class="o">%</span><span class="k">timeit</span> pd.to_datetime(ds)
 <span class="gp">   .....: </span>
-<span class="go">4.42 ms +- 1.13 ms per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
-<span class="go">1.92 ms +- 2.55 us per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
+<span class="go">3.45 ms +- 858 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">2.25 ms +- 462 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 </section>

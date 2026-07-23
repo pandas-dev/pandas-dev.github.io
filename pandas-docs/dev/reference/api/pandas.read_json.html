@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.read_json &#8212; pandas 3.1.0.dev0+1159.gd7b577e035 documentation</title>
+    <title>pandas.read_json &#8212; pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=1f5455be"></script>
+    <script src="../../_static/documentation_options.js?v=af721e9a"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.ExcelWriter" href="pandas.ExcelWriter.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1159.gd7b577e035" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1386.gcb2086a1a4" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
   
   
 </a></div>
@@ -462,6 +462,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.json_normalize.html">pandas.json_normalize</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.to_json.html">pandas.DataFrame.to_json</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.io.json.build_table_schema.html">pandas.io.json.build_table_schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.api.typing.JsonReader.html">pandas.api.typing.JsonReader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.read_html.html">pandas.read_html</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.to_html.html">pandas.DataFrame.to_html</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.io.formats.style.Styler.to_html.html">pandas.io.formats.style.Styler.to_html</a></li>
@@ -516,6 +517,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../arrays.html">pandas arrays, scalars, and data types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../indexing.html">Index objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../offset_frequency.html">Date offsets</a></li>
+
 
 <li class="toctree-l1"><a class="reference internal" href="../window.html">Window</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../groupby.html">GroupBy</a></li>
@@ -596,7 +598,7 @@
 <h1>pandas.read_json<a class="headerlink" href="#pandas-read-json" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.read_json">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_or_buf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frame'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_default_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precise_float</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'infer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype_backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ujson'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/json/_json.py#L534-L857"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_json" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_or_buf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frame'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_default_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precise_float</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'infer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype_backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ujson'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/json/_json.py#L619-L993"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_json" title="Link to this definition">#</a></dt>
 <dd><p>Convert a JSON string to pandas object.</p>
 <p>This method reads JSON files or JSON-like data and converts them into pandas
 objects. It supports a variety of input formats, including line-delimited JSON,
@@ -671,6 +673,10 @@ If False, no dates will be converted.
 If a list of column names, then those columns will be converted and
 default datelike columns may also be converted (depending on
 keep_default_dates).</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 3.1.0: </span>Pass <code class="docutils literal notranslate"><span class="pre">dtype=False</span></code> to disable type conversion, or parse date
+columns with <a class="reference internal" href="pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_datetime()</span></code></a> after reading.</p>
+</div>
 </dd>
 <dt><strong>keep_default_dates</strong><span class="classifier">bool, default True</span></dt><dd><p>If parsing dates (convert_dates is not False), then try to parse the
 default datelike columns.
@@ -682,6 +688,10 @@ A column label is datelike if</p>
 <li><p>it is <code class="docutils literal notranslate"><span class="pre">'modified'</span></code>, or</p></li>
 <li><p>it is <code class="docutils literal notranslate"><span class="pre">'date'</span></code>.</p></li>
 </ul>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 3.1.0: </span>Pass <code class="docutils literal notranslate"><span class="pre">dtype=False</span></code> to disable type conversion, or parse date
+columns with <a class="reference internal" href="pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_datetime()</span></code></a> after reading.</p>
+</div>
 </dd>
 <dt><strong>precise_float</strong><span class="classifier">bool, default False</span></dt><dd><p>Set to enable usage of higher precision (strtod) function when
 decoding string to double values. Default (False) is to use fast but
@@ -746,7 +756,10 @@ is as follows:</p>
 </div>
 </dd>
 <dt><strong>engine</strong><span class="classifier">{“ujson”, “pyarrow”}, default “ujson”</span></dt><dd><p>Parser engine to use. The <code class="docutils literal notranslate"><span class="pre">&quot;pyarrow&quot;</span></code> engine is only available when
-<code class="docutils literal notranslate"><span class="pre">lines=True</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">lines=True</span></code>, and only supports <code class="docutils literal notranslate"><span class="pre">typ=&quot;frame&quot;</span></code> with default parsing
+options; passing an option it cannot apply (for example <code class="docutils literal notranslate"><span class="pre">convert_dates</span></code>,
+<code class="docutils literal notranslate"><span class="pre">date_unit</span></code>, <code class="docutils literal notranslate"><span class="pre">precise_float</span></code>, <code class="docutils literal notranslate"><span class="pre">encoding</span></code>, or a non-<code class="docutils literal notranslate"><span class="pre">ArrowDtype</span></code>
+<code class="docutils literal notranslate"><span class="pre">dtype</span></code>) raises <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">Added in version 2.0.</span></p>
 </div>

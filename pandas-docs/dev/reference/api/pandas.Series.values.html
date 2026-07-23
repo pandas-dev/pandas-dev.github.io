@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.Series.values &#8212; pandas 3.1.0.dev0+1159.gd7b577e035 documentation</title>
+    <title>pandas.Series.values &#8212; pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=1f5455be"></script>
+    <script src="../../_static/documentation_options.js?v=af721e9a"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.Series.array" href="pandas.Series.array.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1159.gd7b577e035" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1386.gcb2086a1a4" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1159.gd7b577e035 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
   
   
 </a></div>
@@ -793,6 +793,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../indexing.html">Index objects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../offset_frequency.html">Date offsets</a></li>
 
+
 <li class="toctree-l1"><a class="reference internal" href="../window.html">Window</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../groupby.html">GroupBy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../resampling.html">Resampling</a></li>
@@ -872,7 +873,7 @@
 <h1>pandas.Series.values<a class="headerlink" href="#pandas-series-values" title="Link to this heading">#</a></h1>
 <dl class="py property">
 <dt class="sig sig-object py" id="pandas.Series.values">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">values</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/series.py#L743-L813"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.values" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">values</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/series.py#L743-L822"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.values" title="Link to this definition">#</a></dt>
 <dd><p>Return Series as ndarray or ndarray-like depending on the dtype.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -935,7 +936,9 @@ returns a <a class="reference external" href="https://numpy.org/doc/stable/refer
 </div>
 <p>Timezone aware datetime data is converted to UTC and the timezone
 is dropped, while <a class="reference internal" href="pandas.Series.array.html#pandas.Series.array" title="pandas.Series.array"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Series.array</span></code></a> preserves the timezone:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;20130101&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">&quot;US/Eastern&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">values</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;20130101&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">&quot;US/Eastern&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
 <span class="go">array([&#39;2013-01-01T05:00:00.000000&#39;,</span>
 <span class="go">       &#39;2013-01-02T05:00:00.000000&#39;,</span>
 <span class="go">       &#39;2013-01-03T05:00:00.000000&#39;], dtype=&#39;datetime64[us]&#39;)</span>
@@ -945,6 +948,13 @@ is dropped, while <a class="reference internal" href="pandas.Series.array.html#p
 <span class="go"> &#39;2013-01-03 00:00:00-05:00&#39;]</span>
 <span class="go">Length: 3, dtype: datetime64[us, US/Eastern]</span>
 </pre></div>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 3.0.0: </span>For <a class="reference internal" href="pandas.DatetimeTZDtype.html#pandas.DatetimeTZDtype" title="pandas.DatetimeTZDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeTZDtype</span></code></a>, <a class="reference internal" href="pandas.PeriodDtype.html#pandas.PeriodDtype" title="pandas.PeriodDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">PeriodDtype</span></code></a>, and
+<a class="reference internal" href="pandas.IntervalDtype.html#pandas.IntervalDtype" title="pandas.IntervalDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntervalDtype</span></code></a> dtypes, the behavior of <code class="docutils literal notranslate"><span class="pre">.values</span></code> returning
+a lossy or object-dtype result is deprecated. In a future version,
+<code class="docutils literal notranslate"><span class="pre">.values</span></code> will return the underlying ExtensionArray. Use
+<a class="reference internal" href="pandas.Series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.to_numpy()</span></code></a> or <a class="reference internal" href="pandas.Series.array.html#pandas.Series.array" title="pandas.Series.array"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Series.array</span></code></a> instead.</p>
 </div>
 </dd></dl>
 
