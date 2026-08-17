@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Version 0.18.1 (May 3, 2016) &#8212; pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation</title>
+    <title>Version 0.18.1 (May 3, 2016) &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css?v=8d8a0ed4" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css?v=1445d9b0" />
     <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css?v=b7db95b1" />
   
   <!-- So that users can add custom icons -->
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=af721e9a"></script>
+    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Version 0.19.0 (October 2, 2016)" href="v0.19.0.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1386.gcb2086a1a4" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
   
   
 </a></div>
@@ -859,8 +859,6 @@ see <a class="reference internal" href="../user_guide/timeseries.html#timeseries
 <span class="go">2016-01-10      1    6</span>
 <span class="go">2016-01-17      2    7</span>
 <span class="go">2016-01-24      2    8</span>
-
-<span class="go">[4 rows x 2 columns]</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;group&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&quot;1D&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">())</span>
@@ -931,8 +929,6 @@ arguments.</p>
 <span class="go">0  11  14  7</span>
 <span class="go">1  12   5  8</span>
 <span class="go">2  13   6  9</span>
-
-<span class="go">[3 rows x 3 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -947,16 +943,12 @@ can return a valid boolean indexer or anything which is valid for these indexerâ
 <span class="go">1  5  8</span>
 <span class="go">2  6  9</span>
 
-<span class="go">[2 rows x 2 columns]</span>
-
 <span class="go"># callable returns list of labels</span>
 <span class="gp">In [16]: </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]]</span>
 <span class="gh">Out[16]: </span>
 <span class="go">   A  B</span>
 <span class="go">1  2  5</span>
 <span class="go">2  3  6</span>
-
-<span class="go">[2 rows x 2 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -970,7 +962,7 @@ class and index type.</p>
 <span class="go">0    1</span>
 <span class="go">1    2</span>
 <span class="go">2    3</span>
-<span class="go">Name: A, Length: 3, dtype: int64</span>
+<span class="go">Name: A, dtype: int64</span>
 </pre></div>
 </div>
 <p>Using these methods / indexers, you can chain data selection operations
@@ -1082,8 +1074,6 @@ without using temporary variable.</p>
 <span class="go">   year  month  day  hour</span>
 <span class="go">0  2015      2    4     2</span>
 <span class="go">1  2016      3    5     3</span>
-
-<span class="go">[2 rows x 4 columns]</span>
 </pre></div>
 </div>
 <p>Assembling using the passed frame.</p>
@@ -1091,7 +1081,7 @@ without using temporary variable.</p>
 <span class="gh">Out[22]: </span>
 <span class="go">0   2015-02-04 02:00:00</span>
 <span class="go">1   2016-03-05 03:00:00</span>
-<span class="go">Length: 2, dtype: datetime64[us]</span>
+<span class="go">dtype: datetime64[us]</span>
 </pre></div>
 </div>
 <p>You can pass only the columns that you need to assemble.</p>
@@ -1099,7 +1089,7 @@ without using temporary variable.</p>
 <span class="gh">Out[23]: </span>
 <span class="go">0   2015-02-04</span>
 <span class="go">1   2016-03-05</span>
-<span class="go">Length: 2, dtype: datetime64[us]</span>
+<span class="go">dtype: datetime64[us]</span>
 </pre></div>
 </div>
 </section>
@@ -1192,8 +1182,6 @@ without using temporary variable.</p>
 <span class="go">0  a  1</span>
 <span class="go">1  b  2</span>
 <span class="go">2  a  3</span>
-
-<span class="go">[3 rows x 2 columns]</span>
 </pre></div>
 </div>
 <p>Previous behavior:</p>
@@ -1215,13 +1203,13 @@ without using temporary variable.</p>
 <span class="gh">Out[31]: </span>
 <span class="go">0    1</span>
 <span class="go">1    2</span>
-<span class="go">Name: B, Length: 2, dtype: int64</span>
+<span class="go">Name: B, dtype: int64</span>
 
 <span class="gp">In [32]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gh">Out[32]: </span>
 <span class="go">0    1</span>
 <span class="go">1    2</span>
-<span class="go">Name: B, Length: 2, dtype: int64</span>
+<span class="go">Name: B, dtype: int64</span>
 </pre></div>
 </div>
 <p>Furthermore, previously, a <code class="docutils literal notranslate"><span class="pre">.groupby</span></code> would always sort, regardless if <code class="docutils literal notranslate"><span class="pre">sort=False</span></code> was passed with <code class="docutils literal notranslate"><span class="pre">.nth()</span></code>.</p>
@@ -1261,8 +1249,6 @@ without using temporary variable.</p>
 <span class="go">7  -0.334077  0.002118  0</span>
 <span class="go">21  0.036142 -2.074978  1</span>
 
-<span class="go">[4 rows x 3 columns]</span>
-
 <span class="gp">In [37]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">nth</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="gh">Out[37]: </span>
 <span class="go">           a         b  c</span>
@@ -1270,8 +1256,6 @@ without using temporary variable.</p>
 <span class="go">3   0.859588 -0.636524  3</span>
 <span class="go">7  -0.334077  0.002118  0</span>
 <span class="go">21  0.036142 -2.074978  1</span>
-
-<span class="go">[4 rows x 3 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -1314,8 +1298,6 @@ used in the <code class="docutils literal notranslate"><span class="pre">pandas<
 <span class="go">        date  value</span>
 <span class="go">0 2000-10-10     10</span>
 <span class="go">1 2000-11-10     13</span>
-
-<span class="go">[2 rows x 2 columns]</span>
 </pre></div>
 </div>
 <p>Previous behavior:</p>

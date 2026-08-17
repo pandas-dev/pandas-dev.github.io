@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.Series.str.zfill &#8212; pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation</title>
+    <title>pandas.Series.str.zfill &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/getting_started.css?v=8d8a0ed4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/getting_started.css?v=1445d9b0" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/pandas.css?v=b7db95b1" />
   
   <!-- So that users can add custom icons -->
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=af721e9a"></script>
+    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.Series.str.wrap" href="pandas.Series.str.wrap.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1386.gcb2086a1a4" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
   
   
 </a></div>
@@ -873,7 +873,7 @@
 <h1>pandas.Series.str.zfill<a class="headerlink" href="#pandas-series-str-zfill" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.Series.str.zfill">
-<span class="sig-prename descclassname"><span class="pre">Series.str.</span></span><span class="sig-name descname"><span class="pre">zfill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/strings/accessor.py#L2148-L2215"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.str.zfill" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Series.str.</span></span><span class="sig-name descname"><span class="pre">zfill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/strings/accessor.py#L2217-L2285"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.str.zfill" title="Link to this definition">#</a></dt>
 <dd><p>Pad strings in the Series/Index by prepending ‘0’ characters.</p>
 <p>Strings in the Series/Index are padded with ‘0’ characters on the
 left of the string to reach a total string length  <cite>width</cite>. Strings
@@ -908,8 +908,9 @@ than <cite>width</cite> be prepended with ‘0’ characters.</p>
 </dl>
 </div>
 <p class="rubric">Notes</p>
-<p>Differs from <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.zfill" title="(in Python v3.14)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.zfill()</span></code></a> which has special handling
-for ‘+’/’-’ in the string.</p>
+<p>Follows the same rules as <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.zfill" title="(in Python v3.14)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.zfill()</span></code></a>: a leading sign character
+(‘+’/’-’) is kept at the front of the string and the ‘0’ padding is
+inserted after it.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;-1&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;1000&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
@@ -922,10 +923,10 @@ for ‘+’/’-’ in the string.</p>
 </pre></div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">10</span></code> and <code class="docutils literal notranslate"><span class="pre">NaN</span></code> are not strings, therefore they are
-converted to <code class="docutils literal notranslate"><span class="pre">NaN</span></code>. The minus sign in <code class="docutils literal notranslate"><span class="pre">'-1'</span></code> is treated as a
-special character and the zero is added to the right of it
-(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.zfill" title="(in Python v3.14)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.zfill()</span></code></a> would have moved it to the left). <code class="docutils literal notranslate"><span class="pre">1000</span></code>
-remains unchanged as it is longer than <cite>width</cite>.</p>
+converted to <code class="docutils literal notranslate"><span class="pre">NaN</span></code>. The minus sign in <code class="docutils literal notranslate"><span class="pre">'-1'</span></code> is kept at the front
+of the string and the ‘0’ padding is inserted after it, the same as
+<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.zfill" title="(in Python v3.14)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.zfill()</span></code></a>. <code class="docutils literal notranslate"><span class="pre">1000</span></code> remains unchanged as it is longer than
+<cite>width</cite>.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">0     -01</span>
 <span class="go">1     001</span>

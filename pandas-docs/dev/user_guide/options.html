@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Options and settings &#8212; pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation</title>
+    <title>Options and settings &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css?v=8d8a0ed4" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css?v=1445d9b0" />
     <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css?v=b7db95b1" />
   
   <!-- So that users can add custom icons -->
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=af721e9a"></script>
+    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Time deltas" href="timedeltas.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1386.gcb2086a1a4" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
   
   
 </a></div>
@@ -637,10 +637,18 @@ with no argument <a class="reference internal" href="../reference/api/pandas.des
 <span class="go">    Controls the justification of column headers. used by DataFrameFormatter.</span>
 <span class="go">    [default: right] [currently: right]</span>
 <span class="go">display.date_dayfirst : boolean</span>
-<span class="go">    When True, prints and parses dates with the day first, eg 20/01/2005</span>
+<span class="go">    When True, parses ambiguous dates with the day first, eg 20/01/2005.</span>
+<span class="go">    This affects parsing only, not how dates are displayed, and applies to</span>
+<span class="go">    the Period constructor and partial-string indexing on a DatetimeIndex.</span>
+<span class="go">    Timestamp, to_datetime and read_csv take their own dayfirst keyword and</span>
+<span class="go">    are unaffected.</span>
 <span class="go">    [default: False] [currently: False]</span>
 <span class="go">display.date_yearfirst : boolean</span>
-<span class="go">    When True, prints and parses dates with the year first, eg 2005/01/20</span>
+<span class="go">    When True, parses ambiguous dates with the year first, eg 2005/01/20.</span>
+<span class="go">    This affects parsing only, not how dates are displayed, and applies to</span>
+<span class="go">    the Period constructor and partial-string indexing on a DatetimeIndex.</span>
+<span class="go">    Timestamp, to_datetime and read_csv take their own yearfirst keyword and</span>
+<span class="go">    are unaffected.</span>
 <span class="go">    [default: False] [currently: False]</span>
 <span class="go">display.encoding : str/unicode</span>
 <span class="go">    Defaults to the detected encoding of the console.</span>
@@ -860,10 +868,12 @@ with no argument <a class="reference internal" href="../reference/api/pandas.des
 <span class="go">    (Deprecated, use `` instead.)</span>
 <span class="go">mode.max_threads : int or None</span>
 <span class="go">    Maximum number of worker threads for parallel operations (e.g. ``read_csv``</span>
-<span class="go">    for large files).  ``None`` (the default) means use ``min(os.cpu_count(), 4)``.</span>
-<span class="go">    Set to ``1`` to disable parallel execution, or to a fixed number to raise the</span>
-<span class="go">    cap or to limit thread usage when pandas is embedded in a larger parallel</span>
-<span class="go">    workflow.</span>
+<span class="go">    for large files).  ``None`` (the default) means use ``min(os.cpu_count(), 4)``,</span>
+<span class="go">    further limited to the CPUs available to the process (CPU affinity and cgroup</span>
+<span class="go">    limits); on Windows the default is ``1``, as parallel reading is not faster</span>
+<span class="go">    there.  Set to ``1`` to disable parallel execution, or to a fixed number to</span>
+<span class="go">    raise the cap or to limit thread usage when pandas is embedded in a larger</span>
+<span class="go">    parallel workflow.  Ignored on Emscripten/Pyodide, which cannot spawn threads.</span>
 <span class="go">    [default: None] [currently: None]</span>
 <span class="go">mode.performance_warnings : boolean</span>
 <span class="go">    Whether to show or hide PerformanceWarnings.</span>
@@ -886,21 +896,36 @@ with no argument <a class="reference internal" href="../reference/api/pandas.des
 <span class="go">    [default: auto] [currently: auto]</span>
 <span class="go">styler.format.decimal : str</span>
 <span class="go">    The character representation for the decimal separator for floats and complex.</span>
+<span class="go">    This option affects only ``Styler`` rendering (e.g. ``DataFrame.style``), not</span>
+<span class="go">    the default Series/DataFrame repr, which is controlled by the ``display.*``</span>
+<span class="go">    options.</span>
 <span class="go">    [default: .] [currently: .]</span>
 <span class="go">styler.format.escape : str, optional</span>
 <span class="go">    Whether to escape certain characters according to the given context; html or latex.</span>
+<span class="go">    This option affects only ``Styler`` rendering (e.g. ``DataFrame.style``), not</span>
+<span class="go">    the default Series/DataFrame repr, which is controlled by the ``display.*``</span>
+<span class="go">    options.</span>
 <span class="go">    [default: None] [currently: None]</span>
 <span class="go">styler.format.formatter : str, callable, dict, optional</span>
 <span class="go">    A formatter object to be used as default within ``Styler.format``.</span>
 <span class="go">    [default: None] [currently: None]</span>
 <span class="go">styler.format.na_rep : str, optional</span>
 <span class="go">    The string representation for values identified as missing.</span>
+<span class="go">    This option affects only ``Styler`` rendering (e.g. ``DataFrame.style``), not</span>
+<span class="go">    the default Series/DataFrame repr, which is controlled by the ``display.*``</span>
+<span class="go">    options.</span>
 <span class="go">    [default: None] [currently: None]</span>
 <span class="go">styler.format.precision : int</span>
 <span class="go">    The precision for floats and complex numbers.</span>
+<span class="go">    This option affects only ``Styler`` rendering (e.g. ``DataFrame.style``), not</span>
+<span class="go">    the default Series/DataFrame repr, which is controlled by the ``display.*``</span>
+<span class="go">    options.</span>
 <span class="go">    [default: 6] [currently: 6]</span>
 <span class="go">styler.format.thousands : str, optional</span>
 <span class="go">    The character representation for thousands separator for floats, int and complex.</span>
+<span class="go">    This option affects only ``Styler`` rendering (e.g. ``DataFrame.style``), not</span>
+<span class="go">    the default Series/DataFrame repr, which is controlled by the ``display.*``</span>
+<span class="go">    options.</span>
 <span class="go">    [default: None] [currently: None]</span>
 <span class="go">styler.html.mathjax : bool</span>
 <span class="go">    If False will render special CSS classes to table attributes that indicate Mathjax</span>

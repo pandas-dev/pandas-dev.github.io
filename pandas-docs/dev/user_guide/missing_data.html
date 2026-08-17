@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Working with missing data &#8212; pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation</title>
+    <title>Working with missing data &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css?v=8d8a0ed4" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css?v=1445d9b0" />
     <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css?v=b7db95b1" />
   
   <!-- So that users can add custom icons -->
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=af721e9a"></script>
+    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Working with text data" href="text.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1386.gcb2086a1a4" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
   
   
 </a></div>
@@ -847,26 +847,55 @@ manifests as an asymmetry depending on operand position, since <code class="docu
 described above.</p>
 <p>A similar situation occurs when using <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> objects in <code class="docutils literal notranslate"><span class="pre">if</span></code>
 statements, see <a class="reference internal" href="gotchas.html#gotchas-truth"><span class="std std-ref">Using if/truth statements with pandas</span></a>.</p>
+<p>Converting a nullable array to NumPy keeps <a class="reference internal" href="../reference/api/pandas.NA.html#pandas.NA" title="pandas.NA"><code class="xref py py-class docutils literal notranslate"><span class="pre">NA</span></code></a> in the resulting
+object-dtype array, so NumPy operations that must produce a boolean result hit
+the same <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>. Elementwise comparison is the common case: NumPy
+compares each pair of elements, gets <a class="reference internal" href="../reference/api/pandas.NA.html#pandas.NA" title="pandas.NA"><code class="xref py py-class docutils literal notranslate"><span class="pre">NA</span></code></a> back for the missing entries,
+and then fails when casting the result to bool dtype.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [48]: </span><span class="n">arr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+
+<span class="gp">In [49]: </span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="gh">Out[49]: </span><span class="go">array([&#39;a&#39;, &#39;b&#39;, &lt;NA&gt;], dtype=object)</span>
+
+<span class="gp">In [50]: </span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">])[:,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">])[:,</span> <span class="kc">None</span><span class="p">]</span>
+
+<span class="nn">File pandas/_libs/missing.pyx:462,</span> in <span class="ni">pandas._libs.missing.NAType.__bool__</span><span class="nt">()</span>
+<span class="ne">--&gt; </span><span class="mi">462</span> <span class="s1">&#39;Could not get source, probably due dynamically evaluated source code.&#39;</span>
+<span class="ne">TypeError</span>: boolean value of NA is ambiguous
+</pre></div>
+</div>
+<p>Pass an explicit <code class="docutils literal notranslate"><span class="pre">na_value</span></code> to <code class="xref py py-meth docutils literal notranslate"><span class="pre">to_numpy()</span></code>
+to substitute a value NumPy can compare, such as <code class="docutils literal notranslate"><span class="pre">None</span></code> or <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [51]: </span><span class="n">arr</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">,</span> <span class="n">na_value</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">])[:,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="gh">Out[51]: </span>
+<span class="go">array([[ True, False, False],</span>
+<span class="go">       [False, False, False]])</span>
+</pre></div>
+</div>
 </section>
 <section id="numpy-ufuncs">
 <h3>NumPy ufuncs<a class="headerlink" href="#numpy-ufuncs" title="Link to this heading">#</a></h3>
 <p><a class="reference internal" href="../reference/api/pandas.NA.html#pandas.NA" title="pandas.NA"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code></a> implements NumPy’s <code class="docutils literal notranslate"><span class="pre">__array_ufunc__</span></code> protocol. Most ufuncs
 work with <code class="docutils literal notranslate"><span class="pre">NA</span></code>, and generally return <code class="docutils literal notranslate"><span class="pre">NA</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [48]: </span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
-<span class="gh">Out[48]: </span><span class="go">&lt;NA&gt;</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [52]: </span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
+<span class="gh">Out[52]: </span><span class="go">&lt;NA&gt;</span>
 
-<span class="gp">In [49]: </span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="gh">Out[49]: </span><span class="go">&lt;NA&gt;</span>
+<span class="gp">In [53]: </span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[53]: </span><span class="go">&lt;NA&gt;</span>
 </pre></div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Currently, ufuncs involving an ndarray and <code class="docutils literal notranslate"><span class="pre">NA</span></code> will return an
 object-dtype filled with NA values.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [50]: </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [54]: </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
-<span class="gp">In [51]: </span><span class="n">np</span><span class="o">.</span><span class="n">greater</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
-<span class="gh">Out[51]: </span><span class="go">array([&lt;NA&gt;, &lt;NA&gt;, &lt;NA&gt;], dtype=object)</span>
+<span class="gp">In [55]: </span><span class="n">np</span><span class="o">.</span><span class="n">greater</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
+<span class="gh">Out[55]: </span><span class="go">array([&lt;NA&gt;, &lt;NA&gt;, &lt;NA&gt;], dtype=object)</span>
 </pre></div>
 </div>
 <p>The return type here may change to return a different array type
@@ -880,28 +909,28 @@ in the future.</p>
 will convert your data to use the nullable data types supporting <a class="reference internal" href="../reference/api/pandas.NA.html#pandas.NA" title="pandas.NA"><code class="xref py py-class docutils literal notranslate"><span class="pre">NA</span></code></a>,
 such as <a class="reference internal" href="../reference/api/pandas.Int64Dtype.html#pandas.Int64Dtype" title="pandas.Int64Dtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int64Dtype</span></code></a> or <a class="reference internal" href="../reference/api/pandas.ArrowDtype.html#pandas.ArrowDtype" title="pandas.ArrowDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowDtype</span></code></a>. This is especially helpful after reading
 in data sets from IO methods where data types were inferred.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [52]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [56]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
 
-<span class="gp">In [53]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="s2">&quot;a,b</span><span class="se">\n</span><span class="s2">,True</span><span class="se">\n</span><span class="s2">2,&quot;</span><span class="p">)</span>
+<span class="gp">In [57]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="s2">&quot;a,b</span><span class="se">\n</span><span class="s2">,True</span><span class="se">\n</span><span class="s2">2,&quot;</span><span class="p">)</span>
 
-<span class="gp">In [54]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">In [58]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<span class="gp">In [55]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[55]: </span>
+<span class="gp">In [59]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[59]: </span>
 <span class="go">a    float64</span>
 <span class="go">b     object</span>
 <span class="go">dtype: object</span>
 
-<span class="gp">In [56]: </span><span class="n">df_conv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span>
+<span class="gp">In [60]: </span><span class="n">df_conv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span>
 
-<span class="gp">In [57]: </span><span class="n">df_conv</span>
-<span class="gh">Out[57]: </span>
+<span class="gp">In [61]: </span><span class="n">df_conv</span>
+<span class="gh">Out[61]: </span>
 <span class="go">      a     b</span>
 <span class="go">0  &lt;NA&gt;  True</span>
 <span class="go">1     2  &lt;NA&gt;</span>
 
-<span class="gp">In [58]: </span><span class="n">df_conv</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[58]: </span>
+<span class="gp">In [62]: </span><span class="n">df_conv</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[62]: </span>
 <span class="go">a      Int64</span>
 <span class="go">b    boolean</span>
 <span class="go">dtype: object</span>
@@ -914,47 +943,47 @@ in data sets from IO methods where data types were inferred.</p>
 <span id="missing-inserting"></span><h2>Inserting missing data<a class="headerlink" href="#inserting-missing-data" title="Link to this heading">#</a></h2>
 <p>You can insert missing values by simply assigning to a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>.
 The missing value sentinel used will be chosen based on the dtype.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [59]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [63]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">])</span>
 
-<span class="gp">In [60]: </span><span class="n">ser</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="gp">In [64]: </span><span class="n">ser</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-<span class="gp">In [61]: </span><span class="n">ser</span>
-<span class="gh">Out[61]: </span>
+<span class="gp">In [65]: </span><span class="n">ser</span>
+<span class="gh">Out[65]: </span>
 <span class="go">0    NaN</span>
 <span class="go">1    2.0</span>
 <span class="go">2    3.0</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [62]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2021&quot;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2021&quot;</span><span class="p">)])</span>
+<span class="gp">In [66]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2021&quot;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2021&quot;</span><span class="p">)])</span>
 
-<span class="gp">In [63]: </span><span class="n">ser</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="gp">In [67]: </span><span class="n">ser</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="gp">In [64]: </span><span class="n">ser</span>
-<span class="gh">Out[64]: </span>
+<span class="gp">In [68]: </span><span class="n">ser</span>
+<span class="gh">Out[68]: </span>
 <span class="go">0          NaT</span>
 <span class="go">1   2021-01-01</span>
 <span class="go">dtype: datetime64[us]</span>
 
-<span class="gp">In [65]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;boolean[pyarrow]&quot;</span><span class="p">)</span>
+<span class="gp">In [69]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;boolean[pyarrow]&quot;</span><span class="p">)</span>
 
-<span class="gp">In [66]: </span><span class="n">ser</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="gp">In [70]: </span><span class="n">ser</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-<span class="gp">In [67]: </span><span class="n">ser</span>
-<span class="gh">Out[67]: </span>
+<span class="gp">In [71]: </span><span class="n">ser</span>
+<span class="gh">Out[71]: </span>
 <span class="go">0     &lt;NA&gt;</span>
 <span class="go">1    False</span>
 <span class="go">dtype: bool[pyarrow]</span>
 </pre></div>
 </div>
 <p>For <code class="docutils literal notranslate"><span class="pre">object</span></code> types, pandas will use the value given:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [68]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [72]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
 
-<span class="gp">In [69]: </span><span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="gp">In [73]: </span><span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-<span class="gp">In [70]: </span><span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="gp">In [74]: </span><span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="gp">In [71]: </span><span class="n">s</span>
-<span class="gh">Out[71]: </span>
+<span class="gp">In [75]: </span><span class="n">s</span>
+<span class="gh">Out[75]: </span>
 <span class="go">0    None</span>
 <span class="go">1     NaN</span>
 <span class="go">2       c</span>
@@ -965,28 +994,28 @@ The missing value sentinel used will be chosen based on the dtype.</p>
 <section id="calculations-with-missing-data">
 <span id="missing-data-calculations"></span><h2>Calculations with missing data<a class="headerlink" href="#calculations-with-missing-data" title="Link to this heading">#</a></h2>
 <p>Missing values propagate through arithmetic operations between pandas objects.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [72]: </span><span class="n">ser1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [76]: </span><span class="n">ser1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
-<span class="gp">In [73]: </span><span class="n">ser2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">In [77]: </span><span class="n">ser2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 
-<span class="gp">In [74]: </span><span class="n">ser1</span>
-<span class="gh">Out[74]: </span>
+<span class="gp">In [78]: </span><span class="n">ser1</span>
+<span class="gh">Out[78]: </span>
 <span class="go">0    NaN</span>
 <span class="go">1    NaN</span>
 <span class="go">2    2.0</span>
 <span class="go">3    3.0</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [75]: </span><span class="n">ser2</span>
-<span class="gh">Out[75]: </span>
+<span class="gp">In [79]: </span><span class="n">ser2</span>
+<span class="gh">Out[79]: </span>
 <span class="go">0    NaN</span>
 <span class="go">1    1.0</span>
 <span class="go">2    NaN</span>
 <span class="go">3    4.0</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [76]: </span><span class="n">ser1</span> <span class="o">+</span> <span class="n">ser2</span>
-<span class="gh">Out[76]: </span>
+<span class="gp">In [80]: </span><span class="n">ser1</span> <span class="o">+</span> <span class="n">ser2</span>
+<span class="gh">Out[80]: </span>
 <span class="go">0    NaN</span>
 <span class="go">1    NaN</span>
 <span class="go">2    NaN</span>
@@ -1002,57 +1031,57 @@ pandas reductions such as <a class="reference internal" href="../reference/api/p
 skip missing values by default, while <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.std.html#numpy.std" title="(in NumPy v2.5)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.std()</span></code></a> returns <code class="docutils literal notranslate"><span class="pre">nan</span></code>
 when the input contains <code class="docutils literal notranslate"><span class="pre">nan</span></code> values. To include missing values in
 pandas reductions, pass <code class="docutils literal notranslate"><span class="pre">skipna=False</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [77]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [81]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
 
-<span class="gp">In [78]: </span><span class="n">ser</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-<span class="gh">Out[78]: </span><span class="go">1.4142135623730951</span>
+<span class="gp">In [82]: </span><span class="n">ser</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="gh">Out[82]: </span><span class="go">1.4142135623730951</span>
 
-<span class="gp">In [79]: </span><span class="n">ser</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">skipna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="gh">Out[79]: </span><span class="go">np.float64(nan)</span>
+<span class="gp">In [83]: </span><span class="n">ser</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">skipna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gh">Out[83]: </span><span class="go">np.float64(nan)</span>
 
-<span class="gp">In [80]: </span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ser</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="gh">Out[80]: </span><span class="go">np.float64(nan)</span>
+<span class="gp">In [84]: </span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ser</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[84]: </span><span class="go">np.float64(nan)</span>
 </pre></div>
 </div>
 <p>When summing data, NA values or empty data will be treated as zero.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [81]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="gh">Out[81]: </span><span class="go">np.float64(0.0)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [85]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gh">Out[85]: </span><span class="go">np.float64(0.0)</span>
 
-<span class="gp">In [82]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="gh">Out[82]: </span><span class="go">np.float64(0.0)</span>
+<span class="gp">In [86]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gh">Out[86]: </span><span class="go">np.float64(0.0)</span>
 </pre></div>
 </div>
 <p>When taking the product, NA values or empty data will be treated as 1.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [83]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
-<span class="gh">Out[83]: </span><span class="go">np.float64(1.0)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [87]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
+<span class="gh">Out[87]: </span><span class="go">np.float64(1.0)</span>
 
-<span class="gp">In [84]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
-<span class="gh">Out[84]: </span><span class="go">np.float64(1.0)</span>
+<span class="gp">In [88]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
+<span class="gh">Out[88]: </span><span class="go">np.float64(1.0)</span>
 </pre></div>
 </div>
 <p>Cumulative methods like <a class="reference internal" href="../reference/api/pandas.DataFrame.cumsum.html#pandas.DataFrame.cumsum" title="pandas.DataFrame.cumsum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cumsum()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.cumprod.html#pandas.DataFrame.cumprod" title="pandas.DataFrame.cumprod"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cumprod()</span></code></a>
 ignore NA values by default, but preserve them in the resulting array. To override
 this behaviour and include NA values in the calculation, use <code class="docutils literal notranslate"><span class="pre">skipna=False</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [85]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [89]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
 
-<span class="gp">In [86]: </span><span class="n">ser</span>
-<span class="gh">Out[86]: </span>
+<span class="gp">In [90]: </span><span class="n">ser</span>
+<span class="gh">Out[90]: </span>
 <span class="go">0    1.0</span>
 <span class="go">1    NaN</span>
 <span class="go">2    3.0</span>
 <span class="go">3    NaN</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [87]: </span><span class="n">ser</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
-<span class="gh">Out[87]: </span>
+<span class="gp">In [91]: </span><span class="n">ser</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+<span class="gh">Out[91]: </span>
 <span class="go">0    1.0</span>
 <span class="go">1    NaN</span>
 <span class="go">2    4.0</span>
 <span class="go">3    NaN</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [88]: </span><span class="n">ser</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">skipna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="gh">Out[88]: </span>
+<span class="gp">In [92]: </span><span class="n">ser</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">skipna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gh">Out[92]: </span>
 <span class="go">0    1.0</span>
 <span class="go">1    NaN</span>
 <span class="go">2    NaN</span>
@@ -1064,31 +1093,31 @@ this behaviour and include NA values in the calculation, use <code class="docuti
 <section id="dropping-missing-data">
 <span id="missing-data-dropna"></span><h2>Dropping missing data<a class="headerlink" href="#dropping-missing-data" title="Link to this heading">#</a></h2>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.dropna.html#pandas.DataFrame.dropna" title="pandas.DataFrame.dropna"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dropna()</span></code></a> drops rows or columns with missing data.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [89]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [93]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
 
-<span class="gp">In [90]: </span><span class="n">df</span>
-<span class="gh">Out[90]: </span>
+<span class="gp">In [94]: </span><span class="n">df</span>
+<span class="gh">Out[94]: </span>
 <span class="go">     0  1    2</span>
 <span class="go">0  NaN  1  2.0</span>
 <span class="go">1  1.0  2  NaN</span>
 <span class="go">2  1.0  2  3.0</span>
 
-<span class="gp">In [91]: </span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="gh">Out[91]: </span>
+<span class="gp">In [95]: </span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="gh">Out[95]: </span>
 <span class="go">     0  1    2</span>
 <span class="go">2  1.0  2  3.0</span>
 
-<span class="gp">In [92]: </span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="gh">Out[92]: </span>
+<span class="gp">In [96]: </span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[96]: </span>
 <span class="go">   1</span>
 <span class="go">0  1</span>
 <span class="go">1  2</span>
 <span class="go">2  2</span>
 
-<span class="gp">In [93]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64[pyarrow]&quot;</span><span class="p">)</span>
+<span class="gp">In [97]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64[pyarrow]&quot;</span><span class="p">)</span>
 
-<span class="gp">In [94]: </span><span class="n">ser</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="gh">Out[94]: </span>
+<span class="gp">In [98]: </span><span class="n">ser</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="gh">Out[98]: </span>
 <span class="go">0    1</span>
 <span class="go">dtype: int64[pyarrow]</span>
 </pre></div>
@@ -1100,20 +1129,20 @@ this behaviour and include NA values in the calculation, use <code class="docuti
 <span id="missing-data-fillna"></span><h3>Filling by value<a class="headerlink" href="#filling-by-value" title="Link to this heading">#</a></h3>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fillna()</span></code></a> replaces NA values with non-NA data.</p>
 <p>Replace NA with a scalar value</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [95]: </span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;np&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;arrow&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64[pyarrow]&quot;</span><span class="p">)}</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [99]: </span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;np&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;arrow&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64[pyarrow]&quot;</span><span class="p">)}</span>
 
-<span class="gp">In [96]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">In [100]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<span class="gp">In [97]: </span><span class="n">df</span>
-<span class="gh">Out[97]: </span>
+<span class="gp">In [101]: </span><span class="n">df</span>
+<span class="gh">Out[101]: </span>
 <span class="go">    np  arrow</span>
 <span class="go">0  1.0    1.0</span>
 <span class="go">1  NaN   &lt;NA&gt;</span>
 <span class="go">2  NaN   &lt;NA&gt;</span>
 <span class="go">3  2.0    2.0</span>
 
-<span class="gp">In [98]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gh">Out[98]: </span>
+<span class="gp">In [102]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gh">Out[102]: </span>
 <span class="go">    np  arrow</span>
 <span class="go">0  1.0    1.0</span>
 <span class="go">1  0.0    0.0</span>
@@ -1122,8 +1151,8 @@ this behaviour and include NA values in the calculation, use <code class="docuti
 </pre></div>
 </div>
 <p>Replace NA with column-specific values using a dict</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [99]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">({</span><span class="s2">&quot;np&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;arrow&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
-<span class="gh">Out[99]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [103]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">({</span><span class="s2">&quot;np&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;arrow&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="gh">Out[103]: </span>
 <span class="go">    np  arrow</span>
 <span class="go">0  1.0    1.0</span>
 <span class="go">1  0.0    1.0</span>
@@ -1132,31 +1161,31 @@ this behaviour and include NA values in the calculation, use <code class="docuti
 </pre></div>
 </div>
 <p>When the data has object dtype, you can control what type of NA values are present.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [100]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="kc">None</span><span class="p">]},</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [104]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="kc">None</span><span class="p">]},</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
 
-<span class="gp">In [101]: </span><span class="n">df</span>
-<span class="gh">Out[101]: </span>
+<span class="gp">In [105]: </span><span class="n">df</span>
+<span class="gh">Out[105]: </span>
 <span class="go">      a</span>
 <span class="go">0  &lt;NA&gt;</span>
 <span class="go">1   NaN</span>
 <span class="go">2  None</span>
 
-<span class="gp">In [102]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-<span class="gh">Out[102]: </span>
+<span class="gp">In [106]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="gh">Out[106]: </span>
 <span class="go">      a</span>
 <span class="go">0  None</span>
 <span class="go">1  None</span>
 <span class="go">2  None</span>
 
-<span class="gp">In [103]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-<span class="gh">Out[103]: </span>
+<span class="gp">In [107]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="gh">Out[107]: </span>
 <span class="go">     a</span>
 <span class="go">0  NaN</span>
 <span class="go">1  NaN</span>
 <span class="go">2  NaN</span>
 
-<span class="gp">In [104]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
-<span class="gh">Out[104]: </span>
+<span class="gp">In [108]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
+<span class="gh">Out[108]: </span>
 <span class="go">      a</span>
 <span class="go">0  &lt;NA&gt;</span>
 <span class="go">1  &lt;NA&gt;</span>
@@ -1164,36 +1193,36 @@ this behaviour and include NA values in the calculation, use <code class="docuti
 </pre></div>
 </div>
 <p>However when the dtype is not object, these will all be replaced with the proper NA value for the dtype.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [105]: </span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;np&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;arrow&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64[pyarrow]&quot;</span><span class="p">)}</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [109]: </span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;np&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;arrow&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64[pyarrow]&quot;</span><span class="p">)}</span>
 
-<span class="gp">In [106]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">In [110]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<span class="gp">In [107]: </span><span class="n">df</span>
-<span class="gh">Out[107]: </span>
+<span class="gp">In [111]: </span><span class="n">df</span>
+<span class="gh">Out[111]: </span>
 <span class="go">    np  arrow</span>
 <span class="go">0  1.0    1.0</span>
 <span class="go">1  NaN   &lt;NA&gt;</span>
 <span class="go">2  NaN   &lt;NA&gt;</span>
 <span class="go">3  2.0    2.0</span>
 
-<span class="gp">In [108]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-<span class="gh">Out[108]: </span>
+<span class="gp">In [112]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="gh">Out[112]: </span>
 <span class="go">    np  arrow</span>
 <span class="go">0  1.0    1.0</span>
 <span class="go">1  NaN   &lt;NA&gt;</span>
 <span class="go">2  NaN   &lt;NA&gt;</span>
 <span class="go">3  2.0    2.0</span>
 
-<span class="gp">In [109]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-<span class="gh">Out[109]: </span>
+<span class="gp">In [113]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="gh">Out[113]: </span>
 <span class="go">    np  arrow</span>
 <span class="go">0  1.0    1.0</span>
 <span class="go">1  NaN   &lt;NA&gt;</span>
 <span class="go">2  NaN   &lt;NA&gt;</span>
 <span class="go">3  2.0    2.0</span>
 
-<span class="gp">In [110]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
-<span class="gh">Out[110]: </span>
+<span class="gp">In [114]: </span><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
+<span class="gh">Out[114]: </span>
 <span class="go">    np  arrow</span>
 <span class="go">0  1.0    1.0</span>
 <span class="go">1  NaN   &lt;NA&gt;</span>
@@ -1202,16 +1231,16 @@ this behaviour and include NA values in the calculation, use <code class="docuti
 </pre></div>
 </div>
 <p>Fill gaps forward or backward</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [111]: </span><span class="n">df</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
-<span class="gh">Out[111]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [115]: </span><span class="n">df</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+<span class="gh">Out[115]: </span>
 <span class="go">    np  arrow</span>
 <span class="go">0  1.0    1.0</span>
 <span class="go">1  1.0    1.0</span>
 <span class="go">2  1.0    1.0</span>
 <span class="go">3  2.0    2.0</span>
 
-<span class="gp">In [112]: </span><span class="n">df</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
-<span class="gh">Out[112]: </span>
+<span class="gp">In [116]: </span><span class="n">df</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
+<span class="gh">Out[116]: </span>
 <span class="go">    np  arrow</span>
 <span class="go">0  1.0    1.0</span>
 <span class="go">1  2.0    2.0</span>
@@ -1220,8 +1249,8 @@ this behaviour and include NA values in the calculation, use <code class="docuti
 </pre></div>
 </div>
 <p id="missing-data-fillna-limit">Limit the number of NA values filled</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [113]: </span><span class="n">df</span><span class="o">.</span><span class="n">ffill</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="gh">Out[113]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [117]: </span><span class="n">df</span><span class="o">.</span><span class="n">ffill</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[117]: </span>
 <span class="go">    np  arrow</span>
 <span class="go">0  1.0    1.0</span>
 <span class="go">1  1.0    1.0</span>
@@ -1231,16 +1260,16 @@ this behaviour and include NA values in the calculation, use <code class="docuti
 </div>
 <p>NA values can be replaced with corresponding value from a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>
 where the index and column aligns between the original object and the filled object.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [114]: </span><span class="n">dff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ABC&quot;</span><span class="p">))</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [118]: </span><span class="n">dff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ABC&quot;</span><span class="p">))</span>
 
-<span class="gp">In [115]: </span><span class="n">dff</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="gp">In [119]: </span><span class="n">dff</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="gp">In [116]: </span><span class="n">dff</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="gp">In [120]: </span><span class="n">dff</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="gp">In [117]: </span><span class="n">dff</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="gp">In [121]: </span><span class="n">dff</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="gp">In [118]: </span><span class="n">dff</span>
-<span class="gh">Out[118]: </span>
+<span class="gp">In [122]: </span><span class="n">dff</span>
+<span class="gh">Out[122]: </span>
 <span class="go">      A     B     C</span>
 <span class="go">0   0.0   1.0   2.0</span>
 <span class="go">1   3.0   4.0   5.0</span>
@@ -1253,8 +1282,8 @@ where the index and column aligns between the original object and the filled obj
 <span class="go">8  24.0  25.0  26.0</span>
 <span class="go">9  27.0  28.0  29.0</span>
 
-<span class="gp">In [119]: </span><span class="n">dff</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">dff</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-<span class="gh">Out[119]: </span>
+<span class="gp">In [123]: </span><span class="n">dff</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">dff</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="gh">Out[123]: </span>
 <span class="go">       A     B          C</span>
 <span class="go">0   0.00   1.0   2.000000</span>
 <span class="go">1   3.00   4.0   5.000000</span>
@@ -1271,8 +1300,8 @@ where the index and column aligns between the original object and the filled obj
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.where.html#pandas.DataFrame.where" title="pandas.DataFrame.where"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.where()</span></code></a> can also be used to fill NA values. Same result as above.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [120]: </span><span class="n">dff</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">dff</span><span class="p">),</span> <span class="n">dff</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">)</span>
-<span class="gh">Out[120]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [124]: </span><span class="n">dff</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">dff</span><span class="p">),</span> <span class="n">dff</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">)</span>
+<span class="gh">Out[124]: </span>
 <span class="go">       A     B          C</span>
 <span class="go">0   0.00   1.0   2.000000</span>
 <span class="go">1   3.00   4.0   5.000000</span>
@@ -1292,7 +1321,7 @@ where the index and column aligns between the original object and the filled obj
 <span id="missing-data-interpolate"></span><h3>Interpolation<a class="headerlink" href="#interpolation" title="Link to this heading">#</a></h3>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.interpolate.html#pandas.DataFrame.interpolate" title="pandas.DataFrame.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.interpolate()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.interpolate.html#pandas.Series.interpolate" title="pandas.Series.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.interpolate()</span></code></a> fills NA values
 using various interpolation methods.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [121]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [125]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span>
 <span class="gp">   .....: </span>        <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mf">6.8</span><span class="p">],</span>
 <span class="gp">   .....: </span>        <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">12.2</span><span class="p">,</span> <span class="mf">14.4</span><span class="p">],</span>
@@ -1300,8 +1329,8 @@ using various interpolation methods.</p>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [122]: </span><span class="n">df</span>
-<span class="gh">Out[122]: </span>
+<span class="gp">In [126]: </span><span class="n">df</span>
+<span class="gh">Out[126]: </span>
 <span class="go">     A      B</span>
 <span class="go">0  1.0   0.25</span>
 <span class="go">1  2.1    NaN</span>
@@ -1310,8 +1339,8 @@ using various interpolation methods.</p>
 <span class="go">4  5.6  12.20</span>
 <span class="go">5  6.8  14.40</span>
 
-<span class="gp">In [123]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
-<span class="gh">Out[123]: </span>
+<span class="gp">In [127]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+<span class="gh">Out[127]: </span>
 <span class="go">     A      B</span>
 <span class="go">0  1.0   0.25</span>
 <span class="go">1  2.1   1.50</span>
@@ -1320,16 +1349,16 @@ using various interpolation methods.</p>
 <span class="go">4  5.6  12.20</span>
 <span class="go">5  6.8  14.40</span>
 
-<span class="gp">In [124]: </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+<span class="gp">In [128]: </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
 
-<span class="gp">In [125]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="gp">In [129]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
 
-<span class="gp">In [126]: </span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
+<span class="gp">In [130]: </span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
 
-<span class="gp">In [127]: </span><span class="n">ts</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="gp">In [131]: </span><span class="n">ts</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="gp">In [128]: </span><span class="n">ts</span>
-<span class="gh">Out[128]: </span>
+<span class="gp">In [132]: </span><span class="n">ts</span>
+<span class="gh">Out[132]: </span>
 <span class="go">2020-01-01    8.0</span>
 <span class="go">2020-01-02    NaN</span>
 <span class="go">2020-01-03    NaN</span>
@@ -1342,13 +1371,13 @@ using various interpolation methods.</p>
 <span class="go">2020-01-10    NaN</span>
 <span class="go">Freq: D, dtype: float64</span>
 
-<span class="gp">In [129]: </span><span class="n">ts</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="gh">Out[129]: </span><span class="go">&lt;Axes: &gt;</span>
+<span class="gp">In [133]: </span><span class="n">ts</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="gh">Out[133]: </span><span class="go">&lt;Axes: &gt;</span>
 </pre></div>
 </div>
 <img alt="../_images/series_before_interpolate.png" src="../_images/series_before_interpolate.png" />
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [130]: </span><span class="n">ts</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
-<span class="gh">Out[130]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [134]: </span><span class="n">ts</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+<span class="gh">Out[134]: </span>
 <span class="go">2020-01-01    8.000000</span>
 <span class="go">2020-01-02    6.000000</span>
 <span class="go">2020-01-03    4.000000</span>
@@ -1361,17 +1390,17 @@ using various interpolation methods.</p>
 <span class="go">2020-01-10    3.000000</span>
 <span class="go">Freq: D, dtype: float64</span>
 
-<span class="gp">In [131]: </span><span class="n">ts</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="gh">Out[131]: </span><span class="go">&lt;Axes: &gt;</span>
+<span class="gp">In [135]: </span><span class="n">ts</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="gh">Out[135]: </span><span class="go">&lt;Axes: &gt;</span>
 </pre></div>
 </div>
 <img alt="../_images/series_interpolate.png" src="../_images/series_interpolate.png" />
 <p>Interpolation relative to a <a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> in the <a class="reference internal" href="../reference/api/pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code></a>
 is available by setting <code class="docutils literal notranslate"><span class="pre">method=&quot;time&quot;</span></code></p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [132]: </span><span class="n">ts2</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [136]: </span><span class="n">ts2</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
 
-<span class="gp">In [133]: </span><span class="n">ts2</span>
-<span class="gh">Out[133]: </span>
+<span class="gp">In [137]: </span><span class="n">ts2</span>
+<span class="gh">Out[137]: </span>
 <span class="go">2020-01-01    8.0</span>
 <span class="go">2020-01-02    NaN</span>
 <span class="go">2020-01-04    2.0</span>
@@ -1379,8 +1408,8 @@ is available by setting <code class="docutils literal notranslate"><span class="
 <span class="go">2020-01-10    NaN</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [134]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
-<span class="gh">Out[134]: </span>
+<span class="gp">In [138]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+<span class="gh">Out[138]: </span>
 <span class="go">2020-01-01    8.0</span>
 <span class="go">2020-01-02    5.0</span>
 <span class="go">2020-01-04    2.0</span>
@@ -1388,8 +1417,8 @@ is available by setting <code class="docutils literal notranslate"><span class="
 <span class="go">2020-01-10    0.0</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [135]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
-<span class="gh">Out[135]: </span>
+<span class="gp">In [139]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="gh">Out[139]: </span>
 <span class="go">2020-01-01    8.0</span>
 <span class="go">2020-01-02    6.0</span>
 <span class="go">2020-01-04    2.0</span>
@@ -1399,26 +1428,26 @@ is available by setting <code class="docutils literal notranslate"><span class="
 </pre></div>
 </div>
 <p>For a floating-point index, use <code class="docutils literal notranslate"><span class="pre">method='values'</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [136]: </span><span class="n">idx</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [140]: </span><span class="n">idx</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">]</span>
 
-<span class="gp">In [137]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">],</span> <span class="n">idx</span><span class="p">)</span>
+<span class="gp">In [141]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">],</span> <span class="n">idx</span><span class="p">)</span>
 
-<span class="gp">In [138]: </span><span class="n">ser</span>
-<span class="gh">Out[138]: </span>
+<span class="gp">In [142]: </span><span class="n">ser</span>
+<span class="gh">Out[142]: </span>
 <span class="go">0.0      0.0</span>
 <span class="go">1.0      NaN</span>
 <span class="go">10.0    10.0</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [139]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
-<span class="gh">Out[139]: </span>
+<span class="gp">In [143]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+<span class="gh">Out[143]: </span>
 <span class="go">0.0      0.0</span>
 <span class="go">1.0      5.0</span>
 <span class="go">10.0    10.0</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [140]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
-<span class="gh">Out[140]: </span>
+<span class="gp">In [144]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
+<span class="gh">Out[144]: </span>
 <span class="go">0.0      0.0</span>
 <span class="go">1.0      1.0</span>
 <span class="go">10.0    10.0</span>
@@ -1435,7 +1464,7 @@ use <code class="docutils literal notranslate"><span class="pre">method='barycen
 <p>If you have values approximating a cumulative distribution function,
 use <code class="docutils literal notranslate"><span class="pre">method='pchip'</span></code>.</p>
 <p>To fill missing values with goal of smooth plotting use <code class="docutils literal notranslate"><span class="pre">method='akima'</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [141]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [145]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>   <span class="p">{</span>
 <span class="gp">   .....: </span>      <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mf">6.8</span><span class="p">],</span>
 <span class="gp">   .....: </span>      <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">12.2</span><span class="p">,</span> <span class="mf">14.4</span><span class="p">],</span>
@@ -1443,8 +1472,8 @@ use <code class="docutils literal notranslate"><span class="pre">method='pchip'<
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [142]: </span><span class="n">df</span>
-<span class="gh">Out[142]: </span>
+<span class="gp">In [146]: </span><span class="n">df</span>
+<span class="gh">Out[146]: </span>
 <span class="go">     A      B</span>
 <span class="go">0  1.0   0.25</span>
 <span class="go">1  2.1    NaN</span>
@@ -1453,8 +1482,8 @@ use <code class="docutils literal notranslate"><span class="pre">method='pchip'<
 <span class="go">4  5.6  12.20</span>
 <span class="go">5  6.8  14.40</span>
 
-<span class="gp">In [143]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;barycentric&quot;</span><span class="p">)</span>
-<span class="gh">Out[143]: </span>
+<span class="gp">In [147]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;barycentric&quot;</span><span class="p">)</span>
+<span class="gh">Out[147]: </span>
 <span class="go">      A       B</span>
 <span class="go">0  1.00   0.250</span>
 <span class="go">1  2.10  -7.660</span>
@@ -1463,8 +1492,8 @@ use <code class="docutils literal notranslate"><span class="pre">method='pchip'<
 <span class="go">4  5.60  12.200</span>
 <span class="go">5  6.80  14.400</span>
 
-<span class="gp">In [144]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;pchip&quot;</span><span class="p">)</span>
-<span class="gh">Out[144]: </span>
+<span class="gp">In [148]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;pchip&quot;</span><span class="p">)</span>
+<span class="gh">Out[148]: </span>
 <span class="go">         A          B</span>
 <span class="go">0  1.00000   0.250000</span>
 <span class="go">1  2.10000   0.672808</span>
@@ -1473,8 +1502,8 @@ use <code class="docutils literal notranslate"><span class="pre">method='pchip'<
 <span class="go">4  5.60000  12.200000</span>
 <span class="go">5  6.80000  14.400000</span>
 
-<span class="gp">In [145]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;akima&quot;</span><span class="p">)</span>
-<span class="gh">Out[145]: </span>
+<span class="gp">In [149]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;akima&quot;</span><span class="p">)</span>
+<span class="gh">Out[149]: </span>
 <span class="go">          A          B</span>
 <span class="go">0  1.000000   0.250000</span>
 <span class="go">1  2.100000  -0.873316</span>
@@ -1487,8 +1516,8 @@ use <code class="docutils literal notranslate"><span class="pre">method='pchip'<
 </div>
 <p>When interpolating via a polynomial or spline approximation, you must also specify
 the degree or order of the approximation:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [146]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;spline&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="gh">Out[146]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [150]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;spline&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gh">Out[150]: </span>
 <span class="go">          A          B</span>
 <span class="go">0  1.000000   0.250000</span>
 <span class="go">1  2.100000  -0.428598</span>
@@ -1497,8 +1526,8 @@ the degree or order of the approximation:</p>
 <span class="go">4  5.600000  12.200000</span>
 <span class="go">5  6.800000  14.400000</span>
 
-<span class="gp">In [147]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;polynomial&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="gh">Out[147]: </span>
+<span class="gp">In [151]: </span><span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;polynomial&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gh">Out[151]: </span>
 <span class="go">          A          B</span>
 <span class="go">0  1.000000   0.250000</span>
 <span class="go">1  2.100000  -2.703846</span>
@@ -1509,33 +1538,33 @@ the degree or order of the approximation:</p>
 </pre></div>
 </div>
 <p>Comparing several methods.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [148]: </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [152]: </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="gp">In [149]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">10.1</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">37</span><span class="p">))</span>
+<span class="gp">In [153]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">10.1</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">37</span><span class="p">))</span>
 
-<span class="gp">In [150]: </span><span class="n">missing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">29</span><span class="p">])</span>
+<span class="gp">In [154]: </span><span class="n">missing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">29</span><span class="p">])</span>
 
-<span class="gp">In [151]: </span><span class="n">ser</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">missing</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="gp">In [155]: </span><span class="n">ser</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">missing</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="gp">In [152]: </span><span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="s2">&quot;quadratic&quot;</span><span class="p">,</span> <span class="s2">&quot;cubic&quot;</span><span class="p">]</span>
+<span class="gp">In [156]: </span><span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="s2">&quot;quadratic&quot;</span><span class="p">,</span> <span class="s2">&quot;cubic&quot;</span><span class="p">]</span>
 
-<span class="gp">In [153]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">methods</span><span class="p">})</span>
+<span class="gp">In [157]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">m</span><span class="p">:</span> <span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">methods</span><span class="p">})</span>
 
-<span class="gp">In [154]: </span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="gh">Out[154]: </span><span class="go">&lt;Axes: &gt;</span>
+<span class="gp">In [158]: </span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="gh">Out[158]: </span><span class="go">&lt;Axes: &gt;</span>
 </pre></div>
 </div>
 <img alt="../_images/compare_interpolations.png" src="../_images/compare_interpolations.png" />
 <p>Interpolating new observations from expanding data with <a class="reference internal" href="../reference/api/pandas.Series.reindex.html#pandas.Series.reindex" title="pandas.Series.reindex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.reindex()</span></code></a>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [155]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [159]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)))</span>
 
 <span class="go"># interpolate at new_index</span>
-<span class="gp">In [156]: </span><span class="n">new_index</span> <span class="o">=</span> <span class="n">ser</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="mf">49.25</span><span class="p">,</span> <span class="mf">49.5</span><span class="p">,</span> <span class="mf">49.75</span><span class="p">,</span> <span class="mf">50.25</span><span class="p">,</span> <span class="mf">50.5</span><span class="p">,</span> <span class="mf">50.75</span><span class="p">]))</span>
+<span class="gp">In [160]: </span><span class="n">new_index</span> <span class="o">=</span> <span class="n">ser</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="mf">49.25</span><span class="p">,</span> <span class="mf">49.5</span><span class="p">,</span> <span class="mf">49.75</span><span class="p">,</span> <span class="mf">50.25</span><span class="p">,</span> <span class="mf">50.5</span><span class="p">,</span> <span class="mf">50.75</span><span class="p">]))</span>
 
-<span class="gp">In [157]: </span><span class="n">interp_s</span> <span class="o">=</span> <span class="n">ser</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">new_index</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;pchip&quot;</span><span class="p">)</span>
+<span class="gp">In [161]: </span><span class="n">interp_s</span> <span class="o">=</span> <span class="n">ser</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">new_index</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;pchip&quot;</span><span class="p">)</span>
 
-<span class="gp">In [158]: </span><span class="n">interp_s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">49</span><span class="p">:</span><span class="mi">51</span><span class="p">]</span>
-<span class="gh">Out[158]: </span>
+<span class="gp">In [162]: </span><span class="n">interp_s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">49</span><span class="p">:</span><span class="mi">51</span><span class="p">]</span>
+<span class="gh">Out[162]: </span>
 <span class="go">49.00    0.471410</span>
 <span class="go">49.25    0.476841</span>
 <span class="go">49.50    0.481780</span>
@@ -1553,10 +1582,10 @@ the degree or order of the approximation:</p>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.interpolate.html#pandas.DataFrame.interpolate" title="pandas.DataFrame.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">interpolate()</span></code></a> accepts a <code class="docutils literal notranslate"><span class="pre">limit</span></code> keyword
 argument to limit the number of consecutive <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values
 filled since the last valid observation</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [159]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [163]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
 
-<span class="gp">In [160]: </span><span class="n">ser</span>
-<span class="gh">Out[160]: </span>
+<span class="gp">In [164]: </span><span class="n">ser</span>
+<span class="gh">Out[164]: </span>
 <span class="go">0     NaN</span>
 <span class="go">1     NaN</span>
 <span class="go">2     5.0</span>
@@ -1568,8 +1597,8 @@ filled since the last valid observation</p>
 <span class="go">8     NaN</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [161]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
-<span class="gh">Out[161]: </span>
+<span class="gp">In [165]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">()</span>
+<span class="gh">Out[165]: </span>
 <span class="go">0     NaN</span>
 <span class="go">1     NaN</span>
 <span class="go">2     5.0</span>
@@ -1581,8 +1610,8 @@ filled since the last valid observation</p>
 <span class="go">8    13.0</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [162]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="gh">Out[162]: </span>
+<span class="gp">In [166]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[166]: </span>
 <span class="go">0     NaN</span>
 <span class="go">1     NaN</span>
 <span class="go">2     5.0</span>
@@ -1597,8 +1626,8 @@ filled since the last valid observation</p>
 </div>
 <p>By default, <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values are filled in a <code class="docutils literal notranslate"><span class="pre">forward</span></code> direction. Use
 <code class="docutils literal notranslate"><span class="pre">limit_direction</span></code> parameter to fill <code class="docutils literal notranslate"><span class="pre">backward</span></code> or from <code class="docutils literal notranslate"><span class="pre">both</span></code> directions.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [163]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;backward&quot;</span><span class="p">)</span>
-<span class="gh">Out[163]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [167]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;backward&quot;</span><span class="p">)</span>
+<span class="gh">Out[167]: </span>
 <span class="go">0     NaN</span>
 <span class="go">1     5.0</span>
 <span class="go">2     5.0</span>
@@ -1610,8 +1639,8 @@ filled since the last valid observation</p>
 <span class="go">8     NaN</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [164]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">)</span>
-<span class="gh">Out[164]: </span>
+<span class="gp">In [168]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">)</span>
+<span class="gh">Out[168]: </span>
 <span class="go">0     NaN</span>
 <span class="go">1     5.0</span>
 <span class="go">2     5.0</span>
@@ -1623,8 +1652,8 @@ filled since the last valid observation</p>
 <span class="go">8     NaN</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [165]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">)</span>
-<span class="gh">Out[165]: </span>
+<span class="gp">In [169]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">)</span>
+<span class="gh">Out[169]: </span>
 <span class="go">0     5.0</span>
 <span class="go">1     5.0</span>
 <span class="go">2     5.0</span>
@@ -1641,8 +1670,8 @@ filled since the last valid observation</p>
 existing valid values or outside existing valid values. The <code class="docutils literal notranslate"><span class="pre">limit_area</span></code>
 parameter restricts filling to either inside or outside values.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># fill one consecutive inside value in both directions</span>
-<span class="gp">In [166]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">limit_area</span><span class="o">=</span><span class="s2">&quot;inside&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="gh">Out[166]: </span>
+<span class="gp">In [170]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">limit_area</span><span class="o">=</span><span class="s2">&quot;inside&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[170]: </span>
 <span class="go">0     NaN</span>
 <span class="go">1     NaN</span>
 <span class="go">2     5.0</span>
@@ -1655,8 +1684,8 @@ parameter restricts filling to either inside or outside values.</p>
 <span class="go">dtype: float64</span>
 
 <span class="go"># fill all consecutive outside values backward</span>
-<span class="gp">In [167]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;backward&quot;</span><span class="p">,</span> <span class="n">limit_area</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">)</span>
-<span class="gh">Out[167]: </span>
+<span class="gp">In [171]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;backward&quot;</span><span class="p">,</span> <span class="n">limit_area</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">)</span>
+<span class="gh">Out[171]: </span>
 <span class="go">0     5.0</span>
 <span class="go">1     5.0</span>
 <span class="go">2     5.0</span>
@@ -1669,8 +1698,8 @@ parameter restricts filling to either inside or outside values.</p>
 <span class="go">dtype: float64</span>
 
 <span class="go"># fill all consecutive outside values in both directions</span>
-<span class="gp">In [168]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">limit_area</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">)</span>
-<span class="gh">Out[168]: </span>
+<span class="gp">In [172]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit_direction</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">limit_area</span><span class="o">=</span><span class="s2">&quot;outside&quot;</span><span class="p">)</span>
+<span class="gh">Out[172]: </span>
 <span class="go">0     5.0</span>
 <span class="go">1     5.0</span>
 <span class="go">2     5.0</span>
@@ -1689,28 +1718,28 @@ parameter restricts filling to either inside or outside values.</p>
 <span id="missing-data-replace"></span><h3>Replacing values<a class="headerlink" href="#replacing-values" title="Link to this heading">#</a></h3>
 <p><a class="reference internal" href="../reference/api/pandas.Series.replace.html#pandas.Series.replace" title="pandas.Series.replace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.replace()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.replace.html#pandas.DataFrame.replace" title="pandas.DataFrame.replace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.replace()</span></code></a> can be used similar to
 <a class="reference internal" href="../reference/api/pandas.Series.fillna.html#pandas.Series.fillna" title="pandas.Series.fillna"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.fillna()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.fillna()</span></code></a> to replace or insert missing values.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [169]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [173]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 
-<span class="gp">In [170]: </span><span class="n">df</span>
-<span class="gh">Out[170]: </span>
+<span class="gp">In [174]: </span><span class="n">df</span>
+<span class="gh">Out[174]: </span>
 <span class="go">     0    1    2</span>
 <span class="go">0  1.0  0.0  0.0</span>
 <span class="go">1  0.0  1.0  0.0</span>
 <span class="go">2  0.0  0.0  1.0</span>
 
-<span class="gp">In [171]: </span><span class="n">df_missing</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="gp">In [175]: </span><span class="n">df_missing</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
 
-<span class="gp">In [172]: </span><span class="n">df_missing</span>
-<span class="gh">Out[172]: </span>
+<span class="gp">In [176]: </span><span class="n">df_missing</span>
+<span class="gh">Out[176]: </span>
 <span class="go">     0    1    2</span>
 <span class="go">0  1.0  NaN  NaN</span>
 <span class="go">1  NaN  1.0  NaN</span>
 <span class="go">2  NaN  NaN  1.0</span>
 
-<span class="gp">In [173]: </span><span class="n">df_filled</span> <span class="o">=</span> <span class="n">df_missing</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">In [177]: </span><span class="n">df_filled</span> <span class="o">=</span> <span class="n">df_missing</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-<span class="gp">In [174]: </span><span class="n">df_filled</span>
-<span class="gh">Out[174]: </span>
+<span class="gp">In [178]: </span><span class="n">df_filled</span>
+<span class="gh">Out[178]: </span>
 <span class="go">     0    1    2</span>
 <span class="go">0  1.0  2.0  2.0</span>
 <span class="go">1  2.0  1.0  2.0</span>
@@ -1718,8 +1747,8 @@ parameter restricts filling to either inside or outside values.</p>
 </pre></div>
 </div>
 <p>Replacing more than one value is possible by passing a list.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [175]: </span><span class="n">df_filled</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">44</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">28</span><span class="p">])</span>
-<span class="gh">Out[175]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [179]: </span><span class="n">df_filled</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">44</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">28</span><span class="p">])</span>
+<span class="gh">Out[179]: </span>
 <span class="go">     0    1    2</span>
 <span class="go">0  2.0  2.0  2.0</span>
 <span class="go">1  2.0  2.0  2.0</span>
@@ -1727,8 +1756,8 @@ parameter restricts filling to either inside or outside values.</p>
 </pre></div>
 </div>
 <p>Replacing using a mapping dict.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [176]: </span><span class="n">df_filled</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">28</span><span class="p">})</span>
-<span class="gh">Out[176]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [180]: </span><span class="n">df_filled</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">28</span><span class="p">})</span>
+<span class="gh">Out[180]: </span>
 <span class="go">      0     1     2</span>
 <span class="go">0  44.0  28.0  28.0</span>
 <span class="go">1  28.0  44.0  28.0</span>
@@ -1745,12 +1774,12 @@ They have different semantics regarding backslashes than strings without this pr
 Backslashes in raw strings  will be interpreted as an escaped backslash, e.g., <code class="docutils literal notranslate"><span class="pre">r'\'</span> <span class="pre">==</span> <span class="pre">'\\'</span></code>.</p>
 </div>
 <p>Replace the ‘.’ with <code class="docutils literal notranslate"><span class="pre">NaN</span></code></p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [177]: </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)),</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ab..&quot;</span><span class="p">),</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">]}</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [181]: </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)),</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ab..&quot;</span><span class="p">),</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">]}</span>
 
-<span class="gp">In [178]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="gp">In [182]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
-<span class="gp">In [179]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-<span class="gh">Out[179]: </span>
+<span class="gp">In [183]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="gh">Out[183]: </span>
 <span class="go">   a    b    c</span>
 <span class="go">0  0    a    a</span>
 <span class="go">1  1    b    b</span>
@@ -1759,8 +1788,8 @@ Backslashes in raw strings  will be interpreted as an escaped backslash, e.g., <
 </pre></div>
 </div>
 <p>Replace the ‘.’ with <code class="docutils literal notranslate"><span class="pre">NaN</span></code> with regular expression that removes surrounding whitespace</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [180]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s*\.\s*&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[180]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [184]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s*\.\s*&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[184]: </span>
 <span class="go">   a    b    c</span>
 <span class="go">0  0    a    a</span>
 <span class="go">1  1    b    b</span>
@@ -1769,8 +1798,8 @@ Backslashes in raw strings  will be interpreted as an escaped backslash, e.g., <
 </pre></div>
 </div>
 <p>Replace with a list of regexes.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [181]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="sa">r</span><span class="s2">&quot;\.&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;(a)&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;dot&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\1stuff&quot;</span><span class="p">],</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[181]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [185]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="sa">r</span><span class="s2">&quot;\.&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;(a)&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;dot&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\1stuff&quot;</span><span class="p">],</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[185]: </span>
 <span class="go">   a       b       c</span>
 <span class="go">0  0  astuff  astuff</span>
 <span class="go">1  1       b       b</span>
@@ -1779,8 +1808,8 @@ Backslashes in raw strings  will be interpreted as an escaped backslash, e.g., <
 </pre></div>
 </div>
 <p>Replace with a regex in a mapping dict.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [182]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\s*\.\s*&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">},</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[182]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [186]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\s*\.\s*&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">},</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[186]: </span>
 <span class="go">   a    b    c</span>
 <span class="go">0  0    a    a</span>
 <span class="go">1  1    b    b</span>
@@ -1789,24 +1818,24 @@ Backslashes in raw strings  will be interpreted as an escaped backslash, e.g., <
 </pre></div>
 </div>
 <p>Pass nested dictionaries of regular expressions that use the <code class="docutils literal notranslate"><span class="pre">regex</span></code> keyword.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [183]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span><span class="p">}},</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[183]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [187]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;&quot;</span><span class="p">}},</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[187]: </span>
 <span class="go">   a  b    c</span>
 <span class="go">0  0  a    a</span>
 <span class="go">1  1       b</span>
 <span class="go">2  2  .  NaN</span>
 <span class="go">3  3  .    d</span>
 
-<span class="gp">In [184]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="p">{</span><span class="sa">r</span><span class="s2">&quot;\s*\.\s*&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">}})</span>
-<span class="gh">Out[184]: </span>
+<span class="gp">In [188]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="p">{</span><span class="sa">r</span><span class="s2">&quot;\s*\.\s*&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">}})</span>
+<span class="gh">Out[188]: </span>
 <span class="go">   a    b    c</span>
 <span class="go">0  0    a    a</span>
 <span class="go">1  1    b    b</span>
 <span class="go">2  2  NaN  NaN</span>
 <span class="go">3  3  NaN    d</span>
 
-<span class="gp">In [185]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\s*(\.)\s*&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\1ty&quot;</span><span class="p">},</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[185]: </span>
+<span class="gp">In [189]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\s*(\.)\s*&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\1ty&quot;</span><span class="p">},</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[189]: </span>
 <span class="go">   a    b    c</span>
 <span class="go">0  0    a    a</span>
 <span class="go">1  1    b    b</span>
@@ -1815,8 +1844,8 @@ Backslashes in raw strings  will be interpreted as an escaped backslash, e.g., <
 </pre></div>
 </div>
 <p>Pass a list of regular expressions that will replace matches with a scalar.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [186]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="sa">r</span><span class="s2">&quot;\s*\.\s*&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;a|b&quot;</span><span class="p">],</span> <span class="s2">&quot;placeholder&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[186]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [190]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="sa">r</span><span class="s2">&quot;\s*\.\s*&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;a|b&quot;</span><span class="p">],</span> <span class="s2">&quot;placeholder&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[190]: </span>
 <span class="go">   a            b            c</span>
 <span class="go">0  0  placeholder  placeholder</span>
 <span class="go">1  1  placeholder  placeholder</span>
@@ -1828,8 +1857,8 @@ Backslashes in raw strings  will be interpreted as an escaped backslash, e.g., <
 <code class="docutils literal notranslate"><span class="pre">to_replace</span></code> argument as the <code class="docutils literal notranslate"><span class="pre">regex</span></code> argument. In this case the <code class="docutils literal notranslate"><span class="pre">value</span></code>
 argument must be passed explicitly by name or <code class="docutils literal notranslate"><span class="pre">regex</span></code> must be a nested
 dictionary.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [187]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;\s*\.\s*&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;a|b&quot;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;placeholder&quot;</span><span class="p">)</span>
-<span class="gh">Out[187]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [191]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;\s*\.\s*&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;a|b&quot;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;placeholder&quot;</span><span class="p">)</span>
+<span class="gh">Out[191]: </span>
 <span class="go">   a            b            c</span>
 <span class="go">0  0  placeholder  placeholder</span>
 <span class="go">1  1  placeholder  placeholder</span>

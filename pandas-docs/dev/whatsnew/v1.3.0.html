@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new in 1.3.0 (July 2, 2021) &#8212; pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation</title>
+    <title>What’s new in 1.3.0 (July 2, 2021) &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css?v=8d8a0ed4" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css?v=1445d9b0" />
     <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css?v=b7db95b1" />
   
   <!-- So that users can add custom icons -->
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=af721e9a"></script>
+    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="What’s new in 1.3.1 (July 25, 2021)" href="v1.3.1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1386.gcb2086a1a4" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
   
   
 </a></div>
@@ -806,8 +806,6 @@ a copy will no longer be made (<a class="extlink-issue reference external" href=
 <span class="go">0  1  1</span>
 <span class="go">1  2  2</span>
 <span class="go">2  3  3</span>
-
-<span class="go">[3 rows x 2 columns]</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">df[&quot;A&quot;]</span></code> remains a view on <code class="docutils literal notranslate"><span class="pre">arr</span></code>:</p>
@@ -837,7 +835,7 @@ and parts of the API may change without warning.</p>
 <span class="go">0     abc</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2     def</span>
-<span class="go">Length: 3, dtype: string</span>
+<span class="go">dtype: string</span>
 </pre></div>
 </div>
 <p>You can use the alias <code class="docutils literal notranslate"><span class="pre">&quot;string[pyarrow]&quot;</span></code> as well.</p>
@@ -848,7 +846,7 @@ and parts of the API may change without warning.</p>
 <span class="go">0     abc</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2     def</span>
-<span class="go">Length: 3, dtype: string</span>
+<span class="go">dtype: string</span>
 </pre></div>
 </div>
 <p>You can also create a PyArrow backed string array using pandas options.</p>
@@ -861,7 +859,7 @@ and parts of the API may change without warning.</p>
 <span class="go">0     abc</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2     def</span>
-<span class="go">Length: 3, dtype: string</span>
+<span class="go">dtype: string</span>
 </pre></div>
 </div>
 <p>The usual string accessor methods work. Where appropriate, the return type of the Series
@@ -871,13 +869,13 @@ or columns of a DataFrame will also have string dtype.</p>
 <span class="go">0     ABC</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2     DEF</span>
-<span class="go">Length: 3, dtype: string</span>
+<span class="go">dtype: string</span>
 
 <span class="gp">In [12]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[12]: </span>
 <span class="go">0    string</span>
 <span class="go">1    string</span>
-<span class="go">Length: 2, dtype: object</span>
+<span class="go">dtype: object</span>
 </pre></div>
 </div>
 <p>String accessor methods returning integers will return a value with <a class="reference internal" href="../reference/api/pandas.Int64Dtype.html#pandas.Int64Dtype" title="pandas.Int64Dtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int64Dtype</span></code></a></p>
@@ -886,7 +884,7 @@ or columns of a DataFrame will also have string dtype.</p>
 <span class="go">0       1</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2       0</span>
-<span class="go">Length: 3, dtype: Int64</span>
+<span class="go">dtype: Int64</span>
 </pre></div>
 </div>
 </section>
@@ -910,8 +908,6 @@ For example:</p>
 <span class="go">2020-01-04  3</span>
 <span class="go">2020-01-05  4</span>
 
-<span class="go">[5 rows x 1 columns]</span>
-
 <span class="gp">In [16]: </span><span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">&quot;2D&quot;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="gh">Out[16]: </span>
 <span class="go">              A</span>
@@ -920,8 +916,6 @@ For example:</p>
 <span class="go">2020-01-03  2.5</span>
 <span class="go">2020-01-04  3.5</span>
 <span class="go">2020-01-05  4.0</span>
-
-<span class="go">[5 rows x 1 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -1019,8 +1013,6 @@ original (<a class="extlink-issue reference external" href="https://github.com/p
 <span class="go">1  2  2</span>
 <span class="go">2  3  3</span>
 
-<span class="go">[3 rows x 2 columns]</span>
-
 <span class="gp">In [25]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 
 <span class="gp">In [26]: </span><span class="n">df2</span>
@@ -1029,8 +1021,6 @@ original (<a class="extlink-issue reference external" href="https://github.com/p
 <span class="go">2  4  1</span>
 <span class="go">3  5  2</span>
 <span class="go">4  6  3</span>
-
-<span class="go">[3 rows x 2 columns]</span>
 
 <span class="gp">In [27]: </span><span class="n">combined</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">combine_first</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
 </pre></div>
@@ -1050,7 +1040,7 @@ original (<a class="extlink-issue reference external" href="https://github.com/p
 <span class="go">A    float64</span>
 <span class="go">B      int64</span>
 <span class="go">C    float64</span>
-<span class="go">Length: 3, dtype: object</span>
+<span class="go">dtype: object</span>
 </pre></div>
 </div>
 </section>
@@ -1069,8 +1059,6 @@ values as measured by <code class="docutils literal notranslate"><span class="pr
 <span class="go">   key      a     b</span>
 <span class="go">0    1   True  True</span>
 <span class="go">1    1  False  True</span>
-
-<span class="go">[2 rows x 3 columns]</span>
 </pre></div>
 </div>
 <p><em>Previous behavior</em>:</p>
@@ -1087,8 +1075,6 @@ values as measured by <code class="docutils literal notranslate"><span class="pr
 <span class="go">     a  b</span>
 <span class="go">key      </span>
 <span class="go">1    1  2</span>
-
-<span class="go">[1 rows x 2 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -1111,8 +1097,6 @@ Now, these methods will always return a float dtype. (<a class="extlink-issue re
 <span class="gh">Out[33]: </span>
 <span class="go">     a    b    c</span>
 <span class="go">0  1.0  1.0  1.0</span>
-
-<span class="go">[1 rows x 3 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -1147,7 +1131,7 @@ the old behavior the dtype of <code class="docutils literal notranslate"><span c
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [38]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[38]: </span>
 <span class="go">A    float64</span>
-<span class="go">Length: 1, dtype: object</span>
+<span class="go">dtype: object</span>
 
 <span class="gp">In [39]: </span><span class="n">np</span><span class="o">.</span><span class="n">shares_memory</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">],</span> <span class="n">new</span><span class="p">)</span>
 <span class="gh">Out[39]: </span><span class="go">False</span>
@@ -1181,7 +1165,7 @@ array backing <code class="docutils literal notranslate"><span class="pre">df</s
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [43]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[43]: </span>
 <span class="go">A    int64</span>
-<span class="go">Length: 1, dtype: object</span>
+<span class="go">dtype: object</span>
 </pre></div>
 </div>
 </section>
@@ -1242,8 +1226,6 @@ casts to <code class="docutils literal notranslate"><span class="pre">dtype=obje
 <span class="go">1  1  1</span>
 <span class="go">2  2  2</span>
 <span class="go">3  3  3</span>
-
-<span class="go">[4 rows x 2 columns]</span>
 </pre></div>
 </div>
 <p><em>Previous behavior</em>:</p>
@@ -1266,8 +1248,6 @@ casts to <code class="docutils literal notranslate"><span class="pre">dtype=obje
 <span class="go">  1  1.0</span>
 <span class="go">2 2  NaN</span>
 <span class="go">3 3  NaN</span>
-
-<span class="go">[4 rows x 1 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -1285,7 +1265,7 @@ zero (<a class="extlink-issue reference external" href="https://github.com/panda
 <span class="go">1         NaN</span>
 <span class="go">2    1.333333</span>
 <span class="go">3    0.000000</span>
-<span class="go">Length: 4, dtype: float64</span>
+<span class="go">dtype: float64</span>
 </pre></div>
 </div>
 </section>
@@ -1303,8 +1283,6 @@ with a <a class="reference internal" href="../reference/api/pandas.MultiIndex.ht
 <span class="go">               a  b</span>
 <span class="go">label1 label2      </span>
 <span class="go">idx1   idx2    1  2</span>
-
-<span class="go">[1 rows x 2 columns]</span>
 </pre></div>
 </div>
 <p><em>Previous behavior</em>:</p>
@@ -1321,8 +1299,6 @@ with a <a class="reference internal" href="../reference/api/pandas.MultiIndex.ht
 <span class="go">                        a    b</span>
 <span class="go">label1 label1 label2          </span>
 <span class="go">idx1   idx1   idx2    1.0  2.0</span>
-
-<span class="go">[1 rows x 2 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -1519,8 +1495,6 @@ and users will need to select only valid columns before calling the function.</p
 <span class="go">1  2 2016-01-02</span>
 <span class="go">2  3 2016-01-03</span>
 <span class="go">3  4 2016-01-04</span>
-
-<span class="go">[4 rows x 2 columns]</span>
 </pre></div>
 </div>
 <p><em>Old behavior</em>:</p>

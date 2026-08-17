@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PyArrow Functionality &#8212; pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation</title>
+    <title>PyArrow Functionality &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css?v=8d8a0ed4" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css?v=1445d9b0" />
     <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css?v=b7db95b1" />
   
   <!-- So that users can add custom icons -->
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=af721e9a"></script>
+    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="IO tools (text, CSV, HDF5, …)" href="io.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1386.gcb2086a1a4" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1386.gcb2086a1a4 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
   
   
 </a></div>
@@ -541,7 +541,7 @@ of various APIs. This includes:</p>
 <p>To use this functionality, please ensure you have <a class="reference internal" href="../getting_started/install.html#install-optional-dependencies"><span class="std std-ref">installed the minimum supported PyArrow version.</span></a></p>
 <section id="data-structure-integration">
 <h2>Data Structure Integration<a class="headerlink" href="#data-structure-integration" title="Link to this heading">#</a></h2>
-<p>A <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>, <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>, or the columns of a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> can be directly backed by a <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.ChunkedArray.html#pyarrow.ChunkedArray" title="(in Apache Arrow v25.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.ChunkedArray</span></code></a>
+<p>A <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>, <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>, or the columns of a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> can be directly backed by a <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.ChunkedArray.html#pyarrow.ChunkedArray" title="(in Apache Arrow v25.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.ChunkedArray</span></code></a>
 which is similar to a NumPy array. To construct these from the main pandas data structures, you can pass in a string of the type followed by
 <code class="docutils literal notranslate"><span class="pre">[pyarrow]</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;int64[pyarrow]&quot;</span></code> into the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> parameter</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32[pyarrow]&quot;</span><span class="p">)</span>
@@ -638,7 +638,7 @@ into <a class="reference internal" href="../reference/api/pandas.ArrowDtype.html
 <span class="go">1  &lt;NA&gt;  -1.23</span>
 </pre></div>
 </div>
-<p>If you already have an <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.Array.html#pyarrow.Array" title="(in Apache Arrow v25.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Array</span></code></a> or <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.ChunkedArray.html#pyarrow.ChunkedArray" title="(in Apache Arrow v25.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.ChunkedArray</span></code></a>,
+<p>If you already have an <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.Array.html#pyarrow.Array" title="(in Apache Arrow v25.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Array</span></code></a> or <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.ChunkedArray.html#pyarrow.ChunkedArray" title="(in Apache Arrow v25.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.ChunkedArray</span></code></a>,
 you can pass it into <a class="reference internal" href="../reference/api/pandas.arrays.ArrowExtensionArray.html#pandas.arrays.ArrowExtensionArray" title="pandas.arrays.ArrowExtensionArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.ArrowExtensionArray</span></code></a> to construct the associated <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>, <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>
 or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> object.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="n">pa_array</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
@@ -657,13 +657,13 @@ or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pa
 <span class="go">dtype: map&lt;string, string&gt;[pyarrow]</span>
 </pre></div>
 </div>
-<p>To retrieve a pyarrow <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.ChunkedArray.html#pyarrow.ChunkedArray" title="(in Apache Arrow v25.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.ChunkedArray</span></code></a> from a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>, you can call
+<p>To retrieve a pyarrow <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.ChunkedArray.html#pyarrow.ChunkedArray" title="(in Apache Arrow v25.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.ChunkedArray</span></code></a> from a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>, you can call
 the pyarrow array constructor on the <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint8[pyarrow]&quot;</span><span class="p">)</span>
 
 <span class="gp">In [30]: </span><span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ser</span><span class="p">)</span>
 <span class="gh">Out[30]: </span>
-<span class="go">&lt;pyarrow.lib.UInt8Array object at 0x7f9ae028a3e0&gt;</span>
+<span class="go">&lt;pyarrow.lib.UInt8Array object at 0x7f9e163a16c0&gt;</span>
 <span class="go">[</span>
 <span class="go">  1,</span>
 <span class="go">  2,</span>
@@ -674,7 +674,7 @@ the pyarrow array constructor on the <a class="reference internal" href="../refe
 
 <span class="gp">In [32]: </span><span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
 <span class="gh">Out[32]: </span>
-<span class="go">&lt;pyarrow.lib.UInt8Array object at 0x7f9ae03fae00&gt;</span>
+<span class="go">&lt;pyarrow.lib.UInt8Array object at 0x7f9e16505f60&gt;</span>
 <span class="go">[</span>
 <span class="go">  1,</span>
 <span class="go">  2,</span>
@@ -682,8 +682,8 @@ the pyarrow array constructor on the <a class="reference internal" href="../refe
 <span class="go">]</span>
 </pre></div>
 </div>
-<p>To convert a <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table" title="(in Apache Arrow v25.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code></a> to a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>, you can call the
-<a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table.to_pandas" title="(in Apache Arrow v25.0.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pyarrow.Table.to_pandas()</span></code></a> method with <code class="docutils literal notranslate"><span class="pre">types_mapper=pd.ArrowDtype</span></code>.</p>
+<p>To convert a <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table" title="(in Apache Arrow v25.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code></a> to a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>, you can call the
+<a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table.to_pandas" title="(in Apache Arrow v25.0.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pyarrow.Table.to_pandas()</span></code></a> method with <code class="docutils literal notranslate"><span class="pre">types_mapper=pd.ArrowDtype</span></code>.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [33]: </span><span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">([</span><span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="nb">type</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">int64</span><span class="p">())],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">])</span>
 
 <span class="gp">In [34]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">(</span><span class="n">types_mapper</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">)</span>
