@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.tseries.holiday.AbstractHolidayCalendar &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>pandas.tseries.holiday.AbstractHolidayCalendar &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -62,11 +62,11 @@
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.tseries.holiday.Holiday" href="pandas.tseries.holiday.Holiday.html" />
-    <link rel="prev" title="pandas.tseries.frequencies.to_offset" href="pandas.tseries.frequencies.to_offset.html" />
+    <link rel="next" title="pandas.tseries.holiday.USFederalHolidayCalendar" href="pandas.tseries.holiday.USFederalHolidayCalendar.html" />
+    <link rel="prev" title="pandas.tseries.holiday.Holiday.dates" href="pandas.tseries.holiday.Holiday.dates.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -525,14 +525,14 @@
 <h1>pandas.tseries.holiday.AbstractHolidayCalendar<a class="headerlink" href="#pandas-tseries-holiday-abstractholidaycalendar" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pandas.tseries.holiday.AbstractHolidayCalendar">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.tseries.holiday.</span></span><span class="sig-name descname"><span class="pre">AbstractHolidayCalendar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/tseries/holiday.py#L499-L772"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.tseries.holiday.AbstractHolidayCalendar" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.tseries.holiday.</span></span><span class="sig-name descname"><span class="pre">AbstractHolidayCalendar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rules</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/tseries/holiday.py#L855-L1128"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.tseries.holiday.AbstractHolidayCalendar" title="Link to this definition">#</a></dt>
 <dd><p>Abstract interface to create holidays following certain rules.</p>
 <p>A subclass normally defines its holidays by setting <code class="docutils literal notranslate"><span class="pre">rules</span></code> to a list
 of <a class="reference internal" href="pandas.tseries.holiday.Holiday.html#pandas.tseries.holiday.Holiday" title="pandas.tseries.holiday.Holiday"><code class="xref py py-class docutils literal notranslate"><span class="pre">Holiday</span></code></a> instances directly on the
 class body. Alternatively, a set of rules can be passed to the
 constructor. The calendar can then be used to compute the holiday
 dates falling within a given date range via
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">holidays()</span></code>.</p>
+<a class="reference internal" href="pandas.tseries.holiday.AbstractHolidayCalendar.holidays.html#pandas.tseries.holiday.AbstractHolidayCalendar.holidays" title="pandas.tseries.holiday.AbstractHolidayCalendar.holidays"><code class="xref py py-meth docutils literal notranslate"><span class="pre">holidays()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -556,8 +556,8 @@ dates falling within a given date range via
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas.tseries.holiday</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractHolidayCalendar</span><span class="p">,</span> <span class="n">USLaborDay</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyCalendar</span><span class="p">(</span><span class="n">AbstractHolidayCalendar</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">rules</span> <span class="o">=</span> <span class="p">[</span><span class="n">USLaborDay</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">MyCalendar</span><span class="p">()</span><span class="o">.</span><span class="n">holidays</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2020-12-31&quot;</span><span class="p">)</span>
-<span class="go">DatetimeIndex([&#39;2020-09-07&#39;], dtype=&#39;datetime64[us]&#39;, freq=None)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">MyCalendar</span><span class="p">()</span><span class="o">.</span><span class="n">holidays</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">"2020-01-01"</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">"2020-12-31"</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2020-09-07'], dtype='datetime64[us]', freq=None)</span>
 </pre></div>
 </div>
 <p class="rubric">Attributes</p>
@@ -578,16 +578,16 @@ dates falling within a given date range via
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">holidays</span></code>([start, end, return_name])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.tseries.holiday.AbstractHolidayCalendar.holidays.html#pandas.tseries.holiday.AbstractHolidayCalendar.holidays" title="pandas.tseries.holiday.AbstractHolidayCalendar.holidays"><code class="xref py py-obj docutils literal notranslate"><span class="pre">holidays</span></code></a>([start, end, return_name])</p></td>
 <td><p>Return a curve with holidays between start_date and end_date.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code>(other[, inplace])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.tseries.holiday.AbstractHolidayCalendar.merge.html#pandas.tseries.holiday.AbstractHolidayCalendar.merge" title="pandas.tseries.holiday.AbstractHolidayCalendar.merge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code></a>(other[, inplace])</p></td>
 <td><p>Merge holiday calendars together.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge_class</span></code>(base, other)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.tseries.holiday.AbstractHolidayCalendar.merge_class.html#pandas.tseries.holiday.AbstractHolidayCalendar.merge_class" title="pandas.tseries.holiday.AbstractHolidayCalendar.merge_class"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge_class</span></code></a>(base, other)</p></td>
 <td><p>Merge holiday calendars together.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">rule_from_name</span></code>(name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.tseries.holiday.AbstractHolidayCalendar.rule_from_name.html#pandas.tseries.holiday.AbstractHolidayCalendar.rule_from_name" title="pandas.tseries.holiday.AbstractHolidayCalendar.rule_from_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rule_from_name</span></code></a>(name)</p></td>
 <td><p>Return the rule for the holiday with the given name.</p></td>
 </tr>
 </tbody>
@@ -608,20 +608,20 @@ dates falling within a given date range via
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="pandas.tseries.frequencies.to_offset.html"
+       href="pandas.tseries.holiday.Holiday.dates.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">pandas.tseries.frequencies.to_offset</p>
+        <p class="prev-next-title">pandas.tseries.holiday.Holiday.dates</p>
       </div>
     </a>
     <a class="right-next"
-       href="pandas.tseries.holiday.Holiday.html"
+       href="pandas.tseries.holiday.USFederalHolidayCalendar.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">pandas.tseries.holiday.Holiday</p>
+        <p class="prev-next-title">pandas.tseries.holiday.USFederalHolidayCalendar</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

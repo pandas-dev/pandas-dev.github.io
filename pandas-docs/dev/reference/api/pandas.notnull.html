@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.notnull &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>pandas.notnull &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.notna" href="pandas.notna.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -598,7 +598,7 @@ corresponding element is valid.</p>
 </div>
 <p class="rubric">Examples</p>
 <p>Scalar arguments (including strings) result in a scalar boolean.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="s2">&quot;dog&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="s2">"dog"</span><span class="p">)</span>
 <span class="go">True</span>
 </pre></div>
 </div>
@@ -621,16 +621,16 @@ corresponding element is valid.</p>
 </pre></div>
 </div>
 <p>For indexes, an ndarray of booleans is returned.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">([</span><span class="s2">&quot;2017-07-05&quot;</span><span class="p">,</span> <span class="s2">&quot;2017-07-06&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;2017-07-08&quot;</span><span class="p">])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">([</span><span class="s2">"2017-07-05"</span><span class="p">,</span> <span class="s2">"2017-07-06"</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"2017-07-08"</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">index</span>
-<span class="go">DatetimeIndex([&#39;2017-07-05&#39;, &#39;2017-07-06&#39;, &#39;NaT&#39;, &#39;2017-07-08&#39;],</span>
-<span class="go">              dtype=&#39;datetime64[us]&#39;, freq=None)</span>
+<span class="go">DatetimeIndex(['2017-07-05', '2017-07-06', 'NaT', '2017-07-08'],</span>
+<span class="go">              dtype='datetime64[us]', freq=None)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
 <span class="go">array([ True,  True, False,  True])</span>
 </pre></div>
 </div>
 <p>For Series and DataFrame, the same type is returned, containing booleans.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">&quot;ant&quot;</span><span class="p">,</span> <span class="s2">&quot;bee&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;fly&quot;</span><span class="p">]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">"ant"</span><span class="p">,</span> <span class="s2">"bee"</span><span class="p">,</span> <span class="s2">"cat"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"dog"</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"fly"</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">     0    1    2</span>
 <span class="go">0  ant  bee  cat</span>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.TimedeltaIndex.mean &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>pandas.TimedeltaIndex.mean &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.TimedeltaIndex.to_frame" href="pandas.TimedeltaIndex.to_frame.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -810,21 +810,21 @@ values in the index, optionally skipping NaT values.</p>
 <p>mean is only defined for Datetime and Timedelta dtypes, not for Period.</p>
 <p class="rubric">Examples</p>
 <p>For <a class="reference internal" href="pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DatetimeIndex</span></code></a>:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2001-01-01 00:00&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2001-01-01 00:00"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span>
-<span class="go">DatetimeIndex([&#39;2001-01-01&#39;, &#39;2001-01-02&#39;, &#39;2001-01-03&#39;],</span>
-<span class="go">              dtype=&#39;datetime64[us]&#39;, freq=&#39;D&#39;)</span>
+<span class="go">DatetimeIndex(['2001-01-01', '2001-01-02', '2001-01-03'],</span>
+<span class="go">              dtype='datetime64[us]', freq='D')</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="go">Timestamp(&#39;2001-01-02 00:00:00&#39;)</span>
+<span class="go">Timestamp('2001-01-02 00:00:00')</span>
 </pre></div>
 </div>
 <p>For <a class="reference internal" href="pandas.TimedeltaIndex.html#pandas.TimedeltaIndex" title="pandas.TimedeltaIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.TimedeltaIndex</span></code></a>:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span>
-<span class="go">TimedeltaIndex([&#39;1 days&#39;, &#39;2 days&#39;, &#39;3 days&#39;],</span>
-<span class="go">                dtype=&#39;timedelta64[s]&#39;, freq=None)</span>
+<span class="go">TimedeltaIndex(['1 days', '2 days', '3 days'],</span>
+<span class="go">                dtype='timedelta64[s]', freq=None)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="go">Timedelta(&#39;2 days 00:00:00&#39;)</span>
+<span class="go">Timedelta('2 days 00:00:00')</span>
 </pre></div>
 </div>
 </dd></dl>

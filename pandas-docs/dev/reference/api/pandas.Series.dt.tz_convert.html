@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.Series.dt.tz_convert &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>pandas.Series.dt.tz_convert &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.Series.dt.tz_localize" href="pandas.Series.dt.tz_localize.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -917,43 +917,43 @@ convert to UTC and remove the timezone information.</p>
 <p>With the <cite>tz</cite> parameter, we can change the DatetimeIndex
 to other time zones:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dti</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2014-08-01 09:00&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">&quot;Europe/Berlin&quot;</span>
+<span class="gp">... </span>    <span class="n">start</span><span class="o">=</span><span class="s2">"2014-08-01 09:00"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"h"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">"Europe/Berlin"</span>
 <span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dti</span>
-<span class="go">DatetimeIndex([&#39;2014-08-01 09:00:00+02:00&#39;,</span>
-<span class="go">               &#39;2014-08-01 10:00:00+02:00&#39;,</span>
-<span class="go">               &#39;2014-08-01 11:00:00+02:00&#39;],</span>
-<span class="go">              dtype=&#39;datetime64[us, Europe/Berlin]&#39;, freq=&#39;h&#39;)</span>
+<span class="go">DatetimeIndex(['2014-08-01 09:00:00+02:00',</span>
+<span class="go">               '2014-08-01 10:00:00+02:00',</span>
+<span class="go">               '2014-08-01 11:00:00+02:00'],</span>
+<span class="go">              dtype='datetime64[us, Europe/Berlin]', freq='h')</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dti</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s2">&quot;US/Central&quot;</span><span class="p">)</span>
-<span class="go">DatetimeIndex([&#39;2014-08-01 02:00:00-05:00&#39;,</span>
-<span class="go">               &#39;2014-08-01 03:00:00-05:00&#39;,</span>
-<span class="go">               &#39;2014-08-01 04:00:00-05:00&#39;],</span>
-<span class="go">              dtype=&#39;datetime64[us, US/Central]&#39;, freq=&#39;h&#39;)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dti</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s2">"US/Central"</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2014-08-01 02:00:00-05:00',</span>
+<span class="go">               '2014-08-01 03:00:00-05:00',</span>
+<span class="go">               '2014-08-01 04:00:00-05:00'],</span>
+<span class="go">              dtype='datetime64[us, US/Central]', freq='h')</span>
 </pre></div>
 </div>
 <p>With the <code class="docutils literal notranslate"><span class="pre">tz=None</span></code>, we can remove the timezone (after converting
 to UTC if necessary):</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dti</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">start</span><span class="o">=</span><span class="s2">&quot;2014-08-01 09:00&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">&quot;Europe/Berlin&quot;</span>
+<span class="gp">... </span>    <span class="n">start</span><span class="o">=</span><span class="s2">"2014-08-01 09:00"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"h"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">"Europe/Berlin"</span>
 <span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dti</span>
-<span class="go">DatetimeIndex([&#39;2014-08-01 09:00:00+02:00&#39;,</span>
-<span class="go">               &#39;2014-08-01 10:00:00+02:00&#39;,</span>
-<span class="go">               &#39;2014-08-01 11:00:00+02:00&#39;],</span>
-<span class="go">                dtype=&#39;datetime64[us, Europe/Berlin]&#39;, freq=&#39;h&#39;)</span>
+<span class="go">DatetimeIndex(['2014-08-01 09:00:00+02:00',</span>
+<span class="go">               '2014-08-01 10:00:00+02:00',</span>
+<span class="go">               '2014-08-01 11:00:00+02:00'],</span>
+<span class="go">                dtype='datetime64[us, Europe/Berlin]', freq='h')</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dti</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-<span class="go">DatetimeIndex([&#39;2014-08-01 07:00:00&#39;,</span>
-<span class="go">               &#39;2014-08-01 08:00:00&#39;,</span>
-<span class="go">               &#39;2014-08-01 09:00:00&#39;],</span>
-<span class="go">                dtype=&#39;datetime64[us]&#39;, freq=&#39;h&#39;)</span>
+<span class="go">DatetimeIndex(['2014-08-01 07:00:00',</span>
+<span class="go">               '2014-08-01 08:00:00',</span>
+<span class="go">               '2014-08-01 09:00:00'],</span>
+<span class="go">                dtype='datetime64[us]', freq='h')</span>
 </pre></div>
 </div>
 </dd></dl>

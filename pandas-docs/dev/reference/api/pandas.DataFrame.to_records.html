@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.DataFrame.to_records &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>pandas.DataFrame.to_records &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.DataFrame.to_dict" href="pandas.DataFrame.to_dict.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -783,47 +783,47 @@ of the DataFrame as entries.</p>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">   A     B</span>
 <span class="go">a  1  0.50</span>
 <span class="go">b  2  0.75</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_records</span><span class="p">()</span>
-<span class="go">rec.array([(&#39;a&#39;, 1, 0.5 ), (&#39;b&#39;, 2, 0.75)],</span>
-<span class="go">          dtype=[(&#39;index&#39;, &#39;O&#39;), (&#39;A&#39;, &#39;&lt;i8&#39;), (&#39;B&#39;, &#39;&lt;f8&#39;)])</span>
+<span class="go">rec.array([('a', 1, 0.5 ), ('b', 2, 0.75)],</span>
+<span class="go">          dtype=[('index', 'O'), ('A', '&lt;i8'), ('B', '&lt;f8')])</span>
 </pre></div>
 </div>
 <p>If the DataFrame index has no label then the recarray field name
 is set to ‘index’. If the index has a label then this is used as the
 field name:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;I&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"I"</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_records</span><span class="p">()</span>
-<span class="go">rec.array([(&#39;a&#39;, 1, 0.5 ), (&#39;b&#39;, 2, 0.75)],</span>
-<span class="go">          dtype=[(&#39;I&#39;, &#39;O&#39;), (&#39;A&#39;, &#39;&lt;i8&#39;), (&#39;B&#39;, &#39;&lt;f8&#39;)])</span>
+<span class="go">rec.array([('a', 1, 0.5 ), ('b', 2, 0.75)],</span>
+<span class="go">          dtype=[('I', 'O'), ('A', '&lt;i8'), ('B', '&lt;f8')])</span>
 </pre></div>
 </div>
 <p>The index can be excluded from the record array:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_records</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="go">rec.array([(1, 0.5 ), (2, 0.75)],</span>
-<span class="go">          dtype=[(&#39;A&#39;, &#39;&lt;i8&#39;), (&#39;B&#39;, &#39;&lt;f8&#39;)])</span>
+<span class="go">          dtype=[('A', '&lt;i8'), ('B', '&lt;f8')])</span>
 </pre></div>
 </div>
 <p>Data types can be specified for the columns:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_records</span><span class="p">(</span><span class="n">column_dtypes</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="s2">&quot;int32&quot;</span><span class="p">})</span>
-<span class="go">rec.array([(&#39;a&#39;, 1, 0.5 ), (&#39;b&#39;, 2, 0.75)],</span>
-<span class="go">          dtype=[(&#39;I&#39;, &#39;O&#39;), (&#39;A&#39;, &#39;&lt;i4&#39;), (&#39;B&#39;, &#39;&lt;f8&#39;)])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_records</span><span class="p">(</span><span class="n">column_dtypes</span><span class="o">=</span><span class="p">{</span><span class="s2">"A"</span><span class="p">:</span> <span class="s2">"int32"</span><span class="p">})</span>
+<span class="go">rec.array([('a', 1, 0.5 ), ('b', 2, 0.75)],</span>
+<span class="go">          dtype=[('I', 'O'), ('A', '&lt;i4'), ('B', '&lt;f8')])</span>
 </pre></div>
 </div>
 <p>As well as for the index:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_records</span><span class="p">(</span><span class="n">index_dtypes</span><span class="o">=</span><span class="s2">&quot;&lt;S2&quot;</span><span class="p">)</span>
-<span class="go">rec.array([(b&#39;a&#39;, 1, 0.5 ), (b&#39;b&#39;, 2, 0.75)],</span>
-<span class="go">          dtype=[(&#39;I&#39;, &#39;S2&#39;), (&#39;A&#39;, &#39;&lt;i8&#39;), (&#39;B&#39;, &#39;&lt;f8&#39;)])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_records</span><span class="p">(</span><span class="n">index_dtypes</span><span class="o">=</span><span class="s2">"&lt;S2"</span><span class="p">)</span>
+<span class="go">rec.array([(b'a', 1, 0.5 ), (b'b', 2, 0.75)],</span>
+<span class="go">          dtype=[('I', 'S2'), ('A', '&lt;i8'), ('B', '&lt;f8')])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">index_dtypes</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&lt;S</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">index_dtypes</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"&lt;S</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_records</span><span class="p">(</span><span class="n">index_dtypes</span><span class="o">=</span><span class="n">index_dtypes</span><span class="p">)</span>
-<span class="go">rec.array([(b&#39;a&#39;, 1, 0.5 ), (b&#39;b&#39;, 2, 0.75)],</span>
-<span class="go">          dtype=[(&#39;I&#39;, &#39;S1&#39;), (&#39;A&#39;, &#39;&lt;i8&#39;), (&#39;B&#39;, &#39;&lt;f8&#39;)])</span>
+<span class="go">rec.array([(b'a', 1, 0.5 ), (b'b', 2, 0.75)],</span>
+<span class="go">          dtype=[('I', 'S1'), ('A', '&lt;i8'), ('B', '&lt;f8')])</span>
 </pre></div>
 </div>
 </dd></dl>

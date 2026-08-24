@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas docstring guide &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>pandas docstring guide &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Contributing to the documentation" href="contributing_documentation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -529,7 +529,7 @@ automatically from docstrings. <a class="reference external" href="https://www.s
 this purpose.</p>
 <p>The next example gives an idea of what a docstring looks like:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Add up two integer numbers.</span>
 
 <span class="sd">    This function simply wraps the ``+`` operator, and does not</span>
@@ -560,7 +560,7 @@ this purpose.</p>
 <span class="sd">    25</span>
 <span class="sd">    &gt;&gt;&gt; add(10, -10)</span>
 <span class="sd">    0</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
 </pre></div>
 </div>
@@ -615,32 +615,32 @@ for details.</p>
 </div>
 <p><strong>Good:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_values</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Add the values in ``arr``.</span>
 
 <span class="sd">    This is equivalent to Python ``sum`` of :meth:`pandas.Series.sum`.</span>
 
 <span class="sd">    Some sections are omitted here for simplicity.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Bad:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">():</span>
 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Some function.</span>
+<span class="w">    </span><span class="sd">"""Some function.</span>
 
 <span class="sd">    With several mistakes in the docstring.</span>
 
 <span class="sd">    It has a blank line after the signature ``def func():``.</span>
 
-<span class="sd">    The text &#39;Some function&#39; should go in the line after the</span>
+<span class="sd">    The text 'Some function' should go in the line after the</span>
 <span class="sd">    opening quotes of the docstring, not in the same line.</span>
 
 <span class="sd">    There is a blank line between the docstring and the first line</span>
 <span class="sd">    of code ``foo = 1``.</span>
 
-<span class="sd">    The closing quotes should be in the next line, not in this one.&quot;&quot;&quot;</span>
+<span class="sd">    The closing quotes should be in the next line, not in this one."""</span>
 
     <span class="n">foo</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">bar</span> <span class="o">=</span> <span class="mi">2</span>
@@ -658,49 +658,49 @@ details. For functions and methods, the short summary must start with an
 infinitive verb.</p>
 <p><strong>Good:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Cast Series type.</span>
 
 <span class="sd">    This section will provide further details.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
 <p><strong>Bad:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Casts Series type.</span>
 
 <span class="sd">    Verb in third-person of the present simple, should be infinitive.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Method to cast Series type.</span>
 
 <span class="sd">    Does not start with verb.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Cast Series type</span>
 
 <span class="sd">    Missing dot at the end.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Cast Series type from its current type to the new type defined in</span>
 <span class="sd">    the parameter dtype.</span>
 
-<span class="sd">    Summary is too verbose and doesn&#39;t fit in a single line.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    Summary is too verbose and doesn't fit in a single line.</span>
+<span class="sd">    """</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
@@ -715,7 +715,7 @@ Every paragraph in the extended summary ends with a dot.</p>
 <p>The extended summary should provide details on why the function is useful and
 their use cases, if it is not too generic.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">unstack</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Pivot a row index to columns.</span>
 
 <span class="sd">    When using a MultiIndex, a level can be pivoted so each value in</span>
@@ -725,7 +725,7 @@ their use cases, if it is not too generic.</p>
 
 <span class="sd">    The index level will be automatically removed from the index when added</span>
 <span class="sd">    as columns.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
@@ -761,8 +761,8 @@ provided. In this case we will use <code class="docutils literal notranslate"><s
 would be used, then we will specify “str, int or None, default None”.</p>
 <p><strong>Good:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Series</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Generate a plot.</span>
 
 <span class="sd">        Render the data in the Series as a matplotlib plot of the</span>
@@ -772,19 +772,19 @@ would be used, then we will specify “str, int or None, default None”.</p>
 <span class="sd">        ----------</span>
 <span class="sd">        kind : str</span>
 <span class="sd">            Kind of matplotlib plot.</span>
-<span class="sd">        color : str, default &#39;blue&#39;</span>
+<span class="sd">        color : str, default 'blue'</span>
 <span class="sd">            Color name or rgb code.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            These parameters will be passed to the matplotlib plotting</span>
 <span class="sd">            function.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span>
 </pre></div>
 </div>
 <p><strong>Bad:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Series</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Generate a plot.</span>
 
 <span class="sd">        Render the data in the Series as a matplotlib plot of the</span>
@@ -804,7 +804,7 @@ would be used, then we will specify “str, int or None, default None”.</p>
 
 <span class="sd">        kind: str</span>
 <span class="sd">            kind of matplotlib plot</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span>
 </pre></div>
 </div>
@@ -895,7 +895,7 @@ one value (a tuple of values).</p>
 “Parameters”. Also, the description must finish with a dot.</p>
 <p>For example, with a single value:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sample</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Generate and return a random number.</span>
 
 <span class="sd">    The value is sampled from a continuous uniform distribution between</span>
@@ -905,7 +905,7 @@ one value (a tuple of values).</p>
 <span class="sd">    -------</span>
 <span class="sd">    float</span>
 <span class="sd">        Random number generated.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -913,7 +913,7 @@ one value (a tuple of values).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">string</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">random_letters</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Generate and return a sequence of random letters.</span>
 
 <span class="sd">    The length of the returned string is also random, and is also</span>
@@ -925,16 +925,16 @@ one value (a tuple of values).</p>
 <span class="sd">        Length of the returned string.</span>
 <span class="sd">    letters : str</span>
 <span class="sd">        String of random letters.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-    <span class="n">letters</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">)</span>
+    <span class="n">letters</span> <span class="o">=</span> <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">)</span>
                       <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">length</span><span class="p">,</span> <span class="n">letters</span>
 </pre></div>
 </div>
 <p>If the method yields its value:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sample_values</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Generate an infinite sequence of random numbers.</span>
 
 <span class="sd">    The values are sampled from a continuous uniform distribution between</span>
@@ -944,7 +944,7 @@ one value (a tuple of values).</p>
 <span class="sd">    ------</span>
 <span class="sd">    float</span>
 <span class="sd">        Random number generated.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="k">yield</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
 </pre></div>
@@ -996,7 +996,7 @@ line, it can continue onto other lines which must be further indented.</p>
 <p>For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Series</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">head</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return the first 5 elements of the Series.</span>
 
 <span class="sd">        This function is mainly useful to preview the values of the</span>
@@ -1012,7 +1012,7 @@ line, it can continue onto other lines which must be further indented.</p>
 <span class="sd">        Series.tail : Return the last 5 elements of the Series.</span>
 <span class="sd">        Series.iloc : Return a slice of the elements in the Series,</span>
 <span class="sd">            which can also be used to return the first or last n.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1051,7 +1051,7 @@ used for extended functionality</p></li>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Series</span><span class="p">:</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">head</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return the first elements of the Series.</span>
 
 <span class="sd">        This function is mainly useful to preview the values of the</span>
@@ -1073,8 +1073,8 @@ used for extended functionality</p></li>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; ser = pd.Series([&#39;Ant&#39;, &#39;Bear&#39;, &#39;Cow&#39;, &#39;Dog&#39;, &#39;Falcon&#39;,</span>
-<span class="sd">        ...                &#39;Lion&#39;, &#39;Monkey&#39;, &#39;Rabbit&#39;, &#39;Zebra&#39;])</span>
+<span class="sd">        &gt;&gt;&gt; ser = pd.Series(['Ant', 'Bear', 'Cow', 'Dog', 'Falcon',</span>
+<span class="sd">        ...                'Lion', 'Monkey', 'Rabbit', 'Zebra'])</span>
 <span class="sd">        &gt;&gt;&gt; ser.head()</span>
 <span class="sd">        0   Ant</span>
 <span class="sd">        1   Bear</span>
@@ -1090,7 +1090,7 @@ used for extended functionality</p></li>
 <span class="sd">        1   Bear</span>
 <span class="sd">        2   Cow</span>
 <span class="sd">        dtype: object</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1134,7 +1134,7 @@ positional arguments <code class="docutils literal notranslate"><span class="pre
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Series</span><span class="p">:</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Compute the mean of the input.</span>
 
 <span class="sd">        Examples</span>
@@ -1142,12 +1142,12 @@ positional arguments <code class="docutils literal notranslate"><span class="pre
 <span class="sd">        &gt;&gt;&gt; ser = pd.Series([1, 2, 3])</span>
 <span class="sd">        &gt;&gt;&gt; ser.mean()</span>
 <span class="sd">        2</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span>
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">fillna</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Replace missing values by ``value``.</span>
 
 <span class="sd">        Examples</span>
@@ -1155,28 +1155,28 @@ positional arguments <code class="docutils literal notranslate"><span class="pre
 <span class="sd">        &gt;&gt;&gt; ser = pd.Series([1, np.nan, 3])</span>
 <span class="sd">        &gt;&gt;&gt; ser.fillna(0)</span>
 <span class="sd">        [1, 0, 3]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">groupby_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Group by index and return mean.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; ser = pd.Series([380., 370., 24., 26],</span>
-<span class="sd">        ...               name=&#39;max_speed&#39;,</span>
-<span class="sd">        ...               index=[&#39;falcon&#39;, &#39;falcon&#39;, &#39;parrot&#39;, &#39;parrot&#39;])</span>
+<span class="sd">        ...               name='max_speed',</span>
+<span class="sd">        ...               index=['falcon', 'falcon', 'parrot', 'parrot'])</span>
 <span class="sd">        &gt;&gt;&gt; ser.groupby_mean()</span>
 <span class="sd">        index</span>
 <span class="sd">        falcon    375.0</span>
 <span class="sd">        parrot     25.0</span>
 <span class="sd">        Name: max_speed, dtype: float64</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">case_sensitive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">nan</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return whether each value contains ``pattern``.</span>
 
 <span class="sd">        In this case, we are illustrating how to use sections, even</span>
@@ -1184,8 +1184,8 @@ positional arguments <code class="docutils literal notranslate"><span class="pre
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; ser = pd.Series(&#39;Antelope&#39;, &#39;Lion&#39;, &#39;Zebra&#39;, np.nan)</span>
-<span class="sd">        &gt;&gt;&gt; ser.contains(pattern=&#39;a&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ser = pd.Series('Antelope', 'Lion', 'Zebra', np.nan)</span>
+<span class="sd">        &gt;&gt;&gt; ser.contains(pattern='a')</span>
 <span class="sd">        0    False</span>
 <span class="sd">        1    False</span>
 <span class="sd">        2     True</span>
@@ -1197,7 +1197,7 @@ positional arguments <code class="docutils literal notranslate"><span class="pre
 <span class="sd">        With ``case_sensitive`` set to ``False`` we can match ``a`` with both</span>
 <span class="sd">        ``a`` and ``A``:</span>
 
-<span class="sd">        &gt;&gt;&gt; s.contains(pattern=&#39;a&#39;, case_sensitive=False)</span>
+<span class="sd">        &gt;&gt;&gt; s.contains(pattern='a', case_sensitive=False)</span>
 <span class="sd">        0     True</span>
 <span class="sd">        1    False</span>
 <span class="sd">        2     True</span>
@@ -1208,19 +1208,19 @@ positional arguments <code class="docutils literal notranslate"><span class="pre
 
 <span class="sd">        We can fill missing values in the output using the ``na`` parameter:</span>
 
-<span class="sd">        &gt;&gt;&gt; ser.contains(pattern=&#39;a&#39;, na=False)</span>
+<span class="sd">        &gt;&gt;&gt; ser.contains(pattern='a', na=False)</span>
 <span class="sd">        0    False</span>
 <span class="sd">        1    False</span>
 <span class="sd">        2     True</span>
 <span class="sd">        3    False</span>
 <span class="sd">        dtype: bool</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span>
 </pre></div>
 </div>
 <p><strong>Bad:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">method</span><span class="p">(</span><span class="n">foo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bar</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    A sample DataFrame method.</span>
 
 <span class="sd">    Do not import NumPy and pandas.</span>
@@ -1241,12 +1241,12 @@ positional arguments <code class="docutils literal notranslate"><span class="pre
 <span class="sd">    &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
 <span class="sd">    &gt;&gt;&gt; df = pd.DataFrame(np.random.randn(3, 3),</span>
-<span class="sd">    ...                   columns=(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;))</span>
+<span class="sd">    ...                   columns=('a', 'b', 'c'))</span>
 <span class="sd">    &gt;&gt;&gt; df.method(1)</span>
 <span class="sd">    21</span>
 <span class="sd">    &gt;&gt;&gt; df.method(bar=14)</span>
 <span class="sd">    123</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
@@ -1266,19 +1266,19 @@ meaningful is too much, such that creating it manually is very cumbersome.
 In those cases, always use a fixed random seed to make the generated examples
 predictable. Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;normal&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'normal'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)})</span>
 </pre></div>
 </div>
 </li>
 <li><p>If you have a code snippet that wraps multiple lines, you need to use ‘…’
 on the continued lines:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span>
-<span class="gp">... </span>                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">],</span>
+<span class="gp">... </span>                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">])</span>
 </pre></div>
 </div>
 </li>
 <li><p>If you want to show a case where an exception is raised, you can do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">&quot;712-01-01&quot;</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">"712-01-01"</span><span class="p">])</span>
 <span class="gt">Traceback (most recent call last):</span>
 <span class="gr">OutOfBoundsDatetime</span>: <span class="n">Out of bounds nanosecond timestamp: 712-01-01 00:00:00</span>
 </pre></div>
@@ -1310,7 +1310,7 @@ by the examples in the documentation, the <code class="docutils literal notransl
 plot will be generated automatically when building the documentation.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Series</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Generate a plot with the ``Series`` data.</span>
 
 <span class="sd">        Examples</span>
@@ -1321,7 +1321,7 @@ plot will be generated automatically when building the documentation.</p>
 
 <span class="sd">            &gt;&gt;&gt; ser = pd.Series([1, 2, 3])</span>
 <span class="sd">            &gt;&gt;&gt; ser.plot()</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">pass</span>
 </pre></div>
 </div>

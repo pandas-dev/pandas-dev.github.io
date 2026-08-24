@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.DataFrame.loc &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>pandas.DataFrame.loc &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.DataFrame.iat" href="pandas.DataFrame.iat.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -797,8 +797,8 @@ DataFrame) and that returns valid output for indexing (one of the above)</p></li
 <p><strong>Getting values</strong></p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]],</span>
-<span class="gp">... </span>    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cobra&quot;</span><span class="p">,</span> <span class="s2">&quot;viper&quot;</span><span class="p">,</span> <span class="s2">&quot;sidewinder&quot;</span><span class="p">],</span>
-<span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;max_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;shield&quot;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"cobra"</span><span class="p">,</span> <span class="s2">"viper"</span><span class="p">,</span> <span class="s2">"sidewinder"</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"max_speed"</span><span class="p">,</span> <span class="s2">"shield"</span><span class="p">],</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">            max_speed  shield</span>
@@ -808,27 +808,27 @@ DataFrame) and that returns valid output for indexing (one of the above)</p></li
 </pre></div>
 </div>
 <p>Single label. Note this returns the row as a Series.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;viper&quot;</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"viper"</span><span class="p">]</span>
 <span class="go">max_speed    4</span>
 <span class="go">shield       5</span>
 <span class="go">Name: viper, dtype: int64</span>
 </pre></div>
 </div>
 <p>List of labels. Note using <code class="docutils literal notranslate"><span class="pre">[[]]</span></code> returns a DataFrame.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;viper&quot;</span><span class="p">,</span> <span class="s2">&quot;sidewinder&quot;</span><span class="p">]]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">"viper"</span><span class="p">,</span> <span class="s2">"sidewinder"</span><span class="p">]]</span>
 <span class="go">            max_speed  shield</span>
 <span class="go">viper               4       5</span>
 <span class="go">sidewinder          7       8</span>
 </pre></div>
 </div>
 <p>Single label for row and column</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;cobra&quot;</span><span class="p">,</span> <span class="s2">&quot;shield&quot;</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"cobra"</span><span class="p">,</span> <span class="s2">"shield"</span><span class="p">]</span>
 <span class="go">np.int64(2)</span>
 </pre></div>
 </div>
 <p>Slice with labels for row and single label for column. As mentioned
 above, note that both the start and stop of the slice are included.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;cobra&quot;</span><span class="p">:</span><span class="s2">&quot;viper&quot;</span><span class="p">,</span> <span class="s2">&quot;max_speed&quot;</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"cobra"</span><span class="p">:</span><span class="s2">"viper"</span><span class="p">,</span> <span class="s2">"max_speed"</span><span class="p">]</span>
 <span class="go">cobra    1</span>
 <span class="go">viper    4</span>
 <span class="go">Name: max_speed, dtype: int64</span>
@@ -842,32 +842,32 @@ above, note that both the start and stop of the slice are included.</p>
 </div>
 <p>Alignable boolean Series:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
-<span class="gp">... </span>    <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;viper&quot;</span><span class="p">,</span> <span class="s2">&quot;sidewinder&quot;</span><span class="p">,</span> <span class="s2">&quot;cobra&quot;</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"viper"</span><span class="p">,</span> <span class="s2">"sidewinder"</span><span class="p">,</span> <span class="s2">"cobra"</span><span class="p">])</span>
 <span class="gp">... </span><span class="p">]</span>
 <span class="go">                     max_speed  shield</span>
 <span class="go">sidewinder          7       8</span>
 </pre></div>
 </div>
 <p>Conditional that returns a boolean Series</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;shield&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"shield"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">]</span>
 <span class="go">            max_speed  shield</span>
 <span class="go">sidewinder          7       8</span>
 </pre></div>
 </div>
 <p>Conditional that returns a boolean Series with column labels specified</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;shield&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;max_speed&quot;</span><span class="p">]]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"shield"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">,</span> <span class="p">[</span><span class="s2">"max_speed"</span><span class="p">]]</span>
 <span class="go">            max_speed</span>
 <span class="go">sidewinder          7</span>
 </pre></div>
 </div>
 <p>Multiple conditional using <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> that returns a boolean Series</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;max_speed&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;shield&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">)]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">"max_speed"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"shield"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">)]</span>
 <span class="go">            max_speed  shield</span>
 <span class="go">viper          4       5</span>
 </pre></div>
 </div>
 <p>Multiple conditional using <code class="docutils literal notranslate"><span class="pre">|</span></code> that returns a boolean Series</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;max_speed&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;shield&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">"max_speed"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"shield"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)]</span>
 <span class="go">            max_speed  shield</span>
 <span class="go">cobra               1       2</span>
 <span class="go">sidewinder          7       8</span>
@@ -883,7 +883,7 @@ consider using <a class="reference internal" href="../../user_guide/advanced.htm
 <p>See below for using <code class="docutils literal notranslate"><span class="pre">.loc[]</span></code> on MultiIndex DataFrames.</p>
 </div>
 <p>Callable that returns a boolean Series</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shield&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">8</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">"shield"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">8</span><span class="p">]</span>
 <span class="go">            max_speed  shield</span>
 <span class="go">sidewinder          7       8</span>
 </pre></div>
@@ -891,13 +891,13 @@ consider using <a class="reference internal" href="../../user_guide/advanced.htm
 <p><strong>Selecting along an explicit axis</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">.loc</span></code> can be called with an <code class="docutils literal notranslate"><span class="pre">axis</span></code> argument to apply a single
 indexer to that axis.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="s2">&quot;viper&quot;</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="s2">"viper"</span><span class="p">]</span>
 <span class="go">max_speed    4</span>
 <span class="go">shield       5</span>
 <span class="go">Name: viper, dtype: int64</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="s2">&quot;shield&quot;</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="s2">"shield"</span><span class="p">]</span>
 <span class="go">cobra         2</span>
 <span class="go">viper         5</span>
 <span class="go">sidewinder    8</span>
@@ -906,7 +906,7 @@ indexer to that axis.</p>
 </div>
 <p><strong>Setting values</strong></p>
 <p>Set value for all items matching the list of labels</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;viper&quot;</span><span class="p">,</span> <span class="s2">&quot;sidewinder&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;shield&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">50</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">"viper"</span><span class="p">,</span> <span class="s2">"sidewinder"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"shield"</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">            max_speed  shield</span>
 <span class="go">cobra               1       2</span>
@@ -915,7 +915,7 @@ indexer to that axis.</p>
 </pre></div>
 </div>
 <p>Set value for an entire row</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;cobra&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"cobra"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">            max_speed  shield</span>
 <span class="go">cobra              10      10</span>
@@ -924,7 +924,7 @@ indexer to that axis.</p>
 </pre></div>
 </div>
 <p>Set value for an entire column</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;max_speed&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">"max_speed"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">            max_speed  shield</span>
 <span class="go">cobra              30      10</span>
@@ -933,7 +933,7 @@ indexer to that axis.</p>
 </pre></div>
 </div>
 <p>Set value for rows matching callable condition</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;shield&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">35</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"shield"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">35</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">            max_speed  shield</span>
 <span class="go">cobra              30      10</span>
@@ -942,7 +942,7 @@ indexer to that axis.</p>
 </pre></div>
 </div>
 <p>Add value matching location</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;viper&quot;</span><span class="p">,</span> <span class="s2">&quot;shield&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">5</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"viper"</span><span class="p">,</span> <span class="s2">"shield"</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">            max_speed  shield</span>
 <span class="go">cobra              30      10</span>
@@ -952,7 +952,7 @@ indexer to that axis.</p>
 </div>
 <p>Setting using a <code class="docutils literal notranslate"><span class="pre">Series</span></code> or a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> sets the values matching the
 index labels, not the index positions.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">shuffled_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;viper&quot;</span><span class="p">,</span> <span class="s2">&quot;cobra&quot;</span><span class="p">,</span> <span class="s2">&quot;sidewinder&quot;</span><span class="p">]]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">shuffled_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">"viper"</span><span class="p">,</span> <span class="s2">"cobra"</span><span class="p">,</span> <span class="s2">"sidewinder"</span><span class="p">]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:]</span> <span class="o">+=</span> <span class="n">shuffled_df</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">            max_speed  shield</span>
@@ -966,7 +966,7 @@ index labels, not the index positions.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]],</span>
 <span class="gp">... </span>    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
-<span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;max_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;shield&quot;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"max_speed"</span><span class="p">,</span> <span class="s2">"shield"</span><span class="p">],</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">   max_speed  shield</span>
@@ -987,16 +987,16 @@ the start and stop of the slice are included.</p>
 <p><strong>Getting values with a MultiIndex</strong></p>
 <p>A number of examples using a DataFrame with a MultiIndex</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tuples</span> <span class="o">=</span> <span class="p">[</span>
-<span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;cobra&quot;</span><span class="p">,</span> <span class="s2">&quot;mark i&quot;</span><span class="p">),</span>
-<span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;cobra&quot;</span><span class="p">,</span> <span class="s2">&quot;mark ii&quot;</span><span class="p">),</span>
-<span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;sidewinder&quot;</span><span class="p">,</span> <span class="s2">&quot;mark i&quot;</span><span class="p">),</span>
-<span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;sidewinder&quot;</span><span class="p">,</span> <span class="s2">&quot;mark ii&quot;</span><span class="p">),</span>
-<span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;viper&quot;</span><span class="p">,</span> <span class="s2">&quot;mark ii&quot;</span><span class="p">),</span>
-<span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;viper&quot;</span><span class="p">,</span> <span class="s2">&quot;mark iii&quot;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">"cobra"</span><span class="p">,</span> <span class="s2">"mark i"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">"cobra"</span><span class="p">,</span> <span class="s2">"mark ii"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">"sidewinder"</span><span class="p">,</span> <span class="s2">"mark i"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">"sidewinder"</span><span class="p">,</span> <span class="s2">"mark ii"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">"viper"</span><span class="p">,</span> <span class="s2">"mark ii"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">"viper"</span><span class="p">,</span> <span class="s2">"mark iii"</span><span class="p">),</span>
 <span class="gp">... </span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span><span class="n">tuples</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">values</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">36</span><span class="p">]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;max_speed&quot;</span><span class="p">,</span> <span class="s2">&quot;shield&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"max_speed"</span><span class="p">,</span> <span class="s2">"shield"</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">                     max_speed  shield</span>
 <span class="go">cobra      mark i           12       2</span>
@@ -1008,14 +1008,14 @@ the start and stop of the slice are included.</p>
 </pre></div>
 </div>
 <p>Single label. Note this returns a DataFrame with a single index.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;cobra&quot;</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"cobra"</span><span class="p">]</span>
 <span class="go">         max_speed  shield</span>
 <span class="go">mark i          12       2</span>
 <span class="go">mark ii          0       4</span>
 </pre></div>
 </div>
 <p>Single index tuple. Note this returns a Series.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">&quot;cobra&quot;</span><span class="p">,</span> <span class="s2">&quot;mark ii&quot;</span><span class="p">)]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">"cobra"</span><span class="p">,</span> <span class="s2">"mark ii"</span><span class="p">)]</span>
 <span class="go">max_speed    0</span>
 <span class="go">shield       4</span>
 <span class="go">Name: (cobra, mark ii), dtype: int64</span>
@@ -1023,25 +1023,25 @@ the start and stop of the slice are included.</p>
 </div>
 <p>Single label for row and column. Similar to passing in a tuple, this
 returns a Series.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;cobra&quot;</span><span class="p">,</span> <span class="s2">&quot;mark i&quot;</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"cobra"</span><span class="p">,</span> <span class="s2">"mark i"</span><span class="p">]</span>
 <span class="go">max_speed    12</span>
 <span class="go">shield        2</span>
 <span class="go">Name: (cobra, mark i), dtype: int64</span>
 </pre></div>
 </div>
 <p>Single tuple. Note using <code class="docutils literal notranslate"><span class="pre">[[]]</span></code> returns a DataFrame.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[(</span><span class="s2">&quot;cobra&quot;</span><span class="p">,</span> <span class="s2">&quot;mark ii&quot;</span><span class="p">)]]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[(</span><span class="s2">"cobra"</span><span class="p">,</span> <span class="s2">"mark ii"</span><span class="p">)]]</span>
 <span class="go">               max_speed  shield</span>
 <span class="go">cobra mark ii          0       4</span>
 </pre></div>
 </div>
 <p>Single tuple for the index with a single label for the column</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">&quot;cobra&quot;</span><span class="p">,</span> <span class="s2">&quot;mark i&quot;</span><span class="p">),</span> <span class="s2">&quot;shield&quot;</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">"cobra"</span><span class="p">,</span> <span class="s2">"mark i"</span><span class="p">),</span> <span class="s2">"shield"</span><span class="p">]</span>
 <span class="go">np.int64(2)</span>
 </pre></div>
 </div>
 <p>Slice from index tuple to single label</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">&quot;cobra&quot;</span><span class="p">,</span> <span class="s2">&quot;mark i&quot;</span><span class="p">)</span> <span class="p">:</span> <span class="s2">&quot;viper&quot;</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">"cobra"</span><span class="p">,</span> <span class="s2">"mark i"</span><span class="p">)</span> <span class="p">:</span> <span class="s2">"viper"</span><span class="p">]</span>
 <span class="go">                     max_speed  shield</span>
 <span class="go">cobra      mark i           12       2</span>
 <span class="go">           mark ii           0       4</span>
@@ -1052,7 +1052,7 @@ returns a Series.</p>
 </pre></div>
 </div>
 <p>Slice from index tuple to index tuple</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">&quot;cobra&quot;</span><span class="p">,</span> <span class="s2">&quot;mark i&quot;</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="s2">&quot;viper&quot;</span><span class="p">,</span> <span class="s2">&quot;mark ii&quot;</span><span class="p">)]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">"cobra"</span><span class="p">,</span> <span class="s2">"mark i"</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="s2">"viper"</span><span class="p">,</span> <span class="s2">"mark ii"</span><span class="p">)]</span>
 <span class="go">                    max_speed  shield</span>
 <span class="go">cobra      mark i          12       2</span>
 <span class="go">           mark ii          0       4</span>
@@ -1067,9 +1067,9 @@ for more details and explanations of advanced indexing.</p>
 <p>When assigning a Series to .loc[row_indexer, col_indexer], pandas aligns
 the Series by index labels, not by order or position.</p>
 <p>Series assignment with .loc and index alignment:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># Note reversed order</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>  <span class="c1"># Aligns by index, not order</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">"B"</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>  <span class="c1"># Aligns by index, not order</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">   A   B</span>
 <span class="go">0  1  20.0</span>

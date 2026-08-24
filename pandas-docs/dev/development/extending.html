@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Extending pandas &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>Extending pandas &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Debugging C extensions" href="debugging_extensions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -528,7 +528,7 @@ pandas.</p>
 “namespaces” to pandas objects. All of these follow a similar convention: you
 decorate a class, providing the name of attribute to add. The class’s
 <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method gets the object being decorated. For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">extensions</span><span class="o">.</span><span class="n">register_dataframe_accessor</span><span class="p">(</span><span class="s2">&quot;geo&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">extensions</span><span class="o">.</span><span class="n">register_dataframe_accessor</span><span class="p">(</span><span class="s2">"geo"</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">GeoAccessor</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pandas_obj</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">(</span><span class="n">pandas_obj</span><span class="p">)</span>
@@ -537,8 +537,8 @@ decorate a class, providing the name of attribute to add. The class’s
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_validate</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
         <span class="c1"># verify there is a column latitude and a column longitude</span>
-        <span class="k">if</span> <span class="s2">&quot;latitude&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">columns</span> <span class="ow">or</span> <span class="s2">&quot;longitude&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Must have &#39;latitude&#39; and &#39;longitude&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">"latitude"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">columns</span> <span class="ow">or</span> <span class="s2">"longitude"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">"Must have 'latitude' and 'longitude'."</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">center</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -548,13 +548,13 @@ decorate a class, providing the name of attribute to add. The class’s
         <span class="k">return</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">lon</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span> <span class="nb">float</span><span class="p">(</span><span class="n">lat</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># plot this array&#39;s data on a map, e.g., using Cartopy</span>
+        <span class="c1"># plot this array's data on a map, e.g., using Cartopy</span>
         <span class="k">pass</span>
 </pre></div>
 </div>
 <p>Now users can access your methods using the <code class="docutils literal notranslate"><span class="pre">geo</span></code> namespace:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="p">{</span><span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)}</span>
+<span class="gp">... </span>    <span class="p">{</span><span class="s2">"longitude"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="s2">"latitude"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)}</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">center</span>
 <span class="go">(5.0, 10.0)</span>
@@ -804,13 +804,13 @@ you can retain subclasses through <code class="docutils literal notranslate"><sp
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">SubclassedSeries</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-<span class="go">&lt;class &#39;__main__.SubclassedSeries&#39;&gt;</span>
+<span class="go">&lt;class '__main__.SubclassedSeries'&gt;</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">to_framed</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">to_framed</span><span class="p">)</span>
-<span class="go">&lt;class &#39;__main__.SubclassedDataFrame&#39;&gt;</span>
+<span class="go">&lt;class '__main__.SubclassedDataFrame'&gt;</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">SubclassedDataFrame</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">SubclassedDataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">"C"</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">   A  B  C</span>
 <span class="go">0  1  4  7</span>
@@ -818,9 +818,9 @@ you can retain subclasses through <code class="docutils literal notranslate"><sp
 <span class="go">2  3  6  9</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="go">&lt;class &#39;__main__.SubclassedDataFrame&#39;&gt;</span>
+<span class="go">&lt;class '__main__.SubclassedDataFrame'&gt;</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sliced1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sliced1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">]]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sliced1</span>
 <span class="go">   A  B</span>
 <span class="go">0  1  4</span>
@@ -828,9 +828,9 @@ you can retain subclasses through <code class="docutils literal notranslate"><sp
 <span class="go">2  3  6</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">sliced1</span><span class="p">)</span>
-<span class="go">&lt;class &#39;__main__.SubclassedDataFrame&#39;&gt;</span>
+<span class="go">&lt;class '__main__.SubclassedDataFrame'&gt;</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sliced2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sliced2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"A"</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sliced2</span>
 <span class="go">0    1</span>
 <span class="go">1    2</span>
@@ -838,7 +838,7 @@ you can retain subclasses through <code class="docutils literal notranslate"><sp
 <span class="go">Name: A, dtype: int64</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">sliced2</span><span class="p">)</span>
-<span class="go">&lt;class &#39;__main__.SubclassedSeries&#39;&gt;</span>
+<span class="go">&lt;class '__main__.SubclassedSeries'&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -853,26 +853,26 @@ you can retain subclasses through <code class="docutils literal notranslate"><sp
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SubclassedDataFrame2</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
 
     <span class="c1"># temporary properties</span>
-    <span class="n">_internal_names</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">_internal_names</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;internal_cache&quot;</span><span class="p">]</span>
+    <span class="n">_internal_names</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">_internal_names</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"internal_cache"</span><span class="p">]</span>
     <span class="n">_internal_names_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">_internal_names</span><span class="p">)</span>
 
     <span class="c1"># normal properties</span>
-    <span class="n">_metadata</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;added_property&quot;</span><span class="p">]</span>
+    <span class="n">_metadata</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"added_property"</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_constructor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">SubclassedDataFrame2</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">SubclassedDataFrame2</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]})</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">SubclassedDataFrame2</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">"C"</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">   A  B  C</span>
 <span class="go">0  1  4  7</span>
 <span class="go">1  2  5  8</span>
 <span class="go">2  3  6  9</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">internal_cache</span> <span class="o">=</span> <span class="s2">&quot;cached&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">added_property</span> <span class="o">=</span> <span class="s2">&quot;property&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">internal_cache</span> <span class="o">=</span> <span class="s2">"cached"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">added_property</span> <span class="o">=</span> <span class="s2">"property"</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">internal_cache</span>
 <span class="go">cached</span>
@@ -880,11 +880,11 @@ you can retain subclasses through <code class="docutils literal notranslate"><sp
 <span class="go">property</span>
 
 <span class="go"># properties defined in _internal_names is reset after manipulation</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">internal_cache</span>
-<span class="go">AttributeError: &#39;SubclassedDataFrame2&#39; object has no attribute &#39;internal_cache&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">]]</span><span class="o">.</span><span class="n">internal_cache</span>
+<span class="go">AttributeError: 'SubclassedDataFrame2' object has no attribute 'internal_cache'</span>
 
 <span class="go"># properties defined in _metadata are retained</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">added_property</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">]]</span><span class="o">.</span><span class="n">added_property</span>
 <span class="go">property</span>
 </pre></div>
 </div>
@@ -895,7 +895,7 @@ you can retain subclasses through <code class="docutils literal notranslate"><sp
 <p>pandas can be extended with third-party plotting backends. The
 main idea is letting users select a plotting backend different than the provided
 one based on Matplotlib. For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;plotting.backend&quot;</span><span class="p">,</span> <span class="s2">&quot;backend.module&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"plotting.backend"</span><span class="p">,</span> <span class="s2">"backend.module"</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -909,8 +909,8 @@ to generate the plots.</p>
 <p>Libraries implementing the plotting backend should use <a class="reference external" href="https://setuptools.pypa.io/en/latest/userguide/entry_point.html">entry points</a>
 to make their backend discoverable to pandas. The key is <code class="docutils literal notranslate"><span class="pre">&quot;pandas_plotting_backends&quot;</span></code>. For example, pandas
 registers the default “matplotlib” backend in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p>
-<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[project.entry-points.</span><span class="s2">&quot;pandas_plotting_backends&quot;</span><span class="k">]</span>
-<span class="n">matplotlib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pandas:plotting._matplotlib&quot;</span>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[project.entry-points.</span><span class="s2">"pandas_plotting_backends"</span><span class="k">]</span>
+<span class="n">matplotlib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pandas:plotting._matplotlib"</span>
 </pre></div>
 </div>
 <p>More information on how to implement a third-party plotting backend can be found at
@@ -945,7 +945,7 @@ of my custom list, and setting it to a higher value, than the priority of the pa
 <span class="n">custom</span> <span class="o">=</span> <span class="n">CustomList</span><span class="p">()</span>
 <span class="n">series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
-<span class="c1"># Series refuses to add custom, since it&#39;s an unknown type with higher priority</span>
+<span class="c1"># Series refuses to add custom, since it's an unknown type with higher priority</span>
 <span class="k">assert</span> <span class="n">series</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">custom</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">NotImplemented</span>
 
 <span class="c1"># This will cause the custom class `__radd__` being used instead</span>

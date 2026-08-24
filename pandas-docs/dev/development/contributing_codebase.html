@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Contributing to the code base &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>Contributing to the code base &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas docstring guide" href="contributing_docstring.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -640,7 +640,7 @@ directive to the deprecated functions or methods.</p>
 the <code class="docutils literal notranslate"><span class="pre">pandas.util._decorators.deprecate</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas.util._decorators</span><span class="w"> </span><span class="kn">import</span> <span class="n">deprecate</span>
 
-<span class="n">deprecate</span><span class="p">(</span><span class="s1">&#39;old_func&#39;</span><span class="p">,</span> <span class="s1">&#39;new_func&#39;</span><span class="p">,</span> <span class="s1">&#39;1.1.0&#39;</span><span class="p">)</span>
+<span class="n">deprecate</span><span class="p">(</span><span class="s1">'old_func'</span><span class="p">,</span> <span class="s1">'new_func'</span><span class="p">,</span> <span class="s1">'1.1.0'</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Otherwise, you need to do it manually:</p>
@@ -649,13 +649,13 @@ the <code class="docutils literal notranslate"><span class="pre">pandas.util._de
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">old_func</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Summary of the function.</span>
+<span class="w">    </span><span class="sd">"""Summary of the function.</span>
 
 <span class="sd">    .. deprecated:: 1.1.0</span>
 <span class="sd">       Use new_func instead.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-        <span class="s1">&#39;Use new_func instead.&#39;</span><span class="p">,</span>
+        <span class="s1">'Use new_func instead.'</span><span class="p">,</span>
         <span class="ne">FutureWarning</span><span class="p">,</span>
         <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(),</span>
     <span class="p">)</span>
@@ -762,7 +762,7 @@ improve the pandas-builtin type annotations.</p></li>
 <p>Until pandas becomes a py.typed library, it is possible to easily experiment with the type
 annotations shipped with pandas by creating an empty file named “py.typed” in the pandas
 installation folder:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -c &quot;import pandas; import pathlib; (pathlib.Path(pandas.__path__[0]) / &#39;py.typed&#39;).touch()&quot;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -c "import pandas; import pathlib; (pathlib.Path(pandas.__path__[0]) / 'py.typed').touch()"
 </pre></div>
 </div>
 <p>The existence of the py.typed file signals to type checkers that pandas is already a py.typed
@@ -1044,7 +1044,7 @@ collection phase of pytest. For xfailing a test that involves multiple
 parameters, a fixture, or a combination of these, it is only possible to
 xfail during the testing phase. To do so, use the <code class="docutils literal notranslate"><span class="pre">request</span></code> fixture:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_xfail</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">mark</span> <span class="o">=</span> <span class="n">pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">xfail</span><span class="p">(</span><span class="n">raises</span><span class="o">=</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">reason</span><span class="o">=</span><span class="s2">&quot;Indicate why here&quot;</span><span class="p">)</span>
+    <span class="n">mark</span> <span class="o">=</span> <span class="n">pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">xfail</span><span class="p">(</span><span class="n">raises</span><span class="o">=</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">reason</span><span class="o">=</span><span class="s2">"Indicate why here"</span><span class="p">)</span>
     <span class="n">request</span><span class="o">.</span><span class="n">applymarker</span><span class="p">(</span><span class="n">mark</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1056,7 +1056,7 @@ is being raised, using <code class="docutils literal notranslate"><span class="p
 <span id="contributing-warnings"></span><h4><a class="toc-backref" href="#id17" role="doc-backlink">Testing a warning</a><a class="headerlink" href="#testing-a-warning" title="Link to this heading">#</a></h4>
 <p>Use <code class="docutils literal notranslate"><span class="pre">tm.assert_produces_warning</span></code> as a context manager to check that a block of code raises a warning
 and specify the warning message using the <code class="docutils literal notranslate"><span class="pre">match</span></code> argument.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tm</span><span class="o">.</span><span class="n">assert_produces_warning</span><span class="p">(</span><span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;the warning message&quot;</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tm</span><span class="o">.</span><span class="n">assert_produces_warning</span><span class="p">(</span><span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">"the warning message"</span><span class="p">):</span>
     <span class="n">pd</span><span class="o">.</span><span class="n">deprecated_function</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1069,7 +1069,7 @@ and specify the warning message using the <code class="docutils literal notransl
 warning itself (say because it’s going to be removed in the future, or because we’re
 matching a 3rd-party library’s behavior), then use <code class="docutils literal notranslate"><span class="pre">pytest.mark.filterwarnings</span></code> to
 ignore the error.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore:msg:category&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore:msg:category"</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">test_thing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">pass</span>
 </pre></div>
@@ -1079,8 +1079,8 @@ ignore the error.</p>
 <h4><a class="toc-backref" href="#id18" role="doc-backlink">Testing an exception</a><a class="headerlink" href="#testing-an-exception" title="Link to this heading">#</a></h4>
 <p>Use <a class="reference external" href="https://docs.pytest.org/en/latest/reference/reference.html#pytest-raises">pytest.raises</a> as a context manager
 with the specific exception subclass (i.e. never use <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a>) and the exception message in <code class="docutils literal notranslate"><span class="pre">match</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;an error&quot;</span><span class="p">):</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;an error&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">"an error"</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"an error"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1102,7 +1102,7 @@ lack of ownership of the server that is being connected to. To mock this interac
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">network</span>
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">single_cpu</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">test_network</span><span class="p">(</span><span class="n">httpserver</span><span class="p">):</span>
-    <span class="n">httpserver</span><span class="o">.</span><span class="n">serve_content</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;content&quot;</span><span class="p">)</span>
+    <span class="n">httpserver</span><span class="o">.</span><span class="n">serve_content</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">"content"</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">httpserver</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1117,17 +1117,17 @@ as a comment to a new test.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s1">&#39;dtype&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;int8&#39;</span><span class="p">,</span> <span class="s1">&#39;int16&#39;</span><span class="p">,</span> <span class="s1">&#39;int32&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">])</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s1">'dtype'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'int8'</span><span class="p">,</span> <span class="s1">'int16'</span><span class="p">,</span> <span class="s1">'int32'</span><span class="p">,</span> <span class="s1">'int64'</span><span class="p">])</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">test_dtypes</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
     <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">))</span> <span class="o">==</span> <span class="n">dtype</span>
 
 
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
-    <span class="s1">&#39;dtype&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;float32&#39;</span><span class="p">,</span> <span class="n">pytest</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s1">&#39;int16&#39;</span><span class="p">,</span> <span class="n">marks</span><span class="o">=</span><span class="n">pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">skip</span><span class="p">),</span>
-              <span class="n">pytest</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s1">&#39;int32&#39;</span><span class="p">,</span> <span class="n">marks</span><span class="o">=</span><span class="n">pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">xfail</span><span class="p">(</span>
-                  <span class="n">reason</span><span class="o">=</span><span class="s1">&#39;to show how it works&#39;</span><span class="p">))])</span>
+    <span class="s1">'dtype'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'float32'</span><span class="p">,</span> <span class="n">pytest</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s1">'int16'</span><span class="p">,</span> <span class="n">marks</span><span class="o">=</span><span class="n">pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">skip</span><span class="p">),</span>
+              <span class="n">pytest</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s1">'int32'</span><span class="p">,</span> <span class="n">marks</span><span class="o">=</span><span class="n">pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">xfail</span><span class="p">(</span>
+                  <span class="n">reason</span><span class="o">=</span><span class="s1">'to show how it works'</span><span class="p">))])</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">test_mark</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
-    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">))</span> <span class="o">==</span> <span class="s1">&#39;float32&#39;</span>
+    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">))</span> <span class="o">==</span> <span class="s1">'float32'</span>
 
 
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
@@ -1135,7 +1135,7 @@ as a comment to a new test.</p>
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
 
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;int8&#39;</span><span class="p">,</span> <span class="s1">&#39;int16&#39;</span><span class="p">,</span> <span class="s1">&#39;int32&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">])</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s1">'int8'</span><span class="p">,</span> <span class="s1">'int16'</span><span class="p">,</span> <span class="s1">'int32'</span><span class="p">,</span> <span class="s1">'int64'</span><span class="p">])</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">dtype</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">param</span>
 
@@ -1255,7 +1255,7 @@ pytest<span class="w"> </span>-n<span class="w"> </span>auto<span class="w"> </s
 </div>
 <p>If you’d like to speed things along further a more advanced use of this
 command would look like this</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>pandas<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;not slow and not network and not db and not single_cpu&quot;</span><span class="w"> </span>-r<span class="w"> </span>sxX
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>pandas<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">"not slow and not network and not db and not single_cpu"</span><span class="w"> </span>-r<span class="w"> </span>sxX
 </pre></div>
 </div>
 <p>In addition to the multithreaded performance increase this improves test
@@ -1289,12 +1289,12 @@ which has happened in the past, please set a seed before running the command
 and opening a bug report, that way we can reproduce it. Here’s an example
 for setting a seed on windows</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span><span class="nv">PYTHONHASHSEED</span><span class="o">=</span><span class="m">314159265</span>
-pytest<span class="w"> </span>pandas<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;not slow and not network and not db and not single_cpu&quot;</span><span class="w"> </span>-r<span class="w"> </span>sxX
+pytest<span class="w"> </span>pandas<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">"not slow and not network and not db and not single_cpu"</span><span class="w"> </span>-r<span class="w"> </span>sxX
 </pre></div>
 </div>
 <p>On Unix use</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONHASHSEED</span><span class="o">=</span><span class="m">314159265</span>
-pytest<span class="w"> </span>pandas<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;not slow and not network and not db and not single_cpu&quot;</span><span class="w"> </span>-r<span class="w"> </span>sxX
+pytest<span class="w"> </span>pandas<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">"not slow and not network and not db and not single_cpu"</span><span class="w"> </span>-r<span class="w"> </span>sxX
 </pre></div>
 </div>
 <p>For more, see the <a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a> documentation.</p>

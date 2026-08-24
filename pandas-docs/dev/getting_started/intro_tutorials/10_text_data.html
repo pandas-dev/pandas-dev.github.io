@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>How to manipulate textual data &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>How to manipulate textual data &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="How to handle time series data with ease" href="09_timeseries.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -557,7 +557,7 @@ consists of the following data columns:</p>
         </p>
         <a href="https://github.com/pandas-dev/pandas/raw/main/doc/data/titanic.csv" class="btn btn-dark btn-sm">To raw data</a>
     </div>
-</div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [2]: </span><span class="n">titanic</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/titanic.csv&quot;</span><span class="p">)</span>
+</div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [2]: </span><span class="n">titanic</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"data/titanic.csv"</span><span class="p">)</span>
 
 <span class="gp">In [3]: </span><span class="n">titanic</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="gh">Out[3]: </span>
@@ -577,7 +577,7 @@ consists of the following data columns:</p>
 <h1>How to manipulate textual data<a class="headerlink" href="#how-to-manipulate-textual-data" title="Link to this heading">#</a></h1>
 <ul class="task-bullet">
     <li><p>Make all name characters lowercase.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 <span class="gh">Out[4]: </span>
 <span class="go">0                                braund, mr. owen harris</span>
 <span class="go">1      cumings, mrs. john bradley (florence briggs th...</span>
@@ -587,7 +587,7 @@ consists of the following data columns:</p>
 <span class="go">                             ...                        </span>
 <span class="go">886                                montvila, rev. juozas</span>
 <span class="go">887                          graham, miss margaret edith</span>
-<span class="go">888              johnston, miss catherine helen &quot;carrie&quot;</span>
+<span class="go">888              johnston, miss catherine helen "carrie"</span>
 <span class="go">889                                behr, mr. karl howell</span>
 <span class="go">890                                  dooley, mr. patrick</span>
 <span class="go">Name: Name, Length: 891, dtype: str</span>
@@ -606,7 +606,7 @@ element-wise (remember <a class="reference internal" href="05_add_columns.html#m
 on each of the values of the columns.</p>
 <ul class="task-bullet">
     <li><p>Create a new column <code class="docutils literal notranslate"><span class="pre">Surname</span></code> that contains the surname of the passengers by extracting the part before the comma.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">)</span>
 <span class="gh">Out[5]: </span>
 <span class="go">0                             [Braund,  Mr. Owen Harris]</span>
 <span class="go">1      [Cumings,  Mrs. John Bradley (Florence Briggs ...</span>
@@ -616,7 +616,7 @@ on each of the values of the columns.</p>
 <span class="go">                             ...                        </span>
 <span class="go">886                             [Montvila,  Rev. Juozas]</span>
 <span class="go">887                       [Graham,  Miss Margaret Edith]</span>
-<span class="go">888           [Johnston,  Miss Catherine Helen &quot;Carrie&quot;]</span>
+<span class="go">888           [Johnston,  Miss Catherine Helen "Carrie"]</span>
 <span class="go">889                             [Behr,  Mr. Karl Howell]</span>
 <span class="go">890                               [Dooley,  Mr. Patrick]</span>
 <span class="go">Name: Name, Length: 891, dtype: object</span>
@@ -625,9 +625,9 @@ on each of the values of the columns.</p>
 <p>Using the <a class="reference internal" href="../../reference/api/pandas.Series.str.split.html#pandas.Series.str.split" title="pandas.Series.str.split"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.str.split()</span></code></a> method, each of the values is returned as a list of
 2 elements. The first element is the part before the comma and the
 second element is the part after the comma.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Surname&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">"Surname"</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="gp">In [7]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Surname&quot;</span><span class="p">]</span>
+<span class="gp">In [7]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">"Surname"</span><span class="p">]</span>
 <span class="gh">Out[7]: </span>
 <span class="go">0         Braund</span>
 <span class="go">1        Cumings</span>
@@ -652,7 +652,7 @@ concatenated to combine multiple functions at once!</p>
     <span class="badge badge-info">To user guide</span><p>More information on extracting parts of strings is available in the user guide section on <a class="reference internal" href="../../user_guide/text.html#text-split"><span class="std std-ref">splitting and replacing strings</span></a>.</p>
 </div><ul class="task-bullet">
     <li><p>Extract the passenger data about the countesses on board of the Titanic.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;Countess&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">"Countess"</span><span class="p">)</span>
 <span class="gh">Out[8]: </span>
 <span class="go">0      False</span>
 <span class="go">1      False</span>
@@ -668,7 +668,7 @@ concatenated to combine multiple functions at once!</p>
 <span class="go">Name: Name, Length: 891, dtype: bool</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">titanic</span><span class="p">[</span><span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;Countess&quot;</span><span class="p">)]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">titanic</span><span class="p">[</span><span class="n">titanic</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">"Countess"</span><span class="p">)]</span>
 <span class="gh">Out[9]: </span>
 <span class="go">     PassengerId  Survived  Pclass  ... Cabin Embarked Surname</span>
 <span class="go">759          760         1       1  ...   B77        S  Rothes</span>
@@ -696,7 +696,7 @@ the scope of this tutorial.</p>
     <span class="badge badge-info">To user guide</span><p>More information on extracting parts of strings is available in the user guide section on <a class="reference internal" href="../../user_guide/text.html#text-extract"><span class="std std-ref">string matching and extracting</span></a>.</p>
 </div><ul class="task-bullet">
     <li><p>Which passenger of the Titanic has the longest name?</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span>
 <span class="gh">Out[10]: </span>
 <span class="go">0      23</span>
 <span class="go">1      51</span>
@@ -716,7 +716,7 @@ the scope of this tutorial.</p>
 names in the <code class="docutils literal notranslate"><span class="pre">Name</span></code> column. By using pandas string methods, the
 <a class="reference internal" href="../../reference/api/pandas.Series.str.len.html#pandas.Series.str.len" title="pandas.Series.str.len"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.str.len()</span></code></a> function is applied to each of the names individually
 (element-wise).</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
 <span class="gh">Out[11]: </span><span class="go">307</span>
 </pre></div>
 </div>
@@ -724,8 +724,8 @@ names in the <code class="docutils literal notranslate"><span class="pre">Name</
 label, in the table for which the name length is the largest. The
 <a class="reference internal" href="../../reference/api/pandas.Series.idxmax.html#pandas.Series.idxmax" title="pandas.Series.idxmax"><code class="xref py py-meth docutils literal notranslate"><span class="pre">idxmax()</span></code></a> method does exactly that. It is not a string method and is
 applied to integers, so no <code class="docutils literal notranslate"><span class="pre">str</span></code> is used.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">titanic</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span><span class="o">.</span><span class="n">idxmax</span><span class="p">(),</span> <span class="s2">&quot;Name&quot;</span><span class="p">]</span>
-<span class="gh">Out[12]: </span><span class="go">&#39;Penasco y Castellana, Mrs. Victor de Satode (Maria Josefa Perez de Soto y Vallejo)&#39;</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">titanic</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">titanic</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span><span class="o">.</span><span class="n">idxmax</span><span class="p">(),</span> <span class="s2">"Name"</span><span class="p">]</span>
+<span class="gh">Out[12]: </span><span class="go">'Penasco y Castellana, Mrs. Victor de Satode (Maria Josefa Perez de Soto y Vallejo)'</span>
 </pre></div>
 </div>
 <p>Based on the index name of the row (<code class="docutils literal notranslate"><span class="pre">307</span></code>) and the column (<code class="docutils literal notranslate"><span class="pre">Name</span></code>),
@@ -734,9 +734,9 @@ we can do a selection using the <code class="docutils literal notranslate"><span
     </li>
 </ul><ul class="task-bullet">
     <li><p>In the “Sex” column, replace values of “male” by “M” and values of “female” by “F”.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Sex_short&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Sex&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;male&quot;</span><span class="p">:</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;female&quot;</span><span class="p">:</span> <span class="s2">&quot;F&quot;</span><span class="p">})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">"Sex_short"</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s2">"Sex"</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">"male"</span><span class="p">:</span> <span class="s2">"M"</span><span class="p">,</span> <span class="s2">"female"</span><span class="p">:</span> <span class="s2">"F"</span><span class="p">})</span>
 
-<span class="gp">In [14]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Sex_short&quot;</span><span class="p">]</span>
+<span class="gp">In [14]: </span><span class="n">titanic</span><span class="p">[</span><span class="s2">"Sex_short"</span><span class="p">]</span>
 <span class="gh">Out[14]: </span>
 <span class="go">0      M</span>
 <span class="go">1      F</span>
@@ -761,8 +761,8 @@ a <code class="docutils literal notranslate"><span class="pre">dictionary</span>
 <p>There is also a <a class="reference internal" href="../../reference/api/pandas.Series.str.replace.html#pandas.Series.str.replace" title="pandas.Series.str.replace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">replace()</span></code></a> method available to replace a
 specific set of characters. However, when having a mapping of multiple
 values, this would become:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Sex_short&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Sex&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;female&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">)</span>
-<span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Sex_short&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s2">&quot;Sex_short&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;male&quot;</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="p">[</span><span class="s2">"Sex_short"</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s2">"Sex"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"female"</span><span class="p">,</span> <span class="s2">"F"</span><span class="p">)</span>
+<span class="n">titanic</span><span class="p">[</span><span class="s2">"Sex_short"</span><span class="p">]</span> <span class="o">=</span> <span class="n">titanic</span><span class="p">[</span><span class="s2">"Sex_short"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"male"</span><span class="p">,</span> <span class="s2">"M"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This would become cumbersome and easily lead to mistakes. Just think (or

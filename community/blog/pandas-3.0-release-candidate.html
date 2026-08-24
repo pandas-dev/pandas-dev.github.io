@@ -140,14 +140,14 @@ updates to your code. The two most significant changes are:</p>
 dtype instead of the numpy <code>object</code> (which can store any Python object).</p>
 <p><strong>Example:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Old behavior (pandas &lt; 3.0)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">])</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">ser</span>
 <span class="mi">0</span>    <span class="n">a</span>
 <span class="mi">1</span>    <span class="n">b</span>
 <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>  <span class="c1"># &lt;-- numpy object dtype</span>
 
 <span class="c1"># New behavior (pandas 3.0)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">])</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">ser</span><span class="o">.</span><span class="n">dtype</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">ser</span>
 <span class="mi">0</span>    <span class="n">a</span>
@@ -170,10 +170,10 @@ longer ambiguity whether it would work or not), and defensive <code>.copy()</cod
 to silence the warning are no longer needed.</p>
 <p><strong>Example:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Old behavior (pandas &lt; 3.0) - chained assignment</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">][</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;bar&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span>   <span class="c1"># This might modify df (unpredictable)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"foo"</span><span class="p">][</span><span class="n">df</span><span class="p">[</span><span class="s2">"bar"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span>   <span class="c1"># This might modify df (unpredictable)</span>
 
 <span class="c1"># New behavior (pandas 3.0) - must do the modification in one step (e.g. with .loc)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;bar&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"bar"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"foo"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
 </code></pre></div>
 
 <p>In general, any result of an indexing operation or method now always behaves as

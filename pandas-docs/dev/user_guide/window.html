@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Windowing operations &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>Windowing operations &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -68,7 +68,7 @@
     <link rel="prev" title="Group by: split-apply-combine" href="groupby.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -135,8 +135,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -626,9 +626,9 @@ The result above can be derived by taking the sum of the following windowed part
 </table>
 </div>
 <p>As noted above, some operations support specifying a window based on a time offset:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2020-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;1D&#39;</span><span class="p">))</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'2020-01-01'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'1D'</span><span class="p">))</span>
 
-<span class="gp">In [5]: </span><span class="n">s</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gp">In [5]: </span><span class="n">s</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="s1">'2D'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="gh">Out[5]: </span>
 <span class="go">2020-01-01    0.0</span>
 <span class="go">2020-01-02    1.0</span>
@@ -640,9 +640,9 @@ The result above can be derived by taking the sum of the following windowed part
 </div>
 <p>Additionally, some methods support chaining a <code class="docutils literal notranslate"><span class="pre">groupby</span></code> operation with a windowing operation
 which will first group the data by the specified keys and then perform a windowing operation per group.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'A'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">],</span> <span class="s1">'B'</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)})</span>
 
-<span class="gp">In [7]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">expanding</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gp">In [7]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'A'</span><span class="p">)</span><span class="o">.</span><span class="n">expanding</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="gh">Out[7]: </span>
 <span class="go">       B</span>
 <span class="go">A       </span>
@@ -683,7 +683,7 @@ be calculated with <code class="xref py py-meth docutils literal notranslate"><s
 
 <span class="gp">In [9]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]])</span>
 
-<span class="gp">In [10]: </span><span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;table&quot;</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;numba&quot;</span><span class="p">)</span>  <span class="c1"># noqa: E501</span>
+<span class="gp">In [10]: </span><span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"table"</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">,</span> <span class="n">raw</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">"numba"</span><span class="p">)</span>  <span class="c1"># noqa: E501</span>
 <span class="gh">Out[10]: </span>
 <span class="go">          0         1    2</span>
 <span class="go">0  1.000000  2.000000  1.0</span>
@@ -762,9 +762,9 @@ non-<code class="docutils literal notranslate"><span class="pre">np.nan</span></
 </div>
 <p>Additionally, all windowing operations support the <code class="docutils literal notranslate"><span class="pre">aggregate</span></code> method for returning a result
 of multiple aggregations applied to a window.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">)})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="s2">"B"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">)})</span>
 
-<span class="gp">In [21]: </span><span class="n">df</span><span class="o">.</span><span class="n">expanding</span><span class="p">()</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;std&quot;</span><span class="p">])</span>
+<span class="gp">In [21]: </span><span class="n">df</span><span class="o">.</span><span class="n">expanding</span><span class="p">()</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">"sum"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"std"</span><span class="p">])</span>
 <span class="gh">Out[21]: </span>
 <span class="go">      A                    B                </span>
 <span class="go">    sum mean       std   sum  mean       std</span>
@@ -781,7 +781,7 @@ of multiple aggregations applied to a window.</p>
 <p>Generic rolling windows support specifying windows as a fixed number of observations or variable
 number of observations based on an offset. If a time based offset is provided, the corresponding
 time based index must be monotonic.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [22]: </span><span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2020-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2020-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2020-01-04&#39;</span><span class="p">,</span> <span class="s1">&#39;2020-01-05&#39;</span><span class="p">,</span> <span class="s1">&#39;2020-01-29&#39;</span><span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [22]: </span><span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'2020-01-01'</span><span class="p">,</span> <span class="s1">'2020-01-03'</span><span class="p">,</span> <span class="s1">'2020-01-04'</span><span class="p">,</span> <span class="s1">'2020-01-05'</span><span class="p">,</span> <span class="s1">'2020-01-29'</span><span class="p">]</span>
 
 <span class="gp">In [23]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">times</span><span class="p">))</span>
 
@@ -805,7 +805,7 @@ time based index must be monotonic.</p>
 <span class="go">dtype: float64</span>
 
 <span class="go"># Window with 2 days worth of observations</span>
-<span class="gp">In [26]: </span><span class="n">s</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="s1">&#39;2D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gp">In [26]: </span><span class="n">s</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="s1">'2D'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="gh">Out[26]: </span>
 <span class="go">2020-01-01    0.0</span>
 <span class="go">2020-01-03    1.0</span>
@@ -853,7 +853,7 @@ time based index must be monotonic.</p>
 </div>
 <p>This can also be applied to datetime-like indices.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [30]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<span class="gp">   ....: </span>    <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2020&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;1D&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span>    <span class="p">{</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2020"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"1D"</span><span class="p">)</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
@@ -866,7 +866,7 @@ time based index must be monotonic.</p>
 <span class="go">2020-01-04  3</span>
 <span class="go">2020-01-05  4</span>
 
-<span class="gp">In [32]: </span><span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">&quot;2D&quot;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gp">In [32]: </span><span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">"2D"</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="gh">Out[32]: </span>
 <span class="go">              A</span>
 <span class="go">2020-01-01  0.0</span>
@@ -875,7 +875,7 @@ time based index must be monotonic.</p>
 <span class="go">2020-01-04  2.5</span>
 <span class="go">2020-01-05  3.5</span>
 
-<span class="gp">In [33]: </span><span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">&quot;2D&quot;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gp">In [33]: </span><span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">"2D"</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="gh">Out[33]: </span>
 <span class="go">              A</span>
 <span class="go">2020-01-01  0.5</span>
@@ -916,24 +916,24 @@ parameter:</p>
 from present information back to past information. This allows the rolling window to compute statistics
 “up to that point in time”, but not including that point in time.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [34]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<span class="gp">   ....: </span>    <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+<span class="gp">   ....: </span>    <span class="p">{</span><span class="s2">"x"</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
 <span class="gp">   ....: </span>    <span class="n">index</span><span class="o">=</span><span class="p">[</span>
-<span class="gp">   ....: </span>        <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;20130101 09:00:01&quot;</span><span class="p">),</span>
-<span class="gp">   ....: </span>        <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;20130101 09:00:02&quot;</span><span class="p">),</span>
-<span class="gp">   ....: </span>        <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;20130101 09:00:03&quot;</span><span class="p">),</span>
-<span class="gp">   ....: </span>        <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;20130101 09:00:04&quot;</span><span class="p">),</span>
-<span class="gp">   ....: </span>        <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;20130101 09:00:06&quot;</span><span class="p">),</span>
+<span class="gp">   ....: </span>        <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"20130101 09:00:01"</span><span class="p">),</span>
+<span class="gp">   ....: </span>        <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"20130101 09:00:02"</span><span class="p">),</span>
+<span class="gp">   ....: </span>        <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"20130101 09:00:03"</span><span class="p">),</span>
+<span class="gp">   ....: </span>        <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"20130101 09:00:04"</span><span class="p">),</span>
+<span class="gp">   ....: </span>        <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"20130101 09:00:06"</span><span class="p">),</span>
 <span class="gp">   ....: </span>    <span class="p">],</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [35]: </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;right&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">&quot;2s&quot;</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># default</span>
+<span class="gp">In [35]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"right"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">"2s"</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">"right"</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># default</span>
 
-<span class="gp">In [36]: </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;both&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">&quot;2s&quot;</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gp">In [36]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"both"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">"2s"</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">"both"</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
-<span class="gp">In [37]: </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;left&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">&quot;2s&quot;</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gp">In [37]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"left"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">"2s"</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
-<span class="gp">In [38]: </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;neither&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">&quot;2s&quot;</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">&quot;neither&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gp">In [38]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"neither"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">"2s"</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">"neither"</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
 <span class="gp">In [39]: </span><span class="n">df</span>
 <span class="gh">Out[39]: </span>
@@ -961,7 +961,7 @@ always accept these arguments.</p>
 <span class="gp">In [41]: </span><span class="n">use_expanding</span>
 <span class="gh">Out[41]: </span><span class="go">[True, False, True, False, True]</span>
 
-<span class="gp">In [42]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)})</span>
+<span class="gp">In [42]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"values"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)})</span>
 
 <span class="gp">In [43]: </span><span class="n">df</span>
 <span class="gh">Out[43]: </span>
@@ -1008,7 +1008,7 @@ always accept these arguments.</p>
 rolling operations over a non-fixed offset like a <code class="docutils literal notranslate"><span class="pre">BusinessDay</span></code>.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [48]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas.api.indexers</span><span class="w"> </span><span class="kn">import</span> <span class="n">VariableOffsetWindowIndexer</span>
 
-<span class="gp">In [49]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2020&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+<span class="gp">In [49]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2020"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
 
 <span class="gp">In [50]: </span><span class="n">offset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">BDay</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
@@ -1071,13 +1071,13 @@ forward-looking rolling window, and we can use it as follows:</p>
 <p>We can also achieve this by using slicing, applying rolling aggregation, and then flipping the result as shown in example below:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [57]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="n">data</span><span class="o">=</span><span class="p">[</span>
-<span class="gp">   ....: </span>        <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2018-01-01 00:00:00&quot;</span><span class="p">),</span> <span class="mi">100</span><span class="p">],</span>
-<span class="gp">   ....: </span>        <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2018-01-01 00:00:01&quot;</span><span class="p">),</span> <span class="mi">101</span><span class="p">],</span>
-<span class="gp">   ....: </span>        <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2018-01-01 00:00:03&quot;</span><span class="p">),</span> <span class="mi">103</span><span class="p">],</span>
-<span class="gp">   ....: </span>        <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2018-01-01 00:00:04&quot;</span><span class="p">),</span> <span class="mi">111</span><span class="p">],</span>
+<span class="gp">   ....: </span>        <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2018-01-01 00:00:00"</span><span class="p">),</span> <span class="mi">100</span><span class="p">],</span>
+<span class="gp">   ....: </span>        <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2018-01-01 00:00:01"</span><span class="p">),</span> <span class="mi">101</span><span class="p">],</span>
+<span class="gp">   ....: </span>        <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2018-01-01 00:00:03"</span><span class="p">),</span> <span class="mi">103</span><span class="p">],</span>
+<span class="gp">   ....: </span>        <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2018-01-01 00:00:04"</span><span class="p">),</span> <span class="mi">111</span><span class="p">],</span>
 <span class="gp">   ....: </span>    <span class="p">],</span>
-<span class="gp">   ....: </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">],</span>
-<span class="gp">   ....: </span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"time"</span><span class="p">,</span> <span class="s2">"value"</span><span class="p">],</span>
+<span class="gp">   ....: </span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
 <span class="gp">In [58]: </span><span class="n">df</span>
@@ -1089,7 +1089,7 @@ forward-looking rolling window, and we can use it as follows:</p>
 <span class="go">2018-01-01 00:00:03    103</span>
 <span class="go">2018-01-01 00:00:04    111</span>
 
-<span class="gp">In [59]: </span><span class="n">reversed_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">&quot;2s&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">In [59]: </span><span class="n">reversed_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">"2s"</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="gp">In [60]: </span><span class="n">reversed_df</span>
 <span class="gh">Out[60]: </span>
@@ -1164,8 +1164,8 @@ passed then computes the statistic for each pair of columns, returning a <a clas
 <p>For example:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [64]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
-<span class="gp">   ....: </span>    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
-<span class="gp">   ....: </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">],</span>
+<span class="gp">   ....: </span>    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2020-01-01"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+<span class="gp">   ....: </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">],</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
@@ -1173,7 +1173,7 @@ passed then computes the statistic for each pair of columns, returning a <a clas
 
 <span class="gp">In [66]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
 
-<span class="gp">In [67]: </span><span class="n">df2</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">])</span>
+<span class="gp">In [67]: </span><span class="n">df2</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s2">"B"</span><span class="p">])</span>
 <span class="gh">Out[67]: </span>
 <span class="go">              A    B    C    D</span>
 <span class="go">2020-01-01  NaN  NaN  NaN  NaN</span>
@@ -1206,9 +1206,9 @@ matrices</a>
 for more details.</p>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [68]: </span><span class="n">covs</span> <span class="o">=</span> <span class="p">(</span>
-<span class="gp">   ....: </span>    <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">]]</span>
+<span class="gp">   ....: </span>    <span class="n">df</span><span class="p">[[</span><span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">]]</span>
 <span class="gp">   ....: </span>    <span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="gp">   ....: </span>    <span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]],</span> <span class="n">pairwise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">   ....: </span>    <span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">]],</span> <span class="n">pairwise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
@@ -1254,7 +1254,7 @@ that the Scipy window methods take must be specified in the aggregation function
 <span class="go">9    7.0</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [72]: </span><span class="n">s</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">win_type</span><span class="o">=</span><span class="s2">&quot;triang&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gp">In [72]: </span><span class="n">s</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">win_type</span><span class="o">=</span><span class="s2">"triang"</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="gh">Out[72]: </span>
 <span class="go">0    NaN</span>
 <span class="go">1    NaN</span>
@@ -1269,7 +1269,7 @@ that the Scipy window methods take must be specified in the aggregation function
 <span class="go">dtype: float64</span>
 
 <span class="go"># Supplementary Scipy arguments passed in the aggregation function</span>
-<span class="gp">In [73]: </span><span class="n">s</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">win_type</span><span class="o">=</span><span class="s2">&quot;gaussian&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">In [73]: </span><span class="n">s</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">win_type</span><span class="o">=</span><span class="s2">"gaussian"</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="gh">Out[73]: </span>
 <span class="go">0    NaN</span>
 <span class="go">1    NaN</span>
@@ -1392,7 +1392,7 @@ one half.</p></li>
 <p>You can also specify <code class="docutils literal notranslate"><span class="pre">halflife</span></code> in terms of a timedelta convertible unit to specify the amount of
 time it takes for an observation to decay to half its value when also specifying a sequence
 of <code class="docutils literal notranslate"><span class="pre">times</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [77]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [77]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
 
 <span class="gp">In [78]: </span><span class="n">df</span>
 <span class="gh">Out[78]: </span>
@@ -1403,9 +1403,9 @@ of <code class="docutils literal notranslate"><span class="pre">times</span></co
 <span class="go">3  NaN</span>
 <span class="go">4  4.0</span>
 
-<span class="gp">In [79]: </span><span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-01-03&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-01-10&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-01-15&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-01-17&quot;</span><span class="p">]</span>
+<span class="gp">In [79]: </span><span class="n">times</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"2020-01-01"</span><span class="p">,</span> <span class="s2">"2020-01-03"</span><span class="p">,</span> <span class="s2">"2020-01-10"</span><span class="p">,</span> <span class="s2">"2020-01-15"</span><span class="p">,</span> <span class="s2">"2020-01-17"</span><span class="p">]</span>
 
-<span class="gp">In [80]: </span><span class="n">df</span><span class="o">.</span><span class="n">ewm</span><span class="p">(</span><span class="n">halflife</span><span class="o">=</span><span class="s2">&quot;4 days&quot;</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">times</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gp">In [80]: </span><span class="n">df</span><span class="o">.</span><span class="n">ewm</span><span class="p">(</span><span class="n">halflife</span><span class="o">=</span><span class="s2">"4 days"</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">times</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="gh">Out[80]: </span>
 <span class="go">          B</span>
 <span class="go">0  0.000000</span>

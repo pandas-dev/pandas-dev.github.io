@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.read_xml &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>pandas.read_xml &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.io.formats.style.Styler.to_html" href="pandas.io.formats.style.Styler.to_html.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -770,8 +770,8 @@ parameters.</p>
 files to DataFrames.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIO</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">xml</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf-8&#39;?&gt;</span>
-<span class="gp">... </span><span class="s1">&lt;data xmlns=&quot;http://example.com&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xml</span> <span class="o">=</span> <span class="s1">'''&lt;?xml version='1.0' encoding='utf-8'?&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;data xmlns="http://example.com"&gt;</span>
 <span class="gp">... </span><span class="s1"> &lt;row&gt;</span>
 <span class="gp">... </span><span class="s1">   &lt;shape&gt;square&lt;/shape&gt;</span>
 <span class="gp">... </span><span class="s1">   &lt;degrees&gt;360&lt;/degrees&gt;</span>
@@ -787,7 +787,7 @@ files to DataFrames.</p>
 <span class="gp">... </span><span class="s1">   &lt;degrees&gt;180&lt;/degrees&gt;</span>
 <span class="gp">... </span><span class="s1">   &lt;sides&gt;3.0&lt;/sides&gt;</span>
 <span class="gp">... </span><span class="s1"> &lt;/row&gt;</span>
-<span class="gp">... </span><span class="s1">&lt;/data&gt;&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="s1">&lt;/data&gt;'''</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_xml</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">xml</span><span class="p">))</span>
@@ -798,15 +798,15 @@ files to DataFrames.</p>
 <span class="go">2  triangle      180    3.0</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xml</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf-8&#39;?&gt;</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xml</span> <span class="o">=</span> <span class="s1">'''&lt;?xml version='1.0' encoding='utf-8'?&gt;</span>
 <span class="gp">... </span><span class="s1">&lt;data&gt;</span>
-<span class="gp">... </span><span class="s1">  &lt;row shape=&quot;square&quot; degrees=&quot;360&quot; sides=&quot;4.0&quot;/&gt;</span>
-<span class="gp">... </span><span class="s1">  &lt;row shape=&quot;circle&quot; degrees=&quot;360&quot;/&gt;</span>
-<span class="gp">... </span><span class="s1">  &lt;row shape=&quot;triangle&quot; degrees=&quot;180&quot; sides=&quot;3.0&quot;/&gt;</span>
-<span class="gp">... </span><span class="s1">&lt;/data&gt;&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="s1">  &lt;row shape="square" degrees="360" sides="4.0"/&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;row shape="circle" degrees="360"/&gt;</span>
+<span class="gp">... </span><span class="s1">  &lt;row shape="triangle" degrees="180" sides="3.0"/&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;/data&gt;'''</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_xml</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">xml</span><span class="p">),</span> <span class="n">xpath</span><span class="o">=</span><span class="s2">&quot;.//row&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_xml</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">xml</span><span class="p">),</span> <span class="n">xpath</span><span class="o">=</span><span class="s2">".//row"</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">      shape  degrees  sides</span>
 <span class="go">0    square      360    4.0</span>
@@ -814,8 +814,8 @@ files to DataFrames.</p>
 <span class="go">2  triangle      180    3.0</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xml</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf-8&#39;?&gt;</span>
-<span class="gp">... </span><span class="s1">&lt;doc:data xmlns:doc=&quot;https://example.com&quot;&gt;</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xml</span> <span class="o">=</span> <span class="s1">'''&lt;?xml version='1.0' encoding='utf-8'?&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;doc:data xmlns:doc="https://example.com"&gt;</span>
 <span class="gp">... </span><span class="s1">  &lt;doc:row&gt;</span>
 <span class="gp">... </span><span class="s1">    &lt;doc:shape&gt;square&lt;/doc:shape&gt;</span>
 <span class="gp">... </span><span class="s1">    &lt;doc:degrees&gt;360&lt;/doc:degrees&gt;</span>
@@ -831,13 +831,13 @@ files to DataFrames.</p>
 <span class="gp">... </span><span class="s1">    &lt;doc:degrees&gt;180&lt;/doc:degrees&gt;</span>
 <span class="gp">... </span><span class="s1">    &lt;doc:sides&gt;3.0&lt;/doc:sides&gt;</span>
 <span class="gp">... </span><span class="s1">  &lt;/doc:row&gt;</span>
-<span class="gp">... </span><span class="s1">&lt;/doc:data&gt;&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="s1">&lt;/doc:data&gt;'''</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_xml</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">StringIO</span><span class="p">(</span><span class="n">xml</span><span class="p">),</span>
-<span class="gp">... </span>    <span class="n">xpath</span><span class="o">=</span><span class="s2">&quot;//doc:row&quot;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">namespaces</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="s2">&quot;https://example.com&quot;</span><span class="p">},</span>
+<span class="gp">... </span>    <span class="n">xpath</span><span class="o">=</span><span class="s2">"//doc:row"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">namespaces</span><span class="o">=</span><span class="p">{</span><span class="s2">"doc"</span><span class="p">:</span> <span class="s2">"https://example.com"</span><span class="p">},</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">      shape  degrees  sides</span>
@@ -846,8 +846,8 @@ files to DataFrames.</p>
 <span class="go">2  triangle      180    3.0</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xml</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;&lt;?xml version=&#39;1.0&#39; encoding=&#39;utf-8&#39;?&gt;</span>
-<span class="gp">... </span><span class="s1">&lt;data xmlns=&quot;http://example.com&quot;&gt;</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xml</span> <span class="o">=</span> <span class="s1">'''&lt;?xml version='1.0' encoding='utf-8'?&gt;</span>
+<span class="gp">... </span><span class="s1">&lt;data xmlns="http://example.com"&gt;</span>
 <span class="gp">... </span><span class="s1"> &lt;row&gt;</span>
 <span class="gp">... </span><span class="s1">   &lt;shape&gt;square&lt;/shape&gt;</span>
 <span class="gp">... </span><span class="s1">   &lt;degrees&gt;360&lt;/degrees&gt;</span>
@@ -863,13 +863,13 @@ files to DataFrames.</p>
 <span class="gp">... </span><span class="s1">   &lt;degrees&gt;180&lt;/degrees&gt;</span>
 <span class="gp">... </span><span class="s1">   &lt;sides&gt;3.0&lt;/sides&gt;</span>
 <span class="gp">... </span><span class="s1"> &lt;/row&gt;</span>
-<span class="gp">... </span><span class="s1">&lt;/data&gt;&#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="s1">&lt;/data&gt;'''</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_xml</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">StringIO</span><span class="p">(</span><span class="n">xml</span><span class="p">),</span>
-<span class="gp">... </span>    <span class="n">xpath</span><span class="o">=</span><span class="s2">&quot;//doc:row&quot;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">namespaces</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com&quot;</span><span class="p">},</span>
+<span class="gp">... </span>    <span class="n">xpath</span><span class="o">=</span><span class="s2">"//doc:row"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">namespaces</span><span class="o">=</span><span class="p">{</span><span class="s2">"doc"</span><span class="p">:</span> <span class="s2">"http://example.com"</span><span class="p">},</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">      shape  degrees  sides</span>
@@ -878,7 +878,7 @@ files to DataFrames.</p>
 <span class="go">2  triangle      180    3.0</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xml_data</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xml_data</span> <span class="o">=</span> <span class="s1">'''</span>
 <span class="gp">... </span><span class="s1">        &lt;data&gt;</span>
 <span class="gp">... </span><span class="s1">           &lt;row&gt;</span>
 <span class="gp">... </span><span class="s1">              &lt;index&gt;0&lt;/index&gt;</span>
@@ -896,11 +896,11 @@ files to DataFrames.</p>
 <span class="gp">... </span><span class="s1">              &lt;e&gt;2019-12-31 00:00:00&lt;/e&gt;</span>
 <span class="gp">... </span><span class="s1">           &lt;/row&gt;</span>
 <span class="gp">... </span><span class="s1">        &lt;/data&gt;</span>
-<span class="gp">... </span><span class="s1">        &#39;&#39;&#39;</span>
+<span class="gp">... </span><span class="s1">        '''</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_xml</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">StringIO</span><span class="p">(</span><span class="n">xml_data</span><span class="p">),</span> <span class="n">dtype_backend</span><span class="o">=</span><span class="s2">&quot;numpy_nullable&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;e&quot;</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">StringIO</span><span class="p">(</span><span class="n">xml_data</span><span class="p">),</span> <span class="n">dtype_backend</span><span class="o">=</span><span class="s2">"numpy_nullable"</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">"e"</span><span class="p">]</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">   index     a    b      c  d          e</span>

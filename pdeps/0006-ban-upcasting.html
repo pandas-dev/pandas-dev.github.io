@@ -138,11 +138,11 @@
 <p>The suggestion is that setitem-like operations would
 not change a <code>Series</code>' dtype (nor that of a <code>DataFrame</code>'s column).</p>
 <p>Current behaviour:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'int64'</span><span class="p">)</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">ser</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;potage&#39;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">ser</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'potage'</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">ser</span>  <span class="c1"># dtype changed to &#39;object&#39;!</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">ser</span>  <span class="c1"># dtype changed to 'object'!</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span>
 <span class="mi">0</span>         <span class="mi">1</span>
 <span class="mi">1</span>         <span class="mi">2</span>
@@ -153,9 +153,9 @@ not change a <code>Series</code>' dtype (nor that of a <code>DataFrame</code>'s 
 <p>Suggested behaviour:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">ser</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;potage&#39;</span>  <span class="c1"># raises!</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">ser</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'potage'</span>  <span class="c1"># raises!</span>
 <span class="o">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="p">:</span> <span class="n">Invalid</span> <span class="n">value</span> <span class="s1">&#39;potage&#39;</span> <span class="k">for</span> <span class="n">dtype</span> <span class="n">int64</span>
+<span class="ne">ValueError</span><span class="p">:</span> <span class="n">Invalid</span> <span class="n">value</span> <span class="s1">'potage'</span> <span class="k">for</span> <span class="n">dtype</span> <span class="n">int64</span>
 </code></pre></div>
 
 <h2 id="motivation-and-scope">Motivation and Scope<a class="headerlink" href="#motivation-and-scope" title="Permanent link"> #</a></h2>
@@ -163,17 +163,17 @@ not change a <code>Series</code>' dtype (nor that of a <code>DataFrame</code>'s 
 However, this can potentially hide bugs, break user expectations, and copy data
 in what looks like it should be an inplace operation.</p>
 <p>An example of it hiding a bug is:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2000&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2000"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
 
-<span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">ser</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;2000-01-04&quot;</span>  <span class="c1"># works, is converted to datetime64</span>
+<span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">ser</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"2000-01-04"</span>  <span class="c1"># works, is converted to datetime64</span>
 
-<span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">ser</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;2000-01-04x&quot;</span>  <span class="c1"># typo - but pandas does not error, it upcasts to object</span>
+<span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">ser</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"2000-01-04x"</span>  <span class="c1"># typo - but pandas does not error, it upcasts to object</span>
 </code></pre></div>
 
 <p>The scope of this PDEP is limited to setitem-like operations on Series (and DataFrame columns).
 For example, starting with:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
-<span class="n">ser</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
+<span class="n">ser</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"a"</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </code></pre></div>
 
 <p>then the following would all raise:</p>

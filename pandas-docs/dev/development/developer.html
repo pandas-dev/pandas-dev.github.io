@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Developer &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>Developer &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Extending pandas" href="extending.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -534,13 +534,13 @@ of the Parquet file:</p>
 </div>
 <p>So that a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> can be faithfully reconstructed, we store a
 <code class="docutils literal notranslate"><span class="pre">pandas</span></code> metadata key in the <code class="docutils literal notranslate"><span class="pre">FileMetaData</span></code> with the value stored as :</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{&#39;index_columns&#39;: [&lt;descr0&gt;, &lt;descr1&gt;, ...],
- &#39;column_indexes&#39;: [&lt;ci0&gt;, &lt;ci1&gt;, ..., &lt;ciN&gt;],
- &#39;columns&#39;: [&lt;c0&gt;, &lt;c1&gt;, ...],
- &#39;pandas_version&#39;: $VERSION,
- &#39;creator&#39;: {
-   &#39;library&#39;: $LIBRARY,
-   &#39;version&#39;: $LIBRARY_VERSION
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{'index_columns': [&lt;descr0&gt;, &lt;descr1&gt;, ...],
+ 'column_indexes': [&lt;ci0&gt;, &lt;ci1&gt;, ..., &lt;ciN&gt;],
+ 'columns': [&lt;c0&gt;, &lt;c1&gt;, ...],
+ 'pandas_version': $VERSION,
+ 'creator': {
+   'library': $LIBRARY,
+   'version': $LIBRARY_VERSION
  }}
 </pre></div>
 </div>
@@ -548,11 +548,11 @@ of the Parquet file:</p>
 strings (referring to a column) or dictionaries with values as described below.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">&lt;c0&gt;</span></code>/<code class="docutils literal notranslate"><span class="pre">&lt;ci0&gt;</span></code> and so forth are dictionaries containing the metadata
 for each column, <em>including the index columns</em>. This has JSON form:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{&#39;name&#39;: column_name,
- &#39;field_name&#39;: parquet_column_name,
- &#39;pandas_type&#39;: pandas_type,
- &#39;numpy_type&#39;: numpy_type,
- &#39;metadata&#39;: metadata}
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{'name': column_name,
+ 'field_name': parquet_column_name,
+ 'pandas_type': pandas_type,
+ 'numpy_type': numpy_type,
+ 'metadata': metadata}
 </pre></div>
 </div>
 <p>See below for the detailed specification for these.</p>
@@ -562,11 +562,11 @@ for each column, <em>including the index columns</em>. This has JSON form:</p>
 descriptor format for these as is follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">RangeIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="s2">&quot;kind&quot;</span><span class="p">:</span> <span class="s2">&quot;range&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-    <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
-    <span class="s2">&quot;stop&quot;</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span>
-    <span class="s2">&quot;step&quot;</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">step</span><span class="p">,</span>
+    <span class="s2">"kind"</span><span class="p">:</span> <span class="s2">"range"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="s2">"start"</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+    <span class="s2">"stop"</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span>
+    <span class="s2">"step"</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">step</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -627,50 +627,50 @@ it is assumed to be nanoseconds. This metadata is optional altogether</p></li>
 <p>For types other than these, the <code class="docutils literal notranslate"><span class="pre">'metadata'</span></code> key can be
 omitted. Implementations can assume <code class="docutils literal notranslate"><span class="pre">None</span></code> if the key is not present.</p>
 <p>As an example of fully-formed metadata:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{&#39;index_columns&#39;: [&#39;__index_level_0__&#39;],
- &#39;column_indexes&#39;: [
-     {&#39;name&#39;: None,
-      &#39;field_name&#39;: &#39;None&#39;,
-      &#39;pandas_type&#39;: &#39;unicode&#39;,
-      &#39;numpy_type&#39;: &#39;object&#39;,
-      &#39;metadata&#39;: {&#39;encoding&#39;: &#39;UTF-8&#39;}}
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{'index_columns': ['__index_level_0__'],
+ 'column_indexes': [
+     {'name': None,
+      'field_name': 'None',
+      'pandas_type': 'unicode',
+      'numpy_type': 'object',
+      'metadata': {'encoding': 'UTF-8'}}
  ],
- &#39;columns&#39;: [
-     {&#39;name&#39;: &#39;c0&#39;,
-      &#39;field_name&#39;: &#39;c0&#39;,
-      &#39;pandas_type&#39;: &#39;int8&#39;,
-      &#39;numpy_type&#39;: &#39;int8&#39;,
-      &#39;metadata&#39;: None},
-     {&#39;name&#39;: &#39;c1&#39;,
-      &#39;field_name&#39;: &#39;c1&#39;,
-      &#39;pandas_type&#39;: &#39;bytes&#39;,
-      &#39;numpy_type&#39;: &#39;object&#39;,
-      &#39;metadata&#39;: None},
-     {&#39;name&#39;: &#39;c2&#39;,
-      &#39;field_name&#39;: &#39;c2&#39;,
-      &#39;pandas_type&#39;: &#39;categorical&#39;,
-      &#39;numpy_type&#39;: &#39;int16&#39;,
-      &#39;metadata&#39;: {&#39;num_categories&#39;: 1000, &#39;ordered&#39;: False}},
-     {&#39;name&#39;: &#39;c3&#39;,
-      &#39;field_name&#39;: &#39;c3&#39;,
-      &#39;pandas_type&#39;: &#39;datetimetz&#39;,
-      &#39;numpy_type&#39;: &#39;datetime64[ns]&#39;,
-      &#39;metadata&#39;: {&#39;timezone&#39;: &#39;America/Los_Angeles&#39;}},
-     {&#39;name&#39;: &#39;c4&#39;,
-      &#39;field_name&#39;: &#39;c4&#39;,
-      &#39;pandas_type&#39;: &#39;object&#39;,
-      &#39;numpy_type&#39;: &#39;object&#39;,
-      &#39;metadata&#39;: {&#39;encoding&#39;: &#39;pickle&#39;}},
-     {&#39;name&#39;: None,
-      &#39;field_name&#39;: &#39;__index_level_0__&#39;,
-      &#39;pandas_type&#39;: &#39;int64&#39;,
-      &#39;numpy_type&#39;: &#39;int64&#39;,
-      &#39;metadata&#39;: None}
+ 'columns': [
+     {'name': 'c0',
+      'field_name': 'c0',
+      'pandas_type': 'int8',
+      'numpy_type': 'int8',
+      'metadata': None},
+     {'name': 'c1',
+      'field_name': 'c1',
+      'pandas_type': 'bytes',
+      'numpy_type': 'object',
+      'metadata': None},
+     {'name': 'c2',
+      'field_name': 'c2',
+      'pandas_type': 'categorical',
+      'numpy_type': 'int16',
+      'metadata': {'num_categories': 1000, 'ordered': False}},
+     {'name': 'c3',
+      'field_name': 'c3',
+      'pandas_type': 'datetimetz',
+      'numpy_type': 'datetime64[ns]',
+      'metadata': {'timezone': 'America/Los_Angeles'}},
+     {'name': 'c4',
+      'field_name': 'c4',
+      'pandas_type': 'object',
+      'numpy_type': 'object',
+      'metadata': {'encoding': 'pickle'}},
+     {'name': None,
+      'field_name': '__index_level_0__',
+      'pandas_type': 'int64',
+      'numpy_type': 'int64',
+      'metadata': None}
  ],
- &#39;pandas_version&#39;: &#39;1.4.0&#39;,
- &#39;creator&#39;: {
-   &#39;library&#39;: &#39;pyarrow&#39;,
-   &#39;version&#39;: &#39;0.13.0&#39;
+ 'pandas_version': '1.4.0',
+ 'creator': {
+   'library': 'pyarrow',
+   'version': '0.13.0'
  }}
 </pre></div>
 </div>

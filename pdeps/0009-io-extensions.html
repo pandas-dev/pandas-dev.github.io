@@ -147,9 +147,9 @@ For example:</p>
 
 <span class="n">pandas</span><span class="o">.</span><span class="n">load_io_plugins</span><span class="p">()</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">read_duckdb</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM &#39;my_dataset.parquet&#39;;&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">read_duckdb</span><span class="p">(</span><span class="s2">"SELECT * FROM 'my_dataset.parquet';"</span><span class="p">)</span>
 
-<span class="n">df</span><span class="o">.</span><span class="n">to_deltalake</span><span class="p">(</span><span class="s1">&#39;/delta/my_dataset&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_deltalake</span><span class="p">(</span><span class="s1">'/delta/my_dataset'</span><span class="p">)</span>
 </code></pre></div>
 
 <p>This would allow to easily extend the existing number of connectors, adding
@@ -180,7 +180,7 @@ an <code>ImportError</code> is raised.</p>
 <div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_gbq</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
   <span class="o">...</span>
-<span class="ne">ImportError</span><span class="p">:</span> <span class="n">Missing</span> <span class="n">optional</span> <span class="n">dependency</span> <span class="s1">&#39;pandas-gbq&#39;</span><span class="o">.</span>
+<span class="ne">ImportError</span><span class="p">:</span> <span class="n">Missing</span> <span class="n">optional</span> <span class="n">dependency</span> <span class="s1">'pandas-gbq'</span><span class="o">.</span>
 <span class="n">pandas</span><span class="o">-</span><span class="n">gbq</span> <span class="ow">is</span> <span class="n">required</span> <span class="n">to</span> <span class="n">load</span> <span class="n">data</span> <span class="kn">from</span><span class="w"> </span><span class="nn">Google</span> <span class="n">BigQuery</span><span class="o">.</span>
 <span class="n">See</span> <span class="n">the</span> <span class="n">docs</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pandas</span><span class="o">-</span><span class="n">gbq</span><span class="o">.</span><span class="n">readthedocs</span><span class="o">.</span><span class="n">io</span><span class="o">.</span>
 <span class="n">Use</span> <span class="n">pip</span> <span class="ow">or</span> <span class="n">conda</span> <span class="n">to</span> <span class="n">install</span> <span class="n">pandas</span><span class="o">-</span><span class="n">gbq</span><span class="o">.</span>
@@ -401,14 +401,14 @@ and <code>to_*</code> pattern will be allowed.</p>
 
 <span class="n">pandas</span><span class="o">.</span><span class="n">load_io_plugins</span><span class="p">()</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_duckdb</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM &#39;dataset.parquet&#39;;&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_duckdb</span><span class="p">(</span><span class="s2">"SELECT * FROM 'dataset.parquet';"</span><span class="p">)</span>
 
-<span class="n">df</span><span class="o">.</span><span class="n">to_hive</span><span class="p">(</span><span class="n">hive_conn</span><span class="p">,</span> <span class="s2">&quot;hive_table&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_hive</span><span class="p">(</span><span class="n">hive_conn</span><span class="p">,</span> <span class="s2">"hive_table"</span><span class="p">)</span>
 </code></pre></div>
 
 <p>This API allows for method chaining:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">read_duckdb</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM &#39;dataset.parquet&#39;;&quot;</span><span class="p">)</span>
-       <span class="o">.</span><span class="n">to_hive</span><span class="p">(</span><span class="n">hive_conn</span><span class="p">,</span> <span class="s2">&quot;hive_table&quot;</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">read_duckdb</span><span class="p">(</span><span class="s2">"SELECT * FROM 'dataset.parquet';"</span><span class="p">)</span>
+       <span class="o">.</span><span class="n">to_hive</span><span class="p">(</span><span class="n">hive_conn</span><span class="p">,</span> <span class="s2">"hive_table"</span><span class="p">))</span>
 </code></pre></div>
 
 <p>The total number of I/O functions and methods is expected to be small, as users
@@ -423,8 +423,8 @@ later in a separate proposal.</p>
 to define the connectors that they implement, under a group <code>dataframe.io</code>.</p>
 <p>For example, a hypothetical project <code>pandas_duckdb</code> implementing a <code>read_duckdb</code>
 function, could use <code>pyproject.toml</code> to define the next entry point:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[project.entry-points.</span><span class="s2">&quot;dataframe.io&quot;</span><span class="k">]</span>
-<span class="n">reader_duckdb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pandas_duckdb:read_duckdb&quot;</span>
+<div class="codehilite"><pre><span></span><code><span class="k">[project.entry-points.</span><span class="s2">"dataframe.io"</span><span class="k">]</span>
+<span class="n">reader_duckdb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pandas_duckdb:read_duckdb"</span>
 </code></pre></div>
 
 <p>When the user calls <code>pandas.load_io_plugins()</code>, it would read the entrypoint registry for the
@@ -493,12 +493,12 @@ Better integration with PyArrow tables was discussed in
 <a href="https://github.com/pandas-dev/pandas/issues/51760">#51760</a>.</p>
 <p><em>Current API</em>:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">pyarrow</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
-                               <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;my_col &gt; 0&#39;</span><span class="p">))</span>
+                               <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'my_col &gt; 0'</span><span class="p">))</span>
 </code></pre></div>
 
 <p><em>Proposed API</em>:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">read_pyarrow</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-       <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;my_col &gt; 0&#39;</span><span class="p">)</span>
+       <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'my_col &gt; 0'</span><span class="p">)</span>
        <span class="o">.</span><span class="n">to_pyarrow</span><span class="p">())</span>
 </code></pre></div>
 
@@ -508,12 +508,12 @@ more explicitly API. Integration with Polars was requested in
 <a href="https://github.com/pandas-dev/pandas/issues/47368">#47368</a>.</p>
 <p><em>Current API</em>:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">polars</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
-                   <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;my_col &gt; 0&#39;</span><span class="p">))</span>
+                   <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'my_col &gt; 0'</span><span class="p">))</span>
 </code></pre></div>
 
 <p><em>Proposed API</em>:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">read_polars</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-       <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;my_col &gt; 0&#39;</span><span class="p">)</span>
+       <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'my_col &gt; 0'</span><span class="p">)</span>
        <span class="o">.</span><span class="n">to_polars</span><span class="p">())</span>
 </code></pre></div>
 
@@ -525,9 +525,9 @@ The loader can already be implemented inside pandas (it has already been
 proposed in <a href="https://github.com/pandas-dev/pandas/issues/45678">#45678</a>,
 or as a third-party extension with an arbitrary API. But this proposal would
 let the creation of a third-party extension with a standard and intuitive API:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">pandas</span><span class="o">.</span><span class="n">read_duckdb</span><span class="p">(</span><span class="s2">&quot;SELECT *</span>
-                    <span class="n">FROM</span> <span class="s1">&#39;dataset.parquet&#39;</span>
-                    <span class="n">WHERE</span> <span class="n">my_col</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="s2">&quot;)</span>
+<div class="codehilite"><pre><span></span><code><span class="n">pandas</span><span class="o">.</span><span class="n">read_duckdb</span><span class="p">(</span><span class="s2">"SELECT *</span>
+                    <span class="n">FROM</span> <span class="s1">'dataset.parquet'</span>
+                    <span class="n">WHERE</span> <span class="n">my_col</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="s2">")</span>
 </code></pre></div>
 
 <p><strong>Out-of-core algorithms</strong> push some operations like filtering or grouping

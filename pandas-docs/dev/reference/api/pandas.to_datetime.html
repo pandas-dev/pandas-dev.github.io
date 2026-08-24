@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.to_datetime &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>pandas.to_datetime &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.to_numeric" href="pandas.to_numeric.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -779,7 +779,7 @@ use <code class="docutils literal notranslate"><span class="pre">utc=True</span>
 <p>Assembling a datetime from multiple columns of a <a class="reference internal" href="pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>. The keys
 can be common abbreviations like [‘year’, ‘month’, ‘day’, ‘minute’, ‘second’,
 ‘ms’, ‘us’, ‘ns’]) or plurals of the same</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">2016</span><span class="p">],</span> <span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;day&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]})</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"year"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2015</span><span class="p">,</span> <span class="mi">2016</span><span class="p">],</span> <span class="s2">"month"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"day"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="go">0   2015-02-04</span>
 <span class="go">1   2016-03-05</span>
@@ -787,10 +787,10 @@ can be common abbreviations like [‘year’, ‘month’, ‘day’, ‘minute�
 </pre></div>
 </div>
 <p>Using a unix epoch time</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="mi">1490195805</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
-<span class="go">Timestamp(&#39;2017-03-22 15:16:45&#39;)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="mi">1490195805433502912</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;ns&quot;</span><span class="p">)</span>
-<span class="go">Timestamp(&#39;2017-03-22 15:16:45.433502912&#39;)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="mi">1490195805</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"s"</span><span class="p">)</span>
+<span class="go">Timestamp('2017-03-22 15:16:45')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="mi">1490195805433502912</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"ns"</span><span class="p">)</span>
+<span class="go">Timestamp('2017-03-22 15:16:45.433502912')</span>
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -799,21 +799,21 @@ can be common abbreviations like [‘year’, ‘month’, ‘day’, ‘minute�
 unexpected behavior use a fixed-width exact type.</p>
 </div>
 <p>Using a non-unix epoch origin</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;1960-01-01&quot;</span><span class="p">))</span>
-<span class="go">DatetimeIndex([&#39;1960-01-02&#39;, &#39;1960-01-03&#39;, &#39;1960-01-04&#39;],</span>
-<span class="go">              dtype=&#39;datetime64[us]&#39;, freq=None)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"D"</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"1960-01-01"</span><span class="p">))</span>
+<span class="go">DatetimeIndex(['1960-01-02', '1960-01-03', '1960-01-04'],</span>
+<span class="go">              dtype='datetime64[us]', freq=None)</span>
 </pre></div>
 </div>
 <p><strong>Differences with strptime behavior</strong></p>
 <p><code class="xref py py-const docutils literal notranslate"><span class="pre">&quot;%f&quot;</span></code> will parse all the way up to nanoseconds.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&quot;2018-10-26 12:00:00.0000000011&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="go">Timestamp(&#39;2018-10-26 12:00:00.000000001&#39;)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">"2018-10-26 12:00:00.0000000011"</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">"</span><span class="p">)</span>
+<span class="go">Timestamp('2018-10-26 12:00:00.000000001')</span>
 </pre></div>
 </div>
 <p><strong>Non-convertible date/times</strong></p>
 <p>Passing <code class="docutils literal notranslate"><span class="pre">errors='coerce'</span></code> will force an out-of-bounds date to <a class="reference internal" href="pandas.NaT.html#pandas.NaT" title="pandas.NaT"><code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code></a>,
 in addition to forcing non-dates (or non-parseable dates) to <a class="reference internal" href="pandas.NaT.html#pandas.NaT" title="pandas.NaT"><code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code></a>.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">&quot;invalid for Ymd&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s2">"invalid for Ymd"</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"%Y%m</span><span class="si">%d</span><span class="s2">"</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span><span class="p">)</span>
 <span class="go">NaT</span>
 </pre></div>
 </div>
@@ -822,18 +822,18 @@ in addition to forcing non-dates (or non-parseable dates) to <a class="reference
 <ul class="simple">
 <li><p>Timezone-naive inputs are converted to timezone-naive <a class="reference internal" href="pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code></a>:</p></li>
 </ul>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">&quot;2018-10-26 12:00:00&quot;</span><span class="p">,</span> <span class="s2">&quot;2018-10-26 13:00:15&quot;</span><span class="p">])</span>
-<span class="go">DatetimeIndex([&#39;2018-10-26 12:00:00&#39;, &#39;2018-10-26 13:00:15&#39;],</span>
-<span class="go">              dtype=&#39;datetime64[us]&#39;, freq=None)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">"2018-10-26 12:00:00"</span><span class="p">,</span> <span class="s2">"2018-10-26 13:00:15"</span><span class="p">])</span>
+<span class="go">DatetimeIndex(['2018-10-26 12:00:00', '2018-10-26 13:00:15'],</span>
+<span class="go">              dtype='datetime64[us]', freq=None)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Timezone-aware inputs <em>with constant time offset</em> are converted to
 timezone-aware <a class="reference internal" href="pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code></a>:</p></li>
 </ul>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">&quot;2018-10-26 12:00 -0500&quot;</span><span class="p">,</span> <span class="s2">&quot;2018-10-26 13:00 -0500&quot;</span><span class="p">])</span>
-<span class="go">DatetimeIndex([&#39;2018-10-26 12:00:00-05:00&#39;, &#39;2018-10-26 13:00:00-05:00&#39;],</span>
-<span class="go">              dtype=&#39;datetime64[us, UTC-05:00]&#39;, freq=None)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">"2018-10-26 12:00 -0500"</span><span class="p">,</span> <span class="s2">"2018-10-26 13:00 -0500"</span><span class="p">])</span>
+<span class="go">DatetimeIndex(['2018-10-26 12:00:00-05:00', '2018-10-26 13:00:00-05:00'],</span>
+<span class="go">              dtype='datetime64[us, UTC-05:00]', freq=None)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -844,10 +844,10 @@ Parsing datetimes with mixed time zones will raise a ValueError unless
 <code class="docutils literal notranslate"><span class="pre">utc=True</span></code>:</p></li>
 </ul>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="p">[</span><span class="s2">&quot;2020-10-25 02:00 +0200&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-10-25 04:00 +0100&quot;</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">"2020-10-25 02:00 +0200"</span><span class="p">,</span> <span class="s2">"2020-10-25 04:00 +0100"</span><span class="p">]</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="go">ValueError: Mixed timezones detected. Pass utc=True in to_datetime</span>
-<span class="go">or tz=&#39;UTC&#39; in DatetimeIndex to convert to a common timezone.</span>
+<span class="go">or tz='UTC' in DatetimeIndex to convert to a common timezone.</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -855,8 +855,8 @@ Parsing datetimes with mixed time zones will raise a ValueError unless
 <a class="reference internal" href="pandas.Series.apply.html#pandas.Series.apply" title="pandas.Series.apply"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.apply()</span></code></a> and <code class="xref py py-func docutils literal notranslate"><span class="pre">datetime.datetime.strptime()</span></code>:</p></li>
 </ul>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;2020-10-25 02:00 +0200&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-10-25 04:00 +0100&quot;</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M %z&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">"2020-10-25 02:00 +0200"</span><span class="p">,</span> <span class="s2">"2020-10-25 04:00 +0100"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M %z"</span><span class="p">))</span>
 <span class="go">0    2020-10-25 02:00:00+02:00</span>
 <span class="go">1    2020-10-25 04:00:00+01:00</span>
 <span class="go">dtype: object</span>
@@ -868,10 +868,10 @@ unless <code class="docutils literal notranslate"><span class="pre">utc=True</sp
 </ul>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="p">[</span><span class="s2">&quot;2020-01-01 01:00:00-01:00&quot;</span><span class="p">,</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">"2020-01-01 01:00:00-01:00"</span><span class="p">,</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="go">ValueError: Mixed timezones detected. Pass utc=True in to_datetime</span>
-<span class="go">or tz=&#39;UTC&#39; in DatetimeIndex to convert to a common timezone.</span>
+<span class="go">or tz='UTC' in DatetimeIndex to convert to a common timezone.</span>
 </pre></div>
 </div>
 <div class="line-block">
@@ -881,27 +881,27 @@ unless <code class="docutils literal notranslate"><span class="pre">utc=True</sp
 <ul class="simple">
 <li><p>Timezone-naive inputs are <em>localized</em> as UTC</p></li>
 </ul>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">&quot;2018-10-26 12:00&quot;</span><span class="p">,</span> <span class="s2">&quot;2018-10-26 13:00&quot;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="go">DatetimeIndex([&#39;2018-10-26 12:00:00+00:00&#39;, &#39;2018-10-26 13:00:00+00:00&#39;],</span>
-<span class="go">              dtype=&#39;datetime64[us, UTC]&#39;, freq=None)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">"2018-10-26 12:00"</span><span class="p">,</span> <span class="s2">"2018-10-26 13:00"</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2018-10-26 12:00:00+00:00', '2018-10-26 13:00:00+00:00'],</span>
+<span class="go">              dtype='datetime64[us, UTC]', freq=None)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Timezone-aware inputs are <em>converted</em> to UTC (the output represents the
 exact same datetime, but viewed from the UTC time offset <cite>+00:00</cite>).</p></li>
 </ul>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">&quot;2018-10-26 12:00 -0530&quot;</span><span class="p">,</span> <span class="s2">&quot;2018-10-26 12:00 -0500&quot;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="go">DatetimeIndex([&#39;2018-10-26 17:30:00+00:00&#39;, &#39;2018-10-26 17:00:00+00:00&#39;],</span>
-<span class="go">              dtype=&#39;datetime64[us, UTC]&#39;, freq=None)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">"2018-10-26 12:00 -0530"</span><span class="p">,</span> <span class="s2">"2018-10-26 12:00 -0500"</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2018-10-26 17:30:00+00:00', '2018-10-26 17:00:00+00:00'],</span>
+<span class="go">              dtype='datetime64[us, UTC]', freq=None)</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Inputs can contain both string or datetime, the above
 rules still apply</p></li>
 </ul>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">&quot;2018-10-26 12:00&quot;</span><span class="p">,</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">)],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="go">DatetimeIndex([&#39;2018-10-26 12:00:00+00:00&#39;, &#39;2020-01-01 18:00:00+00:00&#39;],</span>
-<span class="go">              dtype=&#39;datetime64[us, UTC]&#39;, freq=None)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">"2018-10-26 12:00"</span><span class="p">,</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">)],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2018-10-26 12:00:00+00:00', '2020-01-01 18:00:00+00:00'],</span>
+<span class="go">              dtype='datetime64[us, UTC]', freq=None)</span>
 </pre></div>
 </div>
 </dd></dl>

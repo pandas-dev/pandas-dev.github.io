@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PyArrow Functionality &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>PyArrow Functionality &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="IO tools (text, CSV, HDF5, …)" href="io.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -544,7 +544,7 @@ of various APIs. This includes:</p>
 <p>A <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>, <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>, or the columns of a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> can be directly backed by a <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.ChunkedArray.html#pyarrow.ChunkedArray" title="(in Apache Arrow v25.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.ChunkedArray</span></code></a>
 which is similar to a NumPy array. To construct these from the main pandas data structures, you can pass in a string of the type followed by
 <code class="docutils literal notranslate"><span class="pre">[pyarrow]</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;int64[pyarrow]&quot;</span></code> into the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> parameter</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32[pyarrow]&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"float32[pyarrow]"</span><span class="p">)</span>
 
 <span class="gp">In [2]: </span><span class="n">ser</span>
 <span class="gh">Out[2]: </span>
@@ -553,12 +553,12 @@ which is similar to a NumPy array. To construct these from the main pandas data 
 <span class="go">2    &lt;NA&gt;</span>
 <span class="go">dtype: float[pyarrow]</span>
 
-<span class="gp">In [3]: </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;bool[pyarrow]&quot;</span><span class="p">)</span>
+<span class="gp">In [3]: </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"bool[pyarrow]"</span><span class="p">)</span>
 
 <span class="gp">In [4]: </span><span class="n">idx</span>
-<span class="gh">Out[4]: </span><span class="go">Index([True, &lt;NA&gt;], dtype=&#39;bool[pyarrow]&#39;)</span>
+<span class="gh">Out[4]: </span><span class="go">Index([True, &lt;NA&gt;], dtype='bool[pyarrow]')</span>
 
-<span class="gp">In [5]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint64[pyarrow]&quot;</span><span class="p">)</span>
+<span class="gp">In [5]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"uint64[pyarrow]"</span><span class="p">)</span>
 
 <span class="gp">In [6]: </span><span class="n">df</span>
 <span class="gh">Out[6]: </span>
@@ -575,23 +575,23 @@ except <code class="docutils literal notranslate"><span class="pre">pd.StringDty
 will return <a class="reference internal" href="../reference/api/pandas.ArrowDtype.html#pandas.ArrowDtype" title="pandas.ArrowDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowDtype</span></code></a>.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pa</span>
 
-<span class="gp">In [8]: </span><span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">)</span>
+<span class="gp">In [8]: </span><span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">)</span>
 
-<span class="gp">In [9]: </span><span class="n">ser_sd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string[pyarrow]&quot;</span><span class="p">)</span>
+<span class="gp">In [9]: </span><span class="n">ser_sd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"string[pyarrow]"</span><span class="p">)</span>
 
 <span class="gp">In [10]: </span><span class="n">ser_ad</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">string</span><span class="p">()))</span>
 
 <span class="gp">In [11]: </span><span class="n">ser_ad</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">ser_sd</span><span class="o">.</span><span class="n">dtype</span>
 <span class="gh">Out[11]: </span><span class="go">False</span>
 
-<span class="gp">In [12]: </span><span class="n">ser_sd</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="gp">In [12]: </span><span class="n">ser_sd</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span>
 <span class="gh">Out[12]: </span>
 <span class="go">0     True</span>
 <span class="go">1    False</span>
 <span class="go">2    False</span>
 <span class="go">dtype: boolean</span>
 
-<span class="gp">In [13]: </span><span class="n">ser_ad</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="gp">In [13]: </span><span class="n">ser_ad</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span>
 <span class="gh">Out[13]: </span>
 <span class="go">0     True</span>
 <span class="go">1    False</span>
@@ -606,28 +606,28 @@ into <a class="reference internal" href="../reference/api/pandas.ArrowDtype.html
 
 <span class="gp">In [15]: </span><span class="n">list_str_type</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">list_</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">string</span><span class="p">())</span>
 
-<span class="gp">In [16]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([[</span><span class="s2">&quot;hello&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;there&quot;</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">(</span><span class="n">list_str_type</span><span class="p">))</span>
+<span class="gp">In [16]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([[</span><span class="s2">"hello"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"there"</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">(</span><span class="n">list_str_type</span><span class="p">))</span>
 
 <span class="gp">In [17]: </span><span class="n">ser</span>
 <span class="gh">Out[17]: </span>
-<span class="go">0    [&#39;hello&#39;]</span>
-<span class="go">1    [&#39;there&#39;]</span>
+<span class="go">0    ['hello']</span>
+<span class="go">1    ['there']</span>
 <span class="go">dtype: list&lt;item: string&gt;[pyarrow]</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">time</span>
 
-<span class="gp">In [19]: </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="n">time</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">time64</span><span class="p">(</span><span class="s2">&quot;us&quot;</span><span class="p">)))</span>
+<span class="gp">In [19]: </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="n">time</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">time64</span><span class="p">(</span><span class="s2">"us"</span><span class="p">)))</span>
 
 <span class="gp">In [20]: </span><span class="n">idx</span>
-<span class="gh">Out[20]: </span><span class="go">Index([12:30:00, &lt;NA&gt;], dtype=&#39;time64[us][pyarrow]&#39;)</span>
+<span class="gh">Out[20]: </span><span class="go">Index([12:30:00, &lt;NA&gt;], dtype='time64[us][pyarrow]')</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">decimal</span><span class="w"> </span><span class="kn">import</span> <span class="n">Decimal</span>
 
 <span class="gp">In [22]: </span><span class="n">decimal_type</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">decimal128</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 
-<span class="gp">In [23]: </span><span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Decimal</span><span class="p">(</span><span class="s2">&quot;3.19&quot;</span><span class="p">),</span> <span class="kc">None</span><span class="p">],</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">&quot;-1.23&quot;</span><span class="p">)]]</span>
+<span class="gp">In [23]: </span><span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Decimal</span><span class="p">(</span><span class="s2">"3.19"</span><span class="p">),</span> <span class="kc">None</span><span class="p">],</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">"-1.23"</span><span class="p">)]]</span>
 
 <span class="gp">In [24]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">decimal_type</span><span class="p">)</span>
 
@@ -642,7 +642,7 @@ into <a class="reference internal" href="../reference/api/pandas.ArrowDtype.html
 you can pass it into <a class="reference internal" href="../reference/api/pandas.arrays.ArrowExtensionArray.html#pandas.arrays.ArrowExtensionArray" title="pandas.arrays.ArrowExtensionArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.ArrowExtensionArray</span></code></a> to construct the associated <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>, <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>
 or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> object.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="n">pa_array</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-<span class="gp">   ....: </span>    <span class="p">[{</span><span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;10&quot;</span><span class="p">:</span> <span class="s2">&quot;20&quot;</span><span class="p">},</span> <span class="kc">None</span><span class="p">],</span>
+<span class="gp">   ....: </span>    <span class="p">[{</span><span class="s2">"1"</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">},</span> <span class="p">{</span><span class="s2">"10"</span><span class="p">:</span> <span class="s2">"20"</span><span class="p">},</span> <span class="kc">None</span><span class="p">],</span>
 <span class="gp">   ....: </span>    <span class="nb">type</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">map_</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span> <span class="n">pa</span><span class="o">.</span><span class="n">string</span><span class="p">()),</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
@@ -651,19 +651,19 @@ or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pa
 
 <span class="gp">In [28]: </span><span class="n">ser</span>
 <span class="gh">Out[28]: </span>
-<span class="go">0      [(&#39;1&#39;, &#39;2&#39;)]</span>
-<span class="go">1    [(&#39;10&#39;, &#39;20&#39;)]</span>
+<span class="go">0      [('1', '2')]</span>
+<span class="go">1    [('10', '20')]</span>
 <span class="go">2              &lt;NA&gt;</span>
 <span class="go">dtype: map&lt;string, string&gt;[pyarrow]</span>
 </pre></div>
 </div>
 <p>To retrieve a pyarrow <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.ChunkedArray.html#pyarrow.ChunkedArray" title="(in Apache Arrow v25.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.ChunkedArray</span></code></a> from a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>, you can call
 the pyarrow array constructor on the <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint8[pyarrow]&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"uint8[pyarrow]"</span><span class="p">)</span>
 
 <span class="gp">In [30]: </span><span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ser</span><span class="p">)</span>
 <span class="gh">Out[30]: </span>
-<span class="go">&lt;pyarrow.lib.UInt8Array object at 0x7f9e163a16c0&gt;</span>
+<span class="go">&lt;pyarrow.lib.UInt8Array object at 0x7fe3a1a63ee0&gt;</span>
 <span class="go">[</span>
 <span class="go">  1,</span>
 <span class="go">  2,</span>
@@ -674,7 +674,7 @@ the pyarrow array constructor on the <a class="reference internal" href="../refe
 
 <span class="gp">In [32]: </span><span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
 <span class="gh">Out[32]: </span>
-<span class="go">&lt;pyarrow.lib.UInt8Array object at 0x7f9e16505f60&gt;</span>
+<span class="go">&lt;pyarrow.lib.UInt8Array object at 0x7fe3a1a0c4c0&gt;</span>
 <span class="go">[</span>
 <span class="go">  1,</span>
 <span class="go">  2,</span>
@@ -684,7 +684,7 @@ the pyarrow array constructor on the <a class="reference internal" href="../refe
 </div>
 <p>To convert a <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table" title="(in Apache Arrow v25.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.Table</span></code></a> to a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>, you can call the
 <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.Table.html#pyarrow.Table.to_pandas" title="(in Apache Arrow v25.0.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pyarrow.Table.to_pandas()</span></code></a> method with <code class="docutils literal notranslate"><span class="pre">types_mapper=pd.ArrowDtype</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [33]: </span><span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">([</span><span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="nb">type</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">int64</span><span class="p">())],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [33]: </span><span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">([</span><span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="nb">type</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">int64</span><span class="p">())],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">])</span>
 
 <span class="gp">In [34]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">(</span><span class="n">types_mapper</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">)</span>
 
@@ -718,7 +718,7 @@ is accelerated with PyArrow <a class="reference external" href="https://arrow.ap
 <p>The following are just some examples of operations that are accelerated by native PyArrow compute functions.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [37]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pa</span>
 
-<span class="gp">In [38]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mf">1.545</span><span class="p">,</span> <span class="mf">0.211</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32[pyarrow]&quot;</span><span class="p">)</span>
+<span class="gp">In [38]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mf">1.545</span><span class="p">,</span> <span class="mf">0.211</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"float32[pyarrow]"</span><span class="p">)</span>
 
 <span class="gp">In [39]: </span><span class="n">ser</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="gh">Out[39]: </span><span class="go">-0.6669999808073044</span>
@@ -758,9 +758,9 @@ is accelerated with PyArrow <a class="reference external" href="https://arrow.ap
 <span class="go">dtype: float[pyarrow]</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [45]: </span><span class="n">ser_str</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">string</span><span class="p">()))</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [45]: </span><span class="n">ser_str</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">string</span><span class="p">()))</span>
 
-<span class="gp">In [46]: </span><span class="n">ser_str</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="gp">In [46]: </span><span class="n">ser_str</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span>
 <span class="gh">Out[46]: </span>
 <span class="go">0     True</span>
 <span class="go">1    False</span>
@@ -770,11 +770,11 @@ is accelerated with PyArrow <a class="reference external" href="https://arrow.ap
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [47]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 
-<span class="gp">In [48]: </span><span class="n">pa_type</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">timestamp</span><span class="p">(</span><span class="s2">&quot;ns&quot;</span><span class="p">))</span>
+<span class="gp">In [48]: </span><span class="n">pa_type</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">timestamp</span><span class="p">(</span><span class="s2">"ns"</span><span class="p">))</span>
 
 <span class="gp">In [49]: </span><span class="n">ser_dt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">pa_type</span><span class="p">)</span>
 
-<span class="gp">In [50]: </span><span class="n">ser_dt</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m&quot;</span><span class="p">)</span>
+<span class="gp">In [50]: </span><span class="n">ser_dt</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%Y-%m"</span><span class="p">)</span>
 <span class="gh">Out[50]: </span>
 <span class="go">0    2022-01</span>
 <span class="go">1       &lt;NA&gt;</span>
@@ -796,13 +796,13 @@ functions provide an <code class="docutils literal notranslate"><span class="pre
 </ul>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [51]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
 
-<span class="gp">In [52]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;a,b,c</span>
+<span class="gp">In [52]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="s2">"""a,b,c</span>
 <span class="gp">   ....: </span><span class="s2">   1,2.5,True</span>
 <span class="gp">   ....: </span><span class="s2">   3,4.5,False</span>
-<span class="gp">   ....: </span><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span><span class="s2">"""</span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [53]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;pyarrow&quot;</span><span class="p">)</span>
+<span class="gp">In [53]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">"pyarrow"</span><span class="p">)</span>
 
 <span class="gp">In [54]: </span><span class="n">df</span>
 <span class="gh">Out[54]: </span>
@@ -816,13 +816,13 @@ PyArrow-backed data by specifying the parameter <code class="docutils literal no
 <code class="docutils literal notranslate"><span class="pre">engine=&quot;pyarrow&quot;</span></code> to necessarily return PyArrow-backed data.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [55]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
 
-<span class="gp">In [56]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;a,b,c,d,e,f,g,h,i</span>
+<span class="gp">In [56]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="s2">"""a,b,c,d,e,f,g,h,i</span>
 <span class="gp">   ....: </span><span class="s2">    1,2.5,True,a,,,,,</span>
 <span class="gp">   ....: </span><span class="s2">    3,4.5,False,b,6,7.5,True,a,</span>
-<span class="gp">   ....: </span><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span><span class="s2">"""</span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [57]: </span><span class="n">df_pyarrow</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype_backend</span><span class="o">=</span><span class="s2">&quot;pyarrow&quot;</span><span class="p">)</span>
+<span class="gp">In [57]: </span><span class="n">df_pyarrow</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype_backend</span><span class="o">=</span><span class="s2">"pyarrow"</span><span class="p">)</span>
 
 <span class="gp">In [58]: </span><span class="n">df_pyarrow</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[58]: </span>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Version 0.14.1 (July 11, 2014) &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>Version 0.14.1 (July 11, 2014) &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Version 0.15.0 (October 18, 2014)" href="v0.15.0.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -717,21 +717,21 @@ offsets (BusinessMonthBegin, MonthEnd, BusinessMonthEnd, CustomBusinessMonthEnd,
 BusinessYearBegin, LastWeekOfMonth, FY5253Quarter, LastWeekOfMonth, Easter):</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas.tseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">offsets</span>
 
-<span class="gp">In [7]: </span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2014-01-01 09:00&#39;</span><span class="p">)</span>
+<span class="gp">In [7]: </span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">'2014-01-01 09:00'</span><span class="p">)</span>
 
 <span class="go"># old behaviour &lt; 0.14.1</span>
 <span class="gp">In [8]: </span><span class="n">d</span> <span class="o">+</span> <span class="n">offsets</span><span class="o">.</span><span class="n">MonthEnd</span><span class="p">()</span>
-<span class="gh">Out[8]: </span><span class="go">pd.Timestamp(&#39;2014-01-31 00:00:00&#39;)</span>
+<span class="gh">Out[8]: </span><span class="go">pd.Timestamp('2014-01-31 00:00:00')</span>
 </pre></div>
 </div>
 <p>Starting from 0.14.1 all offsets preserve time by default. The old
 behaviour can be obtained with <code class="docutils literal notranslate"><span class="pre">normalize=True</span></code></p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># new behaviour</span>
 <span class="gp">In [1]: </span><span class="n">d</span> <span class="o">+</span> <span class="n">offsets</span><span class="o">.</span><span class="n">MonthEnd</span><span class="p">()</span>
-<span class="gh">Out[1]: </span><span class="go">Timestamp(&#39;2014-01-31 09:00:00&#39;)</span>
+<span class="gh">Out[1]: </span><span class="go">Timestamp('2014-01-31 09:00:00')</span>
 
 <span class="gp">In [2]: </span><span class="n">d</span> <span class="o">+</span> <span class="n">offsets</span><span class="o">.</span><span class="n">MonthEnd</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[2]: </span><span class="go">Timestamp(&#39;2014-01-31 00:00:00&#39;)</span>
+<span class="gh">Out[2]: </span><span class="go">Timestamp('2014-01-31 00:00:00')</span>
 </pre></div>
 </div>
 <p>Note that for the other offsets the default behaviour did not change.</p>
@@ -753,10 +753,10 @@ minute, etc) or not (default <code class="docutils literal notranslate"><span cl
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas.tseries.offsets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">offsets</span>
 
 <span class="n">day</span> <span class="o">=</span> <span class="n">offsets</span><span class="o">.</span><span class="n">Day</span><span class="p">()</span>
-<span class="n">day</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2014-01-01 09:00&quot;</span><span class="p">))</span>
+<span class="n">day</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2014-01-01 09:00"</span><span class="p">))</span>
 
 <span class="n">day</span> <span class="o">=</span> <span class="n">offsets</span><span class="o">.</span><span class="n">Day</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">day</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2014-01-01 09:00&quot;</span><span class="p">))</span>
+<span class="n">day</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2014-01-01 09:00"</span><span class="p">))</span>
 </pre></div>
 </div>
 </li>
@@ -776,12 +776,12 @@ that <code class="docutils literal notranslate"><span class="pre">read_csv</span
 <li><p>Support for dateutil timezones, which can now be used in the same way as
 pytz timezones across pandas. (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/4688">GH 4688</a>)</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">rng</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span>
-<span class="gp">   ...: </span>    <span class="s2">&quot;3/6/2012 00:00&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">&quot;dateutil/Europe/London&quot;</span>
+<span class="gp">   ...: </span>    <span class="s2">"3/6/2012 00:00"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">"dateutil/Europe/London"</span>
 <span class="gp">   ...: </span><span class="p">)</span>
 <span class="gp">   ...: </span>
 
 <span class="gp">In [4]: </span><span class="n">rng</span><span class="o">.</span><span class="n">tz</span>
-<span class="gh">Out[4]: </span><span class="go">tzfile(&#39;/usr/share/zoneinfo/Europe/London&#39;)</span>
+<span class="gh">Out[4]: </span><span class="go">tzfile('/usr/share/zoneinfo/Europe/London')</span>
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="../user_guide/timeseries.html#timeseries-timezone"><span class="std std-ref">the docs</span></a>.</p>

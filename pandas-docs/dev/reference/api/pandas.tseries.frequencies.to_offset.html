@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.tseries.frequencies.to_offset &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>pandas.tseries.frequencies.to_offset &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -62,11 +62,11 @@
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.tseries.holiday.AbstractHolidayCalendar" href="pandas.tseries.holiday.AbstractHolidayCalendar.html" />
+    <link rel="next" title="pandas.tseries.holiday.Holiday" href="pandas.tseries.holiday.Holiday.html" />
     <link rel="prev" title="pandas.tseries.offsets.Nano.is_year_end" href="pandas.tseries.offsets.Nano.is_year_end.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -561,19 +561,19 @@ frequency if is_period=True.</p>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas.tseries.frequencies</span><span class="w"> </span><span class="kn">import</span> <span class="n">to_offset</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">to_offset</span><span class="p">(</span><span class="s2">&quot;5min&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">to_offset</span><span class="p">(</span><span class="s2">"5min"</span><span class="p">)</span>
 <span class="go">&lt;5 * Minutes&gt;</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_offset</span><span class="p">(</span><span class="s2">&quot;1D1h&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_offset</span><span class="p">(</span><span class="s2">"1D1h"</span><span class="p">)</span>
 <span class="go">&lt;25 * Hours&gt;</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_offset</span><span class="p">(</span><span class="s2">&quot;2W&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_offset</span><span class="p">(</span><span class="s2">"2W"</span><span class="p">)</span>
 <span class="go">&lt;2 * Weeks: weekday=6&gt;</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_offset</span><span class="p">(</span><span class="s2">&quot;2B&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_offset</span><span class="p">(</span><span class="s2">"2B"</span><span class="p">)</span>
 <span class="go">&lt;2 * BusinessDays&gt;</span>
 </pre></div>
 </div>
@@ -587,14 +587,14 @@ frequency if is_period=True.</p>
 </div>
 <p>Passing the parameter <code class="docutils literal notranslate"><span class="pre">is_period</span></code> equal to True, you can use a string
 denoting period frequency:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">freq</span> <span class="o">=</span> <span class="n">to_offset</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">&quot;ME&quot;</span><span class="p">,</span> <span class="n">is_period</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">freq</span> <span class="o">=</span> <span class="n">to_offset</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">"ME"</span><span class="p">,</span> <span class="n">is_period</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">freq</span><span class="o">.</span><span class="n">rule_code</span>
-<span class="go">&#39;ME&#39;</span>
+<span class="go">'ME'</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">freq</span> <span class="o">=</span> <span class="n">to_offset</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="n">is_period</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">freq</span> <span class="o">=</span> <span class="n">to_offset</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">"M"</span><span class="p">,</span> <span class="n">is_period</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">freq</span><span class="o">.</span><span class="n">rule_code</span>
-<span class="go">&#39;ME&#39;</span>
+<span class="go">'ME'</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -621,11 +621,11 @@ denoting period frequency:</p>
       </div>
     </a>
     <a class="right-next"
-       href="pandas.tseries.holiday.AbstractHolidayCalendar.html"
+       href="pandas.tseries.holiday.Holiday.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">pandas.tseries.holiday.AbstractHolidayCalendar</p>
+        <p class="prev-next-title">pandas.tseries.holiday.Holiday</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

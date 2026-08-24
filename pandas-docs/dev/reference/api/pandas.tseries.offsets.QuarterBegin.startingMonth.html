@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.tseries.offsets.QuarterBegin.startingMonth &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>pandas.tseries.offsets.QuarterBegin.startingMonth &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.tseries.offsets.QuarterBegin.normalize" href="pandas.tseries.offsets.QuarterBegin.normalize.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -1239,10 +1239,12 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pandas.tseries.offsets.QuarterBegin.startingMonth">
 <span class="sig-prename descclassname"><span class="pre">QuarterBegin.</span></span><span class="sig-name descname"><span class="pre">startingMonth</span></span><a class="headerlink" href="#pandas.tseries.offsets.QuarterBegin.startingMonth" title="Link to this definition">#</a></dt>
-<dd><p>Return the month of the year from which quarters start.</p>
-<p>This value determines which month marks the beginning of a quarterly period.
-For example, with startingMonth=1, quarters start in January, April, July,
-and October.</p>
+<dd><p>Return the month of the year that anchors the quarters.</p>
+<p>For the <code class="docutils literal notranslate"><span class="pre">*Begin</span></code> offsets this is a month in which a quarter starts, so
+<code class="docutils literal notranslate"><span class="pre">startingMonth=1</span></code> anchors on January 1, April 1, July 1 and October 1.
+For the <code class="docutils literal notranslate"><span class="pre">*End</span></code> offsets it is a month in which a quarter <em>ends</em>, so
+<code class="docutils literal notranslate"><span class="pre">startingMonth=1</span></code> anchors on January 31, April 30, July 31 and
+October 31.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
@@ -1253,16 +1255,22 @@ and October.</p>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">BQuarterBegin</span><span class="p">()</span><span class="o">.</span><span class="n">startingMonth</span>
-<span class="go">3</span>
+<p>A <code class="docutils literal notranslate"><span class="pre">*Begin</span></code> offset starts its quarters in <code class="docutils literal notranslate"><span class="pre">startingMonth</span></code>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">QuarterBegin</span><span class="p">(</span><span class="n">startingMonth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">startingMonth</span>
+<span class="go">2</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">QuarterEnd</span><span class="p">()</span><span class="o">.</span><span class="n">startingMonth</span>
-<span class="go">3</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2022-01-15"</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">QuarterBegin</span><span class="p">(</span><span class="n">startingMonth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">Timestamp('2022-02-01 00:00:00')</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">QuarterBegin</span><span class="p">(</span><span class="n">startingMonth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">startingMonth</span>
-<span class="go">1</span>
+<p>An <code class="docutils literal notranslate"><span class="pre">*End</span></code> offset ends its quarters in <code class="docutils literal notranslate"><span class="pre">startingMonth</span></code>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">QuarterEnd</span><span class="p">(</span><span class="n">startingMonth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">startingMonth</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2022-01-15"</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">QuarterEnd</span><span class="p">(</span><span class="n">startingMonth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">Timestamp('2022-02-28 00:00:00')</span>
 </pre></div>
 </div>
 </dd></dl>

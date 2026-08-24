@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Internals &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>Internals &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas maintenance" href="maintaining.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -549,28 +549,28 @@ DateOffset. Returns a <a class="reference internal" href="../reference/api/panda
 <p>Internally, the <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> consists of a few things: the <strong>levels</strong>, the
 integer <strong>codes</strong>, and the level <strong>names</strong>:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span>
-<span class="gp">   ...: </span>    <span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">]],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span><span class="p">]</span>
+<span class="gp">   ...: </span>    <span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="p">[</span><span class="s2">"one"</span><span class="p">,</span> <span class="s2">"two"</span><span class="p">]],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">"first"</span><span class="p">,</span> <span class="s2">"second"</span><span class="p">]</span>
 <span class="gp">   ...: </span><span class="p">)</span>
 <span class="gp">   ...: </span>
 
 <span class="gp">In [2]: </span><span class="n">index</span>
 <span class="gh">Out[2]: </span>
-<span class="go">MultiIndex([(0, &#39;one&#39;),</span>
-<span class="go">            (0, &#39;two&#39;),</span>
-<span class="go">            (1, &#39;one&#39;),</span>
-<span class="go">            (1, &#39;two&#39;),</span>
-<span class="go">            (2, &#39;one&#39;),</span>
-<span class="go">            (2, &#39;two&#39;)],</span>
-<span class="go">           names=[&#39;first&#39;, &#39;second&#39;])</span>
+<span class="go">MultiIndex([(0, 'one'),</span>
+<span class="go">            (0, 'two'),</span>
+<span class="go">            (1, 'one'),</span>
+<span class="go">            (1, 'two'),</span>
+<span class="go">            (2, 'one'),</span>
+<span class="go">            (2, 'two')],</span>
+<span class="go">           names=['first', 'second'])</span>
 
 <span class="gp">In [3]: </span><span class="n">index</span><span class="o">.</span><span class="n">levels</span>
-<span class="gh">Out[3]: </span><span class="go">FrozenList([[0, 1, 2], [&#39;one&#39;, &#39;two&#39;]])</span>
+<span class="gh">Out[3]: </span><span class="go">FrozenList([[0, 1, 2], ['one', 'two']])</span>
 
 <span class="gp">In [4]: </span><span class="n">index</span><span class="o">.</span><span class="n">codes</span>
 <span class="gh">Out[4]: </span><span class="go">FrozenList([[0, 0, 1, 1, 2, 2], [0, 1, 0, 1, 0, 1]])</span>
 
 <span class="gp">In [5]: </span><span class="n">index</span><span class="o">.</span><span class="n">names</span>
-<span class="gh">Out[5]: </span><span class="go">FrozenList([&#39;first&#39;, &#39;second&#39;])</span>
+<span class="gh">Out[5]: </span><span class="go">FrozenList(['first', 'second'])</span>
 </pre></div>
 </div>
 <p>You can probably guess that the codes determine which unique element is

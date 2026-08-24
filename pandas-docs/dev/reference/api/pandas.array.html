@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.array &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>pandas.array &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas arrays, scalars, and data types" href="../arrays.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -874,26 +874,26 @@ a future version of pandas or a 3rd-party library may include a
 dedicated ExtensionArray for string data. In this event, the following
 would no longer return a <a class="reference internal" href="pandas.arrays.NumpyExtensionArray.html#pandas.arrays.NumpyExtensionArray" title="pandas.arrays.NumpyExtensionArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.NumpyExtensionArray</span></code></a> backed by a
 NumPy array.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
 <span class="go">&lt;ArrowStringArray&gt;</span>
-<span class="go">[&#39;a&#39;, &#39;b&#39;]</span>
+<span class="go">['a', 'b']</span>
 <span class="go">Length: 2, dtype: str</span>
 </pre></div>
 </div>
 <p>This would instead return the new ExtensionArray dedicated for string
 data. If you really need the new array to be backed by a  NumPy array,
 specify that in the dtype.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;&lt;U1&quot;</span><span class="p">))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">"&lt;U1"</span><span class="p">))</span>
 <span class="go">&lt;NumpyExtensionArray&gt;</span>
-<span class="go">[&#39;a&#39;, &#39;b&#39;]</span>
+<span class="go">['a', 'b']</span>
 <span class="go">Length: 2, dtype: str32</span>
 </pre></div>
 </div>
 <p>pandas converts entries of a multidimensional sequence (excluding NumPy arrays)
 to its string representation if the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> is a string data type.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;str&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"str"</span><span class="p">)</span>
 <span class="go">&lt;ArrowStringArray&gt;</span>
-<span class="go">[&#39;[1]&#39;, &#39;[2]&#39;, &#39;[3]&#39;]</span>
+<span class="go">['[1]', '[2]', '[3]']</span>
 <span class="go">Length: 3, dtype: str</span>
 </pre></div>
 </div>
@@ -908,15 +908,15 @@ to its string representation if the <code class="docutils literal notranslate"><
 passed, pandas will always return a <code class="docutils literal notranslate"><span class="pre">DatetimeArray</span></code> or <code class="docutils literal notranslate"><span class="pre">TimedeltaArray</span></code>
 rather than a <code class="docutils literal notranslate"><span class="pre">NumpyExtensionArray</span></code>. This is for symmetry with the case of
 timezone-aware data, which NumPy does not natively support.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;2015&quot;</span><span class="p">,</span> <span class="s2">&quot;2016&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;datetime64[ns]&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">"2015"</span><span class="p">,</span> <span class="s2">"2016"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"datetime64[ns]"</span><span class="p">)</span>
 <span class="go">&lt;DatetimeArray&gt;</span>
-<span class="go">[&#39;2015-01-01 00:00:00&#39;, &#39;2016-01-01 00:00:00&#39;]</span>
+<span class="go">['2015-01-01 00:00:00', '2016-01-01 00:00:00']</span>
 <span class="go">Length: 2, dtype: datetime64[ns]</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;1h&quot;</span><span class="p">,</span> <span class="s2">&quot;2h&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;timedelta64[ns]&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">"1h"</span><span class="p">,</span> <span class="s2">"2h"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"timedelta64[ns]"</span><span class="p">)</span>
 <span class="go">&lt;TimedeltaArray&gt;</span>
-<span class="go">[&#39;0 days 01:00:00&#39;, &#39;0 days 02:00:00&#39;]</span>
+<span class="go">['0 days 01:00:00', '0 days 02:00:00']</span>
 <span class="go">Length: 2, dtype: timedelta64[ns]</span>
 </pre></div>
 </div>
@@ -941,38 +941,38 @@ See the description of <cite>dtype</cite> for the types pandas infers for.</p>
 <span class="go">Length: 2, dtype: Float64</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">])</span>
 <span class="go">&lt;ArrowStringArray&gt;</span>
-<span class="go">[&#39;a&#39;, &lt;NA&gt;, &#39;c&#39;]</span>
+<span class="go">['a', &lt;NA&gt;, 'c']</span>
 <span class="go">Length: 3, dtype: string</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">option_context</span><span class="p">(</span><span class="s2">&quot;string_storage&quot;</span><span class="p">,</span> <span class="s2">&quot;python&quot;</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="n">arr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">option_context</span><span class="p">(</span><span class="s2">"string_storage"</span><span class="p">,</span> <span class="s2">"python"</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">arr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span>
 <span class="go">&lt;StringArray&gt;</span>
-<span class="go">[&#39;a&#39;, &lt;NA&gt;, &#39;c&#39;]</span>
+<span class="go">['a', &lt;NA&gt;, 'c']</span>
 <span class="go">Length: 3, dtype: string</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s2">&quot;2000&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s2">&quot;2000&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">)])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s2">"2000"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s2">"2000"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)])</span>
 <span class="go">&lt;PeriodArray&gt;</span>
-<span class="go">[&#39;2000-01-01&#39;, &#39;2000-01-01&#39;]</span>
+<span class="go">['2000-01-01', '2000-01-01']</span>
 <span class="go">Length: 2, dtype: period[D]</span>
 </pre></div>
 </div>
 <p>You can use the string alias for <cite>dtype</cite></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
-<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;a&#39;]</span>
-<span class="go">Categories (2, str): [&#39;a&#39;, &#39;b&#39;]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"category"</span><span class="p">)</span>
+<span class="go">['a', 'b', 'a']</span>
+<span class="go">Categories (2, str): ['a', 'b']</span>
 </pre></div>
 </div>
 <p>Or specify the actual dtype</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">CategoricalDtype</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">CategoricalDtype</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;a&#39;]</span>
-<span class="go">Categories (3, str): [&#39;a&#39; &lt; &#39;b&#39; &lt; &#39;c&#39;]</span>
+<span class="go">['a', 'b', 'a']</span>
+<span class="go">Categories (3, str): ['a' &lt; 'b' &lt; 'c']</span>
 </pre></div>
 </div>
 <p>If pandas does not infer a dedicated extension type a
@@ -988,7 +988,7 @@ in the future (by pandas or 3rd party libraries), causing the return
 value to no longer be a <a class="reference internal" href="pandas.arrays.NumpyExtensionArray.html#pandas.arrays.NumpyExtensionArray" title="pandas.arrays.NumpyExtensionArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.NumpyExtensionArray</span></code></a>. Specify the
 <cite>dtype</cite> as a NumPy dtype if you need to ensure there’s no future change in
 behavior.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;int32&quot;</span><span class="p">))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">"int32"</span><span class="p">))</span>
 <span class="go">&lt;NumpyExtensionArray&gt;</span>
 <span class="go">[1, 2]</span>
 <span class="go">Length: 2, dtype: int32</span>
@@ -999,7 +999,7 @@ has the wrong dimensionality.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
 <span class="w">  </span><span class="c">...</span>
-<span class="gr">ValueError</span>: <span class="n">Cannot pass scalar &#39;1&#39; to &#39;pandas.array&#39;.</span>
+<span class="gr">ValueError</span>: <span class="n">Cannot pass scalar '1' to 'pandas.array'.</span>
 </pre></div>
 </div>
 </dd></dl>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>How to create new columns derived from existing columns &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>How to create new columns derived from existing columns &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -68,7 +68,7 @@
     <link rel="prev" title="How do I create plots in pandas?" href="04_plotting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -135,8 +135,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -549,7 +549,7 @@ in respectively Paris, Antwerp and London.</p>
         </p>
         <a href="https://github.com/pandas-dev/pandas/tree/main/doc/data/air_quality_no2.csv" class="btn btn-dark btn-sm">To raw data</a>
     </div>
-</div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [2]: </span><span class="n">air_quality</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/air_quality_no2.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [2]: </span><span class="n">air_quality</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"data/air_quality_no2.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="gp">In [3]: </span><span class="n">air_quality</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="gh">Out[3]: </span>
@@ -571,7 +571,7 @@ in respectively Paris, Antwerp and London.</p>
     <li><p>I want to express the <span class="math notranslate nohighlight">\(NO_2\)</span> concentration of the station in London in mg/m<span class="math notranslate nohighlight">\(^3\)</span>.</p>
 <p>(<em>If we assume temperature of 25 degrees Celsius and pressure of 1013
 hPa, the conversion factor is 1.882</em>)</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;london_mg_per_cubic&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;station_london&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1.882</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">air_quality</span><span class="p">[</span><span class="s2">"london_mg_per_cubic"</span><span class="p">]</span> <span class="o">=</span> <span class="n">air_quality</span><span class="p">[</span><span class="s2">"station_london"</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1.882</span>
 
 <span class="gp">In [5]: </span><span class="n">air_quality</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="gh">Out[5]: </span>
@@ -598,8 +598,8 @@ at once. You do not need to use a loop to iterate each of the rows!</p>
 <img alt="../../_images/05_newcolumn_2.svg" class="align-center" src="../../_images/05_newcolumn_2.svg" />
 <ul class="task-bullet">
     <li><p>I want to check the ratio of the values in Paris versus Antwerp and save the result in a new column.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;ratio_paris_antwerp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-<span class="gp">   ...: </span>    <span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;station_paris&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;station_antwerp&quot;</span><span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">air_quality</span><span class="p">[</span><span class="s2">"ratio_paris_antwerp"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+<span class="gp">   ...: </span>    <span class="n">air_quality</span><span class="p">[</span><span class="s2">"station_paris"</span><span class="p">]</span> <span class="o">/</span> <span class="n">air_quality</span><span class="p">[</span><span class="s2">"station_antwerp"</span><span class="p">]</span>
 <span class="gp">   ...: </span><span class="p">)</span>
 <span class="gp">   ...: </span>
 
@@ -628,9 +628,9 @@ rows of a table using a conditional expression.</p>
     <li><p>I want to rename the data columns to the corresponding station identifiers used by <a class="reference external" href="https://openaq.org/">OpenAQ</a>.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">air_quality_renamed</span> <span class="o">=</span> <span class="n">air_quality</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
 <span class="gp">   ...: </span>    <span class="n">columns</span><span class="o">=</span><span class="p">{</span>
-<span class="gp">   ...: </span>        <span class="s2">&quot;station_antwerp&quot;</span><span class="p">:</span> <span class="s2">&quot;BETR801&quot;</span><span class="p">,</span>
-<span class="gp">   ...: </span>        <span class="s2">&quot;station_paris&quot;</span><span class="p">:</span> <span class="s2">&quot;FR04014&quot;</span><span class="p">,</span>
-<span class="gp">   ...: </span>        <span class="s2">&quot;station_london&quot;</span><span class="p">:</span> <span class="s2">&quot;London Westminster&quot;</span><span class="p">,</span>
+<span class="gp">   ...: </span>        <span class="s2">"station_antwerp"</span><span class="p">:</span> <span class="s2">"BETR801"</span><span class="p">,</span>
+<span class="gp">   ...: </span>        <span class="s2">"station_paris"</span><span class="p">:</span> <span class="s2">"FR04014"</span><span class="p">,</span>
+<span class="gp">   ...: </span>        <span class="s2">"station_london"</span><span class="p">:</span> <span class="s2">"London Westminster"</span><span class="p">,</span>
 <span class="gp">   ...: </span>    <span class="p">}</span>
 <span class="gp">   ...: </span><span class="p">)</span>
 <span class="gp">   ...: </span>

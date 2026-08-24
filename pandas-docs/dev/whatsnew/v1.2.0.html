@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new in 1.2.0 (December 26, 2020) &#8212; pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation</title>
+    <title>What’s new in 1.2.0 (December 26, 2020) &#8212; pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=9cd931eb"></script>
+    <script src="../_static/documentation_options.js?v=dd06e936"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="What’s new in 1.2.1 (January 20, 2021)" href="v1.2.1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1590.g8dfcb75ba0" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1653.g0c48f9eb6d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1590.g8dfcb75ba0 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1653.g0c48f9eb6d documentation - Home"/>
   
   
 </a></div>
@@ -707,13 +707,13 @@ write <code class="docutils literal notranslate"><span class="pre">.xlsx</span><
 control whether the index or columns can contain duplicate labels (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/28394">GH 28394</a>). This can be used to
 prevent accidental introduction of duplicate labels, which can affect downstream operations.</p>
 <p>By default, duplicates continue to be allowed.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">])</span>
 <span class="gh">Out[1]:</span>
 <span class="go">a    1</span>
 <span class="go">a    2</span>
 <span class="go">Length: 2, dtype: int64</span>
 
-<span class="gp">In [2]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span><span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">In [2]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">])</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span><span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="go">...</span>
 <span class="go">DuplicateLabelError: Index has duplicates.</span>
 <span class="go">      positions</span>
@@ -723,7 +723,7 @@ prevent accidental introduction of duplicate labels, which can affect downstream
 </div>
 <p>pandas will propagate the <code class="docutils literal notranslate"><span class="pre">allows_duplicate_labels</span></code> property through many operations.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span>
-<span class="gp">   ...: </span>    <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
+<span class="gp">   ...: </span>    <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">])</span>
 <span class="gp">   ...: </span>      <span class="o">.</span><span class="n">set_flags</span><span class="p">(</span><span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">   ...: </span><span class="p">)</span>
 
@@ -734,7 +734,7 @@ prevent accidental introduction of duplicate labels, which can affect downstream
 <span class="go">Length: 2, dtype: int64</span>
 
 <span class="go"># An operation introducing duplicates</span>
-<span class="gp">In [5]: </span><span class="n">a</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">])</span>
+<span class="gp">In [5]: </span><span class="n">a</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">])</span>
 <span class="go">...</span>
 <span class="go">DuplicateLabelError: Index has duplicates.</span>
 <span class="go">      positions</span>
@@ -782,7 +782,7 @@ it is necessary to provide <code class="docutils literal notranslate"><span clas
 
 <span class="gp">In [3]: </span><span class="n">buffer</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
 
-<span class="gp">In [4]: </span><span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">)</span>
+<span class="gp">In [4]: </span><span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s2">"gzip"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -792,9 +792,9 @@ it is necessary to provide <code class="docutils literal notranslate"><span clas
 a floating table position (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/35281">GH 35281</a>)
 and a short caption (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/36267">GH 36267</a>).</p>
 <p>The keyword <code class="docutils literal notranslate"><span class="pre">position</span></code> has been added to set the position.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'a'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">'b'</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
 
-<span class="gp">In [6]: </span><span class="n">table</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s1">&#39;ht&#39;</span><span class="p">)</span>
+<span class="gp">In [6]: </span><span class="n">table</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s1">'ht'</span><span class="p">)</span>
 
 <span class="gp">In [7]: </span><span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
 <span class="go">\begin{table}[ht]</span>
@@ -813,9 +813,9 @@ and a short caption (<a class="extlink-issue reference external" href="https://g
 Besides taking a single string as an argument,
 one can optionally provide a tuple <code class="docutils literal notranslate"><span class="pre">(full_caption,</span> <span class="pre">short_caption)</span></code>
 to add a short caption macro.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'a'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">'b'</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
 
-<span class="gp">In [9]: </span><span class="n">table</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span><span class="n">caption</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;the full long caption&#39;</span><span class="p">,</span> <span class="s1">&#39;short caption&#39;</span><span class="p">))</span>
+<span class="gp">In [9]: </span><span class="n">table</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_latex</span><span class="p">(</span><span class="n">caption</span><span class="o">=</span><span class="p">(</span><span class="s1">'the full long caption'</span><span class="p">,</span> <span class="s1">'short caption'</span><span class="p">))</span>
 
 <span class="gp">In [10]: </span><span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
 <span class="go">\begin{table}</span>
@@ -860,29 +860,29 @@ comparison operations:</p>
 <span class="gh">Out[12]: </span>
 <span class="go">0    1.5</span>
 <span class="go">1    NaN</span>
-<span class="go">dtype: float64</span>
+<span class="go">Length: 2, dtype: float64</span>
 
 <span class="gp">In [13]: </span><span class="n">s1</span> <span class="o">&gt;</span> <span class="mi">1</span>
 <span class="gh">Out[13]: </span>
 <span class="go">0     True</span>
 <span class="go">1    False</span>
-<span class="go">dtype: bool</span>
+<span class="go">Length: 2, dtype: bool</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># the new nullable float64 dtype</span>
-<span class="gp">In [14]: </span><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;Float64&quot;</span><span class="p">)</span>
+<span class="gp">In [14]: </span><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"Float64"</span><span class="p">)</span>
 
 <span class="gp">In [15]: </span><span class="n">s2</span>
 <span class="gh">Out[15]: </span>
 <span class="go">0     1.5</span>
 <span class="go">1    &lt;NA&gt;</span>
-<span class="go">dtype: Float64</span>
+<span class="go">Length: 2, dtype: Float64</span>
 
 <span class="gp">In [16]: </span><span class="n">s2</span> <span class="o">&gt;</span> <span class="mi">1</span>
 <span class="gh">Out[16]: </span>
 <span class="go">0    True</span>
 <span class="go">1    &lt;NA&gt;</span>
-<span class="go">dtype: boolean</span>
+<span class="go">Length: 2, dtype: boolean</span>
 </pre></div>
 </div>
 <p>See the <a class="reference internal" href="../user_guide/missing_data.html#missing-data-na"><span class="std std-ref">NA semantics</span></a> doc section for more details on the behavior
@@ -894,7 +894,7 @@ Alternatively, you can also use the dtype object:</p>
 <span class="gh">Out[17]: </span>
 <span class="go">0     1.5</span>
 <span class="go">1    &lt;NA&gt;</span>
-<span class="go">dtype: Float32</span>
+<span class="go">Length: 2, dtype: Float32</span>
 </pre></div>
 </div>
 <p>Operations with the existing integer or boolean nullable data types that
@@ -913,11 +913,11 @@ will now attempt to preserve index and column names whenever possible (<a class=
 In the case where all inputs share a common name, this name will be assigned to the
 result. When the input names do not all agree, the result will be unnamed. Here is an
 example where the index name is preserved:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">'abc'</span><span class="p">)</span>
 
 <span class="gp">In [19]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
 
-<span class="gp">In [20]: </span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">ser</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">ser</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">In [20]: </span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">({</span><span class="s1">'x'</span><span class="p">:</span> <span class="n">ser</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s1">'y'</span><span class="p">:</span> <span class="n">ser</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gh">Out[20]: </span>
 <span class="go">       x    y</span>
 <span class="go">abc          </span>
@@ -926,6 +926,8 @@ example where the index name is preserved:</p>
 <span class="go">3    8.0  8.0</span>
 <span class="go">4    9.0  NaN</span>
 <span class="go">0    NaN  5.0</span>
+
+<span class="go">[5 rows x 2 columns]</span>
 </pre></div>
 </div>
 <p>The same is true for <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a>, but the logic is applied separately on a
@@ -934,7 +936,7 @@ level-by-level basis.</p>
 <section id="groupby-supports-ewm-operations-directly">
 <span id="whatsnew-120-groupby-ewm"></span><h3>GroupBy supports EWM operations directly<a class="headerlink" href="#groupby-supports-ewm-operations-directly" title="Link to this heading">#</a></h3>
 <p><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrameGroupBy</span></code> now supports exponentially weighted window operations directly (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/16037">GH 16037</a>).</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'A'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">],</span> <span class="s1">'B'</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)})</span>
 
 <span class="gp">In [22]: </span><span class="n">df</span>
 <span class="gh">Out[22]: </span>
@@ -944,7 +946,9 @@ level-by-level basis.</p>
 <span class="go">2  a  2</span>
 <span class="go">3  b  3</span>
 
-<span class="gp">In [23]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ewm</span><span class="p">(</span><span class="n">com</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="go">[4 rows x 2 columns]</span>
+
+<span class="gp">In [23]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'A'</span><span class="p">)</span><span class="o">.</span><span class="n">ewm</span><span class="p">(</span><span class="n">com</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="gh">Out[23]: </span>
 <span class="go">            B</span>
 <span class="go">A            </span>
@@ -952,6 +956,8 @@ level-by-level basis.</p>
 <span class="go">  2  1.333333</span>
 <span class="go">b 1  1.000000</span>
 <span class="go">  3  2.333333</span>
+
+<span class="go">[4 rows x 1 columns]</span>
 </pre></div>
 </div>
 <p>Additionally <code class="docutils literal notranslate"><span class="pre">mean</span></code> supports execution via <a class="reference external" href="https://numba.pydata.org/">Numba</a> with
@@ -1012,9 +1018,9 @@ determines whether to exclude object-dtype columns on a column-by-column basis,
 instead of checking if <em>all</em> object-dtype columns can be considered boolean.</p>
 <p>This prevents pathological behavior where applying the reduction on a subset
 of columns could result in a larger Series result. See (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/37799">GH 37799</a>).</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">],</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]},</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"foo"</span><span class="p">,</span> <span class="s2">"bar"</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]},</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
 
-<span class="gp">In [25]: </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
+<span class="gp">In [25]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"C"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
 </pre></div>
 </div>
 <p><em>Previous behavior</em>:</p>
@@ -1023,7 +1029,7 @@ of columns could result in a larger Series result. See (<a class="extlink-issue 
 <span class="go">C    True</span>
 <span class="go">dtype: bool</span>
 
-<span class="gp">In [6]: </span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">bool_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">In [6]: </span><span class="n">df</span><span class="p">[[</span><span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">]]</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">bool_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gh">Out[6]:</span>
 <span class="go">B    False</span>
 <span class="go">C    True</span>
@@ -1034,24 +1040,24 @@ of columns could result in a larger Series result. See (<a class="extlink-issue 
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">df</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">bool_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gh">Out[26]: </span>
 <span class="go">C    True</span>
-<span class="go">dtype: bool</span>
+<span class="go">Length: 1, dtype: bool</span>
 
-<span class="gp">In [27]: </span><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">bool_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">In [27]: </span><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">df</span><span class="p">[[</span><span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">]]</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">bool_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gh">Out[27]: </span>
 <span class="go">C    True</span>
-<span class="go">dtype: bool</span>
+<span class="go">Length: 1, dtype: bool</span>
 </pre></div>
 </div>
 <p>Other DataFrame reductions with <code class="docutils literal notranslate"><span class="pre">numeric_only=None</span></code> will also avoid
 this pathological behavior (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/37827">GH 37827</a>):</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [28]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]},</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [28]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">]},</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><em>Previous behavior</em>:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="gh">Out[3]: </span><span class="go">Series([], dtype: float64)</span>
 
-<span class="gp">In [4]: </span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;A&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gp">In [4]: </span><span class="n">df</span><span class="p">[[</span><span class="s2">"A"</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="gh">Out[4]:</span>
 <span class="go">A    1.0</span>
 <span class="go">dtype: float64</span>
@@ -1063,7 +1069,7 @@ this pathological behavior (<a class="extlink-issue reference external" href="ht
 <span class="go">A    1.0</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [4]: </span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;A&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gp">In [4]: </span><span class="n">df</span><span class="p">[[</span><span class="s2">"A"</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="gh">Out[4]:</span>
 <span class="go">A    1.0</span>
 <span class="go">dtype: float64</span>
@@ -1075,7 +1081,7 @@ reductions where the Series method raises <code class="docutils literal notransl
 DataFrame reduction will now consider that column non-numeric
 instead of casting to a NumPy array which may have different semantics (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/36076">GH 36076</a>,
 <a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/28949">GH 28949</a>, <a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/21020">GH 21020</a>).</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"category"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"A"</span><span class="p">)</span>
 
 <span class="gp">In [30]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">ser</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
 </pre></div>
