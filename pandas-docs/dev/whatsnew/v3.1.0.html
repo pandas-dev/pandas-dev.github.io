@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new in 3.1.0 (Month XX, 2026) &#8212; pandas 3.1.0.dev0+1662.g0c49719283 documentation</title>
+    <title>What’s new in 3.1.0 (Month XX, 2026) &#8212; pandas 3.1.0.dev0+1663.g6eba694f5d documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=5784f455"></script>
+    <script src="../_static/documentation_options.js?v=b85f4b13"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Release notes" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1662.g0c49719283" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1663.g6eba694f5d" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1662.g0c49719283 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1662.g0c49719283 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1663.g6eba694f5d documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1663.g6eba694f5d documentation - Home"/>
   
   
 </a></div>
@@ -1153,6 +1153,7 @@ index or large number of columns (<a class="extlink-issue reference external" hr
 <ul class="simple">
 <li><p>Fixed bug in <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a> repr where attributes were not wrapped to respect <code class="docutils literal notranslate"><span class="pre">display.width</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/11552">GH 11552</a>)</p></li>
 <li><p>Fixed bug in <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> where empty frozensets were formatted incorrectly (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/66192">GH 66192</a>)</p></li>
+<li><p>Fixed bug in <a class="reference internal" href="../reference/api/pandas.testing.assert_frame_equal.html#pandas.testing.assert_frame_equal" title="pandas.testing.assert_frame_equal"><code class="xref py py-func docutils literal notranslate"><span class="pre">testing.assert_frame_equal()</span></code></a> incorrectly raising when equivalent <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> column labels contained missing values (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/54521">GH 54521</a>)</p></li>
 <li><p>Fixed bug in <a class="reference internal" href="../reference/api/pandas.testing.assert_frame_equal.html#pandas.testing.assert_frame_equal" title="pandas.testing.assert_frame_equal"><code class="xref py py-func docutils literal notranslate"><span class="pre">testing.assert_frame_equal()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.testing.assert_index_equal.html#pandas.testing.assert_index_equal" title="pandas.testing.assert_index_equal"><code class="xref py py-func docutils literal notranslate"><span class="pre">testing.assert_index_equal()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.testing.assert_series_equal.html#pandas.testing.assert_series_equal" title="pandas.testing.assert_series_equal"><code class="xref py py-func docutils literal notranslate"><span class="pre">testing.assert_series_equal()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.testing.assert_extension_array_equal.html#pandas.testing.assert_extension_array_equal" title="pandas.testing.assert_extension_array_equal"><code class="xref py py-func docutils literal notranslate"><span class="pre">testing.assert_extension_array_equal()</span></code></a> where <code class="docutils literal notranslate"><span class="pre">rtol</span></code> and <code class="docutils literal notranslate"><span class="pre">atol</span></code> were applied after casting to <code class="docutils literal notranslate"><span class="pre">float64</span></code>, so integers above <code class="docutils literal notranslate"><span class="pre">2**53</span></code> could compare equal while differing by more than the tolerance, or unequal while within it (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/66400">GH 66400</a>)</p></li>
 <li><p>Fixed bug in <a class="reference internal" href="../reference/api/pandas.testing.assert_series_equal.html#pandas.testing.assert_series_equal" title="pandas.testing.assert_series_equal"><code class="xref py py-func docutils literal notranslate"><span class="pre">testing.assert_series_equal()</span></code></a> showing a misleading class mismatch message when Series values were backed by different <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> subclasses (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/65770">GH 65770</a>)</p></li>
 <li><p>Fixed bug in <a class="reference internal" href="../reference/api/pandas.testing.assert_series_equal.html#pandas.testing.assert_series_equal" title="pandas.testing.assert_series_equal"><code class="xref py py-func docutils literal notranslate"><span class="pre">testing.assert_series_equal()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.testing.assert_index_equal.html#pandas.testing.assert_index_equal" title="pandas.testing.assert_index_equal"><code class="xref py py-func docutils literal notranslate"><span class="pre">testing.assert_index_equal()</span></code></a>, and <a class="reference internal" href="../reference/api/pandas.testing.assert_frame_equal.html#pandas.testing.assert_frame_equal" title="pandas.testing.assert_frame_equal"><code class="xref py py-func docutils literal notranslate"><span class="pre">testing.assert_frame_equal()</span></code></a> ignoring <code class="docutils literal notranslate"><span class="pre">rtol</span></code> and <code class="docutils literal notranslate"><span class="pre">atol</span></code> when comparing large integer and floating dtypes with <code class="docutils literal notranslate"><span class="pre">check_dtype=False</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/66699">GH 66699</a>)</p></li>
