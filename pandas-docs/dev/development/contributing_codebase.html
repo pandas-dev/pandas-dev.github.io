@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Contributing to the code base &#8212; pandas 3.1.0.dev0+1661.gf74cda2e6e documentation</title>
+    <title>Contributing to the code base &#8212; pandas 3.1.0.dev0+1662.g0c49719283 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=df9b150c"></script>
+    <script src="../_static/documentation_options.js?v=5784f455"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas docstring guide" href="contributing_docstring.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.1.0.dev0+1661.gf74cda2e6e" />
+  <meta name="docsearch:version" content="3.1.0.dev0+1662.g0c49719283" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1661.gf74cda2e6e documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1661.gf74cda2e6e documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0.dev0+1662.g0c49719283 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0.dev0+1662.g0c49719283 documentation - Home"/>
   
   
 </a></div>
@@ -1263,15 +1263,17 @@ speed by skipping some tests using the <code class="docutils literal notranslate
 <ul class="simple">
 <li><p>slow: any test taking long (think seconds rather than milliseconds)</p></li>
 <li><p>network: tests requiring network connectivity</p></li>
-<li><p>db: tests requiring a database (mysql or postgres)</p></li>
+<li><p>db: tests requiring a database (mysql or postgres); these skip themselves if
+no database is running, so <code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">&quot;not</span> <span class="pre">db&quot;</span></code> is only needed to avoid the cost
+of checking for one</p></li>
 <li><p>single_cpu: tests that should run on a single cpu only</p></li>
 </ul>
 <p>You might want to enable the following option if it’s relevant for you:</p>
 <ul class="simple">
 <li><p>arm_slow: any test taking long on arm64 architecture</p></li>
 </ul>
-<p>These markers are defined <a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pyproject.toml">in this toml file</a>
-, under <code class="docutils literal notranslate"><span class="pre">[tool.pytest.ini_options]</span></code> in a list called <code class="docutils literal notranslate"><span class="pre">markers</span></code>, in case
+<p>These markers are defined <a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/conftest.py">in pandas/conftest.py</a>
+, in a list called <code class="docutils literal notranslate"><span class="pre">PANDAS_MARKERS</span></code>, in case
 you want to check if new ones have been created which are of interest to you.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">-r</span></code> report flag will display a short summary info (see <a class="reference external" href="https://docs.pytest.org/en/4.6.x/usage.html#detailed-summary-report">pytest
 documentation</a>)
