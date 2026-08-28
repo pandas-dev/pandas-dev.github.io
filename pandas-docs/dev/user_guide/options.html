@@ -605,23 +605,27 @@ to match an unambiguous substring:</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">"max"</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/_config/config.py:188,</span> in <span class="ni">get_option</span><span class="nt">(pat)</span>
-<span class="g g-Whitespace">    </span><span class="mi">144</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_option</span><span class="p">(</span><span class="n">pat</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">145</span><span class="w">     </span><span class="sd">"""</span>
-<span class="g g-Whitespace">    </span><span class="mi">146</span><span class="sd">     Retrieve the value of the specified option.</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span><span class="sd"> </span>
-<span class="sd">   (...)    186     4</span>
-<span class="g g-Whitespace">    </span><span class="mi">187</span><span class="sd">     """</span>
-<span class="ne">--&gt; </span><span class="mi">188</span>     <span class="n">key</span> <span class="o">=</span> <span class="n">_get_single_key</span><span class="p">(</span><span class="n">pat</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">190</span>     <span class="c1"># walk the nested dict</span>
-<span class="g g-Whitespace">    </span><span class="mi">191</span>     <span class="n">root</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">_get_root</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/_config/config.py:190,</span> in <span class="ni">get_option</span><span class="nt">(pat)</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_option</span><span class="p">(</span><span class="n">pat</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span><span class="w">     </span><span class="sd">"""</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span><span class="sd">     Retrieve the value of the specified option.</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span><span class="sd"> </span>
+<span class="sd">   (...)    188     4</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">190</span>     <span class="k">return</span> <span class="n">_get_option_impl</span><span class="p">(</span><span class="n">pat</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/_config/config.py:134,</span> in <span class="ni">_get_single_key</span><span class="nt">(pat)</span>
-<span class="g g-Whitespace">    </span><span class="mi">132</span>     <span class="k">raise</span> <span class="n">OptionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No such keys(s): </span><span class="si">{</span><span class="n">pat</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">133</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">134</span>     <span class="k">raise</span> <span class="n">OptionError</span><span class="p">(</span><span class="s2">"Pattern matched multiple keys"</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span> <span class="n">key</span> <span class="o">=</span> <span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">137</span> <span class="n">_warn_if_deprecated</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/_config/config.py:194,</span> in <span class="ni">_get_option_impl</span><span class="nt">(pat, warn)</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span> <span class="k">def</span><span class="w"> </span><span class="nf">_get_option_impl</span><span class="p">(</span><span class="n">pat</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">warn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">194</span>     <span class="n">key</span> <span class="o">=</span> <span class="n">_get_single_key</span><span class="p">(</span><span class="n">pat</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="n">warn</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">196</span>     <span class="c1"># walk the nested dict</span>
+<span class="g g-Whitespace">    </span><span class="mi">197</span>     <span class="n">root</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">_get_root</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/_config/config.py:135,</span> in <span class="ni">_get_single_key</span><span class="nt">(pat, warn, extra_stacklevel)</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span>     <span class="k">raise</span> <span class="n">OptionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No such keys(s): </span><span class="si">{</span><span class="n">pat</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">135</span>     <span class="k">raise</span> <span class="n">OptionError</span><span class="p">(</span><span class="s2">"Pattern matched multiple keys"</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="n">key</span> <span class="o">=</span> <span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span> <span class="k">if</span> <span class="n">warn</span><span class="p">:</span>
 
 <span class="ne">OptionError</span>: Pattern matched multiple keys
 </pre></div>
