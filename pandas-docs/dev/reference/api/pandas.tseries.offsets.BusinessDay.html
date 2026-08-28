@@ -63,7 +63,7 @@
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.tseries.offsets.BusinessDay.n" href="pandas.tseries.offsets.BusinessDay.n.html" />
+    <link rel="next" title="pandas.tseries.offsets.BDay" href="pandas.tseries.offsets.BDay.html" />
     <link rel="prev" title="pandas.tseries.offsets.DateOffset.rollforward" href="pandas.tseries.offsets.DateOffset.rollforward.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -501,12 +501,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.tseries.offsets.DateOffset.is_year_end.html">pandas.tseries.offsets.DateOffset.is_year_end</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.tseries.offsets.DateOffset.rollback.html">pandas.tseries.offsets.DateOffset.rollback</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.tseries.offsets.DateOffset.rollforward.html">pandas.tseries.offsets.DateOffset.rollforward</a></li>
-<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">pandas.tseries.offsets.BusinessDay</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="pandas.tseries.offsets.BusinessDay.n.html">pandas.tseries.offsets.BusinessDay.n</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pandas.tseries.offsets.BusinessDay.normalize.html">pandas.tseries.offsets.BusinessDay.normalize</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pandas.tseries.offsets.BusinessDay.offset.html">pandas.tseries.offsets.BusinessDay.offset</a></li>
-</ul>
-</details></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">pandas.tseries.offsets.BusinessDay</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.tseries.offsets.BDay.html">pandas.tseries.offsets.BDay</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.tseries.offsets.BusinessDay.freqstr.html">pandas.tseries.offsets.BusinessDay.freqstr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.tseries.offsets.BusinessDay.kwds.html">pandas.tseries.offsets.BusinessDay.kwds</a></li>
@@ -1262,26 +1257,23 @@
 <h1>pandas.tseries.offsets.BusinessDay<a class="headerlink" href="#pandas-tseries-offsets-businessday" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pandas.tseries.offsets.BusinessDay">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.tseries.offsets.</span></span><span class="sig-name descname"><span class="pre">BusinessDay</span></span><a class="headerlink" href="#pandas.tseries.offsets.BusinessDay" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.tseries.offsets.</span></span><span class="sig-name descname"><span class="pre">BusinessDay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">datetime.timedelta(0)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pandas.tseries.offsets.BusinessDay" title="Link to this definition">#</a></dt>
 <dd><p>DateOffset subclass representing possibly n business days.</p>
 <p>BusinessDay, also known as BDay, is a date offset representing a single
 business day or a number of business days. Business days exclude weekends
 (Saturday and Sunday) by default.</p>
-<p class="rubric">Attributes</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.tseries.offsets.BusinessDay.n.html#pandas.tseries.offsets.BusinessDay.n" title="pandas.tseries.offsets.BusinessDay.n"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code></a></p></td>
-<td><p>Return the count of the number of periods.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.tseries.offsets.BusinessDay.normalize.html#pandas.tseries.offsets.BusinessDay.normalize" title="pandas.tseries.offsets.BusinessDay.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize</span></code></a></p></td>
-<td><p>Return boolean whether the frequency can align with midnight.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.tseries.offsets.BusinessDay.offset.html#pandas.tseries.offsets.BusinessDay.offset" title="pandas.tseries.offsets.BusinessDay.offset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">offset</span></code></a></p></td>
-<td><p>Return the time offset applied to the business day.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">int, default 1</span></dt><dd><p>The number of days represented.</p>
+</dd>
+<dt><strong>normalize</strong><span class="classifier">bool, default False</span></dt><dd><p>Normalize start/end dates to midnight.</p>
+</dd>
+<dt><strong>offset</strong><span class="classifier">timedelta, default timedelta(0)</span></dt><dd><p>Additional time offset applied after the business day calculation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
@@ -1407,11 +1399,11 @@ of the next business day to midnight.</p>
       </div>
     </a>
     <a class="right-next"
-       href="pandas.tseries.offsets.BusinessDay.n.html"
+       href="pandas.tseries.offsets.BDay.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">pandas.tseries.offsets.BusinessDay.n</p>
+        <p class="prev-next-title">pandas.tseries.offsets.BDay</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
