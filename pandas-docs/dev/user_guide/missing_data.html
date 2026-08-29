@@ -1646,6 +1646,11 @@ filled since the last valid observation</p>
 <span class="go">dtype: float64</span>
 </pre></div>
 </div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">limit</span></code> caps how many consecutive <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values are filled within
+each gap; it does not skip gaps that are longer than the limit. A gap with more
+consecutive <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values than <code class="docutils literal notranslate"><span class="pre">limit</span></code> is filled <em>partially</em>, as with the
+three <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values between <code class="docutils literal notranslate"><span class="pre">5</span></code> and <code class="docutils literal notranslate"><span class="pre">13</span></code> above. To leave such gaps
+untouched entirely, mask them out afterwards.</p>
 <p>By default, <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values are filled in a <code class="docutils literal notranslate"><span class="pre">forward</span></code> direction. Use
 <code class="docutils literal notranslate"><span class="pre">limit_direction</span></code> parameter to fill <code class="docutils literal notranslate"><span class="pre">backward</span></code> or from <code class="docutils literal notranslate"><span class="pre">both</span></code> directions.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [167]: </span><span class="n">ser</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s2">"backward"</span><span class="p">)</span>

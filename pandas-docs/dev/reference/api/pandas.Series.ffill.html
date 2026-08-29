@@ -895,7 +895,7 @@
 <h1>pandas.Series.ffill<a class="headerlink" href="#pandas-series-ffill" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.Series.ffill">
-<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">ffill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_area</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/generic.py#L7397-L7500"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.ffill" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">ffill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_area</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/generic.py#L7397-L7497"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.ffill" title="Link to this definition">#</a></dt>
 <dd><p>Fill NA/NaN values by propagating the last valid observation to next valid.</p>
 <p>This method fills missing values using forward fill, where the last
 valid observation is propagated forward to fill the gaps.</p>
@@ -909,15 +909,12 @@ this parameter is unused and defaults to 0.</p>
 other views on this object (e.g., a no-copy slice for a column in a
 DataFrame).</p>
 </dd>
-<dt><strong>limit</strong><span class="classifier">int, default None</span></dt><dd><p>If method is specified, this is the maximum number of consecutive
-NaN values to forward/backward fill. In other words, if there is
-a gap with more than this number of consecutive NaNs, it will only
-be partially filled. If method is not specified, this is the
-maximum number of entries along the entire axis where NaNs will be
-filled. Must be greater than 0 if not None.</p>
+<dt><strong>limit</strong><span class="classifier">int, default None</span></dt><dd><p>Maximum number of consecutive NaN values to fill. In other words, if
+there is a gap with more than this number of consecutive NaNs, it
+will only be partially filled. Must be greater than 0 if not None.</p>
 </dd>
-<dt><strong>limit_area</strong><span class="classifier">{<cite>None</cite>, ‘inside’, ‘outside’}, default None</span></dt><dd><p>If limit is specified, consecutive NaNs will be filled with this
-restriction.</p>
+<dt><strong>limit_area</strong><span class="classifier">{<cite>None</cite>, ‘inside’, ‘outside’}, default None</span></dt><dd><p>Restrict which NaNs are filled based on their position relative to
+the valid values.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: No fill restriction.</p></li>
 <li><p>‘inside’: Only fill NaNs surrounded by valid values
