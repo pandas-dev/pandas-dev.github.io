@@ -1083,18 +1083,18 @@ using integers in a <code class="docutils literal notranslate"><span class="pre"
 <span class="g g-Whitespace">   </span><span class="mi">1980</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
 <span class="g g-Whitespace">   </span><span class="mi">1981</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_slice</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimes.py:1338,</span> in <span class="ni">DatetimeIndex.slice_indexer</span><span class="nt">(self, start, end, step)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1330</span> <span class="c1"># GH#33146 if start and end are combinations of str and None and Index is not</span>
-<span class="g g-Whitespace">   </span><span class="mi">1331</span> <span class="c1"># monotonic, we can not use Index.slice_indexer because it does not honor the</span>
-<span class="g g-Whitespace">   </span><span class="mi">1332</span> <span class="c1"># actual elements, is only searching for start and end</span>
-<span class="g g-Whitespace">   </span><span class="mi">1333</span> <span class="k">if</span> <span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1334</span>     <span class="n">check_str_or_none</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1335</span>     <span class="ow">or</span> <span class="n">check_str_or_none</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1336</span>     <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_monotonic_increasing</span>
-<span class="g g-Whitespace">   </span><span class="mi">1337</span> <span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1338</span>     <span class="k">return</span> <span class="n">Index</span><span class="o">.</span><span class="n">slice_indexer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1340</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1341</span> <span class="n">in_index</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimes.py:1349,</span> in <span class="ni">DatetimeIndex.slice_indexer</span><span class="nt">(self, start, end, step)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1341</span> <span class="c1"># GH#33146 if start and end are combinations of str and None and Index is not</span>
+<span class="g g-Whitespace">   </span><span class="mi">1342</span> <span class="c1"># monotonic, we can not use Index.slice_indexer because it does not honor the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1343</span> <span class="c1"># actual elements, is only searching for start and end</span>
+<span class="g g-Whitespace">   </span><span class="mi">1344</span> <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1345</span>     <span class="n">check_str_or_none</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1346</span>     <span class="ow">or</span> <span class="n">check_str_or_none</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1347</span>     <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_monotonic_increasing</span>
+<span class="g g-Whitespace">   </span><span class="mi">1348</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1349</span>     <span class="k">return</span> <span class="n">Index</span><span class="o">.</span><span class="n">slice_indexer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1351</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1352</span> <span class="n">in_index</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7086,</span> in <span class="ni">Index.slice_indexer</span><span class="nt">(self, start, end, step)</span>
 <span class="g g-Whitespace">   </span><span class="mi">7035</span> <span class="k">def</span><span class="w"> </span><span class="nf">slice_indexer</span><span class="p">(</span>
@@ -1127,16 +1127,16 @@ using integers in a <code class="docutils literal notranslate"><span class="pre"
 <span class="g g-Whitespace">   </span><span class="mi">7251</span> <span class="c1"># we need to look up the label</span>
 <span class="g g-Whitespace">   </span><span class="mi">7252</span> <span class="k">try</span><span class="p">:</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimes.py:1298,</span> in <span class="ni">DatetimeIndex._maybe_cast_slice_bound</span><span class="nt">(self, label, side)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1289</span>     <span class="n">label</span> <span class="o">=</span> <span class="n">Timestamp</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">to_pydatetime</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1290</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1291</span>         <span class="c1"># GH#35830 deprecate last remaining inconsistent date treatment</span>
-<span class="g g-Whitespace">   </span><span class="mi">1292</span>         <span class="s2">"Slicing with a datetime.date object is deprecated. "</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1295</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1296</span>     <span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1298</span> <span class="n">label</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_maybe_cast_slice_bound</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">side</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1299</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">_assert_tzawareness_compat</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1300</span> <span class="k">return</span> <span class="n">Timestamp</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimes.py:1309,</span> in <span class="ni">DatetimeIndex._maybe_cast_slice_bound</span><span class="nt">(self, label, side)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1300</span>     <span class="n">label</span> <span class="o">=</span> <span class="n">Timestamp</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">to_pydatetime</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1301</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1302</span>         <span class="c1"># GH#35830 deprecate last remaining inconsistent date treatment</span>
+<span class="g g-Whitespace">   </span><span class="mi">1303</span>         <span class="s2">"Slicing with a datetime.date object is deprecated. "</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1306</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1307</span>     <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1309</span> <span class="n">label</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_maybe_cast_slice_bound</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">side</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1310</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">_assert_tzawareness_compat</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1311</span> <span class="k">return</span> <span class="n">Timestamp</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimelike.py:629,</span> in <span class="ni">DatetimeIndexOpsMixin._maybe_cast_slice_bound</span><span class="nt">(self, label, side)</span>
 <span class="g g-Whitespace">    </span><span class="mi">627</span>     <span class="k">return</span> <span class="n">lower</span> <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s2">"left"</span> <span class="k">else</span> <span class="n">upper</span>
@@ -2965,7 +2965,7 @@ having to specify which frame you’re interested in querying</p>
 <span class="gp">In [268]: </span><span class="n">expr</span> <span class="o">=</span> <span class="s1">'0.0 &lt;= a &lt;= c &lt;= 0.5'</span>
 
 <span class="gp">In [269]: </span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="p">[</span><span class="n">df</span><span class="p">,</span> <span class="n">df2</span><span class="p">])</span>
-<span class="gh">Out[269]: </span><span class="go">&lt;map at 0x7fb0b0bf0ca0&gt;</span>
+<span class="gh">Out[269]: </span><span class="go">&lt;map at 0x7f84db7daad0&gt;</span>
 </pre></div>
 </div>
 </section>

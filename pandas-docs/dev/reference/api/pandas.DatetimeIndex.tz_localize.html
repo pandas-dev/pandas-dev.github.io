@@ -799,7 +799,7 @@
 <h1>pandas.DatetimeIndex.tz_localize<a class="headerlink" href="#pandas-datetimeindex-tz-localize" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.DatetimeIndex.tz_localize">
-<span class="sig-prename descclassname"><span class="pre">DatetimeIndex.</span></span><span class="sig-name descname"><span class="pre">tz_localize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambiguous</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonexistent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/datetimes.py#L595-L752"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.tz_localize" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DatetimeIndex.</span></span><span class="sig-name descname"><span class="pre">tz_localize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambiguous</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonexistent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/datetimes.py#L595-L763"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.tz_localize" title="Link to this definition">#</a></dt>
 <dd><p>Localize tz-naive Datetime Array/Index to tz-aware Datetime Array/Index.</p>
 <p>This method takes a time zone (tz) naive Datetime Array/Index object
 and makes this time zone aware. It does not move the time to another
@@ -877,10 +877,9 @@ nonexistent times.</p></li>
 <p>Localize DatetimeIndex in US/Eastern time zone:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tz_aware</span> <span class="o">=</span> <span class="n">tz_naive</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="s1">'US/Eastern'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tz_aware</span>
-<span class="go">DatetimeIndex(['2018-03-01 09:00:00-05:00',</span>
-<span class="go">               '2018-03-02 09:00:00-05:00',</span>
+<span class="go">DatetimeIndex(['2018-03-01 09:00:00-05:00', '2018-03-02 09:00:00-05:00',</span>
 <span class="go">               '2018-03-03 09:00:00-05:00'],</span>
-<span class="go">              dtype='datetime64[us, US/Eastern]', freq=None)</span>
+<span class="go">              dtype='datetime64[us, US/Eastern]', freq='D')</span>
 </pre></div>
 </div>
 <p>With <code class="docutils literal notranslate"><span class="pre">tz=None</span></code> we can remove the time zone information while
@@ -888,7 +887,7 @@ preserving the wall time (no conversion to UTC):</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tz_aware</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 <span class="go">DatetimeIndex(['2018-03-01 09:00:00', '2018-03-02 09:00:00',</span>
 <span class="go">               '2018-03-03 09:00:00'],</span>
-<span class="go">              dtype='datetime64[us]', freq=None)</span>
+<span class="go">              dtype='datetime64[us]', freq='D')</span>
 </pre></div>
 </div>
 <p>Be careful with DST changes. When there is sequential data, pandas can
