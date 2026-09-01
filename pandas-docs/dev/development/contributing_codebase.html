@@ -557,22 +557,23 @@
 <li><p><a class="reference internal" href="#test-driven-development" id="id11">Test-driven development</a></p>
 <ul>
 <li><p><a class="reference internal" href="#writing-tests" id="id12">Writing tests</a></p></li>
-<li><p><a class="reference internal" href="#using-pytest" id="id13">Using <code class="docutils literal notranslate"><span class="pre">pytest</span></code></a></p>
+<li><p><a class="reference internal" href="#imports-in-tests" id="id13">Imports in tests</a></p></li>
+<li><p><a class="reference internal" href="#using-pytest" id="id14">Using <code class="docutils literal notranslate"><span class="pre">pytest</span></code></a></p>
 <ul>
-<li><p><a class="reference internal" href="#test-structure" id="id14">Test structure</a></p></li>
-<li><p><a class="reference internal" href="#preferred-pytest-idioms" id="id15">Preferred <code class="docutils literal notranslate"><span class="pre">pytest</span></code> idioms</a></p></li>
-<li><p><a class="reference internal" href="#testing-a-warning" id="id16">Testing a warning</a></p></li>
-<li><p><a class="reference internal" href="#testing-an-exception" id="id17">Testing an exception</a></p></li>
-<li><p><a class="reference internal" href="#testing-involving-files" id="id18">Testing involving files</a></p></li>
-<li><p><a class="reference internal" href="#testing-involving-network-connectivity" id="id19">Testing involving network connectivity</a></p></li>
-<li><p><a class="reference internal" href="#example" id="id20">Example</a></p></li>
+<li><p><a class="reference internal" href="#test-structure" id="id15">Test structure</a></p></li>
+<li><p><a class="reference internal" href="#preferred-pytest-idioms" id="id16">Preferred <code class="docutils literal notranslate"><span class="pre">pytest</span></code> idioms</a></p></li>
+<li><p><a class="reference internal" href="#testing-a-warning" id="id17">Testing a warning</a></p></li>
+<li><p><a class="reference internal" href="#testing-an-exception" id="id18">Testing an exception</a></p></li>
+<li><p><a class="reference internal" href="#testing-involving-files" id="id19">Testing involving files</a></p></li>
+<li><p><a class="reference internal" href="#testing-involving-network-connectivity" id="id20">Testing involving network connectivity</a></p></li>
+<li><p><a class="reference internal" href="#example" id="id21">Example</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#running-the-test-suite" id="id21">Running the test suite</a></p></li>
-<li><p><a class="reference internal" href="#running-the-performance-test-suite" id="id22">Running the performance test suite</a></p></li>
-<li><p><a class="reference internal" href="#documenting-your-code" id="id23">Documenting your code</a></p></li>
+<li><p><a class="reference internal" href="#running-the-test-suite" id="id22">Running the test suite</a></p></li>
+<li><p><a class="reference internal" href="#running-the-performance-test-suite" id="id23">Running the performance test suite</a></p></li>
+<li><p><a class="reference internal" href="#documenting-your-code" id="id24">Documenting your code</a></p></li>
 </ul>
 </nav>
 <section id="code-standards">
@@ -1020,10 +1021,25 @@ This test likely belongs in one of:</p>
 </li>
 </ol>
 </section>
+<section id="imports-in-tests">
+<span id="contributing-test-imports"></span><h3><a class="toc-backref" href="#id13" role="doc-backlink">Imports in tests</a><a class="headerlink" href="#imports-in-tests" title="Link to this heading">#</a></h3>
+<p>Objects in the top-level pandas namespace are reached through <code class="docutils literal notranslate"><span class="pre">pd</span></code> rather than
+imported directly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Everything else is imported from the module which defines it, e.g.
+<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas._testing</span> <span class="pre">as</span> <span class="pre">tm</span></code> or
+<code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pandas.core.dtypes.common</span> <span class="pre">import</span> <span class="pre">is_integer_dtype</span></code>.  The <code class="docutils literal notranslate"><span class="pre">test-imports</span></code>
+pre-commit hook checks that test files do not import from the <code class="docutils literal notranslate"><span class="pre">pandas</span></code>
+namespace directly.</p>
+</section>
 <section id="using-pytest">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">Using <code class="docutils literal notranslate"><span class="pre">pytest</span></code></a><a class="headerlink" href="#using-pytest" title="Link to this heading">#</a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Using <code class="docutils literal notranslate"><span class="pre">pytest</span></code></a><a class="headerlink" href="#using-pytest" title="Link to this heading">#</a></h3>
 <section id="test-structure">
-<h4><a class="toc-backref" href="#id14" role="doc-backlink">Test structure</a><a class="headerlink" href="#test-structure" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id15" role="doc-backlink">Test structure</a><a class="headerlink" href="#test-structure" title="Link to this heading">#</a></h4>
 <p>pandas existing test structure is <em>mostly</em> class-based, meaning that you will typically find tests wrapped in a class.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TestReallyCoolFeature</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">test_cool_feature_aspect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1038,7 +1054,7 @@ framework that will facilitate testing and developing. Thus, instead of writing 
 </div>
 </section>
 <section id="preferred-pytest-idioms">
-<h4><a class="toc-backref" href="#id15" role="doc-backlink">Preferred <code class="docutils literal notranslate"><span class="pre">pytest</span></code> idioms</a><a class="headerlink" href="#preferred-pytest-idioms" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id16" role="doc-backlink">Preferred <code class="docutils literal notranslate"><span class="pre">pytest</span></code> idioms</a><a class="headerlink" href="#preferred-pytest-idioms" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Functional tests named <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">test_*</span></code> and <em>only</em> take arguments that are either fixtures or parameters.</p></li>
 <li><p>Use a bare <code class="docutils literal notranslate"><span class="pre">assert</span></code> for testing scalars and truth-testing</p></li>
@@ -1074,7 +1090,7 @@ For these tests, we need to verify the correct exception type and error message
 is being raised, using <code class="docutils literal notranslate"><span class="pre">pytest.raises</span></code> instead.</p>
 </section>
 <section id="testing-a-warning">
-<span id="contributing-warnings"></span><h4><a class="toc-backref" href="#id16" role="doc-backlink">Testing a warning</a><a class="headerlink" href="#testing-a-warning" title="Link to this heading">#</a></h4>
+<span id="contributing-warnings"></span><h4><a class="toc-backref" href="#id17" role="doc-backlink">Testing a warning</a><a class="headerlink" href="#testing-a-warning" title="Link to this heading">#</a></h4>
 <p>Use <code class="docutils literal notranslate"><span class="pre">tm.assert_produces_warning</span></code> as a context manager to check that a block of code raises a warning
 and specify the warning message using the <code class="docutils literal notranslate"><span class="pre">match</span></code> argument.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tm</span><span class="o">.</span><span class="n">assert_produces_warning</span><span class="p">(</span><span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">"the warning message"</span><span class="p">):</span>
@@ -1099,7 +1115,7 @@ ignore the error.</p>
 </div>
 </section>
 <section id="testing-an-exception">
-<h4><a class="toc-backref" href="#id17" role="doc-backlink">Testing an exception</a><a class="headerlink" href="#testing-an-exception" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id18" role="doc-backlink">Testing an exception</a><a class="headerlink" href="#testing-an-exception" title="Link to this heading">#</a></h4>
 <p>Use <a class="reference external" href="https://docs.pytest.org/en/latest/reference/reference.html#pytest-raises">pytest.raises</a> as a context manager
 with the specific exception subclass (i.e. never use <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a>) and the exception message in <code class="docutils literal notranslate"><span class="pre">match</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">"an error"</span><span class="p">):</span>
@@ -1108,7 +1124,7 @@ with the specific exception subclass (i.e. never use <a class="reference externa
 </div>
 </section>
 <section id="testing-involving-files">
-<h4><a class="toc-backref" href="#id18" role="doc-backlink">Testing involving files</a><a class="headerlink" href="#testing-involving-files" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id19" role="doc-backlink">Testing involving files</a><a class="headerlink" href="#testing-involving-files" title="Link to this heading">#</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">temp_file</span></code> pytest fixture creates a temporary file <code class="xref py py-class docutils literal notranslate"><span class="pre">Pathlib</span></code> object for testing:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_something</span><span class="p">(</span><span class="n">temp_file</span><span class="p">):</span>
     <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">temp_file</span><span class="p">))</span>
@@ -1118,7 +1134,7 @@ with the specific exception subclass (i.e. never use <a class="reference externa
 for the file retention policy.</p>
 </section>
 <section id="testing-involving-network-connectivity">
-<h4><a class="toc-backref" href="#id19" role="doc-backlink">Testing involving network connectivity</a><a class="headerlink" href="#testing-involving-network-connectivity" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id20" role="doc-backlink">Testing involving network connectivity</a><a class="headerlink" href="#testing-involving-network-connectivity" title="Link to this heading">#</a></h4>
 <p>A unit test should not access a public data set over the internet due to flakiness of network connections and
 lack of ownership of the server that is being connected to. To mock this interaction, use the <code class="docutils literal notranslate"><span class="pre">httpserver</span></code> fixture from the
 <a class="reference external" href="https://github.com/pytest-dev/pytest-localserver">pytest-localserver plugin.</a> with synthetic data.</p>
@@ -1131,7 +1147,7 @@ lack of ownership of the server that is being connected to. To mock this interac
 </div>
 </section>
 <section id="example">
-<h4><a class="toc-backref" href="#id20" role="doc-backlink">Example</a><a class="headerlink" href="#example" title="Link to this heading">#</a></h4>
+<h4><a class="toc-backref" href="#id21" role="doc-backlink">Example</a><a class="headerlink" href="#example" title="Link to this heading">#</a></h4>
 <p>Here is an example of a self-contained set of tests in a file <code class="docutils literal notranslate"><span class="pre">pandas/tests/test_cool_feature.py</span></code>
 that illustrate multiple features that we like to use. Please remember to add the GitHub Issue Number
 as a comment to a new test.</p>
@@ -1205,7 +1221,7 @@ test_cool_feature.py::test_series<span class="o">[</span>int8<span class="o">]</
 </section>
 </section>
 <section id="running-the-test-suite">
-<span id="contributing-running-tests"></span><h2><a class="toc-backref" href="#id21" role="doc-backlink">Running the test suite</a><a class="headerlink" href="#running-the-test-suite" title="Link to this heading">#</a></h2>
+<span id="contributing-running-tests"></span><h2><a class="toc-backref" href="#id22" role="doc-backlink">Running the test suite</a><a class="headerlink" href="#running-the-test-suite" title="Link to this heading">#</a></h2>
 <p>The tests can then be run directly inside your Git clone (without having to
 install pandas) by typing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="n">pandas</span>
@@ -1297,7 +1313,7 @@ pytest<span class="w"> </span>pandas<span class="w"> </span>-n<span class="w"> <
 <p>with an imported pandas to run tests similarly.</p>
 </section>
 <section id="running-the-performance-test-suite">
-<h2><a class="toc-backref" href="#id22" role="doc-backlink">Running the performance test suite</a><a class="headerlink" href="#running-the-performance-test-suite" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">Running the performance test suite</a><a class="headerlink" href="#running-the-performance-test-suite" title="Link to this heading">#</a></h2>
 <p>Performance matters and it is worth considering whether your code has introduced
 performance regressions. pandas is in the process of migrating to
 <a class="reference external" href="https://github.com/airspeed-velocity/asv">asv benchmarks</a>
@@ -1359,7 +1375,7 @@ environment by:</p>
 <a class="reference external" href="https://asv.readthedocs.io/en/latest/writing_benchmarks.html">asv documentation</a>.</p>
 </section>
 <section id="documenting-your-code">
-<h2><a class="toc-backref" href="#id23" role="doc-backlink">Documenting your code</a><a class="headerlink" href="#documenting-your-code" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id24" role="doc-backlink">Documenting your code</a><a class="headerlink" href="#documenting-your-code" title="Link to this heading">#</a></h2>
 <p>Changes should be reflected in the release notes located in <code class="docutils literal notranslate"><span class="pre">doc/source/whatsnew/vx.y.z.rst</span></code>.
 This file contains an ongoing change log for each release.  Add an entry to this file to
 document your fix, enhancement or (unavoidable) breaking change.  Make sure to include the
@@ -1453,6 +1469,7 @@ or a new keyword argument (<a class="reference external" href="https://github.co
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-with-continuous-integration">Testing with continuous integration</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-driven-development">Test-driven development</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-tests">Writing tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports-in-tests">Imports in tests</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-pytest">Using <code class="docutils literal notranslate"><span class="pre">pytest</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#test-structure">Test structure</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preferred-pytest-idioms">Preferred <code class="docutils literal notranslate"><span class="pre">pytest</span></code> idioms</a></li>
