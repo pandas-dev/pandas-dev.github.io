@@ -676,10 +676,12 @@
 <h1>pandas.api.typing.SeriesGroupBy.nth<a class="headerlink" href="#pandas-api-typing-seriesgroupby-nth" title="Link to this heading">#</a></h1>
 <dl class="py property">
 <dt class="sig sig-object py" id="pandas.api.typing.SeriesGroupBy.nth">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">SeriesGroupBy.</span></span><span class="sig-name descname"><span class="pre">nth</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/groupby/groupby.py#L4295-L4378"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.typing.SeriesGroupBy.nth" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">SeriesGroupBy.</span></span><span class="sig-name descname"><span class="pre">nth</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/groupby/groupby.py#L4295-L4366"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.typing.SeriesGroupBy.nth" title="Link to this definition">#</a></dt>
 <dd><p>Take the nth row from each group if n is an int, otherwise a subset of rows.</p>
-<p>Can be either a call or an index. dropna is not available with index notation.
-Index notation accepts a comma separated list of integers and slices.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 3.1.0: </span>Index notation (<code class="docutils literal notranslate"><span class="pre">g.nth[n]</span></code>) is deprecated in favor of calling
+<code class="docutils literal notranslate"><span class="pre">g.nth(n)</span></code> and will be removed in a future version of pandas.</p>
+</div>
 <p>If dropna, will take the nth non-null row, dropna is either
 ‘all’ or ‘any’; this is equivalent to calling dropna(how=dropna)
 before the groupby.</p>
@@ -724,20 +726,6 @@ before the groupby.</p>
 <span class="go">2  2 3.0</span>
 <span class="go">4  2 5.0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">nth</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="go">   A   B</span>
-<span class="go">0  1 NaN</span>
-<span class="go">1  1 2.0</span>
-<span class="go">2  2 3.0</span>
-</pre></div>
-</div>
-<p>Index notation may also be used</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">nth</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="go">   A   B</span>
-<span class="go">0  1 NaN</span>
-<span class="go">1  1 2.0</span>
-<span class="go">2  2 3.0</span>
-<span class="go">4  2 5.0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">nth</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="go">   A   B</span>
 <span class="go">0  1 NaN</span>
 <span class="go">1  1 2.0</span>
