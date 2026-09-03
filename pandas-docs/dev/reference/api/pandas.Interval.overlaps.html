@@ -780,6 +780,7 @@
 <dd><p>Check whether two Interval objects overlap.</p>
 <p>Two intervals overlap if they share a common point, including closed
 endpoints. Intervals that only have an open endpoint in common do not
+overlap, and empty intervals contain no points at all, so they never
 overlap.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -824,6 +825,14 @@ overlap.</p>
 <p>Intervals that only have an open endpoint in common do not overlap:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">i6</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">'neither'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">i4</span><span class="o">.</span><span class="n">overlaps</span><span class="p">(</span><span class="n">i6</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Empty intervals do not overlap with anything, including themselves:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">i7</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">'left'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i4</span><span class="o">.</span><span class="n">overlaps</span><span class="p">(</span><span class="n">i7</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i7</span><span class="o">.</span><span class="n">overlaps</span><span class="p">(</span><span class="n">i7</span><span class="p">)</span>
 <span class="go">False</span>
 </pre></div>
 </div>

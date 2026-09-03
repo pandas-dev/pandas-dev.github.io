@@ -690,13 +690,13 @@ are <code class="docutils literal notranslate"><span class="pre">False</span></c
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]):</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">"I was true"</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1561,</span> in <span class="ni">NDFrame.__bool__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1559</span>     <span class="nd">@final</span>
-<span class="g g-Whitespace">   </span><span class="mi">1560</span>     <span class="k">def</span><span class="w"> </span><span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1561</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1562</span>             <span class="sa">f</span><span class="s2">"The truth value of a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is ambiguous. "</span>
-<span class="g g-Whitespace">   </span><span class="mi">1563</span>             <span class="s2">"Use a.empty, a.item(), a.any() or a.all()."</span>
-<span class="g g-Whitespace">   </span><span class="mi">1564</span>         <span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1439,</span> in <span class="ni">NDFrame.__bool__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1437</span>     <span class="nd">@final</span>
+<span class="g g-Whitespace">   </span><span class="mi">1438</span>     <span class="k">def</span><span class="w"> </span><span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1439</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1440</span>             <span class="sa">f</span><span class="s2">"The truth value of a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is ambiguous. "</span>
+<span class="g g-Whitespace">   </span><span class="mi">1441</span>             <span class="s2">"Use a.empty, a.item(), a.any() or a.all()."</span>
+<span class="g g-Whitespace">   </span><span class="mi">1442</span>         <span class="p">)</span>
 
 <span class="ne">ValueError</span>: The truth value of a Series is ambiguous. Use a.empty, a.item(), a.any() or a.all().
 </pre></div>
@@ -830,15 +830,15 @@ the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#p
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">27</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/frame.py:14970,</span> in <span class="ni">DataFrame.apply</span><span class="nt">(self, func, axis, raw, result_type, args, by_row, engine, engine_kwargs, **kwargs)</span>
-<span class="g g-Whitespace">  </span><span class="mi">14966</span>                 <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">  </span><span class="mi">14967</span>                 <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
-<span class="g g-Whitespace">  </span><span class="mi">14968</span>                 <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">  </span><span class="mi">14969</span>             <span class="p">)</span>
-<span class="ne">&gt; </span><span class="mi">14970</span>             <span class="k">return</span> <span class="n">op</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"apply"</span><span class="p">)</span>
-<span class="g g-Whitespace">  </span><span class="mi">14971</span>         <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span> <span class="s2">"__pandas_udf__"</span><span class="p">):</span>
-<span class="g g-Whitespace">  </span><span class="mi">14972</span>             <span class="k">if</span> <span class="n">result_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">  </span><span class="mi">14973</span>                 <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/frame.py:15166,</span> in <span class="ni">DataFrame.apply</span><span class="nt">(self, func, axis, raw, result_type, args, by_row, engine, engine_kwargs, **kwargs)</span>
+<span class="g g-Whitespace">  </span><span class="mi">15162</span>                 <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">  </span><span class="mi">15163</span>                 <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
+<span class="g g-Whitespace">  </span><span class="mi">15164</span>                 <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">  </span><span class="mi">15165</span>             <span class="p">)</span>
+<span class="ne">&gt; </span><span class="mi">15166</span>             <span class="k">return</span> <span class="n">op</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"apply"</span><span class="p">)</span>
+<span class="g g-Whitespace">  </span><span class="mi">15167</span>         <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span> <span class="s2">"__pandas_udf__"</span><span class="p">):</span>
+<span class="g g-Whitespace">  </span><span class="mi">15168</span>             <span class="k">if</span> <span class="n">result_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">  </span><span class="mi">15169</span>                 <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/apply.py:1061,</span> in <span class="ni">FrameApply.apply</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1058</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw</span><span class="p">:</span>
@@ -866,12 +866,12 @@ the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#p
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">return</span> <span class="n">s</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:6275,</span> in <span class="ni">Series.pop</span><span class="nt">(self, item)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6271</span>         <span class="mi">1</span>    <span class="mi">2</span>
-<span class="g g-Whitespace">   </span><span class="mi">6272</span>         <span class="mi">2</span>    <span class="mi">3</span>
-<span class="g g-Whitespace">   </span><span class="mi">6273</span>         <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
-<span class="g g-Whitespace">   </span><span class="mi">6274</span>         <span class="s2">"""</span>
-<span class="ne">-&gt; </span><span class="mi">6275</span><span class="s2">         return maybe_unbox_numpy_scalar(super().pop(item=item), object_with_dtype=self)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:6294,</span> in <span class="ni">Series.pop</span><span class="nt">(self, item)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6290</span>         <span class="mi">1</span>    <span class="mi">2</span>
+<span class="g g-Whitespace">   </span><span class="mi">6291</span>         <span class="mi">2</span>    <span class="mi">3</span>
+<span class="g g-Whitespace">   </span><span class="mi">6292</span>         <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+<span class="g g-Whitespace">   </span><span class="mi">6293</span>         <span class="s2">"""</span>
+<span class="ne">-&gt; </span><span class="mi">6294</span><span class="s2">         return maybe_unbox_numpy_scalar(super().pop(item=item), object_with_dtype=self)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:839,</span> in <span class="ni">NDFrame.pop</span><span class="nt">(self, item)</span>
 <span class="g g-Whitespace">    </span><span class="mi">838</span><span class="s2">     def pop(self, item: Hashable) -&gt; Series | Any:</span>
