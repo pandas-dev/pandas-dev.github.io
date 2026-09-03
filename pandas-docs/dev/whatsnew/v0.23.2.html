@@ -722,10 +722,9 @@ See <a class="reference external" href="https://pandas.pydata.org/pandas-docs/ve
 <section id="logical-reductions-over-entire-dataframe">
 <span id="whatsnew-0232-enhancements"></span><h2>Logical reductions over entire DataFrame<a class="headerlink" href="#logical-reductions-over-entire-dataframe" title="Link to this heading">#</a></h2>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.all.html#pandas.DataFrame.all" title="pandas.DataFrame.all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.all()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.any.html#pandas.DataFrame.any" title="pandas.DataFrame.any"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.any()</span></code></a> now accept <code class="docutils literal notranslate"><span class="pre">axis=None</span></code> to reduce over all axes to a scalar (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/19976">GH 19976</a>)</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]})</span>
-
-<span class="gp">In [2]: </span><span class="n">df</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="gh">Out[2]: </span><span class="go">np.False_</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="go">False</span>
 </pre></div>
 </div>
 <p>This also provides compatibility with NumPy 1.15, which now dispatches to <code class="docutils literal notranslate"><span class="pre">DataFrame.all</span></code>.
@@ -738,8 +737,8 @@ With NumPy 1.15 and pandas 0.23.1 or earlier, <a class="reference external" href
 </pre></div>
 </div>
 <p>With pandas 0.23.2, that will correctly return False, as it did with NumPy &lt; 1.15.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="kc">False</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="kc">False</span><span class="p">]}))</span>
-<span class="gh">Out[3]: </span><span class="go">np.False_</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="kc">False</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="kc">False</span><span class="p">]}))</span>
+<span class="go">False</span>
 </pre></div>
 </div>
 </section>

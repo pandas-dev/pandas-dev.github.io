@@ -753,10 +753,8 @@ are the column names for the new fields, and the values are either a value
 to be inserted (for example, a <code class="docutils literal notranslate"><span class="pre">Series</span></code> or NumPy array), or a function
 of one argument to be called on the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. The new values are inserted,
 and the entire DataFrame (with all original and new columns) is returned.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">iris</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/iris.data'</span><span class="p">)</span>
-
-<span class="gp">In [2]: </span><span class="n">iris</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="gh">Out[2]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/iris.data'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="go">   SepalLength  SepalWidth  PetalLength  PetalWidth         Name</span>
 <span class="go">0          5.1         3.5          1.4         0.2  Iris-setosa</span>
 <span class="go">1          4.9         3.0          1.4         0.2  Iris-setosa</span>
@@ -764,47 +762,36 @@ and the entire DataFrame (with all original and new columns) is returned.</p>
 <span class="go">3          4.6         3.1          1.5         0.2  Iris-setosa</span>
 <span class="go">4          5.0         3.6          1.4         0.2  Iris-setosa</span>
 
-<span class="go">[5 rows x 5 columns]</span>
-
-<span class="gp">In [3]: </span><span class="n">iris</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sepal_ratio</span><span class="o">=</span><span class="n">iris</span><span class="p">[</span><span class="s1">'SepalWidth'</span><span class="p">]</span> <span class="o">/</span> <span class="n">iris</span><span class="p">[</span><span class="s1">'SepalLength'</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="gh">Out[3]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sepal_ratio</span><span class="o">=</span><span class="n">iris</span><span class="p">[</span><span class="s1">'SepalWidth'</span><span class="p">]</span> <span class="o">/</span> <span class="n">iris</span><span class="p">[</span><span class="s1">'SepalLength'</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="go">   SepalLength  SepalWidth  PetalLength  PetalWidth         Name  sepal_ratio</span>
 <span class="go">0          5.1         3.5          1.4         0.2  Iris-setosa     0.686275</span>
 <span class="go">1          4.9         3.0          1.4         0.2  Iris-setosa     0.612245</span>
 <span class="go">2          4.7         3.2          1.3         0.2  Iris-setosa     0.680851</span>
 <span class="go">3          4.6         3.1          1.5         0.2  Iris-setosa     0.673913</span>
 <span class="go">4          5.0         3.6          1.4         0.2  Iris-setosa     0.720000</span>
-
-<span class="go">[5 rows x 6 columns]</span>
 </pre></div>
 </div>
 <p>Above was an example of inserting a precomputed value. We can also pass in
 a function to be evaluated.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">iris</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sepal_ratio</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">'SepalWidth'</span><span class="p">]</span>
-<span class="gp">   ...: </span>                                   <span class="o">/</span> <span class="n">x</span><span class="p">[</span><span class="s1">'SepalLength'</span><span class="p">]))</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="gp">   ...: </span>
-<span class="gh">Out[4]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sepal_ratio</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">'SepalWidth'</span><span class="p">]</span>
+<span class="gp">... </span>                                   <span class="o">/</span> <span class="n">x</span><span class="p">[</span><span class="s1">'SepalLength'</span><span class="p">]))</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="go">   SepalLength  SepalWidth  PetalLength  PetalWidth         Name  sepal_ratio</span>
 <span class="go">0          5.1         3.5          1.4         0.2  Iris-setosa     0.686275</span>
 <span class="go">1          4.9         3.0          1.4         0.2  Iris-setosa     0.612245</span>
 <span class="go">2          4.7         3.2          1.3         0.2  Iris-setosa     0.680851</span>
 <span class="go">3          4.6         3.1          1.5         0.2  Iris-setosa     0.673913</span>
 <span class="go">4          5.0         3.6          1.4         0.2  Iris-setosa     0.720000</span>
-
-<span class="go">[5 rows x 6 columns]</span>
 </pre></div>
 </div>
 <p>The power of <code class="docutils literal notranslate"><span class="pre">assign</span></code> comes when used in chains of operations. For example,
 we can limit the DataFrame to just those with a Sepal Length greater than 5,
 calculate the ratio, and plot</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">iris</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/iris.data'</span><span class="p">)</span>
-
-<span class="gp">In [6]: </span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'SepalLength &gt; 5'</span><span class="p">)</span>
-<span class="gp">   ...: </span>     <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">SepalRatio</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">SepalWidth</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">SepalLength</span><span class="p">,</span>
-<span class="gp">   ...: </span>             <span class="n">PetalRatio</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">PetalWidth</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">PetalLength</span><span class="p">)</span>
-<span class="gp">   ...: </span>     <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'scatter'</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'SepalRatio'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'PetalRatio'</span><span class="p">))</span>
-<span class="gp">   ...: </span>
-<span class="gh">Out[6]: </span><span class="go">&lt;Axes: xlabel='SepalRatio', ylabel='PetalRatio'&gt;</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/iris.data'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'SepalLength &gt; 5'</span><span class="p">)</span>
+<span class="gp">... </span>     <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">SepalRatio</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">SepalWidth</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">SepalLength</span><span class="p">,</span>
+<span class="gp">... </span>             <span class="n">PetalRatio</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">PetalWidth</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">PetalLength</span><span class="p">)</span>
+<span class="gp">... </span>     <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'scatter'</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'SepalRatio'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'PetalRatio'</span><span class="p">))</span>
+<span class="go">&lt;Axes: xlabel='SepalRatio', ylabel='PetalRatio'&gt;</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/whatsnew_assign.png"><img alt="../_images/whatsnew_assign.png" height="178" src="../_images/whatsnew_assign.png" width="234" />
@@ -887,53 +874,43 @@ from a <code class="docutils literal notranslate"><span class="pre">scipy.sparse
 </tbody>
 </table>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'abcd'</span><span class="p">,</span> <span class="s1">'3456'</span><span class="p">,</span> <span class="s1">'EFGH'</span><span class="p">])</span>
-
-<span class="gp">In [8]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span>
-<span class="gh">Out[8]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'abcd'</span><span class="p">,</span> <span class="s1">'3456'</span><span class="p">,</span> <span class="s1">'EFGH'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span>
 <span class="go">0     True</span>
 <span class="go">1    False</span>
 <span class="go">2     True</span>
-<span class="go">Length: 3, dtype: bool</span>
-
-<span class="gp">In [9]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'ab'</span><span class="p">)</span>
-<span class="gh">Out[9]: </span>
+<span class="go">dtype: bool</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'ab'</span><span class="p">)</span>
 <span class="go">0    0</span>
 <span class="go">1   -1</span>
 <span class="go">2   -1</span>
-<span class="go">Length: 3, dtype: int64</span>
+<span class="go">dtype: int64</span>
 </pre></div>
 </div>
 </li>
 <li><p><a class="reference internal" href="../reference/api/pandas.Series.str.pad.html#pandas.Series.str.pad" title="pandas.Series.str.pad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.str.pad()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.str.center.html#pandas.Series.str.center" title="pandas.Series.str.center"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.str.center()</span></code></a> now accept <code class="docutils literal notranslate"><span class="pre">fillchar</span></code> option to specify filling character (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/9352">GH 9352</a>)</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'12'</span><span class="p">,</span> <span class="s1">'300'</span><span class="p">,</span> <span class="s1">'25'</span><span class="p">])</span>
-
-<span class="gp">In [11]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">fillchar</span><span class="o">=</span><span class="s1">'_'</span><span class="p">)</span>
-<span class="gh">Out[11]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'12'</span><span class="p">,</span> <span class="s1">'300'</span><span class="p">,</span> <span class="s1">'25'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">fillchar</span><span class="o">=</span><span class="s1">'_'</span><span class="p">)</span>
 <span class="go">0    ___12</span>
 <span class="go">1    __300</span>
 <span class="go">2    ___25</span>
-<span class="go">Length: 3, dtype: str</span>
+<span class="go">dtype: str</span>
 </pre></div>
 </div>
 </li>
 <li><p>Added <a class="reference internal" href="../reference/api/pandas.Series.str.slice_replace.html#pandas.Series.str.slice_replace" title="pandas.Series.str.slice_replace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.str.slice_replace()</span></code></a>, which previously raised <code class="docutils literal notranslate"><span class="pre">NotImplementedError</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/8888">GH 8888</a>)</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'ABCD'</span><span class="p">,</span> <span class="s1">'EFGH'</span><span class="p">,</span> <span class="s1">'IJK'</span><span class="p">])</span>
-
-<span class="gp">In [13]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice_replace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'X'</span><span class="p">)</span>
-<span class="gh">Out[13]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'ABCD'</span><span class="p">,</span> <span class="s1">'EFGH'</span><span class="p">,</span> <span class="s1">'IJK'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice_replace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'X'</span><span class="p">)</span>
 <span class="go">0    AXD</span>
 <span class="go">1    EXH</span>
 <span class="go">2     IX</span>
-<span class="go">Length: 3, dtype: str</span>
-
+<span class="go">dtype: str</span>
 <span class="go"># replaced with empty char</span>
-<span class="gp">In [14]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice_replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="gh">Out[14]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">slice_replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="go">0    BCD</span>
 <span class="go">1    FGH</span>
 <span class="go">2     JK</span>
-<span class="go">Length: 3, dtype: str</span>
+<span class="go">dtype: str</span>
 </pre></div>
 </div>
 </li>
@@ -943,16 +920,12 @@ from a <code class="docutils literal notranslate"><span class="pre">scipy.sparse
 <span id="whatsnew-0160-enhancements-other"></span><h3>Other enhancements<a class="headerlink" href="#other-enhancements" title="Link to this heading">#</a></h3>
 <ul>
 <li><p>Reindex now supports <code class="docutils literal notranslate"><span class="pre">method='nearest'</span></code> for frames or series with a monotonic increasing or decreasing index (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/9258">GH 9258</a>):</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'x'</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)})</span>
-
-<span class="gp">In [16]: </span><span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">'nearest'</span><span class="p">)</span>
-<span class="gh">Out[16]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'x'</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">'nearest'</span><span class="p">)</span>
 <span class="go">     x</span>
 <span class="go">0.2  0</span>
 <span class="go">1.8  2</span>
 <span class="go">3.5  4</span>
-
-<span class="go">[3 rows x 1 columns]</span>
 </pre></div>
 </div>
 <p>This method is also exposed by the lower level <code class="docutils literal notranslate"><span class="pre">Index.get_indexer</span></code> and <code class="docutils literal notranslate"><span class="pre">Index.get_loc</span></code> methods.</p>
@@ -1005,24 +978,20 @@ sub-class of <code class="docutils literal notranslate"><span class="pre">dateti
 </pre></div>
 </div>
 <p>New behavior</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="n">t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s1">'1 day, 10:11:12.100123'</span><span class="p">)</span>
-
-<span class="gp">In [18]: </span><span class="n">t</span><span class="o">.</span><span class="n">days</span>
-<span class="gh">Out[18]: </span><span class="go">1</span>
-
-<span class="gp">In [19]: </span><span class="n">t</span><span class="o">.</span><span class="n">seconds</span>
-<span class="gh">Out[19]: </span><span class="go">36672</span>
-
-<span class="gp">In [20]: </span><span class="n">t</span><span class="o">.</span><span class="n">microseconds</span>
-<span class="gh">Out[20]: </span><span class="go">100123</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s1">'1 day, 10:11:12.100123'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">days</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">seconds</span>
+<span class="go">36672</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">microseconds</span>
+<span class="go">100123</span>
 </pre></div>
 </div>
 <p>Using <code class="docutils literal notranslate"><span class="pre">.components</span></code> allows the full component access</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="n">t</span><span class="o">.</span><span class="n">components</span>
-<span class="gh">Out[21]: </span><span class="go">Components(days=1, hours=10, minutes=11, seconds=12, milliseconds=100, microseconds=123, nanoseconds=0)</span>
-
-<span class="gp">In [22]: </span><span class="n">t</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">seconds</span>
-<span class="gh">Out[22]: </span><span class="go">12</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">components</span>
+<span class="go">Components(days=1, hours=10, minutes=11, seconds=12, milliseconds=100, microseconds=123, nanoseconds=0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">seconds</span>
+<span class="go">12</span>
 </pre></div>
 </div>
 </section>
@@ -1031,32 +1000,24 @@ sub-class of <code class="docutils literal notranslate"><span class="pre">dateti
 <p>The behavior of a small sub-set of edge cases for using <code class="docutils literal notranslate"><span class="pre">.loc</span></code> have changed (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/8613">GH 8613</a>). Furthermore we have improved the content of the error messages that are raised:</p>
 <ul>
 <li><p>Slicing with <code class="docutils literal notranslate"><span class="pre">.loc</span></code> where the start and/or stop bound is not found in the index is now allowed; this previously would raise a <code class="docutils literal notranslate"><span class="pre">KeyError</span></code>. This makes the behavior the same as <code class="docutils literal notranslate"><span class="pre">.ix</span></code> in this case. This change is only for slicing, not when indexing with a single label.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
-<span class="gp">   ....: </span>                  <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">'ABCD'</span><span class="p">),</span>
-<span class="gp">   ....: </span>                  <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'20130101'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
-<span class="gp">   ....: </span>
-
-<span class="gp">In [24]: </span><span class="n">df</span>
-<span class="gh">Out[24]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+<span class="gp">... </span>                  <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">'ABCD'</span><span class="p">),</span>
+<span class="gp">... </span>                  <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'20130101'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">                   A         B         C         D</span>
 <span class="go">2013-01-01  0.469112 -0.282863 -1.509059 -1.135632</span>
 <span class="go">2013-01-02  1.212112 -0.173215  0.119209 -1.044236</span>
 <span class="go">2013-01-03 -0.861849 -2.104569 -0.494929  1.071804</span>
 <span class="go">2013-01-04  0.721555 -0.706771 -1.039575  0.271860</span>
 <span class="go">2013-01-05 -0.424972  0.567020  0.276232 -1.087401</span>
-
-<span class="go">[5 rows x 4 columns]</span>
-
-<span class="gp">In [25]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-
-<span class="gp">In [26]: </span><span class="n">s</span>
-<span class="gh">Out[26]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
 <span class="go">-2    0</span>
 <span class="go">-1    1</span>
 <span class="go"> 1    2</span>
 <span class="go"> 2    3</span>
 <span class="go"> 3    4</span>
-<span class="go">Length: 5, dtype: int64</span>
+<span class="go">dtype: int64</span>
 </pre></div>
 </div>
 <p>Previous behavior</p>
@@ -1068,24 +1029,19 @@ sub-class of <code class="docutils literal notranslate"><span class="pre">dateti
 </pre></div>
 </div>
 <p>New behavior</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'2013-01-02'</span><span class="p">:</span><span class="s1">'2013-01-10'</span><span class="p">]</span>
-<span class="gh">Out[27]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'2013-01-02'</span><span class="p">:</span><span class="s1">'2013-01-10'</span><span class="p">]</span>
 <span class="go">                   A         B         C         D</span>
 <span class="go">2013-01-02  1.212112 -0.173215  0.119209 -1.044236</span>
 <span class="go">2013-01-03 -0.861849 -2.104569 -0.494929  1.071804</span>
 <span class="go">2013-01-04  0.721555 -0.706771 -1.039575  0.271860</span>
 <span class="go">2013-01-05 -0.424972  0.567020  0.276232 -1.087401</span>
-
-<span class="go">[4 rows x 4 columns]</span>
-
-<span class="gp">In [28]: </span><span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-<span class="gh">Out[28]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 <span class="go">-2    0</span>
 <span class="go">-1    1</span>
 <span class="go"> 1    2</span>
 <span class="go"> 2    3</span>
 <span class="go"> 3    4</span>
-<span class="go">Length: 5, dtype: int64</span>
+<span class="go">dtype: int64</span>
 </pre></div>
 </div>
 </li>
@@ -1149,45 +1105,35 @@ sub-class of <code class="docutils literal notranslate"><span class="pre">dateti
 </pre></div>
 </div>
 <p>New behavior</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'category'</span><span class="p">)</span>
-
-<span class="gp">In [30]: </span><span class="n">s</span>
-<span class="gh">Out[30]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'category'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
 <span class="go">0    0</span>
 <span class="go">1    1</span>
 <span class="go">2    2</span>
-<span class="go">Length: 3, dtype: category</span>
+<span class="go">dtype: category</span>
 <span class="go">Categories (3, int64): [0, 1, 2]</span>
-
-<span class="gp">In [31]: </span><span class="n">s</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">ordered</span>
-<span class="gh">Out[31]: </span><span class="go">False</span>
-
-<span class="gp">In [32]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">as_ordered</span><span class="p">()</span>
-
-<span class="gp">In [33]: </span><span class="n">s</span>
-<span class="gh">Out[33]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">ordered</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">as_ordered</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
 <span class="go">0    0</span>
 <span class="go">1    1</span>
 <span class="go">2    2</span>
-<span class="go">Length: 3, dtype: category</span>
+<span class="go">dtype: category</span>
 <span class="go">Categories (3, int64): [0 &lt; 1 &lt; 2]</span>
-
-<span class="gp">In [34]: </span><span class="n">s</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">ordered</span>
-<span class="gh">Out[34]: </span><span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">ordered</span>
+<span class="go">True</span>
 
 <span class="go"># you can set in the constructor of the Categorical</span>
-<span class="gp">In [35]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-
-<span class="gp">In [36]: </span><span class="n">s</span>
-<span class="gh">Out[36]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
 <span class="go">0    0</span>
 <span class="go">1    1</span>
 <span class="go">2    2</span>
-<span class="go">Length: 3, dtype: category</span>
+<span class="go">dtype: category</span>
 <span class="go">Categories (3, int64): [0 &lt; 1 &lt; 2]</span>
-
-<span class="gp">In [37]: </span><span class="n">s</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">ordered</span>
-<span class="gh">Out[37]: </span><span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">ordered</span>
+<span class="go">True</span>
 </pre></div>
 </div>
 <p>For ease of creation of series of categorical data, we have added the ability to pass keywords when calling <code class="docutils literal notranslate"><span class="pre">.astype()</span></code>. These are passed directly to the constructor.</p>
@@ -1278,19 +1224,15 @@ values are the result of the bitwise operation.</p>
 </pre></div>
 </div>
 <p>New behavior</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [38]: </span><span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-
-<span class="gp">In [39]: </span><span class="n">p</span> <span class="o">/</span> <span class="mi">0</span>
-<span class="gh">Out[39]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">/</span> <span class="mi">0</span>
 <span class="go">0    NaN</span>
 <span class="go">1    inf</span>
-<span class="go">Length: 2, dtype: float64</span>
-
-<span class="gp">In [40]: </span><span class="n">p</span> <span class="o">//</span> <span class="mi">0</span>
-<span class="gh">Out[40]: </span>
+<span class="go">dtype: float64</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">//</span> <span class="mi">0</span>
 <span class="go">0    NaN</span>
 <span class="go">1    inf</span>
-<span class="go">Length: 2, dtype: float64</span>
+<span class="go">dtype: float64</span>
 </pre></div>
 </div>
 </li>
@@ -1303,8 +1245,8 @@ values are the result of the bitwise operation.</p>
 </pre></div>
 </div>
 <p>Fixed behavior:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [41]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">'2000-01-31'</span><span class="p">,</span> <span class="s1">'2000-02-28'</span><span class="p">])</span><span class="o">.</span><span class="n">asof</span><span class="p">(</span><span class="s1">'2000-02'</span><span class="p">)</span>
-<span class="gh">Out[41]: </span><span class="go">Timestamp('2000-02-28 00:00:00')</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">'2000-01-31'</span><span class="p">,</span> <span class="s1">'2000-02-28'</span><span class="p">])</span><span class="o">.</span><span class="n">asof</span><span class="p">(</span><span class="s1">'2000-02'</span><span class="p">)</span>
+<span class="go">Timestamp('2000-02-28 00:00:00')</span>
 </pre></div>
 </div>
 <p>To reproduce the old behavior, simply add more precision to the label (e.g., use <code class="docutils literal notranslate"><span class="pre">2000-02-01</span></code> instead of <code class="docutils literal notranslate"><span class="pre">2000-02</span></code>).</p>
@@ -1453,13 +1395,10 @@ SQLAlchemy type  (<a class="extlink-issue reference external" href="https://gith
 </li>
 <li><p>A Spurious <code class="docutils literal notranslate"><span class="pre">SettingWithCopy</span></code> Warning was generated when setting a new item in a frame in some cases (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/8730">GH 8730</a>)</p>
 <p>The following would previously report a <code class="docutils literal notranslate"><span class="pre">SettingWithCopy</span></code> Warning.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [42]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'x'</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">]),</span>
-<span class="gp">   ....: </span>                    <span class="s1">'y'</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'d'</span><span class="p">,</span> <span class="s1">'e'</span><span class="p">,</span> <span class="s1">'f'</span><span class="p">])})</span>
-<span class="gp">   ....: </span>
-
-<span class="gp">In [43]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[[</span><span class="s1">'x'</span><span class="p">]]</span>
-
-<span class="gp">In [44]: </span><span class="n">df2</span><span class="p">[</span><span class="s1">'y'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'g'</span><span class="p">,</span> <span class="s1">'h'</span><span class="p">,</span> <span class="s1">'i'</span><span class="p">]</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'x'</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">]),</span>
+<span class="gp">... </span>                    <span class="s1">'y'</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'d'</span><span class="p">,</span> <span class="s1">'e'</span><span class="p">,</span> <span class="s1">'f'</span><span class="p">])})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[[</span><span class="s1">'x'</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span><span class="p">[</span><span class="s1">'y'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'g'</span><span class="p">,</span> <span class="s1">'h'</span><span class="p">,</span> <span class="s1">'i'</span><span class="p">]</span>
 </pre></div>
 </div>
 </li>

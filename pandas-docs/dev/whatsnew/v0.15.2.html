@@ -783,10 +783,8 @@ Previous behaviour was to return all categories:</p>
 </pre></div>
 </div>
 <p>Now, only the categories that do effectively occur in the array are returned:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">cat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">])</span>
-
-<span class="gp">In [2]: </span><span class="n">cat</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-<span class="gh">Out[2]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cat</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 <span class="go">['a', 'b']</span>
 <span class="go">Categories (3, str): ['a', 'b', 'c']</span>
 </pre></div>
@@ -795,23 +793,17 @@ Previous behaviour was to return all categories:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">Series.all</span></code> and <code class="docutils literal notranslate"><span class="pre">Series.any</span></code> now support the <code class="docutils literal notranslate"><span class="pre">level</span></code> and <code class="docutils literal notranslate"><span class="pre">skipna</span></code> parameters. <code class="docutils literal notranslate"><span class="pre">Series.all</span></code>, <code class="docutils literal notranslate"><span class="pre">Series.any</span></code>, <code class="docutils literal notranslate"><span class="pre">Index.all</span></code>, and <code class="docutils literal notranslate"><span class="pre">Index.any</span></code> no longer support the <code class="docutils literal notranslate"><span class="pre">out</span></code> and <code class="docutils literal notranslate"><span class="pre">keepdims</span></code> parameters, which existed for compatibility with ndarray. Various index types no longer support the <code class="docutils literal notranslate"><span class="pre">all</span></code> and <code class="docutils literal notranslate"><span class="pre">any</span></code> aggregation functions and will now raise <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>. (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/8302">GH 8302</a>).</p></li>
 <li><p>Allow equality comparisons of Series with a categorical dtype and object dtype; previously these would raise <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/8938">GH 8938</a>)</p></li>
 <li><p>Bug in <code class="docutils literal notranslate"><span class="pre">NDFrame</span></code>: conflicting attribute/column names now behave consistently between getting and setting. Previously, when both a column and attribute named <code class="docutils literal notranslate"><span class="pre">y</span></code> existed, <code class="docutils literal notranslate"><span class="pre">data.y</span></code> would return the attribute, while <code class="docutils literal notranslate"><span class="pre">data.y</span> <span class="pre">=</span> <span class="pre">z</span></code> would update the column (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/8994">GH 8994</a>)</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'x'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
-
-<span class="gp">In [4]: </span><span class="n">data</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
-
-<span class="gp">In [5]: </span><span class="n">data</span><span class="p">[</span><span class="s1">'y'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
-
-<span class="gp">In [6]: </span><span class="n">data</span>
-<span class="gh">Out[6]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'x'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="s1">'y'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>
 <span class="go">   x  y</span>
 <span class="go">0  1  2</span>
 <span class="go">1  2  4</span>
 <span class="go">2  3  6</span>
 
-<span class="go">[3 rows x 2 columns]</span>
-
 <span class="go"># this assignment was inconsistent</span>
-<span class="gp">In [7]: </span><span class="n">data</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
 </pre></div>
 </div>
 <p>Old behavior:</p>
@@ -823,11 +815,10 @@ Previous behaviour was to return all categories:</p>
 </pre></div>
 </div>
 <p>New behavior:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">data</span><span class="o">.</span><span class="n">y</span>
-<span class="gh">Out[8]: </span><span class="go">5</span>
-
-<span class="gp">In [9]: </span><span class="n">data</span><span class="p">[</span><span class="s1">'y'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="gh">Out[9]: </span><span class="go">array([2, 4, 6])</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">y</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="s1">'y'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="go">array([2, 4, 6])</span>
 </pre></div>
 </div>
 </li>
@@ -848,14 +839,12 @@ Previous behaviour was to return all categories:</p>
 </pre></div>
 </div>
 <p>New behavior:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">])</span>
-
-<span class="gp">In [11]: </span><span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'c'</span><span class="p">:</span><span class="s1">'a'</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="gh">Out[11]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'c'</span><span class="p">:</span><span class="s1">'a'</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="go">c    2</span>
 <span class="go">b    1</span>
 <span class="go">a    0</span>
-<span class="go">Length: 3, dtype: int64</span>
+<span class="go">dtype: int64</span>
 </pre></div>
 </div>
 </li>

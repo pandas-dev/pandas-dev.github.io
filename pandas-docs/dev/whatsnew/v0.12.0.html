@@ -734,31 +734,23 @@ accessed like <code class="docutils literal notranslate"><span class="pre">pd.re
 <li><p>Fix modulo and integer division on Series,DataFrames to act similarly to <code class="docutils literal notranslate"><span class="pre">float</span></code> dtypes to return
 <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> or <code class="docutils literal notranslate"><span class="pre">np.inf</span></code> as appropriate (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/3590">GH 3590</a>). This correct a numpy bug that treats <code class="docutils literal notranslate"><span class="pre">integer</span></code>
 and <code class="docutils literal notranslate"><span class="pre">float</span></code> dtypes differently.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"first"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="s2">"second"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
-
-<span class="gp">In [2]: </span><span class="n">p</span> <span class="o">%</span> <span class="mi">0</span>
-<span class="gh">Out[2]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"first"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="s2">"second"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">%</span> <span class="mi">0</span>
 <span class="go">   first  second</span>
 <span class="go">0    NaN     NaN</span>
 <span class="go">1    NaN     NaN</span>
 <span class="go">2    NaN     NaN</span>
-
-<span class="gp">In [3]: </span><span class="n">p</span> <span class="o">%</span> <span class="n">p</span>
-<span class="gh">Out[3]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">%</span> <span class="n">p</span>
 <span class="go">   first  second</span>
 <span class="go">0    0.0     NaN</span>
 <span class="go">1    0.0     NaN</span>
 <span class="go">2    0.0     0.0</span>
-
-<span class="gp">In [4]: </span><span class="n">p</span> <span class="o">/</span> <span class="n">p</span>
-<span class="gh">Out[4]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">/</span> <span class="n">p</span>
 <span class="go">   first  second</span>
 <span class="go">0    1.0     NaN</span>
 <span class="go">1    1.0     NaN</span>
 <span class="go">2    1.0     1.0</span>
-
-<span class="gp">In [5]: </span><span class="n">p</span> <span class="o">/</span> <span class="mi">0</span>
-<span class="gh">Out[5]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">/</span> <span class="mi">0</span>
 <span class="go">   first  second</span>
 <span class="go">0    inf     NaN</span>
 <span class="go">1    inf     NaN</span>
@@ -803,12 +795,9 @@ e.g. a boolean Series, even with integer labels, will raise. Since <code class="
 is purely positional based, the labels on the Series are not alignable (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/3631">GH 3631</a>)</p>
 <p>This case is rarely used, and there are plenty of alternatives. This preserves the
 <code class="docutils literal notranslate"><span class="pre">iloc</span></code> API to be <em>purely</em> positional based.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">"ABCDE"</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">])</span>
-
-<span class="gp">In [7]: </span><span class="n">mask</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">a</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
-
-<span class="gp">In [8]: </span><span class="n">mask</span>
-<span class="gh">Out[8]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">"ABCDE"</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">a</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span>
 <span class="go">A     True</span>
 <span class="go">B    False</span>
 <span class="go">C     True</span>
@@ -817,16 +806,14 @@ is purely positional based, the labels on the Series are not alignable (<a class
 <span class="go">Name: a, dtype: bool</span>
 
 <span class="go"># this is what you should use</span>
-<span class="gp">In [9]: </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
-<span class="gh">Out[9]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
 <span class="go">   a</span>
 <span class="go">A  0</span>
 <span class="go">C  2</span>
 <span class="go">E  4</span>
 
 <span class="go"># this will work as well</span>
-<span class="gp">In [10]: </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">mask</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
-<span class="gh">Out[10]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">mask</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
 <span class="go">   a</span>
 <span class="go">A  0</span>
 <span class="go">C  2</span>
@@ -918,21 +905,16 @@ throughout the pandas library. (<a class="extlink-issue reference external" href
 DataFrames, courtesy of &#64;cpcloud. (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/3477">GH 3477</a>, <a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/3605">GH 3605</a>, <a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/3606">GH 3606</a>, <a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/3616">GH 3616</a>).
 It works with a <em>single</em> parser backend: BeautifulSoup4 + html5lib <a class="reference internal" href="../user_guide/io.html#io-html"><span class="std std-ref">See the docs</span></a></p>
 <p>You can use <code class="docutils literal notranslate"><span class="pre">pd.read_html()</span></code> to read the output from <code class="docutils literal notranslate"><span class="pre">DataFrame.to_html()</span></code> like so</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
-
-<span class="gp">In [12]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="s2">"b"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">)})</span>
-
-<span class="gp">In [13]: </span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="s2">"b"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">)})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="go">   a  b</span>
 <span class="go">0  0  a</span>
 <span class="go">1  1  b</span>
 <span class="go">2  2  c</span>
-
-<span class="gp">In [14]: </span><span class="n">html</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>
-
-<span class="gp">In [15]: </span><span class="n">alist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">html</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="gp">In [16]: </span><span class="nb">print</span><span class="p">(</span><span class="n">df</span> <span class="o">==</span> <span class="n">alist</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">html</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">alist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">html</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">df</span> <span class="o">==</span> <span class="n">alist</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="go">      a     b</span>
 <span class="go">0  True  True</span>
 <span class="go">1  True  True</span>
@@ -974,15 +956,11 @@ format. (<a class="extlink-issue reference external" href="https://github.com/pa
 <li><p>If an <code class="docutils literal notranslate"><span class="pre">index_col</span></code> is not specified (e.g. you don’t have an index, or wrote it
 with <code class="docutils literal notranslate"><span class="pre">df.to_csv(...,</span> <span class="pre">index=False)</span></code>), then any <code class="docutils literal notranslate"><span class="pre">names</span></code> on the columns index will
 be <em>lost</em>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="n">mi_idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"abcd"</span><span class="p">)],</span> <span class="n">names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">"ab"</span><span class="p">))</span>
-
-<span class="gp">In [18]: </span><span class="n">mi_col</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"ab"</span><span class="p">)],</span> <span class="n">names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">"cd"</span><span class="p">))</span>
-
-<span class="gp">In [19]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="n">mi_idx</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">mi_col</span><span class="p">)</span>
-
-<span class="gp">In [20]: </span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"mi.csv"</span><span class="p">)</span>
-
-<span class="gp">In [21]: </span><span class="nb">print</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">"mi.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mi_idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"abcd"</span><span class="p">)],</span> <span class="n">names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">"ab"</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mi_col</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"ab"</span><span class="p">)],</span> <span class="n">names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">"cd"</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="n">mi_idx</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">mi_col</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"mi.csv"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">"mi.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 <span class="go">c,,1,2</span>
 <span class="go">d,,a,b</span>
 <span class="go">a,b,,</span>
@@ -990,10 +968,7 @@ be <em>lost</em>.</p>
 <span class="go">2,b,1.0,1.0</span>
 <span class="go">3,c,1.0,1.0</span>
 <span class="go">4,d,1.0,1.0</span>
-
-
-<span class="gp">In [22]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"mi.csv"</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="gh">Out[22]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"mi.csv"</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="go">c                    1                  2</span>
 <span class="go">d                    a                  b</span>
 <span class="go">a   Unnamed: 2_level_2 Unnamed: 3_level_2</span>
@@ -1046,10 +1021,8 @@ contains no columns, e.g., all newline characters</p></li>
 <code class="docutils literal notranslate"><span class="pre">Series</span></code> with object dtype. See the examples section in the regular docs
 <a class="reference internal" href="../user_guide/missing_data.html#missing-data-replace-expression"><span class="std std-ref">Replacing via String Expression</span></a></p>
 <p>For example you can do</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"ab.."</span><span class="p">),</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
-
-<span class="gp">In [24]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s2">"\s*\.\s*"</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-<span class="gh">Out[24]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"ab.."</span><span class="p">),</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s2">"\s*\.\s*"</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
 <span class="go">     a  b</span>
 <span class="go">0    a  1</span>
 <span class="go">1    b  2</span>
@@ -1060,8 +1033,7 @@ contains no columns, e.g., all newline characters</p></li>
 <p>to replace all occurrences of the string <code class="docutils literal notranslate"><span class="pre">'.'</span></code> with zero or more
 instances of surrounding white space with <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
 <p>Regular string replacement still works as expected. For example, you can do</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"."</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
-<span class="gh">Out[25]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"."</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
 <span class="go">     a  b</span>
 <span class="go">0    a  1</span>
 <span class="go">1    b  2</span>
@@ -1095,10 +1067,8 @@ We can set them at the same time:</p>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">filter</span></code> method for group objects returns a subset of the original
 object. Suppose we want to take only elements that belong to groups with a
 group sum greater than 2.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="n">sf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-
-<span class="gp">In [27]: </span><span class="n">sf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
-<span class="gh">Out[27]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
 <span class="go">3    3</span>
 <span class="go">4    3</span>
 <span class="go">5    3</span>
@@ -1109,10 +1079,8 @@ group sum greater than 2.</p>
 whole, returns <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <p>Another useful operation is filtering out elements that belong to groups
 with only a couple members.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [28]: </span><span class="n">dff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="s2">"B"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"aabbbbcc"</span><span class="p">)})</span>
-
-<span class="gp">In [29]: </span><span class="n">dff</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"B"</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
-<span class="gh">Out[29]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="s2">"B"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"aabbbbcc"</span><span class="p">)})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dff</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"B"</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
 <span class="go">   A  B</span>
 <span class="go">2  2  b</span>
 <span class="go">3  3  b</span>
@@ -1123,8 +1091,7 @@ with only a couple members.</p>
 <p>Alternatively, instead of dropping the offending groups, we can return a
 like-indexed objects where the groups that do not pass the filter are
 filled with NaNs.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [30]: </span><span class="n">dff</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"B"</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="gh">Out[30]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dff</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"B"</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="go">     A    B</span>
 <span class="go">0  NaN  NaN</span>
 <span class="go">1  NaN  NaN</span>
@@ -1158,28 +1125,21 @@ with custom holiday calendars and custom weekmasks. (<a class="extlink-issue ref
 <p>This uses the <code class="docutils literal notranslate"><span class="pre">numpy.busdaycalendar</span></code> API introduced in Numpy 1.7 and
 therefore requires Numpy 1.7.0 or newer.</p>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [31]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas.tseries.offsets</span><span class="w"> </span><span class="kn">import</span> <span class="n">CustomBusinessDay</span>
-
-<span class="gp">In [32]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas.tseries.offsets</span><span class="w"> </span><span class="kn">import</span> <span class="n">CustomBusinessDay</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 
 <span class="go"># As an interesting example, let's look at Egypt where</span>
 <span class="go"># a Friday-Saturday weekend is observed.</span>
-<span class="gp">In [33]: </span><span class="n">weekmask_egypt</span> <span class="o">=</span> <span class="s2">"Sun Mon Tue Wed Thu"</span>
-
+<span class="gp">&gt;&gt;&gt; </span><span class="n">weekmask_egypt</span> <span class="o">=</span> <span class="s2">"Sun Mon Tue Wed Thu"</span>
 <span class="go"># They also observe International Workers' Day so let's</span>
 <span class="go"># add that for a couple of years</span>
-<span class="gp">In [34]: </span><span class="n">holidays</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"2012-05-01"</span><span class="p">,</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">"2014-05-01"</span><span class="p">)]</span>
-
-<span class="gp">In [35]: </span><span class="n">bday_egypt</span> <span class="o">=</span> <span class="n">CustomBusinessDay</span><span class="p">(</span><span class="n">holidays</span><span class="o">=</span><span class="n">holidays</span><span class="p">,</span> <span class="n">weekmask</span><span class="o">=</span><span class="n">weekmask_egypt</span><span class="p">)</span>
-
-<span class="gp">In [36]: </span><span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-
-<span class="gp">In [37]: </span><span class="nb">print</span><span class="p">(</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">bday_egypt</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">holidays</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"2012-05-01"</span><span class="p">,</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s2">"2014-05-01"</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bday_egypt</span> <span class="o">=</span> <span class="n">CustomBusinessDay</span><span class="p">(</span><span class="n">holidays</span><span class="o">=</span><span class="n">holidays</span><span class="p">,</span> <span class="n">weekmask</span><span class="o">=</span><span class="n">weekmask_egypt</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">bday_egypt</span><span class="p">)</span>
 <span class="go">2013-05-05 00:00:00</span>
-
-<span class="gp">In [38]: </span><span class="n">dts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">bday_egypt</span><span class="p">)</span>
-
-<span class="gp">In [39]: </span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dts</span><span class="o">.</span><span class="n">day_of_week</span><span class="p">,</span> <span class="n">dts</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="s2">"Mon Tue Wed Thu Fri Sat Sun"</span><span class="o">.</span><span class="n">split</span><span class="p">())))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">bday_egypt</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dts</span><span class="o">.</span><span class="n">day_of_week</span><span class="p">,</span> <span class="n">dts</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="s2">"Mon Tue Wed Thu Fri Sat Sun"</span><span class="o">.</span><span class="n">split</span><span class="p">())))</span>
 <span class="go">2013-04-30    Tue</span>
 <span class="go">2013-05-02    Thu</span>
 <span class="go">2013-05-05    Sun</span>

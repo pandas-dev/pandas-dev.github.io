@@ -729,25 +729,17 @@ explicitly specified integer column instead of converting the column to float
 <strong>compatibility</strong> section in the main docs.</p>
 <p>You can designate (and index) certain columns that you want to be able to
 perform queries on a table, by passing a list to <code class="docutils literal notranslate"><span class="pre">data_columns</span></code></p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">store</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s2">"store.h5"</span><span class="p">)</span>
-
-<span class="gp">In [2]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<span class="gp">   ...: </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-<span class="gp">   ...: </span>    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"1/1/2000"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span>
-<span class="gp">   ...: </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">],</span>
-<span class="gp">   ...: </span><span class="p">)</span>
-<span class="gp">   ...: </span>
-
-<span class="gp">In [3]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"string"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"foo"</span>
-
-<span class="gp">In [4]: </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">],</span> <span class="s2">"string"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-
-<span class="gp">In [5]: </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">9</span><span class="p">],</span> <span class="s2">"string"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"bar"</span>
-
-<span class="gp">In [6]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"string2"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"cool"</span>
-
-<span class="gp">In [7]: </span><span class="n">df</span>
-<span class="gh">Out[7]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">store</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s2">"store.h5"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"1/1/2000"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s2">"string"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"foo"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">],</span> <span class="s2">"string"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">9</span><span class="p">],</span> <span class="s2">"string"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"bar"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s2">"string2"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"cool"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">                   A         B         C string string2</span>
 <span class="go">2000-01-01  0.469112 -0.282863 -1.509059    foo    cool</span>
 <span class="go">2000-01-02 -1.135632  1.212112 -0.173215    foo    cool</span>
@@ -759,16 +751,13 @@ perform queries on a table, by passing a list to <code class="docutils literal n
 <span class="go">2000-01-08  0.113648 -1.478427  0.524988    bar    cool</span>
 
 <span class="go"># on-disk operations</span>
-<span class="gp">In [8]: </span><span class="n">store</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"df"</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">data_columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"string"</span><span class="p">,</span> <span class="s2">"string2"</span><span class="p">])</span>
-
-<span class="gp">In [9]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df"</span><span class="p">,</span> <span class="s2">"B&gt;0 and string=='foo'"</span><span class="p">)</span>
-<span class="gh">Out[9]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">store</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"df"</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">data_columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"string"</span><span class="p">,</span> <span class="s2">"string2"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df"</span><span class="p">,</span> <span class="s2">"B&gt;0 and string=='foo'"</span><span class="p">)</span>
 <span class="go">                   A         B         C string string2</span>
 <span class="go">2000-01-02 -1.135632  1.212112 -0.173215    foo    cool</span>
 
 <span class="go"># this is in-memory version of this type of selection</span>
-<span class="gp">In [10]: </span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">B</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">string</span> <span class="o">==</span> <span class="s2">"foo"</span><span class="p">)]</span>
-<span class="gh">Out[10]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">B</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">string</span> <span class="o">==</span> <span class="s2">"foo"</span><span class="p">)]</span>
 <span class="go">                   A         B         C string string2</span>
 <span class="go">2000-01-02 -1.135632  1.212112 -0.173215    foo    cool</span>
 </pre></div>
@@ -781,18 +770,13 @@ perform queries on a table, by passing a list to <code class="docutils literal n
 </pre></div>
 </div>
 <p>You can now store <code class="docutils literal notranslate"><span class="pre">datetime64</span></code> in data columns</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">df_mixed</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df_mixed</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_mixed</span><span class="p">[</span><span class="s2">"datetime64"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"20010102"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_mixed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_mixed</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="gp">In [12]: </span><span class="n">df_mixed</span><span class="p">[</span><span class="s2">"datetime64"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"20010102"</span><span class="p">)</span>
-
-<span class="gp">In [13]: </span><span class="n">df_mixed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_mixed</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-
-<span class="gp">In [14]: </span><span class="n">store</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"df_mixed"</span><span class="p">,</span> <span class="n">df_mixed</span><span class="p">)</span>
-
-<span class="gp">In [15]: </span><span class="n">df_mixed1</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df_mixed"</span><span class="p">)</span>
-
-<span class="gp">In [16]: </span><span class="n">df_mixed1</span>
-<span class="gh">Out[16]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">store</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"df_mixed"</span><span class="p">,</span> <span class="n">df_mixed</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_mixed1</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df_mixed"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_mixed1</span>
 <span class="go">                   A         B         C string string2 datetime64</span>
 <span class="go">2000-01-01  0.469112 -0.282863 -1.509059    foo    cool 2001-01-02</span>
 <span class="go">2000-01-02 -1.135632  1.212112 -0.173215    foo    cool 2001-01-02</span>
@@ -802,9 +786,7 @@ perform queries on a table, by passing a list to <code class="docutils literal n
 <span class="go">2000-01-06  0.271860 -0.424972  0.567020    NaN    cool 2001-01-02</span>
 <span class="go">2000-01-07  0.276232 -1.087401 -0.673690    foo    cool 2001-01-02</span>
 <span class="go">2000-01-08  0.113648 -1.478427  0.524988    bar    cool 2001-01-02</span>
-
-<span class="gp">In [17]: </span><span class="n">df_mixed1</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-<span class="gh">Out[17]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_mixed1</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 <span class="go">float64           3</span>
 <span class="go">str               2</span>
 <span class="go">datetime64[us]    1</span>
@@ -814,8 +796,7 @@ perform queries on a table, by passing a list to <code class="docutils literal n
 <p>You can pass <code class="docutils literal notranslate"><span class="pre">columns</span></code> keyword to select to filter a list of the return
 columns, this is equivalent to passing a
 <code class="docutils literal notranslate"><span class="pre">Term('columns',list_of_columns_to_filter)</span></code></p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">])</span>
-<span class="gh">Out[18]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">])</span>
 <span class="go">                   A         B</span>
 <span class="go">2000-01-01  0.469112 -0.282863</span>
 <span class="go">2000-01-02 -1.135632  1.212112</span>
@@ -883,29 +864,23 @@ columns, this is equivalent to passing a
 <p>Multi-table creation via <code class="docutils literal notranslate"><span class="pre">append_to_multiple</span></code> and selection via
 <code class="docutils literal notranslate"><span class="pre">select_as_multiple</span></code> can create/select from multiple tables and return a
 combined result, by using <code class="docutils literal notranslate"><span class="pre">where</span></code> on a selector table.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">df_mt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<span class="gp">   ....: </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
-<span class="gp">   ....: </span>    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"1/1/2000"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span>
-<span class="gp">   ....: </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">,</span> <span class="s2">"E"</span><span class="p">,</span> <span class="s2">"F"</span><span class="p">],</span>
-<span class="gp">   ....: </span><span class="p">)</span>
-<span class="gp">   ....: </span>
-
-<span class="gp">In [20]: </span><span class="n">df_mt</span><span class="p">[</span><span class="s2">"foo"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"bar"</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df_mt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"1/1/2000"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">,</span> <span class="s2">"E"</span><span class="p">,</span> <span class="s2">"F"</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_mt</span><span class="p">[</span><span class="s2">"foo"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"bar"</span>
 
 <span class="go"># you can also create the tables individually</span>
-<span class="gp">In [21]: </span><span class="n">store</span><span class="o">.</span><span class="n">append_to_multiple</span><span class="p">(</span>
-<span class="gp">   ....: </span>    <span class="p">{</span><span class="s2">"df1_mt"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">],</span> <span class="s2">"df2_mt"</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span> <span class="n">df_mt</span><span class="p">,</span> <span class="n">selector</span><span class="o">=</span><span class="s2">"df1_mt"</span>
-<span class="gp">   ....: </span><span class="p">)</span>
-<span class="gp">   ....: </span>
-
-<span class="gp">In [22]: </span><span class="n">store</span>
-<span class="gh">Out[22]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">store</span><span class="o">.</span><span class="n">append_to_multiple</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">{</span><span class="s2">"df1_mt"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">],</span> <span class="s2">"df2_mt"</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span> <span class="n">df_mt</span><span class="p">,</span> <span class="n">selector</span><span class="o">=</span><span class="s2">"df1_mt"</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">store</span>
 <span class="go">&lt;class 'pandas.HDFStore'&gt;</span>
 <span class="go">File path: store.h5</span>
 
 <span class="go"># individual tables were created</span>
-<span class="gp">In [23]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df1_mt"</span><span class="p">)</span>
-<span class="gh">Out[23]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df1_mt"</span><span class="p">)</span>
 <span class="go">                   A         B</span>
 <span class="go">2000-01-01  0.404705  0.577046</span>
 <span class="go">2000-01-02 -1.344312  0.844885</span>
@@ -915,9 +890,7 @@ combined result, by using <code class="docutils literal notranslate"><span class
 <span class="go">2000-01-06 -1.170299 -0.226169</span>
 <span class="go">2000-01-07 -0.076467 -1.187678</span>
 <span class="go">2000-01-08  1.024180  0.569605</span>
-
-<span class="gp">In [24]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df2_mt"</span><span class="p">)</span>
-<span class="gh">Out[24]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df2_mt"</span><span class="p">)</span>
 <span class="go">                   C         D         E         F  foo</span>
 <span class="go">2000-01-01 -1.715002 -1.039268 -0.370647 -1.157892  bar</span>
 <span class="go">2000-01-02  1.075770 -0.109050  1.643563 -1.469388  bar</span>
@@ -929,11 +902,9 @@ combined result, by using <code class="docutils literal notranslate"><span class
 <span class="go">2000-01-08  0.875906 -2.211372  0.974466 -2.006747  bar</span>
 
 <span class="go"># as a multiple</span>
-<span class="gp">In [25]: </span><span class="n">store</span><span class="o">.</span><span class="n">select_as_multiple</span><span class="p">(</span>
-<span class="gp">   ....: </span>    <span class="p">[</span><span class="s2">"df1_mt"</span><span class="p">,</span> <span class="s2">"df2_mt"</span><span class="p">],</span> <span class="n">where</span><span class="o">=</span><span class="p">[</span><span class="s2">"A&gt;0"</span><span class="p">,</span> <span class="s2">"B&gt;0"</span><span class="p">],</span> <span class="n">selector</span><span class="o">=</span><span class="s2">"df1_mt"</span>
-<span class="gp">   ....: </span><span class="p">)</span>
-<span class="gp">   ....: </span>
-<span class="gh">Out[25]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">store</span><span class="o">.</span><span class="n">select_as_multiple</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">"df1_mt"</span><span class="p">,</span> <span class="s2">"df2_mt"</span><span class="p">],</span> <span class="n">where</span><span class="o">=</span><span class="p">[</span><span class="s2">"A&gt;0"</span><span class="p">,</span> <span class="s2">"B&gt;0"</span><span class="p">],</span> <span class="n">selector</span><span class="o">=</span><span class="s2">"df1_mt"</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="go">                   A         B         C         D         E         F  foo</span>
 <span class="go">2000-01-01  0.404705  0.577046 -1.715002 -1.039268 -0.370647 -1.157892  bar</span>
 <span class="go">2000-01-05  0.895717  0.805244 -1.206412  2.565646  1.431256  1.340309  bar</span>

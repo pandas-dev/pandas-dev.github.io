@@ -731,12 +731,10 @@ there are now method for each binary operator enabling you to specify how you
 want to broadcast, we are phasing out this special case (Zen of Python:
 <em>Special cases aren’t special enough to break the rules</em>). Here’s what I’m
 talking about:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
-<span class="gp">In [2]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"1/1/2000"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
-
-<span class="gp">In [3]: </span><span class="n">df</span>
-<span class="gh">Out[3]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"1/1/2000"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">                   0         1         2         3</span>
 <span class="go">2000-01-01  0.469112 -0.282863 -1.509059 -1.135632</span>
 <span class="go">2000-01-02  1.212112 -0.173215  0.119209 -1.044236</span>
@@ -744,10 +742,8 @@ talking about:</p>
 <span class="go">2000-01-04  0.721555 -0.706771 -1.039575  0.271860</span>
 <span class="go">2000-01-05 -0.424972  0.567020  0.276232 -1.087401</span>
 <span class="go">2000-01-06 -0.673690  0.113648 -1.478427  0.524988</span>
-
 <span class="go"># deprecated now</span>
-<span class="gp">In [4]: </span><span class="n">df</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="gh">Out[4]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="go">             0   1  ...  2000-01-05 00:00:00  2000-01-06 00:00:00</span>
 <span class="go">2000-01-01 NaN NaN  ...                  NaN                  NaN</span>
 <span class="go">2000-01-02 NaN NaN  ...                  NaN                  NaN</span>
@@ -757,10 +753,8 @@ talking about:</p>
 <span class="go">2000-01-06 NaN NaN  ...                  NaN                  NaN</span>
 
 <span class="go">[6 rows x 10 columns]</span>
-
 <span class="go"># Change your code to</span>
-<span class="gp">In [5]: </span><span class="n">df</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># align on axis 0 (rows)</span>
-<span class="gh">Out[5]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># align on axis 0 (rows)</span>
 <span class="go">              0         1         2         3</span>
 <span class="go">2000-01-01  0.0 -0.751976 -1.978171 -1.604745</span>
 <span class="go">2000-01-02  0.0 -1.385327 -1.092903 -2.256348</span>
@@ -980,10 +974,8 @@ valid code. You must either specify a fill value or an interpolation method:</p>
 </pre></div>
 </div>
 <p>Convenience methods <code class="docutils literal notranslate"><span class="pre">ffill</span></code> and  <code class="docutils literal notranslate"><span class="pre">bfill</span></code> have been added:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
-
-<span class="gp">In [7]: </span><span class="n">s</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
-<span class="gh">Out[7]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
 <span class="go">0    NaN</span>
 <span class="go">1    1.0</span>
 <span class="go">2    2.0</span>
@@ -996,23 +988,18 @@ valid code. You must either specify a fill value or an interpolation method:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">Series.apply</span></code> will now operate on a returned value from the applied
 function, that is itself a series, and possibly upcast the result to a
 DataFrame</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-<span class="gp">   ...: </span>    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"x"</span><span class="p">,</span> <span class="s2">"x^2"</span><span class="p">])</span>
-<span class="gp">   ...: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"x"</span><span class="p">,</span> <span class="s2">"x^2"</span><span class="p">])</span>
 
-<span class="gp">In [9]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-
-<span class="gp">In [10]: </span><span class="n">s</span>
-<span class="gh">Out[10]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
 <span class="go">0    0.340445</span>
 <span class="go">1    0.984729</span>
 <span class="go">2    0.919540</span>
 <span class="go">3    0.037772</span>
 <span class="go">4    0.861549</span>
 <span class="go">dtype: float64</span>
-
-<span class="gp">In [11]: </span><span class="n">s</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="gh">Out[11]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="go">          x       x^2</span>
 <span class="go">0  0.340445  0.115903</span>
 <span class="go">1  0.984729  0.969691</span>
@@ -1032,8 +1019,8 @@ arguments. print all registered options.</p></li>
 </ul>
 <p>Note: <code class="docutils literal notranslate"><span class="pre">set_printoptions</span></code>/ <code class="docutils literal notranslate"><span class="pre">reset_printoptions</span></code> are now deprecated (but
 functioning), the print options now live under “display.XYZ”. For example:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">"display.max_rows"</span><span class="p">)</span>
-<span class="gh">Out[12]: </span><span class="go">15</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">"display.max_rows"</span><span class="p">)</span>
+<span class="go">15</span>
 </pre></div>
 </div>
 </li>
@@ -1047,10 +1034,9 @@ functioning), the print options now live under “display.XYZ”. For example:</
 <h2>Wide DataFrame printing<a class="headerlink" href="#wide-dataframe-printing" title="Link to this heading">#</a></h2>
 <p>Instead of printing the summary information, pandas now splits the string
 representation across multiple rows by default:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">wide_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wide_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
 
-<span class="gp">In [14]: </span><span class="n">wide_frame</span>
-<span class="gh">Out[14]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wide_frame</span>
 <span class="go">         0         1         2   ...        13        14        15</span>
 <span class="go">0 -0.548702  1.467327 -1.015962  ...  1.669052  1.037882 -1.705775</span>
 <span class="go">1 -0.919854 -0.042379  1.247642  ...  1.956030  0.017587 -0.016692</span>
@@ -1063,10 +1049,9 @@ representation across multiple rows by default:</p>
 </div>
 <p>The old behavior of printing out summary information can be achieved via the
 ‘expand_frame_repr’ print option:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"expand_frame_repr"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"expand_frame_repr"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
-<span class="gp">In [16]: </span><span class="n">wide_frame</span>
-<span class="gh">Out[16]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wide_frame</span>
 <span class="go">         0         1         2         3         4         5         6         7         8         9         10        11        12        13        14        15</span>
 <span class="go">0 -0.548702  1.467327 -1.015962 -0.483075  1.637550 -1.217659 -0.291519 -1.745505 -0.263952  0.991460 -0.919069  0.266046 -0.709661  1.669052  1.037882 -1.705775</span>
 <span class="go">1 -0.919854 -0.042379  1.247642 -0.009920  0.290213  0.495767  0.362949  1.548106 -1.131345 -0.089329  0.337863 -0.945867 -0.932132  1.956030  0.017587 -0.016692</span>

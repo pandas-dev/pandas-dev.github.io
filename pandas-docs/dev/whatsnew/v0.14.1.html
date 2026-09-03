@@ -748,12 +748,11 @@ BusinessYearBegin, LastWeekOfMonth, FY5253Quarter, LastWeekOfMonth, Easter):</p>
 </div>
 <p>Starting from 0.14.1 all offsets preserve time by default. The old
 behaviour can be obtained with <code class="docutils literal notranslate"><span class="pre">normalize=True</span></code></p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># new behaviour</span>
-<span class="gp">In [1]: </span><span class="n">d</span> <span class="o">+</span> <span class="n">offsets</span><span class="o">.</span><span class="n">MonthEnd</span><span class="p">()</span>
-<span class="gh">Out[1]: </span><span class="go">Timestamp('2014-01-31 09:00:00')</span>
-
-<span class="gp">In [2]: </span><span class="n">d</span> <span class="o">+</span> <span class="n">offsets</span><span class="o">.</span><span class="n">MonthEnd</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[2]: </span><span class="go">Timestamp('2014-01-31 00:00:00')</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="go"># new behaviour</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">+</span> <span class="n">offsets</span><span class="o">.</span><span class="n">MonthEnd</span><span class="p">()</span>
+<span class="go">Timestamp('2014-01-31 09:00:00')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">+</span> <span class="n">offsets</span><span class="o">.</span><span class="n">MonthEnd</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">Timestamp('2014-01-31 00:00:00')</span>
 </pre></div>
 </div>
 <p>Note that for the other offsets the default behaviour did not change.</p>
@@ -797,13 +796,11 @@ pages (<a class="extlink-issue reference external" href="https://github.com/pand
 that <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> does.  (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/6809">GH 6809</a>)</p></li>
 <li><p>Support for dateutil timezones, which can now be used in the same way as
 pytz timezones across pandas. (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/4688">GH 4688</a>)</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">rng</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span>
-<span class="gp">   ...: </span>    <span class="s2">"3/6/2012 00:00"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">"dateutil/Europe/London"</span>
-<span class="gp">   ...: </span><span class="p">)</span>
-<span class="gp">   ...: </span>
-
-<span class="gp">In [4]: </span><span class="n">rng</span><span class="o">.</span><span class="n">tz</span>
-<span class="gh">Out[4]: </span><span class="go">tzfile('/usr/share/zoneinfo/Europe/London')</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rng</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s2">"3/6/2012 00:00"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">"dateutil/Europe/London"</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rng</span><span class="o">.</span><span class="n">tz</span>
+<span class="go">tzfile('/usr/share/zoneinfo/Europe/London')</span>
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="../user_guide/timeseries.html#timeseries-timezone"><span class="std std-ref">the docs</span></a>.</p>

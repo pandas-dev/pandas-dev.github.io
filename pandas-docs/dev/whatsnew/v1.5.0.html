@@ -714,47 +714,35 @@ that are backed by a <code class="docutils literal notranslate"><span class="pre
 <p>The <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument can accept a string of a <a class="reference external" href="https://arrow.apache.org/docs/python/api/datatypes.html">pyarrow data type</a>
 with <code class="docutils literal notranslate"><span class="pre">pyarrow</span></code> in brackets e.g. <code class="docutils literal notranslate"><span class="pre">&quot;int64[pyarrow]&quot;</span></code> or, for pyarrow data types that take parameters, a <a class="reference internal" href="../reference/api/pandas.ArrowDtype.html#pandas.ArrowDtype" title="pandas.ArrowDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowDtype</span></code></a>
 initialized with a <code class="docutils literal notranslate"><span class="pre">pyarrow.DataType</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pa</span>
-
-<span class="gp">In [2]: </span><span class="n">ser_float</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"float32[pyarrow]"</span><span class="p">)</span>
-
-<span class="gp">In [3]: </span><span class="n">ser_float</span>
-<span class="gh">Out[3]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser_float</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"float32[pyarrow]"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser_float</span>
 <span class="go">0     1.0</span>
 <span class="go">1     2.0</span>
 <span class="go">2    &lt;NA&gt;</span>
 <span class="go">dtype: float[pyarrow]</span>
 
-<span class="gp">In [4]: </span><span class="n">list_of_int_type</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">list_</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">int64</span><span class="p">()))</span>
-
-<span class="gp">In [5]: </span><span class="n">ser_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">list_of_int_type</span><span class="p">)</span>
-
-<span class="gp">In [6]: </span><span class="n">ser_list</span>
-<span class="gh">Out[6]: </span>
-<span class="go">0      [1. 2.]</span>
-<span class="go">1    [ 3. nan]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_of_int_type</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ArrowDtype</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">list_</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">int64</span><span class="p">()))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="kc">None</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">list_of_int_type</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser_list</span>
+<span class="go">0       [1 2]</span>
+<span class="go">1    [3 None]</span>
 <span class="go">dtype: list&lt;item: int64&gt;[pyarrow]</span>
 
-<span class="gp">In [7]: </span><span class="n">ser_list</span><span class="o">.</span><span class="n">take</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="gh">Out[7]: </span>
-<span class="go">1    [ 3. nan]</span>
-<span class="go">0      [1. 2.]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser_list</span><span class="o">.</span><span class="n">take</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="go">1    [3 None]</span>
+<span class="go">0       [1 2]</span>
 <span class="go">dtype: list&lt;item: int64&gt;[pyarrow]</span>
-
-<span class="gp">In [8]: </span><span class="n">ser_float</span> <span class="o">*</span> <span class="mi">5</span>
-<span class="gh">Out[8]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser_float</span> <span class="o">*</span> <span class="mi">5</span>
 <span class="go">0     5.0</span>
 <span class="go">1    10.0</span>
 <span class="go">2    &lt;NA&gt;</span>
 <span class="go">dtype: float[pyarrow]</span>
-
-<span class="gp">In [9]: </span><span class="n">ser_float</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="gh">Out[9]: </span><span class="go">1.5</span>
-
-<span class="gp">In [10]: </span><span class="n">ser_float</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="gh">Out[10]: </span>
-<span class="go">0    1.0</span>
-<span class="go">1    2.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser_float</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="go">1.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser_float</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="go">0   1.0</span>
+<span class="go">1   2.0</span>
 <span class="go">dtype: float[pyarrow]</span>
 </pre></div>
 </div>
@@ -865,15 +853,13 @@ as seen in the following example.</p>
 <section id="from-dummies">
 <span id="whatsnew-150-enhancements-from-dummies"></span><h3>from_dummies<a class="headerlink" href="#from-dummies" title="Link to this heading">#</a></h3>
 <p>Added new function <a class="reference internal" href="../reference/api/pandas.from_dummies.html#pandas.from_dummies" title="pandas.from_dummies"><code class="xref py py-func docutils literal notranslate"><span class="pre">from_dummies()</span></code></a> to convert a dummy coded <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> into a categorical <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
-<span class="gp">In [12]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"col1_a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">"col1_b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-<span class="gp">   ....: </span>                   <span class="s2">"col2_a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">"col2_b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-<span class="gp">   ....: </span>                   <span class="s2">"col2_c"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
-<span class="gp">   ....: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"col1_a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">"col1_b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="gp">... </span>                   <span class="s2">"col2_a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">"col2_b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="gp">... </span>                   <span class="s2">"col2_c"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
 
-<span class="gp">In [13]: </span><span class="n">pd</span><span class="o">.</span><span class="n">from_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"_"</span><span class="p">)</span>
-<span class="gh">Out[13]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">from_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"_"</span><span class="p">)</span>
 <span class="go">  col1 col2</span>
 <span class="go">0    a    b</span>
 <span class="go">1    b    a</span>
@@ -921,52 +907,44 @@ If the compression method cannot be inferred, use the <code class="docutils lite
 <span id="whatsnew-150-enhancements-read-xml-dtypes"></span><h3>read_xml now supports <code class="docutils literal notranslate"><span class="pre">dtype</span></code>, <code class="docutils literal notranslate"><span class="pre">converters</span></code>, and <code class="docutils literal notranslate"><span class="pre">parse_dates</span></code><a class="headerlink" href="#read-xml-now-supports-dtype-converters-and-parse-dates" title="Link to this heading">#</a></h3>
 <p>Similar to other IO methods, <a class="reference internal" href="../reference/api/pandas.read_xml.html#pandas.read_xml" title="pandas.read_xml"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.read_xml()</span></code></a> now supports assigning specific dtypes to columns,
 apply converter methods, and parse dates (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/43567">GH 43567</a>).</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIO</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xml_dates</span> <span class="o">=</span> <span class="s2">"""&lt;?xml version='1.0' encoding='utf-8'?&gt;</span>
+<span class="gp">... </span><span class="s2">&lt;data&gt;</span>
+<span class="gp">... </span><span class="s2">  &lt;row&gt;</span>
+<span class="gp">... </span><span class="s2">    &lt;shape&gt;square&lt;/shape&gt;</span>
+<span class="gp">... </span><span class="s2">    &lt;degrees&gt;00360&lt;/degrees&gt;</span>
+<span class="gp">... </span><span class="s2">    &lt;sides&gt;4.0&lt;/sides&gt;</span>
+<span class="gp">... </span><span class="s2">    &lt;date&gt;2020-01-01&lt;/date&gt;</span>
+<span class="gp">... </span><span class="s2">   &lt;/row&gt;</span>
+<span class="gp">... </span><span class="s2">  &lt;row&gt;</span>
+<span class="gp">... </span><span class="s2">    &lt;shape&gt;circle&lt;/shape&gt;</span>
+<span class="gp">... </span><span class="s2">    &lt;degrees&gt;00360&lt;/degrees&gt;</span>
+<span class="gp">... </span><span class="s2">    &lt;sides/&gt;</span>
+<span class="gp">... </span><span class="s2">    &lt;date&gt;2021-01-01&lt;/date&gt;</span>
+<span class="gp">... </span><span class="s2">  &lt;/row&gt;</span>
+<span class="gp">... </span><span class="s2">  &lt;row&gt;</span>
+<span class="gp">... </span><span class="s2">    &lt;shape&gt;triangle&lt;/shape&gt;</span>
+<span class="gp">... </span><span class="s2">    &lt;degrees&gt;00180&lt;/degrees&gt;</span>
+<span class="gp">... </span><span class="s2">    &lt;sides&gt;3.0&lt;/sides&gt;</span>
+<span class="gp">... </span><span class="s2">    &lt;date&gt;2022-01-01&lt;/date&gt;</span>
+<span class="gp">... </span><span class="s2">  &lt;/row&gt;</span>
+<span class="gp">... </span><span class="s2">&lt;/data&gt;"""</span>
 
-<span class="gp">In [15]: </span><span class="n">xml_dates</span> <span class="o">=</span> <span class="s2">"""&lt;?xml version='1.0' encoding='utf-8'?&gt;</span>
-<span class="gp">   ....: </span><span class="s2">&lt;data&gt;</span>
-<span class="gp">   ....: </span><span class="s2">  &lt;row&gt;</span>
-<span class="gp">   ....: </span><span class="s2">    &lt;shape&gt;square&lt;/shape&gt;</span>
-<span class="gp">   ....: </span><span class="s2">    &lt;degrees&gt;00360&lt;/degrees&gt;</span>
-<span class="gp">   ....: </span><span class="s2">    &lt;sides&gt;4.0&lt;/sides&gt;</span>
-<span class="gp">   ....: </span><span class="s2">    &lt;date&gt;2020-01-01&lt;/date&gt;</span>
-<span class="gp">   ....: </span><span class="s2">   &lt;/row&gt;</span>
-<span class="gp">   ....: </span><span class="s2">  &lt;row&gt;</span>
-<span class="gp">   ....: </span><span class="s2">    &lt;shape&gt;circle&lt;/shape&gt;</span>
-<span class="gp">   ....: </span><span class="s2">    &lt;degrees&gt;00360&lt;/degrees&gt;</span>
-<span class="gp">   ....: </span><span class="s2">    &lt;sides/&gt;</span>
-<span class="gp">   ....: </span><span class="s2">    &lt;date&gt;2021-01-01&lt;/date&gt;</span>
-<span class="gp">   ....: </span><span class="s2">  &lt;/row&gt;</span>
-<span class="gp">   ....: </span><span class="s2">  &lt;row&gt;</span>
-<span class="gp">   ....: </span><span class="s2">    &lt;shape&gt;triangle&lt;/shape&gt;</span>
-<span class="gp">   ....: </span><span class="s2">    &lt;degrees&gt;00180&lt;/degrees&gt;</span>
-<span class="gp">   ....: </span><span class="s2">    &lt;sides&gt;3.0&lt;/sides&gt;</span>
-<span class="gp">   ....: </span><span class="s2">    &lt;date&gt;2022-01-01&lt;/date&gt;</span>
-<span class="gp">   ....: </span><span class="s2">  &lt;/row&gt;</span>
-<span class="gp">   ....: </span><span class="s2">&lt;/data&gt;"""</span>
-<span class="gp">   ....: </span>
-
-<span class="gp">In [16]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_xml</span><span class="p">(</span>
-<span class="gp">   ....: </span>    <span class="n">StringIO</span><span class="p">(</span><span class="n">xml_dates</span><span class="p">),</span>
-<span class="gp">   ....: </span>    <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">'sides'</span><span class="p">:</span> <span class="s1">'Int64'</span><span class="p">},</span>
-<span class="gp">   ....: </span>    <span class="n">converters</span><span class="o">=</span><span class="p">{</span><span class="s1">'degrees'</span><span class="p">:</span> <span class="nb">str</span><span class="p">},</span>
-<span class="gp">   ....: </span>    <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span>
-<span class="gp">   ....: </span><span class="p">)</span>
-<span class="gp">   ....: </span>
-
-<span class="gp">In [17]: </span><span class="n">df</span>
-<span class="gh">Out[17]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_xml</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">xml_dates</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">'sides'</span><span class="p">:</span> <span class="s1">'Int64'</span><span class="p">},</span>
+<span class="gp">... </span>    <span class="n">converters</span><span class="o">=</span><span class="p">{</span><span class="s1">'degrees'</span><span class="p">:</span> <span class="nb">str</span><span class="p">},</span>
+<span class="gp">... </span>    <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">      shape degrees  sides       date</span>
 <span class="go">0    square   00360      4 2020-01-01</span>
 <span class="go">1    circle   00360   &lt;NA&gt; 2021-01-01</span>
 <span class="go">2  triangle   00180      3 2022-01-01</span>
-
-<span class="gp">In [18]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[18]: </span>
-<span class="go">shape                 str</span>
-<span class="go">degrees               str</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="go">shape              object</span>
+<span class="go">degrees            object</span>
 <span class="go">sides               Int64</span>
-<span class="go">date       datetime64[us]</span>
+<span class="go">date       datetime64[ns]</span>
 <span class="go">dtype: object</span>
 </pre></div>
 </div>
@@ -1018,15 +996,11 @@ was applied to.</p>
 </div>
 <p>Without copy on write, the parent <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> is updated when updating a child
 <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> that was derived from this <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"foo"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"bar"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
-
-<span class="gp">In [20]: </span><span class="n">view</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"foo"</span><span class="p">]</span>
-
-<span class="gp">In [21]: </span><span class="n">view</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="gh">Out[21]: </span><span class="go">np.int64(1)</span>
-
-<span class="gp">In [22]: </span><span class="n">df</span>
-<span class="gh">Out[22]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"foo"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"bar"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">view</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"foo"</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">view</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">   foo  bar</span>
 <span class="go">0    1    1</span>
 <span class="go">1    2    1</span>
@@ -1034,12 +1008,11 @@ was applied to.</p>
 </pre></div>
 </div>
 <p>With copy on write enabled, df won’t be updated anymore:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">option_context</span><span class="p">(</span><span class="s2">"mode.copy_on_write"</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
-<span class="gp">   ....: </span>     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"foo"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"bar"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
-<span class="gp">   ....: </span>     <span class="n">view</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"foo"</span><span class="p">]</span>
-<span class="gp">   ....: </span>     <span class="n">view</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="gp">   ....: </span>     <span class="n">df</span>
-<span class="gp">   ....: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">option_context</span><span class="p">(</span><span class="s2">"mode.copy_on_write"</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"foo"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"bar"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="gp">... </span>    <span class="n">view</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"foo"</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">view</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">df</span>
 </pre></div>
 </div>
 <p>A more detailed explanation can be found <a class="reference external" href="https://phofl.github.io/cow-introduction.html">here</a>.</p>
@@ -1099,7 +1072,7 @@ index of the result matches that of the input. In pandas 1.4, using
 values in the groups and <code class="docutils literal notranslate"><span class="pre">dropna=True</span></code> gave incorrect results. Demonstrated by the
 examples below, the incorrect results either contained incorrect values, or the result
 did not have the same index as the input.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'a'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="s1">'b'</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'a'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="s1">'b'</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
 </pre></div>
 </div>
 <p><em>Old behavior</em>:</p>
@@ -1135,29 +1108,22 @@ did not have the same index as the input.</p>
 </pre></div>
 </div>
 <p><em>New behavior</em>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">'sum'</span><span class="p">)</span>
-<span class="gh">Out[25]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">'sum'</span><span class="p">)</span>
 <span class="go">     b</span>
 <span class="go">0  5.0</span>
 <span class="go">1  5.0</span>
 <span class="go">2  NaN</span>
-
-<span class="gp">In [26]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-<span class="gh">Out[26]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 <span class="go">     b</span>
 <span class="go">0  5.0</span>
 <span class="go">1  5.0</span>
 <span class="go">2  NaN</span>
-
-<span class="gp">In [27]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">'ffill'</span><span class="p">)</span>
-<span class="gh">Out[27]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s1">'ffill'</span><span class="p">)</span>
 <span class="go">     b</span>
 <span class="go">0  2.0</span>
 <span class="go">1  3.0</span>
 <span class="go">2  NaN</span>
-
-<span class="gp">In [28]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">)</span>
-<span class="gh">Out[28]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">)</span>
 <span class="go">     b</span>
 <span class="go">0  2.0</span>
 <span class="go">1  3.0</span>
@@ -1559,7 +1525,7 @@ feedback or concerns are welcome.</p>
 <span id="whatsnew-150-deprecations-int-slicing-series"></span><h3>Label-based integer slicing on a Series with an Int64Index or RangeIndex<a class="headerlink" href="#label-based-integer-slicing-on-a-series-with-an-int64index-or-rangeindex" title="Link to this heading">#</a></h3>
 <p>In a future version, integer slicing on a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> with a <code class="xref py py-class docutils literal notranslate"><span class="pre">Int64Index</span></code> or <a class="reference internal" href="../reference/api/pandas.RangeIndex.html#pandas.RangeIndex" title="pandas.RangeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">RangeIndex</span></code></a> will be treated as <em>label-based</em>, not positional. This will make the behavior consistent with other <code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.__getitem__()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.__setitem__()</span></code> behaviors (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/45162">GH 45162</a>).</p>
 <p>For example:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">])</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>In the old behavior, <code class="docutils literal notranslate"><span class="pre">ser[2:4]</span></code> treats the slice as positional:</p>
@@ -1640,11 +1606,9 @@ retained by specifying <code class="docutils literal notranslate"><span class="p
 inplace, only falling back to inserting a new array if necessary. There are
 some cases where this rule is not followed, for example when setting an entire
 column from an array with different dtype:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [30]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'price'</span><span class="p">:</span> <span class="p">[</span><span class="mf">11.1</span><span class="p">,</span> <span class="mf">12.2</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'book1'</span><span class="p">,</span> <span class="s1">'book2'</span><span class="p">])</span>
-
-<span class="gp">In [31]: </span><span class="n">original_prices</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'price'</span><span class="p">]</span>
-
-<span class="gp">In [32]: </span><span class="n">new_prices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">98</span><span class="p">,</span> <span class="mi">99</span><span class="p">])</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'price'</span><span class="p">:</span> <span class="p">[</span><span class="mf">11.1</span><span class="p">,</span> <span class="mf">12.2</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'book1'</span><span class="p">,</span> <span class="s1">'book2'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">original_prices</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'price'</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_prices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">98</span><span class="p">,</span> <span class="mi">99</span><span class="p">])</span>
 </pre></div>
 </div>
 <p><em>Old behavior</em>:</p>

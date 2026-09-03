@@ -754,10 +754,8 @@ explicit and use <code class="docutils literal notranslate"><span class="pre">.i
 <section id="dtypes">
 <h2>Dtypes<a class="headerlink" href="#dtypes" title="Link to this heading">#</a></h2>
 <p>Numeric dtypes will propagate and can coexist in DataFrames. If a dtype is passed (either directly via the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> keyword, a passed <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>, or a passed <code class="docutils literal notranslate"><span class="pre">Series</span></code>), then it will be preserved in DataFrame operations. Furthermore, different numeric dtypes will <strong>NOT</strong> be combined. The following example will give you a taste.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'float64'</span><span class="p">)</span>
-
-<span class="gp">In [2]: </span><span class="n">df1</span>
-<span class="gh">Out[2]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'float64'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df1</span>
 <span class="go">          A</span>
 <span class="go">0  0.469112</span>
 <span class="go">1 -0.282863</span>
@@ -767,19 +765,13 @@ explicit and use <code class="docutils literal notranslate"><span class="pre">.i
 <span class="go">5 -0.173215</span>
 <span class="go">6  0.119209</span>
 <span class="go">7 -1.044236</span>
-
-<span class="gp">In [3]: </span><span class="n">df1</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[3]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df1</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="go">A    float64</span>
 <span class="go">dtype: object</span>
-
-<span class="gp">In [4]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'A'</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'float32'</span><span class="p">),</span>
-<span class="gp">   ...: </span>                    <span class="s1">'B'</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">)),</span>
-<span class="gp">   ...: </span>                    <span class="s1">'C'</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'uint8'</span><span class="p">)})</span>
-<span class="gp">   ...: </span>
-
-<span class="gp">In [5]: </span><span class="n">df2</span>
-<span class="gh">Out[5]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'A'</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'float32'</span><span class="p">),</span>
+<span class="gp">... </span>                    <span class="s1">'B'</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">)),</span>
+<span class="gp">... </span>                    <span class="s1">'C'</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'uint8'</span><span class="p">)})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span>
 <span class="go">          A         B  C</span>
 <span class="go">0 -0.861849 -0.424972  0</span>
 <span class="go">1 -2.104569  0.567020  1</span>
@@ -789,19 +781,15 @@ explicit and use <code class="docutils literal notranslate"><span class="pre">.i
 <span class="go">5 -0.706771  0.113648  5</span>
 <span class="go">6 -1.039575 -1.478427  6</span>
 <span class="go">7  0.271860  0.524988  7</span>
-
-<span class="gp">In [6]: </span><span class="n">df2</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[6]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="go">A    float32</span>
 <span class="go">B    float64</span>
 <span class="go">C      uint8</span>
 <span class="go">dtype: object</span>
 
 <span class="go"># here you get some upcasting</span>
-<span class="gp">In [7]: </span><span class="n">df3</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">reindex_like</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">df2</span>
-
-<span class="gp">In [8]: </span><span class="n">df3</span>
-<span class="gh">Out[8]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df3</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">reindex_like</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">df2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df3</span>
 <span class="go">          A         B    C</span>
 <span class="go">0 -0.392737 -0.424972  0.0</span>
 <span class="go">1 -2.387433  0.567020  1.0</span>
@@ -811,9 +799,7 @@ explicit and use <code class="docutils literal notranslate"><span class="pre">.i
 <span class="go">5 -0.879986  0.113648  5.0</span>
 <span class="go">6 -0.920366 -1.478427  6.0</span>
 <span class="go">7 -0.772376  0.524988  7.0</span>
-
-<span class="gp">In [9]: </span><span class="n">df3</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[9]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df3</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="go">A    float64</span>
 <span class="go">B    float64</span>
 <span class="go">C    float64</span>
@@ -824,13 +810,12 @@ explicit and use <code class="docutils literal notranslate"><span class="pre">.i
 <section id="dtype-conversion">
 <h2>Dtype conversion<a class="headerlink" href="#dtype-conversion" title="Link to this heading">#</a></h2>
 <p>This is lower-common-denominator upcasting, meaning you get the dtype which can accommodate all of the types</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">df3</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">dtype</span>
-<span class="gh">Out[10]: </span><span class="go">dtype('float64')</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df3</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">dtype</span>
+<span class="go">dtype('float64')</span>
 </pre></div>
 </div>
 <p>Conversion</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">df3</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'float32'</span><span class="p">)</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[11]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df3</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'float32'</span><span class="p">)</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="go">A    float32</span>
 <span class="go">B    float32</span>
 <span class="go">C    float32</span>
@@ -1006,14 +991,10 @@ The dtype of the input data will be preserved in cases where <code class="docuti
 in addition to the traditional <code class="docutils literal notranslate"><span class="pre">NaT</span></code>, or not-a-time. This allows convenient nan setting in a generic way.
 Furthermore <code class="docutils literal notranslate"><span class="pre">datetime64[ns]</span></code> columns are created by default, when passed datetimelike objects (<em>this change was introduced in 0.10.1</em>)
 (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/2809">GH 2809</a>, <a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/2810">GH 2810</a>)</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'20010102'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
-<span class="gp">   ....: </span>                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">' B'</span><span class="p">])</span>
-<span class="gp">   ....: </span>
-
-<span class="gp">In [13]: </span><span class="n">df</span><span class="p">[</span><span class="s1">'timestamp'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">'20010103'</span><span class="p">)</span>
-
-<span class="gp">In [14]: </span><span class="n">df</span>
-<span class="gh">Out[14]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'20010102'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
+<span class="gp">... </span>                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">' B'</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s1">'timestamp'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">'20010103'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">                   A         B  timestamp</span>
 <span class="go">2001-01-02  0.404705  0.577046 2001-01-03</span>
 <span class="go">2001-01-03 -1.715002 -1.039268 2001-01-03</span>
@@ -1023,17 +1004,14 @@ Furthermore <code class="docutils literal notranslate"><span class="pre">datetim
 <span class="go">2001-01-07  1.643563 -1.469388 2001-01-03</span>
 
 <span class="go"># datetime64[ns] out of the box</span>
-<span class="gp">In [15]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-<span class="gh">Out[15]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 <span class="go">float64           2</span>
 <span class="go">datetime64[us]    1</span>
 <span class="go">Name: count, dtype: int64</span>
 
 <span class="go"># use the traditional nan, which is mapped to NaT internally</span>
-<span class="gp">In [16]: </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'timestamp'</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-
-<span class="gp">In [17]: </span><span class="n">df</span>
-<span class="gh">Out[17]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'timestamp'</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">                   A         B  timestamp</span>
 <span class="go">2001-01-02  0.404705  0.577046 2001-01-03</span>
 <span class="go">2001-01-03 -1.715002 -1.039268 2001-01-03</span>
@@ -1044,36 +1022,26 @@ Furthermore <code class="docutils literal notranslate"><span class="pre">datetim
 </pre></div>
 </div>
 <p>Astype conversion on <code class="docutils literal notranslate"><span class="pre">datetime64[ns]</span></code> to <code class="docutils literal notranslate"><span class="pre">object</span></code>, implicitly converts <code class="docutils literal notranslate"><span class="pre">NaT</span></code> to <code class="docutils literal notranslate"><span class="pre">np.nan</span></code></p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
-
-<span class="gp">In [19]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)])</span>
-
-<span class="gp">In [20]: </span><span class="n">s</span><span class="o">.</span><span class="n">dtype</span>
-<span class="gh">Out[20]: </span><span class="go">dtype('&lt;M8[us]')</span>
-
-<span class="gp">In [21]: </span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-
-<span class="gp">In [22]: </span><span class="n">s</span>
-<span class="gh">Out[22]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">dtype</span>
+<span class="go">dtype('&lt;M8[us]')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
 <span class="go">0   2001-01-02</span>
 <span class="go">1          NaT</span>
 <span class="go">2   2001-01-02</span>
 <span class="go">dtype: datetime64[us]</span>
-
-<span class="gp">In [23]: </span><span class="n">s</span><span class="o">.</span><span class="n">dtype</span>
-<span class="gh">Out[23]: </span><span class="go">dtype('&lt;M8[us]')</span>
-
-<span class="gp">In [24]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'O'</span><span class="p">)</span>
-
-<span class="gp">In [25]: </span><span class="n">s</span>
-<span class="gh">Out[25]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">dtype</span>
+<span class="go">dtype('&lt;M8[us]')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'O'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
 <span class="go">0    2001-01-02 00:00:00</span>
 <span class="go">1                    NaT</span>
 <span class="go">2    2001-01-02 00:00:00</span>
 <span class="go">dtype: object</span>
-
-<span class="gp">In [26]: </span><span class="n">s</span><span class="o">.</span><span class="n">dtype</span>
-<span class="gh">Out[26]: </span><span class="go">dtype('O')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">dtype</span>
+<span class="go">dtype('O')</span>
 </pre></div>
 </div>
 </section>
@@ -1105,12 +1073,9 @@ types of <code class="docutils literal notranslate"><span class="pre">nan</span>
 <li><p><code class="docutils literal notranslate"><span class="pre">HDFStore</span></code></p>
 <ul>
 <li><p>support <code class="docutils literal notranslate"><span class="pre">read_hdf/to_hdf</span></code> API similar to <code class="docutils literal notranslate"><span class="pre">read_csv/to_csv</span></code></p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'A'</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="s1">'B'</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)})</span>
-
-<span class="gp">In [28]: </span><span class="n">df</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">'store.h5'</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">'table'</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="gp">In [29]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">'store.h5'</span><span class="p">,</span> <span class="s1">'table'</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="p">[</span><span class="s1">'index &gt; 2'</span><span class="p">])</span>
-<span class="gh">Out[29]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'A'</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="s1">'B'</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_hdf</span><span class="p">(</span><span class="s1">'store.h5'</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">'table'</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="s1">'store.h5'</span><span class="p">,</span> <span class="s1">'table'</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="p">[</span><span class="s1">'index &gt; 2'</span><span class="p">])</span>
 <span class="go">   A  B</span>
 <span class="go">3  3  3</span>
 <span class="go">4  4  4</span>
