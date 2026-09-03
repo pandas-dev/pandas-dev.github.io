@@ -955,12 +955,12 @@ option, see the Python <a class="reference external" href="https://docs.python.o
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">61</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">'2009/07/31'</span><span class="p">,</span> <span class="s1">'asd'</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'raise'</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/tools/datetimes.py:1258,</span> in <span class="ni">to_datetime</span><span class="nt">(arg, errors, dayfirst, yearfirst, utc, format, exact, unit, origin, cache)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1256</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">_convert_and_box_cache</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">cache_array</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1257</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1258</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">convert_listlike</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1259</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1260</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">convert_listlike</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">arg</span><span class="p">]),</span> <span class="nb">format</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/tools/datetimes.py:1257,</span> in <span class="ni">to_datetime</span><span class="nt">(arg, errors, dayfirst, yearfirst, utc, format, exact, unit, origin, cache)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1255</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">_convert_and_box_cache</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">cache_array</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1256</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1257</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">convert_listlike</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1258</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1259</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">convert_listlike</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">arg</span><span class="p">]),</span> <span class="nb">format</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/tools/datetimes.py:472,</span> in <span class="ni">_convert_listlike_datetimes</span><span class="nt">(arg, format, name, utc, unit, errors, dayfirst, yearfirst, exact)</span>
 <span class="g g-Whitespace">    </span><span class="mi">470</span> <span class="c1"># `format` could be inferred, or user didn't ask for mixed-format parsing.</span>
@@ -969,27 +969,27 @@ option, see the Python <a class="reference external" href="https://docs.python.o
 <span class="g g-Whitespace">    </span><span class="mi">474</span> <span class="n">result</span><span class="p">,</span> <span class="n">tz_parsed</span> <span class="o">=</span> <span class="n">objects_to_datetime64</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">475</span>     <span class="n">arg</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">476</span>     <span class="n">dayfirst</span><span class="o">=</span><span class="n">dayfirst</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">480</span>     <span class="n">allow_object</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">481</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">483</span> <span class="k">if</span> <span class="n">tz_parsed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">484</span>     <span class="c1"># We can take a shortcut since the datetime64 numpy array</span>
-<span class="g g-Whitespace">    </span><span class="mi">485</span>     <span class="c1"># is in UTC</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">479</span>     <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">482</span> <span class="k">if</span> <span class="n">tz_parsed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">483</span>     <span class="c1"># We can take a shortcut since the datetime64 numpy array</span>
+<span class="g g-Whitespace">    </span><span class="mi">484</span>     <span class="c1"># is in UTC</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/tools/datetimes.py:507,</span> in <span class="ni">_array_strptime_with_fallback</span><span class="nt">(arg, name, utc, fmt, exact, errors)</span>
-<span class="g g-Whitespace">    </span><span class="mi">496</span> <span class="k">def</span><span class="w"> </span><span class="nf">_array_strptime_with_fallback</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">497</span>     <span class="n">arg</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">498</span>     <span class="n">name</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">502</span>     <span class="n">errors</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">503</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Index</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">504</span><span class="w">     </span><span class="sd">"""</span>
-<span class="g g-Whitespace">    </span><span class="mi">505</span><span class="sd">     Call array_strptime, with fallback behavior depending on 'errors'.</span>
-<span class="g g-Whitespace">    </span><span class="mi">506</span><span class="sd">     """</span>
-<span class="ne">--&gt; </span><span class="mi">507</span>     <span class="n">result</span><span class="p">,</span> <span class="n">tz_out</span> <span class="o">=</span> <span class="n">array_strptime</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="n">exact</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="n">utc</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">508</span>     <span class="k">if</span> <span class="n">tz_out</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">509</span>         <span class="n">unit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime_data</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">dtype</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/tools/datetimes.py:506,</span> in <span class="ni">_array_strptime_with_fallback</span><span class="nt">(arg, name, utc, fmt, exact, errors)</span>
+<span class="g g-Whitespace">    </span><span class="mi">495</span> <span class="k">def</span><span class="w"> </span><span class="nf">_array_strptime_with_fallback</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">496</span>     <span class="n">arg</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">497</span>     <span class="n">name</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">501</span>     <span class="n">errors</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">502</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Index</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">503</span><span class="w">     </span><span class="sd">"""</span>
+<span class="g g-Whitespace">    </span><span class="mi">504</span><span class="sd">     Call array_strptime, with fallback behavior depending on 'errors'.</span>
+<span class="g g-Whitespace">    </span><span class="mi">505</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">506</span>     <span class="n">result</span><span class="p">,</span> <span class="n">tz_out</span> <span class="o">=</span> <span class="n">array_strptime</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="n">exact</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="n">utc</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">507</span>     <span class="k">if</span> <span class="n">tz_out</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">508</span>         <span class="n">unit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime_data</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">dtype</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="nn">File pandas/_libs/tslibs/strptime.pyx:648,</span> in <span class="ni">pandas._libs.tslibs.strptime.array_strptime</span><span class="nt">()</span>
-<span class="ne">--&gt; </span><span class="mi">648</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/tslibs/strptime.pyx:649,</span> in <span class="ni">pandas._libs.tslibs.strptime.array_strptime</span><span class="nt">()</span>
+<span class="ne">--&gt; </span><span class="mi">649</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
 <span class="nn">File pandas/_libs/tslibs/strptime.pyx:566,</span> in <span class="ni">pandas._libs.tslibs.strptime.array_strptime</span><span class="nt">()</span>
 <span class="ne">--&gt; </span><span class="mi">566</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
 <span class="nn">File pandas/_libs/tslibs/strptime.pyx:706,</span> in <span class="ni">pandas._libs.tslibs.strptime._parse_with_format</span><span class="nt">()</span>
@@ -3369,7 +3369,7 @@ or calendars with additional rules.</p>
 <span class="gp">In [312]: </span><span class="n">cal</span><span class="o">.</span><span class="n">rules</span>
 <span class="gh">Out[312]: </span>
 <span class="go">[Holiday: Memorial Day (month=5, day=31, offset=&lt;DateOffset: weekday=MO(-1)&gt;),</span>
-<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f8ab4f9e520&gt;),</span>
+<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7fc1b972e520&gt;),</span>
 <span class="go"> Holiday: Columbus Day (month=10, day=1, offset=&lt;DateOffset: weekday=MO(+2)&gt;)]</span>
 
 <span class="gp">In [313]: </span><span class="n">new_cal</span> <span class="o">=</span> <span class="n">HolidayCalendarFactory</span><span class="p">(</span><span class="s2">"NewExampleCalendar"</span><span class="p">,</span> <span class="n">cal</span><span class="p">,</span> <span class="n">USLaborDay</span><span class="p">)</span>
@@ -3378,7 +3378,7 @@ or calendars with additional rules.</p>
 <span class="gh">Out[314]: </span>
 <span class="go">[Holiday: Labor Day (month=9, day=1, offset=&lt;DateOffset: weekday=MO(+1)&gt;),</span>
 <span class="go"> Holiday: Memorial Day (month=5, day=31, offset=&lt;DateOffset: weekday=MO(-1)&gt;),</span>
-<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f8ab4f9e520&gt;),</span>
+<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7fc1b972e520&gt;),</span>
 <span class="go"> Holiday: Columbus Day (month=10, day=1, offset=&lt;DateOffset: weekday=MO(+2)&gt;)]</span>
 </pre></div>
 </div>
