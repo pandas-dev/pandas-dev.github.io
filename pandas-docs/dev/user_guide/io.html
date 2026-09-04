@@ -2550,7 +2550,7 @@ value will be an iterable object of type <code class="docutils literal notransla
 <span class="gp">   .....: </span>    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
 <span class="gp">   .....: </span>        <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7f97965b3590&gt;</span>
+<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7eff291896a0&gt;</span>
 <span class="go">          0         1         2         3</span>
 <span class="go">0 -1.294524  0.413738  0.276662 -0.472035</span>
 <span class="go">1 -0.013960 -0.362543 -0.006154 -0.923061</span>
@@ -5052,8 +5052,14 @@ then <a class="reference external" href="https://pypi.org/project/odfpy/">odf</a
 if installed (deprecated), and <code class="docutils literal notranslate"><span class="pre">calamine</span></code> otherwise.</p></li>
 <li><p>Otherwise if <code class="docutils literal notranslate"><span class="pre">path_or_buffer</span></code> is in xlsb format, <code class="docutils literal notranslate"><span class="pre">pyxlsb</span></code> will be used
 if installed (deprecated), and <code class="docutils literal notranslate"><span class="pre">calamine</span></code> otherwise.</p></li>
-<li><p>Otherwise <code class="docutils literal notranslate"><span class="pre">openpyxl</span></code> will be used.</p></li>
+<li><p>Otherwise <code class="docutils literal notranslate"><span class="pre">openpyxl</span></code> will be used (deprecated default, see below).</p></li>
 </ul>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 3.1.0: </span>For xlsx/xlsm files the default engine will change from <code class="docutils literal notranslate"><span class="pre">openpyxl</span></code> to
+<code class="docutils literal notranslate"><span class="pre">calamine</span></code> in a future version. Pass <code class="docutils literal notranslate"><span class="pre">engine</span></code> explicitly, or set the
+<code class="docutils literal notranslate"><span class="pre">io.excel.xlsx.reader</span></code> option (xlsm files are format-detected as xlsx),
+to keep the current behavior.</p>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">xlrd</span></code> and <code class="docutils literal notranslate"><span class="pre">pyxlsb</span></code> engines emit a deprecation warning and will be
 removed in a future version. Pass <code class="docutils literal notranslate"><span class="pre">engine=&quot;calamine&quot;</span></code> to opt in to the
 replacement now.</p>
@@ -5074,7 +5080,7 @@ using internally.</p>
 to read in (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>), (<code class="docutils literal notranslate"><span class="pre">.xlsm</span></code>), (<code class="docutils literal notranslate"><span class="pre">.xls</span></code>), (<code class="docutils literal notranslate"><span class="pre">.xlsb</span></code>), (<code class="docutils literal notranslate"><span class="pre">.ods</span></code>) files.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns a DataFrame</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">"Sheet1"</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">"Sheet1"</span><span class="p">)</span>
 </pre></div>
 </div>
 <section id="excelfile-class">
@@ -5083,12 +5089,12 @@ to read in (<code class="docutils literal notranslate"><span class="pre">.xlsx</
 class can be used to wrap the file and can be passed into <code class="docutils literal notranslate"><span class="pre">read_excel</span></code>
 There will be a performance benefit for reading multiple sheets as the file is
 read into memory only once.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xlsx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xlsx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">xlsx</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">ExcelFile</span></code> class can also be used as a context manager.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">)</span> <span class="k">as</span> <span class="n">xls</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">)</span> <span class="k">as</span> <span class="n">xls</span><span class="p">:</span>
     <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">xls</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">)</span>
     <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">xls</span><span class="p">,</span> <span class="s2">"Sheet2"</span><span class="p">)</span>
 </pre></div>
@@ -5099,7 +5105,7 @@ a list of the sheet names in the file.</p>
 different parameters:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="c1"># For when Sheet1's format differs from Sheet2</span>
-<span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">)</span> <span class="k">as</span> <span class="n">xls</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">)</span> <span class="k">as</span> <span class="n">xls</span><span class="p">:</span>
     <span class="n">data</span><span class="p">[</span><span class="s2">"Sheet1"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">xls</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s2">"NA"</span><span class="p">])</span>
     <span class="n">data</span><span class="p">[</span><span class="s2">"Sheet2"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">xls</span><span class="p">,</span> <span class="s2">"Sheet2"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -5108,13 +5114,13 @@ different parameters:</p>
 of sheet names can simply be passed to <code class="docutils literal notranslate"><span class="pre">read_excel</span></code> with no loss in performance.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># using the ExcelFile class</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">)</span> <span class="k">as</span> <span class="n">xls</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">)</span> <span class="k">as</span> <span class="n">xls</span><span class="p">:</span>
     <span class="n">data</span><span class="p">[</span><span class="s2">"Sheet1"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">xls</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s2">"NA"</span><span class="p">])</span>
     <span class="n">data</span><span class="p">[</span><span class="s2">"Sheet2"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">xls</span><span class="p">,</span> <span class="s2">"Sheet2"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s2">"NA"</span><span class="p">])</span>
 
 <span class="c1"># equivalent using the read_excel function</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span>
-    <span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"Sheet1"</span><span class="p">,</span> <span class="s2">"Sheet2"</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s2">"NA"</span><span class="p">]</span>
+    <span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"Sheet1"</span><span class="p">,</span> <span class="s2">"Sheet2"</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s2">"NA"</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -5139,27 +5145,27 @@ convention, beginning at 0.</p></li>
 <li><p>Pass a <code class="docutils literal notranslate"><span class="pre">None</span></code> to return a dictionary of all available sheets.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns a DataFrame</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s2">"NA"</span><span class="p">])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s2">"NA"</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Using the sheet index:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns a DataFrame</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s2">"NA"</span><span class="p">])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s2">"NA"</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Using all default values:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns a DataFrame</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Using None to get all sheets:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns a dictionary of DataFrames</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Using a list to get multiple sheets:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns the 1st and 4th sheet, as a dictionary of DataFrames.</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="p">[</span><span class="s2">"Sheet1"</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="p">[</span><span class="s2">"Sheet1"</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">read_excel</span></code> can read more than one sheet, by setting <code class="docutils literal notranslate"><span class="pre">sheet_name</span></code> to either
@@ -5258,25 +5264,25 @@ filling the missing values use <code class="docutils literal notranslate"><span 
 in Excel and you may not want to read in those columns. <code class="docutils literal notranslate"><span class="pre">read_excel</span></code> takes
 a <code class="docutils literal notranslate"><span class="pre">usecols</span></code> keyword to allow you to specify a subset of columns to parse.</p>
 <p>You can specify a comma-delimited set of Excel columns and ranges as a string:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="s2">"A,C:E"</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="s2">"A,C:E"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If <code class="docutils literal notranslate"><span class="pre">usecols</span></code> is a list of integers, then it is assumed to be the file column
 indices to be parsed.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Element order is ignored, so <code class="docutils literal notranslate"><span class="pre">usecols=[0,</span> <span class="pre">1]</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">0]</span></code>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">usecols</span></code> is a list of strings, it is assumed that each string corresponds
 to a column name provided either by the user in <code class="docutils literal notranslate"><span class="pre">names</span></code> or inferred from the
 document header row(s). Those strings define which columns will be parsed:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s2">"foo"</span><span class="p">,</span> <span class="s2">"bar"</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s2">"foo"</span><span class="p">,</span> <span class="s2">"bar"</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Element order is ignored, so <code class="docutils literal notranslate"><span class="pre">usecols=['baz',</span> <span class="pre">'joe']</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">['joe',</span> <span class="pre">'baz']</span></code>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">usecols</span></code> is callable, the callable function will be evaluated against
 the column names, returning names where the callable function evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">isalpha</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">isalpha</span><span class="p">())</span>
 </pre></div>
 </div>
 </section>
@@ -5286,7 +5292,7 @@ the column names, returning names where the callable function evaluates to <code
 dtype when reading the excel file. But if you have a column of strings that
 <em>look</em> like dates (but are not actually formatted as dates in excel), you can
 use the <code class="docutils literal notranslate"><span class="pre">parse_dates</span></code> keyword to parse those strings to datetimes:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">"date_strings"</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">"date_strings"</span><span class="p">])</span>
 </pre></div>
 </div>
 </section>
@@ -5294,7 +5300,7 @@ use the <code class="docutils literal notranslate"><span class="pre">parse_dates
 <h4>Cell converters<a class="headerlink" href="#cell-converters" title="Link to this heading">#</a></h4>
 <p>It is possible to transform the contents of Excel cells via the <code class="docutils literal notranslate"><span class="pre">converters</span></code>
 option. For instance, to convert a column to boolean:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="p">{</span><span class="s2">"MyBools"</span><span class="p">:</span> <span class="nb">bool</span><span class="p">})</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="p">{</span><span class="s2">"MyBools"</span><span class="p">:</span> <span class="nb">bool</span><span class="p">})</span>
 </pre></div>
 </div>
 <p>This options handles missing values and treats exceptions in the converters
@@ -5307,7 +5313,7 @@ missing data to recover integer dtype:</p>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
 
 
-<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="p">{</span><span class="s2">"MyInts"</span><span class="p">:</span> <span class="n">cfun</span><span class="p">})</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="p">{</span><span class="s2">"MyInts"</span><span class="p">:</span> <span class="n">cfun</span><span class="p">})</span>
 </pre></div>
 </div>
 </section>
@@ -5317,7 +5323,7 @@ missing data to recover integer dtype:</p>
 be specified using the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> keyword, which takes a dictionary
 mapping column names to types.  To interpret data with
 no type inference, use the type <code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">object</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xls"</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s2">"MyInts"</span><span class="p">:</span> <span class="s2">"int64"</span><span class="p">,</span> <span class="s2">"MyText"</span><span class="p">:</span> <span class="nb">str</span><span class="p">})</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s2">"MyInts"</span><span class="p">:</span> <span class="s2">"int64"</span><span class="p">,</span> <span class="s2">"MyText"</span><span class="p">:</span> <span class="nb">str</span><span class="p">})</span>
 </pre></div>
 </div>
 </section>
@@ -5371,8 +5377,8 @@ engine. For this, it is important to know which function pandas is using interna
 <span class="n">writer</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelWriter</span><span class="p">(</span><span class="n">bio</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">"xlsxwriter"</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">"Sheet1"</span><span class="p">)</span>
 
-<span class="c1"># Save the workbook</span>
-<span class="n">writer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="c1"># Save and close the workbook</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="c1"># Seek to the beginning and read to copy the workbook to a variable in memory</span>
 <span class="n">bio</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -5395,17 +5401,18 @@ omitted, an Excel 2007-formatted workbook is produced.</p>
 <li><p>the <code class="docutils literal notranslate"><span class="pre">engine</span></code> keyword argument</p></li>
 <li><p>the filename extension (via the default specified in config options)</p></li>
 </ol>
-<p>By default, pandas uses the <a class="reference external" href="https://xlsxwriter.readthedocs.io">XlsxWriter</a>  for <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>, <a class="reference external" href="https://openpyxl.readthedocs.io/">openpyxl</a>
-for <code class="docutils literal notranslate"><span class="pre">.xlsm</span></code>. If you have multiple
+<p>By default, pandas uses the <a class="reference external" href="https://xlsxwriter.readthedocs.io">XlsxWriter</a> for <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>, <a class="reference external" href="https://openpyxl.readthedocs.io/">openpyxl</a>
+for <code class="docutils literal notranslate"><span class="pre">.xlsm</span></code> and <a class="reference external" href="https://pypi.org/project/odfpy/">odfpy</a> for <code class="docutils literal notranslate"><span class="pre">.ods</span></code>. If you have multiple
 engines installed, you can set the default engine through <a class="reference internal" href="options.html#options"><span class="std std-ref">setting the
-config options</span></a> <code class="docutils literal notranslate"><span class="pre">io.excel.xlsx.writer</span></code> and
-<code class="docutils literal notranslate"><span class="pre">io.excel.xls.writer</span></code>. pandas will fall back on <a class="reference external" href="https://openpyxl.readthedocs.io/">openpyxl</a> for <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>
-files if <a class="reference external" href="https://xlsxwriter.readthedocs.io">Xlsxwriter</a> is not available.</p>
+config options</span></a> <code class="docutils literal notranslate"><span class="pre">io.excel.xlsx.writer</span></code>,
+<code class="docutils literal notranslate"><span class="pre">io.excel.xlsm.writer</span></code> and <code class="docutils literal notranslate"><span class="pre">io.excel.ods.writer</span></code>. pandas will fall back
+on <a class="reference external" href="https://openpyxl.readthedocs.io/">openpyxl</a> for <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code> files if <a class="reference external" href="https://xlsxwriter.readthedocs.io">XlsxWriter</a> is not available.</p>
 <p>To specify which writer you want to use, you can pass an engine keyword
 argument to <code class="docutils literal notranslate"><span class="pre">to_excel</span></code> and to <code class="docutils literal notranslate"><span class="pre">ExcelWriter</span></code>. The built-in engines are:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">openpyxl</span></code>: version 2.4 or higher is required</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openpyxl</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">xlsxwriter</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">odf</span></code></p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># By setting the 'engine' in the DataFrame 'to_excel()' methods.</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">"path_to_file.xlsx"</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">"Sheet1"</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">"xlsxwriter"</span><span class="p">)</span>
