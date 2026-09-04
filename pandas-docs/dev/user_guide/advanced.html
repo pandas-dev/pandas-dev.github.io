@@ -846,15 +846,15 @@ for partial selection on the rows:</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">29</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="s2">"bar"</span><span class="p">]</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/frame.py:4307,</span> in <span class="ni">DataFrame.__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4303</span> 
-<span class="g g-Whitespace">   </span><span class="mi">4304</span>         <span class="k">if</span> <span class="n">is_single_key</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4305</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">nlevels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4306</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_multilevel</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">4307</span>             <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4308</span>             <span class="k">if</span> <span class="n">is_integer</span><span class="p">(</span><span class="n">indexer</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">4309</span>                 <span class="n">indexer</span> <span class="o">=</span> <span class="p">[</span><span class="n">indexer</span><span class="p">]</span>  <span class="c1"># type: ignore[assignment]</span>
-<span class="g g-Whitespace">   </span><span class="mi">4310</span>         <span class="k">else</span><span class="p">:</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/frame.py:4308,</span> in <span class="ni">DataFrame.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4304</span> 
+<span class="g g-Whitespace">   </span><span class="mi">4305</span>         <span class="k">if</span> <span class="n">is_single_key</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4306</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">nlevels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4307</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_multilevel</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">4308</span>             <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4309</span>             <span class="k">if</span> <span class="n">is_integer</span><span class="p">(</span><span class="n">indexer</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4310</span>                 <span class="n">indexer</span> <span class="o">=</span> <span class="p">[</span><span class="n">indexer</span><span class="p">]</span>  <span class="c1"># type: ignore[assignment]</span>
+<span class="g g-Whitespace">   </span><span class="mi">4311</span>         <span class="k">else</span><span class="p">:</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:3810,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
 <span class="g g-Whitespace">   </span><span class="mi">3805</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">casted_key</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
@@ -1632,50 +1632,50 @@ they need to be sorted. As with any index, you can use <a class="reference inter
 
 <span class="gp">In [106]: </span><span class="n">s</span>
 <span class="gh">Out[106]: </span>
-<span class="go">qux  one    0.206053</span>
-<span class="go">bar  two   -0.251905</span>
-<span class="go">foo  one   -2.213588</span>
-<span class="go">qux  two    1.063327</span>
-<span class="go">foo  two    1.266143</span>
-<span class="go">baz  two    0.299368</span>
-<span class="go">     one   -0.863838</span>
-<span class="go">bar  one    0.408204</span>
+<span class="go">bar  one    0.206053</span>
+<span class="go">     two   -0.251905</span>
+<span class="go">foo  two   -2.213588</span>
+<span class="go">baz  one    1.063327</span>
+<span class="go">     two    1.266143</span>
+<span class="go">foo  one    0.299368</span>
+<span class="go">qux  two   -0.863838</span>
+<span class="go">     one    0.408204</span>
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [107]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
 <span class="gh">Out[107]: </span>
-<span class="go">bar  one    0.408204</span>
+<span class="go">bar  one    0.206053</span>
 <span class="go">     two   -0.251905</span>
-<span class="go">baz  one   -0.863838</span>
-<span class="go">     two    0.299368</span>
-<span class="go">foo  one   -2.213588</span>
+<span class="go">baz  one    1.063327</span>
 <span class="go">     two    1.266143</span>
-<span class="go">qux  one    0.206053</span>
-<span class="go">     two    1.063327</span>
+<span class="go">foo  one    0.299368</span>
+<span class="go">     two   -2.213588</span>
+<span class="go">qux  one    0.408204</span>
+<span class="go">     two   -0.863838</span>
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [108]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gh">Out[108]: </span>
-<span class="go">bar  one    0.408204</span>
+<span class="go">bar  one    0.206053</span>
 <span class="go">     two   -0.251905</span>
-<span class="go">baz  one   -0.863838</span>
-<span class="go">     two    0.299368</span>
-<span class="go">foo  one   -2.213588</span>
+<span class="go">baz  one    1.063327</span>
 <span class="go">     two    1.266143</span>
-<span class="go">qux  one    0.206053</span>
-<span class="go">     two    1.063327</span>
+<span class="go">foo  one    0.299368</span>
+<span class="go">     two   -2.213588</span>
+<span class="go">qux  one    0.408204</span>
+<span class="go">     two   -0.863838</span>
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [109]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gh">Out[109]: </span>
-<span class="go">bar  one    0.408204</span>
-<span class="go">baz  one   -0.863838</span>
-<span class="go">foo  one   -2.213588</span>
-<span class="go">qux  one    0.206053</span>
+<span class="go">bar  one    0.206053</span>
+<span class="go">baz  one    1.063327</span>
+<span class="go">foo  one    0.299368</span>
+<span class="go">qux  one    0.408204</span>
 <span class="go">bar  two   -0.251905</span>
-<span class="go">baz  two    0.299368</span>
-<span class="go">foo  two    1.266143</span>
-<span class="go">qux  two    1.063327</span>
+<span class="go">baz  two    1.266143</span>
+<span class="go">foo  two   -2.213588</span>
+<span class="go">qux  two   -0.863838</span>
 <span class="go">dtype: float64</span>
 </pre></div>
 </div>
@@ -1686,27 +1686,27 @@ are named.</p>
 <span class="gp">In [111]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">"L1"</span><span class="p">)</span>
 <span class="gh">Out[111]: </span>
 <span class="go">L1   L2 </span>
-<span class="go">bar  one    0.408204</span>
+<span class="go">bar  one    0.206053</span>
 <span class="go">     two   -0.251905</span>
-<span class="go">baz  one   -0.863838</span>
-<span class="go">     two    0.299368</span>
-<span class="go">foo  one   -2.213588</span>
+<span class="go">baz  one    1.063327</span>
 <span class="go">     two    1.266143</span>
-<span class="go">qux  one    0.206053</span>
-<span class="go">     two    1.063327</span>
+<span class="go">foo  one    0.299368</span>
+<span class="go">     two   -2.213588</span>
+<span class="go">qux  one    0.408204</span>
+<span class="go">     two   -0.863838</span>
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [112]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">"L2"</span><span class="p">)</span>
 <span class="gh">Out[112]: </span>
 <span class="go">L1   L2 </span>
-<span class="go">bar  one    0.408204</span>
-<span class="go">baz  one   -0.863838</span>
-<span class="go">foo  one   -2.213588</span>
-<span class="go">qux  one    0.206053</span>
+<span class="go">bar  one    0.206053</span>
+<span class="go">baz  one    1.063327</span>
+<span class="go">foo  one    0.299368</span>
+<span class="go">qux  one    0.408204</span>
 <span class="go">bar  two   -0.251905</span>
-<span class="go">baz  two    0.299368</span>
-<span class="go">foo  two    1.266143</span>
-<span class="go">qux  two    1.063327</span>
+<span class="go">baz  two    1.266143</span>
+<span class="go">foo  two   -2.213588</span>
+<span class="go">qux  two   -0.863838</span>
 <span class="go">dtype: float64</span>
 </pre></div>
 </div>
@@ -1951,8 +1951,8 @@ faster than fancy indexing.</p>
 <span class="gp">In [144]: </span><span class="o">%</span><span class="k">timeit</span> arr[indexer]
 <span class="gp">   .....: </span><span class="o">%</span><span class="k">timeit</span> arr.take(indexer, axis=0)
 <span class="gp">   .....: </span>
-<span class="go">285 us +- 11.5 us per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
-<span class="go">62 us +- 3.33 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
+<span class="go">279 us +- 7.09 us per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
+<span class="go">65.1 us +- 2.81 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [145]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">arr</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
@@ -1960,8 +1960,8 @@ faster than fancy indexing.</p>
 <span class="gp">In [146]: </span><span class="o">%</span><span class="k">timeit</span> ser.iloc[indexer]
 <span class="gp">   .....: </span><span class="o">%</span><span class="k">timeit</span> ser.take(indexer)
 <span class="gp">   .....: </span>
-<span class="go">115 us +- 3.52 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
-<span class="go">106 us +- 7.37 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
+<span class="go">116 us +- 4.8 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
+<span class="go">120 us +- 7.55 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
 </pre></div>
 </div>
 </section>
