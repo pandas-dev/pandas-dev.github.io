@@ -1138,11 +1138,11 @@ using integers in a <code class="docutils literal notranslate"><span class="pre"
 <span class="g g-Whitespace">   </span><span class="mi">1310</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">_assert_tzawareness_compat</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1311</span> <span class="k">return</span> <span class="n">Timestamp</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimelike.py:629,</span> in <span class="ni">DatetimeIndexOpsMixin._maybe_cast_slice_bound</span><span class="nt">(self, label, side)</span>
-<span class="g g-Whitespace">    </span><span class="mi">627</span>     <span class="k">return</span> <span class="n">lower</span> <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s2">"left"</span> <span class="k">else</span> <span class="n">upper</span>
-<span class="g g-Whitespace">    </span><span class="mi">628</span> <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">_recognized_scalars</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">629</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_raise_invalid_indexer</span><span class="p">(</span><span class="s2">"slice"</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">631</span> <span class="k">return</span> <span class="n">label</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimelike.py:628,</span> in <span class="ni">DatetimeIndexOpsMixin._maybe_cast_slice_bound</span><span class="nt">(self, label, side)</span>
+<span class="g g-Whitespace">    </span><span class="mi">626</span>     <span class="k">return</span> <span class="n">lower</span> <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s2">"left"</span> <span class="k">else</span> <span class="n">upper</span>
+<span class="g g-Whitespace">    </span><span class="mi">627</span> <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">_recognized_scalars</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">628</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_raise_invalid_indexer</span><span class="p">(</span><span class="s2">"slice"</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">630</span> <span class="k">return</span> <span class="n">label</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4304,</span> in <span class="ni">Index._raise_invalid_indexer</span><span class="nt">(self, form, key, reraise)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4302</span> <span class="k">if</span> <span class="n">reraise</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">lib</span><span class="o">.</span><span class="n">no_default</span><span class="p">:</span>
@@ -2965,7 +2965,7 @@ having to specify which frame you’re interested in querying</p>
 <span class="gp">In [268]: </span><span class="n">expr</span> <span class="o">=</span> <span class="s1">'0.0 &lt;= a &lt;= c &lt;= 0.5'</span>
 
 <span class="gp">In [269]: </span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="p">[</span><span class="n">df</span><span class="p">,</span> <span class="n">df2</span><span class="p">])</span>
-<span class="gh">Out[269]: </span><span class="go">&lt;map at 0x7ff438f0cc70&gt;</span>
+<span class="gh">Out[269]: </span><span class="go">&lt;map at 0x7fbaf84e0a90&gt;</span>
 </pre></div>
 </div>
 </section>
