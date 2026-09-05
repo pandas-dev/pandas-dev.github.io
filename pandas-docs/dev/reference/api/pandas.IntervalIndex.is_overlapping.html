@@ -799,10 +799,11 @@
 <h1>pandas.IntervalIndex.is_overlapping<a class="headerlink" href="#pandas-intervalindex-is-overlapping" title="Link to this heading">#</a></h1>
 <dl class="py property">
 <dt class="sig sig-object py" id="pandas.IntervalIndex.is_overlapping">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">IntervalIndex.</span></span><span class="sig-name descname"><span class="pre">is_overlapping</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/interval.py#L600-L648"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.IntervalIndex.is_overlapping" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">IntervalIndex.</span></span><span class="sig-name descname"><span class="pre">is_overlapping</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/interval.py#L600-L658"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.IntervalIndex.is_overlapping" title="Link to this definition">#</a></dt>
 <dd><p>Return True if the IntervalIndex has overlapping intervals, else False.</p>
 <p>Two intervals overlap if they share a common point, including closed
 endpoints. Intervals that only have an open endpoint in common do not
+overlap, and empty intervals contain no points at all, so they never
 overlap.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -843,6 +844,15 @@ overlap.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">interval_range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">index</span>
 <span class="go">IntervalIndex([[0, 1), [1, 2), [2, 3)],</span>
+<span class="go">      dtype='interval[int64, left]')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span><span class="o">.</span><span class="n">is_overlapping</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Empty intervals never overlap, even when nested inside another interval:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">IntervalIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">closed</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span>
+<span class="go">IntervalIndex([[0, 3), [1, 1)],</span>
 <span class="go">      dtype='interval[int64, left]')</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">index</span><span class="o">.</span><span class="n">is_overlapping</span>
 <span class="go">False</span>
