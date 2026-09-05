@@ -623,23 +623,23 @@ faster than the pure Python solution.</p>
 </div>
 <p>We achieve our result by using <a class="reference internal" href="../reference/api/pandas.DataFrame.apply.html#pandas.DataFrame.apply" title="pandas.DataFrame.apply"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.apply()</span></code></a> (row-wise):</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="o">%</span><span class="k">timeit</span> df.apply(lambda x: integrate_f(x["a"], x["b"], x["N"]), axis=1)
-<span class="go">52.3 ms +- 688 us per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
+<span class="go">31.1 ms +- 1.96 ms per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
 </pre></div>
 </div>
 <p>Let’s take a look and see where the time is spent during this operation
 using the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-prun">prun ipython magic function</a>:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># most time consuming 4 calls</span>
 <span class="gp">In [6]: </span><span class="o">%</span><span class="k">prun</span> -l 4 df.apply(lambda x: integrate_f(x['a'], x['b'], x['N']), axis=1)
-<span class="go">         608881 function calls (608856 primitive calls) in 0.151 seconds</span>
+<span class="go">         608881 function calls (608856 primitive calls) in 0.101 seconds</span>
 
 <span class="go">   Ordered by: internal time</span>
 <span class="go">   List reduced from 168 to 4 due to restriction &lt;4&gt;</span>
 
 <span class="go">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)</span>
-<span class="go">     1000    0.088    0.000    0.130    0.000 &lt;ipython-input-4-c2a74e076cf0&gt;:1(integrate_f)</span>
-<span class="go">   552423    0.043    0.000    0.043    0.000 &lt;ipython-input-3-c138bdd570e3&gt;:1(f)</span>
-<span class="go">     3000    0.003    0.000    0.014    0.000 series.py:1050(__getitem__)</span>
-<span class="go">     3000    0.002    0.000    0.006    0.000 series.py:1134(_get_value)</span>
+<span class="go">     1000    0.057    0.000    0.087    0.000 &lt;ipython-input-4-c2a74e076cf0&gt;:1(integrate_f)</span>
+<span class="go">   552423    0.030    0.000    0.030    0.000 &lt;ipython-input-3-c138bdd570e3&gt;:1(f)</span>
+<span class="go">     3000    0.002    0.000    0.009    0.000 series.py:1050(__getitem__)</span>
+<span class="go">     3000    0.002    0.000    0.004    0.000 series.py:1134(_get_value)</span>
 </pre></div>
 </div>
 <p>By far the majority of time is spend inside either <code class="docutils literal notranslate"><span class="pre">integrate_f</span></code> or <code class="docutils literal notranslate"><span class="pre">f</span></code>,
@@ -665,7 +665,7 @@ hence we’ll concentrate our efforts cythonizing these two functions.</p>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="o">%</span><span class="k">timeit</span> df.apply(lambda x: integrate_f_plain(x["a"], x["b"], x["N"]), axis=1)
-<span class="go">43.5 ms +- 251 us per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
+<span class="go">24.3 ms +- 37.7 us per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
 </pre></div>
 </div>
 <p>This has improved the performance compared to the pure Python approach by one-third.</p>
@@ -689,7 +689,7 @@ and <code class="docutils literal notranslate"><span class="pre">cpdef</span></c
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="o">%</span><span class="k">timeit</span> df.apply(lambda x: integrate_f_typed(x["a"], x["b"], x["N"]), axis=1)
-<span class="go">6.49 ms +- 7.79 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">3.69 ms +- 7.87 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <p>Annotating the functions with C types yields an over ten times performance improvement compared to
@@ -701,16 +701,16 @@ the original Python implementation.</p>
 the index and the series (three times for each row). These Python function calls are expensive and
 can be improved by passing an <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code>.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="o">%</span><span class="k">prun</span> -l 4 df.apply(lambda x: integrate_f_typed(x['a'], x['b'], x['N']), axis=1)
-<span class="go">         55458 function calls (55433 primitive calls) in 0.020 seconds</span>
+<span class="go">         55458 function calls (55433 primitive calls) in 0.014 seconds</span>
 
 <span class="go">   Ordered by: internal time</span>
 <span class="go">   List reduced from 166 to 4 due to restriction &lt;4&gt;</span>
 
 <span class="go">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)</span>
-<span class="go">     3000    0.003    0.000    0.013    0.000 series.py:1050(__getitem__)</span>
-<span class="go">     3000    0.002    0.000    0.006    0.000 series.py:1134(_get_value)</span>
-<span class="go">    19096    0.002    0.000    0.003    0.000 {built-in method builtins.isinstance}</span>
-<span class="go">     3000    0.002    0.000    0.002    0.000 base.py:3758(get_loc)</span>
+<span class="go">     3000    0.002    0.000    0.009    0.000 series.py:1050(__getitem__)</span>
+<span class="go">     3000    0.001    0.000    0.004    0.000 series.py:1134(_get_value)</span>
+<span class="go">    19096    0.001    0.000    0.002    0.000 {built-in method builtins.isinstance}</span>
+<span class="go">     3000    0.001    0.000    0.002    0.000 indexing.py:3764(check_dict_or_set_indexers)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="o">%%</span><span class="k">cython</span>
@@ -746,7 +746,7 @@ in Cython than looping over a <a class="reference internal" href="../reference/a
 <p>Since <code class="docutils literal notranslate"><span class="pre">apply_integrate_f</span></code> is typed to accept an <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code>, <a class="reference internal" href="../reference/api/pandas.Series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.to_numpy()</span></code></a>
 calls are needed to utilize this function.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="o">%</span><span class="k">timeit</span> apply_integrate_f(df['a'].to_numpy(), df['b'].to_numpy(), df['N'].to_numpy())
-<span class="go">785 us +- 2.75 us per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
+<span class="go">515 us +- 6.87 us per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
 </pre></div>
 </div>
 <p>Performance has improved from the prior implementation by almost ten times.</p>
@@ -765,7 +765,7 @@ and <code class="docutils literal notranslate"><span class="pre">wraparound</spa
 <span class="go">        1    0.001    0.001    0.001    0.001 &lt;string&gt;:1(&lt;module&gt;)</span>
 <span class="go">        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}</span>
 <span class="go">        1    0.000    0.000    0.001    0.001 {built-in method builtins.exec}</span>
-<span class="go">        3    0.000    0.000    0.000    0.000 frame.py:4261(__getitem__)</span>
+<span class="go">        3    0.000    0.000    0.000    0.000 utils.py:442(check_array_indexer)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="o">%%</span><span class="k">cython</span>
@@ -799,7 +799,7 @@ and <code class="docutils literal notranslate"><span class="pre">wraparound</spa
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="o">%</span><span class="k">timeit</span> apply_integrate_f_wrap(df['a'].to_numpy(), df['b'].to_numpy(), df['N'].to_numpy())
-<span class="go">662 us +- 544 ns per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
+<span class="go">437 us +- 1.46 us per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
 </pre></div>
 </div>
 <p>However, a loop indexer <code class="docutils literal notranslate"><span class="pre">i</span></code> accessing an invalid location in an array would cause a segfault because memory access isn’t checked.
@@ -1167,11 +1167,11 @@ other evaluation engines against it. You will achieve <strong>no</strong> perfor
 benefits using <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">engine='python'</span></code> and may
 incur a performance hit.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [40]: </span><span class="o">%</span><span class="k">timeit</span> df1 + df2 + df3 + df4
-<span class="go">6.76 ms +- 129 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">6.5 ms +- 61.7 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [41]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval("df1 + df2 + df3 + df4", engine="python")
-<span class="go">7.44 ms +- 37.2 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">7.07 ms +- 78.1 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 </section>
@@ -1294,31 +1294,31 @@ new or modified columns is returned, and the original frame is unchanged.</p>
 </div>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> arithmetic:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [60]: </span><span class="o">%</span><span class="k">timeit</span> df1 + df2 + df3 + df4
-<span class="go">2.98 ms +- 18.4 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">3.02 ms +- 11.1 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [61]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval("df1 + df2 + df3 + df4")
-<span class="go">4.15 ms +- 133 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">3.77 ms +- 65.4 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> comparison:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [62]: </span><span class="o">%</span><span class="k">timeit</span> (df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)
-<span class="go">5.36 ms +- 49.1 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">5.15 ms +- 73.5 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [63]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval("(df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)")
-<span class="go">8.83 ms +- 22.8 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">8.01 ms +- 220 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> arithmetic with unaligned axes.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [64]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 
 <span class="gp">In [65]: </span><span class="o">%</span><span class="k">timeit</span> df1 + df2 + df3 + df4 + s
-<span class="go">4.32 ms +- 30.4 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">4.12 ms +- 73.6 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [66]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval("df1 + df2 + df3 + df4 + s")
-<span class="go">5.54 ms +- 81.8 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">4.74 ms +- 141 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <div class="admonition note">
