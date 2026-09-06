@@ -831,7 +831,7 @@ ambiguous times)</p></li>
 times.</p></li>
 </ul>
 </dd>
-<dt><strong>nonexistent</strong><span class="classifier">‘shift_forward’, ‘shift_backward, ‘NaT’, timedelta,         default ‘raise’</span></dt><dd><p>A nonexistent time does not exist in a particular timezone
+<dt><strong>nonexistent</strong><span class="classifier">‘shift_forward’, ‘shift_backward’, ‘NaT’, timedelta,         default ‘raise’</span></dt><dd><p>A nonexistent time does not exist in a particular timezone
 where clocks moved forward due to DST.</p>
 <ul class="simple">
 <li><p>‘shift_forward’ will shift the nonexistent time forward to the
@@ -924,7 +924,7 @@ pass an ndarray to the ambiguous parameter to set the DST explicitly</p>
 </div>
 <p>If the DST transition causes nonexistent times, you can shift these
 dates forward or backwards with a timedelta object or <cite>‘shift_forward’</cite>
-or <cite>‘shift_backwards’</cite>.</p>
+or <cite>‘shift_backward’</cite>.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">'2015-03-29 02:30:00'</span><span class="p">,</span>
 <span class="gp">... </span>                              <span class="s1">'2015-03-29 03:30:00'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"M8[ns]"</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="s1">'Europe/Warsaw'</span><span class="p">,</span> <span class="n">nonexistent</span><span class="o">=</span><span class="s1">'shift_forward'</span><span class="p">)</span>
