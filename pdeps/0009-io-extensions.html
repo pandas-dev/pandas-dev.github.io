@@ -149,7 +149,7 @@ For example:</p>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">read_duckdb</span><span class="p">(</span><span class="s2">"SELECT * FROM 'my_dataset.parquet';"</span><span class="p">)</span>
 
-<span class="n">df</span><span class="o">.</span><span class="n">to_deltalake</span><span class="p">(</span><span class="s1">'/delta/my_dataset'</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_deltalake</span><span class="p">(</span><span class="s2">"/delta/my_dataset"</span><span class="p">)</span>
 </code></pre></div>
 
 <p>This would allow to easily extend the existing number of connectors, adding
@@ -407,8 +407,11 @@ and <code>to_*</code> pattern will be allowed.</p>
 </code></pre></div>
 
 <p>This API allows for method chaining:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">read_duckdb</span><span class="p">(</span><span class="s2">"SELECT * FROM 'dataset.parquet';"</span><span class="p">)</span>
-       <span class="o">.</span><span class="n">to_hive</span><span class="p">(</span><span class="n">hive_conn</span><span class="p">,</span> <span class="s2">"hive_table"</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span><code><span class="p">(</span>
+    <span class="n">pandas</span><span class="o">.</span><span class="n">read_duckdb</span><span class="p">(</span><span class="s2">"SELECT * FROM 'dataset.parquet';"</span><span class="p">)</span><span class="o">.</span><span class="n">to_hive</span><span class="p">(</span>
+        <span class="n">hive_conn</span><span class="p">,</span> <span class="s2">"hive_table"</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 </code></pre></div>
 
 <p>The total number of I/O functions and methods is expected to be small, as users
@@ -492,14 +495,11 @@ the interface they are used to, when PyArrow is installed in the environment.
 Better integration with PyArrow tables was discussed in
 <a href="https://github.com/pandas-dev/pandas/issues/51760">#51760</a>.</p>
 <p><em>Current API</em>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">pyarrow</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
-                               <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'my_col &gt; 0'</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span><code><span class="n">pyarrow</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"my_col &gt; 0"</span><span class="p">))</span>
 </code></pre></div>
 
 <p><em>Proposed API</em>:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">read_pyarrow</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-       <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'my_col &gt; 0'</span><span class="p">)</span>
-       <span class="o">.</span><span class="n">to_pyarrow</span><span class="p">())</span>
+<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">read_pyarrow</span><span class="p">(</span><span class="n">table</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"my_col &gt; 0"</span><span class="p">)</span><span class="o">.</span><span class="n">to_pyarrow</span><span class="p">())</span>
 </code></pre></div>
 
 <p><strong>Polars</strong>, <strong>Vaex</strong> and other dataframe frameworks could benefit from
@@ -507,14 +507,11 @@ third-party projects that make the interoperability with pandas use a
 more explicitly API. Integration with Polars was requested in
 <a href="https://github.com/pandas-dev/pandas/issues/47368">#47368</a>.</p>
 <p><em>Current API</em>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">polars</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
-                   <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'my_col &gt; 0'</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span><code><span class="n">polars</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"my_col &gt; 0"</span><span class="p">))</span>
 </code></pre></div>
 
 <p><em>Proposed API</em>:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">read_polars</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-       <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">'my_col &gt; 0'</span><span class="p">)</span>
-       <span class="o">.</span><span class="n">to_polars</span><span class="p">())</span>
+<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="n">pandas</span><span class="o">.</span><span class="n">read_polars</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"my_col &gt; 0"</span><span class="p">)</span><span class="o">.</span><span class="n">to_polars</span><span class="p">())</span>
 </code></pre></div>
 
 <p><strong>DuckDB</strong> provides an out-of-core engine able to push predicates before

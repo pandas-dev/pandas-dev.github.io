@@ -372,7 +372,9 @@ in the form <code>hf://datasets/username/dataset_name/...</code>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1"># Load the IMDB dataset</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">"hf://datasets/stanfordnlp/imdb/plain_text/train-00000-of-00001.parquet"</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span>
+    <span class="s2">"hf://datasets/stanfordnlp/imdb/plain_text/train-00000-of-00001.parquet"</span>
+<span class="p">)</span>
 </code></pre></div>
 
 <p>Tip: on a dataset page, click on "Use this dataset" to get the code to load it in pandas.</p>
@@ -397,10 +399,14 @@ and then you can use <code>df.to_csv/to_json/to_parquet</code>:</p>
 <p>Example:</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">ntv_pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">npd</span>
 
-<span class="n">jsn</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">npd</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># save df as a JSON-value (format Table Schema if table is True else format NTV )</span>
-<span class="n">df</span>  <span class="o">=</span> <span class="n">npd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">jsn</span><span class="p">)</span>  <span class="c1"># load a JSON-value as a `DataFrame`</span>
+<span class="n">jsn</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">npd</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>  <span class="c1"># save df as a JSON-value (format Table Schema if table is True else format NTV )</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">npd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">jsn</span><span class="p">)</span>  <span class="c1"># load a JSON-value as a `DataFrame`</span>
 
-<span class="n">df</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">npd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">npd</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span>  <span class="c1"># `True` in any case, whether `table=True` or not</span>
+<span class="n">df</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span>
+    <span class="n">npd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">npd</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="p">)</span>  <span class="c1"># `True` in any case, whether `table=True` or not</span>
 </code></pre></div>
 
 <h4 id="pandas-datareader"><a href="https://github.com/pydata/pandas-datareader">pandas-datareader</a><a class="headerlink" href="#pandas-datareader" title="Permanent link"> #</a></h4>
@@ -452,11 +458,15 @@ Bodo also provides a SQL engine that can query distributed pandas dataframes eff
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">bodo</span>
 
+
 <span class="nd">@bodo</span><span class="o">.</span><span class="n">jit</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">process_data</span><span class="p">():</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">"my_data.pq"</span><span class="p">)</span>
-    <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">A</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">B</span> <span class="o">//</span> <span class="n">r</span><span class="o">.</span><span class="n">A</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)})</span>
+    <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="p">{</span><span class="s2">"A"</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">A</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">B</span> <span class="o">//</span> <span class="n">r</span><span class="o">.</span><span class="n">A</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)}</span>
+    <span class="p">)</span>
     <span class="n">df2</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">"out.pq"</span><span class="p">)</span>
+
 
 <span class="n">process_data</span><span class="p">()</span>
 </code></pre></div>
