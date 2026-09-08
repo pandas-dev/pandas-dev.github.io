@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.Index.max &#8212; pandas 3.1.0.dev0 documentation</title>
+    <title>pandas.Index.replace &#8212; pandas 3.1.0.dev0 documentation</title>
   
   
   
@@ -51,7 +51,7 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script data-domain="pandas.pydata.org" defer="defer" src="https://views.scientific-python.org/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.Index.max';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.Index.replace';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.20.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
@@ -63,8 +63,8 @@
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.Index.reindex" href="pandas.Index.reindex.html" />
-    <link rel="prev" title="pandas.Index.min" href="pandas.Index.min.html" />
+    <link rel="next" title="pandas.Index.where" href="pandas.Index.where.html" />
+    <link rel="prev" title="pandas.Index.repeat" href="pandas.Index.repeat.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="3.1" />
@@ -499,11 +499,11 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.Index.insert.html">pandas.Index.insert</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.Index.is_.html">pandas.Index.is_</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.Index.min.html">pandas.Index.min</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">pandas.Index.max</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.Index.max.html">pandas.Index.max</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.Index.reindex.html">pandas.Index.reindex</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.Index.rename.html">pandas.Index.rename</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.Index.repeat.html">pandas.Index.repeat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pandas.Index.replace.html">pandas.Index.replace</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">pandas.Index.replace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.Index.where.html">pandas.Index.where</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.Index.take.html">pandas.Index.take</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.Index.putmask.html">pandas.Index.putmask</a></li>
@@ -776,7 +776,7 @@
     
     <li class="breadcrumb-item"><a href="../indexing.html" class="nav-link">Index objects</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pandas.Index.max</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pandas.Index.replace</span></li>
   </ul>
 </nav>
 </div>
@@ -793,28 +793,28 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="pandas-index-max">
-<h1>pandas.Index.max<a class="headerlink" href="#pandas-index-max" title="Link to this heading">#</a></h1>
+  <section id="pandas-index-replace">
+<h1>pandas.Index.replace<a class="headerlink" href="#pandas-index-replace" title="Link to this heading">#</a></h1>
 <dl class="py method">
-<dt class="sig sig-object py" id="pandas.Index.max">
-<span class="sig-prename descclassname"><span class="pre">Index.</span></span><span class="sig-name descname"><span class="pre">max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/base.py#L8103-L8176"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Index.max" title="Link to this definition">#</a></dt>
-<dd><p>Return the maximum value of the Index.</p>
-<p>The maximum is computed by comparing all values in the Index.
-NA/null values are excluded by default.</p>
-<dl class="field-list simple">
+<dt class="sig sig-object py" id="pandas.Index.replace">
+<span class="sig-prename descclassname"><span class="pre">Index.</span></span><span class="sig-name descname"><span class="pre">replace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/base.py#L6879-L6923"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Index.replace" title="Link to this definition">#</a></dt>
+<dd><p>Replace values in the Index.</p>
+<p>Replace values given in <cite>to_replace</cite> with <cite>value</cite>. Values of the Index
+that are not in <cite>to_replace</cite> are left unchanged.</p>
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>axis</strong><span class="classifier">int, optional</span></dt><dd><p>For compatibility with NumPy. Only 0 or None are allowed.</p>
+<dd class="field-odd"><dl>
+<dt><strong>to_replace</strong><span class="classifier">str, regex, list, dict, Series, scalar, or None</span></dt><dd><p>The value(s) to be replaced. If a dict is provided, <cite>value</cite> must be omitted.</p>
 </dd>
-<dt><strong>skipna</strong><span class="classifier">bool, default True</span></dt><dd><p>Exclude NA/null values when showing the result.</p>
+<dt><strong>value</strong><span class="classifier">scalar, dict, list, str, regex, default None</span></dt><dd><p>The value to replace occurrences of <cite>to_replace</cite> with.</p>
 </dd>
-<dt><strong>*args, **kwargs</strong></dt><dd><p>Additional arguments and keywords for compatibility with NumPy.</p>
+<dt><strong>regex</strong><span class="classifier">bool or same types as <cite>to_replace</cite>, default False</span></dt><dd><p>Whether to interpret <cite>to_replace</cite> and/or <cite>value</cite> as regular expressions.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>scalar</dt><dd><p>Maximum value.</p>
+<dt>Index</dt><dd><p>Index with replaced values.</p>
 </dd>
 </dl>
 </dd>
@@ -822,29 +822,16 @@ NA/null values are excluded by default.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="pandas.Index.min.html#pandas.Index.min" title="pandas.Index.min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Index.min</span></code></a></dt><dd><p>Return the minimum value in an Index.</p>
+<dt><a class="reference internal" href="pandas.Series.replace.html#pandas.Series.replace" title="pandas.Series.replace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.replace</span></code></a></dt><dd><p>Replace values in a Series.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.Series.max.html#pandas.Series.max" title="pandas.Series.max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.max</span></code></a></dt><dd><p>Return the maximum value in a Series.</p>
-</dd>
-<dt><a class="reference internal" href="pandas.DataFrame.max.html#pandas.DataFrame.max" title="pandas.DataFrame.max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.max</span></code></a></dt><dd><p>Return the maximum values in a DataFrame.</p>
+<dt><a class="reference internal" href="pandas.DataFrame.replace.html#pandas.DataFrame.replace" title="pandas.DataFrame.replace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.replace</span></code></a></dt><dd><p>Replace values in a DataFrame.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-<span class="go">3</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s2">"c"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-<span class="go">'c'</span>
-</pre></div>
-</div>
-<p>For a MultiIndex, the maximum is determined lexicographically.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">([(</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-<span class="go">('b', 2)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="go">Index([1, 2, 30, 4, 5], dtype='int64')</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -862,20 +849,20 @@ NA/null values are excluded by default.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="pandas.Index.min.html"
+       href="pandas.Index.repeat.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">pandas.Index.min</p>
+        <p class="prev-next-title">pandas.Index.repeat</p>
       </div>
     </a>
     <a class="right-next"
-       href="pandas.Index.reindex.html"
+       href="pandas.Index.where.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">pandas.Index.reindex</p>
+        <p class="prev-next-title">pandas.Index.where</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -898,7 +885,7 @@ NA/null values are excluded by default.</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas.Index.max"><code class="docutils literal notranslate"><span class="pre">Index.max()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas.Index.replace"><code class="docutils literal notranslate"><span class="pre">Index.replace()</span></code></a></li>
 </ul>
   </nav></div>
 
