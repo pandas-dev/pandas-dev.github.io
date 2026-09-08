@@ -895,12 +895,16 @@
 <h1>pandas.Series.combine<a class="headerlink" href="#pandas-series-combine" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.Series.combine">
-<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">combine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/series.py#L3681-L3783"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.combine" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">combine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/series.py#L3681-L3818"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.combine" title="Link to this definition">#</a></dt>
 <dd><p>Combine the Series with a Series or scalar according to <cite>func</cite>.</p>
 <p>Combine the Series and <cite>other</cite> using <cite>func</cite> to perform elementwise
 selection for combined Series.
 <cite>fill_value</cite> is assumed when value is not present at some index
-from one of the two Series being combined.</p>
+from one of the two Series being combined. The result index is the
+union of the two indexes. If a label is duplicated, its occurrences
+are paired in order: the first occurrence in the Series with the first
+in <cite>other</cite>, the second with the second, and so on; an occurrence with
+no counterpart is paired with <cite>fill_value</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -910,7 +914,7 @@ from one of the two Series being combined.</p>
 </dd>
 <dt><strong>fill_value</strong><span class="classifier">scalar, optional</span></dt><dd><p>The value to assume when an index is missing from
 one Series or the other. The default specifies to use the
-appropriate NaN value for the underlying dtype of the Series.</p>
+appropriate NA value for the underlying dtype of the Series.</p>
 </dd>
 </dl>
 </dd>
@@ -962,6 +966,19 @@ so the maximum value returned will be the value from some dataset.</p>
 <span class="go">eagle     200.0</span>
 <span class="go">falcon    345.0</span>
 <span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Occurrences of a duplicated label are paired in order. Below, the
+first <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code> in <code class="docutils literal notranslate"><span class="pre">s3</span></code> is combined with the <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code> in <code class="docutils literal notranslate"><span class="pre">s4</span></code>,
+while the second has no counterpart and is paired with
+<code class="docutils literal notranslate"><span class="pre">fill_value</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s3</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">s4</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">a    11</span>
+<span class="go">a     2</span>
+<span class="go">b    23</span>
+<span class="go">dtype: int64</span>
 </pre></div>
 </div>
 </dd></dl>
