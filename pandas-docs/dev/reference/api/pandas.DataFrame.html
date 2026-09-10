@@ -592,6 +592,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.rename_axis.html">pandas.DataFrame.rename_axis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.reset_index.html">pandas.DataFrame.reset_index</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.sample.html">pandas.DataFrame.sample</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.select.html">pandas.DataFrame.select</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.set_axis.html">pandas.DataFrame.set_axis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.set_index.html">pandas.DataFrame.set_index</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.take.html">pandas.DataFrame.take</a></li>
@@ -766,7 +767,7 @@
 <h1>pandas.DataFrame<a class="headerlink" href="#pandas-dataframe" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pandas.DataFrame">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">DataFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L274-L20100"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">DataFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L275-L20264"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame" title="Link to this definition">#</a></dt>
 <dd><p>Two-dimensional, size-mutable, potentially heterogeneous tabular data.</p>
 <p>Data structure also contains labeled axes (rows and columns).
 Arithmetic operations align on both row and column labels. Can be
@@ -1359,163 +1360,166 @@ If data is a dict containing one or more Series (possibly of different dtypes),
 <tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.sample.html#pandas.DataFrame.sample" title="pandas.DataFrame.sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sample</span></code></a>([n, frac, replace, weights, ...])</p></td>
 <td><p>Return a random sample of items from an axis of object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.select_dtypes.html#pandas.DataFrame.select_dtypes" title="pandas.DataFrame.select_dtypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select_dtypes</span></code></a>([include, exclude])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.select.html#pandas.DataFrame.select" title="pandas.DataFrame.select"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Select a subset of columns from the DataFrame.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.select_dtypes.html#pandas.DataFrame.select_dtypes" title="pandas.DataFrame.select_dtypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select_dtypes</span></code></a>([include, exclude])</p></td>
 <td><p>Return a subset of the DataFrame's columns based on the column dtypes.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.sem.html#pandas.DataFrame.sem" title="pandas.DataFrame.sem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sem</span></code></a>(*[, axis, skipna, ddof, numeric_only])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.sem.html#pandas.DataFrame.sem" title="pandas.DataFrame.sem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sem</span></code></a>(*[, axis, skipna, ddof, numeric_only])</p></td>
 <td><p>Return unbiased standard error of the mean over requested axis.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.set_axis.html#pandas.DataFrame.set_axis" title="pandas.DataFrame.set_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_axis</span></code></a>(labels, *[, axis, copy])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.set_axis.html#pandas.DataFrame.set_axis" title="pandas.DataFrame.set_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_axis</span></code></a>(labels, *[, axis, copy])</p></td>
 <td><p>Assign desired index to given axis.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.set_flags.html#pandas.DataFrame.set_flags" title="pandas.DataFrame.set_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_flags</span></code></a>(*[, copy, allows_duplicate_labels])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.set_flags.html#pandas.DataFrame.set_flags" title="pandas.DataFrame.set_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_flags</span></code></a>(*[, copy, allows_duplicate_labels])</p></td>
 <td><p>Return a new object with updated flags.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.set_index.html#pandas.DataFrame.set_index" title="pandas.DataFrame.set_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_index</span></code></a>(keys, *[, drop, append, inplace, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.set_index.html#pandas.DataFrame.set_index" title="pandas.DataFrame.set_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_index</span></code></a>(keys, *[, drop, append, inplace, ...])</p></td>
 <td><p>Set the DataFrame index using existing columns.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.shift.html#pandas.DataFrame.shift" title="pandas.DataFrame.shift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shift</span></code></a>([periods, freq, axis, fill_value, suffix])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.shift.html#pandas.DataFrame.shift" title="pandas.DataFrame.shift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shift</span></code></a>([periods, freq, axis, fill_value, suffix])</p></td>
 <td><p>Shift index by desired number of periods with an optional time <cite>freq</cite>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.skew.html#pandas.DataFrame.skew" title="pandas.DataFrame.skew"><code class="xref py py-obj docutils literal notranslate"><span class="pre">skew</span></code></a>(*[, axis, skipna, numeric_only])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.skew.html#pandas.DataFrame.skew" title="pandas.DataFrame.skew"><code class="xref py py-obj docutils literal notranslate"><span class="pre">skew</span></code></a>(*[, axis, skipna, numeric_only])</p></td>
 <td><p>Return unbiased skew over requested axis.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.sort_index.html#pandas.DataFrame.sort_index" title="pandas.DataFrame.sort_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_index</span></code></a>(*[, axis, level, ascending, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.sort_index.html#pandas.DataFrame.sort_index" title="pandas.DataFrame.sort_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_index</span></code></a>(*[, axis, level, ascending, ...])</p></td>
 <td><p>Sort object by labels (along an axis).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.sort_values.html#pandas.DataFrame.sort_values" title="pandas.DataFrame.sort_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_values</span></code></a>(by, *[, axis, ascending, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.sort_values.html#pandas.DataFrame.sort_values" title="pandas.DataFrame.sort_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sort_values</span></code></a>(by, *[, axis, ascending, ...])</p></td>
 <td><p>Sort by the values along either axis.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.squeeze.html#pandas.DataFrame.squeeze" title="pandas.DataFrame.squeeze"><code class="xref py py-obj docutils literal notranslate"><span class="pre">squeeze</span></code></a>([axis])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.squeeze.html#pandas.DataFrame.squeeze" title="pandas.DataFrame.squeeze"><code class="xref py py-obj docutils literal notranslate"><span class="pre">squeeze</span></code></a>([axis])</p></td>
 <td><p>Squeeze 1 dimensional axis objects into scalars.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.stack.html#pandas.DataFrame.stack" title="pandas.DataFrame.stack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stack</span></code></a>([level, dropna, sort, future_stack])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.stack.html#pandas.DataFrame.stack" title="pandas.DataFrame.stack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stack</span></code></a>([level, dropna, sort, future_stack])</p></td>
 <td><p>Stack the prescribed level(s) from columns to index.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.std.html#pandas.DataFrame.std" title="pandas.DataFrame.std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">std</span></code></a>(*[, axis, skipna, ddof, numeric_only])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.std.html#pandas.DataFrame.std" title="pandas.DataFrame.std"><code class="xref py py-obj docutils literal notranslate"><span class="pre">std</span></code></a>(*[, axis, skipna, ddof, numeric_only])</p></td>
 <td><p>Return sample standard deviation over requested axis.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.sub.html#pandas.DataFrame.sub" title="pandas.DataFrame.sub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sub</span></code></a>(other[, axis, level, fill_value])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.sub.html#pandas.DataFrame.sub" title="pandas.DataFrame.sub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sub</span></code></a>(other[, axis, level, fill_value])</p></td>
 <td><p>Get Subtraction of dataframe and other, element-wise (binary operator <cite>sub</cite>).</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subtract</span></code>(other[, axis, level, fill_value])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">subtract</span></code>(other[, axis, level, fill_value])</p></td>
 <td><p>Get Subtraction of dataframe and other, element-wise (binary operator <cite>sub</cite>).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.sum.html#pandas.DataFrame.sum" title="pandas.DataFrame.sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum</span></code></a>(*[, axis, skipna, numeric_only, min_count])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.sum.html#pandas.DataFrame.sum" title="pandas.DataFrame.sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sum</span></code></a>(*[, axis, skipna, numeric_only, min_count])</p></td>
 <td><p>Return the sum of the values over the requested axis.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.swaplevel.html#pandas.DataFrame.swaplevel" title="pandas.DataFrame.swaplevel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">swaplevel</span></code></a>([i, j, axis])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.swaplevel.html#pandas.DataFrame.swaplevel" title="pandas.DataFrame.swaplevel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">swaplevel</span></code></a>([i, j, axis])</p></td>
 <td><p>Swap levels i and j in a <a class="reference internal" href="pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.tail.html#pandas.DataFrame.tail" title="pandas.DataFrame.tail"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tail</span></code></a>([n])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.tail.html#pandas.DataFrame.tail" title="pandas.DataFrame.tail"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tail</span></code></a>([n])</p></td>
 <td><p>Return the last <cite>n</cite> rows.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.take.html#pandas.DataFrame.take" title="pandas.DataFrame.take"><code class="xref py py-obj docutils literal notranslate"><span class="pre">take</span></code></a>(indices[, axis])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.take.html#pandas.DataFrame.take" title="pandas.DataFrame.take"><code class="xref py py-obj docutils literal notranslate"><span class="pre">take</span></code></a>(indices[, axis])</p></td>
 <td><p>Return the elements in the given <em>positional</em> indices along an axis.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_clipboard.html#pandas.DataFrame.to_clipboard" title="pandas.DataFrame.to_clipboard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_clipboard</span></code></a>(*[, excel, sep])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_clipboard.html#pandas.DataFrame.to_clipboard" title="pandas.DataFrame.to_clipboard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_clipboard</span></code></a>(*[, excel, sep])</p></td>
 <td><p>Copy object to the system clipboard.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_csv.html#pandas.DataFrame.to_csv" title="pandas.DataFrame.to_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_csv</span></code></a>([path_or_buf, sep, na_rep, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_csv.html#pandas.DataFrame.to_csv" title="pandas.DataFrame.to_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_csv</span></code></a>([path_or_buf, sep, na_rep, ...])</p></td>
 <td><p>Write object to a comma-separated values (csv) file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_dict.html#pandas.DataFrame.to_dict" title="pandas.DataFrame.to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_dict</span></code></a>([orient, into, index])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_dict.html#pandas.DataFrame.to_dict" title="pandas.DataFrame.to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_dict</span></code></a>([orient, into, index])</p></td>
 <td><p>Convert the DataFrame to a dictionary.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_excel.html#pandas.DataFrame.to_excel" title="pandas.DataFrame.to_excel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_excel</span></code></a>(excel_writer, *[, sheet_name, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_excel.html#pandas.DataFrame.to_excel" title="pandas.DataFrame.to_excel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_excel</span></code></a>(excel_writer, *[, sheet_name, ...])</p></td>
 <td><p>Write object to an Excel sheet.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_feather.html#pandas.DataFrame.to_feather" title="pandas.DataFrame.to_feather"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_feather</span></code></a>(path, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_feather.html#pandas.DataFrame.to_feather" title="pandas.DataFrame.to_feather"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_feather</span></code></a>(path, **kwargs)</p></td>
 <td><p>Write a DataFrame to the binary Feather format.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_hdf.html#pandas.DataFrame.to_hdf" title="pandas.DataFrame.to_hdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_hdf</span></code></a>(path_or_buf, *, key[, mode, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_hdf.html#pandas.DataFrame.to_hdf" title="pandas.DataFrame.to_hdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_hdf</span></code></a>(path_or_buf, *, key[, mode, ...])</p></td>
 <td><p>Write the contained data to an HDF5 file using HDFStore.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_html.html#pandas.DataFrame.to_html" title="pandas.DataFrame.to_html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code></a>([buf, columns, col_space, header, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_html.html#pandas.DataFrame.to_html" title="pandas.DataFrame.to_html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_html</span></code></a>([buf, columns, col_space, header, ...])</p></td>
 <td><p>Render a DataFrame as an HTML table.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_iceberg.html#pandas.DataFrame.to_iceberg" title="pandas.DataFrame.to_iceberg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_iceberg</span></code></a>(table_identifier[, catalog_name, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_iceberg.html#pandas.DataFrame.to_iceberg" title="pandas.DataFrame.to_iceberg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_iceberg</span></code></a>(table_identifier[, catalog_name, ...])</p></td>
 <td><p>Write a DataFrame to an Apache Iceberg table.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_json.html#pandas.DataFrame.to_json" title="pandas.DataFrame.to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_json</span></code></a>([path_or_buf, orient, date_format, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_json.html#pandas.DataFrame.to_json" title="pandas.DataFrame.to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_json</span></code></a>([path_or_buf, orient, date_format, ...])</p></td>
 <td><p>Convert the object to a JSON string.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_latex.html#pandas.DataFrame.to_latex" title="pandas.DataFrame.to_latex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_latex</span></code></a>([buf, columns, header, index, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_latex.html#pandas.DataFrame.to_latex" title="pandas.DataFrame.to_latex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_latex</span></code></a>([buf, columns, header, index, ...])</p></td>
 <td><p>Render object to a LaTeX tabular, longtable, or nested table.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_markdown.html#pandas.DataFrame.to_markdown" title="pandas.DataFrame.to_markdown"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_markdown</span></code></a>([buf, mode, index, storage_options])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_markdown.html#pandas.DataFrame.to_markdown" title="pandas.DataFrame.to_markdown"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_markdown</span></code></a>([buf, mode, index, storage_options])</p></td>
 <td><p>Print DataFrame in Markdown-friendly format.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_numpy.html#pandas.DataFrame.to_numpy" title="pandas.DataFrame.to_numpy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_numpy</span></code></a>([dtype, copy, na_value])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_numpy.html#pandas.DataFrame.to_numpy" title="pandas.DataFrame.to_numpy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_numpy</span></code></a>([dtype, copy, na_value])</p></td>
 <td><p>Convert the DataFrame to a NumPy array.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_orc.html#pandas.DataFrame.to_orc" title="pandas.DataFrame.to_orc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_orc</span></code></a>([path, engine, index, engine_kwargs])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_orc.html#pandas.DataFrame.to_orc" title="pandas.DataFrame.to_orc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_orc</span></code></a>([path, engine, index, engine_kwargs])</p></td>
 <td><p>Write a DataFrame to the Optimized Row Columnar (ORC) format.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_parquet.html#pandas.DataFrame.to_parquet" title="pandas.DataFrame.to_parquet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_parquet</span></code></a>([path, engine, compression, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_parquet.html#pandas.DataFrame.to_parquet" title="pandas.DataFrame.to_parquet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_parquet</span></code></a>([path, engine, compression, ...])</p></td>
 <td><p>Write a DataFrame to the binary parquet format.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_period.html#pandas.DataFrame.to_period" title="pandas.DataFrame.to_period"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_period</span></code></a>([freq, axis, copy])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_period.html#pandas.DataFrame.to_period" title="pandas.DataFrame.to_period"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_period</span></code></a>([freq, axis, copy])</p></td>
 <td><p>Convert DataFrame from DatetimeIndex to PeriodIndex.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_pickle.html#pandas.DataFrame.to_pickle" title="pandas.DataFrame.to_pickle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_pickle</span></code></a>(path, *[, compression, protocol, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_pickle.html#pandas.DataFrame.to_pickle" title="pandas.DataFrame.to_pickle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_pickle</span></code></a>(path, *[, compression, protocol, ...])</p></td>
 <td><p>Pickle (serialize) object to file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_records.html#pandas.DataFrame.to_records" title="pandas.DataFrame.to_records"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_records</span></code></a>([index, column_dtypes, index_dtypes])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_records.html#pandas.DataFrame.to_records" title="pandas.DataFrame.to_records"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_records</span></code></a>([index, column_dtypes, index_dtypes])</p></td>
 <td><p>Convert DataFrame to a NumPy record array.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_sql.html#pandas.DataFrame.to_sql" title="pandas.DataFrame.to_sql"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_sql</span></code></a>(name, con, *[, schema, if_exists, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_sql.html#pandas.DataFrame.to_sql" title="pandas.DataFrame.to_sql"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_sql</span></code></a>(name, con, *[, schema, if_exists, ...])</p></td>
 <td><p>Write records stored in a DataFrame to a SQL database.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_stata.html#pandas.DataFrame.to_stata" title="pandas.DataFrame.to_stata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_stata</span></code></a>(path, *[, convert_dates, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_stata.html#pandas.DataFrame.to_stata" title="pandas.DataFrame.to_stata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_stata</span></code></a>(path, *[, convert_dates, ...])</p></td>
 <td><p>Export DataFrame object to Stata dta format.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_string.html#pandas.DataFrame.to_string" title="pandas.DataFrame.to_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code></a>([buf, columns, col_space, header, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_string.html#pandas.DataFrame.to_string" title="pandas.DataFrame.to_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_string</span></code></a>([buf, columns, col_space, header, ...])</p></td>
 <td><p>Render a DataFrame to a console-friendly tabular output.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_timestamp.html#pandas.DataFrame.to_timestamp" title="pandas.DataFrame.to_timestamp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_timestamp</span></code></a>([freq, how, axis, copy])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_timestamp.html#pandas.DataFrame.to_timestamp" title="pandas.DataFrame.to_timestamp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_timestamp</span></code></a>([freq, how, axis, copy])</p></td>
 <td><p>Cast PeriodIndex to DatetimeIndex of timestamps, at <em>beginning</em> of period.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_xarray.html#pandas.DataFrame.to_xarray" title="pandas.DataFrame.to_xarray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_xarray</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_xarray.html#pandas.DataFrame.to_xarray" title="pandas.DataFrame.to_xarray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_xarray</span></code></a>()</p></td>
 <td><p>Return an xarray object from the pandas object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.to_xml.html#pandas.DataFrame.to_xml" title="pandas.DataFrame.to_xml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_xml</span></code></a>([path_or_buffer, index, root_name, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.to_xml.html#pandas.DataFrame.to_xml" title="pandas.DataFrame.to_xml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_xml</span></code></a>([path_or_buffer, index, root_name, ...])</p></td>
 <td><p>Render a DataFrame to an XML document.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.transform.html#pandas.DataFrame.transform" title="pandas.DataFrame.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(func[, axis])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.transform.html#pandas.DataFrame.transform" title="pandas.DataFrame.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(func[, axis])</p></td>
 <td><p>Call <code class="docutils literal notranslate"><span class="pre">func</span></code> on self producing a DataFrame with the same axis shape as self.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.transpose.html#pandas.DataFrame.transpose" title="pandas.DataFrame.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>(*args[, copy])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.transpose.html#pandas.DataFrame.transpose" title="pandas.DataFrame.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>(*args[, copy])</p></td>
 <td><p>Transpose index and columns.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.truediv.html#pandas.DataFrame.truediv" title="pandas.DataFrame.truediv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">truediv</span></code></a>(other[, axis, level, fill_value])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.truediv.html#pandas.DataFrame.truediv" title="pandas.DataFrame.truediv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">truediv</span></code></a>(other[, axis, level, fill_value])</p></td>
 <td><p>Get Floating division of dataframe and other,         element-wise (binary operator <cite>truediv</cite>).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.truncate.html#pandas.DataFrame.truncate" title="pandas.DataFrame.truncate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">truncate</span></code></a>([before, after, axis, copy])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.truncate.html#pandas.DataFrame.truncate" title="pandas.DataFrame.truncate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">truncate</span></code></a>([before, after, axis, copy])</p></td>
 <td><p>Truncate a Series or DataFrame before and after some index value.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.tz_convert.html#pandas.DataFrame.tz_convert" title="pandas.DataFrame.tz_convert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tz_convert</span></code></a>(tz[, axis, level, copy])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.tz_convert.html#pandas.DataFrame.tz_convert" title="pandas.DataFrame.tz_convert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tz_convert</span></code></a>(tz[, axis, level, copy])</p></td>
 <td><p>Convert tz-aware axis to target time zone.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.tz_localize.html#pandas.DataFrame.tz_localize" title="pandas.DataFrame.tz_localize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tz_localize</span></code></a>(tz[, axis, level, copy, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.tz_localize.html#pandas.DataFrame.tz_localize" title="pandas.DataFrame.tz_localize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tz_localize</span></code></a>(tz[, axis, level, copy, ...])</p></td>
 <td><p>Localize time zone naive index of a Series or DataFrame to target time zone.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.unstack.html#pandas.DataFrame.unstack" title="pandas.DataFrame.unstack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unstack</span></code></a>([level, fill_value, sort])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.unstack.html#pandas.DataFrame.unstack" title="pandas.DataFrame.unstack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unstack</span></code></a>([level, fill_value, sort])</p></td>
 <td><p>Pivot a level of the (necessarily hierarchical) index labels.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.update.html#pandas.DataFrame.update" title="pandas.DataFrame.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(other[, join, overwrite, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.update.html#pandas.DataFrame.update" title="pandas.DataFrame.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(other[, join, overwrite, ...])</p></td>
 <td><p>Modify in place using non-NA values from another DataFrame.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.value_counts.html#pandas.DataFrame.value_counts" title="pandas.DataFrame.value_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value_counts</span></code></a>([subset, normalize, sort, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.value_counts.html#pandas.DataFrame.value_counts" title="pandas.DataFrame.value_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value_counts</span></code></a>([subset, normalize, sort, ...])</p></td>
 <td><p>Return a Series containing the frequency of each distinct row in the DataFrame.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.var.html#pandas.DataFrame.var" title="pandas.DataFrame.var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code></a>(*[, axis, skipna, ddof, numeric_only])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.var.html#pandas.DataFrame.var" title="pandas.DataFrame.var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">var</span></code></a>(*[, axis, skipna, ddof, numeric_only])</p></td>
 <td><p>Return unbiased variance over requested axis.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.where.html#pandas.DataFrame.where" title="pandas.DataFrame.where"><code class="xref py py-obj docutils literal notranslate"><span class="pre">where</span></code></a>(cond[, other, inplace, axis, level])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.where.html#pandas.DataFrame.where" title="pandas.DataFrame.where"><code class="xref py py-obj docutils literal notranslate"><span class="pre">where</span></code></a>(cond[, other, inplace, axis, level])</p></td>
 <td><p>Replace values where the condition is False.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.DataFrame.xs.html#pandas.DataFrame.xs" title="pandas.DataFrame.xs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xs</span></code></a>(key[, axis, level, drop_level])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.DataFrame.xs.html#pandas.DataFrame.xs" title="pandas.DataFrame.xs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xs</span></code></a>(key[, axis, level, drop_level])</p></td>
 <td><p>Return cross-section from the Series/DataFrame.</p></td>
 </tr>
 </tbody>

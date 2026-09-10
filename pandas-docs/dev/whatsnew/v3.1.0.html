@@ -702,8 +702,51 @@
 including other versions of pandas.</p>
 <section id="enhancements">
 <span id="whatsnew-310-enhancements"></span><h2>Enhancements<a class="headerlink" href="#enhancements" title="Link to this heading">#</a></h2>
-<section id="enhancement1">
-<span id="whatsnew-310-enhancements-enhancement1"></span><h3>enhancement1<a class="headerlink" href="#enhancement1" title="Link to this heading">#</a></h3>
+<section id="new-method-dataframe-select">
+<span id="whatsnew-310-enhancements-select"></span><h3>New method <code class="docutils literal notranslate"><span class="pre">DataFrame.select</span></code><a class="headerlink" href="#new-method-dataframe-select" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="../reference/api/pandas.DataFrame.select.html#pandas.DataFrame.select" title="pandas.DataFrame.select"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.select()</span></code></a> returns a new DataFrame containing the specified
+columns. In addition to existing column labels, columns
+can be computed via <a class="reference internal" href="../reference/api/pandas.col.html#pandas.col" title="pandas.col"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.col()</span></code></a> expressions, or callables passed as
+keyword arguments, with the keyword naming the resulting column. As with
+<a class="reference internal" href="../reference/api/pandas.DataFrame.assign.html#pandas.DataFrame.assign" title="pandas.DataFrame.assign"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.assign()</span></code></a>, later arguments can refer to columns computed
+earlier in the same call
+(<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/61522">GH 61522</a>, <a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/40322">GH 40322</a>).</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">   ...: </span>    <span class="p">{</span>
+<span class="gp">   ...: </span>        <span class="s2">"first_name"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"John"</span><span class="p">,</span> <span class="s2">"Alice"</span><span class="p">,</span> <span class="s2">"Bob"</span><span class="p">],</span>
+<span class="gp">   ...: </span>        <span class="s2">"last_name"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Smith"</span><span class="p">,</span> <span class="s2">"Cooper"</span><span class="p">,</span> <span class="s2">"Marley"</span><span class="p">],</span>
+<span class="gp">   ...: </span>        <span class="s2">"age"</span><span class="p">:</span> <span class="p">[</span><span class="mi">61</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">35</span><span class="p">],</span>
+<span class="gp">   ...: </span>    <span class="p">}</span>
+<span class="gp">   ...: </span><span class="p">)</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [2]: </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"first_name"</span><span class="p">,</span> <span class="s2">"last_name"</span><span class="p">)</span>
+<span class="gh">Out[2]: </span>
+<span class="go">  first_name last_name</span>
+<span class="go">0       John     Smith</span>
+<span class="go">1      Alice    Cooper</span>
+<span class="go">2        Bob    Marley</span>
+
+<span class="gp">In [3]: </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"first_name"</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age"</span><span class="p">),</span> <span class="n">age_months</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age"</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span><span class="p">)</span>
+<span class="gh">Out[3]: </span>
+<span class="go">  first_name  age  age_months</span>
+<span class="go">0       John   61         732</span>
+<span class="go">1      Alice   22         264</span>
+<span class="go">2        Bob   35         420</span>
+
+<span class="gp">In [4]: </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+<span class="gp">   ...: </span>    <span class="s2">"first_name"</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="n">age_months</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age"</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="n">age_days</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age_months"</span><span class="p">)</span> <span class="o">*</span> <span class="mi">30</span><span class="p">,</span>
+<span class="gp">   ...: </span><span class="p">)</span>
+<span class="gp">   ...: </span>
+<span class="gh">Out[4]: </span>
+<span class="go">  first_name  age_months  age_days</span>
+<span class="go">0       John         732     21960</span>
+<span class="go">1      Alice         264      7920</span>
+<span class="go">2        Bob         420     12600</span>
+</pre></div>
+</div>
 </section>
 <section id="enhancement2">
 <span id="whatsnew-310-enhancements-enhancement2"></span><h3>enhancement2<a class="headerlink" href="#enhancement2" title="Link to this heading">#</a></h3>
@@ -1894,7 +1937,7 @@ when the requested row count is not a multiple of the chunk size (<a class="extl
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancements">Enhancements</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancement1">enhancement1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-method-dataframe-select">New method <code class="docutils literal notranslate"><span class="pre">DataFrame.select</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancement2">enhancement2</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-enhancements">Other enhancements</a></li>
 </ul>

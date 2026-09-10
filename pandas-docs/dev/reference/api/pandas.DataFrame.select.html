@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.DataFrame.pct_change &#8212; pandas 3.1.0.dev0 documentation</title>
+    <title>pandas.DataFrame.select &#8212; pandas 3.1.0.dev0 documentation</title>
   
   
   
@@ -51,7 +51,7 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script data-domain="pandas.pydata.org" defer="defer" src="https://views.scientific-python.org/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.DataFrame.pct_change';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.DataFrame.select';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.20.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
@@ -63,8 +63,8 @@
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.DataFrame.prod" href="pandas.DataFrame.prod.html" />
-    <link rel="prev" title="pandas.DataFrame.mode" href="pandas.DataFrame.mode.html" />
+    <link rel="next" title="pandas.DataFrame.set_axis" href="pandas.DataFrame.set_axis.html" />
+    <link rel="prev" title="pandas.DataFrame.sample" href="pandas.DataFrame.sample.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="3.1" />
@@ -561,7 +561,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.median.html">pandas.DataFrame.median</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.min.html">pandas.DataFrame.min</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.mode.html">pandas.DataFrame.mode</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">pandas.DataFrame.pct_change</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.pct_change.html">pandas.DataFrame.pct_change</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.prod.html">pandas.DataFrame.prod</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.product.html">pandas.DataFrame.product</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.quantile.html">pandas.DataFrame.quantile</a></li>
@@ -592,7 +592,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.rename_axis.html">pandas.DataFrame.rename_axis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.reset_index.html">pandas.DataFrame.reset_index</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.sample.html">pandas.DataFrame.sample</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.select.html">pandas.DataFrame.select</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">pandas.DataFrame.select</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.set_axis.html">pandas.DataFrame.set_axis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.set_index.html">pandas.DataFrame.set_index</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.DataFrame.take.html">pandas.DataFrame.take</a></li>
@@ -746,7 +746,7 @@
     
     <li class="breadcrumb-item"><a href="../frame.html" class="nav-link">DataFrame</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pandas.DataFrame.pct_change</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pandas.DataFrame.select</span></li>
   </ul>
 </nav>
 </div>
@@ -763,39 +763,45 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="pandas-dataframe-pct-change">
-<h1>pandas.DataFrame.pct_change<a class="headerlink" href="#pandas-dataframe-pct-change" title="Link to this heading">#</a></h1>
+  <section id="pandas-dataframe-select">
+<h1>pandas.DataFrame.select<a class="headerlink" href="#pandas-dataframe-select" title="Link to this heading">#</a></h1>
 <dl class="py method">
-<dt class="sig sig-object py" id="pandas.DataFrame.pct_change">
-<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">pct_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">periods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/generic.py#L11389-L11535"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.pct_change" title="Link to this definition">#</a></dt>
-<dd><p>Fractional change between the current and a prior element.</p>
-<p>Computes the fractional change from the immediately previous row by
-default. This is useful in comparing the fraction of change in a time
-series of elements.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Despite the name of this method, it calculates fractional change
-(also known as per unit change or relative change) and not
-percentage change. If you need the percentage change, multiply
-these values by 100.</p>
+<dt class="sig sig-object py" id="pandas.DataFrame.select">
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L5963-L6116"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.select" title="Link to this definition">#</a></dt>
+<dd><p>Select a subset of columns from the DataFrame.</p>
+<p>Return a new DataFrame containing the specified columns.
+Columns can be existing column labels as well as computed columns,
+expressed via <a class="reference internal" href="pandas.col.html#pandas.col" title="pandas.col"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.col()</span></code></a> expressions, or callables passed as
+keyword arguments.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.1.0.</span></p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>periods</strong><span class="classifier">int, default 1</span></dt><dd><p>Periods to shift for forming percent change.</p>
+<dt><strong>*args</strong><span class="classifier">hashable, Expression, or a single list of these</span></dt><dd><p>Column labels to select, or expressions evaluated against the
+DataFrame. Requesting a label twice returns the
+column twice, and with a <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> a non-tuple label selects the
+entire first level while tuples select from multiple
+levels. An <code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code> evaluating to
+a Series must be named; use <code class="docutils literal notranslate"><span class="pre">.rename(...)</span></code> to name the
+result of an unnamed expression. If a single list
+or other non-tuple sequence (e.g. an <code class="docutils literal notranslate"><span class="pre">Index</span></code> or array) is
+provided, its elements are the items to select; a sequence
+cannot be mixed with further positional arguments.</p>
 </dd>
-<dt><strong>fill_method</strong><span class="classifier">None</span></dt><dd><p>Must be None. This argument will be removed in a future version of pandas.</p>
-</dd>
-<dt><strong>freq</strong><span class="classifier">DateOffset, timedelta, or str, optional</span></dt><dd><p>Increment to use from time series API (e.g. ‘ME’ or BDay()).</p>
-</dd>
-<dt><strong>**kwargs</strong></dt><dd><p>Additional keyword arguments are passed into
-<cite>DataFrame.shift</cite> or <cite>Series.shift</cite>.</p>
+<dt><strong>**kwargs</strong><span class="classifier">callable, Expression, Series, scalar, array-like, or dict</span></dt><dd><p>Additional computed columns, where each keyword results in a new column
+with that name and are included in the selection. Values are resolved
+like the values of <a class="reference internal" href="pandas.DataFrame.assign.html#pandas.DataFrame.assign" title="pandas.DataFrame.assign"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.assign()</span></code></a>: callables and expressions
+are evaluated on the DataFrame, and other values are assigned as-is
+following the alignment and broadcasting rules of
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.__setitem__()</span></code>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>Series or DataFrame</dt><dd><p>The same type as the calling object.</p>
+<dt>DataFrame</dt><dd><p>A new DataFrame with the selected columns.</p>
 </dd>
 </dl>
 </dd>
@@ -803,104 +809,117 @@ these values by 100.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="pandas.Series.diff.html#pandas.Series.diff" title="pandas.Series.diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.diff</span></code></a></dt><dd><p>Compute the difference of two elements in a Series.</p>
+<dt><a class="reference internal" href="pandas.DataFrame.assign.html#pandas.DataFrame.assign" title="pandas.DataFrame.assign"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.assign</span></code></a></dt><dd><p>Add new columns to a DataFrame.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.DataFrame.diff.html#pandas.DataFrame.diff" title="pandas.DataFrame.diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.diff</span></code></a></dt><dd><p>Compute the difference of two elements in a DataFrame.</p>
+<dt><a class="reference internal" href="pandas.DataFrame.filter.html#pandas.DataFrame.filter" title="pandas.DataFrame.filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.filter</span></code></a></dt><dd><p>Subset the DataFrame rows or columns according to labels.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.Series.shift.html#pandas.Series.shift" title="pandas.Series.shift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.shift</span></code></a></dt><dd><p>Shift the index by some number of periods.</p>
+<dt><a class="reference internal" href="pandas.DataFrame.select_dtypes.html#pandas.DataFrame.select_dtypes" title="pandas.DataFrame.select_dtypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.select_dtypes</span></code></a></dt><dd><p>Select columns based on their dtypes.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.DataFrame.shift.html#pandas.DataFrame.shift" title="pandas.DataFrame.shift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.shift</span></code></a></dt><dd><p>Shift the index by some number of periods.</p>
+<dt><a class="reference internal" href="pandas.col.html#pandas.col" title="pandas.col"><code class="xref py py-obj docutils literal notranslate"><span class="pre">col</span></code></a></dt><dd><p>Generate a deferred object representing a column of a DataFrame.</p>
 </dd>
 </dl>
 </div>
+<p class="rubric">Notes</p>
+<p>Items are resolved in order, and computed columns are made available
+to later items under their name, as in <a class="reference internal" href="pandas.DataFrame.assign.html#pandas.DataFrame.assign" title="pandas.DataFrame.assign"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.assign()</span></code></a>. A
+computed column with the same name as an existing column replaces it
+for later items, but does not replace a column already selected: a name
+requested more than once is returned more than once.</p>
+<p>When the columns are a <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code>, computed columns must have
+full-length tuple names so only positional arguments are allowed.
+Rename expressions with <code class="docutils literal notranslate"><span class="pre">.rename(...)</span></code> when needed.</p>
 <p class="rubric">Examples</p>
-<p><strong>Series</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">90</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">85</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
-<span class="go">0    90</span>
-<span class="go">1    91</span>
-<span class="go">2    85</span>
-<span class="go">dtype: int64</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>
-<span class="go">0         NaN</span>
-<span class="go">1    0.011111</span>
-<span class="go">2   -0.065934</span>
-<span class="go">dtype: float64</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">pct_change</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="go">0         NaN</span>
-<span class="go">1         NaN</span>
-<span class="go">2   -0.055556</span>
-<span class="go">dtype: float64</span>
-</pre></div>
-</div>
-<p>See the percentage change in a Series where filling NAs with last
-valid observation forward to next valid.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">90</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">85</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
-<span class="go">0    90.0</span>
-<span class="go">1    91.0</span>
-<span class="go">2     NaN</span>
-<span class="go">3    85.0</span>
-<span class="go">dtype: float64</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>
-<span class="go">0         NaN</span>
-<span class="go">1    0.011111</span>
-<span class="go">2    0.000000</span>
-<span class="go">3   -0.065934</span>
-<span class="go">dtype: float64</span>
-</pre></div>
-</div>
-<p><strong>DataFrame</strong></p>
-<p>Percentage change in French franc, Deutsche Mark, and Italian lira from
-1980-01-01 to 1980-03-01.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="p">{</span>
-<span class="gp">... </span>        <span class="s2">"FR"</span><span class="p">:</span> <span class="p">[</span><span class="mf">4.0405</span><span class="p">,</span> <span class="mf">4.0963</span><span class="p">,</span> <span class="mf">4.3149</span><span class="p">],</span>
-<span class="gp">... </span>        <span class="s2">"GR"</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.7246</span><span class="p">,</span> <span class="mf">1.7482</span><span class="p">,</span> <span class="mf">1.8519</span><span class="p">],</span>
-<span class="gp">... </span>        <span class="s2">"IT"</span><span class="p">:</span> <span class="p">[</span><span class="mf">804.74</span><span class="p">,</span> <span class="mf">810.01</span><span class="p">,</span> <span class="mf">860.13</span><span class="p">],</span>
-<span class="gp">... </span>    <span class="p">},</span>
-<span class="gp">... </span>    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"1980-01-01"</span><span class="p">,</span> <span class="s2">"1980-02-01"</span><span class="p">,</span> <span class="s2">"1980-03-01"</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="s2">"first_name"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"John"</span><span class="p">,</span> <span class="s2">"Alice"</span><span class="p">,</span> <span class="s2">"Bob"</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="s2">"last_name"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Smith"</span><span class="p">,</span> <span class="s2">"Cooper"</span><span class="p">,</span> <span class="s2">"Marley"</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="s2">"age"</span><span class="p">:</span> <span class="p">[</span><span class="mi">61</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">35</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">}</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
-<span class="go">                FR      GR      IT</span>
-<span class="go">1980-01-01  4.0405  1.7246  804.74</span>
-<span class="go">1980-02-01  4.0963  1.7482  810.01</span>
-<span class="go">1980-03-01  4.3149  1.8519  860.13</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>
-<span class="go">                  FR        GR        IT</span>
-<span class="go">1980-01-01       NaN       NaN       NaN</span>
-<span class="go">1980-02-01  0.013810  0.013684  0.006549</span>
-<span class="go">1980-03-01  0.053365  0.059318  0.061876</span>
+<p>Select a subset of columns:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"first_name"</span><span class="p">,</span> <span class="s2">"age"</span><span class="p">)</span>
+<span class="go">  first_name  age</span>
+<span class="go">0       John   61</span>
+<span class="go">1      Alice   22</span>
+<span class="go">2        Bob   35</span>
 </pre></div>
 </div>
-<p>Percentage of change in GOOG and APPL stock volume. Shows computing
-the percentage change between columns.</p>
+<p>A single list can also be used to specify the columns to return:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s2">"last_name"</span><span class="p">,</span> <span class="s2">"age"</span><span class="p">])</span>
+<span class="go">  last_name  age</span>
+<span class="go">0     Smith   61</span>
+<span class="go">1    Cooper   22</span>
+<span class="go">2    Marley   35</span>
+</pre></div>
+</div>
+<p>All columns can be selected, but in a different order:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"last_name"</span><span class="p">,</span> <span class="s2">"first_name"</span><span class="p">,</span> <span class="s2">"age"</span><span class="p">)</span>
+<span class="go">  last_name first_name  age</span>
+<span class="go">0     Smith       John   61</span>
+<span class="go">1    Cooper      Alice   22</span>
+<span class="go">2    Marley        Bob   35</span>
+</pre></div>
+</div>
+<p>Note that a DataFrame is always returned. If a single column is
+requested, a DataFrame with a single column is returned, not a Series:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"age"</span><span class="p">)</span>
+<span class="go">   age</span>
+<span class="go">0   61</span>
+<span class="go">1   22</span>
+<span class="go">2   35</span>
+</pre></div>
+</div>
+<p>Columns can be computed with <a class="reference internal" href="pandas.col.html#pandas.col" title="pandas.col"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.col()</span></code></a> expressions, either
+positionally (the result keeps the name of the underlying column) or
+as keyword arguments (the keyword is the resulting column name):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"first_name"</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age"</span><span class="p">),</span> <span class="n">age_months</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age"</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span><span class="p">)</span>
+<span class="go">  first_name  age  age_months</span>
+<span class="go">0       John   61         732</span>
+<span class="go">1      Alice   22         264</span>
+<span class="go">2        Bob   35         420</span>
+</pre></div>
+</div>
+<p>Later items can refer to columns computed earlier in the same call:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s2">"first_name"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">age_months</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age"</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">age_days</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age_months"</span><span class="p">)</span> <span class="o">*</span> <span class="mi">30</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="go">  first_name  age_months  age_days</span>
+<span class="go">0       John         732     21960</span>
+<span class="go">1      Alice         264      7920</span>
+<span class="go">2        Bob         420     12600</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">select</span></code> method also works when the columns are a
+<code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code>:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="p">{</span>
-<span class="gp">... </span>        <span class="s2">"2016"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1769950</span><span class="p">,</span> <span class="mi">30586265</span><span class="p">],</span>
-<span class="gp">... </span>        <span class="s2">"2015"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1500923</span><span class="p">,</span> <span class="mi">40912316</span><span class="p">],</span>
-<span class="gp">... </span>        <span class="s2">"2014"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1371819</span><span class="p">,</span> <span class="mi">41403351</span><span class="p">],</span>
-<span class="gp">... </span>    <span class="p">},</span>
-<span class="gp">... </span>    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"GOOG"</span><span class="p">,</span> <span class="s2">"APPL"</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[(</span><span class="s2">"John"</span><span class="p">,</span> <span class="s2">"Smith"</span><span class="p">,</span> <span class="mi">61</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Alice"</span><span class="p">,</span> <span class="s2">"Cooper"</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span> <span class="p">(</span><span class="s2">"Bob"</span><span class="p">,</span> <span class="s2">"Marley"</span><span class="p">,</span> <span class="mi">35</span><span class="p">)],</span>
+<span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="p">[(</span><span class="s2">"names"</span><span class="p">,</span> <span class="s2">"first_name"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"names"</span><span class="p">,</span> <span class="s2">"last_name"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"other"</span><span class="p">,</span> <span class="s2">"age"</span><span class="p">)]</span>
+<span class="gp">... </span>    <span class="p">),</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
-<span class="go">          2016      2015      2014</span>
-<span class="go">GOOG   1769950   1500923   1371819</span>
-<span class="go">APPL  30586265  40912316  41403351</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">pct_change</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="go">          2016      2015  2014</span>
-<span class="go">GOOG  0.179241  0.094112   NaN</span>
-<span class="go">APPL -0.252395 -0.011860   NaN</span>
+<p>If column names are provided, they will select from the first level of
+the <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"names"</span><span class="p">)</span>
+<span class="go">       names</span>
+<span class="go">  first_name last_name</span>
+<span class="go">0       John     Smith</span>
+<span class="go">1      Alice    Cooper</span>
+<span class="go">2        Bob    Marley</span>
+</pre></div>
+</div>
+<p>To select from multiple or all levels, tuples can be used:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">((</span><span class="s2">"names"</span><span class="p">,</span> <span class="s2">"last_name"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"other"</span><span class="p">,</span> <span class="s2">"age"</span><span class="p">))</span>
+<span class="go">      names other</span>
+<span class="go">  last_name   age</span>
+<span class="go">0     Smith    61</span>
+<span class="go">1    Cooper    22</span>
+<span class="go">2    Marley    35</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -918,20 +937,20 @@ the percentage change between columns.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="pandas.DataFrame.mode.html"
+       href="pandas.DataFrame.sample.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">pandas.DataFrame.mode</p>
+        <p class="prev-next-title">pandas.DataFrame.sample</p>
       </div>
     </a>
     <a class="right-next"
-       href="pandas.DataFrame.prod.html"
+       href="pandas.DataFrame.set_axis.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">pandas.DataFrame.prod</p>
+        <p class="prev-next-title">pandas.DataFrame.set_axis</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -954,7 +973,7 @@ the percentage change between columns.</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas.DataFrame.pct_change"><code class="docutils literal notranslate"><span class="pre">DataFrame.pct_change()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas.DataFrame.select"><code class="docutils literal notranslate"><span class="pre">DataFrame.select()</span></code></a></li>
 </ul>
   </nav></div>
 
