@@ -711,36 +711,28 @@ keyword arguments, with the keyword naming the resulting column. As with
 <a class="reference internal" href="../reference/api/pandas.DataFrame.assign.html#pandas.DataFrame.assign" title="pandas.DataFrame.assign"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.assign()</span></code></a>, later arguments can refer to columns computed
 earlier in the same call
 (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/61522">GH 61522</a>, <a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/40322">GH 40322</a>).</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<span class="gp">   ...: </span>    <span class="p">{</span>
-<span class="gp">   ...: </span>        <span class="s2">"first_name"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"John"</span><span class="p">,</span> <span class="s2">"Alice"</span><span class="p">,</span> <span class="s2">"Bob"</span><span class="p">],</span>
-<span class="gp">   ...: </span>        <span class="s2">"last_name"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Smith"</span><span class="p">,</span> <span class="s2">"Cooper"</span><span class="p">,</span> <span class="s2">"Marley"</span><span class="p">],</span>
-<span class="gp">   ...: </span>        <span class="s2">"age"</span><span class="p">:</span> <span class="p">[</span><span class="mi">61</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">35</span><span class="p">],</span>
-<span class="gp">   ...: </span>    <span class="p">}</span>
-<span class="gp">   ...: </span><span class="p">)</span>
-<span class="gp">   ...: </span>
-
-<span class="gp">In [2]: </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"first_name"</span><span class="p">,</span> <span class="s2">"last_name"</span><span class="p">)</span>
-<span class="gh">Out[2]: </span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">{</span>
+<span class="gp">... </span>        <span class="s2">"first_name"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"John"</span><span class="p">,</span> <span class="s2">"Alice"</span><span class="p">,</span> <span class="s2">"Bob"</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="s2">"last_name"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Smith"</span><span class="p">,</span> <span class="s2">"Cooper"</span><span class="p">,</span> <span class="s2">"Marley"</span><span class="p">],</span>
+<span class="gp">... </span>        <span class="s2">"age"</span><span class="p">:</span> <span class="p">[</span><span class="mi">61</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">35</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">}</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"first_name"</span><span class="p">,</span> <span class="s2">"last_name"</span><span class="p">)</span>
 <span class="go">  first_name last_name</span>
 <span class="go">0       John     Smith</span>
 <span class="go">1      Alice    Cooper</span>
 <span class="go">2        Bob    Marley</span>
-
-<span class="gp">In [3]: </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"first_name"</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age"</span><span class="p">),</span> <span class="n">age_months</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age"</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span><span class="p">)</span>
-<span class="gh">Out[3]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"first_name"</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age"</span><span class="p">),</span> <span class="n">age_months</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age"</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span><span class="p">)</span>
 <span class="go">  first_name  age  age_months</span>
 <span class="go">0       John   61         732</span>
 <span class="go">1      Alice   22         264</span>
 <span class="go">2        Bob   35         420</span>
-
-<span class="gp">In [4]: </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
-<span class="gp">   ...: </span>    <span class="s2">"first_name"</span><span class="p">,</span>
-<span class="gp">   ...: </span>    <span class="n">age_months</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age"</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span><span class="p">,</span>
-<span class="gp">   ...: </span>    <span class="n">age_days</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age_months"</span><span class="p">)</span> <span class="o">*</span> <span class="mi">30</span><span class="p">,</span>
-<span class="gp">   ...: </span><span class="p">)</span>
-<span class="gp">   ...: </span>
-<span class="gh">Out[4]: </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s2">"first_name"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">age_months</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age"</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">age_days</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"age_months"</span><span class="p">)</span> <span class="o">*</span> <span class="mi">30</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="go">  first_name  age_months  age_days</span>
 <span class="go">0       John         732     21960</span>
 <span class="go">1      Alice         264      7920</span>
