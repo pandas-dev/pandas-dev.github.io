@@ -767,7 +767,7 @@
 <h1>pandas.DataFrame.select_dtypes<a class="headerlink" href="#pandas-dataframe-select-dtypes" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.DataFrame.select_dtypes">
-<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">select_dtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L5437-L5957"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.select_dtypes" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">select_dtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L5437-L5968"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.select_dtypes" title="Link to this definition">#</a></dt>
 <dd><p>Return a subset of the DataFrame’s columns based on the column dtypes.</p>
 <p>This method allows for filtering columns based on their data types.
 It is useful when working with heterogeneous DataFrames where operations
@@ -819,12 +819,12 @@ work to select all string columns.</p></li>
 <li><p>A dtype instance (e.g. <code class="docutils literal notranslate"><span class="pre">np.dtype(&quot;int32&quot;)</span></code> or
 <code class="docutils literal notranslate"><span class="pre">pd.CategoricalDtype([&quot;a&quot;,</span> <span class="pre">&quot;b&quot;])</span></code>) selects only columns with
 exactly that dtype, whereas a class or string selects a family
-of dtypes. Under-specified instances like a unitless
-<code class="docutils literal notranslate"><span class="pre">np.dtype(&quot;datetime64&quot;)</span></code>, a bare <code class="docutils literal notranslate"><span class="pre">pd.CategoricalDtype()</span></code>, or a
-<code class="docutils literal notranslate"><span class="pre">pd.IntervalDtype(&quot;int64&quot;)</span></code> without a <code class="docutils literal notranslate"><span class="pre">closed</span></code> select their
-whole family; for intervals this holds per component, so
-<code class="docutils literal notranslate"><span class="pre">pd.IntervalDtype(np.dtype(&quot;M8&quot;))</span></code> matches every resolution and
-every <code class="docutils literal notranslate"><span class="pre">closed</span></code></p></li>
+of dtypes. An under-specified instance, such as a unitless
+<code class="docutils literal notranslate"><span class="pre">np.dtype(&quot;datetime64&quot;)</span></code>, a <code class="docutils literal notranslate"><span class="pre">pd.CategoricalDtype(ordered=True)</span></code>
+with no categories, or a <code class="docutils literal notranslate"><span class="pre">pd.IntervalDtype(&quot;int64&quot;)</span></code> with no
+<code class="docutils literal notranslate"><span class="pre">closed</span></code>, selects the family its given attributes name; a bare
+<code class="docutils literal notranslate"><span class="pre">pd.CategoricalDtype()</span></code> names none, so it selects every
+categorical column, as does the equivalent <code class="docutils literal notranslate"><span class="pre">ordered=False</span></code></p></li>
 <li><p>To select datetimes, use <code class="docutils literal notranslate"><span class="pre">np.datetime64</span></code>, <code class="docutils literal notranslate"><span class="pre">'datetime'</span></code> or
 <code class="docutils literal notranslate"><span class="pre">'datetime64'</span></code></p></li>
 <li><p>To select timedeltas, use <code class="docutils literal notranslate"><span class="pre">np.timedelta64</span></code>, <code class="docutils literal notranslate"><span class="pre">'timedelta'</span></code> or
