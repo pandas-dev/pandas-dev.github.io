@@ -767,7 +767,7 @@
 <h1>pandas.DataFrame.select_dtypes<a class="headerlink" href="#pandas-dataframe-select-dtypes" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.DataFrame.select_dtypes">
-<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">select_dtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L5437-L6010"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.select_dtypes" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">select_dtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L5437-L6026"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.select_dtypes" title="Link to this definition">#</a></dt>
 <dd><p>Return a subset of the DataFrame’s columns based on the column dtypes.</p>
 <p>This method allows for filtering columns based on their data types.
 It is useful when working with heterogeneous DataFrames where operations
@@ -792,6 +792,8 @@ excluding the dtypes in <code class="docutils literal notranslate"><span class="
 <dt>ValueError</dt><dd><ul class="simple">
 <li><p>If both of <code class="docutils literal notranslate"><span class="pre">include</span></code> and <code class="docutils literal notranslate"><span class="pre">exclude</span></code> are empty</p></li>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">include</span></code> and <code class="docutils literal notranslate"><span class="pre">exclude</span></code> have overlapping elements</p></li>
+<li><p>If a datetime64/timedelta64 spec, or an interval spec’s subtype,
+names a resolution no column can have, e.g. <code class="docutils literal notranslate"><span class="pre">'datetime64[10s]'</span></code></p></li>
 </ul>
 </dd>
 <dt>TypeError</dt><dd><ul class="simple">
