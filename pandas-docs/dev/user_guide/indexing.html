@@ -1209,10 +1209,10 @@ using integers in a <code class="docutils literal notranslate"><span class="pre"
 <span class="ne">--&gt; </span><span class="mi">628</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_raise_invalid_indexer</span><span class="p">(</span><span class="s2">"slice"</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">630</span> <span class="k">return</span> <span class="n">label</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4304,</span> in <span class="ni">Index._raise_invalid_indexer</span><span class="nt">(self, form, key, reraise)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4302</span> <span class="k">if</span> <span class="n">reraise</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">lib</span><span class="o">.</span><span class="n">no_default</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4303</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">reraise</span>
-<span class="ne">-&gt; </span><span class="mi">4304</span> <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4303,</span> in <span class="ni">Index._raise_invalid_indexer</span><span class="nt">(self, form, key, reraise)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4301</span> <span class="k">if</span> <span class="n">reraise</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">lib</span><span class="o">.</span><span class="n">no_default</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4302</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">reraise</span>
+<span class="ne">-&gt; </span><span class="mi">4303</span> <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
 <span class="ne">TypeError</span>: cannot do slice indexing on DatetimeIndex with these indexers [2] of type int
 </pre></div>
@@ -1963,13 +1963,13 @@ without using a temporary variable.</p>
 <span class="g g-Whitespace">   </span><span class="mi">5531</span><span class="s2">             )</span>
 <span class="g g-Whitespace">   </span><span class="mi">5532</span><span class="s2"> </span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4437,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4434</span><span class="s2">     raise ValueError("cannot handle a non-unique multi-index!")</span>
-<span class="g g-Whitespace">   </span><span class="mi">4435</span><span class="s2"> elif not self.is_unique:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4436</span><span class="s2">     # GH#42568</span>
-<span class="ne">-&gt; </span><span class="mi">4437</span><span class="s2">     raise ValueError("cannot reindex on an axis with duplicate labels")</span>
-<span class="g g-Whitespace">   </span><span class="mi">4438</span><span class="s2"> else:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4439</span><span class="s2">     indexer, _ = self.get_indexer_non_unique(target)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4436,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4433</span><span class="s2">     raise ValueError("cannot handle a non-unique multi-index!")</span>
+<span class="g g-Whitespace">   </span><span class="mi">4434</span><span class="s2"> elif not self.is_unique:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4435</span><span class="s2">     # GH#42568</span>
+<span class="ne">-&gt; </span><span class="mi">4436</span><span class="s2">     raise ValueError("cannot reindex on an axis with duplicate labels")</span>
+<span class="g g-Whitespace">   </span><span class="mi">4437</span><span class="s2"> else:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4438</span><span class="s2">     indexer, _ = self.get_indexer_non_unique(target)</span>
 
 <span class="ne">ValueError</span>: cannot reindex on an axis with duplicate labels
 </pre></div>
@@ -2021,13 +2021,13 @@ axis, and then reindex.</p>
 <span class="g g-Whitespace">   </span><span class="mi">5531</span><span class="s2">             )</span>
 <span class="g g-Whitespace">   </span><span class="mi">5532</span><span class="s2"> </span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4437,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4434</span><span class="s2">     raise ValueError("cannot handle a non-unique multi-index!")</span>
-<span class="g g-Whitespace">   </span><span class="mi">4435</span><span class="s2"> elif not self.is_unique:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4436</span><span class="s2">     # GH#42568</span>
-<span class="ne">-&gt; </span><span class="mi">4437</span><span class="s2">     raise ValueError("cannot reindex on an axis with duplicate labels")</span>
-<span class="g g-Whitespace">   </span><span class="mi">4438</span><span class="s2"> else:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4439</span><span class="s2">     indexer, _ = self.get_indexer_non_unique(target)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4436,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4433</span><span class="s2">     raise ValueError("cannot handle a non-unique multi-index!")</span>
+<span class="g g-Whitespace">   </span><span class="mi">4434</span><span class="s2"> elif not self.is_unique:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4435</span><span class="s2">     # GH#42568</span>
+<span class="ne">-&gt; </span><span class="mi">4436</span><span class="s2">     raise ValueError("cannot reindex on an axis with duplicate labels")</span>
+<span class="g g-Whitespace">   </span><span class="mi">4437</span><span class="s2"> else:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4438</span><span class="s2">     indexer, _ = self.get_indexer_non_unique(target)</span>
 
 <span class="ne">ValueError</span>: cannot reindex on an axis with duplicate labels
 </pre></div>
@@ -3030,7 +3030,7 @@ having to specify which frame you’re interested in querying</p>
 <span class="gp">In [272]: </span><span class="n">expr</span> <span class="o">=</span> <span class="s1">'0.0 &lt;= a &lt;= c &lt;= 0.5'</span>
 
 <span class="gp">In [273]: </span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="p">[</span><span class="n">df</span><span class="p">,</span> <span class="n">df2</span><span class="p">])</span>
-<span class="gh">Out[273]: </span><span class="go">&lt;map at 0x7f34f6b671c0&gt;</span>
+<span class="gh">Out[273]: </span><span class="go">&lt;map at 0x7f91f5a1fcd0&gt;</span>
 </pre></div>
 </div>
 </section>

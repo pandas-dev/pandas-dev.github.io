@@ -825,10 +825,10 @@ for partial selection on the rows:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">df</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="s2">"bar"</span><span class="p">]</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:3803,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3802</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3803</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3804</span> <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:3802,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3801</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3802</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3803</span> <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
 
 <span class="nn">File pandas/_libs/index.pyx:172,</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
 <span class="ne">--&gt; </span><span class="mi">172</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
@@ -856,18 +856,18 @@ for partial selection on the rows:</p>
 <span class="g g-Whitespace">   </span><span class="mi">4312</span>                 <span class="n">indexer</span> <span class="o">=</span> <span class="p">[</span><span class="n">indexer</span><span class="p">]</span>  <span class="c1"># type: ignore[assignment]</span>
 <span class="g g-Whitespace">   </span><span class="mi">4313</span>         <span class="k">else</span><span class="p">:</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:3810,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3805</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">casted_key</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">3806</span>         <span class="nb">isinstance</span><span class="p">(</span><span class="n">casted_key</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">Iterable</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3807</span>         <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">casted_key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3808</span>     <span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">3809</span>         <span class="k">raise</span> <span class="n">InvalidIndexError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">err</span>
-<span class="ne">-&gt; </span><span class="mi">3810</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">err</span>
-<span class="g g-Whitespace">   </span><span class="mi">3811</span> <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3812</span>     <span class="c1"># If we have a listlike key, _check_indexing_error will raise</span>
-<span class="g g-Whitespace">   </span><span class="mi">3813</span>     <span class="c1">#  InvalidIndexError. Otherwise we fall through and re-raise</span>
-<span class="g g-Whitespace">   </span><span class="mi">3814</span>     <span class="c1">#  the TypeError.</span>
-<span class="g g-Whitespace">   </span><span class="mi">3815</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_indexing_error</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:3809,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3804</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">casted_key</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3805</span>         <span class="nb">isinstance</span><span class="p">(</span><span class="n">casted_key</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">Iterable</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3806</span>         <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3807</span>     <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3808</span>         <span class="k">raise</span> <span class="n">InvalidIndexError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">err</span>
+<span class="ne">-&gt; </span><span class="mi">3809</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">err</span>
+<span class="g g-Whitespace">   </span><span class="mi">3810</span> <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3811</span>     <span class="c1"># If we have a listlike key, _check_indexing_error will raise</span>
+<span class="g g-Whitespace">   </span><span class="mi">3812</span>     <span class="c1">#  InvalidIndexError. Otherwise we fall through and re-raise</span>
+<span class="g g-Whitespace">   </span><span class="mi">3813</span>     <span class="c1">#  the TypeError.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3814</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_indexing_error</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
 <span class="ne">KeyError</span>: 'bar'
 </pre></div>
@@ -1602,17 +1602,17 @@ index.</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">102</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mi</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"name via level"</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:1856,</span> in <span class="ni">Index.name</span><span class="nt">(self, value)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1852</span> <span class="nd">@name</span><span class="o">.</span><span class="n">setter</span>
-<span class="g g-Whitespace">   </span><span class="mi">1853</span> <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Hashable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1854</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_no_setting_name</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1855</span>         <span class="c1"># Used in MultiIndex.levels to avoid silently ignoring name updates.</span>
-<span class="ne">-&gt; </span><span class="mi">1856</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1857</span>             <span class="s2">"Cannot set name on a level of a MultiIndex. Use "</span>
-<span class="g g-Whitespace">   </span><span class="mi">1858</span>             <span class="s2">"'MultiIndex.set_names' instead."</span>
-<span class="g g-Whitespace">   </span><span class="mi">1859</span>         <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1860</span>     <span class="n">maybe_extract_name</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1861</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">value</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:1855,</span> in <span class="ni">Index.name</span><span class="nt">(self, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1851</span> <span class="nd">@name</span><span class="o">.</span><span class="n">setter</span>
+<span class="g g-Whitespace">   </span><span class="mi">1852</span> <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Hashable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1853</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_no_setting_name</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1854</span>         <span class="c1"># Used in MultiIndex.levels to avoid silently ignoring name updates.</span>
+<span class="ne">-&gt; </span><span class="mi">1855</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1856</span>             <span class="s2">"Cannot set name on a level of a MultiIndex. Use "</span>
+<span class="g g-Whitespace">   </span><span class="mi">1857</span>             <span class="s2">"'MultiIndex.set_names' instead."</span>
+<span class="g g-Whitespace">   </span><span class="mi">1858</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1859</span>     <span class="n">maybe_extract_name</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1860</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">value</span>
 
 <span class="ne">RuntimeError</span>: Cannot set name on a level of a MultiIndex. Use 'MultiIndex.set_names' instead.
 </pre></div>
@@ -1632,49 +1632,49 @@ they need to be sorted. As with any index, you can use <a class="reference inter
 
 <span class="gp">In [106]: </span><span class="n">s</span>
 <span class="gh">Out[106]: </span>
-<span class="go">baz  two    0.206053</span>
+<span class="go">bar  two    0.206053</span>
 <span class="go">qux  two   -0.251905</span>
-<span class="go">bar  two   -2.213588</span>
-<span class="go">baz  one    1.063327</span>
-<span class="go">qux  one    1.266143</span>
-<span class="go">foo  two    0.299368</span>
-<span class="go">     one   -0.863838</span>
-<span class="go">bar  one    0.408204</span>
+<span class="go">baz  two   -2.213588</span>
+<span class="go">foo  one    1.063327</span>
+<span class="go">     two    1.266143</span>
+<span class="go">bar  one    0.299368</span>
+<span class="go">baz  one   -0.863838</span>
+<span class="go">qux  one    0.408204</span>
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [107]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
 <span class="gh">Out[107]: </span>
-<span class="go">bar  one    0.408204</span>
-<span class="go">     two   -2.213588</span>
-<span class="go">baz  one    1.063327</span>
+<span class="go">bar  one    0.299368</span>
 <span class="go">     two    0.206053</span>
-<span class="go">foo  one   -0.863838</span>
-<span class="go">     two    0.299368</span>
-<span class="go">qux  one    1.266143</span>
+<span class="go">baz  one   -0.863838</span>
+<span class="go">     two   -2.213588</span>
+<span class="go">foo  one    1.063327</span>
+<span class="go">     two    1.266143</span>
+<span class="go">qux  one    0.408204</span>
 <span class="go">     two   -0.251905</span>
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [108]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gh">Out[108]: </span>
-<span class="go">bar  one    0.408204</span>
-<span class="go">     two   -2.213588</span>
-<span class="go">baz  one    1.063327</span>
+<span class="go">bar  one    0.299368</span>
 <span class="go">     two    0.206053</span>
-<span class="go">foo  one   -0.863838</span>
-<span class="go">     two    0.299368</span>
-<span class="go">qux  one    1.266143</span>
+<span class="go">baz  one   -0.863838</span>
+<span class="go">     two   -2.213588</span>
+<span class="go">foo  one    1.063327</span>
+<span class="go">     two    1.266143</span>
+<span class="go">qux  one    0.408204</span>
 <span class="go">     two   -0.251905</span>
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [109]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gh">Out[109]: </span>
-<span class="go">bar  one    0.408204</span>
-<span class="go">baz  one    1.063327</span>
-<span class="go">foo  one   -0.863838</span>
-<span class="go">qux  one    1.266143</span>
-<span class="go">bar  two   -2.213588</span>
-<span class="go">baz  two    0.206053</span>
-<span class="go">foo  two    0.299368</span>
+<span class="go">bar  one    0.299368</span>
+<span class="go">baz  one   -0.863838</span>
+<span class="go">foo  one    1.063327</span>
+<span class="go">qux  one    0.408204</span>
+<span class="go">bar  two    0.206053</span>
+<span class="go">baz  two   -2.213588</span>
+<span class="go">foo  two    1.266143</span>
 <span class="go">qux  two   -0.251905</span>
 <span class="go">dtype: float64</span>
 </pre></div>
@@ -1686,26 +1686,26 @@ are named.</p>
 <span class="gp">In [111]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">"L1"</span><span class="p">)</span>
 <span class="gh">Out[111]: </span>
 <span class="go">L1   L2 </span>
-<span class="go">bar  one    0.408204</span>
-<span class="go">     two   -2.213588</span>
-<span class="go">baz  one    1.063327</span>
+<span class="go">bar  one    0.299368</span>
 <span class="go">     two    0.206053</span>
-<span class="go">foo  one   -0.863838</span>
-<span class="go">     two    0.299368</span>
-<span class="go">qux  one    1.266143</span>
+<span class="go">baz  one   -0.863838</span>
+<span class="go">     two   -2.213588</span>
+<span class="go">foo  one    1.063327</span>
+<span class="go">     two    1.266143</span>
+<span class="go">qux  one    0.408204</span>
 <span class="go">     two   -0.251905</span>
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [112]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">"L2"</span><span class="p">)</span>
 <span class="gh">Out[112]: </span>
 <span class="go">L1   L2 </span>
-<span class="go">bar  one    0.408204</span>
-<span class="go">baz  one    1.063327</span>
-<span class="go">foo  one   -0.863838</span>
-<span class="go">qux  one    1.266143</span>
-<span class="go">bar  two   -2.213588</span>
-<span class="go">baz  two    0.206053</span>
-<span class="go">foo  two    0.299368</span>
+<span class="go">bar  one    0.299368</span>
+<span class="go">baz  one   -0.863838</span>
+<span class="go">foo  one    1.063327</span>
+<span class="go">qux  one    0.408204</span>
+<span class="go">bar  two    0.206053</span>
+<span class="go">baz  two   -2.213588</span>
+<span class="go">foo  two    1.266143</span>
 <span class="go">qux  two   -0.251905</span>
 <span class="go">dtype: float64</span>
 </pre></div>
@@ -1951,8 +1951,8 @@ faster than fancy indexing.</p>
 <span class="gp">In [144]: </span><span class="o">%</span><span class="k">timeit</span> arr[indexer]
 <span class="gp">   .....: </span><span class="o">%</span><span class="k">timeit</span> arr.take(indexer, axis=0)
 <span class="gp">   .....: </span>
-<span class="go">263 us +- 44.8 us per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
-<span class="go">61 us +- 7.35 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
+<span class="go">187 us +- 20.8 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
+<span class="go">40.6 us +- 1.87 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [145]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">arr</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
@@ -1960,8 +1960,8 @@ faster than fancy indexing.</p>
 <span class="gp">In [146]: </span><span class="o">%</span><span class="k">timeit</span> ser.iloc[indexer]
 <span class="gp">   .....: </span><span class="o">%</span><span class="k">timeit</span> ser.take(indexer)
 <span class="gp">   .....: </span>
-<span class="go">116 us +- 14 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
-<span class="go">108 us +- 10.7 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
+<span class="go">95 us +- 3.6 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
+<span class="go">58.7 us +- 11.9 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
 </pre></div>
 </div>
 </section>

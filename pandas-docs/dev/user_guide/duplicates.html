@@ -607,13 +607,13 @@ duplicates present. The output can’t be determined, and so pandas raises.</p>
 <span class="g g-Whitespace">   </span><span class="mi">5531</span><span class="s2">             )</span>
 <span class="g g-Whitespace">   </span><span class="mi">5532</span><span class="s2"> </span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4437,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4434</span><span class="s2">     raise ValueError("cannot handle a non-unique multi-index!")</span>
-<span class="g g-Whitespace">   </span><span class="mi">4435</span><span class="s2"> elif not self.is_unique:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4436</span><span class="s2">     # GH#42568</span>
-<span class="ne">-&gt; </span><span class="mi">4437</span><span class="s2">     raise ValueError("cannot reindex on an axis with duplicate labels")</span>
-<span class="g g-Whitespace">   </span><span class="mi">4438</span><span class="s2"> else:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4439</span><span class="s2">     indexer, _ = self.get_indexer_non_unique(target)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4436,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4433</span><span class="s2">     raise ValueError("cannot handle a non-unique multi-index!")</span>
+<span class="g g-Whitespace">   </span><span class="mi">4434</span><span class="s2"> elif not self.is_unique:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4435</span><span class="s2">     # GH#42568</span>
+<span class="ne">-&gt; </span><span class="mi">4436</span><span class="s2">     raise ValueError("cannot reindex on an axis with duplicate labels")</span>
+<span class="g g-Whitespace">   </span><span class="mi">4437</span><span class="s2"> else:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4438</span><span class="s2">     indexer, _ = self.get_indexer_non_unique(target)</span>
 
 <span class="ne">ValueError</span>: cannot reindex on an axis with duplicate labels
 </pre></div>
@@ -766,10 +766,10 @@ will be raised.</p>
 <span class="ne">--&gt; </span><span class="mi">108</span><span class="s2">         ax._maybe_check_unique()</span>
 <span class="g g-Whitespace">    </span><span class="mi">110</span><span class="s2"> self._allows_duplicate_labels = value</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:727,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">724</span><span class="s2"> duplicates = self._format_duplicate_message()</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span><span class="s2"> msg += f"</span><span class="se">\n</span><span class="si">{duplicates}</span><span class="s2">"</span>
-<span class="ne">--&gt; </span><span class="mi">727</span><span class="s2"> raise DuplicateLabelError(msg)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:726,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">723</span><span class="s2"> duplicates = self._format_duplicate_message()</span>
+<span class="g g-Whitespace">    </span><span class="mi">724</span><span class="s2"> msg += f"</span><span class="se">\n</span><span class="si">{duplicates}</span><span class="s2">"</span>
+<span class="ne">--&gt; </span><span class="mi">726</span><span class="s2"> raise DuplicateLabelError(msg)</span>
 
 <span class="ne">DuplicateLabelError</span>: Index has duplicates.
 <span class="s2">      positions</span>
@@ -874,10 +874,10 @@ labels or performing an operation that introduces duplicate labels on a <code cl
 <span class="ne">--&gt; </span><span class="mi">108</span>         <span class="n">ax</span><span class="o">.</span><span class="n">_maybe_check_unique</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allows_duplicate_labels</span> <span class="o">=</span> <span class="n">value</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:727,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">724</span> <span class="n">duplicates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_duplicate_message</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span> <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">"</span>
-<span class="ne">--&gt; </span><span class="mi">727</span> <span class="k">raise</span> <span class="n">DuplicateLabelError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:726,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">723</span> <span class="n">duplicates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_duplicate_message</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">724</span> <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">"</span>
+<span class="ne">--&gt; </span><span class="mi">726</span> <span class="k">raise</span> <span class="n">DuplicateLabelError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
 <span class="ne">DuplicateLabelError</span>: Index has duplicates.
       <span class="n">positions</span>
@@ -939,10 +939,10 @@ operations.</p>
 <span class="ne">--&gt; </span><span class="mi">108</span>         <span class="n">ax</span><span class="o">.</span><span class="n">_maybe_check_unique</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allows_duplicate_labels</span> <span class="o">=</span> <span class="n">value</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:727,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">724</span> <span class="n">duplicates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_duplicate_message</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span> <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">"</span>
-<span class="ne">--&gt; </span><span class="mi">727</span> <span class="k">raise</span> <span class="n">DuplicateLabelError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:726,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">723</span> <span class="n">duplicates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_duplicate_message</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">724</span> <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">"</span>
+<span class="ne">--&gt; </span><span class="mi">726</span> <span class="k">raise</span> <span class="n">DuplicateLabelError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
 <span class="ne">DuplicateLabelError</span>: Index has duplicates.
       <span class="n">positions</span>
