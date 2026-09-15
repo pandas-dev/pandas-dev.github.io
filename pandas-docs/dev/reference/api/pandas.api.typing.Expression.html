@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.bdate_range &#8212; pandas 3.1.0.dev0 documentation</title>
+    <title>pandas.api.typing.Expression &#8212; pandas 3.1.0.dev0 documentation</title>
   
   
   
@@ -51,7 +51,7 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script data-domain="pandas.pydata.org" defer="defer" src="https://views.scientific-python.org/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.bdate_range';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.api.typing.Expression';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.20.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
@@ -63,8 +63,8 @@
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.period_range" href="pandas.period_range.html" />
-    <link rel="prev" title="pandas.date_range" href="pandas.date_range.html" />
+    <link rel="next" title="pandas.tseries.api.guess_datetime_format" href="pandas.tseries.api.guess_datetime_format.html" />
+    <link rel="prev" title="pandas.eval" href="pandas.eval.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="3.1" />
@@ -485,14 +485,14 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.to_datetime.html">pandas.to_datetime</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.to_timedelta.html">pandas.to_timedelta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.date_range.html">pandas.date_range</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">pandas.bdate_range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.bdate_range.html">pandas.bdate_range</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.period_range.html">pandas.period_range</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.timedelta_range.html">pandas.timedelta_range</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.infer_freq.html">pandas.infer_freq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.interval_range.html">pandas.interval_range</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.col.html">pandas.col</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.eval.html">pandas.eval</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pandas.api.typing.Expression.html">pandas.api.typing.Expression</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">pandas.api.typing.Expression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.tseries.api.guess_datetime_format.html">pandas.tseries.api.guess_datetime_format</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.util.hash_array.html">pandas.util.hash_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.util.hash_pandas_object.html">pandas.util.hash_pandas_object</a></li>
@@ -564,7 +564,7 @@
     
     <li class="breadcrumb-item"><a href="../general_functions.html" class="nav-link">General functions</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pandas.bdate_range</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pandas.api.typing.Expression</span></li>
   </ul>
 </nav>
 </div>
@@ -581,79 +581,39 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="pandas-bdate-range">
-<h1>pandas.bdate_range<a class="headerlink" href="#pandas-bdate-range" title="Link to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="pandas.bdate_range">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">bdate_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'B'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weekmask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holidays</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inclusive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/datetimes.py#L1820-L1933"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.bdate_range" title="Link to this definition">#</a></dt>
-<dd><p>Return a fixed frequency DatetimeIndex with business day as the default.</p>
-<p>This function generates a DatetimeIndex using business day frequency by
-default, skipping weekends. Custom business day calendars can be
-specified via <code class="docutils literal notranslate"><span class="pre">weekmask</span></code> and <code class="docutils literal notranslate"><span class="pre">holidays</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>start</strong><span class="classifier">str or datetime-like, default None</span></dt><dd><p>Left bound for generating dates.</p>
-</dd>
-<dt><strong>end</strong><span class="classifier">str or datetime-like, default None</span></dt><dd><p>Right bound for generating dates.</p>
-</dd>
-<dt><strong>periods</strong><span class="classifier">int, default None</span></dt><dd><p>Number of periods to generate.</p>
-</dd>
-<dt><strong>freq</strong><span class="classifier">str, Timedelta, datetime.timedelta, or DateOffset, default ‘B’</span></dt><dd><p>Frequency strings can have multiples, e.g. ‘5h’. The default is
-business daily (‘B’).</p>
-</dd>
-<dt><strong>tz</strong><span class="classifier">str or None</span></dt><dd><p>Time zone name for returning localized DatetimeIndex, for example
-Asia/Beijing.</p>
-</dd>
-<dt><strong>normalize</strong><span class="classifier">bool, default False</span></dt><dd><p>Normalize start/end dates to midnight before generating date range.</p>
-</dd>
-<dt><strong>name</strong><span class="classifier">Hashable, default None</span></dt><dd><p>Name of the resulting DatetimeIndex.</p>
-</dd>
-<dt><strong>weekmask</strong><span class="classifier">str or None, default None</span></dt><dd><p>Weekmask of valid business days, passed to <code class="docutils literal notranslate"><span class="pre">numpy.busdaycalendar</span></code>,
-only used when custom frequency strings are passed.  The default
-value None is equivalent to ‘Mon Tue Wed Thu Fri’.</p>
-</dd>
-<dt><strong>holidays</strong><span class="classifier">list-like or None, default None</span></dt><dd><p>Dates to exclude from the set of valid business days, passed to
-<code class="docutils literal notranslate"><span class="pre">numpy.busdaycalendar</span></code>, only used when custom frequency strings
-are passed.</p>
-</dd>
-<dt><strong>inclusive</strong><span class="classifier">{“both”, “neither”, “left”, “right”}, default “both”</span></dt><dd><p>Include boundaries; Whether to set each bound as closed or open.</p>
-</dd>
-<dt><strong>**kwargs</strong></dt><dd><p>For compatibility. Has no effect on the result.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>DatetimeIndex</dt><dd><p>Fixed frequency DatetimeIndex.</p>
-</dd>
-</dl>
-</dd>
-</dl>
+  <section id="pandas-api-typing-expression">
+<h1>pandas.api.typing.Expression<a class="headerlink" href="#pandas-api-typing-expression" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pandas.api.typing.Expression">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.api.typing.</span></span><span class="sig-name descname"><span class="pre">Expression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repr_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">needs_parenthese</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/col.py#L80-L395"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.typing.Expression" title="Link to this definition">#</a></dt>
+<dd><p>Class representing a deferred expression evaluated against a DataFrame.</p>
+<p>Expressions are initially created via <code class="docutils literal notranslate"><span class="pre">pd.col</span></code> and can be composed
+using arithmetic, comparison, and any method or attribute that the
+underlying object supports. This includes NumPy ufuncs, indexing, and
+the boolean operators <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code>, and <code class="docutils literal notranslate"><span class="pre">~</span></code>.</p>
+<p>Expressions are solely intended for use in expression-based APIs, such
+as <a class="reference internal" href="pandas.DataFrame.assign.html#pandas.DataFrame.assign" title="pandas.DataFrame.assign"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.assign</span></code></a> and
+<a class="reference internal" href="pandas.DataFrame.loc.html#pandas.DataFrame.loc" title="pandas.DataFrame.loc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.loc</span></code></a>, where they are
+evaluated against the DataFrame they are passed to.</p>
+<p>This is not meant to be instantiated directly. Instead, use <a class="reference internal" href="pandas.col.html#pandas.col" title="pandas.col"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.col()</span></code></a>.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="pandas.date_range.html#pandas.date_range" title="pandas.date_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">date_range</span></code></a></dt><dd><p>Return a fixed frequency DatetimeIndex.</p>
-</dd>
-<dt><a class="reference internal" href="pandas.period_range.html#pandas.period_range" title="pandas.period_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">period_range</span></code></a></dt><dd><p>Return a fixed frequency PeriodIndex.</p>
-</dd>
-<dt><a class="reference internal" href="pandas.timedelta_range.html#pandas.timedelta_range" title="pandas.timedelta_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">timedelta_range</span></code></a></dt><dd><p>Return a fixed frequency TimedeltaIndex.</p>
+<dt><a class="reference internal" href="pandas.col.html#pandas.col" title="pandas.col"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.col</span></code></a></dt><dd><p>Create a deferred column reference.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Notes</p>
-<p>Of the four parameters: <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">periods</span></code>, and <code class="docutils literal notranslate"><span class="pre">freq</span></code>,
-exactly three must be specified.  Specifying <code class="docutils literal notranslate"><span class="pre">freq</span></code> is a requirement
-for <code class="docutils literal notranslate"><span class="pre">bdate_range</span></code>.  Use <code class="docutils literal notranslate"><span class="pre">date_range</span></code> if specifying <code class="docutils literal notranslate"><span class="pre">freq</span></code> is not
-desired.</p>
-<p>To learn more about the frequency strings, please see
-<a class="reference internal" href="../../user_guide/timeseries.html#timeseries-offset-aliases"><span class="std std-ref">this link</span></a>.</p>
+<p>The attributes that are available depend on the expression and where it
+is used. Attribute access is itself deferred: it is applied to the
+result of evaluating the expression, so an attribute that is not
+supported by that result raises when the expression is evaluated.</p>
 <p class="rubric">Examples</p>
-<p>Note how the two weekend days are skipped in the result.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">bdate_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">"1/1/2018"</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">"1/08/2018"</span><span class="p">)</span>
-<span class="go">DatetimeIndex(['2018-01-01', '2018-01-02', '2018-01-03', '2018-01-04',</span>
-<span class="go">           '2018-01-05', '2018-01-08'],</span>
-<span class="go">          dtype='datetime64[us]', freq='B')</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"b"</span><span class="p">))</span>
+<span class="go">   a  b  c</span>
+<span class="go">0  1  3  4</span>
+<span class="go">1  2  4  6</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -671,20 +631,20 @@ desired.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="pandas.date_range.html"
+       href="pandas.eval.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">pandas.date_range</p>
+        <p class="prev-next-title">pandas.eval</p>
       </div>
     </a>
     <a class="right-next"
-       href="pandas.period_range.html"
+       href="pandas.tseries.api.guess_datetime_format.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">pandas.period_range</p>
+        <p class="prev-next-title">pandas.tseries.api.guess_datetime_format</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -707,7 +667,7 @@ desired.</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas.bdate_range"><code class="docutils literal notranslate"><span class="pre">bdate_range()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas.api.typing.Expression"><code class="docutils literal notranslate"><span class="pre">Expression</span></code></a></li>
 </ul>
   </nav></div>
 
