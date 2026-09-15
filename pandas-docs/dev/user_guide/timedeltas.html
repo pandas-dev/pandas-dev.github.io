@@ -651,12 +651,12 @@ is numeric:</p>
 <span class="gh">Out[20]: </span>
 <span class="go">TimedeltaIndex(['0 days 00:00:00', '0 days 00:00:01', '0 days 00:00:02',</span>
 <span class="go">                '0 days 00:00:03', '0 days 00:00:04'],</span>
-<span class="go">               dtype='timedelta64[s]', freq=None)</span>
+<span class="go">               dtype='timedelta64[us]', freq=None)</span>
 
 <span class="gp">In [21]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)</span>
 <span class="gh">Out[21]: </span>
 <span class="go">TimedeltaIndex(['0 days', '1 days', '2 days', '3 days', '4 days'],</span>
-<span class="go">               dtype='timedelta64[s]', freq=None)</span>
+<span class="go">               dtype='timedelta64[us]', freq=None)</span>
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -687,13 +687,13 @@ step size of that instance’s resolution:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="n">td</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"s"</span><span class="p">)</span>
 
 <span class="gp">In [26]: </span><span class="n">td</span><span class="o">.</span><span class="n">min</span>
-<span class="gh">Out[26]: </span><span class="go">Timedelta('-106751991167301 days +08:29:53')</span>
+<span class="gh">Out[26]: </span><span class="go">Timedelta('-106751992 days +19:59:05.224193')</span>
 
 <span class="gp">In [27]: </span><span class="n">td</span><span class="o">.</span><span class="n">max</span>
-<span class="gh">Out[27]: </span><span class="go">Timedelta('106751991167300 days 15:30:07')</span>
+<span class="gh">Out[27]: </span><span class="go">Timedelta('106751991 days 04:00:54.775807')</span>
 
 <span class="gp">In [28]: </span><span class="n">td</span><span class="o">.</span><span class="n">resolution</span>
-<span class="gh">Out[28]: </span><span class="go">Timedelta('0 days 00:00:01')</span>
+<span class="gh">Out[28]: </span><span class="go">Timedelta('0 days 00:00:00.000001')</span>
 </pre></div>
 </div>
 <p>Different resolutions can be converted to each other through

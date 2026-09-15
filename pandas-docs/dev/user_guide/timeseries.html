@@ -955,12 +955,12 @@ option, see the Python <a class="reference external" href="https://docs.python.o
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">61</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">'2009/07/31'</span><span class="p">,</span> <span class="s1">'asd'</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'raise'</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/tools/datetimes.py:1266,</span> in <span class="ni">to_datetime</span><span class="nt">(arg, errors, dayfirst, yearfirst, utc, format, exact, unit, origin, cache)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1264</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">_convert_and_box_cache</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">cache_array</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1265</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1266</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">convert_listlike</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1267</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1268</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">convert_listlike</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">arg</span><span class="p">]),</span> <span class="nb">format</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/tools/datetimes.py:1267,</span> in <span class="ni">to_datetime</span><span class="nt">(arg, errors, dayfirst, yearfirst, utc, format, exact, unit, origin, cache)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1265</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">_convert_and_box_cache</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">cache_array</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1266</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1267</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">convert_listlike</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1268</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1269</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">convert_listlike</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">arg</span><span class="p">]),</span> <span class="nb">format</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/tools/datetimes.py:481,</span> in <span class="ni">_convert_listlike_datetimes</span><span class="nt">(arg, format, name, utc, unit, errors, dayfirst, yearfirst, exact)</span>
 <span class="g g-Whitespace">    </span><span class="mi">479</span> <span class="c1"># `format` could be inferred, or user didn't ask for mixed-format parsing.</span>
@@ -1021,7 +1021,7 @@ which can be specified. These are computed from the starting point specified by 
 <span class="go">DatetimeIndex(['2012-10-08 18:15:05', '2012-10-09 18:15:05',</span>
 <span class="go">               '2012-10-10 18:15:05', '2012-10-11 18:15:05',</span>
 <span class="go">               '2012-10-12 18:15:05'],</span>
-<span class="go">              dtype='datetime64[s]', freq=None)</span>
+<span class="go">              dtype='datetime64[us]', freq=None)</span>
 
 <span class="gp">In [64]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="p">[</span><span class="mi">1349720105100</span><span class="p">,</span> <span class="mi">1349720105200</span><span class="p">,</span> <span class="mi">1349720105300</span><span class="p">,</span> <span class="mi">1349720105400</span><span class="p">,</span> <span class="mi">1349720105500</span><span class="p">],</span>
@@ -1032,7 +1032,7 @@ which can be specified. These are computed from the starting point specified by 
 <span class="go">DatetimeIndex(['2012-10-08 18:15:05.100000', '2012-10-08 18:15:05.200000',</span>
 <span class="go">               '2012-10-08 18:15:05.300000', '2012-10-08 18:15:05.400000',</span>
 <span class="go">               '2012-10-08 18:15:05.500000'],</span>
-<span class="go">              dtype='datetime64[ms]', freq=None)</span>
+<span class="go">              dtype='datetime64[us]', freq=None)</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1139,8 +1139,8 @@ of a <code class="docutils literal notranslate"><span class="pre">DatetimeIndex<
 Commonly called ‘unix epoch’ or POSIX time.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [76]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)</span>
 <span class="gh">Out[76]: </span>
-<span class="go">DatetimeIndex(['1970-01-02', '1970-01-03', '1970-01-04'], dtype='datetime64[s]',</span>
-<span class="go">              freq=None)</span>
+<span class="go">DatetimeIndex(['1970-01-02', '1970-01-03', '1970-01-04'],</span>
+<span class="go">              dtype='datetime64[us]', freq=None)</span>
 </pre></div>
 </div>
 </section>
@@ -3369,7 +3369,7 @@ or calendars with additional rules.</p>
 <span class="gp">In [312]: </span><span class="n">cal</span><span class="o">.</span><span class="n">rules</span>
 <span class="gh">Out[312]: </span>
 <span class="go">[Holiday: Memorial Day (month=5, day=31, offset=&lt;DateOffset: weekday=MO(-1)&gt;),</span>
-<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f2f0e1be2a0&gt;),</span>
+<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f6d263f6340&gt;),</span>
 <span class="go"> Holiday: Columbus Day (month=10, day=1, offset=&lt;DateOffset: weekday=MO(+2)&gt;)]</span>
 
 <span class="gp">In [313]: </span><span class="n">new_cal</span> <span class="o">=</span> <span class="n">HolidayCalendarFactory</span><span class="p">(</span><span class="s2">"NewExampleCalendar"</span><span class="p">,</span> <span class="n">cal</span><span class="p">,</span> <span class="n">USLaborDay</span><span class="p">)</span>
@@ -3378,7 +3378,7 @@ or calendars with additional rules.</p>
 <span class="gh">Out[314]: </span>
 <span class="go">[Holiday: Labor Day (month=9, day=1, offset=&lt;DateOffset: weekday=MO(+1)&gt;),</span>
 <span class="go"> Holiday: Memorial Day (month=5, day=31, offset=&lt;DateOffset: weekday=MO(-1)&gt;),</span>
-<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f2f0e1be2a0&gt;),</span>
+<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f6d263f6340&gt;),</span>
 <span class="go"> Holiday: Columbus Day (month=10, day=1, offset=&lt;DateOffset: weekday=MO(+2)&gt;)]</span>
 </pre></div>
 </div>
@@ -4109,8 +4109,8 @@ frequency. Arithmetic is not allowed between <code class="docutils literal notra
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [402]: </span><span class="n">p</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">Minute</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">File pandas/_libs/tslibs/period.pyx:2240,</span> in <span class="ni">pandas._libs.tslibs.period._Period._add_timedeltalike_scalar</span><span class="nt">()</span>
-<span class="ne">-&gt; </span><span class="mi">2240</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/tslibs/period.pyx:2241,</span> in <span class="ni">pandas._libs.tslibs.period._Period._add_timedeltalike_scalar</span><span class="nt">()</span>
+<span class="ne">-&gt; </span><span class="mi">2241</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
 <span class="nn">File pandas/_libs/tslibs/timedeltas.pyx:299,</span> in <span class="ni">pandas._libs.tslibs.timedeltas.delta_to_nanoseconds</span><span class="nt">()</span>
 <span class="ne">--&gt; </span><span class="mi">299</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
 <span class="nn">File pandas/_libs/tslibs/np_datetime.pyx:827,</span> in <span class="ni">pandas._libs.tslibs.np_datetime.convert_reso</span><span class="nt">()</span>
@@ -4123,10 +4123,10 @@ frequency. Arithmetic is not allowed between <code class="docutils literal notra
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">402</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">p</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">Minute</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="nn">File pandas/_libs/tslibs/period.pyx:2261,</span> in <span class="ni">pandas._libs.tslibs.period._Period.__add__</span><span class="nt">()</span>
-<span class="ne">-&gt; </span><span class="mi">2261</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
-<span class="nn">File pandas/_libs/tslibs/period.pyx:2242,</span> in <span class="ni">pandas._libs.tslibs.period._Period._add_timedeltalike_scalar</span><span class="nt">()</span>
-<span class="ne">-&gt; </span><span class="mi">2242</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/tslibs/period.pyx:2262,</span> in <span class="ni">pandas._libs.tslibs.period._Period.__add__</span><span class="nt">()</span>
+<span class="ne">-&gt; </span><span class="mi">2262</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/tslibs/period.pyx:2243,</span> in <span class="ni">pandas._libs.tslibs.period._Period._add_timedeltalike_scalar</span><span class="nt">()</span>
+<span class="ne">-&gt; </span><span class="mi">2243</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
 <span class="ne">IncompatibleFrequency</span>: Input cannot be converted to Period(freq=h)
 </pre></div>
 </div>
@@ -4143,12 +4143,12 @@ frequency. Arithmetic is not allowed between <code class="docutils literal notra
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">405</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">p</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthBegin</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
-<span class="nn">File pandas/_libs/tslibs/period.pyx:2263,</span> in <span class="ni">pandas._libs.tslibs.period._Period.__add__</span><span class="nt">()</span>
-<span class="ne">-&gt; </span><span class="mi">2263</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
-<span class="nn">File pandas/_libs/tslibs/period.pyx:2253,</span> in <span class="ni">pandas._libs.tslibs.period._Period._add_offset</span><span class="nt">()</span>
-<span class="ne">-&gt; </span><span class="mi">2253</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
-<span class="nn">File pandas/_libs/tslibs/period.pyx:2046,</span> in <span class="ni">pandas._libs.tslibs.period.PeriodMixin._require_matching_unit</span><span class="nt">()</span>
-<span class="ne">-&gt; </span><span class="mi">2046</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/tslibs/period.pyx:2264,</span> in <span class="ni">pandas._libs.tslibs.period._Period.__add__</span><span class="nt">()</span>
+<span class="ne">-&gt; </span><span class="mi">2264</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/tslibs/period.pyx:2254,</span> in <span class="ni">pandas._libs.tslibs.period._Period._add_offset</span><span class="nt">()</span>
+<span class="ne">-&gt; </span><span class="mi">2254</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/tslibs/period.pyx:2047,</span> in <span class="ni">pandas._libs.tslibs.period.PeriodMixin._require_matching_unit</span><span class="nt">()</span>
+<span class="ne">-&gt; </span><span class="mi">2047</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
 <span class="ne">IncompatibleFrequency</span>: Input has different freq=3MS from Period(freq=M)
 </pre></div>
 </div>

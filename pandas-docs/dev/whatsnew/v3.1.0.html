@@ -919,6 +919,44 @@ still raises <code class="docutils literal notranslate"><span class="pre">ValueE
 </section>
 <section id="backwards-incompatible-api-changes">
 <span id="whatsnew-310-api-breaking"></span><h2>Backwards incompatible API changes<a class="headerlink" href="#backwards-incompatible-api-changes" title="Link to this heading">#</a></h2>
+<section id="datetime-timedelta-resolution-for-numeric-input">
+<span id="whatsnew-310-api-breaking-datetimelike-unit-numeric"></span><h3>Datetime/timedelta resolution for numeric input<a class="headerlink" href="#datetime-timedelta-resolution-for-numeric-input" title="Link to this heading">#</a></h3>
+<p>In pandas 3.0, the default <code class="docutils literal notranslate"><span class="pre">unit</span></code> when creating <code class="docutils literal notranslate"><span class="pre">datetime64</span></code> or
+<code class="docutils literal notranslate"><span class="pre">timedelta64</span></code> data was changed from nanoseconds to microseconds for many
+cases (e.g. constructing from strings or stdlib <code class="docutils literal notranslate"><span class="pre">datetime</span></code> objects). But for
+numeric input, it was changed to take the resolution used to interpret the
+input value as the resulting resolution. See
+<a class="reference internal" href="v3.0.0.html#whatsnew-300-api-breaking-datetime-resolution-inference"><span class="std std-ref">Datetime/timedelta resolution inference</span></a> in the 3.0
+release notes for more details.</p>
+<p>This means that, for example, <code class="docutils literal notranslate"><span class="pre">pd.to_timedelta([1],</span> <span class="pre">unit=&quot;s&quot;)</span></code> now had <code class="docutils literal notranslate"><span class="pre">s</span></code>
+resolution instead of <code class="docutils literal notranslate"><span class="pre">ns</span></code>. An unintended side effect of this change is that
+doing arithmetic with such <code class="docutils literal notranslate"><span class="pre">timedelta64[s]</span></code> data, which preserves the <code class="docutils literal notranslate"><span class="pre">s</span></code>
+resolution, could lead to unexpected (rounded) results (see <a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/65608">GH 65608</a>).</p>
+<p>To ensure a more consistent use of resolution, construction with numeric input
+will now also default to microseconds (or nanoseconds if the precision of the
+input requires it).</p>
+<p>Specifically, <a class="reference internal" href="../reference/api/pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_datetime()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.to_timedelta.html#pandas.to_timedelta" title="pandas.to_timedelta"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_timedelta()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a>,
+and <a class="reference internal" href="../reference/api/pandas.Timedelta.html#pandas.Timedelta" title="pandas.Timedelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timedelta</span></code></a> constructors will still use the <code class="docutils literal notranslate"><span class="pre">unit</span></code> argument to
+convert numeric input, but no longer use that resolution for the resulting
+<code class="docutils literal notranslate"><span class="pre">dtype</span></code>. For example, the following cases now all default to microseconds:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"s"</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="go">datetime64[us]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"s"</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="go">timedelta64[us]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"s"</span><span class="p">)</span><span class="o">.</span><span class="n">unit</span>
+<span class="go">'us'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"s"</span><span class="p">)</span><span class="o">.</span><span class="n">unit</span>
+<span class="go">'us'</span>
+</pre></div>
+</div>
+<p>Compared to the behaviour in pandas 2.x, this means that those cases now give
+microsecond resolution instead of nanoseconds. Except for the <code class="docutils literal notranslate"><span class="pre">pd.Timestamp(1,</span>
+<span class="pre">unit=&quot;s&quot;)</span></code> case, which already used the input <code class="docutils literal notranslate"><span class="pre">unit</span></code> before pandas 3.0,
+and thus now gives microsecond instead of second resolution.</p>
+<p>If you actually need the specific resolution from the input data, use the
+<a class="reference internal" href="../reference/api/pandas.Timestamp.as_unit.html#pandas.Timestamp.as_unit" title="pandas.Timestamp.as_unit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">as_unit()</span></code></a> (or <a class="reference internal" href="../reference/api/pandas.Series.dt.as_unit.html#pandas.Series.dt.as_unit" title="pandas.Series.dt.as_unit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.dt.as_unit()</span></code></a>) method after
+construction to convert to the desired resolution.</p>
+</section>
 <section id="increased-minimum-versions-for-dependencies">
 <span id="whatsnew-310-api-breaking-deps"></span><h3>Increased minimum versions for dependencies<a class="headerlink" href="#increased-minimum-versions-for-dependencies" title="Link to this heading">#</a></h3>
 <p>Some minimum supported versions of dependencies were updated.
@@ -2061,6 +2099,7 @@ when the requested row count is not a multiple of the chunk size (<a class="extl
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backwards-incompatible-api-changes">Backwards incompatible API changes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datetime-timedelta-resolution-for-numeric-input">Datetime/timedelta resolution for numeric input</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#increased-minimum-versions-for-dependencies">Increased minimum versions for dependencies</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-api-changes">Other API changes</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build">Build</a></li>
