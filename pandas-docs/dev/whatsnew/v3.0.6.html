@@ -709,6 +709,7 @@ including other versions of pandas.</p>
 <li><p>Bug in full-slice assignment (<code class="docutils literal notranslate"><span class="pre">arr[:]</span> <span class="pre">=</span> <span class="pre">value</span></code>) into a PyArrow-backed array where the result shared memory with <code class="docutils literal notranslate"><span class="pre">value</span></code>, so later modifying <code class="docutils literal notranslate"><span class="pre">value</span></code> also changed the assigned-to object (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/67990">GH 67990</a>)</p></li>
 <li><p>Fixed bug in <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a> with the <code class="docutils literal notranslate"><span class="pre">c</span></code> engine and <code class="docutils literal notranslate"><span class="pre">low_memory=True</span></code> where a mixed-dtype column selected by <code class="docutils literal notranslate"><span class="pre">usecols</span></code> raised <code class="docutils literal notranslate"><span class="pre">IndexError</span></code> instead of emitting a <code class="xref py py-class docutils literal notranslate"><span class="pre">DtypeWarning</span></code> unless it was the first column in the file, and where that warning named the wrong column when the file had an index column (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/67375">GH 67375</a>)</p></li>
 <li><p>Fixed bug in <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a> with the <code class="docutils literal notranslate"><span class="pre">c</span></code> engine and <code class="docutils literal notranslate"><span class="pre">low_memory=True</span></code> where the number reported next to each column name in the mixed-type <code class="xref py py-class docutils literal notranslate"><span class="pre">DtypeWarning</span></code> was a running count of the warned columns rather than the column’s position in the file (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/67375">GH 67375</a>)</p></li>
+<li><p>Regression in <a class="reference internal" href="../reference/api/pandas.Series.interpolate.html#pandas.Series.interpolate" title="pandas.Series.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.interpolate()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">method=&quot;linear&quot;</span></code> and a pyarrow-backed dtype leaving consecutive and trailing missing values unfilled, and truncating interpolated values for integer dtypes; the result now matches the equivalent masked (e.g. <code class="docutils literal notranslate"><span class="pre">Int64</span></code>) dtype, including the upcast to <code class="docutils literal notranslate"><span class="pre">float64[pyarrow]</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/65345">GH 65345</a>)</p></li>
 </ul>
 </section>
 <section id="bug-fixes">
@@ -719,7 +720,7 @@ including other versions of pandas.</p>
 </section>
 <section id="contributors">
 <span id="whatsnew-306-contributors"></span><h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">#</a></h2>
-<p>A total of 286 people contributed patches to this release.  People with a
+<p>A total of 287 people contributed patches to this release.  People with a
 “+” by their names contributed a patch for the first time.
 </p>
 <ul class="simple">
@@ -752,6 +753,7 @@ including other versions of pandas.</p>
 <li><p>Antareep Sarkar +</p></li>
 <li><p>Anton Karpov +</p></li>
 <li><p>Anzin Mohammed +</p></li>
+<li><p>Apoorv Darshan +</p></li>
 <li><p>Aria +</p></li>
 <li><p>Arthur Wigo</p></li>
 <li><p>Aryan Bhirud +</p></li>
