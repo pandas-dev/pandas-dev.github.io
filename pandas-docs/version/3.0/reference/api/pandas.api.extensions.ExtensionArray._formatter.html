@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pandas.api.extensions.ExtensionArray._formatter &#8212; pandas 3.0.5 documentation</title>
+    <title>pandas.api.extensions.ExtensionArray._formatter &#8212; pandas 3.0.6 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../../_static/documentation_options.js?v=f4ced14b"></script>
+    <script src="../../_static/documentation_options.js?v=c3365b21"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="pandas.api.extensions.ExtensionArray._explode" href="pandas.api.extensions.ExtensionArray._explode.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.0.5" />
+  <meta name="docsearch:version" content="3.0.6" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.0.5 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.0.5 documentation - Home"/>
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.0.6 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.0.6 documentation - Home"/>
   
   
 </a></div>
@@ -576,7 +576,7 @@
 <h1>pandas.api.extensions.ExtensionArray._formatter<a class="headerlink" href="#pandas-api-extensions-extensionarray-formatter" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.api.extensions.ExtensionArray._formatter">
-<span class="sig-prename descclassname"><span class="pre">ExtensionArray.</span></span><span class="sig-name descname"><span class="pre">_formatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">boxed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v3.0.5/pandas/core/arrays/base.py#L2103-L2150"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.ExtensionArray._formatter" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">ExtensionArray.</span></span><span class="sig-name descname"><span class="pre">_formatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">boxed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v3.0.6/pandas/core/arrays/base.py#L2103-L2150"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.ExtensionArray._formatter" title="Link to this definition">#</a></dt>
 <dd><p>Formatting function for scalar values.</p>
 <p>This is used in the default ‘__repr__’. The returned formatting
 function receives instances of your scalar type.</p>
@@ -594,7 +594,7 @@ quoted or not).</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>Callable[[Any], str]</dt><dd><p>A callable that gets instances of the scalar type and
-returns a string. By default, <a class="reference external" href="https://docs.python.org/3/library/functions.html#repr" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">repr()</span></code></a> is used
+returns a string. By default, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#repr" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">repr()</span></code></a> is used
 when <code class="docutils literal notranslate"><span class="pre">boxed=False</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">str()</span></code> is used when
 <code class="docutils literal notranslate"><span class="pre">boxed=True</span></code>.</p>
 </dd>
@@ -617,7 +617,7 @@ when <code class="docutils literal notranslate"><span class="pre">boxed=False</s
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">MyExtensionArray</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">arrays</span><span class="o">.</span><span class="n">NumpyExtensionArray</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="nf">_formatter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">boxed</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="gp">... </span>        <span class="k">return</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot;*&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;*&quot;</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">"*"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"*"</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">MyExtensionArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
 <span class="go">&lt;MyExtensionArray&gt;</span>
 <span class="go">[*1*, *2*, *3*, *4*]</span>

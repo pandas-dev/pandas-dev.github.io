@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Duplicate Labels &#8212; pandas 3.0.5 documentation</title>
+    <title>Duplicate Labels &#8212; pandas 3.0.6 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=956a7be408686d7d6a7b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=956a7be408686d7d6a7b" />
 
-    <script src="../_static/documentation_options.js?v=f4ced14b"></script>
+    <script src="../_static/documentation_options.js?v=c3365b21"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -66,7 +66,7 @@
     <link rel="prev" title="Working with missing data" href="missing_data.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.0.5" />
+  <meta name="docsearch:version" content="3.0.6" />
   </head>
   
   
@@ -133,8 +133,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.0.5 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.0.5 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.0.6 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.0.6 documentation - Home"/>
   
   
 </a></div>
@@ -549,13 +549,13 @@ detect them if they do.</p>
 <h2>Consequences of Duplicate Labels<a class="headerlink" href="#consequences-of-duplicate-labels" title="Link to this heading">#</a></h2>
 <p>Some pandas methods (<code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.reindex()</span></code> for example) just don’t work with
 duplicates present. The output can’t be determined, and so pandas raises.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">])</span>
 
-<span class="gp">In [4]: </span><span class="n">s1</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>
+<span class="gp">In [4]: </span><span class="n">s1</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">])</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">s1</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">s1</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">])</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:5525,</span> in <span class="ni">Series.reindex</span><span class="nt">(self, index, axis, method, copy, level, fill_value, limit, tolerance)</span>
 <span class="g g-Whitespace">   </span><span class="mi">5299</span> <span class="k">def</span><span class="w"> </span><span class="nf">reindex</span><span class="p">(</span>  <span class="c1"># type: ignore[override]</span>
@@ -563,11 +563,11 @@ duplicates present. The output can’t be determined, and so pandas raises.</p>
 <span class="g g-Whitespace">   </span><span class="mi">5301</span>     <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">5309</span>     <span class="n">tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">5310</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Series</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">5311</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">5311</span><span class="w">     </span><span class="sd">"""</span>
 <span class="g g-Whitespace">   </span><span class="mi">5312</span><span class="sd">     Conform Series to new index with optional filling logic.</span>
 <span class="g g-Whitespace">   </span><span class="mi">5313</span><span class="sd"> </span>
 <span class="sd">   (...)   5523     See the :ref:`user guide &lt;basics.reindexing&gt;` for more.</span>
-<span class="g g-Whitespace">   </span><span class="mi">5524</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">5524</span><span class="sd">     """</span>
 <span class="ne">-&gt; </span><span class="mi">5525</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">5526</span>         <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
 <span class="g g-Whitespace">   </span><span class="mi">5527</span>         <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
@@ -585,7 +585,7 @@ duplicates present. The output can’t be determined, and so pandas raises.</p>
 <span class="g g-Whitespace">   </span><span class="mi">5463</span>         <span class="c1"># perform the reindex on the axes</span>
 <span class="ne">-&gt; </span><span class="mi">5464</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reindex_axes</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">5465</span>             <span class="n">axes</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">fill_value</span>
-<span class="g g-Whitespace">   </span><span class="mi">5466</span>         <span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;reindex&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5466</span>         <span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"reindex"</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5486,</span> in <span class="ni">NDFrame._reindex_axes</span><span class="nt">(self, axes, level, limit, tolerance, method, fill_value)</span>
 <span class="g g-Whitespace">   </span><span class="mi">5482</span>             <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -598,10 +598,10 @@ duplicates present. The output can’t be determined, and so pandas raises.</p>
 <span class="g g-Whitespace">   </span><span class="mi">5489</span> 
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4253,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4250</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cannot handle a non-unique multi-index!&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4250</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"cannot handle a non-unique multi-index!"</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4251</span> <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unique</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">4252</span>     <span class="c1"># GH#42568</span>
-<span class="ne">-&gt; </span><span class="mi">4253</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cannot reindex on an axis with duplicate labels&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">4253</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"cannot reindex on an axis with duplicate labels"</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4254</span> <span class="k">else</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">4255</span>     <span class="n">indexer</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_indexer_non_unique</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
 
@@ -612,7 +612,7 @@ duplicates present. The output can’t be determined, and so pandas raises.</p>
 indexing with a scalar will <em>reduce dimensionality</em>. Slicing a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>
 with a scalar will return a <code class="docutils literal notranslate"><span class="pre">Series</span></code>. Slicing a <code class="docutils literal notranslate"><span class="pre">Series</span></code> with a scalar will
 return a scalar. But with duplicates, this isn’t the case.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">])</span>
 
 <span class="gp">In [6]: </span><span class="n">df1</span>
 <span class="gh">Out[6]: </span>
@@ -622,7 +622,7 @@ return a scalar. But with duplicates, this isn’t the case.</p>
 </pre></div>
 </div>
 <p>We have duplicates in the columns. If we slice <code class="docutils literal notranslate"><span class="pre">'B'</span></code>, we get back a <code class="docutils literal notranslate"><span class="pre">Series</span></code></p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">df1</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span>  <span class="c1"># a series</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">df1</span><span class="p">[</span><span class="s2">"B"</span><span class="p">]</span>  <span class="c1"># a series</span>
 <span class="gh">Out[7]: </span>
 <span class="go">0    2</span>
 <span class="go">1    5</span>
@@ -630,7 +630,7 @@ return a scalar. But with duplicates, this isn’t the case.</p>
 </pre></div>
 </div>
 <p>But slicing <code class="docutils literal notranslate"><span class="pre">'A'</span></code> returns a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code></p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">df1</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span>  <span class="c1"># a DataFrame</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">df1</span><span class="p">[</span><span class="s2">"A"</span><span class="p">]</span>  <span class="c1"># a DataFrame</span>
 <span class="gh">Out[8]: </span>
 <span class="go">   A  A</span>
 <span class="go">0  0  1</span>
@@ -638,7 +638,7 @@ return a scalar. But with duplicates, this isn’t the case.</p>
 </pre></div>
 </div>
 <p>This applies to row labels as well</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">])</span>
 
 <span class="gp">In [10]: </span><span class="n">df2</span>
 <span class="gh">Out[10]: </span>
@@ -647,10 +647,10 @@ return a scalar. But with duplicates, this isn’t the case.</p>
 <span class="go">a  1</span>
 <span class="go">b  2</span>
 
-<span class="gp">In [11]: </span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">]</span>  <span class="c1"># a scalar</span>
+<span class="gp">In [11]: </span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"b"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">]</span>  <span class="c1"># a scalar</span>
 <span class="gh">Out[11]: </span><span class="go">np.int64(2)</span>
 
-<span class="gp">In [12]: </span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">]</span>  <span class="c1"># a Series</span>
+<span class="gp">In [12]: </span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">]</span>  <span class="c1"># a Series</span>
 <span class="gh">Out[12]: </span>
 <span class="go">a    0</span>
 <span class="go">a    1</span>
@@ -716,23 +716,23 @@ processing pipeline (from methods like <a class="reference internal" href="../re
 <em>disallow</em> duplicate labels by calling <code class="docutils literal notranslate"><span class="pre">.set_flags(allows_duplicate_labels=False)</span></code>.
 (the default is to allow them). If there are duplicate labels, an exception
 will be raised.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span><span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">])</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span><span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">DuplicateLabelError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span><span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">])</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span><span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:469,</span> in <span class="ni">NDFrame.set_flags</span><span class="nt">(self, copy, allows_duplicate_labels)</span>
-<span class="g g-Whitespace">    </span><span class="mi">465</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">465</span>         <span class="s2">"""</span>
 <span class="g g-Whitespace">    </span><span class="mi">466</span><span class="s2">         self._check_copy_deprecation(copy)</span>
 <span class="g g-Whitespace">    </span><span class="mi">467</span><span class="s2">         df = self.copy(deep=False)</span>
 <span class="g g-Whitespace">    </span><span class="mi">468</span><span class="s2">         if allows_duplicate_labels is not None:</span>
-<span class="ne">--&gt; </span><span class="mi">469</span><span class="s2">             df.flags[&quot;allows_duplicate_labels&quot;] = allows_duplicate_labels</span>
+<span class="ne">--&gt; </span><span class="mi">469</span><span class="s2">             df.flags["allows_duplicate_labels"] = allows_duplicate_labels</span>
 <span class="g g-Whitespace">    </span><span class="mi">470</span><span class="s2">         return df</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/flags.py:121,</span> in <span class="ni">Flags.__setitem__</span><span class="nt">(self, key, value)</span>
 <span class="g g-Whitespace">    </span><span class="mi">119</span><span class="s2"> if key not in self._keys:</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span><span class="s2">     raise ValueError(f&quot;Unknown flag </span><span class="si">{key}</span><span class="s2">. Must be one of </span><span class="si">{self._keys}</span><span class="s2">&quot;)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span><span class="s2">     raise ValueError(f"Unknown flag </span><span class="si">{key}</span><span class="s2">. Must be one of </span><span class="si">{self._keys}</span><span class="s2">")</span>
 <span class="ne">--&gt; </span><span class="mi">121</span><span class="s2"> setattr(self, key, value)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/flags.py:108,</span> in <span class="ni">Flags.allows_duplicate_labels</span><span class="nt">(self, value)</span>
@@ -743,7 +743,7 @@ will be raised.</p>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:721,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">    </span><span class="mi">718</span><span class="s2"> duplicates = self._format_duplicate_message()</span>
-<span class="g g-Whitespace">    </span><span class="mi">719</span><span class="s2"> msg += f&quot;</span><span class="se">\n</span><span class="si">{duplicates}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">719</span><span class="s2"> msg += f"</span><span class="se">\n</span><span class="si">{duplicates}</span><span class="s2">"</span>
 <span class="ne">--&gt; </span><span class="mi">721</span><span class="s2"> raise DuplicateLabelError(msg)</span>
 
 <span class="ne">DuplicateLabelError</span>: Index has duplicates.
@@ -753,7 +753,7 @@ will be raised.</p>
 </pre></div>
 </div>
 <p>This applies to both row and column labels for a <code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">],)</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">],)</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
@@ -765,7 +765,7 @@ will be raised.</p>
 </div>
 <p>This attribute can be checked or set with <code class="xref py py-attr docutils literal notranslate"><span class="pre">allows_duplicate_labels</span></code>,
 which indicates whether that object can have duplicate labels.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">,</span> <span class="s2">"X"</span><span class="p">,</span> <span class="s2">"Y"</span><span class="p">])</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
@@ -801,7 +801,7 @@ Or the property can just be set directly on the same object</p>
 <p>When processing raw, messy data you might initially read in the messy data
 (which potentially has duplicate labels), deduplicate, and then disallow duplicates
 going forward, to ensure that your data pipeline doesn’t introduce duplicates.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"..."</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">deduplicated</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>  <span class="c1"># remove duplicates</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">deduplicated</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">allows_duplicate_labels</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># disallow going forward</span>
 </pre></div>
@@ -819,7 +819,7 @@ labels or performing an operation that introduces duplicate labels on a <code cl
 <span class="nn">File ~/work/pandas/pandas/pandas/core/frame.py:6485,</span> in <span class="ni">DataFrame.rename</span><span class="nt">(self, mapper, index, columns, axis, copy, inplace, level, errors)</span>
 <span class="g g-Whitespace">   </span><span class="mi">6481</span>         <span class="mi">2</span>  <span class="mi">2</span>  <span class="mi">5</span>
 <span class="g g-Whitespace">   </span><span class="mi">6482</span>         <span class="mi">4</span>  <span class="mi">3</span>  <span class="mi">6</span>
-<span class="g g-Whitespace">   </span><span class="mi">6483</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">6483</span>         <span class="s2">"""</span>
 <span class="g g-Whitespace">   </span><span class="mi">6484</span><span class="s2">         self._check_copy_deprecation(copy)</span>
 <span class="ne">-&gt; </span><span class="mi">6485</span><span class="s2">         return super()._rename(</span>
 <span class="g g-Whitespace">   </span><span class="mi">6486</span><span class="s2">             mapper=mapper,</span>
@@ -831,7 +831,7 @@ labels or performing an operation that introduces duplicate labels on a <code cl
 <span class="g g-Whitespace">   </span><span class="mi">1057</span><span class="s2">             self._update_inplace(result)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1058</span><span class="s2">             return None</span>
 <span class="g g-Whitespace">   </span><span class="mi">1059</span><span class="s2">         else:</span>
-<span class="ne">-&gt; </span><span class="mi">1060</span><span class="s2">             return result.__finalize__(self, method=&quot;rename&quot;)</span>
+<span class="ne">-&gt; </span><span class="mi">1060</span><span class="s2">             return result.__finalize__(self, method="rename")</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:6155,</span> in <span class="ni">NDFrame.__finalize__</span><span class="nt">(self, other, method, **kwargs)</span>
 <span class="g g-Whitespace">   </span><span class="mi">6151</span><span class="s2">                 # impact if attrs are not used; i.e. attrs is an empty dict.</span>
@@ -851,7 +851,7 @@ labels or performing an operation that introduces duplicate labels on a <code cl
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:721,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">    </span><span class="mi">718</span><span class="s2"> duplicates = self._format_duplicate_message()</span>
-<span class="g g-Whitespace">    </span><span class="mi">719</span><span class="s2"> msg += f&quot;</span><span class="se">\n</span><span class="si">{duplicates}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">719</span><span class="s2"> msg += f"</span><span class="se">\n</span><span class="si">{duplicates}</span><span class="s2">"</span>
 <span class="ne">--&gt; </span><span class="mi">721</span><span class="s2"> raise DuplicateLabelError(msg)</span>
 
 <span class="ne">DuplicateLabelError</span>: Index has duplicates.
@@ -867,7 +867,7 @@ of all the duplicates (including the “original”) in the <code class="docutil
 <h3>Duplicate Label Propagation<a class="headerlink" href="#duplicate-label-propagation" title="Link to this heading">#</a></h3>
 <p>In general, disallowing duplicates is “sticky”. It’s preserved through
 operations.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span><span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">])</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span><span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="gp">In [30]: </span><span class="n">s1</span>
 <span class="gh">Out[30]: </span>
@@ -875,19 +875,19 @@ operations.</p>
 <span class="go">b    0</span>
 <span class="go">dtype: int64</span>
 
-<span class="gp">In [31]: </span><span class="n">s1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;b&quot;</span><span class="p">})</span>
+<span class="gp">In [31]: </span><span class="n">s1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"b"</span><span class="p">})</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">DuplicateLabelError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">s1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;b&quot;</span><span class="p">})</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">s1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"b"</span><span class="p">})</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:5231,</span> in <span class="ni">Series.rename</span><span class="nt">(self, index, axis, copy, inplace, level, errors)</span>
 <span class="g g-Whitespace">   </span><span class="mi">5224</span>     <span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_axis_number</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">5226</span> <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="ow">or</span> <span class="n">is_dict_like</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">5227</span>     <span class="c1"># error: Argument 1 to &quot;_rename&quot; of &quot;NDFrame&quot; has incompatible</span>
-<span class="g g-Whitespace">   </span><span class="mi">5228</span>     <span class="c1"># type &quot;Union[Union[Mapping[Any, Hashable], Callable[[Any],</span>
-<span class="g g-Whitespace">   </span><span class="mi">5229</span>     <span class="c1"># Hashable]], Hashable, None]&quot;; expected &quot;Union[Mapping[Any,</span>
-<span class="g g-Whitespace">   </span><span class="mi">5230</span>     <span class="c1"># Hashable], Callable[[Any], Hashable], None]&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">5227</span>     <span class="c1"># error: Argument 1 to "_rename" of "NDFrame" has incompatible</span>
+<span class="g g-Whitespace">   </span><span class="mi">5228</span>     <span class="c1"># type "Union[Union[Mapping[Any, Hashable], Callable[[Any],</span>
+<span class="g g-Whitespace">   </span><span class="mi">5229</span>     <span class="c1"># Hashable]], Hashable, None]"; expected "Union[Mapping[Any,</span>
+<span class="g g-Whitespace">   </span><span class="mi">5230</span>     <span class="c1"># Hashable], Callable[[Any], Hashable], None]"</span>
 <span class="ne">-&gt; </span><span class="mi">5231</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_rename</span><span class="p">(</span>
 <span class="g g-Whitespace">   </span><span class="mi">5232</span>         <span class="n">index</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
 <span class="g g-Whitespace">   </span><span class="mi">5233</span>         <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">,</span>
@@ -902,7 +902,7 @@ operations.</p>
 <span class="g g-Whitespace">   </span><span class="mi">1057</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_update_inplace</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1058</span>             <span class="k">return</span> <span class="kc">None</span>
 <span class="g g-Whitespace">   </span><span class="mi">1059</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1060</span>             <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;rename&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1060</span>             <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"rename"</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:6155,</span> in <span class="ni">NDFrame.__finalize__</span><span class="nt">(self, other, method, **kwargs)</span>
 <span class="g g-Whitespace">   </span><span class="mi">6151</span>                 <span class="c1"># impact if attrs are not used; i.e. attrs is an empty dict.</span>
@@ -922,7 +922,7 @@ operations.</p>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:721,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">    </span><span class="mi">718</span> <span class="n">duplicates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_duplicate_message</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">719</span> <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">719</span> <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">duplicates</span><span class="si">}</span><span class="s2">"</span>
 <span class="ne">--&gt; </span><span class="mi">721</span> <span class="k">raise</span> <span class="n">DuplicateLabelError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
 <span class="ne">DuplicateLabelError</span>: Index has duplicates.
