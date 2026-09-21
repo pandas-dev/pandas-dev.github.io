@@ -767,7 +767,7 @@
 <h1>pandas.DataFrame.select_dtypes<a class="headerlink" href="#pandas-dataframe-select-dtypes" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.DataFrame.select_dtypes">
-<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">select_dtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L5446-L6055"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.select_dtypes" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">select_dtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L5446-L6056"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.select_dtypes" title="Link to this definition">#</a></dt>
 <dd><p>Return a subset of the DataFrame’s columns based on the column dtypes.</p>
 <p>This method allows for filtering columns based on their data types.
 It is useful when working with heterogeneous DataFrames where operations
@@ -797,7 +797,8 @@ names a resolution no column can have, e.g. <code class="docutils literal notran
 </ul>
 </dd>
 <dt>TypeError</dt><dd><ul class="simple">
-<li><p>If any kind of string dtype is passed in.</p></li>
+<li><p>If a numpy string or bytes dtype is passed in, e.g. <code class="docutils literal notranslate"><span class="pre">np.str_</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'&lt;U8'</span></code> or <code class="docutils literal notranslate"><span class="pre">bytes</span></code></p></li>
 </ul>
 </dd>
 </dl>
@@ -813,10 +814,10 @@ names a resolution no column can have, e.g. <code class="docutils literal notran
 <p class="rubric">Notes</p>
 <ul class="simple">
 <li><p>To select all <em>numeric</em> types, use <code class="docutils literal notranslate"><span class="pre">np.number</span></code> or <code class="docutils literal notranslate"><span class="pre">'number'</span></code></p></li>
-<li><p>To select strings you must use the <code class="docutils literal notranslate"><span class="pre">object</span></code> dtype, but note that
-this will return <em>all</em> object dtype columns. With
-<code class="docutils literal notranslate"><span class="pre">pd.options.future.infer_string</span></code> enabled, using <code class="docutils literal notranslate"><span class="pre">&quot;str&quot;</span></code> will
-work to select all string columns.</p></li>
+<li><p>To select strings, use the builtin <code class="docutils literal notranslate"><span class="pre">str</span></code>, which selects
+<a class="reference internal" href="pandas.StringDtype.html#pandas.StringDtype" title="pandas.StringDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.StringDtype</span></code></a> columns and <a class="reference internal" href="pandas.ArrowDtype.html#pandas.ArrowDtype" title="pandas.ArrowDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.ArrowDtype</span></code></a>
+<code class="docutils literal notranslate"><span class="pre">string</span></code>/<code class="docutils literal notranslate"><span class="pre">large_string</span></code> columns; the string spec <code class="docutils literal notranslate"><span class="pre">'str'</span></code>
+selects only the <a class="reference internal" href="pandas.StringDtype.html#pandas.StringDtype" title="pandas.StringDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.StringDtype</span></code></a> ones</p></li>
 <li><p>See the <a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html">numpy dtype hierarchy</a></p></li>
 <li><p>A dtype instance (e.g. <code class="docutils literal notranslate"><span class="pre">np.dtype(&quot;int32&quot;)</span></code> or
 <code class="docutils literal notranslate"><span class="pre">pd.CategoricalDtype([&quot;a&quot;,</span> <span class="pre">&quot;b&quot;])</span></code>) selects only columns with
