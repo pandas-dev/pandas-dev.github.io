@@ -810,9 +810,8 @@ features of the “pyarrow” engine are unsupported or may not work correctly.<
 </dd>
 <dt>converters<span class="classifier">dict, default <code class="docutils literal notranslate"><span class="pre">None</span></code></span></dt><dd><p>Dict of functions for converting values in certain columns. Keys can either be
 integers or column labels. The function is applied to the raw text read from the
-file, before any missing-value detection: an empty field is passed as an empty
-string <code class="docutils literal notranslate"><span class="pre">''</span></code>, and <code class="docutils literal notranslate"><span class="pre">na_values</span></code> and <code class="docutils literal notranslate"><span class="pre">keep_default_na</span></code> have no effect on a
-column that has a converter.</p>
+file, so an empty field is passed as an empty string <code class="docutils literal notranslate"><span class="pre">''</span></code>; <code class="docutils literal notranslate"><span class="pre">na_values</span></code> and
+<code class="docutils literal notranslate"><span class="pre">keep_default_na</span></code> are then applied to the value the function returns.</p>
 </dd>
 <dt>true_values<span class="classifier">list, default <code class="docutils literal notranslate"><span class="pre">None</span></code></span></dt><dd><p>Values to consider as <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </dd>
@@ -2018,8 +2017,8 @@ too many fields will raise an error by default:</p>
 <span class="ne">-&gt; </span><span class="mi">1176</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
 <span class="nn">File pandas/_libs/parsers.pyx:1197,</span> in <span class="ni">pandas._libs.parsers.TextReader._check_tokenize_status</span><span class="nt">()</span>
 <span class="ne">-&gt; </span><span class="mi">1197</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
-<span class="nn">File pandas/_libs/parsers.pyx:4398,</span> in <span class="ni">pandas._libs.parsers.raise_parser_error</span><span class="nt">()</span>
-<span class="ne">-&gt; </span><span class="mi">4398</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/parsers.pyx:4418,</span> in <span class="ni">pandas._libs.parsers.raise_parser_error</span><span class="nt">()</span>
+<span class="ne">-&gt; </span><span class="mi">4418</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
 <span class="ne">ParserError</span>: Error tokenizing data. C error: Expected 3 fields in line 3, saw 4
 </pre></div>
 </div>
@@ -2547,7 +2546,7 @@ value will be an iterable object of type <code class="docutils literal notransla
 <span class="gp">   .....: </span>    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
 <span class="gp">   .....: </span>        <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7fe5666a6f90&gt;</span>
+<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7f097f21b3b0&gt;</span>
 <span class="go">          0         1         2         3</span>
 <span class="go">0 -1.294524  0.413738  0.276662 -0.472035</span>
 <span class="go">1 -0.013960 -0.362543 -0.006154 -0.923061</span>
