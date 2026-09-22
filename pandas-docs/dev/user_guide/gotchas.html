@@ -809,10 +809,10 @@ the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#p
 <span class="gp">In [27]: </span><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:3802,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3801</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3802</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3803</span> <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:3806,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3805</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3806</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3807</span> <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
 
 <span class="nn">File pandas/_libs/index.pyx:172,</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
 <span class="ne">--&gt; </span><span class="mi">172</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
@@ -900,18 +900,18 @@ the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#p
 <span class="g g-Whitespace">   </span><span class="mi">1154</span><span class="s2">         if is_integer(loc):</span>
 <span class="g g-Whitespace">   </span><span class="mi">1155</span><span class="s2">             return self._ixs(loc)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:3809,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3804</span><span class="s2">     if isinstance(casted_key, slice) or (</span>
-<span class="g g-Whitespace">   </span><span class="mi">3805</span><span class="s2">         isinstance(casted_key, abc.Iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3806</span><span class="s2">         and any(isinstance(x, slice) for x in casted_key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3807</span><span class="s2">     ):</span>
-<span class="g g-Whitespace">   </span><span class="mi">3808</span><span class="s2">         raise InvalidIndexError(key) from err</span>
-<span class="ne">-&gt; </span><span class="mi">3809</span><span class="s2">     raise KeyError(key) from err</span>
-<span class="g g-Whitespace">   </span><span class="mi">3810</span><span class="s2"> except TypeError:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3811</span><span class="s2">     # If we have a listlike key, _check_indexing_error will raise</span>
-<span class="g g-Whitespace">   </span><span class="mi">3812</span><span class="s2">     #  InvalidIndexError. Otherwise we fall through and re-raise</span>
-<span class="g g-Whitespace">   </span><span class="mi">3813</span><span class="s2">     #  the TypeError.</span>
-<span class="g g-Whitespace">   </span><span class="mi">3814</span><span class="s2">     self._check_indexing_error(key)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:3813,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3808</span><span class="s2">     if isinstance(casted_key, slice) or (</span>
+<span class="g g-Whitespace">   </span><span class="mi">3809</span><span class="s2">         isinstance(casted_key, abc.Iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3810</span><span class="s2">         and any(isinstance(x, slice) for x in casted_key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3811</span><span class="s2">     ):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3812</span><span class="s2">         raise InvalidIndexError(key) from err</span>
+<span class="ne">-&gt; </span><span class="mi">3813</span><span class="s2">     raise KeyError(key) from err</span>
+<span class="g g-Whitespace">   </span><span class="mi">3814</span><span class="s2"> except TypeError:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3815</span><span class="s2">     # If we have a listlike key, _check_indexing_error will raise</span>
+<span class="g g-Whitespace">   </span><span class="mi">3816</span><span class="s2">     #  InvalidIndexError. Otherwise we fall through and re-raise</span>
+<span class="g g-Whitespace">   </span><span class="mi">3817</span><span class="s2">     #  the TypeError.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3818</span><span class="s2">     self._check_indexing_error(key)</span>
 
 <span class="ne">KeyError</span>: 'a'
 </pre></div>
