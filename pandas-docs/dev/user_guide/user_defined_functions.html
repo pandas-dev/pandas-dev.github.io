@@ -648,8 +648,8 @@ built-in methods cannot handle.</p></li>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#udf-filter"><span class="std std-ref">Series.filter() and DataFrame.filter()</span></a></p></td>
 <td><p>Series or DataFrame</p></td>
-<td><p>Boolean</p></td>
-<td><p>Only accepts UDFs in group by. Function is called for each group, and the group is removed from the result if the function returns <code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Boolean mask</p></td>
+<td><p>Function is called with the object and returns a boolean mask; rows where the mask is <code class="docutils literal notranslate"><span class="pre">False</span></code> are removed from the result</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#udf-agg"><span class="std std-ref">Series.agg() and DataFrame.agg()</span></a></p></td>
 <td><p>Series or DataFrame</p></td>
@@ -854,9 +854,22 @@ calling multiple functions.</p>
 <section id="series-filter-and-dataframe-filter">
 <span id="udf-filter"></span><h3><a class="reference internal" href="../reference/api/pandas.Series.filter.html#pandas.Series.filter" title="pandas.Series.filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.filter()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.filter.html#pandas.DataFrame.filter" title="pandas.DataFrame.filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.filter()</span></code></a><a class="headerlink" href="#series-filter-and-dataframe-filter" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">filter</span></code> method is used to select a subset of rows that match certain criteria.
-<a class="reference internal" href="../reference/api/pandas.Series.filter.html#pandas.Series.filter" title="pandas.Series.filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.filter()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.filter.html#pandas.DataFrame.filter" title="pandas.DataFrame.filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.filter()</span></code></a> do not support user defined functions,
-but <code class="xref py py-meth docutils literal notranslate"><span class="pre">SeriesGroupBy.filter()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrameGroupBy.filter()</span></code> do. You can read more
-about <code class="docutils literal notranslate"><span class="pre">filter</span></code> in groupby operations in <a class="reference internal" href="groupby.html#groupby-filter"><span class="std std-ref">Filtration</span></a>.</p>
+<a class="reference internal" href="../reference/api/pandas.Series.filter.html#pandas.Series.filter" title="pandas.Series.filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.filter()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.filter.html#pandas.DataFrame.filter" title="pandas.DataFrame.filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.filter()</span></code></a> accept a callable that is passed the
+object and returns a boolean mask; the rows where the mask is True are kept. This is
+convenient in a method chain where the intermediate object has no name.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
+
+<span class="gp">In [27]: </span><span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">"a"</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">"b"</span><span class="p">])</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">"c"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gh">Out[27]: </span>
+<span class="go">   a  b  c</span>
+<span class="go">1  2  5  7</span>
+<span class="go">2  3  6  9</span>
+</pre></div>
+</div>
+<p>You can read more about filtering with a boolean mask in <a class="reference internal" href="indexing.html#indexing-boolean-filter"><span class="std std-ref">Filtering with DataFrame.filter</span></a>.
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">SeriesGroupBy.filter()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrameGroupBy.filter()</span></code> instead call the function
+once per group; you can read more about <code class="docutils literal notranslate"><span class="pre">filter</span></code> in groupby operations in
+<a class="reference internal" href="groupby.html#groupby-filter"><span class="std std-ref">Filtration</span></a>.</p>
 </section>
 <section id="series-agg-and-dataframe-agg">
 <span id="udf-agg"></span><h3><a class="reference internal" href="../reference/api/pandas.Series.agg.html#pandas.Series.agg" title="pandas.Series.agg"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.agg()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.agg.html#pandas.DataFrame.agg" title="pandas.DataFrame.agg"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.agg()</span></code></a><a class="headerlink" href="#series-agg-and-dataframe-agg" title="Link to this heading">#</a></h3>
@@ -864,18 +877,18 @@ about <code class="docutils literal notranslate"><span class="pre">filter</span>
 The most common aggregation functions such as <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">sum</span></code>, etc.
 are already implemented in pandas. <code class="docutils literal notranslate"><span class="pre">agg</span></code> allows to implement other custom aggregate
 functions.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="n">temperature</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [28]: </span><span class="n">temperature</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
 <span class="gp">   ....: </span>    <span class="s2">"NYC"</span><span class="p">:</span> <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
 <span class="gp">   ....: </span>    <span class="s2">"Los Angeles"</span><span class="p">:</span> <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">31</span><span class="p">],</span>
 <span class="gp">   ....: </span><span class="p">})</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [27]: </span><span class="k">def</span><span class="w"> </span><span class="nf">highest_jump</span><span class="p">(</span><span class="n">column</span><span class="p">):</span>
+<span class="gp">In [29]: </span><span class="k">def</span><span class="w"> </span><span class="nf">highest_jump</span><span class="p">(</span><span class="n">column</span><span class="p">):</span>
 <span class="gp">   ....: </span>    <span class="k">return</span> <span class="n">column</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [28]: </span><span class="n">temperature</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">highest_jump</span><span class="p">)</span>
-<span class="gh">Out[28]: </span>
+<span class="gp">In [30]: </span><span class="n">temperature</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">highest_jump</span><span class="p">)</span>
+<span class="gh">Out[30]: </span>
 <span class="go">NYC            0.500000</span>
 <span class="go">Los Angeles    0.272727</span>
 <span class="go">dtype: float64</span>
@@ -888,18 +901,18 @@ a scalar value on each input.</p>
 <span id="udf-transform"></span><h3><a class="reference internal" href="../reference/api/pandas.Series.transform.html#pandas.Series.transform" title="pandas.Series.transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.transform()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.transform.html#pandas.DataFrame.transform" title="pandas.DataFrame.transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.transform()</span></code></a><a class="headerlink" href="#series-transform-and-dataframe-transform" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">transform</span></code> method is similar to an aggregation, with the difference that the result is broadcasted
 to the original data.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">temperature</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [31]: </span><span class="n">temperature</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
 <span class="gp">   ....: </span>    <span class="s2">"NYC"</span><span class="p">:</span> <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
 <span class="gp">   ....: </span>    <span class="s2">"Los Angeles"</span><span class="p">:</span> <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">31</span><span class="p">]},</span>
 <span class="gp">   ....: </span>    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2000-01-01"</span><span class="p">,</span> <span class="s2">"2000-01-03"</span><span class="p">))</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [30]: </span><span class="k">def</span><span class="w"> </span><span class="nf">warm_up_all_days</span><span class="p">(</span><span class="n">column</span><span class="p">):</span>
+<span class="gp">In [32]: </span><span class="k">def</span><span class="w"> </span><span class="nf">warm_up_all_days</span><span class="p">(</span><span class="n">column</span><span class="p">):</span>
 <span class="gp">   ....: </span>    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">column</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">column</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [31]: </span><span class="n">temperature</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">warm_up_all_days</span><span class="p">)</span>
-<span class="gh">Out[31]: </span>
+<span class="gp">In [33]: </span><span class="n">temperature</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">warm_up_all_days</span><span class="p">)</span>
+<span class="gh">Out[33]: </span>
 <span class="go">            NYC  Los Angeles</span>
 <span class="go">2000-01-01   23           31</span>
 <span class="go">2000-01-02   23           31</span>

@@ -740,6 +740,57 @@ earlier in the same call
 </pre></div>
 </div>
 </section>
+<section id="filtering-with-a-boolean-mask-in-dataframe-filter-and-series-filter">
+<span id="whatsnew-310-enhancements-filter-mask"></span><h3>Filtering with a boolean mask in <code class="docutils literal notranslate"><span class="pre">DataFrame.filter</span></code> and <code class="docutils literal notranslate"><span class="pre">Series.filter</span></code><a class="headerlink" href="#filtering-with-a-boolean-mask-in-dataframe-filter-and-series-filter" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="../reference/api/pandas.DataFrame.filter.html#pandas.DataFrame.filter" title="pandas.DataFrame.filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.filter()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.filter.html#pandas.Series.filter" title="pandas.Series.filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.filter()</span></code></a> now accept a boolean mask through the new
+<code class="docutils literal notranslate"><span class="pre">cond</span></code> keyword, keeping the rows (or columns with <code class="docutils literal notranslate"><span class="pre">axis=1</span></code>) where the mask is True.
+<code class="docutils literal notranslate"><span class="pre">cond</span></code> may also be a callable returning a boolean mask or an expression created with
+<a class="reference internal" href="../reference/api/pandas.col.html#pandas.col" title="pandas.col"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.col()</span></code></a>; these two forms may also be passed positionally, which is convenient in
+method chains (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/61317">GH 61317</a>).</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
+
+<span class="gp">In [2]: </span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cond</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">"a"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[2]:</span>
+<span class="go">   a  b</span>
+<span class="go">1  2  5</span>
+<span class="go">2  3  6</span>
+
+<span class="gp">In [3]: </span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[3]:</span>
+<span class="go">   a  b</span>
+<span class="go">1  2  5</span>
+<span class="go">2  3  6</span>
+
+<span class="gp">In [4]: </span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">"b"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gh">Out[4]:</span>
+<span class="go">   a  b</span>
+<span class="go">0  1  4</span>
+<span class="go">1  2  5</span>
+</pre></div>
+</div>
+<p>A <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> mask is aligned with the filtered axis; any other mask must have the same
+length as that axis. Missing values in the mask are treated as False by default, matching
+<code class="docutils literal notranslate"><span class="pre">obj[mask]</span></code> for a mask with nullable boolean dtype. Pass <code class="docutils literal notranslate"><span class="pre">na=True</span></code> to keep the
+corresponding entries instead, or <code class="docutils literal notranslate"><span class="pre">na=&quot;raise&quot;</span></code> to raise.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">mask</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"boolean"</span><span class="p">)</span>
+
+<span class="gp">In [6]: </span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cond</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+<span class="gh">Out[6]:</span>
+<span class="go">   a  b</span>
+<span class="go">0  1  4</span>
+
+<span class="gp">In [7]: </span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">cond</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[7]:</span>
+<span class="go">   a  b</span>
+<span class="go">0  1  4</span>
+<span class="go">1  2  5</span>
+</pre></div>
+</div>
+<p>Any other value passed positionally continues to select labels, as before. Since a list-like
+of booleans passed this way is likely intended as a mask, it now issues a <code class="docutils literal notranslate"><span class="pre">UserWarning</span></code>;
+pass <code class="docutils literal notranslate"><span class="pre">items</span></code> to select labels or <code class="docutils literal notranslate"><span class="pre">cond</span></code> to filter with a mask. Selecting labels with
+<code class="docutils literal notranslate"><span class="pre">items</span></code>, <code class="docutils literal notranslate"><span class="pre">like</span></code>, or <code class="docutils literal notranslate"><span class="pre">regex</span></code> will be deprecated in a future version.</p>
+</section>
 <section id="enhancement2">
 <span id="whatsnew-310-enhancements-enhancement2"></span><h3>enhancement2<a class="headerlink" href="#enhancement2" title="Link to this heading">#</a></h3>
 </section>
@@ -2131,6 +2182,7 @@ when the requested row count is not a multiple of the chunk size (<a class="extl
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancements">Enhancements</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-method-dataframe-select">New method <code class="docutils literal notranslate"><span class="pre">DataFrame.select</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-with-a-boolean-mask-in-dataframe-filter-and-series-filter">Filtering with a boolean mask in <code class="docutils literal notranslate"><span class="pre">DataFrame.filter</span></code> and <code class="docutils literal notranslate"><span class="pre">Series.filter</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancement2">enhancement2</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-enhancements">Other enhancements</a></li>
 </ul>
