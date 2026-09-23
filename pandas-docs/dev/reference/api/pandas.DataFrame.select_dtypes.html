@@ -767,7 +767,7 @@
 <h1>pandas.DataFrame.select_dtypes<a class="headerlink" href="#pandas-dataframe-select-dtypes" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.DataFrame.select_dtypes">
-<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">select_dtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L5452-L6035"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.select_dtypes" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">select_dtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L5452-L6022"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.select_dtypes" title="Link to this definition">#</a></dt>
 <dd><p>Return a subset of the DataFrame’s columns based on the column dtypes.</p>
 <p>This method allows for filtering columns based on their data types.
 It is useful when working with heterogeneous DataFrames where operations
@@ -840,8 +840,8 @@ unit-qualified dtype such as <code class="docutils literal notranslate"><span cl
 <code class="docutils literal notranslate"><span class="pre">'timedelta64[ms]'</span></code>; this matches only columns with exactly that
 resolution, whereas an unqualified spec matches every resolution</p></li>
 <li><p>To select Pandas categorical dtypes, use <code class="docutils literal notranslate"><span class="pre">'category'</span></code></p></li>
-<li><p>To select all timezone-aware datetime dtypes, use
-<a class="reference internal" href="pandas.DatetimeTZDtype.html#pandas.DatetimeTZDtype" title="pandas.DatetimeTZDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DatetimeTZDtype</span></code></a>; a string such as
+<li><p>To select all timezone-aware datetime dtypes, use <code class="docutils literal notranslate"><span class="pre">'datetimetz'</span></code>
+or <a class="reference internal" href="pandas.DatetimeTZDtype.html#pandas.DatetimeTZDtype" title="pandas.DatetimeTZDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DatetimeTZDtype</span></code></a>; a string such as
 <code class="docutils literal notranslate"><span class="pre">'datetime64[ns,</span> <span class="pre">US/Eastern]'</span></code> selects only that exact dtype</p></li>
 <li><p>To select all period dtypes, use <a class="reference internal" href="pandas.PeriodDtype.html#pandas.PeriodDtype" title="pandas.PeriodDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.PeriodDtype</span></code></a>; a
 string such as <code class="docutils literal notranslate"><span class="pre">'period[D]'</span></code> selects only that frequency</p></li>
@@ -850,10 +850,6 @@ every instance of that subclass regardless of parametrization, e.g.
 <code class="docutils literal notranslate"><span class="pre">pd.ArrowDtype</span></code> selects all pyarrow-backed columns and
 <code class="docutils literal notranslate"><span class="pre">pd.CategoricalDtype</span></code> selects all categorical columns</p></li>
 </ul>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 3.1.0: </span>The strings <code class="docutils literal notranslate"><span class="pre">'datetimetz'</span></code> and <code class="docutils literal notranslate"><span class="pre">'datetime64tz'</span></code> are deprecated;
-pass <a class="reference internal" href="pandas.DatetimeTZDtype.html#pandas.DatetimeTZDtype" title="pandas.DatetimeTZDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DatetimeTZDtype</span></code></a> instead.</p>
-</div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">}</span>
