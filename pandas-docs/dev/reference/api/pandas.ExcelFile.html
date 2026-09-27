@@ -620,18 +620,17 @@
 <h1>pandas.ExcelFile<a class="headerlink" href="#pandas-excelfile" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pandas.ExcelFile">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">ExcelFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_or_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/excel/_base.py#L1541-L1973"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.ExcelFile" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">ExcelFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_or_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/excel/_base.py#L1567-L1989"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.ExcelFile" title="Link to this definition">#</a></dt>
 <dd><p>Class for parsing tabular Excel sheets into DataFrame objects.</p>
 <p>See read_excel for more documentation.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>path_or_buffer</strong><span class="classifier">str, bytes, pathlib.Path,</span></dt><dd><p>A file-like object, xlrd workbook or openpyxl workbook.
+<dt><strong>path_or_buffer</strong><span class="classifier">str, bytes, pathlib.Path,</span></dt><dd><p>A file-like object or a workbook object from a supported engine.
 If a string or path object, expected to be a path to a
 .xls, .xlsx, .xlsb, .xlsm, .odf, .ods, or .odt file.</p>
 </dd>
-<dt><strong>engine</strong><span class="classifier">str, default None</span></dt><dd><p>If io is not a buffer or path, this must be set to identify io.
-Supported engines: <code class="docutils literal notranslate"><span class="pre">xlrd</span></code>, <code class="docutils literal notranslate"><span class="pre">openpyxl</span></code>, <code class="docutils literal notranslate"><span class="pre">odf</span></code>, <code class="docutils literal notranslate"><span class="pre">pyxlsb</span></code>, <code class="docutils literal notranslate"><span class="pre">calamine</span></code>
+<dt><strong>engine</strong><span class="classifier">str, default None</span></dt><dd><p>Supported engines: <code class="docutils literal notranslate"><span class="pre">xlrd</span></code>, <code class="docutils literal notranslate"><span class="pre">openpyxl</span></code>, <code class="docutils literal notranslate"><span class="pre">odf</span></code>, <code class="docutils literal notranslate"><span class="pre">pyxlsb</span></code>, <code class="docutils literal notranslate"><span class="pre">calamine</span></code>
 Engine compatibility :</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">xlrd</span></code> supports old-style Excel files (.xls).</p></li>
@@ -647,7 +646,12 @@ When <code class="docutils literal notranslate"><span class="pre">engine=None</s
 used to determine the engine:</p>
 <ul class="simple">
 <li><dl class="simple">
-<dt>If <code class="docutils literal notranslate"><span class="pre">path_or_buffer</span></code> is an OpenDocument format (.odf, .ods, .odt),</dt><dd><p>then <a class="reference external" href="https://pypi.org/project/odfpy/">odf</a> will be used.</p>
+<dt>If <code class="docutils literal notranslate"><span class="pre">path_or_buffer</span></code> is a workbook object, the engine that created it</dt><dd><p>will be used.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Otherwise if <code class="docutils literal notranslate"><span class="pre">path_or_buffer</span></code> is an OpenDocument format (.odf, .ods, .odt),</dt><dd><p>then <a class="reference external" href="https://pypi.org/project/odfpy/">odf</a> will be used.</p>
 </dd>
 </dl>
 </li>
