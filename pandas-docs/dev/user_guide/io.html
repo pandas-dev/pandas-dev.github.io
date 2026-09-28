@@ -2546,7 +2546,7 @@ value will be an iterable object of type <code class="docutils literal notransla
 <span class="gp">   .....: </span>    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
 <span class="gp">   .....: </span>        <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7f13c67e95b0&gt;</span>
+<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7fa013371a60&gt;</span>
 <span class="go">          0         1         2         3</span>
 <span class="go">0 -1.294524  0.413738  0.276662 -0.472035</span>
 <span class="go">1 -0.013960 -0.362543 -0.006154 -0.923061</span>
@@ -8241,9 +8241,9 @@ specific backend dialect features.</p></li>
 
         <span class="n">columns</span> <span class="o">=</span> <span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">'"</span><span class="si">{}</span><span class="s1">"'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">])</span>
         <span class="k">if</span> <span class="n">table</span><span class="o">.</span><span class="n">schema</span><span class="p">:</span>
-            <span class="n">table_name</span> <span class="o">=</span> <span class="s1">'</span><span class="si">{}</span><span class="s1">.</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">table_name</span> <span class="o">=</span> <span class="s1">'"</span><span class="si">{}</span><span class="s1">"."</span><span class="si">{}</span><span class="s1">"'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">table_name</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">table_name</span> <span class="o">=</span> <span class="s1">'"</span><span class="si">{}</span><span class="s1">"'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
         <span class="n">sql</span> <span class="o">=</span> <span class="s1">'COPY </span><span class="si">{}</span><span class="s1"> (</span><span class="si">{}</span><span class="s1">) FROM STDIN WITH CSV'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">table_name</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
