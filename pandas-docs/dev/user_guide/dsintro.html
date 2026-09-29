@@ -797,25 +797,25 @@ label:</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">s</span><span class="p">[</span><span class="s2">"f"</span><span class="p">]</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:1098,</span> in <span class="ni">Series.__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1094</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1095</span>         <span class="k">elif</span> <span class="n">key_is_scalar</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1096</span>             <span class="c1"># Note: GH#50617 in 3.0 we changed int key to always be treated as</span>
-<span class="g g-Whitespace">   </span><span class="mi">1097</span>             <span class="c1">#  a label, matching DataFrame behavior.</span>
-<span class="ne">-&gt; </span><span class="mi">1098</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1099</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1100</span>         <span class="c1"># Convert generator to list before going through hashable part</span>
-<span class="g g-Whitespace">   </span><span class="mi">1101</span>         <span class="c1"># (We will iterate through the generator there to check for slices)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:1101,</span> in <span class="ni">Series.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1097</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1098</span>         <span class="k">elif</span> <span class="n">key_is_scalar</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1099</span>             <span class="c1"># Note: GH#50617 in 3.0 we changed int key to always be treated as</span>
+<span class="g g-Whitespace">   </span><span class="mi">1100</span>             <span class="c1">#  a label, matching DataFrame behavior.</span>
+<span class="ne">-&gt; </span><span class="mi">1101</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1102</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1103</span>         <span class="c1"># Convert generator to list before going through hashable part</span>
+<span class="g g-Whitespace">   </span><span class="mi">1104</span>         <span class="c1"># (We will iterate through the generator there to check for slices)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:1185,</span> in <span class="ni">Series._get_value</span><span class="nt">(self, label, takeable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1181</span>         <span class="k">if</span> <span class="n">takeable</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1182</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ixs</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1183</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1184</span>         <span class="c1"># Similar to Index.get_value, but we do not fall back to positional</span>
-<span class="ne">-&gt; </span><span class="mi">1185</span>         <span class="n">loc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:1188,</span> in <span class="ni">Series._get_value</span><span class="nt">(self, label, takeable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1184</span>         <span class="k">if</span> <span class="n">takeable</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1185</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ixs</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1186</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1187</span>         <span class="k">if</span> <span class="n">is_integer</span><span class="p">(</span><span class="n">loc</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1188</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ixs</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1187</span>         <span class="c1"># Similar to Index.get_value, but we do not fall back to positional</span>
+<span class="ne">-&gt; </span><span class="mi">1188</span>         <span class="n">loc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1189</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1190</span>         <span class="k">if</span> <span class="n">is_integer</span><span class="p">(</span><span class="n">loc</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1191</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ixs</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:3823,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
 <span class="g g-Whitespace">   </span><span class="mi">3818</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">casted_key</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
