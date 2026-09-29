@@ -804,15 +804,15 @@
 <h1>pandas.DatetimeIndex.tz<a class="headerlink" href="#pandas-datetimeindex-tz" title="Link to this heading">#</a></h1>
 <dl class="py property">
 <dt class="sig sig-object py" id="pandas.DatetimeIndex.tz">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DatetimeIndex.</span></span><span class="sig-name descname"><span class="pre">tz</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L70-L78"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.tz" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DatetimeIndex.</span></span><span class="sig-name descname"><span class="pre">tz</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/datetimes.py#L265-L294"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.tz" title="Link to this definition">#</a></dt>
 <dd><p>Return the timezone.</p>
 <p>This property returns the timezone information associated with the
-datetime data. If the data is timezone-naive (i.e. has no timezone
+DatetimeIndex. If the data is timezone-naive (i.e. has no timezone
 information), it returns None.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt>zoneinfo.ZoneInfo, datetime.tzinfo, pytz.tzinfo.BaseTZInfo, dateutil.tz.tz.tzfile, or None</dt><dd><p>Returns None when the array is tz-naive.</p>
+<dt>zoneinfo.ZoneInfo, datetime.tzinfo, pytz.tzinfo.BaseTZInfo, dateutil.tz.tz.tzfile, or None</dt><dd><p>Returns None when the DatetimeIndex is tz-naive.</p>
 </dd>
 </dl>
 </dd>
@@ -827,18 +827,6 @@ information), it returns None.</p>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<p>For Series:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">"1/1/2020 10:00:00+00:00"</span><span class="p">,</span> <span class="s2">"2/1/2020 11:00:00+00:00"</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
-<span class="go">0   2020-01-01 10:00:00+00:00</span>
-<span class="go">1   2020-02-01 11:00:00+00:00</span>
-<span class="go">dtype: datetime64[us, UTC]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz</span>
-<span class="go">datetime.timezone.utc</span>
-</pre></div>
-</div>
-<p>For DatetimeIndex:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="p">[</span><span class="s2">"1/1/2020 10:00:00+00:00"</span><span class="p">,</span> <span class="s2">"2/1/2020 11:00:00+00:00"</span><span class="p">]</span>
 <span class="gp">... </span><span class="p">)</span>

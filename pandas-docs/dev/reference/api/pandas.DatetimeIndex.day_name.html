@@ -804,7 +804,7 @@
 <h1>pandas.DatetimeIndex.day_name<a class="headerlink" href="#pandas-datetimeindex-day-name" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.DatetimeIndex.day_name">
-<span class="sig-prename descclassname"><span class="pre">DatetimeIndex.</span></span><span class="sig-name descname"><span class="pre">day_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">locale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L95-L105"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.day_name" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DatetimeIndex.</span></span><span class="sig-name descname"><span class="pre">day_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">locale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/datetimes.py#L1113-L1155"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.day_name" title="Link to this definition">#</a></dt>
 <dd><p>Return the day names with specified locale.</p>
 <p>This method returns the full name of the day of the week (e.g., “Monday”,
 “Tuesday”) for each datetime value in the Series/Index. The names can be
@@ -821,7 +821,7 @@ language code.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>Series or Index</dt><dd><p>Series or Index of day names.</p>
+<dt>Index</dt><dd><p>Index of day names.</p>
 </dd>
 </dl>
 </dd>
@@ -834,19 +834,6 @@ language code.</p>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">"2018-01-01"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
-<span class="go">0   2018-01-01</span>
-<span class="go">1   2018-01-02</span>
-<span class="go">2   2018-01-03</span>
-<span class="go">dtype: datetime64[us]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day_name</span><span class="p">()</span>
-<span class="go">0       Monday</span>
-<span class="go">1      Tuesday</span>
-<span class="go">2    Wednesday</span>
-<span class="go">dtype: str</span>
-</pre></div>
-</div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">"2018-01-01"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span>
 <span class="go">DatetimeIndex(['2018-01-01', '2018-01-02', '2018-01-03'],</span>
@@ -858,11 +845,7 @@ language code.</p>
 <p>Using the <code class="docutils literal notranslate"><span class="pre">locale</span></code> parameter you can set a different locale language,
 for example: <code class="docutils literal notranslate"><span class="pre">idx.day_name(locale='pt_BR.utf8')</span></code> will return day
 names in Brazilian Portuguese language.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">"2018-01-01"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span>
-<span class="go">DatetimeIndex(['2018-01-01', '2018-01-02', '2018-01-03'],</span>
-<span class="go">              dtype='datetime64[us]', freq='D')</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">day_name</span><span class="p">(</span><span class="n">locale</span><span class="o">=</span><span class="s2">"pt_BR.utf8"</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">day_name</span><span class="p">(</span><span class="n">locale</span><span class="o">=</span><span class="s2">"pt_BR.utf8"</span><span class="p">)</span>
 <span class="go">Index(['Segunda', 'Terça', 'Quarta'], dtype='str')</span>
 </pre></div>
 </div>
