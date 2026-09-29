@@ -804,9 +804,9 @@
 <h1>pandas.TimedeltaIndex.ceil<a class="headerlink" href="#pandas-timedeltaindex-ceil" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.TimedeltaIndex.ceil">
-<span class="sig-prename descclassname"><span class="pre">TimedeltaIndex.</span></span><span class="sig-name descname"><span class="pre">ceil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambiguous</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonexistent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L95-L105"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.TimedeltaIndex.ceil" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">TimedeltaIndex.</span></span><span class="sig-name descname"><span class="pre">ceil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambiguous</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonexistent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/timedeltas.py#L336-L389"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.TimedeltaIndex.ceil" title="Link to this definition">#</a></dt>
 <dd><p>Perform ceil operation on the data to the specified <cite>freq</cite>.</p>
-<p>This method rounds each datetime value in the Series/Index up to
+<p>This method rounds each timedelta value in the Series/Index up to
 the specified frequency (i.e., towards positive infinity).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -816,37 +816,17 @@ frequency like ‘s’ (second) not ‘ME’ (month end). See
 <a class="reference internal" href="../../user_guide/timeseries.html#timeseries-offset-aliases"><span class="std std-ref">frequency aliases</span></a> for
 a list of possible <cite>freq</cite> values.</p>
 </dd>
-<dt><strong>ambiguous</strong><span class="classifier">‘infer’, bool-ndarray, ‘NaT’, default ‘raise’</span></dt><dd><p>Only relevant for DatetimeIndex:</p>
-<ul class="simple">
-<li><p>‘infer’ will attempt to infer fall dst-transition hours based on
-order. Requires that the timestamps are monotonically increasing.</p></li>
-<li><p>bool-ndarray where True signifies a DST time, False designates
-a non-DST time (note that this flag is only applicable for
-ambiguous times)</p></li>
-<li><p>‘NaT’ will return NaT where there are ambiguous times</p></li>
-<li><p>‘raise’ will raise a ValueError if there are ambiguous
-times.</p></li>
-</ul>
+<dt><strong>ambiguous</strong><span class="classifier">‘infer’, bool-ndarray, ‘NaT’, default ‘raise’</span></dt><dd><p>Accepted for compatibility with <a class="reference internal" href="pandas.DatetimeIndex.ceil.html#pandas.DatetimeIndex.ceil" title="pandas.DatetimeIndex.ceil"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DatetimeIndex.ceil()</span></code></a>;
+has no effect since TimedeltaIndex values are never tz-aware.</p>
 </dd>
-<dt><strong>nonexistent</strong><span class="classifier">‘shift_forward’, ‘shift_backward’, ‘NaT’, timedelta, default ‘raise’</span></dt><dd><p>A nonexistent time does not exist in a particular timezone
-where clocks moved forward due to DST.</p>
-<ul class="simple">
-<li><p>‘shift_forward’ will shift the nonexistent time forward to the
-closest existing time</p></li>
-<li><p>‘shift_backward’ will shift the nonexistent time backward to the
-closest existing time</p></li>
-<li><p>‘NaT’ will return NaT where there are nonexistent times</p></li>
-<li><p>timedelta objects will shift nonexistent times by the timedelta</p></li>
-<li><p>‘raise’ will raise a ValueError if there are
-nonexistent times.</p></li>
-</ul>
+<dt><strong>nonexistent</strong><span class="classifier">‘shift_forward’, ‘shift_backward’, ‘NaT’, timedelta, default ‘raise’</span></dt><dd><p>Accepted for compatibility with <a class="reference internal" href="pandas.DatetimeIndex.ceil.html#pandas.DatetimeIndex.ceil" title="pandas.DatetimeIndex.ceil"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DatetimeIndex.ceil()</span></code></a>;
+has no effect since TimedeltaIndex values are never tz-aware.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>DatetimeIndex, TimedeltaIndex, or Series</dt><dd><p>Index of the same type for a DatetimeIndex or TimedeltaIndex,
-or a Series with the same index for a Series.</p>
+<dt>TimedeltaIndex</dt><dd><p>Values rounded up to the given <cite>freq</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -859,53 +839,20 @@ or a Series with the same index for a Series.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="pandas.DatetimeIndex.floor.html#pandas.DatetimeIndex.floor" title="pandas.DatetimeIndex.floor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatetimeIndex.floor</span></code></a></dt><dd><p>Perform floor operation on the data to the specified <cite>freq</cite>.</p>
+<dt><a class="reference internal" href="pandas.TimedeltaIndex.round.html#pandas.TimedeltaIndex.round" title="pandas.TimedeltaIndex.round"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimedeltaIndex.round</span></code></a></dt><dd><p>Perform round operation on the data to the specified <cite>freq</cite>.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.DatetimeIndex.snap.html#pandas.DatetimeIndex.snap" title="pandas.DatetimeIndex.snap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatetimeIndex.snap</span></code></a></dt><dd><p>Snap time stamps to nearest occurring frequency.</p>
+<dt><a class="reference internal" href="pandas.TimedeltaIndex.floor.html#pandas.TimedeltaIndex.floor" title="pandas.TimedeltaIndex.floor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimedeltaIndex.floor</span></code></a></dt><dd><p>Perform floor operation on the data to the specified <cite>freq</cite>.</p>
 </dd>
 </dl>
 </div>
-<p class="rubric">Notes</p>
-<p>If the timestamps have a timezone, ceiling will take place relative to the
-local (“wall”) time and re-localized to the same timezone. When ceiling
-near daylight savings time, use <code class="docutils literal notranslate"><span class="pre">nonexistent</span></code> and <code class="docutils literal notranslate"><span class="pre">ambiguous</span></code> to
-control the re-localization behavior.</p>
 <p class="rubric">Examples</p>
-<p><strong>DatetimeIndex</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rng</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"1/1/2018 11:59:00"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"min"</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rng</span>
-<span class="go">DatetimeIndex(['2018-01-01 11:59:00', '2018-01-01 12:00:00',</span>
-<span class="go">               '2018-01-01 12:01:00'],</span>
-<span class="go">              dtype='datetime64[us]', freq='min')</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rng</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="s1">'h'</span><span class="p">)</span>
-<span class="go">DatetimeIndex(['2018-01-01 12:00:00', '2018-01-01 12:00:00',</span>
-<span class="go">               '2018-01-01 13:00:00'],</span>
-<span class="go">              dtype='datetime64[us]', freq=None)</span>
-</pre></div>
-</div>
-<p><strong>Series</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">rng</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="s2">"h"</span><span class="p">)</span>
-<span class="go">0   2018-01-01 12:00:00</span>
-<span class="go">1   2018-01-01 12:00:00</span>
-<span class="go">2   2018-01-01 13:00:00</span>
-<span class="go">dtype: datetime64[us]</span>
-</pre></div>
-</div>
-<p>When rounding near a daylight savings time transition, use <code class="docutils literal notranslate"><span class="pre">ambiguous</span></code> or
-<code class="docutils literal notranslate"><span class="pre">nonexistent</span></code> to control how the timestamp should be re-localized.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rng_tz</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">([</span><span class="s2">"2021-10-31 01:30:00"</span><span class="p">],</span> <span class="n">tz</span><span class="o">=</span><span class="s2">"Europe/Amsterdam"</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rng_tz</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="s2">"h"</span><span class="p">,</span> <span class="n">ambiguous</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="go">DatetimeIndex(['2021-10-31 02:00:00+01:00'],</span>
-<span class="go">              dtype='datetime64[us, Europe/Amsterdam]', freq=None)</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rng_tz</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="s2">"h"</span><span class="p">,</span> <span class="n">ambiguous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="go">DatetimeIndex(['2021-10-31 02:00:00+02:00'],</span>
-<span class="go">              dtype='datetime64[us, Europe/Amsterdam]', freq=None)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="s2">"1 day"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"6h20min"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span>
+<span class="go">TimedeltaIndex(['1 days 00:00:00', '1 days 06:20:00', '1 days 12:40:00'],</span>
+<span class="go">               dtype='timedelta64[us]', freq='380min')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="s2">"h"</span><span class="p">)</span>
+<span class="go">TimedeltaIndex(['1 days 00:00:00', '1 days 07:00:00', '1 days 13:00:00'],</span>
+<span class="go">               dtype='timedelta64[us]', freq=None)</span>
 </pre></div>
 </div>
 </dd></dl>
