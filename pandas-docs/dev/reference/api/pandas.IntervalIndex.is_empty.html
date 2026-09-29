@@ -575,6 +575,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.right.html">pandas.IntervalIndex.right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.mid.html">pandas.IntervalIndex.mid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed.html">pandas.IntervalIndex.closed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed_left.html">pandas.IntervalIndex.closed_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed_right.html">pandas.IntervalIndex.closed_right</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.open_left.html">pandas.IntervalIndex.open_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.open_right.html">pandas.IntervalIndex.open_right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.length.html">pandas.IntervalIndex.length</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.values.html">pandas.IntervalIndex.values</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">pandas.IntervalIndex.is_empty</a></li>
@@ -800,20 +804,15 @@
 <h1>pandas.IntervalIndex.is_empty<a class="headerlink" href="#pandas-intervalindex-is-empty" title="Link to this heading">#</a></h1>
 <dl class="py property">
 <dt class="sig sig-object py" id="pandas.IntervalIndex.is_empty">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">IntervalIndex.</span></span><span class="sig-name descname"><span class="pre">is_empty</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L70-L78"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.IntervalIndex.is_empty" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">IntervalIndex.</span></span><span class="sig-name descname"><span class="pre">is_empty</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/interval.py#L401-L438"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.IntervalIndex.is_empty" title="Link to this definition">#</a></dt>
 <dd><p>Indicates if an interval is empty, meaning it contains no points.</p>
-<p>An interval is considered empty if its <cite>left</cite> and <cite>right</cite> endpoints
-are equal, and it is not closed on both sides. This means that the
-interval does not include any real points. In the case of an
-<a class="reference internal" href="pandas.arrays.IntervalArray.html#pandas.arrays.IntervalArray" title="pandas.arrays.IntervalArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.arrays.IntervalArray</span></code></a> or <a class="reference internal" href="pandas.IntervalIndex.html#pandas.IntervalIndex" title="pandas.IntervalIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntervalIndex</span></code></a>, the
-property returns a boolean array indicating the emptiness of each interval.</p>
+<p>An interval is considered empty if its left and right endpoints are
+equal, and it is not closed on both sides. Returns a boolean ndarray
+positionally indicating the emptiness of each interval.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt>bool or ndarray</dt><dd><p>A boolean indicating if a scalar <a class="reference internal" href="pandas.Interval.html#pandas.Interval" title="pandas.Interval"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interval</span></code></a> is empty, or a
-boolean <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> positionally indicating if an <code class="docutils literal notranslate"><span class="pre">Interval</span></code> in
-an <a class="reference internal" href="pandas.arrays.IntervalArray.html#pandas.arrays.IntervalArray" title="pandas.arrays.IntervalArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntervalArray</span></code></a> or <a class="reference internal" href="pandas.IntervalIndex.html#pandas.IntervalIndex" title="pandas.IntervalIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntervalIndex</span></code></a> is
-empty.</p>
+<dt>numpy.ndarray[bool]</dt><dd><p>A boolean ndarray positionally indicating if an Interval is empty.</p>
 </dd>
 </dl>
 </dd>
@@ -821,41 +820,23 @@ empty.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="pandas.Interval.length.html#pandas.Interval.length" title="pandas.Interval.length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.length</span></code></a></dt><dd><p>Return the length of the Interval.</p>
+<dt><a class="reference internal" href="pandas.Interval.is_empty.html#pandas.Interval.is_empty" title="pandas.Interval.is_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.is_empty</span></code></a></dt><dd><p>Indicates if a scalar Interval is empty.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.IntervalIndex.length.html#pandas.IntervalIndex.length" title="pandas.IntervalIndex.length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.length</span></code></a></dt><dd><p>Return the length of each interval.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<p>An <a class="reference internal" href="pandas.Interval.html#pandas.Interval" title="pandas.Interval"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interval</span></code></a> that contains points is not empty:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">'right'</span><span class="p">)</span><span class="o">.</span><span class="n">is_empty</span>
-<span class="go">False</span>
-</pre></div>
-</div>
-<p>An <code class="docutils literal notranslate"><span class="pre">Interval</span></code> that does not contain any points is empty:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">'right'</span><span class="p">)</span><span class="o">.</span><span class="n">is_empty</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">'left'</span><span class="p">)</span><span class="o">.</span><span class="n">is_empty</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">'neither'</span><span class="p">)</span><span class="o">.</span><span class="n">is_empty</span>
-<span class="go">True</span>
-</pre></div>
-</div>
-<p>An <code class="docutils literal notranslate"><span class="pre">Interval</span></code> that contains a single point is not empty:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">'both'</span><span class="p">)</span><span class="o">.</span><span class="n">is_empty</span>
-<span class="go">False</span>
-</pre></div>
-</div>
-<p>An <a class="reference internal" href="pandas.arrays.IntervalArray.html#pandas.arrays.IntervalArray" title="pandas.arrays.IntervalArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntervalArray</span></code></a> or <a class="reference internal" href="pandas.IntervalIndex.html#pandas.IntervalIndex" title="pandas.IntervalIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntervalIndex</span></code></a> returns a
-boolean <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> positionally indicating if an <code class="docutils literal notranslate"><span class="pre">Interval</span></code> is
-empty:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ivs</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">'neither'</span><span class="p">),</span>
-<span class="gp">... </span>       <span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">'neither'</span><span class="p">)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">arrays</span><span class="o">.</span><span class="n">IntervalArray</span><span class="p">(</span><span class="n">ivs</span><span class="p">)</span><span class="o">.</span><span class="n">is_empty</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ivs</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">"neither"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">"neither"</span><span class="p">),</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">IntervalIndex</span><span class="p">(</span><span class="n">ivs</span><span class="p">)</span><span class="o">.</span><span class="n">is_empty</span>
 <span class="go">array([ True, False])</span>
 </pre></div>
 </div>
 <p>Missing values are not considered empty:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ivs</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s1">'neither'</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ivs</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">"neither"</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">IntervalIndex</span><span class="p">(</span><span class="n">ivs</span><span class="p">)</span><span class="o">.</span><span class="n">is_empty</span>
 <span class="go">array([ True, False])</span>
 </pre></div>

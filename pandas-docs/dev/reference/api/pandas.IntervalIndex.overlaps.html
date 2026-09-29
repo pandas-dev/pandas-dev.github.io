@@ -575,6 +575,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.right.html">pandas.IntervalIndex.right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.mid.html">pandas.IntervalIndex.mid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed.html">pandas.IntervalIndex.closed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed_left.html">pandas.IntervalIndex.closed_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed_right.html">pandas.IntervalIndex.closed_right</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.open_left.html">pandas.IntervalIndex.open_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.open_right.html">pandas.IntervalIndex.open_right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.length.html">pandas.IntervalIndex.length</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.values.html">pandas.IntervalIndex.values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.is_empty.html">pandas.IntervalIndex.is_empty</a></li>
@@ -800,8 +804,8 @@
 <h1>pandas.IntervalIndex.overlaps<a class="headerlink" href="#pandas-intervalindex-overlaps" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.IntervalIndex.overlaps">
-<span class="sig-prename descclassname"><span class="pre">IntervalIndex.</span></span><span class="sig-name descname"><span class="pre">overlaps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L95-L105"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.IntervalIndex.overlaps" title="Link to this definition">#</a></dt>
-<dd><p>Check elementwise if an Interval overlaps the values in the IntervalArray.</p>
+<span class="sig-prename descclassname"><span class="pre">IntervalIndex.</span></span><span class="sig-name descname"><span class="pre">overlaps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/interval.py#L508-L551"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.IntervalIndex.overlaps" title="Link to this definition">#</a></dt>
+<dd><p>Check elementwise if an Interval overlaps the values in the IntervalIndex.</p>
 <p>Two intervals overlap if they share a common point, including closed
 endpoints. Intervals that only have an open endpoint in common do not
 overlap, and empty intervals contain no points at all, so they never
@@ -809,7 +813,7 @@ overlap.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>other</strong><span class="classifier">IntervalArray</span></dt><dd><p>Interval to check against for an overlap.</p>
+<dt><strong>other</strong><span class="classifier">Interval</span></dt><dd><p>Interval to check against for an overlap.</p>
 </dd>
 </dl>
 </dd>
@@ -829,11 +833,9 @@ overlap.</p>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">arrays</span><span class="o">.</span><span class="n">IntervalArray</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">IntervalIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span>
-<span class="go">&lt;IntervalArray&gt;</span>
-<span class="go">[(0, 1], (1, 3], (2, 4]]</span>
-<span class="go">Length: 3, dtype: interval[int64, right]</span>
+<span class="go">IntervalIndex([(0, 1], (1, 3], (2, 4]], dtype='interval[int64, right]')</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span><span class="o">.</span><span class="n">overlaps</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">))</span>
@@ -842,17 +844,12 @@ overlap.</p>
 </div>
 <p>Intervals that share closed endpoints overlap:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span><span class="o">.</span><span class="n">overlaps</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">"left"</span><span class="p">))</span>
-<span class="go">array([ True,  True, True])</span>
+<span class="go">array([ True,  True,  True])</span>
 </pre></div>
 </div>
 <p>Intervals that only have an open endpoint in common do not overlap:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span><span class="o">.</span><span class="n">overlaps</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">"right"</span><span class="p">))</span>
 <span class="go">array([False,  True, False])</span>
-</pre></div>
-</div>
-<p>Empty intervals do not overlap with anything:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span><span class="o">.</span><span class="n">overlaps</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">"left"</span><span class="p">))</span>
-<span class="go">array([False, False, False])</span>
 </pre></div>
 </div>
 </dd></dl>

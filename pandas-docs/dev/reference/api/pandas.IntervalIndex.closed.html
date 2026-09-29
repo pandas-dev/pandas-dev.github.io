@@ -575,6 +575,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.right.html">pandas.IntervalIndex.right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.mid.html">pandas.IntervalIndex.mid</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">pandas.IntervalIndex.closed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed_left.html">pandas.IntervalIndex.closed_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed_right.html">pandas.IntervalIndex.closed_right</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.open_left.html">pandas.IntervalIndex.open_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.open_right.html">pandas.IntervalIndex.open_right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.length.html">pandas.IntervalIndex.length</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.values.html">pandas.IntervalIndex.values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.is_empty.html">pandas.IntervalIndex.is_empty</a></li>
@@ -800,32 +804,19 @@
 <h1>pandas.IntervalIndex.closed<a class="headerlink" href="#pandas-intervalindex-closed" title="Link to this heading">#</a></h1>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pandas.IntervalIndex.closed">
-<span class="sig-prename descclassname"><span class="pre">IntervalIndex.</span></span><span class="sig-name descname"><span class="pre">closed</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L61-L62"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.IntervalIndex.closed" title="Link to this definition">#</a></dt>
-<dd><p>String describing the inclusive side the intervals.</p>
+<span class="sig-prename descclassname"><span class="pre">IntervalIndex.</span></span><span class="sig-name descname"><span class="pre">closed</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/interval.py#L243-L264"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.IntervalIndex.closed" title="Link to this definition">#</a></dt>
+<dd><p>String describing the inclusive side of the intervals.</p>
 <p>Either <code class="docutils literal notranslate"><span class="pre">left</span></code>, <code class="docutils literal notranslate"><span class="pre">right</span></code>, <code class="docutils literal notranslate"><span class="pre">both</span></code> or <code class="docutils literal notranslate"><span class="pre">neither</span></code>.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalArray.closed</span></code></dt><dd><p>Returns inclusive side of the IntervalArray.</p>
+<dt><a class="reference internal" href="pandas.IntervalIndex.set_closed.html#pandas.IntervalIndex.set_closed" title="pandas.IntervalIndex.set_closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.set_closed</span></code></a></dt><dd><p>Return an IntervalIndex identical to the current one, but closed on the specified side.</p>
 </dd>
 <dt><a class="reference internal" href="pandas.Interval.closed.html#pandas.Interval.closed" title="pandas.Interval.closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.closed</span></code></a></dt><dd><p>Returns inclusive side of the Interval.</p>
-</dd>
-<dt><a class="reference internal" href="#pandas.IntervalIndex.closed" title="pandas.IntervalIndex.closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.closed</span></code></a></dt><dd><p>Returns inclusive side of the IntervalIndex.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<p>For arrays:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interv_arr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">arrays</span><span class="o">.</span><span class="n">IntervalArray</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">interv_arr</span>
-<span class="go">&lt;IntervalArray&gt;</span>
-<span class="go">[(0, 1], (1, 5]]</span>
-<span class="go">Length: 2, dtype: interval[int64, right]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">interv_arr</span><span class="o">.</span><span class="n">closed</span>
-<span class="go">'right'</span>
-</pre></div>
-</div>
-<p>For Interval Index:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interv_idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">interval_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">interv_idx</span>
 <span class="go">IntervalIndex([(0, 1], (1, 2]], dtype='interval[int64, right]')</span>

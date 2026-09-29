@@ -575,6 +575,10 @@
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.IntervalIndex.right.html">pandas.IntervalIndex.right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.IntervalIndex.mid.html">pandas.IntervalIndex.mid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.IntervalIndex.closed.html">pandas.IntervalIndex.closed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.IntervalIndex.closed_left.html">pandas.IntervalIndex.closed_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.IntervalIndex.closed_right.html">pandas.IntervalIndex.closed_right</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.IntervalIndex.open_left.html">pandas.IntervalIndex.open_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.IntervalIndex.open_right.html">pandas.IntervalIndex.open_right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.IntervalIndex.length.html">pandas.IntervalIndex.length</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.IntervalIndex.values.html">pandas.IntervalIndex.values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.IntervalIndex.is_empty.html">pandas.IntervalIndex.is_empty</a></li>
@@ -1174,7 +1178,7 @@ used before calling these methods directly.</strong></p>
 <td><p>The category codes of this categorical index.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.CategoricalIndex.categories.html#pandas.CategoricalIndex.categories" title="pandas.CategoricalIndex.categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.categories</span></code></a></p></td>
-<td><p>The categories of this categorical.</p></td>
+<td><p>The categories of this CategoricalIndex.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.CategoricalIndex.ordered.html#pandas.CategoricalIndex.ordered" title="pandas.CategoricalIndex.ordered"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.ordered</span></code></a></p></td>
 <td><p>Whether the categories have an ordered relationship.</p></td>
@@ -1198,10 +1202,10 @@ used before calling these methods directly.</strong></p>
 <td><p>Set the categories to the specified new categories.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.CategoricalIndex.as_ordered.html#pandas.CategoricalIndex.as_ordered" title="pandas.CategoricalIndex.as_ordered"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.as_ordered</span></code></a>()</p></td>
-<td><p>Set the Categorical to be ordered.</p></td>
+<td><p>Set the CategoricalIndex to be ordered.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.CategoricalIndex.as_unordered.html#pandas.CategoricalIndex.as_unordered" title="pandas.CategoricalIndex.as_unordered"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.as_unordered</span></code></a>()</p></td>
-<td><p>Set the Categorical to be unordered.</p></td>
+<td><p>Set the CategoricalIndex to be unordered.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1255,7 +1259,19 @@ used before calling these methods directly.</strong></p>
 <td><p>Return the midpoint of each interval in the IntervalIndex as an Index.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.IntervalIndex.closed.html#pandas.IntervalIndex.closed" title="pandas.IntervalIndex.closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.closed</span></code></a></p></td>
-<td><p>String describing the inclusive side the intervals.</p></td>
+<td><p>String describing the inclusive side of the intervals.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.IntervalIndex.closed_left.html#pandas.IntervalIndex.closed_left" title="pandas.IntervalIndex.closed_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.closed_left</span></code></a></p></td>
+<td><p>Check if the intervals are closed on the left side.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.IntervalIndex.closed_right.html#pandas.IntervalIndex.closed_right" title="pandas.IntervalIndex.closed_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.closed_right</span></code></a></p></td>
+<td><p>Check if the intervals are closed on the right side.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.IntervalIndex.open_left.html#pandas.IntervalIndex.open_left" title="pandas.IntervalIndex.open_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.open_left</span></code></a></p></td>
+<td><p>Check if the intervals are open on the left side.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.IntervalIndex.open_right.html#pandas.IntervalIndex.open_right" title="pandas.IntervalIndex.open_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.open_right</span></code></a></p></td>
+<td><p>Check if the intervals are open on the right side.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.IntervalIndex.length.html#pandas.IntervalIndex.length" title="pandas.IntervalIndex.length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.length</span></code></a></p></td>
 <td><p>Calculate the length of each interval in the IntervalIndex.</p></td>
@@ -1267,7 +1283,7 @@ used before calling these methods directly.</strong></p>
 <td><p>Indicates if an interval is empty, meaning it contains no points.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.IntervalIndex.is_non_overlapping_monotonic.html#pandas.IntervalIndex.is_non_overlapping_monotonic" title="pandas.IntervalIndex.is_non_overlapping_monotonic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.is_non_overlapping_monotonic</span></code></a></p></td>
-<td><p>Return a boolean whether the IntervalArray/IntervalIndex        is non-overlapping and monotonic.</p></td>
+<td><p>Return True if the IntervalIndex is non-overlapping and monotonic.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.IntervalIndex.is_overlapping.html#pandas.IntervalIndex.is_overlapping" title="pandas.IntervalIndex.is_overlapping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.is_overlapping</span></code></a></p></td>
 <td><p>Return True if the IntervalIndex has overlapping intervals, else False.</p></td>
@@ -1279,16 +1295,16 @@ used before calling these methods directly.</strong></p>
 <td><p>Compute indexer and mask for new index given the current index.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.IntervalIndex.set_closed.html#pandas.IntervalIndex.set_closed" title="pandas.IntervalIndex.set_closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.set_closed</span></code></a>(closed)</p></td>
-<td><p>Return an identical IntervalArray closed on the specified side.</p></td>
+<td><p>Return an identical IntervalIndex closed on the specified side.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.IntervalIndex.contains.html#pandas.IntervalIndex.contains" title="pandas.IntervalIndex.contains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.contains</span></code></a>(other)</p></td>
 <td><p>Check elementwise if the Intervals contain the value.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.IntervalIndex.overlaps.html#pandas.IntervalIndex.overlaps" title="pandas.IntervalIndex.overlaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.overlaps</span></code></a>(other)</p></td>
-<td><p>Check elementwise if an Interval overlaps the values in the IntervalArray.</p></td>
+<td><p>Check elementwise if an Interval overlaps the values in the IntervalIndex.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.IntervalIndex.to_tuples.html#pandas.IntervalIndex.to_tuples" title="pandas.IntervalIndex.to_tuples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.to_tuples</span></code></a>([na_tuple])</p></td>
-<td><p>Return an ndarray (if self is IntervalArray) or Index         (if self is IntervalIndex) of tuples of the form (left, right).</p></td>
+<td><p>Return an Index of tuples of the form (left, right).</p></td>
 </tr>
 </tbody>
 </table>

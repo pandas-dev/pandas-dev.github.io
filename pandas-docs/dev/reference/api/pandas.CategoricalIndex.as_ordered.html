@@ -575,6 +575,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.right.html">pandas.IntervalIndex.right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.mid.html">pandas.IntervalIndex.mid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed.html">pandas.IntervalIndex.closed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed_left.html">pandas.IntervalIndex.closed_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed_right.html">pandas.IntervalIndex.closed_right</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.open_left.html">pandas.IntervalIndex.open_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.open_right.html">pandas.IntervalIndex.open_right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.length.html">pandas.IntervalIndex.length</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.values.html">pandas.IntervalIndex.values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.is_empty.html">pandas.IntervalIndex.is_empty</a></li>
@@ -800,14 +804,14 @@
 <h1>pandas.CategoricalIndex.as_ordered<a class="headerlink" href="#pandas-categoricalindex-as-ordered" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.CategoricalIndex.as_ordered">
-<span class="sig-prename descclassname"><span class="pre">CategoricalIndex.</span></span><span class="sig-name descname"><span class="pre">as_ordered</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L95-L105"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.CategoricalIndex.as_ordered" title="Link to this definition">#</a></dt>
-<dd><p>Set the Categorical to be ordered.</p>
-<p>This method returns a new Categorical with the ordered attribute set
-to True, enabling comparison operations between categories.</p>
+<span class="sig-prename descclassname"><span class="pre">CategoricalIndex.</span></span><span class="sig-name descname"><span class="pre">as_ordered</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/category.py#L585-L611"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.CategoricalIndex.as_ordered" title="Link to this definition">#</a></dt>
+<dd><p>Set the CategoricalIndex to be ordered.</p>
+<p>This method returns a new CategoricalIndex with the ordered attribute
+set to True, enabling comparison operations between categories.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt>Categorical</dt><dd><p>Ordered Categorical.</p>
+<dt>CategoricalIndex</dt><dd><p>Ordered CategoricalIndex.</p>
 </dd>
 </dl>
 </dd>
@@ -815,21 +819,11 @@ to True, enabling comparison operations between categories.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="pandas.CategoricalIndex.as_unordered.html#pandas.CategoricalIndex.as_unordered" title="pandas.CategoricalIndex.as_unordered"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_unordered</span></code></a></dt><dd><p>Set the Categorical to be unordered.</p>
+<dt><a class="reference internal" href="pandas.CategoricalIndex.as_unordered.html#pandas.CategoricalIndex.as_unordered" title="pandas.CategoricalIndex.as_unordered"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.as_unordered</span></code></a></dt><dd><p>Set the CategoricalIndex to be unordered.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<p>For <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"category"</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">ordered</span>
-<span class="go">False</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">ser</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">as_ordered</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">ordered</span>
-<span class="go">True</span>
-</pre></div>
-</div>
-<p>For <a class="reference internal" href="pandas.CategoricalIndex.html#pandas.CategoricalIndex" title="pandas.CategoricalIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.CategoricalIndex</span></code></a>:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ci</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">CategoricalIndex</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ci</span><span class="o">.</span><span class="n">ordered</span>
 <span class="go">False</span>

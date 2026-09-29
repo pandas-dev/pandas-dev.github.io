@@ -575,6 +575,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.right.html">pandas.IntervalIndex.right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.mid.html">pandas.IntervalIndex.mid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed.html">pandas.IntervalIndex.closed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed_left.html">pandas.IntervalIndex.closed_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed_right.html">pandas.IntervalIndex.closed_right</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.open_left.html">pandas.IntervalIndex.open_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.open_right.html">pandas.IntervalIndex.open_right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.length.html">pandas.IntervalIndex.length</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.values.html">pandas.IntervalIndex.values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.is_empty.html">pandas.IntervalIndex.is_empty</a></li>
@@ -800,40 +804,20 @@
 <h1>pandas.IntervalIndex.is_non_overlapping_monotonic<a class="headerlink" href="#pandas-intervalindex-is-non-overlapping-monotonic" title="Link to this heading">#</a></h1>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="pandas.IntervalIndex.is_non_overlapping_monotonic">
-<span class="sig-prename descclassname"><span class="pre">IntervalIndex.</span></span><span class="sig-name descname"><span class="pre">is_non_overlapping_monotonic</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L61-L62"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.IntervalIndex.is_non_overlapping_monotonic" title="Link to this definition">#</a></dt>
-<dd><p>Return a boolean whether the IntervalArray/IntervalIndex        is non-overlapping and monotonic.</p>
-<p>Non-overlapping means (no Intervals share points), and monotonic means
+<span class="sig-prename descclassname"><span class="pre">IntervalIndex.</span></span><span class="sig-name descname"><span class="pre">is_non_overlapping_monotonic</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/interval.py#L266-L295"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.IntervalIndex.is_non_overlapping_monotonic" title="Link to this definition">#</a></dt>
+<dd><p>Return True if the IntervalIndex is non-overlapping and monotonic.</p>
+<p>Non-overlapping means no Intervals share points, and monotonic means
 either monotonic increasing or monotonic decreasing.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="pandas.IntervalIndex.overlaps.html#pandas.IntervalIndex.overlaps" title="pandas.IntervalIndex.overlaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">overlaps</span></code></a></dt><dd><p>Check if two IntervalIndex objects overlap.</p>
+<dt><a class="reference internal" href="pandas.IntervalIndex.overlaps.html#pandas.IntervalIndex.overlaps" title="pandas.IntervalIndex.overlaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.overlaps</span></code></a></dt><dd><p>Check an IntervalIndex elementwise for overlaps.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.IntervalIndex.is_overlapping.html#pandas.IntervalIndex.is_overlapping" title="pandas.IntervalIndex.is_overlapping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.is_overlapping</span></code></a></dt><dd><p>Return True if the IntervalIndex has overlapping intervals.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<p>For arrays:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interv_arr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">arrays</span><span class="o">.</span><span class="n">IntervalArray</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">interv_arr</span>
-<span class="go">&lt;IntervalArray&gt;</span>
-<span class="go">[(0, 1], (1, 5]]</span>
-<span class="go">Length: 2, dtype: interval[int64, right]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">interv_arr</span><span class="o">.</span><span class="n">is_non_overlapping_monotonic</span>
-<span class="go">True</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interv_arr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">arrays</span><span class="o">.</span><span class="n">IntervalArray</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">interv_arr</span>
-<span class="go">&lt;IntervalArray&gt;</span>
-<span class="go">[(0.0, 1.0], (-1.0, 0.1]]</span>
-<span class="go">Length: 2, dtype: interval[float64, right]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">interv_arr</span><span class="o">.</span><span class="n">is_non_overlapping_monotonic</span>
-<span class="go">False</span>
-</pre></div>
-</div>
-<p>For Interval Index:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interv_idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">interval_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">interv_idx</span>
 <span class="go">IntervalIndex([(0, 1], (1, 2]], dtype='interval[int64, right]')</span>

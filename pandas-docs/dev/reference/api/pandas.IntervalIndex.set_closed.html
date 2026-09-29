@@ -575,6 +575,10 @@
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.right.html">pandas.IntervalIndex.right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.mid.html">pandas.IntervalIndex.mid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed.html">pandas.IntervalIndex.closed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed_left.html">pandas.IntervalIndex.closed_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.closed_right.html">pandas.IntervalIndex.closed_right</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.open_left.html">pandas.IntervalIndex.open_left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.open_right.html">pandas.IntervalIndex.open_right</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.length.html">pandas.IntervalIndex.length</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.values.html">pandas.IntervalIndex.values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas.IntervalIndex.is_empty.html">pandas.IntervalIndex.is_empty</a></li>
@@ -800,9 +804,9 @@
 <h1>pandas.IntervalIndex.set_closed<a class="headerlink" href="#pandas-intervalindex-set-closed" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.IntervalIndex.set_closed">
-<span class="sig-prename descclassname"><span class="pre">IntervalIndex.</span></span><span class="sig-name descname"><span class="pre">set_closed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">closed</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L95-L105"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.IntervalIndex.set_closed" title="Link to this definition">#</a></dt>
-<dd><p>Return an identical IntervalArray closed on the specified side.</p>
-<p>This method creates a new IntervalArray with the same bounds but with
+<span class="sig-prename descclassname"><span class="pre">IntervalIndex.</span></span><span class="sig-name descname"><span class="pre">set_closed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">closed</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/interval.py#L440-L473"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.IntervalIndex.set_closed" title="Link to this definition">#</a></dt>
+<dd><p>Return an identical IntervalIndex closed on the specified side.</p>
+<p>This method creates a new IntervalIndex with the same bounds but with
 a different closure specification.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -814,7 +818,7 @@ or neither.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>IntervalArray</dt><dd><p>A new IntervalArray with the specified side closures.</p>
+<dt>IntervalIndex</dt><dd><p>A new IntervalIndex with the specified side closures.</p>
 </dd>
 </dl>
 </dd>
@@ -822,22 +826,18 @@ or neither.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalArray.closed</span></code></dt><dd><p>Returns inclusive side of the Interval.</p>
-</dd>
-<dt><a class="reference internal" href="pandas.arrays.IntervalArray.closed.html#pandas.arrays.IntervalArray.closed" title="pandas.arrays.IntervalArray.closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">arrays.IntervalArray.closed</span></code></a></dt><dd><p>Returns inclusive side of the IntervalArray.</p>
+<dt><a class="reference internal" href="pandas.IntervalIndex.closed.html#pandas.IntervalIndex.closed" title="pandas.IntervalIndex.closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex.closed</span></code></a></dt><dd><p>Returns inclusive side of the IntervalIndex.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">arrays</span><span class="o">.</span><span class="n">IntervalArray</span><span class="o">.</span><span class="n">from_breaks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">interval_range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">index</span>
-<span class="go">&lt;IntervalArray&gt;</span>
-<span class="go">[(0, 1], (1, 2], (2, 3]]</span>
-<span class="go">Length: 3, dtype: interval[int64, right]</span>
+<span class="go">IntervalIndex([(0, 1], (1, 2], (2, 3]],</span>
+<span class="go">              dtype='interval[int64, right]')</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">index</span><span class="o">.</span><span class="n">set_closed</span><span class="p">(</span><span class="s2">"both"</span><span class="p">)</span>
-<span class="go">&lt;IntervalArray&gt;</span>
-<span class="go">[[0, 1], [1, 2], [2, 3]]</span>
-<span class="go">Length: 3, dtype: interval[int64, both]</span>
+<span class="go">IntervalIndex([[0, 1], [1, 2], [2, 3]],</span>
+<span class="go">              dtype='interval[int64, both]')</span>
 </pre></div>
 </div>
 </dd></dl>
