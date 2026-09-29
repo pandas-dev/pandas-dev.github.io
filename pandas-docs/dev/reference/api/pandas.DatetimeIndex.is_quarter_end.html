@@ -776,6 +776,9 @@
     
     <li class="breadcrumb-item"><a href="../indexing.html" class="nav-link">Index objects</a></li>
     
+    
+    <li class="breadcrumb-item"><a href="pandas.DatetimeIndex.html" class="nav-link">pandas.DatetimeIndex</a></li>
+    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pandas.DatetimeIndex.is_quarter_end</span></li>
   </ul>
 </nav>
@@ -797,8 +800,30 @@
 <h1>pandas.DatetimeIndex.is_quarter_end<a class="headerlink" href="#pandas-datetimeindex-is-quarter-end" title="Link to this heading">#</a></h1>
 <dl class="py property">
 <dt class="sig sig-object py" id="pandas.DatetimeIndex.is_quarter_end">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DatetimeIndex.</span></span><span class="sig-name descname"><span class="pre">is_quarter_end</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/datetimes.py#L404-L406"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.is_quarter_end" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DatetimeIndex.</span></span><span class="sig-name descname"><span class="pre">is_quarter_end</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/datetimes.py#L712-L736"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.is_quarter_end" title="Link to this definition">#</a></dt>
+<dd><p>Indicator for whether the date is the last day of a quarter.</p>
+<p>This boolean attribute evaluates to True if the date falls on the
+last day of a calendar quarter (March 31, June 30, September 30, or
+December 31), and False otherwise.
+If the index has a business or anchored <code class="docutils literal notranslate"><span class="pre">freq</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;BQE&quot;</span></code> or
+<code class="docutils literal notranslate"><span class="pre">&quot;QE-NOV&quot;</span></code>), the result follows that frequency’s quarter boundaries
+instead of the calendar’s.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.DatetimeIndex.quarter.html#pandas.DatetimeIndex.quarter" title="pandas.DatetimeIndex.quarter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatetimeIndex.quarter</span></code></a></dt><dd><p>Return the quarter of the date.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DatetimeIndex.is_quarter_start.html#pandas.DatetimeIndex.is_quarter_start" title="pandas.DatetimeIndex.is_quarter_start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatetimeIndex.is_quarter_start</span></code></a></dt><dd><p>Similar property indicating the quarter start.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2017-03-30"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">is_quarter_end</span>
+<span class="go">array([False,  True, False, False])</span>
+</pre></div>
+</div>
+</dd></dl>
 
 </section>
 

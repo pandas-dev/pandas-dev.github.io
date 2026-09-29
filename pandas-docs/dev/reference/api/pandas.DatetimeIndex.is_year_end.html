@@ -776,6 +776,9 @@
     
     <li class="breadcrumb-item"><a href="../indexing.html" class="nav-link">Index objects</a></li>
     
+    
+    <li class="breadcrumb-item"><a href="pandas.DatetimeIndex.html" class="nav-link">pandas.DatetimeIndex</a></li>
+    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pandas.DatetimeIndex.is_year_end</span></li>
   </ul>
 </nav>
@@ -797,8 +800,27 @@
 <h1>pandas.DatetimeIndex.is_year_end<a class="headerlink" href="#pandas-datetimeindex-is-year-end" title="Link to this heading">#</a></h1>
 <dl class="py property">
 <dt class="sig sig-object py" id="pandas.DatetimeIndex.is_year_end">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DatetimeIndex.</span></span><span class="sig-name descname"><span class="pre">is_year_end</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/datetimes.py#L412-L414"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.is_year_end" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DatetimeIndex.</span></span><span class="sig-name descname"><span class="pre">is_year_end</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/datetimes.py#L772-L794"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.is_year_end" title="Link to this definition">#</a></dt>
+<dd><p>Indicate whether the date is the last day of the year.</p>
+<p>This boolean attribute evaluates to True if the date is December
+31st, and False otherwise.
+If the index has a business or anchored <code class="docutils literal notranslate"><span class="pre">freq</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;BYE&quot;</span></code> or
+<code class="docutils literal notranslate"><span class="pre">&quot;YE-MAR&quot;</span></code>), the result follows that frequency’s year boundaries
+instead of the calendar’s.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.DatetimeIndex.is_year_start.html#pandas.DatetimeIndex.is_year_start" title="pandas.DatetimeIndex.is_year_start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatetimeIndex.is_year_start</span></code></a></dt><dd><p>Similar property indicating the start of the year.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2017-12-30"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">is_year_end</span>
+<span class="go">array([False,  True, False])</span>
+</pre></div>
+</div>
+</dd></dl>
 
 </section>
 
