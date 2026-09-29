@@ -804,7 +804,7 @@
 <h1>pandas.CategoricalIndex.remove_unused_categories<a class="headerlink" href="#pandas-categoricalindex-remove-unused-categories" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.CategoricalIndex.remove_unused_categories">
-<span class="sig-prename descclassname"><span class="pre">CategoricalIndex.</span></span><span class="sig-name descname"><span class="pre">remove_unused_categories</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/category.py#L470-L509"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.CategoricalIndex.remove_unused_categories" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CategoricalIndex.</span></span><span class="sig-name descname"><span class="pre">remove_unused_categories</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L95-L105"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.CategoricalIndex.remove_unused_categories" title="Link to this definition">#</a></dt>
 <dd><p>Remove categories which are not used.</p>
 <p>This method is useful when working with datasets
 that undergo dynamic changes where categories may no longer be
@@ -812,7 +812,7 @@ relevant, allowing to maintain a clean, efficient data structure.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt>CategoricalIndex</dt><dd><p>CategoricalIndex with unused categories dropped.</p>
+<dt>Categorical</dt><dd><p>Categorical with unused categories dropped.</p>
 </dd>
 </dl>
 </dd>
@@ -820,34 +820,35 @@ relevant, allowing to maintain a clean, efficient data structure.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="pandas.CategoricalIndex.rename_categories.html#pandas.CategoricalIndex.rename_categories" title="pandas.CategoricalIndex.rename_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.rename_categories</span></code></a></dt><dd><p>Rename categories.</p>
+<dt><a class="reference internal" href="pandas.CategoricalIndex.rename_categories.html#pandas.CategoricalIndex.rename_categories" title="pandas.CategoricalIndex.rename_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rename_categories</span></code></a></dt><dd><p>Rename categories.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.CategoricalIndex.reorder_categories.html#pandas.CategoricalIndex.reorder_categories" title="pandas.CategoricalIndex.reorder_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.reorder_categories</span></code></a></dt><dd><p>Reorder categories.</p>
+<dt><a class="reference internal" href="pandas.CategoricalIndex.reorder_categories.html#pandas.CategoricalIndex.reorder_categories" title="pandas.CategoricalIndex.reorder_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reorder_categories</span></code></a></dt><dd><p>Reorder categories.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.CategoricalIndex.add_categories.html#pandas.CategoricalIndex.add_categories" title="pandas.CategoricalIndex.add_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.add_categories</span></code></a></dt><dd><p>Add new categories.</p>
+<dt><a class="reference internal" href="pandas.CategoricalIndex.add_categories.html#pandas.CategoricalIndex.add_categories" title="pandas.CategoricalIndex.add_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_categories</span></code></a></dt><dd><p>Add new categories.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.CategoricalIndex.remove_categories.html#pandas.CategoricalIndex.remove_categories" title="pandas.CategoricalIndex.remove_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.remove_categories</span></code></a></dt><dd><p>Remove the specified categories.</p>
+<dt><a class="reference internal" href="pandas.CategoricalIndex.remove_categories.html#pandas.CategoricalIndex.remove_categories" title="pandas.CategoricalIndex.remove_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_categories</span></code></a></dt><dd><p>Remove the specified categories.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.CategoricalIndex.set_categories.html#pandas.CategoricalIndex.set_categories" title="pandas.CategoricalIndex.set_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.set_categories</span></code></a></dt><dd><p>Set the categories to the specified ones.</p>
+<dt><a class="reference internal" href="pandas.CategoricalIndex.set_categories.html#pandas.CategoricalIndex.set_categories" title="pandas.CategoricalIndex.set_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_categories</span></code></a></dt><dd><p>Set the categories to the specified ones.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ci</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">CategoricalIndex</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ci</span>
-<span class="go">CategoricalIndex(['a', 'c', 'b', 'c', 'd'], categories=['a', 'b', 'c', 'd'],</span>
-<span class="go">                 ordered=False, dtype='category')</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span>
+<span class="go">['a', 'c', 'b', 'c', 'd']</span>
+<span class="go">Categories (4, str): ['a', 'b', 'c', 'd']</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ci</span> <span class="o">=</span> <span class="n">ci</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ci</span>
-<span class="go">CategoricalIndex(['a', 'c', 'a', 'c', 'c'], categories=['a', 'b', 'c', 'd'],</span>
-<span class="go">                 ordered=False, dtype='category')</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"a"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"c"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span>
+<span class="go">['a', 'c', 'a', 'c', 'c']</span>
+<span class="go">Categories (4, str): ['a', 'b', 'c', 'd']</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ci</span><span class="o">.</span><span class="n">remove_unused_categories</span><span class="p">()</span>
-<span class="go">CategoricalIndex(['a', 'c', 'a', 'c', 'c'], categories=['a', 'c'],</span>
-<span class="go">                 ordered=False, dtype='category')</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">remove_unused_categories</span><span class="p">()</span>
+<span class="go">['a', 'c', 'a', 'c', 'c']</span>
+<span class="go">Categories (2, str): ['a', 'c']</span>
 </pre></div>
 </div>
 </dd></dl>

@@ -804,7 +804,7 @@
 <h1>pandas.CategoricalIndex.set_categories<a class="headerlink" href="#pandas-categoricalindex-set-categories" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.CategoricalIndex.set_categories">
-<span class="sig-prename descclassname"><span class="pre">CategoricalIndex.</span></span><span class="sig-name descname"><span class="pre">set_categories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/category.py#L511-L583"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.CategoricalIndex.set_categories" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">CategoricalIndex.</span></span><span class="sig-name descname"><span class="pre">set_categories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L95-L105"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.CategoricalIndex.set_categories" title="Link to this definition">#</a></dt>
 <dd><p>Set the categories to the specified new categories.</p>
 <p><code class="docutils literal notranslate"><span class="pre">new_categories</span></code> can include new categories (which will result in
 unused categories) or remove old categories (which results in values
@@ -814,9 +814,11 @@ set to <code class="docutils literal notranslate"><span class="pre">NaN</span></
 <p>This method can be used to perform more than one action of adding,
 removing, and reordering simultaneously and is therefore faster than
 performing the individual steps via the more specialised methods.</p>
-<p>On the other hand this method does not check whether the old categories
-are included in the new categories on a reorder, which can result in
-surprising changes.</p>
+<p>On the other hand this methods does not do checks (e.g., whether the
+old categories are included in the new categories on a reorder), which
+can result in surprising changes, for example when using special string
+dtypes, which do not consider a S1 string equal to a single char
+python string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -832,7 +834,7 @@ of the old categories or as reordered categories.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>CategoricalIndex</dt><dd><p>CategoricalIndex with the new categories.</p>
+<dt>Categorical</dt><dd><p>New categories to be used, with optional ordering changes.</p>
 </dd>
 </dl>
 </dd>
@@ -846,19 +848,43 @@ of the old categories or as reordered categories.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="pandas.CategoricalIndex.rename_categories.html#pandas.CategoricalIndex.rename_categories" title="pandas.CategoricalIndex.rename_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.rename_categories</span></code></a></dt><dd><p>Rename categories.</p>
+<dt><a class="reference internal" href="pandas.CategoricalIndex.rename_categories.html#pandas.CategoricalIndex.rename_categories" title="pandas.CategoricalIndex.rename_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rename_categories</span></code></a></dt><dd><p>Rename categories.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.CategoricalIndex.reorder_categories.html#pandas.CategoricalIndex.reorder_categories" title="pandas.CategoricalIndex.reorder_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.reorder_categories</span></code></a></dt><dd><p>Reorder categories.</p>
+<dt><a class="reference internal" href="pandas.CategoricalIndex.reorder_categories.html#pandas.CategoricalIndex.reorder_categories" title="pandas.CategoricalIndex.reorder_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reorder_categories</span></code></a></dt><dd><p>Reorder categories.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.CategoricalIndex.add_categories.html#pandas.CategoricalIndex.add_categories" title="pandas.CategoricalIndex.add_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.add_categories</span></code></a></dt><dd><p>Add new categories.</p>
+<dt><a class="reference internal" href="pandas.CategoricalIndex.add_categories.html#pandas.CategoricalIndex.add_categories" title="pandas.CategoricalIndex.add_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_categories</span></code></a></dt><dd><p>Add new categories.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.CategoricalIndex.remove_categories.html#pandas.CategoricalIndex.remove_categories" title="pandas.CategoricalIndex.remove_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.remove_categories</span></code></a></dt><dd><p>Remove the specified categories.</p>
+<dt><a class="reference internal" href="pandas.CategoricalIndex.remove_categories.html#pandas.CategoricalIndex.remove_categories" title="pandas.CategoricalIndex.remove_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_categories</span></code></a></dt><dd><p>Remove the specified categories.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.CategoricalIndex.remove_unused_categories.html#pandas.CategoricalIndex.remove_unused_categories" title="pandas.CategoricalIndex.remove_unused_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalIndex.remove_unused_categories</span></code></a></dt><dd><p>Remove categories which are not used.</p>
+<dt><a class="reference internal" href="pandas.CategoricalIndex.remove_unused_categories.html#pandas.CategoricalIndex.remove_unused_categories" title="pandas.CategoricalIndex.remove_unused_categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_unused_categories</span></code></a></dt><dd><p>Remove categories which are not used.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
+<p>For <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Series</span></code></a>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">raw_cat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">raw_cat</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">0   a</span>
+<span class="go">1   b</span>
+<span class="go">2   c</span>
+<span class="go">3   NaN</span>
+<span class="go">dtype: category</span>
+<span class="go">Categories (3, str): ['a' &lt; 'b' &lt; 'c']</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">set_categories</span><span class="p">([</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">],</span> <span class="n">rename</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">0   A</span>
+<span class="go">1   B</span>
+<span class="go">2   C</span>
+<span class="go">3   NaN</span>
+<span class="go">dtype: category</span>
+<span class="go">Categories (3, str): ['A' &lt; 'B' &lt; 'C']</span>
+</pre></div>
+</div>
+<p>For <a class="reference internal" href="pandas.CategoricalIndex.html#pandas.CategoricalIndex" title="pandas.CategoricalIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.CategoricalIndex</span></code></a>:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ci</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">CategoricalIndex</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span>
 <span class="gp">... </span><span class="p">)</span>

@@ -804,7 +804,7 @@
 <h1>pandas.TimedeltaIndex.microseconds<a class="headerlink" href="#pandas-timedeltaindex-microseconds" title="Link to this heading">#</a></h1>
 <dl class="py property">
 <dt class="sig sig-object py" id="pandas.TimedeltaIndex.microseconds">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">TimedeltaIndex.</span></span><span class="sig-name descname"><span class="pre">microseconds</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/timedeltas.py#L442-L466"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.TimedeltaIndex.microseconds" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">TimedeltaIndex.</span></span><span class="sig-name descname"><span class="pre">microseconds</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L70-L78"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.TimedeltaIndex.microseconds" title="Link to this definition">#</a></dt>
 <dd><p>Number of microseconds (&gt;= 0 and less than 1 second) for each element.</p>
 <p>This attribute returns the microseconds component of each timedelta value,
 which is the number of microseconds remaining after subtracting whole
@@ -812,12 +812,29 @@ seconds. Values range from 0 to 999999.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="pandas.Timedelta.microseconds.html#pandas.Timedelta.microseconds" title="pandas.Timedelta.microseconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.microseconds</span></code></a></dt><dd><p>Number of microseconds (&gt;= 0 and less than 1 second).</p>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd.Timedelta.microseconds</span></code></dt><dd><p>Number of microseconds (&gt;= 0 and less than 1 second).</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">pd.Timedelta.to_pytimedelta.microseconds</span></code></dt><dd><p>Number of microseconds (&gt;= 0 and less than 1 second) of a datetime.timedelta.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"us"</span><span class="p">)</span>
+<p>For Series:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'us'</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">0   0 days 00:00:00.000001</span>
+<span class="go">1   0 days 00:00:00.000002</span>
+<span class="go">2   0 days 00:00:00.000003</span>
+<span class="go">dtype: timedelta64[us]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">microseconds</span>
+<span class="go">0    1</span>
+<span class="go">1    2</span>
+<span class="go">2    3</span>
+<span class="go">dtype: int32</span>
+</pre></div>
+</div>
+<p>For TimedeltaIndex:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'us'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span>
 <span class="go">TimedeltaIndex(['0 days 00:00:00.000001', '0 days 00:00:00.000002',</span>
 <span class="go">                '0 days 00:00:00.000003'],</span>

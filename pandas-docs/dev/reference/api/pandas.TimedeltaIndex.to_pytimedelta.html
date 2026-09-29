@@ -804,14 +804,18 @@
 <h1>pandas.TimedeltaIndex.to_pytimedelta<a class="headerlink" href="#pandas-timedeltaindex-to-pytimedelta" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.TimedeltaIndex.to_pytimedelta">
-<span class="sig-prename descclassname"><span class="pre">TimedeltaIndex.</span></span><span class="sig-name descname"><span class="pre">to_pytimedelta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/timedeltas.py#L524-L554"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.TimedeltaIndex.to_pytimedelta" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">TimedeltaIndex.</span></span><span class="sig-name descname"><span class="pre">to_pytimedelta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L95-L105"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.TimedeltaIndex.to_pytimedelta" title="Link to this definition">#</a></dt>
 <dd><p>Return an ndarray of datetime.timedelta objects.</p>
 <p>Each element of the <a class="reference internal" href="pandas.TimedeltaIndex.html#pandas.TimedeltaIndex" title="pandas.TimedeltaIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code></a> is converted to the
 corresponding native Python <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.timedelta</span></code></a> object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt>numpy.ndarray</dt><dd><p>Object-dtype array of <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.timedelta</span></code></a>.</p>
+<dt>numpy.ndarray</dt><dd><p>A NumPy <code class="docutils literal notranslate"><span class="pre">timedelta64</span></code> object representing the same duration as the
+original pandas <code class="docutils literal notranslate"><span class="pre">Timedelta</span></code> object. The precision of the resulting
+object is in nanoseconds, which is the default
+time resolution used by pandas for <code class="docutils literal notranslate"><span class="pre">Timedelta</span></code> objects, ensuring
+high precision for time-based calculations.</p>
 </dd>
 </dl>
 </dd>
@@ -837,6 +841,15 @@ corresponding native Python <a class="reference external" href="https://docs.pyt
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span><span class="o">.</span><span class="n">to_pytimedelta</span><span class="p">()</span>
 <span class="go">array([datetime.timedelta(days=1), datetime.timedelta(days=2),</span>
 <span class="go">       datetime.timedelta(days=3)], dtype=object)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tidx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">TimedeltaIndex</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="s2">"1 days 02:30:45"</span><span class="p">,</span> <span class="s2">"3 days 04:15:10"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tidx</span>
+<span class="go">TimedeltaIndex(['1 days 02:30:45', '3 days 04:15:10'],</span>
+<span class="go">       dtype='timedelta64[us]', freq=None)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tidx</span><span class="o">.</span><span class="n">to_pytimedelta</span><span class="p">()</span>
+<span class="go">array([datetime.timedelta(days=1, seconds=9045),</span>
+<span class="go">        datetime.timedelta(days=3, seconds=15310)], dtype=object)</span>
 </pre></div>
 </div>
 </dd></dl>

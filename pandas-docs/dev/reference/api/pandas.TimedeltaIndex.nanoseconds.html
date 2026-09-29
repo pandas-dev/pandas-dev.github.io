@@ -804,7 +804,7 @@
 <h1>pandas.TimedeltaIndex.nanoseconds<a class="headerlink" href="#pandas-timedeltaindex-nanoseconds" title="Link to this heading">#</a></h1>
 <dl class="py property">
 <dt class="sig sig-object py" id="pandas.TimedeltaIndex.nanoseconds">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">TimedeltaIndex.</span></span><span class="sig-name descname"><span class="pre">nanoseconds</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/timedeltas.py#L468-L492"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.TimedeltaIndex.nanoseconds" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">TimedeltaIndex.</span></span><span class="sig-name descname"><span class="pre">nanoseconds</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/extension.py#L70-L78"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.TimedeltaIndex.nanoseconds" title="Link to this definition">#</a></dt>
 <dd><p>Number of nanoseconds (&gt;= 0 and less than 1 microsecond) for each element.</p>
 <p>This attribute returns the nanoseconds component of each timedelta value,
 which is the number of nanoseconds remaining after subtracting whole
@@ -819,7 +819,22 @@ microseconds. Values range from 0 to 999.</p>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"ns"</span><span class="p">)</span>
+<p>For Series:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'ns'</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">0   0 days 00:00:00.000000001</span>
+<span class="go">1   0 days 00:00:00.000000002</span>
+<span class="go">2   0 days 00:00:00.000000003</span>
+<span class="go">dtype: timedelta64[ns]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">nanoseconds</span>
+<span class="go">0    1</span>
+<span class="go">1    2</span>
+<span class="go">2    3</span>
+<span class="go">dtype: int32</span>
+</pre></div>
+</div>
+<p>For TimedeltaIndex:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s1">'ns'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tdelta_idx</span>
 <span class="go">TimedeltaIndex(['0 days 00:00:00.000000001', '0 days 00:00:00.000000002',</span>
 <span class="go">                '0 days 00:00:00.000000003'],</span>
