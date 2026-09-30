@@ -903,44 +903,21 @@ always gives numpy-backed categories (<a class="extlink-issue reference external
 </section>
 <section id="timestamp-no-longer-ignores-date-components-and-the-positional-tzinfo">
 <span id="whatsnew-310-notable-bug-fixes-timestamp-ignored-arguments"></span><h3><a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> no longer ignores date components and the positional <code class="docutils literal notranslate"><span class="pre">tzinfo</span></code><a class="headerlink" href="#timestamp-no-longer-ignores-date-components-and-the-positional-tzinfo" title="Link to this heading">#</a></h3>
-<p><a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> takes either a value to convert (a datetime-like object, a
-string, or an epoch number) or the individual date components, but passing both
-silently dropped the components:</p>
+<p><a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> silently dropped date components passed alongside a value to
+convert, and keyword components mixed with positional ones could land in the
+wrong field:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">),</span> <span class="n">hour</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="gh">Out[1]: </span><span class="go">Timestamp('2020-12-31 00:00:00')</span>
-</pre></div>
-</div>
-<p>This now raises <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>; write <code class="docutils literal notranslate"><span class="pre">pd.Timestamp(datetime(2020,</span> <span class="pre">12,</span> <span class="pre">31,</span> <span class="pre">5))</span></code>
-instead. Null-like input (<code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">NaT</span></code>, <code class="docutils literal notranslate"><span class="pre">NaN</span></code>,
-<code class="docutils literal notranslate"><span class="pre">pd.NA</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy.datetime64(&quot;NaT&quot;)</span></code>) is exempt and gives <code class="docutils literal notranslate"><span class="pre">NaT</span></code> for any
-combination of the components; <code class="docutils literal notranslate"><span class="pre">Timestamp(None,</span> <span class="pre">year=2020,</span> <span class="pre">month=1,</span> <span class="pre">day=1)</span></code>
-and friends therefore give <code class="docutils literal notranslate"><span class="pre">NaT</span></code> where they used to raise <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.</p>
-<p>In the <em>positional</em> <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code>-like form the parameter names are
-shifted by one – the parameter named <code class="docutils literal notranslate"><span class="pre">hour</span></code> is
-<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a>’s <code class="docutils literal notranslate"><span class="pre">minute</span></code> – so a keyword argument used to land
-one field early:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [2]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="gp">In [2]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="gh">Out[2]: </span><span class="go">Timestamp('2020-12-31 00:05:00')</span>
 </pre></div>
 </div>
-<p>This now raises <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> as well, as does leaving the same gap with an
-explicit <code class="docutils literal notranslate"><span class="pre">None</span></code> (<code class="docutils literal notranslate"><span class="pre">Timestamp(2020,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">None,</span> <span class="pre">5)</span></code>); write
-<code class="docutils literal notranslate"><span class="pre">pd.Timestamp(year=2020,</span> <span class="pre">month=12,</span> <span class="pre">day=31,</span> <span class="pre">hour=5)</span></code> instead. Two cases cannot
-be detected. An <code class="docutils literal notranslate"><span class="pre">int</span></code> first argument is indistinguishable from a <code class="docutils literal notranslate"><span class="pre">year</span></code>, so
-<code class="docutils literal notranslate"><span class="pre">Timestamp(2020,</span> <span class="pre">year=1,</span> <span class="pre">month=1)</span></code> is still read as <code class="docutils literal notranslate"><span class="pre">Timestamp(2020,</span> <span class="pre">1,</span> <span class="pre">1)</span></code>;
-and a keyword that exactly fills the next free positional slot is
-indistinguishable from passing it positionally, so
-<code class="docutils literal notranslate"><span class="pre">Timestamp(2020,</span> <span class="pre">12,</span> <span class="pre">31,</span> <span class="pre">day=5)</span></code> is still read as <code class="docutils literal notranslate"><span class="pre">Timestamp(2020,</span> <span class="pre">12,</span> <span class="pre">31,</span> <span class="pre">5)</span></code>.</p>
-<p>Finally, in that same positional form the eighth argument is
-<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a>’s <code class="docutils literal notranslate"><span class="pre">tzinfo</span></code> and used to be dropped; it is now
-attached to the result just as <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a> does. Attaching
-differs from the localizing <code class="docutils literal notranslate"><span class="pre">tz</span></code> and <code class="docutils literal notranslate"><span class="pre">tzinfo</span></code> keywords: with a <code class="docutils literal notranslate"><span class="pre">pytz</span></code>
-timezone, <code class="docutils literal notranslate"><span class="pre">Timestamp(2000,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">pytz.timezone(&quot;US/Eastern&quot;))</span></code>
-now matches <code class="docutils literal notranslate"><span class="pre">datetime(2000,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">pytz.timezone(&quot;US/Eastern&quot;))</span></code>
-and therefore carries that zone’s LMT offset. <a class="reference external" href="https://docs.python.org/3/library/copy.html#copy.replace" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">copy.replace()</span></code></a>
-reconstructs a <a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> through this form, so it too now keeps the
-timezone instead of returning a naive result; it still drops nanoseconds
-(<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/31930">GH 31930</a>, <a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/45307">GH 45307</a>).</p>
+<p>Both now raise <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>; put the component in the value, or pass all
+components by keyword, e.g. <code class="docutils literal notranslate"><span class="pre">pd.Timestamp(year=2020,</span> <span class="pre">month=12,</span> <span class="pre">day=31,</span> <span class="pre">hour=5)</span></code>.</p>
+<p>A positional <code class="docutils literal notranslate"><span class="pre">tzinfo</span></code> (the eighth argument, as in <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a>)
+is now attached to the result instead of being dropped, so <a class="reference external" href="https://docs.python.org/3/library/copy.html#copy.replace" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">copy.replace()</span></code></a>
+also keeps the timezone (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/31930">GH 31930</a>, <a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/45307">GH 45307</a>).</p>
 </section>
 </section>
 <section id="backwards-incompatible-api-changes">
