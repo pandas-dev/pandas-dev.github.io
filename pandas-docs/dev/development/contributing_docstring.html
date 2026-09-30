@@ -635,6 +635,8 @@ will link to <code class="docutils literal notranslate"><span class="pre">pandas
 as the link text. See <a class="reference external" href="https://www.sphinx-doc.org/en/stable/domains.html#cross-referencing-syntax">Sphinx cross-referencing syntax</a>
 for details.</p>
 </div>
+<p>When referring to missing values in general, use “NA”. Use <code class="docutils literal notranslate"><span class="pre">NaN</span></code>, <code class="docutils literal notranslate"><span class="pre">NaT</span></code> or
+<code class="docutils literal notranslate"><span class="pre">pd.NA</span></code> only when referring to that specific value.</p>
 <p><strong>Good:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add_values</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -736,6 +738,8 @@ go in other sections.</p>
 Every paragraph in the extended summary ends with a dot.</p>
 <p>The extended summary should provide details on why the function is useful and
 their use cases, if it is not too generic.</p>
+<p>If a section of the user guide covers the function, link to it from the
+extended summary.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">unstack</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Pivot a row index to columns.</span>
@@ -747,6 +751,8 @@ their use cases, if it is not too generic.</p>
 
 <span class="sd">    The index level will be automatically removed from the index when added</span>
 <span class="sd">    as columns.</span>
+
+<span class="sd">    See the :ref:`user guide &lt;reshaping.stacking&gt;` for more.</span>
 <span class="sd">    """</span>
     <span class="k">pass</span>
 </pre></div>
@@ -881,6 +887,12 @@ DataFrame:</p>
 <li><p>pandas.Categorical</p></li>
 <li><p>pandas.arrays.SparseArray</p></li>
 </ul>
+<p>For row or column labels, use label rather than <code class="docutils literal notranslate"><span class="pre">str</span></code>, since labels need not
+be strings:</p>
+<ul class="simple">
+<li><p>label</p></li>
+<li><p>label or list of labels</p></li>
+</ul>
 <p>If the exact type is not relevant, but must be compatible with a NumPy
 array, array-like can be specified. If Any type that can be iterated is
 accepted, iterable can be used:</p>
@@ -901,6 +913,16 @@ the list.</p>
 <ul class="simple">
 <li><p>axis : {0 or ‘index’, 1 or ‘columns’, None}, default None</p></li>
 </ul>
+<p>Do not use Sphinx cross-reference roles in types; link the object from the
+description instead:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">"""</span>
+<span class="sd">Returns</span>
+<span class="sd">-------</span>
+<span class="sd">matplotlib.axes.Axes</span>
+<span class="sd">    The :class:`~matplotlib.axes.Axes` the plot was drawn on.</span>
+<span class="sd">"""</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="section-4-returns-or-yields">
@@ -992,18 +1014,19 @@ iterate over rows, and vice-versa</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fillna</span></code> and <code class="docutils literal notranslate"><span class="pre">dropna</span></code>, as both methods are used to handle missing values</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">read_csv</span></code> and <code class="docutils literal notranslate"><span class="pre">to_csv</span></code>, as they are complementary</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">merge</span></code> and <code class="docutils literal notranslate"><span class="pre">join</span></code>, as one is a generalization of the other</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">astype</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas.to_datetime</span></code>, as users may be reading the
+<li><p><code class="docutils literal notranslate"><span class="pre">astype</span></code> and <code class="docutils literal notranslate"><span class="pre">to_datetime</span></code>, as users may be reading the
 documentation of <code class="docutils literal notranslate"><span class="pre">astype</span></code> to know how to cast as a date, and the way to do
-it is with <code class="docutils literal notranslate"><span class="pre">pandas.to_datetime</span></code></p></li>
+it is with <code class="docutils literal notranslate"><span class="pre">to_datetime</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">where</span></code> is related to <code class="docutils literal notranslate"><span class="pre">numpy.where</span></code>, as its functionality is based on it</p></li>
 </ul>
 <p>When deciding what is related, you should mainly use your common sense and
 think about what can be useful for the users reading the documentation,
 especially the less experienced ones.</p>
-<p>When relating to other libraries (mainly <code class="docutils literal notranslate"><span class="pre">numpy</span></code>), use the name of the module
-first (not an alias like <code class="docutils literal notranslate"><span class="pre">np</span></code>). If the function is in a module which is not
-the main one, like <code class="docutils literal notranslate"><span class="pre">scipy.sparse</span></code>, list the full module (e.g.
-<code class="docutils literal notranslate"><span class="pre">scipy.sparse.coo_matrix</span></code>).</p>
+<p>In See Also, refer to pandas objects without the <code class="docutils literal notranslate"><span class="pre">pandas.</span></code> prefix (e.g.
+<code class="docutils literal notranslate"><span class="pre">DataFrame.tail</span></code>, <code class="docutils literal notranslate"><span class="pre">to_datetime</span></code>). When relating to other libraries (mainly
+<code class="docutils literal notranslate"><span class="pre">numpy</span></code>), use the name of the module first (not an alias like <code class="docutils literal notranslate"><span class="pre">np</span></code>). If the
+function is in a module which is not the main one, like <code class="docutils literal notranslate"><span class="pre">scipy.sparse</span></code>, list
+the full module (e.g. <code class="docutils literal notranslate"><span class="pre">scipy.sparse.coo_matrix</span></code>).</p>
 <p>This section has a header, “See Also” (note the capital
 S and A), followed by the line with hyphens and preceded by a blank line.</p>
 <p>After the header, we will add a line for each related method or function,
