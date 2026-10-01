@@ -773,18 +773,18 @@ by overriding:</p>
 <li><p>__repr__ : A default repr for the ExtensionArray.</p></li>
 <li><p>_formatter : Print scalars inside a Series or DataFrame.</p></li>
 </ul>
-<p>Some methods require casting the ExtensionArray to an ndarray of Python
-objects with <code class="docutils literal notranslate"><span class="pre">self.astype(object)</span></code>, which may be expensive. When
+<p>Some methods convert the ExtensionArray to an ndarray of Python objects,
+with <code class="docutils literal notranslate"><span class="pre">self.astype(object)</span></code> or with <code class="docutils literal notranslate"><span class="pre">np.asarray(self)</span></code> when
+<code class="docutils literal notranslate"><span class="pre">__array__</span></code> is not implemented, which may be expensive. When
 performance is a concern, we highly recommend overriding the following
 methods:</p>
 <ul class="simple">
-<li><p>fillna</p></li>
-<li><p>_pad_or_backfill</p></li>
-<li><p>dropna</p></li>
 <li><p>unique</p></li>
 <li><p>factorize / _values_for_factorize</p></li>
 <li><p>argsort, argmax, argmin / _values_for_argsort</p></li>
 <li><p>searchsorted</p></li>
+<li><p>isin</p></li>
+<li><p>value_counts</p></li>
 <li><p>map</p></li>
 </ul>
 <p>The remaining methods implemented on this class should be performant,
