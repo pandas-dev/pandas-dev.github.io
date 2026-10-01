@@ -585,7 +585,7 @@
 <h1>pandas.util.hash_pandas_object<a class="headerlink" href="#pandas-util-hash-pandas-object" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.util.hash_pandas_object">
-<span class="sig-prename descclassname"><span class="pre">pandas.util.</span></span><span class="sig-name descname"><span class="pre">hash_pandas_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utf8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hash_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'0123456789123456'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categorize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/util/hashing.py#L87-L227"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.util.hash_pandas_object" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.util.</span></span><span class="sig-name descname"><span class="pre">hash_pandas_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utf8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hash_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'0123456789123456'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">categorize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/util/hashing.py#L87-L253"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.util.hash_pandas_object" title="Link to this definition">#</a></dt>
 <dd><p>Return a data hash of the Index/Series/DataFrame.</p>
 <p>The hash is computed element-wise using the underlying data values,
 and optionally includes the index when hashing a Series or DataFrame.</p>
@@ -624,6 +624,12 @@ efficient when the array contains duplicate values.</p>
 </dd>
 </dl>
 </div>
+<p class="rubric">Notes</p>
+<p>The result hashes each row’s values, not the object as a whole. Column
+labels, index and column names, <code class="docutils literal notranslate"><span class="pre">attrs</span></code>, and some dtype differences
+(e.g. <code class="docutils literal notranslate"><span class="pre">int32</span></code> vs <code class="docutils literal notranslate"><span class="pre">int64</span></code>) do not affect it. To fingerprint a whole
+DataFrame, also hash the metadata your use case needs; see the fingerprint
+example below.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">hash_pandas_object</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
 <span class="go">0    14639053686158035780</span>
@@ -660,6 +666,24 @@ value always produces the same hash regardless of its position:</p>
 <span class="go">1     5694802365760992243</span>
 <span class="go">2    18202460376300699891</span>
 <span class="go">dtype: uint64</span>
+</pre></div>
+</div>
+<p>Renaming a column leaves the result unchanged. A whole-frame fingerprint
+can combine the row hashes with hashes of the labels and dtypes:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">fingerprint</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">parts</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>        <span class="n">pd</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">hash_pandas_object</span><span class="p">(</span><span class="n">df</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">pd</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">hash_pandas_object</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">pd</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">hash_pandas_object</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">]</span>
+<span class="gp">... </span>    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">parts</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df3</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"a"</span><span class="p">:</span> <span class="s2">"b"</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">hash_pandas_object</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">hash_pandas_object</span><span class="p">(</span><span class="n">df3</span><span class="p">))</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fingerprint</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span> <span class="o">==</span> <span class="n">fingerprint</span><span class="p">(</span><span class="n">df3</span><span class="p">)</span>
+<span class="go">False</span>
 </pre></div>
 </div>
 </dd></dl>
