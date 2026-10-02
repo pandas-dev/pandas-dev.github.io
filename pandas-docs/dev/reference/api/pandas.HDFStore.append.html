@@ -706,8 +706,8 @@ codecs.register_error that can handle UnicodeEncodeErrors.</p>
 <p class="rubric">Notes</p>
 <p>Does <em>not</em> check if data being appended overlaps with existing
 data in the table, so be careful</p>
-<p>Appending an empty <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> or <code class="docutils literal notranslate"><span class="pre">Series</span></code> is a no-op: the store
-is not modified and a <code class="docutils literal notranslate"><span class="pre">UserWarning</span></code> is emitted.</p>
+<p>Appending an empty <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> or <code class="docutils literal notranslate"><span class="pre">Series</span></code> is a no-op: nothing is
+written for <code class="docutils literal notranslate"><span class="pre">key</span></code> and a <code class="docutils literal notranslate"><span class="pre">UserWarning</span></code> is emitted.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">store</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">HDFStore</span><span class="p">(</span><span class="s2">"store.h5"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span>

@@ -801,7 +801,7 @@
 <h1>pandas.Index.join<a class="headerlink" href="#pandas-index-join" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.Index.join">
-<span class="property"><span class="k"><span class="pre">final</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">Index.</span></span><span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">how</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'left'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_indexers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/base.py#L4579-L4732"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Index.join" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">final</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">Index.</span></span><span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">how</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'left'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_indexers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/base.py#L4579-L4745"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Index.join" title="Link to this definition">#</a></dt>
 <dd><p>Compute join_index and indexers to conform data structures to the new index.</p>
 <p>This method computes the result of a join between two Index objects
 using the specified join type, and optionally returns integer indexers
@@ -823,7 +823,15 @@ the order of the join keys depends on the join type (how keyword).</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>join_index, (left_indexer, right_indexer)</dt><dd><p>The new index.</p>
+<dt><strong>join_index</strong><span class="classifier">Index</span></dt><dd><p>The new index.</p>
+</dd>
+<dt><strong>left_indexer</strong><span class="classifier">np.ndarray[np.intp] or None</span></dt><dd><p>Only returned if <code class="docutils literal notranslate"><span class="pre">return_indexers=True</span></code>. Positions in the calling
+index of each element of <code class="docutils literal notranslate"><span class="pre">join_index</span></code>, with -1 where there is no
+match. May be None, meaning no reindexing is needed: <code class="docutils literal notranslate"><span class="pre">join_index</span></code>
+matches the calling index position by position.</p>
+</dd>
+<dt><strong>right_indexer</strong><span class="classifier">np.ndarray[np.intp] or None</span></dt><dd><p>Only returned if <code class="docutils literal notranslate"><span class="pre">return_indexers=True</span></code>. Same as <code class="docutils literal notranslate"><span class="pre">left_indexer</span></code>,
+for <code class="docutils literal notranslate"><span class="pre">other</span></code>.</p>
 </dd>
 </dl>
 </dd>
@@ -845,6 +853,11 @@ the order of the join keys depends on the join type (how keyword).</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">idx1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">other</span><span class="o">=</span><span class="n">idx2</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">,</span> <span class="n">return_indexers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">(Index([1, 2, 3, 4, 5, 6], dtype='int64'),</span>
 <span class="go">array([ 0,  1,  2, -1, -1, -1]), array([-1, -1, -1,  0,  1,  2]))</span>
+</pre></div>
+</div>
+<p>An indexer is None when that side needs no reindexing:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">idx2</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">return_indexers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">(Index([1, 2, 3], dtype='int64'), None, array([-1, -1, -1]))</span>
 </pre></div>
 </div>
 </dd></dl>
