@@ -778,11 +778,8 @@
 <dt class="sig sig-object py" id="pandas.Period.day">
 <span class="sig-prename descclassname"><span class="pre">Period.</span></span><span class="sig-name descname"><span class="pre">day</span></span><a class="headerlink" href="#pandas.Period.day" title="Link to this definition">#</a></dt>
 <dd><p>Get day of the month that a Period falls on.</p>
-<p>The <cite>day</cite> property provides a simple way to access the day component
-of a <cite>Period</cite> object, which represents time spans in various frequencies
-(e.g., daily, hourly, monthly). If the period’s frequency does not include
-a day component (e.g., yearly or quarterly periods), the returned day
-corresponds to the first day of that period.</p>
+<p>The value comes from the last day of the first unit of the period’s
+frequency, so a <code class="docutils literal notranslate"><span class="pre">&quot;2M&quot;</span></code> period uses the last day of its first month.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -797,12 +794,24 @@ corresponds to the first day of that period.</p>
 </dd>
 <dt><a class="reference internal" href="pandas.Period.dayofyear.html#pandas.Period.dayofyear" title="pandas.Period.dayofyear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.dayofyear</span></code></a></dt><dd><p>Get the day of the year.</p>
 </dd>
+<dt><a class="reference internal" href="pandas.Period.start_time.html#pandas.Period.start_time" title="pandas.Period.start_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.start_time</span></code></a></dt><dd><p>Get the Timestamp for the start of the period.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Period.end_time.html#pandas.Period.end_time" title="pandas.Period.end_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.end_time</span></code></a></dt><dd><p>Get the Timestamp for the end of the period.</p>
+</dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s2">"2018-03-11"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'h'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">.</span><span class="n">day</span>
 <span class="go">11</span>
+</pre></div>
+</div>
+<p>A monthly period uses its last day, and <code class="docutils literal notranslate"><span class="pre">&quot;2M&quot;</span></code> uses the last day of
+its first month:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s2">"2018-03"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"M"</span><span class="p">)</span><span class="o">.</span><span class="n">day</span>
+<span class="go">31</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s2">"2018-02"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"2M"</span><span class="p">)</span><span class="o">.</span><span class="n">day</span>
+<span class="go">28</span>
 </pre></div>
 </div>
 </dd></dl>
