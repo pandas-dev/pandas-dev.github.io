@@ -866,12 +866,12 @@ the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#p
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"a"</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">return</span> <span class="n">s</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:6357,</span> in <span class="ni">Series.pop</span><span class="nt">(self, item)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6353</span>         <span class="mi">1</span>    <span class="mi">2</span>
-<span class="g g-Whitespace">   </span><span class="mi">6354</span>         <span class="mi">2</span>    <span class="mi">3</span>
-<span class="g g-Whitespace">   </span><span class="mi">6355</span>         <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
-<span class="g g-Whitespace">   </span><span class="mi">6356</span>         <span class="s2">"""</span>
-<span class="ne">-&gt; </span><span class="mi">6357</span><span class="s2">         return super().pop(item=item)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:6360,</span> in <span class="ni">Series.pop</span><span class="nt">(self, item)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6356</span>         <span class="mi">1</span>    <span class="mi">2</span>
+<span class="g g-Whitespace">   </span><span class="mi">6357</span>         <span class="mi">2</span>    <span class="mi">3</span>
+<span class="g g-Whitespace">   </span><span class="mi">6358</span>         <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+<span class="g g-Whitespace">   </span><span class="mi">6359</span>         <span class="s2">"""</span>
+<span class="ne">-&gt; </span><span class="mi">6360</span><span class="s2">         return super().pop(item=item)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:845,</span> in <span class="ni">NDFrame.pop</span><span class="nt">(self, item)</span>
 <span class="g g-Whitespace">    </span><span class="mi">844</span><span class="s2">     def pop(self, item: Hashable) -&gt; Series | Any:</span>
@@ -880,25 +880,25 @@ the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#p
 <span class="g g-Whitespace">    </span><span class="mi">847</span><span class="s2"> </span>
 <span class="g g-Whitespace">    </span><span class="mi">848</span><span class="s2">         return result</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:1102,</span> in <span class="ni">Series.__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1098</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1099</span><span class="s2">         elif key_is_scalar:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1100</span><span class="s2">             # Note: GH#50617 in 3.0 we changed int key to always be treated as</span>
-<span class="g g-Whitespace">   </span><span class="mi">1101</span><span class="s2">             #  a label, matching DataFrame behavior.</span>
-<span class="ne">-&gt; </span><span class="mi">1102</span><span class="s2">             return self._get_value(key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1103</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1104</span><span class="s2">         # Convert generator to list before going through hashable part</span>
-<span class="g g-Whitespace">   </span><span class="mi">1105</span><span class="s2">         # (We will iterate through the generator there to check for slices)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:1105,</span> in <span class="ni">Series.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1101</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1102</span><span class="s2">         elif key_is_scalar:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1103</span><span class="s2">             # Note: GH#50617 in 3.0 we changed int key to always be treated as</span>
+<span class="g g-Whitespace">   </span><span class="mi">1104</span><span class="s2">             #  a label, matching DataFrame behavior.</span>
+<span class="ne">-&gt; </span><span class="mi">1105</span><span class="s2">             return self._get_value(key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1106</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1107</span><span class="s2">         # Convert generator to list before going through hashable part</span>
+<span class="g g-Whitespace">   </span><span class="mi">1108</span><span class="s2">         # (We will iterate through the generator there to check for slices)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:1189,</span> in <span class="ni">Series._get_value</span><span class="nt">(self, label, takeable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1185</span><span class="s2">         if takeable:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1186</span><span class="s2">             return self._ixs(label)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1187</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1188</span><span class="s2">         # Similar to Index.get_value, but we do not fall back to positional</span>
-<span class="ne">-&gt; </span><span class="mi">1189</span><span class="s2">         loc = self.index.get_loc(label)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:1192,</span> in <span class="ni">Series._get_value</span><span class="nt">(self, label, takeable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1188</span><span class="s2">         if takeable:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1189</span><span class="s2">             return self._ixs(label)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1190</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1191</span><span class="s2">         if is_integer(loc):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1192</span><span class="s2">             return self._ixs(loc)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1191</span><span class="s2">         # Similar to Index.get_value, but we do not fall back to positional</span>
+<span class="ne">-&gt; </span><span class="mi">1192</span><span class="s2">         loc = self.index.get_loc(label)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1193</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1194</span><span class="s2">         if is_integer(loc):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1195</span><span class="s2">             return self._ixs(loc)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:3823,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
 <span class="g g-Whitespace">   </span><span class="mi">3818</span><span class="s2">     if isinstance(casted_key, slice) or (</span>
