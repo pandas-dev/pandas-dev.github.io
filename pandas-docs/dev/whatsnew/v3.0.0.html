@@ -986,7 +986,7 @@ inputs have identical <code class="docutils literal notranslate"><span class="pr
 <ul class="simple">
 <li><p>Switched wheel upload to <strong>PyPI Trusted Publishing</strong> (OIDC) for release-tag pushes in <code class="docutils literal notranslate"><span class="pre">wheels.yml</span></code>. (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/61718">GH 61718</a>)</p></li>
 <li><p>Wheels are now available for Windows ARM64 architecture (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/61462">GH 61462</a>)</p></li>
-<li><p>Wheels are now available for free-threading Python builds on Windows (in addition to the other platforms) (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/61463">GH 61463</a>)</p></li>
+<li><p>Wheels are now available for free-threading Python builds on Windows (in addition to the other platforms) (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/60146">GH 60146</a>)</p></li>
 </ul>
 </section>
 </section>
@@ -1076,7 +1076,8 @@ Now it performs inference on the appropriate resolution (a.k.a. <code class="doc
 to nanoseconds when the precision of the string requires it.</p></li>
 <li><p>The resolution of the input is preserved for stdlib <code class="docutils literal notranslate"><span class="pre">datetime</span></code> objects (i.e. microseconds)
 or <code class="docutils literal notranslate"><span class="pre">np.datetime64</span></code>/<code class="docutils literal notranslate"><span class="pre">np.timedelta64</span></code> objects (i.e. the unit, capped to
-the supported range of seconds to nanoseconds).</p></li>
+the supported range of seconds to nanoseconds; sub-nanosecond
+<code class="docutils literal notranslate"><span class="pre">np.timedelta64</span></code> scalars raise).</p></li>
 <li><p>For integer input, the resolution used to interpret the integer value is used
 as the resulting resolution (or capped to the supported range of seconds to nanoseconds).
 Note: this has been changed in pandas 3.1.0 to also default to microseconds for the
@@ -1124,7 +1125,7 @@ For most use cases they should not notice a difference. One big exception is
 converting to integers, which will give integers 1000x smaller.</p>
 <p>When converting datetime-like data to integers, it is recommended to avoid
 <code class="docutils literal notranslate"><span class="pre">astype(&quot;int64&quot;)</span></code> to make your code agnostic to the exact unit, or ensure
-the desired unit with <a class="reference internal" href="../reference/api/pandas.Series.dt.as_unit.html#pandas.Series.dt.as_unit" title="pandas.Series.dt.as_unit"><code class="xref py py-func docutils literal notranslate"><span class="pre">as_unit()</span></code></a> before casting.</p>
+the desired unit with <a class="reference internal" href="../reference/api/pandas.Series.dt.as_unit.html#pandas.Series.dt.as_unit" title="pandas.Series.dt.as_unit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">as_unit()</span></code></a> before casting.</p>
 <p>See <a class="reference internal" href="../user_guide/timeseries.html#timeseries-converting-epoch-inverse"><span class="std std-ref">From timestamps to epoch</span></a> for more details.</p>
 </div>
 </section>
