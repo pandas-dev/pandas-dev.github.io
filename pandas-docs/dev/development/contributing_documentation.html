@@ -645,9 +645,12 @@ doc:</p>
 on how to format the docstring.</p>
 <p>The examples in the docstring (‘doctests’) must be valid Python code,
 that in a deterministic way returns the presented output, and that can be
-copied and run by users. This can be checked with the script above, and is
-also tested by GitHub Actions. A failing doctest will be a blocker for merging a PR.
-Check the <a class="reference internal" href="contributing_docstring.html#docstring-examples"><span class="std std-ref">examples</span></a> section in the docstring guide
+copied and run by users. To run them locally, use <code class="docutils literal notranslate"><span class="pre">pytest</span></code> and
+select them by name with <code class="docutils literal notranslate"><span class="pre">-k</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PANDAS_FUTURE_PYTHON_SCALARS</span><span class="o">=</span><span class="mi">1</span> <span class="n">pytest</span> <span class="o">--</span><span class="n">doctest</span><span class="o">-</span><span class="n">modules</span> <span class="o">--</span><span class="n">doctest</span><span class="o">-</span><span class="n">cython</span> <span class="o">--</span><span class="n">ignore</span><span class="o">=</span><span class="n">pandas</span><span class="o">/</span><span class="n">tests</span> <span class="n">pandas</span> <span class="o">-</span><span class="n">k</span> <span class="s2">"Series.sum"</span>
+</pre></div>
+</div>
+<p>Check the <a class="reference internal" href="contributing_docstring.html#docstring-examples"><span class="std std-ref">examples</span></a> section in the docstring guide
 for some tips and tricks to get the doctests passing.</p>
 <p>When doing a PR with a docstring update, it is good to post the
 output of the validation script in a comment on github.</p>

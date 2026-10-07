@@ -660,6 +660,27 @@ should already exist.</p>
 </pre></div>
 </div>
 </section>
+<section id="option-3-using-pixi">
+<span id="contributing-pixi"></span><h3>Option 3: using pixi<a class="headerlink" href="#option-3-using-pixi" title="Link to this heading">#</a></h3>
+<p>pandas CI creates its environments with <a class="reference external" href="https://pixi.prefix.dev/latest/">pixi</a> from
+<code class="docutils literal notranslate"><span class="pre">pixi.toml</span></code> and the lock file <code class="docutils literal notranslate"><span class="pre">pixi.lock</span></code>, so pixi can reproduce the environment
+of a CI job.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pixi.prefix.dev/latest/installation/">Install pixi</a></p></li>
+<li><p>Pick one of the environments defined in <code class="docutils literal notranslate"><span class="pre">pixi.toml</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">py313</span></code>. To reproduce a
+CI job, use the <code class="docutils literal notranslate"><span class="pre">environment</span></code> of that job in <code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code>; most job names
+include it. Some jobs also set environment variables such as <code class="docutils literal notranslate"><span class="pre">PANDAS_FUTURE</span></code> or <code class="docutils literal notranslate"><span class="pre">LANG</span></code>;
+see <code class="docutils literal notranslate"><span class="pre">.github/workflows/unit-tests.yml</span></code> and <code class="docutils literal notranslate"><span class="pre">.github/actions/run-tests/action.yml</span></code>.</p></li>
+<li><p>In place of Step 3 below, build pandas and run tests with the tasks CI uses:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>py313<span class="w"> </span>build-pandas<span class="w"> </span>--editable
+pixi<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>py313<span class="w"> </span>ci-test-pandas<span class="w"> </span><span class="s2">"-m not single_cpu"</span><span class="w"> </span>auto<span class="w"> </span>pandas/tests/frame
+
+<span class="c1"># Or activate the environment and use it as usual</span>
+pixi<span class="w"> </span>shell<span class="w"> </span>-e<span class="w"> </span>py313
+</pre></div>
+</div>
+</section>
 </section>
 <section id="step-3-build-and-install-pandas">
 <h2>Step 3: build and install pandas<a class="headerlink" href="#step-3-build-and-install-pandas" title="Link to this heading">#</a></h2>
@@ -755,6 +776,7 @@ reflect that it’s a development version with a reference to the latest Git has
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-a-virtual-environment">Step 2: create a virtual environment</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#option-1-using-conda-recommended">Option 1: using conda (recommended)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#option-2-using-pip">Option 2: using pip</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#option-3-using-pixi">Option 3: using pixi</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-build-and-install-pandas">Step 3: build and install pandas</a></li>
