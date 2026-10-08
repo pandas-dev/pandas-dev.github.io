@@ -895,7 +895,7 @@
 <h1>pandas.Series.to_numpy<a class="headerlink" href="#pandas-series-to-numpy" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.Series.to_numpy">
-<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">to_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/base.py#L601-L752"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.to_numpy" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">to_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/base.py#L601-L751"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.to_numpy" title="Link to this definition">#</a></dt>
 <dd><p>A NumPy ndarray representing the values in this Series or Index.</p>
 <p>This method converts the underlying data to a NumPy array, optionally
 specifying the desired dtype and handling of missing values. For
@@ -907,9 +907,8 @@ type.</p>
 <dt><strong>dtype</strong><span class="classifier">str or numpy.dtype, optional</span></dt><dd><p>The dtype to pass to <code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.asarray()</span></code>.</p>
 </dd>
 <dt><strong>copy</strong><span class="classifier">bool, default False</span></dt><dd><p>Whether to ensure that the returned value is not a view on
-another array. Note that <code class="docutils literal notranslate"><span class="pre">copy=False</span></code> does not <em>ensure</em> that
-<code class="docutils literal notranslate"><span class="pre">to_numpy()</span></code> is no-copy. Rather, <code class="docutils literal notranslate"><span class="pre">copy=True</span></code> ensure that
-a copy is made, even if not strictly necessary.</p>
+another array. <code class="docutils literal notranslate"><span class="pre">copy=False</span></code> avoids a copy when possible but
+does not guarantee a view.</p>
 </dd>
 <dt><strong>na_value</strong><span class="classifier">Any, optional</span></dt><dd><p>The value to use for missing values. The default value depends
 on <cite>dtype</cite> and the type of the array.</p>
