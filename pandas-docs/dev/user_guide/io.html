@@ -692,11 +692,10 @@ locations), or any object with a <code class="docutils literal notranslate"><spa
 <a class="reference external" href="https://docs.python.org/3/library/io.html#io.StringIO" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">StringIO</span></code></a>).</p>
 </dd>
 <dt>sep<span class="classifier">str, defaults to <code class="docutils literal notranslate"><span class="pre">','</span></code> for <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a>, <code class="docutils literal notranslate"><span class="pre">\t</span></code> for <a class="reference internal" href="../reference/api/pandas.read_table.html#pandas.read_table" title="pandas.read_table"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_table()</span></code></a></span></dt><dd><p>Delimiter to use. <code class="docutils literal notranslate"><span class="pre">sep=None</span></code> detects the separator from the first valid row
-of the file with Python’s builtin sniffer tool, <a class="reference external" href="https://docs.python.org/3/library/csv.html#csv.Sniffer" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">csv.Sniffer</span></code></a>; it
-is supported only by the Python parsing engine, which will be used
-automatically. In addition, separators longer than 1 character
-and different from <code class="docutils literal notranslate"><span class="pre">'\s+'</span></code> will be interpreted as regular expressions and
-will force the use of the Python parsing engine. Note that regex
+of the file with Python’s builtin sniffer tool, <a class="reference external" href="https://docs.python.org/3/library/csv.html#csv.Sniffer" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">csv.Sniffer</span></code></a>;
+the pyarrow engine does not support it. In addition, separators longer than
+1 character and different from <code class="docutils literal notranslate"><span class="pre">'\s+'</span></code> will be interpreted as regular
+expressions and will force the use of the Python parsing engine. Note that regex
 delimiters are prone to ignoring quoted data. Regex example: <code class="docutils literal notranslate"><span class="pre">'\\r\\t'</span></code>.</p>
 </dd>
 <dt>delimiter<span class="classifier">str, optional</span></dt><dd><p>Alternative argument name for sep.</p>
@@ -1975,33 +1974,33 @@ too many fields will raise an error by default:</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">144</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:1952,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, skip_blank_lines, parse_dates, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1939</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1940</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1941</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1948</span>     <span class="n">lineterminator</span><span class="o">=</span><span class="n">lineterminator</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1949</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1950</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1952</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:1958,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, skip_blank_lines, parse_dates, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1945</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1946</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1947</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1954</span>     <span class="n">lineterminator</span><span class="o">=</span><span class="n">lineterminator</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1955</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1956</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1958</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:443,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">440</span>     <span class="k">return</span> <span class="n">parser</span>
-<span class="g g-Whitespace">    </span><span class="mi">442</span> <span class="k">with</span> <span class="n">parser</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">443</span>     <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nrows</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:450,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span>     <span class="k">return</span> <span class="n">parser</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span> <span class="k">with</span> <span class="n">parser</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">450</span>     <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nrows</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:3150,</span> in <span class="ni">TextFileReader.read</span><span class="nt">(self, nrows)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3143</span> <span class="n">nrows</span> <span class="o">=</span> <span class="n">validate_integer</span><span class="p">(</span><span class="s2">"nrows"</span><span class="p">,</span> <span class="n">nrows</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3144</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3145</span>     <span class="c1"># error: "ParserBase" has no attribute "read"</span>
-<span class="g g-Whitespace">   </span><span class="mi">3146</span>     <span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">3147</span>         <span class="n">index</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">3148</span>         <span class="n">columns</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">3149</span>         <span class="n">col_dict</span><span class="p">,</span>
-<span class="ne">-&gt; </span><span class="mi">3150</span>     <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">read</span><span class="p">(</span>  <span class="c1"># type: ignore[attr-defined]</span>
-<span class="g g-Whitespace">   </span><span class="mi">3151</span>         <span class="n">nrows</span>
-<span class="g g-Whitespace">   </span><span class="mi">3152</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3153</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3154</span>     <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:3196,</span> in <span class="ni">TextFileReader.read</span><span class="nt">(self, nrows)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3189</span> <span class="n">nrows</span> <span class="o">=</span> <span class="n">validate_integer</span><span class="p">(</span><span class="s2">"nrows"</span><span class="p">,</span> <span class="n">nrows</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3190</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3191</span>     <span class="c1"># error: "ParserBase" has no attribute "read"</span>
+<span class="g g-Whitespace">   </span><span class="mi">3192</span>     <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3193</span>         <span class="n">index</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3194</span>         <span class="n">columns</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3195</span>         <span class="n">col_dict</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">3196</span>     <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">read</span><span class="p">(</span>  <span class="c1"># type: ignore[attr-defined]</span>
+<span class="g g-Whitespace">   </span><span class="mi">3197</span>         <span class="n">nrows</span>
+<span class="g g-Whitespace">   </span><span class="mi">3198</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3199</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3200</span>     <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/c_parser_wrapper.py:297,</span> in <span class="ni">CParserWrapper.read</span><span class="nt">(self, nrows)</span>
 <span class="g g-Whitespace">    </span><span class="mi">295</span> <span class="k">try</span><span class="p">:</span>
@@ -2075,33 +2074,33 @@ data that appear in some lines but not others:</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">154</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:1952,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, skip_blank_lines, parse_dates, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1939</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1940</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1941</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1948</span>     <span class="n">lineterminator</span><span class="o">=</span><span class="n">lineterminator</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1949</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1950</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1952</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:1958,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, skip_blank_lines, parse_dates, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1945</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1946</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1947</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1954</span>     <span class="n">lineterminator</span><span class="o">=</span><span class="n">lineterminator</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1955</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1956</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1958</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:437,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">434</span>             <span class="k">return</span> <span class="n">result</span>
-<span class="g g-Whitespace">    </span><span class="mi">436</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">437</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">439</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">440</span>     <span class="k">return</span> <span class="n">parser</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:444,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span>             <span class="k">return</span> <span class="n">result</span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">444</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">446</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span>     <span class="k">return</span> <span class="n">parser</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:2810,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2807</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">"has_index_names"</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">"has_index_names"</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">2809</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="n">IOHandles</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">-&gt; </span><span class="mi">2810</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:2815,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2812</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">"has_index_names"</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">"has_index_names"</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">2814</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="n">IOHandles</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">2815</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:3095,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3092</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3094</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3095</span>     <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3096</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3097</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/readers.py:3103,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3101</span>         <span class="k">assert</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>  <span class="c1"># rejected above for the c engine</span>
+<span class="g g-Whitespace">   </span><span class="mi">3102</span>         <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">_sniff_delimiter</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3103</span>     <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3104</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3105</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/io/parsers/c_parser_wrapper.py:162,</span> in <span class="ni">CParserWrapper.__init__</span><span class="nt">(self, src, **kwds)</span>
 <span class="g g-Whitespace">    </span><span class="mi">155</span>         <span class="bp">self</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span>
@@ -2489,14 +2488,12 @@ be <em>lost</em>.</p>
 <span id="io-sniff"></span><h3>Automatically “sniffing” the delimiter<a class="headerlink" href="#automatically-sniffing-the-delimiter" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">read_csv</span></code> is capable of inferring delimited (not necessarily
 comma-separated) files, as pandas uses the <a class="reference external" href="https://docs.python.org/3/library/csv.html#csv.Sniffer" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">csv.Sniffer</span></code></a>
-class of the csv module. For this, you have to specify <code class="docutils literal notranslate"><span class="pre">sep=None</span></code>. Passing
-<code class="docutils literal notranslate"><span class="pre">engine='python'</span></code> as well avoids the <code class="docutils literal notranslate"><span class="pre">ParserWarning</span></code> raised by the
-fallback.</p>
+class of the csv module. For this, you have to specify <code class="docutils literal notranslate"><span class="pre">sep=None</span></code>.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [206]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
 <span class="gp">In [207]: </span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"tmp2.csv"</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">":"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="gp">In [208]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"tmp2.csv"</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">"python"</span><span class="p">)</span>
+<span class="gp">In [208]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"tmp2.csv"</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="gh">Out[208]: </span>
 <span class="go">          0         1         2         3</span>
 <span class="go">0  0.469112 -0.282863 -1.509059 -1.135632</span>
@@ -2549,7 +2546,7 @@ value will be an iterable object of type <code class="docutils literal notransla
 <span class="gp">   .....: </span>    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
 <span class="gp">   .....: </span>        <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7f89dd9ef170&gt;</span>
+<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7efc05dab320&gt;</span>
 <span class="go">          0         1         2         3</span>
 <span class="go">0 -1.294524  0.413738  0.276662 -0.472035</span>
 <span class="go">1 -0.013960 -0.362543 -0.006154 -0.923061</span>
@@ -2624,7 +2621,7 @@ three engines:</p>
 <td><p>no</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sep=None</span></code> (auto-detect the separator)</p></td>
-<td><p>no</p></td>
+<td><p>yes</p></td>
 <td><p>yes</p></td>
 <td><p>no</p></td>
 </tr>
