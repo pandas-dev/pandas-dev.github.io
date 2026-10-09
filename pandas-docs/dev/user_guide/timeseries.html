@@ -1061,7 +1061,7 @@ as timezone-naive timestamps and then localize to the appropriate timezone:</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Conversion of float epoch times can lead to inaccurate and unexpected results.
-<a class="reference external" href="https://docs.python.org/3/tutorial/floatingpoint.html#tut-fp-issues" title="(in Python v3.14)"><span class="xref std std-ref">Python floats</span></a> have about 15 digits precision in
+<a class="reference external" href="https://docs.python.org/3/tutorial/floatingpoint.html#tut-fp-issues" title="(in Python v3.15)"><span class="xref std std-ref">Python floats</span></a> have about 15 digits precision in
 decimal. Rounding during conversion from float to high precision <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> is
 unavoidable. The only way to achieve exact precision is to use a fixed-width
 types (e.g. an int64).</p>
@@ -3372,7 +3372,7 @@ or calendars with additional rules.</p>
 <span class="gp">In [312]: </span><span class="n">cal</span><span class="o">.</span><span class="n">rules</span>
 <span class="gh">Out[312]: </span>
 <span class="go">[Holiday: Memorial Day (month=5, day=31, offset=&lt;DateOffset: weekday=MO(-1)&gt;),</span>
-<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f0a819b6980&gt;),</span>
+<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f940dc8e980&gt;),</span>
 <span class="go"> Holiday: Columbus Day (month=10, day=1, offset=&lt;DateOffset: weekday=MO(+2)&gt;)]</span>
 
 <span class="gp">In [313]: </span><span class="n">new_cal</span> <span class="o">=</span> <span class="n">HolidayCalendarFactory</span><span class="p">(</span><span class="s2">"NewExampleCalendar"</span><span class="p">,</span> <span class="n">cal</span><span class="p">,</span> <span class="n">USLaborDay</span><span class="p">)</span>
@@ -3381,7 +3381,7 @@ or calendars with additional rules.</p>
 <span class="gh">Out[314]: </span>
 <span class="go">[Holiday: Labor Day (month=9, day=1, offset=&lt;DateOffset: weekday=MO(+1)&gt;),</span>
 <span class="go"> Holiday: Memorial Day (month=5, day=31, offset=&lt;DateOffset: weekday=MO(-1)&gt;),</span>
-<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f0a819b6980&gt;),</span>
+<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f940dc8e980&gt;),</span>
 <span class="go"> Holiday: Columbus Day (month=10, day=1, offset=&lt;DateOffset: weekday=MO(+2)&gt;)]</span>
 </pre></div>
 </div>
@@ -3488,7 +3488,7 @@ documented in the <a class="reference internal" href="missing_data.html#missing-
 <section id="converting-to-python-datetimes">
 <h3>Converting to Python datetimes<a class="headerlink" href="#converting-to-python-datetimes" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code> can be converted to an array of Python native
-<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a> objects using the <code class="docutils literal notranslate"><span class="pre">to_pydatetime</span></code> method.</p>
+<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a> objects using the <code class="docutils literal notranslate"><span class="pre">to_pydatetime</span></code> method.</p>
 </section>
 </section>
 <section id="resampling">
@@ -3869,7 +3869,7 @@ level of <code class="docutils literal notranslate"><span class="pre">MultiIndex
 <section id="iterating-through-groups">
 <span id="timeseries-iterating-label"></span><h3>Iterating through groups<a class="headerlink" href="#iterating-through-groups" title="Link to this heading">#</a></h3>
 <p>With the <code class="docutils literal notranslate"><span class="pre">Resampler</span></code> object in hand, iterating through the grouped data is very
-natural and functions similarly to <a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.groupby" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">itertools.groupby()</span></code></a>:</p>
+natural and functions similarly to <a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.groupby" title="(in Python v3.15)"><code class="xref py py-func docutils literal notranslate"><span class="pre">itertools.groupby()</span></code></a>:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [365]: </span><span class="n">small</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
 <span class="gp">   .....: </span>    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
@@ -4582,7 +4582,7 @@ then you can use a <code class="docutils literal notranslate"><span class="pre">
 <section id="time-zone-handling">
 <span id="timeseries-timezone"></span><h2>Time zone handling<a class="headerlink" href="#time-zone-handling" title="Link to this heading">#</a></h2>
 <p>pandas provides rich support for working with timestamps in different time
-zones using the <code class="docutils literal notranslate"><span class="pre">zoneinfo</span></code>, <code class="docutils literal notranslate"><span class="pre">pytz</span></code> and <code class="docutils literal notranslate"><span class="pre">dateutil</span></code> libraries or <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timezone" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.timezone</span></code></a>
+zones using the <code class="docutils literal notranslate"><span class="pre">zoneinfo</span></code>, <code class="docutils literal notranslate"><span class="pre">pytz</span></code> and <code class="docutils literal notranslate"><span class="pre">dateutil</span></code> libraries or <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timezone" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.timezone</span></code></a>
 objects from the standard library.</p>
 <section id="working-with-time-zones">
 <h3>Working with time zones<a class="headerlink" href="#working-with-time-zones" title="Link to this heading">#</a></h3>
@@ -4600,7 +4600,7 @@ You can either pass <code class="docutils literal notranslate"><span class="pre"
 Olson time zone strings will return <code class="docutils literal notranslate"><span class="pre">zoneinfo</span></code> time zone objects by default.
 To return <code class="docutils literal notranslate"><span class="pre">dateutil</span></code> time zone objects, append <code class="docutils literal notranslate"><span class="pre">dateutil/</span></code> before the string.</p>
 <ul class="simple">
-<li><p>For <code class="docutils literal notranslate"><span class="pre">zoneinfo</span></code>, a list of available timezones are available from <a class="reference external" href="https://docs.python.org/3/library/zoneinfo.html#zoneinfo.available_timezones" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">zoneinfo.available_timezones()</span></code></a>.</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">zoneinfo</span></code>, a list of available timezones are available from <a class="reference external" href="https://docs.python.org/3/library/zoneinfo.html#zoneinfo.available_timezones" title="(in Python v3.15)"><code class="xref py py-func docutils literal notranslate"><span class="pre">zoneinfo.available_timezones()</span></code></a>.</p></li>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">pytz</span></code> is installed (optional), you can find a list of common (and less common)
 time zones using <code class="docutils literal notranslate"><span class="pre">pytz.all_timezones</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dateutil</span></code> uses the OS time zones so there isn’t a fixed list available. For
