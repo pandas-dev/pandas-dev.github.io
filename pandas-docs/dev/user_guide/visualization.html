@@ -1399,6 +1399,10 @@ plots, including those made by matplotlib, set the option
 time-series data. For limited cases where pandas cannot infer the frequency
 information (e.g., in an externally created <code class="docutils literal notranslate"><span class="pre">twinx</span></code>), you can choose to
 suppress this behavior for alignment purposes.</p>
+<p>This adjustment places the data in period units rather than matplotlib’s date
+units, so unless <code class="docutils literal notranslate"><span class="pre">x_compat=True</span></code> is passed, <code class="docutils literal notranslate"><span class="pre">matplotlib.dates</span></code> locators and
+formatters such as <code class="docutils literal notranslate"><span class="pre">DateFormatter</span></code> only work on these plots for daily
+(<code class="docutils literal notranslate"><span class="pre">freq=&quot;D&quot;</span></code>) data.</p>
 <p>Here is the default behavior, notice how the x-axis tick labeling is performed:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [140]: </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">();</span>
 
