@@ -2212,6 +2212,11 @@ as a string.</p>
 <span class="go">3  5  5  5</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Enlarging by a row copies the existing data, so adding many rows one at a
+time is slow. See <a class="reference internal" href="merging.html#merging-append-row"><span class="std std-ref">Appending rows to a DataFrame</span></a> for adding several rows at once.</p>
+</div>
 </section>
 <section id="fast-scalar-value-getting-and-setting">
 <span id="indexing-basics-get-value"></span><h2>Fast scalar value getting and setting<a class="headerlink" href="#fast-scalar-value-getting-and-setting" title="Link to this heading">#</a></h2>
@@ -3092,7 +3097,7 @@ having to specify which frame you’re interested in querying</p>
 <span class="gp">In [280]: </span><span class="n">expr</span> <span class="o">=</span> <span class="s1">'0.0 &lt;= a &lt;= c &lt;= 0.5'</span>
 
 <span class="gp">In [281]: </span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="p">[</span><span class="n">df</span><span class="p">,</span> <span class="n">df2</span><span class="p">])</span>
-<span class="gh">Out[281]: </span><span class="go">&lt;map at 0x7f6de21257b0&gt;</span>
+<span class="gh">Out[281]: </span><span class="go">&lt;map at 0x7f5fadc218a0&gt;</span>
 </pre></div>
 </div>
 </section>

@@ -959,6 +959,26 @@ the index of the <a class="reference internal" href="../reference/api/pandas.Dat
 </pre></div>
 </div>
 <img alt="../_images/merging_append_series_as_row.png" src="../_images/merging_append_series_as_row.png" />
+<p>Adding a row copies the existing data, so adding many rows one at a time in a
+loop is slow. Collect the new rows first, for example as a list of dicts, and
+add them in a single step:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [44]: </span><span class="n">rows</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">   ....: </span>    <span class="p">{</span><span class="s2">"A"</span><span class="p">:</span> <span class="s2">"X0"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">:</span> <span class="s2">"X1"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">:</span> <span class="s2">"X2"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">:</span> <span class="s2">"X3"</span><span class="p">},</span>
+<span class="gp">   ....: </span>    <span class="p">{</span><span class="s2">"A"</span><span class="p">:</span> <span class="s2">"Y0"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">:</span> <span class="s2">"Y1"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">:</span> <span class="s2">"Y2"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">:</span> <span class="s2">"Y3"</span><span class="p">},</span>
+<span class="gp">   ....: </span><span class="p">]</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [45]: </span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[45]: </span>
+<span class="go">    A   B   C   D</span>
+<span class="go">0  A0  B0  C0  D0</span>
+<span class="go">1  A1  B1  C1  D1</span>
+<span class="go">2  A2  B2  C2  D2</span>
+<span class="go">3  A3  B3  C3  D3</span>
+<span class="go">4  X0  X1  X2  X3</span>
+<span class="go">5  Y0  Y1  Y2  Y3</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="merge">
@@ -984,7 +1004,7 @@ indexes on the passed <a class="reference internal" href="../reference/api/panda
 <p>For a <strong>many-to-many</strong> join, if a key combination appears
 more than once in both tables, the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> will have the <strong>Cartesian
 product</strong> of the associated data.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [44]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [46]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="p">{</span>
 <span class="gp">   ....: </span>        <span class="s2">"key"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"K3"</span><span class="p">],</span>
 <span class="gp">   ....: </span>        <span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"A0"</span><span class="p">,</span> <span class="s2">"A1"</span><span class="p">,</span> <span class="s2">"A2"</span><span class="p">,</span> <span class="s2">"A3"</span><span class="p">],</span>
@@ -993,7 +1013,7 @@ product</strong> of the associated data.</p>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [45]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">In [47]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="p">{</span>
 <span class="gp">   ....: </span>        <span class="s2">"key"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"K3"</span><span class="p">],</span>
 <span class="gp">   ....: </span>        <span class="s2">"C"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"C0"</span><span class="p">,</span> <span class="s2">"C1"</span><span class="p">,</span> <span class="s2">"C2"</span><span class="p">,</span> <span class="s2">"C3"</span><span class="p">],</span>
@@ -1002,10 +1022,10 @@ product</strong> of the associated data.</p>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [46]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"key"</span><span class="p">)</span>
+<span class="gp">In [48]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"key"</span><span class="p">)</span>
 
-<span class="gp">In [47]: </span><span class="n">result</span>
-<span class="gh">Out[47]: </span>
+<span class="gp">In [49]: </span><span class="n">result</span>
+<span class="gh">Out[49]: </span>
 <span class="go">  key   A   B   C   D</span>
 <span class="go">0  K0  A0  B0  C0  D0</span>
 <span class="go">1  K1  A1  B1  C1  D1</span>
@@ -1057,7 +1077,7 @@ either the left or right tables, the values in the joined table will be
 </tbody>
 </table>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [48]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [50]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   ....: </span>   <span class="p">{</span>
 <span class="gp">   ....: </span>      <span class="s2">"key1"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">],</span>
 <span class="gp">   ....: </span>      <span class="s2">"key2"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">],</span>
@@ -1067,7 +1087,7 @@ either the left or right tables, the values in the joined table will be
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [49]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">In [51]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   ....: </span>   <span class="p">{</span>
 <span class="gp">   ....: </span>      <span class="s2">"key1"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">],</span>
 <span class="gp">   ....: </span>      <span class="s2">"key2"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">],</span>
@@ -1077,10 +1097,10 @@ either the left or right tables, the values in the joined table will be
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [50]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">])</span>
+<span class="gp">In [52]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">])</span>
 
-<span class="gp">In [51]: </span><span class="n">result</span>
-<span class="gh">Out[51]: </span>
+<span class="gp">In [53]: </span><span class="n">result</span>
+<span class="gh">Out[53]: </span>
 <span class="go">  key1 key2   A   B    C    D</span>
 <span class="go">0   K0   K0  A0  B0   C0   D0</span>
 <span class="go">1   K0   K1  A1  B1  NaN  NaN</span>
@@ -1093,10 +1113,10 @@ either the left or right tables, the values in the joined table will be
 </pre></div>
 </div>
 <img alt="../_images/merging_merge_on_key_left.png" src="../_images/merging_merge_on_key_left.png" />
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [52]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [54]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">])</span>
 
-<span class="gp">In [53]: </span><span class="n">result</span>
-<span class="gh">Out[53]: </span>
+<span class="gp">In [55]: </span><span class="n">result</span>
+<span class="gh">Out[55]: </span>
 <span class="go">  key1 key2    A    B   C   D</span>
 <span class="go">0   K0   K0   A0   B0  C0  D0</span>
 <span class="go">1   K1   K0   A2   B2  C1  D1</span>
@@ -1108,10 +1128,10 @@ either the left or right tables, the values in the joined table will be
 </pre></div>
 </div>
 <img alt="../_images/merging_merge_on_key_right.png" src="../_images/merging_merge_on_key_right.png" />
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [54]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [56]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">])</span>
 
-<span class="gp">In [55]: </span><span class="n">result</span>
-<span class="gh">Out[55]: </span>
+<span class="gp">In [57]: </span><span class="n">result</span>
+<span class="gh">Out[57]: </span>
 <span class="go">  key1 key2    A    B    C    D</span>
 <span class="go">0   K0   K0   A0   B0   C0   D0</span>
 <span class="go">1   K0   K1   A1   B1  NaN  NaN</span>
@@ -1125,10 +1145,10 @@ either the left or right tables, the values in the joined table will be
 </pre></div>
 </div>
 <img alt="../_images/merging_merge_on_key_outer.png" src="../_images/merging_merge_on_key_outer.png" />
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [56]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [58]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">])</span>
 
-<span class="gp">In [57]: </span><span class="n">result</span>
-<span class="gh">Out[57]: </span>
+<span class="gp">In [59]: </span><span class="n">result</span>
+<span class="gh">Out[59]: </span>
 <span class="go">  key1 key2   A   B   C   D</span>
 <span class="go">0   K0   K0  A0  B0  C0  D0</span>
 <span class="go">1   K1   K0  A2  B2  C1  D1</span>
@@ -1139,10 +1159,10 @@ either the left or right tables, the values in the joined table will be
 </pre></div>
 </div>
 <img alt="../_images/merging_merge_on_key_inner.png" src="../_images/merging_merge_on_key_inner.png" />
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [58]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"cross"</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [60]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"cross"</span><span class="p">)</span>
 
-<span class="gp">In [59]: </span><span class="n">result</span>
-<span class="gh">Out[59]: </span>
+<span class="gp">In [61]: </span><span class="n">result</span>
+<span class="gh">Out[61]: </span>
 <span class="go">   key1_x key2_x   A   B key1_y key2_y   C   D</span>
 <span class="go">0      K0     K0  A0  B0     K0     K0  C0  D0</span>
 <span class="go">1      K0     K0  A0  B0     K1     K0  C1  D1</span>
@@ -1167,16 +1187,16 @@ either the left or right tables, the values in the joined table will be
 the <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> correspond to the columns from the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>. You can also
 transform the <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> to a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> using <a class="reference internal" href="../reference/api/pandas.Series.reset_index.html#pandas.Series.reset_index" title="pandas.Series.reset_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.reset_index()</span></code></a>
 before merging:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [60]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"Let"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">],</span> <span class="s2">"Num"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [62]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"Let"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">],</span> <span class="s2">"Num"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
 
-<span class="gp">In [61]: </span><span class="n">df</span>
-<span class="gh">Out[61]: </span>
+<span class="gp">In [63]: </span><span class="n">df</span>
+<span class="gh">Out[63]: </span>
 <span class="go">  Let  Num</span>
 <span class="go">0   A    1</span>
 <span class="go">1   B    2</span>
 <span class="go">2   C    3</span>
 
-<span class="gp">In [62]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+<span class="gp">In [64]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">,</span> <span class="s2">"e"</span><span class="p">,</span> <span class="s2">"f"</span><span class="p">],</span>
 <span class="gp">   ....: </span>    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">(</span>
 <span class="gp">   ....: </span>        <span class="p">[[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">"Let"</span><span class="p">,</span> <span class="s2">"Num"</span><span class="p">]</span>
@@ -1184,8 +1204,8 @@ before merging:</p>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [63]: </span><span class="n">ser</span>
-<span class="gh">Out[63]: </span>
+<span class="gp">In [65]: </span><span class="n">ser</span>
+<span class="gh">Out[65]: </span>
 <span class="go">Let  Num</span>
 <span class="go">A    1      a</span>
 <span class="go">B    2      b</span>
@@ -1195,8 +1215,8 @@ before merging:</p>
 <span class="go">C    6      f</span>
 <span class="go">dtype: str</span>
 
-<span class="gp">In [64]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">ser</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"Let"</span><span class="p">,</span> <span class="s2">"Num"</span><span class="p">])</span>
-<span class="gh">Out[64]: </span>
+<span class="gp">In [66]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">ser</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"Let"</span><span class="p">,</span> <span class="s2">"Num"</span><span class="p">])</span>
+<span class="gh">Out[66]: </span>
 <span class="go">  Let  Num  0</span>
 <span class="go">0   A    1  a</span>
 <span class="go">1   B    2  b</span>
@@ -1204,14 +1224,14 @@ before merging:</p>
 </pre></div>
 </div>
 <p>Performing an outer join with duplicate join keys in <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [65]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [67]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
 
-<span class="gp">In [66]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+<span class="gp">In [68]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
 
-<span class="gp">In [67]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"B"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">)</span>
+<span class="gp">In [69]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"B"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">)</span>
 
-<span class="gp">In [68]: </span><span class="n">result</span>
-<span class="gh">Out[68]: </span>
+<span class="gp">In [70]: </span><span class="n">result</span>
+<span class="gh">Out[70]: </span>
 <span class="go">   A_x  B  A_y</span>
 <span class="go">0    1  2    4</span>
 <span class="go">1    1  2    5</span>
@@ -1236,14 +1256,14 @@ and can cause a memory overflow.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">validate</span></code> argument checks whether the uniqueness of merge keys.
 Key uniqueness is checked before merge operations and can protect against memory overflows
 and unexpected key duplication.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [69]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [71]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
 
-<span class="gp">In [70]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+<span class="gp">In [72]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
 
-<span class="gp">In [71]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"B"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">"one_to_one"</span><span class="p">)</span>
+<span class="gp">In [73]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"B"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">"one_to_one"</span><span class="p">)</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">MergeError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">71</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">73</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"B"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">"one_to_one"</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/reshape/merge.py:394,</span> in <span class="ni">merge</span><span class="nt">(left, right, how, on, left_on, right_on, left_index, right_index, sort, suffixes, copy, indicator, validate)</span>
@@ -1299,8 +1319,8 @@ and unexpected key duplication.</p>
 <p>If the user is aware of the duplicates in the right <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> but wants to
 ensure there are no duplicates in the left <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>, one can use the
 <code class="docutils literal notranslate"><span class="pre">validate='one_to_many'</span></code> argument instead, which will not raise an exception.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [72]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"B"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">"one_to_many"</span><span class="p">)</span>
-<span class="gh">Out[72]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [74]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"B"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">"one_to_many"</span><span class="p">)</span>
+<span class="gh">Out[74]: </span>
 <span class="go">   A_x  B  A_y</span>
 <span class="go">0    1  1  NaN</span>
 <span class="go">1    2  2  4.0</span>
@@ -1335,12 +1355,12 @@ that takes on values:</p>
 </table>
 </div>
 </div></blockquote>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [73]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"col1"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">"col_left"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [75]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"col1"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">"col_left"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]})</span>
 
-<span class="gp">In [74]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"col1"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"col_right"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+<span class="gp">In [76]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"col1"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">"col_right"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
 
-<span class="gp">In [75]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"col1"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">,</span> <span class="n">indicator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[75]: </span>
+<span class="gp">In [77]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"col1"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">,</span> <span class="n">indicator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[77]: </span>
 <span class="go">   col1 col_left  col_right      _merge</span>
 <span class="go">0     0        a        NaN   left_only</span>
 <span class="go">1     1        b        2.0        both</span>
@@ -1349,8 +1369,8 @@ that takes on values:</p>
 </pre></div>
 </div>
 <p>A string argument to <code class="docutils literal notranslate"><span class="pre">indicator</span></code> will use the value as the name for the indicator column.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [76]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"col1"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">,</span> <span class="n">indicator</span><span class="o">=</span><span class="s2">"indicator_column"</span><span class="p">)</span>
-<span class="gh">Out[76]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [78]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"col1"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">,</span> <span class="n">indicator</span><span class="o">=</span><span class="s2">"indicator_column"</span><span class="p">)</span>
+<span class="gh">Out[78]: </span>
 <span class="go">   col1 col_left  col_right indicator_column</span>
 <span class="go">0     0        a        NaN        left_only</span>
 <span class="go">1     1        b        2.0             both</span>
@@ -1364,14 +1384,14 @@ that takes on values:</p>
 <p>The merge <code class="docutils literal notranslate"><span class="pre">suffixes</span></code> argument takes a tuple or list of strings to append to
 overlapping column names in the input <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> to disambiguate the result
 columns:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [77]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"k"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">],</span> <span class="s2">"v"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [79]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"k"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">],</span> <span class="s2">"v"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
 
-<span class="gp">In [78]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"k"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K3"</span><span class="p">],</span> <span class="s2">"v"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
+<span class="gp">In [80]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"k"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K3"</span><span class="p">],</span> <span class="s2">"v"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
 
-<span class="gp">In [79]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"k"</span><span class="p">)</span>
+<span class="gp">In [81]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"k"</span><span class="p">)</span>
 
-<span class="gp">In [80]: </span><span class="n">result</span>
-<span class="gh">Out[80]: </span>
+<span class="gp">In [82]: </span><span class="n">result</span>
+<span class="gh">Out[82]: </span>
 <span class="go">    k  v_x  v_y</span>
 <span class="go">0  K0    1    4</span>
 <span class="go">1  K0    1    5</span>
@@ -1381,10 +1401,10 @@ columns:</p>
 </pre></div>
 </div>
 <img alt="../_images/merging_merge_overlapped.png" src="../_images/merging_merge_overlapped.png" />
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [81]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">(</span><span class="s2">"_l"</span><span class="p">,</span> <span class="s2">"_r"</span><span class="p">))</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [83]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">suffixes</span><span class="o">=</span><span class="p">(</span><span class="s2">"_l"</span><span class="p">,</span> <span class="s2">"_r"</span><span class="p">))</span>
 
-<span class="gp">In [82]: </span><span class="n">result</span>
-<span class="gh">Out[82]: </span>
+<span class="gp">In [84]: </span><span class="n">result</span>
+<span class="gh">Out[84]: </span>
 <span class="go">    k  v_l  v_r</span>
 <span class="go">0  K0    1    4</span>
 <span class="go">1  K0    1    5</span>
@@ -1401,20 +1421,20 @@ columns:</p>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.join.html#pandas.DataFrame.join" title="pandas.DataFrame.join"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.join()</span></code></a> combines the columns of multiple,
 potentially differently-indexed <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> into a single result
 <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [83]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [85]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="p">{</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"A0"</span><span class="p">,</span> <span class="s2">"A1"</span><span class="p">,</span> <span class="s2">"A2"</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"B0"</span><span class="p">,</span> <span class="s2">"B1"</span><span class="p">,</span> <span class="s2">"B2"</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">]</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [84]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">In [86]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="p">{</span><span class="s2">"C"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"C0"</span><span class="p">,</span> <span class="s2">"C2"</span><span class="p">,</span> <span class="s2">"C3"</span><span class="p">],</span> <span class="s2">"D"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"D0"</span><span class="p">,</span> <span class="s2">"D2"</span><span class="p">,</span> <span class="s2">"D3"</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"K3"</span><span class="p">]</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [85]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+<span class="gp">In [87]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
 
-<span class="gp">In [86]: </span><span class="n">result</span>
-<span class="gh">Out[86]: </span>
+<span class="gp">In [88]: </span><span class="n">result</span>
+<span class="gh">Out[88]: </span>
 <span class="go">     A   B    C    D</span>
 <span class="go">K0  A0  B0   C0   D0</span>
 <span class="go">K1  A1  B1  NaN  NaN</span>
@@ -1425,10 +1445,10 @@ potentially differently-indexed <a class="reference internal" href="../reference
 </pre></div>
 </div>
 <img alt="../_images/merging_join.png" src="../_images/merging_join.png" />
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [87]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [89]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"outer"</span><span class="p">)</span>
 
-<span class="gp">In [88]: </span><span class="n">result</span>
-<span class="gh">Out[88]: </span>
+<span class="gp">In [90]: </span><span class="n">result</span>
+<span class="gh">Out[90]: </span>
 <span class="go">      A    B    C    D</span>
 <span class="go">K0   A0   B0   C0   D0</span>
 <span class="go">K1   A1   B1  NaN  NaN</span>
@@ -1440,10 +1460,10 @@ potentially differently-indexed <a class="reference internal" href="../reference
 </pre></div>
 </div>
 <img alt="../_images/merging_join_outer.png" src="../_images/merging_join_outer.png" />
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [89]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [91]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">)</span>
 
-<span class="gp">In [90]: </span><span class="n">result</span>
-<span class="gh">Out[90]: </span>
+<span class="gp">In [92]: </span><span class="n">result</span>
+<span class="gh">Out[92]: </span>
 <span class="go">     A   B   C   D</span>
 <span class="go">K0  A0  B0  C0  D0</span>
 <span class="go">K2  A2  B2  C2  D2</span>
@@ -1456,7 +1476,7 @@ potentially differently-indexed <a class="reference internal" href="../reference
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.join.html#pandas.DataFrame.join" title="pandas.DataFrame.join"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.join()</span></code></a> takes an optional <code class="docutils literal notranslate"><span class="pre">on</span></code> argument which may be a column
 or multiple column names that the passed <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> is to be
 aligned.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [91]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [93]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="p">{</span>
 <span class="gp">   ....: </span>        <span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"A0"</span><span class="p">,</span> <span class="s2">"A1"</span><span class="p">,</span> <span class="s2">"A2"</span><span class="p">,</span> <span class="s2">"A3"</span><span class="p">],</span>
 <span class="gp">   ....: </span>        <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"B0"</span><span class="p">,</span> <span class="s2">"B1"</span><span class="p">,</span> <span class="s2">"B2"</span><span class="p">,</span> <span class="s2">"B3"</span><span class="p">],</span>
@@ -1465,27 +1485,9 @@ aligned.</p>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [92]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"C"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"C0"</span><span class="p">,</span> <span class="s2">"C1"</span><span class="p">],</span> <span class="s2">"D"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"D0"</span><span class="p">,</span> <span class="s2">"D1"</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">])</span>
+<span class="gp">In [94]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"C"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"C0"</span><span class="p">,</span> <span class="s2">"C1"</span><span class="p">],</span> <span class="s2">"D"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"D0"</span><span class="p">,</span> <span class="s2">"D1"</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">])</span>
 
-<span class="gp">In [93]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"key"</span><span class="p">)</span>
-
-<span class="gp">In [94]: </span><span class="n">result</span>
-<span class="gh">Out[94]: </span>
-<span class="go">    A   B key   C   D</span>
-<span class="go">0  A0  B0  K0  C0  D0</span>
-<span class="go">1  A1  B1  K1  C1  D1</span>
-<span class="go">2  A2  B2  K0  C0  D0</span>
-<span class="go">3  A3  B3  K1  C1  D1</span>
-</pre></div>
-</div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<img alt="../_images/merging_join_key_columns.png" src="../_images/merging_join_key_columns.png" />
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [95]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
-<span class="gp">   ....: </span>    <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s2">"key"</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span>
-<span class="gp">   ....: </span><span class="p">)</span>
-<span class="gp">   ....: </span>
+<span class="gp">In [95]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"key"</span><span class="p">)</span>
 
 <span class="gp">In [96]: </span><span class="n">result</span>
 <span class="gh">Out[96]: </span>
@@ -1499,9 +1501,27 @@ aligned.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
+<img alt="../_images/merging_join_key_columns.png" src="../_images/merging_join_key_columns.png" />
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [97]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+<span class="gp">   ....: </span>    <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s2">"key"</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span>
+<span class="gp">   ....: </span><span class="p">)</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [98]: </span><span class="n">result</span>
+<span class="gh">Out[98]: </span>
+<span class="go">    A   B key   C   D</span>
+<span class="go">0  A0  B0  K0  C0  D0</span>
+<span class="go">1  A1  B1  K1  C1  D1</span>
+<span class="go">2  A2  B2  K0  C0  D0</span>
+<span class="go">3  A3  B3  K1  C1  D1</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 <img alt="../_images/merging_merge_key_columns.png" src="../_images/merging_merge_key_columns.png" />
 <p id="merging-multikey-join">To join on multiple keys, the passed <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> must have a <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [97]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [99]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="p">{</span>
 <span class="gp">   ....: </span>        <span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"A0"</span><span class="p">,</span> <span class="s2">"A1"</span><span class="p">,</span> <span class="s2">"A2"</span><span class="p">,</span> <span class="s2">"A3"</span><span class="p">],</span>
 <span class="gp">   ....: </span>        <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"B0"</span><span class="p">,</span> <span class="s2">"B1"</span><span class="p">,</span> <span class="s2">"B2"</span><span class="p">,</span> <span class="s2">"B3"</span><span class="p">],</span>
@@ -1511,20 +1531,20 @@ aligned.</p>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [98]: </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
-<span class="gp">   ....: </span>    <span class="p">[(</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">)]</span>
-<span class="gp">   ....: </span><span class="p">)</span>
-<span class="gp">   ....: </span>
+<span class="gp">In [100]: </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+<span class="gp">   .....: </span>    <span class="p">[(</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">)]</span>
+<span class="gp">   .....: </span><span class="p">)</span>
+<span class="gp">   .....: </span>
 
-<span class="gp">In [99]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<span class="gp">   ....: </span>    <span class="p">{</span><span class="s2">"C"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"C0"</span><span class="p">,</span> <span class="s2">"C1"</span><span class="p">,</span> <span class="s2">"C2"</span><span class="p">,</span> <span class="s2">"C3"</span><span class="p">],</span> <span class="s2">"D"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"D0"</span><span class="p">,</span> <span class="s2">"D1"</span><span class="p">,</span> <span class="s2">"D2"</span><span class="p">,</span> <span class="s2">"D3"</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span>
-<span class="gp">   ....: </span><span class="p">)</span>
-<span class="gp">   ....: </span>
+<span class="gp">In [101]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">   .....: </span>    <span class="p">{</span><span class="s2">"C"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"C0"</span><span class="p">,</span> <span class="s2">"C1"</span><span class="p">,</span> <span class="s2">"C2"</span><span class="p">,</span> <span class="s2">"C3"</span><span class="p">],</span> <span class="s2">"D"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"D0"</span><span class="p">,</span> <span class="s2">"D1"</span><span class="p">,</span> <span class="s2">"D2"</span><span class="p">,</span> <span class="s2">"D3"</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span>
+<span class="gp">   .....: </span><span class="p">)</span>
+<span class="gp">   .....: </span>
 
-<span class="gp">In [100]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">])</span>
+<span class="gp">In [102]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">])</span>
 
-<span class="gp">In [101]: </span><span class="n">result</span>
-<span class="gh">Out[101]: </span>
+<span class="gp">In [103]: </span><span class="n">result</span>
+<span class="gh">Out[103]: </span>
 <span class="go">    A   B key1 key2    C    D</span>
 <span class="go">0  A0  B0   K0   K0   C0   D0</span>
 <span class="go">1  A1  B1   K0   K1  NaN  NaN</span>
@@ -1539,10 +1559,10 @@ aligned.</p>
 <p id="merging-df-inner-join">The default for <a class="reference internal" href="../reference/api/pandas.DataFrame.join.html#pandas.DataFrame.join" title="pandas.DataFrame.join"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame.join</span></code></a> is to perform a left join
 which uses only the keys found in the
 calling <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>. Other join types can be specified with <code class="docutils literal notranslate"><span class="pre">how</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [102]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [104]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">)</span>
 
-<span class="gp">In [103]: </span><span class="n">result</span>
-<span class="gh">Out[103]: </span>
+<span class="gp">In [105]: </span><span class="n">result</span>
+<span class="gh">Out[105]: </span>
 <span class="go">    A   B key1 key2   C   D</span>
 <span class="go">0  A0  B0   K0   K0  C0  D0</span>
 <span class="go">2  A2  B2   K1   K0  C1  D1</span>
@@ -1557,28 +1577,28 @@ calling <a class="reference internal" href="../reference/api/pandas.DataFrame.ht
 <span id="merging-join-on-mi"></span><h3>Joining a single Index to a MultiIndex<a class="headerlink" href="#joining-a-single-index-to-a-multiindex" title="Link to this heading">#</a></h3>
 <p>You can join a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with a <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a> to a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with a <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> on a level.
 The <code class="docutils literal notranslate"><span class="pre">name</span></code> of the <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a> will match the level name of the <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [104]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [106]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"A0"</span><span class="p">,</span> <span class="s2">"A1"</span><span class="p">,</span> <span class="s2">"A2"</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"B0"</span><span class="p">,</span> <span class="s2">"B1"</span><span class="p">,</span> <span class="s2">"B2"</span><span class="p">]},</span>
 <span class="gp">   .....: </span>    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">"key"</span><span class="p">),</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [105]: </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+<span class="gp">In [107]: </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[(</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"Y0"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"Y1"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"Y2"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"Y3"</span><span class="p">)],</span>
 <span class="gp">   .....: </span>    <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">"key"</span><span class="p">,</span> <span class="s2">"Y"</span><span class="p">],</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [106]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">In [108]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span><span class="s2">"C"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"C0"</span><span class="p">,</span> <span class="s2">"C1"</span><span class="p">,</span> <span class="s2">"C2"</span><span class="p">,</span> <span class="s2">"C3"</span><span class="p">],</span> <span class="s2">"D"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"D0"</span><span class="p">,</span> <span class="s2">"D1"</span><span class="p">,</span> <span class="s2">"D2"</span><span class="p">,</span> <span class="s2">"D3"</span><span class="p">]},</span>
 <span class="gp">   .....: </span>    <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [107]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">)</span>
+<span class="gp">In [109]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">)</span>
 
-<span class="gp">In [108]: </span><span class="n">result</span>
-<span class="gh">Out[108]: </span>
+<span class="gp">In [110]: </span><span class="n">result</span>
+<span class="gh">Out[110]: </span>
 <span class="go">         A   B   C   D</span>
 <span class="go">key Y                 </span>
 <span class="go">K0  Y0  A0  B0  C0  D0</span>
@@ -1596,15 +1616,15 @@ The <code class="docutils literal notranslate"><span class="pre">name</span></co
 <span id="merging-join-with-two-multi-indexes"></span><h3>Joining with two <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a><a class="headerlink" href="#joining-with-two-multiindex" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> of the input argument must be completely used
 in the join and is a subset of the indices in the left argument.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [109]: </span><span class="n">leftindex</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [111]: </span><span class="n">leftindex</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"xy"</span><span class="p">),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">"abc"</span><span class="p">,</span> <span class="s2">"xy"</span><span class="p">,</span> <span class="s2">"num"</span><span class="p">]</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [110]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"v1"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)},</span> <span class="n">index</span><span class="o">=</span><span class="n">leftindex</span><span class="p">)</span>
+<span class="gp">In [112]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"v1"</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)},</span> <span class="n">index</span><span class="o">=</span><span class="n">leftindex</span><span class="p">)</span>
 
-<span class="gp">In [111]: </span><span class="n">left</span>
-<span class="gh">Out[111]: </span>
+<span class="gp">In [113]: </span><span class="n">left</span>
+<span class="gh">Out[113]: </span>
 <span class="go">            v1</span>
 <span class="go">abc xy num    </span>
 <span class="go">a   x  1     0</span>
@@ -1620,15 +1640,15 @@ in the join and is a subset of the indices in the left argument.</p>
 <span class="go">    y  1    10</span>
 <span class="go">       2    11</span>
 
-<span class="gp">In [112]: </span><span class="n">rightindex</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span>
+<span class="gp">In [114]: </span><span class="n">rightindex</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"xy"</span><span class="p">)],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">"abc"</span><span class="p">,</span> <span class="s2">"xy"</span><span class="p">]</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [113]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"v2"</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)]},</span> <span class="n">index</span><span class="o">=</span><span class="n">rightindex</span><span class="p">)</span>
+<span class="gp">In [115]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"v2"</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)]},</span> <span class="n">index</span><span class="o">=</span><span class="n">rightindex</span><span class="p">)</span>
 
-<span class="gp">In [114]: </span><span class="n">right</span>
-<span class="gh">Out[114]: </span>
+<span class="gp">In [116]: </span><span class="n">right</span>
+<span class="gh">Out[116]: </span>
 <span class="go">         v2</span>
 <span class="go">abc xy     </span>
 <span class="go">a   x   100</span>
@@ -1638,8 +1658,8 @@ in the join and is a subset of the indices in the left argument.</p>
 <span class="go">c   x   500</span>
 <span class="go">    y   600</span>
 
-<span class="gp">In [115]: </span><span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"abc"</span><span class="p">,</span> <span class="s2">"xy"</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">)</span>
-<span class="gh">Out[115]: </span>
+<span class="gp">In [117]: </span><span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"abc"</span><span class="p">,</span> <span class="s2">"xy"</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span><span class="p">)</span>
+<span class="gh">Out[117]: </span>
 <span class="go">            v1   v2</span>
 <span class="go">abc xy num         </span>
 <span class="go">a   x  1     0  100</span>
@@ -1656,33 +1676,33 @@ in the join and is a subset of the indices in the left argument.</p>
 <span class="go">       2    11  600</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [116]: </span><span class="n">leftindex</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [118]: </span><span class="n">leftindex</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[(</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"X0"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"X1"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"X2"</span><span class="p">)],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">"key"</span><span class="p">,</span> <span class="s2">"X"</span><span class="p">]</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [117]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">In [119]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span><span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"A0"</span><span class="p">,</span> <span class="s2">"A1"</span><span class="p">,</span> <span class="s2">"A2"</span><span class="p">],</span> <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"B0"</span><span class="p">,</span> <span class="s2">"B1"</span><span class="p">,</span> <span class="s2">"B2"</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">leftindex</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [118]: </span><span class="n">rightindex</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+<span class="gp">In [120]: </span><span class="n">rightindex</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[(</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"Y0"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"Y1"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"Y2"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"Y3"</span><span class="p">)],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">"key"</span><span class="p">,</span> <span class="s2">"Y"</span><span class="p">]</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [119]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">In [121]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span><span class="s2">"C"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"C0"</span><span class="p">,</span> <span class="s2">"C1"</span><span class="p">,</span> <span class="s2">"C2"</span><span class="p">,</span> <span class="s2">"C3"</span><span class="p">],</span> <span class="s2">"D"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"D0"</span><span class="p">,</span> <span class="s2">"D1"</span><span class="p">,</span> <span class="s2">"D2"</span><span class="p">,</span> <span class="s2">"D3"</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="n">rightindex</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [120]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+<span class="gp">In [122]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="n">left</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">right</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key"</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">"inner"</span>
 <span class="gp">   .....: </span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">"key"</span><span class="p">,</span> <span class="s2">"X"</span><span class="p">,</span> <span class="s2">"Y"</span><span class="p">])</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [121]: </span><span class="n">result</span>
-<span class="gh">Out[121]: </span>
+<span class="gp">In [123]: </span><span class="n">result</span>
+<span class="gh">Out[123]: </span>
 <span class="go">            A   B   C   D</span>
 <span class="go">key X  Y                 </span>
 <span class="go">K0  X0 Y0  A0  B0  C0  D0</span>
@@ -1701,9 +1721,9 @@ in the join and is a subset of the indices in the left argument.</p>
 may refer to either column names or index level names.  This enables merging
 <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> instances on a combination of index levels and columns without
 resetting indexes.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [122]: </span><span class="n">left_index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">"key1"</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [124]: </span><span class="n">left_index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">"key1"</span><span class="p">)</span>
 
-<span class="gp">In [123]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">In [125]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span>
 <span class="gp">   .....: </span>        <span class="s2">"A"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"A0"</span><span class="p">,</span> <span class="s2">"A1"</span><span class="p">,</span> <span class="s2">"A2"</span><span class="p">,</span> <span class="s2">"A3"</span><span class="p">],</span>
 <span class="gp">   .....: </span>        <span class="s2">"B"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"B0"</span><span class="p">,</span> <span class="s2">"B1"</span><span class="p">,</span> <span class="s2">"B2"</span><span class="p">,</span> <span class="s2">"B3"</span><span class="p">],</span>
@@ -1713,9 +1733,9 @@ resetting indexes.</p>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [124]: </span><span class="n">right_index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">"key1"</span><span class="p">)</span>
+<span class="gp">In [126]: </span><span class="n">right_index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">"key1"</span><span class="p">)</span>
 
-<span class="gp">In [125]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">In [127]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span>
 <span class="gp">   .....: </span>        <span class="s2">"C"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"C0"</span><span class="p">,</span> <span class="s2">"C1"</span><span class="p">,</span> <span class="s2">"C2"</span><span class="p">,</span> <span class="s2">"C3"</span><span class="p">],</span>
 <span class="gp">   .....: </span>        <span class="s2">"D"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"D0"</span><span class="p">,</span> <span class="s2">"D1"</span><span class="p">,</span> <span class="s2">"D2"</span><span class="p">,</span> <span class="s2">"D3"</span><span class="p">],</span>
@@ -1725,10 +1745,10 @@ resetting indexes.</p>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [126]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">])</span>
+<span class="gp">In [128]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"key1"</span><span class="p">,</span> <span class="s2">"key2"</span><span class="p">])</span>
 
-<span class="gp">In [127]: </span><span class="n">result</span>
-<span class="gh">Out[127]: </span>
+<span class="gp">In [129]: </span><span class="n">result</span>
+<span class="gh">Out[129]: </span>
 <span class="go">       A   B key2   C   D</span>
 <span class="go">key1                     </span>
 <span class="go">K0    A0  B0   K0  C0  D0</span>
@@ -1758,9 +1778,9 @@ names to move those levels to columns prior to the join.</p>
 <span id="merging-multiple-join"></span><h3>Joining multiple <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a><a class="headerlink" href="#joining-multiple-dataframe" title="Link to this heading">#</a></h3>
 <p>A list or tuple of <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> can also be passed to <a class="reference internal" href="../reference/api/pandas.DataFrame.join.html#pandas.DataFrame.join" title="pandas.DataFrame.join"><code class="xref py py-meth docutils literal notranslate"><span class="pre">join()</span></code></a>
 to join them together on their indexes.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [128]: </span><span class="n">right2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"v"</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [130]: </span><span class="n">right2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"v"</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">])</span>
 
-<span class="gp">In [129]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">right</span><span class="p">,</span> <span class="n">right2</span><span class="p">])</span>
+<span class="gp">In [131]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">right</span><span class="p">,</span> <span class="n">right2</span><span class="p">])</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>
@@ -1773,17 +1793,17 @@ to join them together on their indexes.</p>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.combine_first.html#pandas.DataFrame.combine_first" title="pandas.DataFrame.combine_first"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.combine_first()</span></code></a> update missing values from one <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>
 with the non-missing values in another <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> in the corresponding
 location.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [130]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [132]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">4.6</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]]</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [131]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="o">-</span><span class="mf">42.6</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">In [133]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="o">-</span><span class="mf">42.6</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 
-<span class="gp">In [132]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">combine_first</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+<span class="gp">In [134]: </span><span class="n">result</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">combine_first</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
 
-<span class="gp">In [133]: </span><span class="n">result</span>
-<span class="gh">Out[133]: </span>
+<span class="gp">In [135]: </span><span class="n">result</span>
+<span class="gh">Out[135]: </span>
 <span class="go">     0    1    2</span>
 <span class="go">0  NaN  3.0  5.0</span>
 <span class="go">1 -4.6  NaN -8.2</span>
@@ -1800,15 +1820,15 @@ location.</p>
 <span id="merging-merge-ordered"></span><h2><a class="reference internal" href="../reference/api/pandas.merge_ordered.html#pandas.merge_ordered" title="pandas.merge_ordered"><code class="xref py py-func docutils literal notranslate"><span class="pre">merge_ordered()</span></code></a><a class="headerlink" href="#merge-ordered" title="Link to this heading">#</a></h2>
 <p><a class="reference internal" href="../reference/api/pandas.merge_ordered.html#pandas.merge_ordered" title="pandas.merge_ordered"><code class="xref py py-func docutils literal notranslate"><span class="pre">merge_ordered()</span></code></a> combines ordered data such as numeric or time series data
 with optional filling of missing data with <code class="docutils literal notranslate"><span class="pre">fill_method</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [134]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [136]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span><span class="s2">"k"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"K0"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">],</span> <span class="s2">"lv"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s2">"s"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">]}</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [135]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"k"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"K4"</span><span class="p">],</span> <span class="s2">"rv"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<span class="gp">In [137]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"k"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"K1"</span><span class="p">,</span> <span class="s2">"K2"</span><span class="p">,</span> <span class="s2">"K4"</span><span class="p">],</span> <span class="s2">"rv"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
 
-<span class="gp">In [136]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_ordered</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">fill_method</span><span class="o">=</span><span class="s2">"ffill"</span><span class="p">,</span> <span class="n">left_by</span><span class="o">=</span><span class="s2">"s"</span><span class="p">)</span>
-<span class="gh">Out[136]: </span>
+<span class="gp">In [138]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_ordered</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">fill_method</span><span class="o">=</span><span class="s2">"ffill"</span><span class="p">,</span> <span class="n">left_by</span><span class="o">=</span><span class="s2">"s"</span><span class="p">)</span>
+<span class="gh">Out[138]: </span>
 <span class="go">     k   lv  s   rv</span>
 <span class="go">0   K0  1.0  a  NaN</span>
 <span class="go">1   K1  1.0  a  1.0</span>
@@ -1835,7 +1855,7 @@ less than or equal to the left’s key. Both <a class="reference internal" href=
 key.</p>
 <p>Optionally <a class="reference internal" href="../reference/api/pandas.merge_asof.html#pandas.merge_asof" title="pandas.merge_asof"><code class="xref py py-func docutils literal notranslate"><span class="pre">merge_asof()</span></code></a> can perform a group-wise merge by matching the
 <code class="docutils literal notranslate"><span class="pre">by</span></code> key in addition to the nearest match on the <code class="docutils literal notranslate"><span class="pre">on</span></code> key.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [137]: </span><span class="n">trades</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [139]: </span><span class="n">trades</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span>
 <span class="gp">   .....: </span>        <span class="s2">"time"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
 <span class="gp">   .....: </span>            <span class="p">[</span>
@@ -1854,7 +1874,7 @@ key.</p>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [138]: </span><span class="n">quotes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">In [140]: </span><span class="n">quotes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span>
 <span class="gp">   .....: </span>        <span class="s2">"time"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
 <span class="gp">   .....: </span>            <span class="p">[</span>
@@ -1876,8 +1896,8 @@ key.</p>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [139]: </span><span class="n">trades</span>
-<span class="gh">Out[139]: </span>
+<span class="gp">In [141]: </span><span class="n">trades</span>
+<span class="gh">Out[141]: </span>
 <span class="go">                     time ticker   price  quantity</span>
 <span class="go">0 2016-05-25 13:30:00.023   MSFT   51.95        75</span>
 <span class="go">1 2016-05-25 13:30:00.038   MSFT   51.95       155</span>
@@ -1885,8 +1905,8 @@ key.</p>
 <span class="go">3 2016-05-25 13:30:00.048   GOOG  720.92       100</span>
 <span class="go">4 2016-05-25 13:30:00.048   AAPL   98.00       100</span>
 
-<span class="gp">In [140]: </span><span class="n">quotes</span>
-<span class="gh">Out[140]: </span>
+<span class="gp">In [142]: </span><span class="n">quotes</span>
+<span class="gh">Out[142]: </span>
 <span class="go">                     time ticker     bid     ask</span>
 <span class="go">0 2016-05-25 13:30:00.023   GOOG  720.50  720.93</span>
 <span class="go">1 2016-05-25 13:30:00.023   MSFT   51.95   51.96</span>
@@ -1897,8 +1917,8 @@ key.</p>
 <span class="go">6 2016-05-25 13:30:00.072   GOOG  720.50  720.88</span>
 <span class="go">7 2016-05-25 13:30:00.075   MSFT   52.01   52.03</span>
 
-<span class="gp">In [141]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span><span class="n">trades</span><span class="p">,</span> <span class="n">quotes</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"time"</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">"ticker"</span><span class="p">)</span>
-<span class="gh">Out[141]: </span>
+<span class="gp">In [143]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span><span class="n">trades</span><span class="p">,</span> <span class="n">quotes</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"time"</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">"ticker"</span><span class="p">)</span>
+<span class="gh">Out[143]: </span>
 <span class="go">                     time ticker   price  quantity     bid     ask</span>
 <span class="go">0 2016-05-25 13:30:00.023   MSFT   51.95        75   51.95   51.96</span>
 <span class="go">1 2016-05-25 13:30:00.038   MSFT   51.95       155   51.97   51.98</span>
@@ -1908,8 +1928,8 @@ key.</p>
 </pre></div>
 </div>
 <p><a class="reference internal" href="../reference/api/pandas.merge_asof.html#pandas.merge_asof" title="pandas.merge_asof"><code class="xref py py-func docutils literal notranslate"><span class="pre">merge_asof()</span></code></a> within <code class="docutils literal notranslate"><span class="pre">2ms</span></code> between the quote time and the trade time.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [142]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span><span class="n">trades</span><span class="p">,</span> <span class="n">quotes</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"time"</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">"ticker"</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">"2ms"</span><span class="p">))</span>
-<span class="gh">Out[142]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [144]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span><span class="n">trades</span><span class="p">,</span> <span class="n">quotes</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"time"</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s2">"ticker"</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">"2ms"</span><span class="p">))</span>
+<span class="gh">Out[144]: </span>
 <span class="go">                     time ticker   price  quantity     bid     ask</span>
 <span class="go">0 2016-05-25 13:30:00.023   MSFT   51.95        75   51.95   51.96</span>
 <span class="go">1 2016-05-25 13:30:00.038   MSFT   51.95       155     NaN     NaN</span>
@@ -1921,7 +1941,7 @@ key.</p>
 <p><a class="reference internal" href="../reference/api/pandas.merge_asof.html#pandas.merge_asof" title="pandas.merge_asof"><code class="xref py py-func docutils literal notranslate"><span class="pre">merge_asof()</span></code></a> within <code class="docutils literal notranslate"><span class="pre">10ms</span></code> between the quote time and the trade time and
 exclude exact matches on time. Note that though we exclude the exact matches
 (of the quotes), prior quotes <strong>do</strong> propagate to that point in time.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [143]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [145]: </span><span class="n">pd</span><span class="o">.</span><span class="n">merge_asof</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="n">trades</span><span class="p">,</span>
 <span class="gp">   .....: </span>    <span class="n">quotes</span><span class="p">,</span>
 <span class="gp">   .....: </span>    <span class="n">on</span><span class="o">=</span><span class="s2">"time"</span><span class="p">,</span>
@@ -1930,7 +1950,7 @@ exclude exact matches on time. Note that though we exclude the exact matches
 <span class="gp">   .....: </span>    <span class="n">allow_exact_matches</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="gh">Out[143]: </span>
+<span class="gh">Out[145]: </span>
 <span class="go">                     time ticker   price  quantity    bid    ask</span>
 <span class="go">0 2016-05-25 13:30:00.023   MSFT   51.95        75    NaN    NaN</span>
 <span class="go">1 2016-05-25 13:30:00.038   MSFT   51.95       155  51.97  51.98</span>
@@ -1944,7 +1964,7 @@ exclude exact matches on time. Note that though we exclude the exact matches
 <span id="merging-compare"></span><h2><a class="reference internal" href="../reference/api/pandas.Series.compare.html#pandas.Series.compare" title="pandas.Series.compare"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compare()</span></code></a><a class="headerlink" href="#compare" title="Link to this heading">#</a></h2>
 <p>The <a class="reference internal" href="../reference/api/pandas.Series.compare.html#pandas.Series.compare" title="pandas.Series.compare"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.compare()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.compare.html#pandas.DataFrame.compare" title="pandas.DataFrame.compare"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.compare()</span></code></a> methods allow you to
 compare two <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> or <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>, respectively, and summarize their differences.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [144]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [146]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span>
 <span class="gp">   .....: </span>        <span class="s2">"col1"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">],</span>
 <span class="gp">   .....: </span>        <span class="s2">"col2"</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span>
@@ -1954,8 +1974,8 @@ compare two <a class="reference internal" href="../reference/api/pandas.DataFram
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [145]: </span><span class="n">df</span>
-<span class="gh">Out[145]: </span>
+<span class="gp">In [147]: </span><span class="n">df</span>
+<span class="gh">Out[147]: </span>
 <span class="go">  col1  col2  col3</span>
 <span class="go">0    a   1.0   1.0</span>
 <span class="go">1    a   2.0   2.0</span>
@@ -1963,14 +1983,14 @@ compare two <a class="reference internal" href="../reference/api/pandas.DataFram
 <span class="go">3    b   NaN   4.0</span>
 <span class="go">4    a   5.0   5.0</span>
 
-<span class="gp">In [146]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="gp">In [148]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-<span class="gp">In [147]: </span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"col1"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"c"</span>
+<span class="gp">In [149]: </span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"col1"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"c"</span>
 
-<span class="gp">In [148]: </span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"col3"</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.0</span>
+<span class="gp">In [150]: </span><span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"col3"</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.0</span>
 
-<span class="gp">In [149]: </span><span class="n">df2</span>
-<span class="gh">Out[149]: </span>
+<span class="gp">In [151]: </span><span class="n">df2</span>
+<span class="gh">Out[151]: </span>
 <span class="go">  col1  col2  col3</span>
 <span class="go">0    c   1.0   1.0</span>
 <span class="go">1    a   2.0   2.0</span>
@@ -1978,8 +1998,8 @@ compare two <a class="reference internal" href="../reference/api/pandas.DataFram
 <span class="go">3    b   NaN   4.0</span>
 <span class="go">4    a   5.0   5.0</span>
 
-<span class="gp">In [150]: </span><span class="n">df</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
-<span class="gh">Out[150]: </span>
+<span class="gp">In [152]: </span><span class="n">df</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+<span class="gh">Out[152]: </span>
 <span class="go">  col1       col3      </span>
 <span class="go">  self other self other</span>
 <span class="go">0    a     c  NaN   NaN</span>
@@ -1990,8 +2010,8 @@ compare two <a class="reference internal" href="../reference/api/pandas.DataFram
 Furthermore, if all values in an entire row / column are equal, that row / column will be
 omitted from the result. The remaining differences will be aligned on columns.</p>
 <p>Stack the differences on rows.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [151]: </span><span class="n">df</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">align_axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="gh">Out[151]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [153]: </span><span class="n">df</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">align_axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gh">Out[153]: </span>
 <span class="go">        col1  col3</span>
 <span class="go">0 self     a   NaN</span>
 <span class="go">  other    c   NaN</span>
@@ -2000,8 +2020,8 @@ omitted from the result. The remaining differences will be aligned on columns.</
 </pre></div>
 </div>
 <p>Keep all original rows and columns with <code class="docutils literal notranslate"><span class="pre">keep_shape=True</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [152]: </span><span class="n">df</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">keep_shape</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[152]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [154]: </span><span class="n">df</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">keep_shape</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[154]: </span>
 <span class="go">  col1       col2       col3      </span>
 <span class="go">  self other self other self other</span>
 <span class="go">0    a     c  NaN   NaN  NaN   NaN</span>
@@ -2012,8 +2032,8 @@ omitted from the result. The remaining differences will be aligned on columns.</
 </pre></div>
 </div>
 <p>Keep all the original values even if they are equal.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [153]: </span><span class="n">df</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">keep_shape</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">keep_equal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[153]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [155]: </span><span class="n">df</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">keep_shape</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">keep_equal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[155]: </span>
 <span class="go">  col1       col2       col3      </span>
 <span class="go">  self other self other self other</span>
 <span class="go">0    a     c  1.0   1.0  1.0   1.0</span>
