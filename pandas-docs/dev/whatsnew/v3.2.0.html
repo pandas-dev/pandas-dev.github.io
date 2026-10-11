@@ -912,8 +912,8 @@ Optional libraries below the lowest tested version may still work, but are not c
 <li><p>Bug in the repr of a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with <code class="docutils literal notranslate"><span class="pre">longdouble</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">float128</span></code>) dtype showing values outside the <code class="docutils literal notranslate"><span class="pre">float64</span></code> range as <code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">inf</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/17809">GH 17809</a>)</p></li>
 <li><p>Fixed bug in <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a> where callable <code class="docutils literal notranslate"><span class="pre">skiprows</span></code> received incorrect row numbers on 32-bit big-endian architectures (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/69985">GH 69985</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.ExcelWriter.html#pandas.ExcelWriter" title="pandas.ExcelWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExcelWriter</span></code></a> with <code class="docutils literal notranslate"><span class="pre">engine=&quot;openpyxl&quot;</span></code> ignoring <code class="docutils literal notranslate"><span class="pre">date_format</span></code> and <code class="docutils literal notranslate"><span class="pre">datetime_format</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/44284">GH 44284</a>, <a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/59882">GH 59882</a>)</p></li>
+<li><p>Bug in <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a> where using <code class="docutils literal notranslate"><span class="pre">engine=&quot;python&quot;</span></code> with custom <code class="docutils literal notranslate"><span class="pre">converters</span></code> returning unhashable types (such as lists or dicts) raised <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/56848">GH 56848</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.read_sas.html#pandas.read_sas" title="pandas.read_sas"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_sas()</span></code></a> raising <code class="docutils literal notranslate"><span class="pre">IndexError</span></code> or reading the wrong format or label for SAS7BDAT files with columns renamed or relabeled after the file was written (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/60809">GH 60809</a>)</p></li>
-<li></li>
 </ul>
 </section>
 <section id="period">
@@ -991,7 +991,7 @@ Optional libraries below the lowest tested version may still work, but are not c
 </section>
 <section id="contributors">
 <span id="whatsnew-320-contributors"></span><h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">#</a></h2>
-<p>A total of 33 people contributed patches to this release.  People with a
+<p>A total of 34 people contributed patches to this release.  People with a
 “+” by their names contributed a patch for the first time.
 </p>
 <ul class="simple">
@@ -1007,6 +1007,7 @@ Optional libraries below the lowest tested version may still work, but are not c
 <li><p>Claude Opus 5.5</p></li>
 <li><p>Fangchen Li</p></li>
 <li><p>H23 +</p></li>
+<li><p>Johnny Wilson Dougherty +</p></li>
 <li><p>Joris Van den Bossche</p></li>
 <li><p>Julian Harbeck</p></li>
 <li><p>Maha Yadavalli +</p></li>
