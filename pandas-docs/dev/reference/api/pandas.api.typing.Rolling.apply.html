@@ -660,23 +660,23 @@ applied to both the <code class="docutils literal notranslate"><span class="pre"
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.rolling</span></code></dt><dd><p>Calling rolling with Series data.</p>
+<dt><a class="reference internal" href="pandas.Series.rolling.html#pandas.Series.rolling" title="pandas.Series.rolling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.rolling</span></code></a></dt><dd><p>Calling rolling with Series data.</p>
 </dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.rolling</span></code></dt><dd><p>Calling rolling with DataFrames.</p>
+<dt><a class="reference internal" href="pandas.DataFrame.rolling.html#pandas.DataFrame.rolling" title="pandas.DataFrame.rolling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.rolling</span></code></a></dt><dd><p>Calling rolling with DataFrames.</p>
 </dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.apply</span></code></dt><dd><p>Aggregating apply for Series.</p>
+<dt><a class="reference internal" href="pandas.Series.apply.html#pandas.Series.apply" title="pandas.Series.apply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.apply</span></code></a></dt><dd><p>Aggregating apply for Series.</p>
 </dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.apply</span></code></dt><dd><p>Aggregating apply for DataFrame.</p>
+<dt><a class="reference internal" href="pandas.DataFrame.apply.html#pandas.DataFrame.apply" title="pandas.DataFrame.apply"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.apply</span></code></a></dt><dd><p>Aggregating apply for DataFrame.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Notes</p>
-<p>When <code class="docutils literal notranslate"><span class="pre">raw=False</span></code>, the <code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code> passed to <code class="docutils literal notranslate"><span class="pre">func</span></code> is indexed by the
-column or <code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code> used to compute the rolling window. If
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.rolling()</span></code> was called with <code class="docutils literal notranslate"><span class="pre">on=col</span></code>, the index of the
-passed <code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code> will be the values of <code class="docutils literal notranslate"><span class="pre">col</span></code> rather than the
-original <code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code> index. When <code class="docutils literal notranslate"><span class="pre">on</span></code> is not specified, the
-index of the passed <code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code> is the original index of the input.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">raw=False</span></code>, the <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> passed to <code class="docutils literal notranslate"><span class="pre">func</span></code> is indexed by the
+column or <a class="reference internal" href="pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a> used to compute the rolling window. If
+<a class="reference internal" href="pandas.DataFrame.rolling.html#pandas.DataFrame.rolling" title="pandas.DataFrame.rolling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.rolling()</span></code></a> was called with <code class="docutils literal notranslate"><span class="pre">on=col</span></code>, the index of the
+passed <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> will be the values of <code class="docutils literal notranslate"><span class="pre">col</span></code> rather than the
+original <a class="reference internal" href="pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> index. When <code class="docutils literal notranslate"><span class="pre">on</span></code> is not specified, the
+index of the passed <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> is the original index of the input.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">s</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
@@ -689,7 +689,7 @@ index of the passed <code class="xref py py-class docutils literal notranslate">
 </div>
 <p>By default <code class="docutils literal notranslate"><span class="pre">func</span></code> is applied to each column independently. Use
 <code class="docutils literal notranslate"><span class="pre">method=&quot;table&quot;</span></code> (which requires <code class="docutils literal notranslate"><span class="pre">engine=&quot;numba&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">raw=True</span></code>) to
-instead pass the whole <code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code> window to <code class="docutils literal notranslate"><span class="pre">func</span></code> as a single 2D
+instead pass the whole <a class="reference internal" href="pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> window to <code class="docutils literal notranslate"><span class="pre">func</span></code> as a single 2D
 ndarray, so the function can combine multiple columns. Here a rolling dot
 product of columns <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> is computed; the scalar result is
 broadcast across the columns.</p>
