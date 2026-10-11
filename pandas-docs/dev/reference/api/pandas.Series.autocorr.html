@@ -895,7 +895,7 @@
 <h1>pandas.Series.autocorr<a class="headerlink" href="#pandas-series-autocorr" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.Series.autocorr">
-<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">autocorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/series.py#L3356-L3399"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.autocorr" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">autocorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/series.py#L3356-L3404"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.autocorr" title="Link to this definition">#</a></dt>
 <dd><p>Compute the lag-N autocorrelation.</p>
 <p>This method computes the Pearson correlation between
 the Series and its shifted self.</p>
@@ -924,10 +924,15 @@ the Series and its shifted self.</p>
 </dd>
 <dt><a class="reference internal" href="pandas.DataFrame.corrwith.html#pandas.DataFrame.corrwith" title="pandas.DataFrame.corrwith"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.corrwith</span></code></a></dt><dd><p>Compute pairwise correlation between rows or columns of two DataFrame objects.</p>
 </dd>
+<dt><a class="reference internal" href="pandas.plotting.autocorrelation_plot.html#pandas.plotting.autocorrelation_plot" title="pandas.plotting.autocorrelation_plot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.autocorrelation_plot</span></code></a></dt><dd><p>Autocorrelation plot for time series.</p>
+</dd>
 </dl>
 </div>
 <p class="rubric">Notes</p>
 <p>If the Pearson correlation is not well defined return ‘NaN’.</p>
+<p>Values can differ from <a class="reference internal" href="pandas.plotting.autocorrelation_plot.html#pandas.plotting.autocorrelation_plot" title="pandas.plotting.autocorrelation_plot"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.plotting.autocorrelation_plot()</span></code></a>,
+which uses the mean and variance of the whole Series rather than of the
+overlapping portions.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">autocorr</span><span class="p">()</span>

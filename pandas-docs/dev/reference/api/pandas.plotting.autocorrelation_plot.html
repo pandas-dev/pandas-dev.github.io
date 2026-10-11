@@ -51,6 +51,8 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script data-domain="pandas.pydata.org" defer="defer" src="https://views.scientific-python.org/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.plotting.autocorrelation_plot';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.20.0';
@@ -561,7 +563,7 @@
 <h1>pandas.plotting.autocorrelation_plot<a class="headerlink" href="#pandas-plotting-autocorrelation-plot" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.plotting.autocorrelation_plot">
-<span class="sig-prename descclassname"><span class="pre">pandas.plotting.</span></span><span class="sig-name descname"><span class="pre">autocorrelation_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/plotting/_misc.py#L677-L725"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.plotting.autocorrelation_plot" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.plotting.</span></span><span class="sig-name descname"><span class="pre">autocorrelation_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/plotting/_misc.py#L677-L739"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.plotting.autocorrelation_plot" title="Link to this definition">#</a></dt>
 <dd><p>Autocorrelation plot for time series.</p>
 <p>This method generates an autocorrelation plot for a given time series,
 which helps to identify any periodic structure or correlation within the
@@ -598,6 +600,15 @@ non-zero.</p>
 </dd>
 </dl>
 </div>
+<p class="rubric">Notes</p>
+<p>The autocorrelation at lag <code class="docutils literal notranslate"><span class="pre">h</span></code> is computed using the mean and variance
+of the whole series:</p>
+<div class="math notranslate nohighlight">
+\[r_h = \frac{\sum_{t=1}^{n-h} (x_t - \bar{x})(x_{t+h} - \bar{x})}
+           {\sum_{t=1}^{n} (x_t - \bar{x})^2}\]</div>
+<p>This differs from <a class="reference internal" href="pandas.Series.autocorr.html#pandas.Series.autocorr" title="pandas.Series.autocorr"><code class="xref py py-meth docutils literal notranslate"><span class="pre">autocorr()</span></code></a>, which computes the Pearson
+correlation between the overlapping portions of the series and its
+lagged copy, so the two can give different values for the same lag.</p>
 <p class="rubric">Examples</p>
 <p>The horizontal lines in the plot correspond to 95% and 99% confidence bands.</p>
 <p>The dashed line is 99% confidence band.</p>
