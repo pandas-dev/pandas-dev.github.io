@@ -765,7 +765,7 @@ You can get quite creative with the label mapping functions.</p>
 </div>
 <section id="groupby-sorting">
 <span id="id1"></span><h3>GroupBy sorting<a class="headerlink" href="#groupby-sorting" title="Link to this heading">#</a></h3>
-<p>By default the group keys are sorted during the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> operation. You may however pass <code class="docutils literal notranslate"><span class="pre">sort=False</span></code> for potential speedups. With <code class="docutils literal notranslate"><span class="pre">sort=False</span></code> the order among group-keys follows the order of appearance of the keys in the original dataframe:</p>
+<p>By default the group keys are sorted during the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> operation. You may however pass <code class="docutils literal notranslate"><span class="pre">sort=False</span></code> for potential speedups; it is also required when the group keys cannot be sorted. With <code class="docutils literal notranslate"><span class="pre">sort=False</span></code> the order among group-keys follows the order of appearance of the keys in the original dataframe:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"X"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"B"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">],</span> <span class="s2">"Y"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
 
 <span class="gp">In [20]: </span><span class="n">df2</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"X"</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -1112,7 +1112,7 @@ object in a similar way as the one used to get a column from a DataFrame, you ca
 </div>
 <p>This is mainly syntactic sugar for the alternative, which is much more verbose:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [69]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"C"</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"A"</span><span class="p">])</span>
-<span class="gh">Out[69]: </span><span class="go">&lt;pandas.api.typing.SeriesGroupBy object at 0x7f52e46459a0&gt;</span>
+<span class="gh">Out[69]: </span><span class="go">&lt;pandas.api.typing.SeriesGroupBy object at 0x7f005f010050&gt;</span>
 </pre></div>
 </div>
 <p>Additionally, this method avoids recomputing the internal grouping information
