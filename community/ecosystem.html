@@ -129,6 +129,9 @@
 <p>This is a community-maintained list of projects that build on pandas in order to provide tools
 in the PyData space. The pandas core development team does not necessarily endorse any particular
 project on this list or have any knowledge of the maintenance status of any particular library.</p>
+<p>To add a project, open a pull request editing
+<a href="https://github.com/pandas-dev/pandas/blob/main/web/pandas/community/ecosystem.md">this page</a>.
+Projects that are archived, deprecated, or inactive for about two years may be removed.</p>
 <h2 id="extensions">Extensions<a class="headerlink" href="#extensions" title="Permanent link"> #</a></h2>
 <p>pandas has different ways to allow third-party packages to enhance its
 functionality. This section contains a list of known projects that
@@ -161,11 +164,6 @@ authors to coordinate on the namespace.</p>
 <td><code>DataFrame</code></td>
 </tr>
 <tr>
-<td><a href="https://altair-viz.github.io/pdvega/">pdvega</a></td>
-<td><code>vgplot</code></td>
-<td><code>Series</code>, <code>DataFrame</code></td>
-</tr>
-<tr>
 <td><a href="https://pandas-genomics.readthedocs.io/en/latest/">pandas-genomics</a></td>
 <td><code>genomics</code></td>
 <td><code>Series</code>, <code>DataFrame</code></td>
@@ -174,16 +172,6 @@ authors to coordinate on the namespace.</p>
 <td><a href="https://github.com/hgrecco/pint-pandas">pint-pandas</a></td>
 <td><code>pint</code></td>
 <td><code>Series</code>, <code>DataFrame</code></td>
-</tr>
-<tr>
-<td><a href="https://github.com/mocquin/physipandas">physipandas</a></td>
-<td><code>physipy</code></td>
-<td><code>Series</code>, <code>DataFrame</code></td>
-</tr>
-<tr>
-<td><a href="https://github.com/alteryx/compose">composeml</a></td>
-<td><code>slice</code></td>
-<td><code>DataFrame</code></td>
 </tr>
 <tr>
 <td><a href="https://github.com/Gurobi/gurobipy-pandas">gurobipy-pandas</a></td>
@@ -197,7 +185,7 @@ authors to coordinate on the namespace.</p>
 </tr>
 <tr>
 <td><a href="https://github.com/alteryx/woodwork">woodwork</a></td>
-<td><code>slice</code></td>
+<td><code>ww</code></td>
 <td><code>Series</code>, <code>DataFrame</code></td>
 </tr>
 <tr>
@@ -217,7 +205,7 @@ which work well with pandas' data containers.</p>
 Arrays</a> inside pandas' Series and
 DataFrame. It also provides an accessor for using awkward functions
 on Series that are of awkward type.</p>
-<h4 id="db-dtypes"><a href="https://github.com/googleapis/python-db-dtypes-pandas">db-dtypes</a><a class="headerlink" href="#db-dtypes" title="Permanent link"> #</a></h4>
+<h4 id="db-dtypes"><a href="https://github.com/googleapis/google-cloud-python/tree/main/packages/db-dtypes">db-dtypes</a><a class="headerlink" href="#db-dtypes" title="Permanent link"> #</a></h4>
 <p>db-dtypes provides an extension types for working with types like
 DATE, TIME, and JSON from database systems. This package is used
 by pandas-gbq to provide natural dtypes for BigQuery data types without
@@ -226,11 +214,6 @@ a natural numpy type.</p>
 <p>Pandas-Genomics provides an extension type and extension array for working
  with genomics data.  It also includes <code>genomics</code> accessors for many useful properties
  and methods related to QC and analysis of genomics data.</p>
-<h4 id="physipandas"><a href="https://github.com/mocquin/physipandas">Physipandas</a><a class="headerlink" href="#physipandas" title="Permanent link"> #</a></h4>
-<p>Physipandas provides an extension for manipulating physical quantities
- (like scalar and numpy.ndarray) in association with a physical unit
- (like meter or joule) and additional features for integration of
- <code>physipy</code> accessors with pandas Series and Dataframe.</p>
 <h4 id="pint-pandas"><a href="https://github.com/hgrecco/pint-pandas">Pint-Pandas</a><a class="headerlink" href="#pint-pandas" title="Permanent link"> #</a></h4>
 <p>Pint-Pandas provides an extension type for storing numeric arrays with units.
 These arrays can be stored inside pandas' Series and DataFrame. Operations
@@ -408,16 +391,16 @@ docs</a>:</p>
 <li>Stooq Index Data</li>
 <li>MOEX Data</li>
 </ul>
-<h4 id="pandas-gbq"><a href="https://github.com/googleapis/python-bigquery-pandas">pandas-gbq</a><a class="headerlink" href="#pandas-gbq" title="Permanent link"> #</a></h4>
+<h4 id="pandas-gbq"><a href="https://github.com/googleapis/google-cloud-python/tree/main/packages/pandas-gbq">pandas-gbq</a><a class="headerlink" href="#pandas-gbq" title="Permanent link"> #</a></h4>
 <p>pandas-gbq provides high performance reads and writes to and from
 <a href="https://cloud.google.com/bigquery/">Google BigQuery</a>. Previously (before version 2.2.0),
 these methods were exposed as <code>pandas.read_gbq</code> and <code>DataFrame.to_gbq</code>.
 Use <code>pandas_gbq.read_gbq</code> and <code>pandas_gbq.to_gbq</code>, instead.</p>
-<h4 id="pandasdmx"><a href="https://pandasdmx.readthedocs.io">pandaSDMX</a><a class="headerlink" href="#pandasdmx" title="Permanent link"> #</a></h4>
-<p>pandaSDMX is a library to retrieve and acquire statistical data and
-metadata disseminated in <a href="https://sdmx.org">SDMX</a> 2.1, an
+<h4 id="sdmx1"><a href="https://sdmx1.readthedocs.io">sdmx1</a><a class="headerlink" href="#sdmx1" title="Permanent link"> #</a></h4>
+<p>sdmx1 is a library to retrieve and acquire statistical data and
+metadata disseminated in <a href="https://sdmx.org">SDMX</a> 2.1 and 3.0, an
 ISO-standard widely used by institutions such as statistics offices,
-central banks, and international organisations. pandaSDMX can expose
+central banks, and international organisations. sdmx1 can expose
 datasets and related structural metadata including data flows,
 code-lists, and data structure definitions as pandas Series or
 MultiIndexed DataFrames.</p>
@@ -474,10 +457,11 @@ distributed computing.</p>
 multiple engines. It helps in bridging the gap between local Python environments
 (like pandas) and remote storage and execution systems like Hadoop components
 (like HDFS, Impala, Hive, Spark) and SQL databases (Postgres, etc.).</p>
-<h4 id="koalas"><a href="https://koalas.readthedocs.io/en/latest/">Koalas</a><a class="headerlink" href="#koalas" title="Permanent link"> #</a></h4>
-<p>Koalas provides a familiar pandas DataFrame interface on top of Apache
-Spark. It enables users to leverage multi-cores on one machine or a
-cluster of machines to speed up or scale their DataFrame code.</p>
+<h4 id="pandas-api-on-spark"><a href="https://spark.apache.org/pandas-on-spark/">pandas API on Spark</a><a class="headerlink" href="#pandas-api-on-spark" title="Permanent link"> #</a></h4>
+<p>The pandas API on Spark (<code>pyspark.pandas</code>, formerly Koalas) provides a familiar
+pandas DataFrame interface on top of Apache Spark. It enables users to leverage
+multi-cores on one machine or a cluster of machines to speed up or scale their
+DataFrame code.</p>
 <h4 id="modin"><a href="https://github.com/modin-project/modin">Modin</a><a class="headerlink" href="#modin" title="Permanent link"> #</a></h4>
 <p>The <code>modin.pandas</code> DataFrame is a parallel and distributed drop-in replacement
 for pandas. This means that you can use Modin with existing pandas code or write
@@ -502,7 +486,7 @@ production-critical data pipelines or reproducible research settings.</p>
 <h4 id="pyjanitor"><a href="https://github.com/pyjanitor-devs/pyjanitor">pyjanitor</a><a class="headerlink" href="#pyjanitor" title="Permanent link"> #</a></h4>
 <p>Pyjanitor provides a clean API for cleaning data, using method chaining.</p>
 <h2 id="development-tools-for-pandas">Development tools for pandas<a class="headerlink" href="#development-tools-for-pandas" title="Permanent link"> #</a></h2>
-<h4 id="hamilton"><a href="https://github.com/dagworks-inc/hamilton">Hamilton</a><a class="headerlink" href="#hamilton" title="Permanent link"> #</a></h4>
+<h4 id="hamilton"><a href="https://github.com/apache/hamilton">Hamilton</a><a class="headerlink" href="#hamilton" title="Permanent link"> #</a></h4>
 <p>Hamilton is a declarative dataflow framework that came out of Stitch Fix. It was
 designed to help one manage a Pandas code base, specifically with respect to
 feature engineering for machine learning models.</p>
@@ -552,12 +536,10 @@ manipulation and visualization more interactive and fun:</p>
 <li>SQL integration: marimo allows users to write SQL queries against any
    pandas dataframes existing in memory.</li>
 </ol>
-<h4 id="pandas-stubs"><a href="https://github.com/VirtusLab/pandas-stubs">pandas-stubs</a><a class="headerlink" href="#pandas-stubs" title="Permanent link"> #</a></h4>
-<p>While pandas repository is partially typed, the package itself doesn't expose this information for external use.
-Install pandas-stubs to enable basic type coverage of pandas API.</p>
-<p>Learn more by reading through these issues <a href="https://github.com/pandas-dev/pandas/issues/14468">14468</a>,
-<a href="https://github.com/pandas-dev/pandas/issues/26766">26766</a>, <a href="https://github.com/pandas-dev/pandas/issues/28142">28142</a>.</p>
-<p>See installation and usage instructions on the <a href="https://github.com/VirtusLab/pandas-stubs">GitHub page</a>.</p>
+<h4 id="pandas-stubs"><a href="https://github.com/pandas-dev/pandas-stubs">pandas-stubs</a><a class="headerlink" href="#pandas-stubs" title="Permanent link"> #</a></h4>
+<p>pandas does not expose its own type annotations for external use. pandas-stubs,
+maintained by the pandas development team, provides type stubs for the public
+pandas API for use with type checkers such as mypy and pyright.</p>
 <h4 id="spyder"><a href="https://www.spyder-ide.org/">Spyder</a><a class="headerlink" href="#spyder" title="Permanent link"> #</a></h4>
 <p>Spyder is a cross-platform PyQt-based IDE combining the editing,
 analysis, debugging and profiling functionality of a software
@@ -581,11 +563,6 @@ Console</a>, and Spyder's
 render Numpydoc documentation on pandas objects in rich text with Sphinx
 both automatically and on-demand.</p>
 <h2 id="other-related-libraries">Other related libraries<a class="headerlink" href="#other-related-libraries" title="Permanent link"> #</a></h2>
-<h4 id="compose"><a href="https://github.com/alteryx/compose">Compose</a><a class="headerlink" href="#compose" title="Permanent link"> #</a></h4>
-<p>Compose is a machine learning tool for labeling data and prediction engineering.
-It allows you to structure the labeling process by parameterizing
-prediction problems and transforming time-driven relational data into
-target values with cutoff times that can be used for supervised learning.</p>
 <h4 id="d-tale"><a href="https://github.com/man-group/dtale">D-Tale</a><a class="headerlink" href="#d-tale" title="Permanent link"> #</a></h4>
 <p>D-Tale is a lightweight web client for visualizing pandas data structures. It
 provides a rich spreadsheet-style grid which acts as a wrapper for a lot of
@@ -654,7 +631,7 @@ Statsmodels provides powerful statistics, econometrics, analysis and
 modeling functionality that is out of pandas' scope. Statsmodels
 leverages pandas objects as the underlying data container for
 computation.</p>
-<h4 id="stumpy"><a href="https://github.com/TDAmeritrade/stumpy">STUMPY</a><a class="headerlink" href="#stumpy" title="Permanent link"> #</a></h4>
+<h4 id="stumpy"><a href="https://github.com/stumpy-dev/stumpy">STUMPY</a><a class="headerlink" href="#stumpy" title="Permanent link"> #</a></h4>
 <p>STUMPY is a powerful and scalable Python library for modern time series analysis.
 At its core, STUMPY efficiently computes something called a
 <a href="https://stumpy.readthedocs.io/en/latest/Tutorial_The_Matrix_Profile.html">matrix profile</a>,
