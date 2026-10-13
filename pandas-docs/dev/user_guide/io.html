@@ -2547,7 +2547,7 @@ value will be an iterable object of type <code class="docutils literal notransla
 <span class="gp">   .....: </span>    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
 <span class="gp">   .....: </span>        <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7fcce6d936b0&gt;</span>
+<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7fbb803c9250&gt;</span>
 <span class="go">          0         1         2         3</span>
 <span class="go">0 -1.294524  0.413738  0.276662 -0.472035</span>
 <span class="go">1 -0.013960 -0.362543 -0.006154 -0.923061</span>
@@ -3040,19 +3040,17 @@ label ordering use the <code class="docutils literal notranslate"><span class="p
 <h4>Fallback behavior<a class="headerlink" href="#fallback-behavior" title="Link to this heading">#</a></h4>
 <p>If the JSON serializer cannot handle the container contents directly it will
 fall back in the following manner:</p>
-<ul>
+<ul class="simple">
 <li><p>if the dtype is unsupported (e.g. <code class="docutils literal notranslate"><span class="pre">np.complex_</span></code>) then the <code class="docutils literal notranslate"><span class="pre">default_handler</span></code>, if provided, will be called
 for each value, otherwise an exception is raised.</p></li>
 <li><p>if an object is unsupported it will attempt the following:</p>
-<blockquote>
-<div><ul class="simple">
+<ul>
 <li><p>check if the object has defined a <code class="docutils literal notranslate"><span class="pre">toDict</span></code> method and call it.
 A <code class="docutils literal notranslate"><span class="pre">toDict</span></code> method should return a <code class="docutils literal notranslate"><span class="pre">dict</span></code> which will then be JSON serialized.</p></li>
 <li><p>invoke the <code class="docutils literal notranslate"><span class="pre">default_handler</span></code> if one was provided.</p></li>
 <li><p>convert the object to a <code class="docutils literal notranslate"><span class="pre">dict</span></code> by traversing its contents. However this will often fail
 with an <code class="docutils literal notranslate"><span class="pre">OverflowError</span></code> or give unexpected results.</p></li>
 </ul>
-</div></blockquote>
 </li>
 </ul>
 <p>In general the best approach for unsupported objects or dtypes is to provide a <code class="docutils literal notranslate"><span class="pre">default_handler</span></code>.
@@ -3626,8 +3624,7 @@ case the <code class="docutils literal notranslate"><span class="pre">primaryKey
 </div>
 </li>
 <li><p>The default naming roughly follows these rules:</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>For series, the <code class="docutils literal notranslate"><span class="pre">object.name</span></code> is used. If that’s none, then the
 name is <code class="docutils literal notranslate"><span class="pre">values</span></code></p></li>
 <li><p>For <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code>, the stringified version of the column name is used</p></li>
@@ -3636,7 +3633,6 @@ fallback to <code class="docutils literal notranslate"><span class="pre">index</
 <li><p>For <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code>, <code class="docutils literal notranslate"><span class="pre">mi.names</span></code> is used. If any level has no name,
 then <code class="docutils literal notranslate"><span class="pre">level_&lt;i&gt;</span></code> is used.</p></li>
 </ul>
-</div></blockquote>
 </li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">read_json</span></code> also accepts <code class="docutils literal notranslate"><span class="pre">orient='table'</span></code> as an argument. This allows for
@@ -4214,18 +4210,15 @@ HTML tables.</p>
 <p>There are some versioning issues surrounding the libraries that are used to
 parse HTML tables in the top-level pandas io function <code class="docutils literal notranslate"><span class="pre">read_html</span></code>.</p>
 <p><strong>Issues with</strong> <a class="reference external" href="https://lxml.de"><strong>lxml</strong></a></p>
-<ul>
+<ul class="simple">
 <li><p>Benefits</p>
-<blockquote>
-<div><ul class="simple">
+<ul>
 <li><p><a class="reference external" href="https://lxml.de"><strong>lxml</strong></a> is very fast.</p></li>
 <li><p><a class="reference external" href="https://lxml.de"><strong>lxml</strong></a> requires Cython to install correctly.</p></li>
 </ul>
-</div></blockquote>
 </li>
 <li><p>Drawbacks</p>
-<blockquote>
-<div><ul class="simple">
+<ul>
 <li><p><a class="reference external" href="https://lxml.de"><strong>lxml</strong></a> does <em>not</em> make any guarantees about the results of its parse
 <em>unless</em> it is given <a class="reference external" href="https://validator.w3.org/docs/help.html#validation_basics"><strong>strictly valid markup</strong></a>.</p></li>
 <li><p>In light of the above, we have chosen to allow you, the user, to use the
@@ -4235,7 +4228,6 @@ fails to parse</p></li>
 <a class="reference external" href="https://www.crummy.com/software/BeautifulSoup"><strong>BeautifulSoup4</strong></a> and <a class="reference external" href="https://github.com/html5lib/html5lib-python"><strong>html5lib</strong></a>, so that you will still get a valid
 result (provided everything else is valid) even if <a class="reference external" href="https://lxml.de"><strong>lxml</strong></a> fails.</p></li>
 </ul>
-</div></blockquote>
 </li>
 </ul>
 <p><strong>Issues with</strong> <a class="reference external" href="https://www.crummy.com/software/BeautifulSoup"><strong>BeautifulSoup4</strong></a> <strong>using</strong> <a class="reference external" href="https://lxml.de"><strong>lxml</strong></a> <strong>as a backend</strong></p>
@@ -4244,10 +4236,9 @@ result (provided everything else is valid) even if <a class="reference external"
 just a wrapper around a parser backend.</p></li>
 </ul>
 <p><strong>Issues with</strong> <a class="reference external" href="https://www.crummy.com/software/BeautifulSoup"><strong>BeautifulSoup4</strong></a> <strong>using</strong> <a class="reference external" href="https://github.com/html5lib/html5lib-python"><strong>html5lib</strong></a> <strong>as a backend</strong></p>
-<ul>
+<ul class="simple">
 <li><p>Benefits</p>
-<blockquote>
-<div><ul class="simple">
+<ul>
 <li><p><a class="reference external" href="https://github.com/html5lib/html5lib-python"><strong>html5lib</strong></a> is far more lenient than <a class="reference external" href="https://lxml.de"><strong>lxml</strong></a> and consequently deals
 with <em>real-life markup</em> in a much saner way rather than just, e.g.,
 dropping an element without notifying you.</p></li>
@@ -4259,11 +4250,9 @@ single definition.</p></li>
 <li><p><a class="reference external" href="https://github.com/html5lib/html5lib-python"><strong>html5lib</strong></a> is pure Python and requires no additional build steps beyond
 its own installation.</p></li>
 </ul>
-</div></blockquote>
 </li>
 <li><p>Drawbacks</p>
-<blockquote>
-<div><ul class="simple">
+<ul>
 <li><p>The biggest drawback to using <a class="reference external" href="https://github.com/html5lib/html5lib-python"><strong>html5lib</strong></a> is that it is slow as
 molasses.  However consider the fact that many tables on the web are not
 big enough for the parsing algorithm runtime to matter. It is more
@@ -4271,7 +4260,6 @@ likely that the bottleneck will be in the process of reading the raw
 text from the URL over the web, i.e., IO (input-output). For very large
 tables, this might not be true.</p></li>
 </ul>
-</div></blockquote>
 </li>
 </ul>
 </section>
