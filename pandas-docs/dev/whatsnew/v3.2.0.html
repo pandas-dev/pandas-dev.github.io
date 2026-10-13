@@ -927,6 +927,8 @@ Optional libraries below the lowest tested version may still work, but are not c
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.read_sql_query.html#pandas.read_sql_query" title="pandas.read_sql_query"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_sql_query()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.read_sql_table.html#pandas.read_sql_table" title="pandas.read_sql_table"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_sql_table()</span></code></a> with a SQLAlchemy connection returning column labels that require <code class="docutils literal notranslate"><span class="pre">sqlalchemy</span></code> to unpickle (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/52816">GH 52816</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.HDFStore.append.html#pandas.HDFStore.append" title="pandas.HDFStore.append"><code class="xref py py-meth docutils literal notranslate"><span class="pre">HDFStore.append()</span></code></a> raising <code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">Buffer</span> <span class="pre">dtype</span> <span class="pre">mismatch</span></code> instead of the “different categories” error when appending a categorical whose categories have a different dtype than the existing ones (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/71128">GH 71128</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.Series.to_json.html#pandas.Series.to_json" title="pandas.Series.to_json"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.to_json()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">orient=&quot;table&quot;</span></code> writing a falsy <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> name such as <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> as <code class="docutils literal notranslate"><span class="pre">&quot;values&quot;</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/19129">GH 19129</a>)</p></li>
+<li><p>Fixed a segfault in <a class="reference internal" href="../reference/api/pandas.DataFrame.to_json.html#pandas.DataFrame.to_json" title="pandas.DataFrame.to_json"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_json()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.to_json.html#pandas.Series.to_json" title="pandas.Series.to_json"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.to_json()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">date_format=&quot;iso&quot;</span></code> when datetime conversion raises an exception (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/69461">GH 69461</a>)</p></li>
+<li></li>
 </ul>
 </section>
 <section id="period">
@@ -1012,10 +1014,11 @@ Optional libraries below the lowest tested version may still work, but are not c
 </section>
 <section id="contributors">
 <span id="whatsnew-320-contributors"></span><h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">#</a></h2>
-<p>A total of 40 people contributed patches to this release.  People with a
+<p>A total of 41 people contributed patches to this release.  People with a
 “+” by their names contributed a patch for the first time.
 </p>
 <ul class="simple">
+<li><p>ASWANTH R +</p></li>
 <li><p>Aarya +</p></li>
 <li><p>Aarya Prakash +</p></li>
 <li><p>Aarya2004 +</p></li>
