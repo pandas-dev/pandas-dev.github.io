@@ -908,7 +908,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">dropna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/series.py#L2119-L2354"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.groupby" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/series.py#L2119-L2359"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.groupby" title="Link to this definition">#</a></dt>
 <dd><p>Group Series using a mapper or by a Series of columns.</p>
 <p>A groupby operation involves some combination of splitting the
 object, applying a function, and combining the results. This can be
@@ -930,9 +930,9 @@ Notice that a tuple is interpreted as a (single) key.</p>
 <dt><strong>level</strong><span class="classifier">int, level name, or sequence of such, default None</span></dt><dd><p>If the axis is a MultiIndex (hierarchical), group by a particular
 level or levels. Do not specify both <code class="docutils literal notranslate"><span class="pre">by</span></code> and <code class="docutils literal notranslate"><span class="pre">level</span></code>.</p>
 </dd>
-<dt><strong>as_index</strong><span class="classifier">bool, default True</span></dt><dd><p>Return object with group labels as the index. This argument is
-retained for compatibility with <a class="reference internal" href="pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.groupby()</span></code></a> and has
-no effect on Series.</p>
+<dt><strong>as_index</strong><span class="classifier">bool, default True</span></dt><dd><p>Return object with group labels as the index. If False, aggregations
+return a DataFrame with the group labels as columns, similar to
+calling <code class="docutils literal notranslate"><span class="pre">reset_index</span></code> on the result.</p>
 </dd>
 <dt><strong>sort</strong><span class="classifier">bool, default True</span></dt><dd><p>Sort group keys. Get better performance by turning this off.
 Raises if the group keys cannot be sorted; use <code class="docutils literal notranslate"><span class="pre">sort=False</span></code> for
@@ -1104,6 +1104,13 @@ missing group labels:</p>
 <span class="go">b    350.0</span>
 <span class="go">NaN   20.0</span>
 <span class="go">Name: Max Speed, dtype: float64</span>
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">as_index=False</span></code> to return the group labels as a column:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="go">  index  Max Speed</span>
+<span class="go">0     a      210.0</span>
+<span class="go">1     b      350.0</span>
 </pre></div>
 </div>
 </dd></dl>
