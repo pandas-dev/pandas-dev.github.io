@@ -781,7 +781,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L5032-L5266"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.query" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L5032-L5280"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.query" title="Link to this definition">#</a></dt>
 <dd><p>Query the columns of a DataFrame with a boolean expression.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -846,11 +846,13 @@ None if <code class="docutils literal notranslate"><span class="pre">inplace=Tru
 </dl>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
+<dd class="field-odd"><dl>
 <dt>ValueError</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">expr</span></code> refers to a column label that is not unique and still
 evaluates to a DataFrame, since there is then no row mask to select
 with. Reducing those columns back to one dimension, as in
 <code class="docutils literal notranslate"><span class="pre">df.query(&quot;a.max(axis=1)</span> <span class="pre">&gt;</span> <span class="pre">4&quot;)</span></code>, is fine.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">expr</span></code> evaluates to anything other than a boolean array or a
+DataFrame.</p>
 </dd>
 </dl>
 </dd>
