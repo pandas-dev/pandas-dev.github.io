@@ -1077,37 +1077,37 @@ are <em>identifier variables</em>, while all other columns, considered <em>measu
 variables</em>, are “unpivoted” to the row axis, leaving just two non-identifier
 columns, “variable” and “value”. The names of those columns can be customized
 by supplying the <code class="docutils literal notranslate"><span class="pre">var_name</span></code> and <code class="docutils literal notranslate"><span class="pre">value_name</span></code> parameters.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [47]: </span><span class="n">cheese</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [47]: </span><span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="p">{</span>
 <span class="gp">   ....: </span>        <span class="s2">"first"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"John"</span><span class="p">,</span> <span class="s2">"Mary"</span><span class="p">],</span>
 <span class="gp">   ....: </span>        <span class="s2">"last"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Doe"</span><span class="p">,</span> <span class="s2">"Bo"</span><span class="p">],</span>
-<span class="gp">   ....: </span>        <span class="s2">"height"</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
-<span class="gp">   ....: </span>        <span class="s2">"weight"</span><span class="p">:</span> <span class="p">[</span><span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
+<span class="gp">   ....: </span>        <span class="s2">"math"</span><span class="p">:</span> <span class="p">[</span><span class="mi">72</span><span class="p">,</span> <span class="mi">91</span><span class="p">],</span>
+<span class="gp">   ....: </span>        <span class="s2">"english"</span><span class="p">:</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">78</span><span class="p">],</span>
 <span class="gp">   ....: </span>    <span class="p">}</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [48]: </span><span class="n">cheese</span>
+<span class="gp">In [48]: </span><span class="n">df3</span>
 <span class="gh">Out[48]: </span>
-<span class="go">  first last  height  weight</span>
-<span class="go">0  John  Doe     5.5     130</span>
-<span class="go">1  Mary   Bo     6.0     150</span>
+<span class="go">  first last  math  english</span>
+<span class="go">0  John  Doe    72       85</span>
+<span class="go">1  Mary   Bo    91       78</span>
 
-<span class="gp">In [49]: </span><span class="n">cheese</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">"first"</span><span class="p">,</span> <span class="s2">"last"</span><span class="p">])</span>
+<span class="gp">In [49]: </span><span class="n">df3</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">"first"</span><span class="p">,</span> <span class="s2">"last"</span><span class="p">])</span>
 <span class="gh">Out[49]: </span>
 <span class="go">  first last variable  value</span>
-<span class="go">0  John  Doe   height    5.5</span>
-<span class="go">1  Mary   Bo   height    6.0</span>
-<span class="go">2  John  Doe   weight  130.0</span>
-<span class="go">3  Mary   Bo   weight  150.0</span>
+<span class="go">0  John  Doe     math     72</span>
+<span class="go">1  Mary   Bo     math     91</span>
+<span class="go">2  John  Doe  english     85</span>
+<span class="go">3  Mary   Bo  english     78</span>
 
-<span class="gp">In [50]: </span><span class="n">cheese</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">"first"</span><span class="p">,</span> <span class="s2">"last"</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s2">"quantity"</span><span class="p">)</span>
+<span class="gp">In [50]: </span><span class="n">df3</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">"first"</span><span class="p">,</span> <span class="s2">"last"</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s2">"subject"</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s2">"score"</span><span class="p">)</span>
 <span class="gh">Out[50]: </span>
-<span class="go">  first last quantity  value</span>
-<span class="go">0  John  Doe   height    5.5</span>
-<span class="go">1  Mary   Bo   height    6.0</span>
-<span class="go">2  John  Doe   weight  130.0</span>
-<span class="go">3  Mary   Bo   weight  150.0</span>
+<span class="go">  first last  subject  score</span>
+<span class="go">0  John  Doe     math     72</span>
+<span class="go">1  Mary   Bo     math     91</span>
+<span class="go">2  John  Doe  english     85</span>
+<span class="go">3  Mary   Bo  english     78</span>
 </pre></div>
 </div>
 <p>When transforming a DataFrame using <a class="reference internal" href="../reference/api/pandas.melt.html#pandas.melt" title="pandas.melt"><code class="xref py py-func docutils literal notranslate"><span class="pre">melt()</span></code></a>, the index will be ignored.
@@ -1115,38 +1115,38 @@ The original index values can be kept by setting the <code class="docutils liter
 <code class="docutils literal notranslate"><span class="pre">ignore_index=False</span></code> will however duplicate index values.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [51]: </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">([(</span><span class="s2">"person"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"person"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">)])</span>
 
-<span class="gp">In [52]: </span><span class="n">cheese</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">In [52]: </span><span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="p">{</span>
 <span class="gp">   ....: </span>        <span class="s2">"first"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"John"</span><span class="p">,</span> <span class="s2">"Mary"</span><span class="p">],</span>
 <span class="gp">   ....: </span>        <span class="s2">"last"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Doe"</span><span class="p">,</span> <span class="s2">"Bo"</span><span class="p">],</span>
-<span class="gp">   ....: </span>        <span class="s2">"height"</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
-<span class="gp">   ....: </span>        <span class="s2">"weight"</span><span class="p">:</span> <span class="p">[</span><span class="mi">130</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span>
+<span class="gp">   ....: </span>        <span class="s2">"math"</span><span class="p">:</span> <span class="p">[</span><span class="mi">72</span><span class="p">,</span> <span class="mi">91</span><span class="p">],</span>
+<span class="gp">   ....: </span>        <span class="s2">"english"</span><span class="p">:</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">78</span><span class="p">],</span>
 <span class="gp">   ....: </span>    <span class="p">},</span>
 <span class="gp">   ....: </span>    <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [53]: </span><span class="n">cheese</span>
+<span class="gp">In [53]: </span><span class="n">df3</span>
 <span class="gh">Out[53]: </span>
-<span class="go">         first last  height  weight</span>
-<span class="go">person A  John  Doe     5.5     130</span>
-<span class="go">       B  Mary   Bo     6.0     150</span>
+<span class="go">         first last  math  english</span>
+<span class="go">person A  John  Doe    72       85</span>
+<span class="go">       B  Mary   Bo    91       78</span>
 
-<span class="gp">In [54]: </span><span class="n">cheese</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">"first"</span><span class="p">,</span> <span class="s2">"last"</span><span class="p">])</span>
+<span class="gp">In [54]: </span><span class="n">df3</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">"first"</span><span class="p">,</span> <span class="s2">"last"</span><span class="p">])</span>
 <span class="gh">Out[54]: </span>
 <span class="go">  first last variable  value</span>
-<span class="go">0  John  Doe   height    5.5</span>
-<span class="go">1  Mary   Bo   height    6.0</span>
-<span class="go">2  John  Doe   weight  130.0</span>
-<span class="go">3  Mary   Bo   weight  150.0</span>
+<span class="go">0  John  Doe     math     72</span>
+<span class="go">1  Mary   Bo     math     91</span>
+<span class="go">2  John  Doe  english     85</span>
+<span class="go">3  Mary   Bo  english     78</span>
 
-<span class="gp">In [55]: </span><span class="n">cheese</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">"first"</span><span class="p">,</span> <span class="s2">"last"</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">In [55]: </span><span class="n">df3</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">"first"</span><span class="p">,</span> <span class="s2">"last"</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gh">Out[55]: </span>
 <span class="go">         first last variable  value</span>
-<span class="go">person A  John  Doe   height    5.5</span>
-<span class="go">       B  Mary   Bo   height    6.0</span>
-<span class="go">       A  John  Doe   weight  130.0</span>
-<span class="go">       B  Mary   Bo   weight  150.0</span>
+<span class="go">person A  John  Doe     math     72</span>
+<span class="go">       B  Mary   Bo     math     91</span>
+<span class="go">       A  John  Doe  english     85</span>
+<span class="go">       B  Mary   Bo  english     78</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="../reference/api/pandas.wide_to_long.html#pandas.wide_to_long" title="pandas.wide_to_long"><code class="xref py py-func docutils literal notranslate"><span class="pre">wide_to_long()</span></code></a> is similar to <a class="reference internal" href="../reference/api/pandas.melt.html#pandas.melt" title="pandas.melt"><code class="xref py py-func docutils literal notranslate"><span class="pre">melt()</span></code></a> with more customization for
