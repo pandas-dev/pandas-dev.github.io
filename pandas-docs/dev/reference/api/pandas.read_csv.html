@@ -670,7 +670,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">dtype_backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/parsers/readers.py#L1395-L1960"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_csv" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/parsers/readers.py#L1395-L1964"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_csv" title="Link to this definition">#</a></dt>
 <dd><p>Read a comma-separated values (csv) file into DataFrame.</p>
 <p>Also supports optionally iterating or breaking of the file
 into chunks.</p>
@@ -817,6 +817,9 @@ Refers to the number of data rows in the returned DataFrame, excluding:</p>
 <li><p>To read rows 1,000,000 through 1,999,999:
 <code class="docutils literal notranslate"><span class="pre">read_csv(...,</span> <span class="pre">skiprows=1000000,</span> <span class="pre">nrows=999999)</span></code></p></li>
 </ul>
+<p>When reading from an open file handle, the handle may be advanced past
+the last row returned, so its position afterwards is unspecified. To read
+a file in pieces, use <code class="docutils literal notranslate"><span class="pre">chunksize</span></code> or <code class="docutils literal notranslate"><span class="pre">iterator</span></code> instead.</p>
 </dd>
 <dt><strong>na_values</strong><span class="classifier">Hashable, Iterable of Hashable or dict of {Hashable</span><span class="classifier">Iterable},</span></dt><dd><p>optional
 Additional strings to recognize as <code class="docutils literal notranslate"><span class="pre">NA</span></code>/<code class="docutils literal notranslate"><span class="pre">NaN</span></code>. If <code class="docutils literal notranslate"><span class="pre">dict</span></code>
