@@ -1044,6 +1044,18 @@ through the <code class="docutils literal notranslate"><span class="pre">str</sp
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>A small number of unicode edge cases give different results depending on
+whether the storage variant is backed by <code class="docutils literal notranslate"><span class="pre">pyarrow</span></code> (the default when
+pyarrow is installed) or by the python fallback. For example,
+<code class="docutils literal notranslate"><span class="pre">pd.Series([&quot;ß&quot;]).str.upper()</span></code> returns <code class="docutils literal notranslate"><span class="pre">&quot;ẞ&quot;</span></code> with pyarrow storage but
+<code class="docutils literal notranslate"><span class="pre">&quot;SS&quot;</span></code> with python storage (which is also what earlier pandas versions
+return), and similar differences exist for related case-mapping characters
+such as <code class="docutils literal notranslate"><span class="pre">&quot;İ&quot;</span></code>. These differences can also change string lengths. The known
+differences are being tracked in
+<a class="github reference external" href="https://github.com/pandas-dev/pandas/issues/63105">pandas-dev/pandas#63105</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>The new default string dtype is an instance of the <a class="reference internal" href="../reference/api/pandas.StringDtype.html#pandas.StringDtype" title="pandas.StringDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.StringDtype</span></code></a>
 class. The dtype can be constructed as <code class="docutils literal notranslate"><span class="pre">pd.StringDtype(na_value=np.nan)</span></code>,
 but for general usage we recommend to use the shorter <code class="docutils literal notranslate"><span class="pre">&quot;str&quot;</span></code> alias.</p>
