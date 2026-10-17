@@ -778,14 +778,45 @@ will be raised.</p>
 </pre></div>
 </div>
 <p>This applies to both row and column labels for a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [22]: </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">],)</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [22]: </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">],)</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
-<span class="gh">Out[22]: </span>
-<span class="go">   A  B  C</span>
-<span class="go">0  0  1  2</span>
-<span class="go">1  3  4  5</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">DuplicateLabelError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">],)</span><span class="o">.</span><span class="n">set_flags</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">allows_duplicate_labels</span><span class="o">=</span><span class="kc">False</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="p">)</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:488,</span> in <span class="ni">NDFrame.set_flags</span><span class="nt">(self, copy, allows_duplicate_labels)</span>
+<span class="g g-Whitespace">    </span><span class="mi">484</span>         <span class="s2">"""</span>
+<span class="g g-Whitespace">    </span><span class="mi">485</span><span class="s2">         self._check_copy_deprecation(copy)</span>
+<span class="g g-Whitespace">    </span><span class="mi">486</span><span class="s2">         df = self.copy(deep=False)</span>
+<span class="g g-Whitespace">    </span><span class="mi">487</span><span class="s2">         if allows_duplicate_labels is not None:</span>
+<span class="ne">--&gt; </span><span class="mi">488</span><span class="s2">             df.flags["allows_duplicate_labels"] = allows_duplicate_labels</span>
+<span class="g g-Whitespace">    </span><span class="mi">489</span><span class="s2">         return df</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/core/flags.py:121,</span> in <span class="ni">Flags.__setitem__</span><span class="nt">(self, key, value)</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span><span class="s2"> if key not in self._keys:</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span><span class="s2">     raise ValueError(f"Unknown flag </span><span class="si">{key}</span><span class="s2">. Must be one of </span><span class="si">{self._keys}</span><span class="s2">")</span>
+<span class="ne">--&gt; </span><span class="mi">121</span><span class="s2"> setattr(self, key, value)</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/core/flags.py:108,</span> in <span class="ni">Flags.allows_duplicate_labels</span><span class="nt">(self, value)</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span><span class="s2"> if not value:</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span><span class="s2">     for ax in obj.axes:</span>
+<span class="ne">--&gt; </span><span class="mi">108</span><span class="s2">         ax._maybe_check_unique()</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span><span class="s2"> self._allows_duplicate_labels = value</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:728,</span> in <span class="ni">Index._maybe_check_unique</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">725</span><span class="s2"> duplicates = self._format_duplicate_message()</span>
+<span class="g g-Whitespace">    </span><span class="mi">726</span><span class="s2"> msg += f"</span><span class="se">\n</span><span class="si">{duplicates}</span><span class="s2">"</span>
+<span class="ne">--&gt; </span><span class="mi">728</span><span class="s2"> raise DuplicateLabelError(msg)</span>
+
+<span class="ne">DuplicateLabelError</span>: Index has duplicates.
+<span class="s2">      positions</span>
+<span class="s2">label          </span>
+<span class="s2">A        [0, 1]</span>
 </pre></div>
 </div>
 <p>This attribute can be checked or set with <code class="xref py py-attr docutils literal notranslate"><span class="pre">allows_duplicate_labels</span></code>,

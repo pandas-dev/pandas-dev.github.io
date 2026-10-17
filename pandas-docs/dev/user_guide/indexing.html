@@ -1173,20 +1173,20 @@ using integers in a <code class="docutils literal notranslate"><span class="pre"
 <span class="g g-Whitespace">   </span><span class="mi">7133</span>     <span class="c1"># return a slice</span>
 <span class="g g-Whitespace">   </span><span class="mi">7134</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_scalar</span><span class="p">(</span><span class="n">start_slice</span><span class="p">):</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7408,</span> in <span class="ni">Index.slice_locs</span><span class="nt">(self, start, end, step)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7406</span> <span class="n">start_slice</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">7407</span> <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">7408</span>     <span class="n">start_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_slice_bound</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="s2">"left"</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7409</span> <span class="k">if</span> <span class="n">start_slice</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">7410</span>     <span class="n">start_slice</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7422,</span> in <span class="ni">Index.slice_locs</span><span class="nt">(self, start, end, step)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7420</span> <span class="n">start_slice</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">7421</span> <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">7422</span>     <span class="n">start_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_slice_bound</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="s2">"left"</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7423</span> <span class="k">if</span> <span class="n">start_slice</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7424</span>     <span class="n">start_slice</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7294,</span> in <span class="ni">Index.get_slice_bound</span><span class="nt">(self, label, side)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7290</span> <span class="n">original_label</span> <span class="o">=</span> <span class="n">label</span>
-<span class="g g-Whitespace">   </span><span class="mi">7292</span> <span class="c1"># For datetime indices label may be a string that has to be converted</span>
-<span class="g g-Whitespace">   </span><span class="mi">7293</span> <span class="c1"># to datetime boundary according to its resolution.</span>
-<span class="ne">-&gt; </span><span class="mi">7294</span> <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_cast_slice_bound</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">side</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7296</span> <span class="c1"># we need to look up the label</span>
-<span class="g g-Whitespace">   </span><span class="mi">7297</span> <span class="k">try</span><span class="p">:</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7290,</span> in <span class="ni">Index.get_slice_bound</span><span class="nt">(self, label, side)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7286</span> <span class="n">original_label</span> <span class="o">=</span> <span class="n">label</span>
+<span class="g g-Whitespace">   </span><span class="mi">7288</span> <span class="c1"># For datetime indices label may be a string that has to be converted</span>
+<span class="g g-Whitespace">   </span><span class="mi">7289</span> <span class="c1"># to datetime boundary according to its resolution.</span>
+<span class="ne">-&gt; </span><span class="mi">7290</span> <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_cast_slice_bound</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">side</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7292</span> <span class="c1"># we need to look up the label</span>
+<span class="g g-Whitespace">   </span><span class="mi">7293</span> <span class="k">try</span><span class="p">:</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimes.py:2276,</span> in <span class="ni">DatetimeIndex._maybe_cast_slice_bound</span><span class="nt">(self, label, side)</span>
 <span class="g g-Whitespace">   </span><span class="mi">2267</span>     <span class="n">label</span> <span class="o">=</span> <span class="n">Timestamp</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">to_pydatetime</span><span class="p">()</span>
@@ -3093,7 +3093,7 @@ having to specify which frame you’re interested in querying</p>
 <span class="gp">In [280]: </span><span class="n">expr</span> <span class="o">=</span> <span class="s1">'0.0 &lt;= a &lt;= c &lt;= 0.5'</span>
 
 <span class="gp">In [281]: </span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="p">[</span><span class="n">df</span><span class="p">,</span> <span class="n">df2</span><span class="p">])</span>
-<span class="gh">Out[281]: </span><span class="go">&lt;map at 0x7f5aa46f1720&gt;</span>
+<span class="gh">Out[281]: </span><span class="go">&lt;map at 0x7ff3375414e0&gt;</span>
 </pre></div>
 </div>
 </section>
