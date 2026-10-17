@@ -1656,50 +1656,50 @@ they need to be sorted. As with any index, you can use <a class="reference inter
 
 <span class="gp">In [108]: </span><span class="n">s</span>
 <span class="gh">Out[108]: </span>
-<span class="go">qux  two    0.206053</span>
-<span class="go">foo  two   -0.251905</span>
-<span class="go">bar  one   -2.213588</span>
+<span class="go">foo  two    0.206053</span>
+<span class="go">qux  one   -0.251905</span>
+<span class="go">     two   -2.213588</span>
 <span class="go">baz  two    1.063327</span>
-<span class="go">qux  one    1.266143</span>
+<span class="go">     one    1.266143</span>
 <span class="go">bar  two    0.299368</span>
-<span class="go">baz  one   -0.863838</span>
+<span class="go">     one   -0.863838</span>
 <span class="go">foo  one    0.408204</span>
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [109]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
 <span class="gh">Out[109]: </span>
-<span class="go">bar  one   -2.213588</span>
+<span class="go">bar  one   -0.863838</span>
 <span class="go">     two    0.299368</span>
-<span class="go">baz  one   -0.863838</span>
+<span class="go">baz  one    1.266143</span>
 <span class="go">     two    1.063327</span>
 <span class="go">foo  one    0.408204</span>
-<span class="go">     two   -0.251905</span>
-<span class="go">qux  one    1.266143</span>
 <span class="go">     two    0.206053</span>
+<span class="go">qux  one   -0.251905</span>
+<span class="go">     two   -2.213588</span>
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [110]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gh">Out[110]: </span>
-<span class="go">bar  one   -2.213588</span>
+<span class="go">bar  one   -0.863838</span>
 <span class="go">     two    0.299368</span>
-<span class="go">baz  one   -0.863838</span>
+<span class="go">baz  one    1.266143</span>
 <span class="go">     two    1.063327</span>
 <span class="go">foo  one    0.408204</span>
-<span class="go">     two   -0.251905</span>
-<span class="go">qux  one    1.266143</span>
 <span class="go">     two    0.206053</span>
+<span class="go">qux  one   -0.251905</span>
+<span class="go">     two   -2.213588</span>
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [111]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gh">Out[111]: </span>
-<span class="go">bar  one   -2.213588</span>
-<span class="go">baz  one   -0.863838</span>
+<span class="go">bar  one   -0.863838</span>
+<span class="go">baz  one    1.266143</span>
 <span class="go">foo  one    0.408204</span>
-<span class="go">qux  one    1.266143</span>
+<span class="go">qux  one   -0.251905</span>
 <span class="go">bar  two    0.299368</span>
 <span class="go">baz  two    1.063327</span>
-<span class="go">foo  two   -0.251905</span>
-<span class="go">qux  two    0.206053</span>
+<span class="go">foo  two    0.206053</span>
+<span class="go">qux  two   -2.213588</span>
 <span class="go">dtype: float64</span>
 </pre></div>
 </div>
@@ -1710,27 +1710,27 @@ are named.</p>
 <span class="gp">In [113]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">"L1"</span><span class="p">)</span>
 <span class="gh">Out[113]: </span>
 <span class="go">L1   L2 </span>
-<span class="go">bar  one   -2.213588</span>
+<span class="go">bar  one   -0.863838</span>
 <span class="go">     two    0.299368</span>
-<span class="go">baz  one   -0.863838</span>
+<span class="go">baz  one    1.266143</span>
 <span class="go">     two    1.063327</span>
 <span class="go">foo  one    0.408204</span>
-<span class="go">     two   -0.251905</span>
-<span class="go">qux  one    1.266143</span>
 <span class="go">     two    0.206053</span>
+<span class="go">qux  one   -0.251905</span>
+<span class="go">     two   -2.213588</span>
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [114]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">"L2"</span><span class="p">)</span>
 <span class="gh">Out[114]: </span>
 <span class="go">L1   L2 </span>
-<span class="go">bar  one   -2.213588</span>
-<span class="go">baz  one   -0.863838</span>
+<span class="go">bar  one   -0.863838</span>
+<span class="go">baz  one    1.266143</span>
 <span class="go">foo  one    0.408204</span>
-<span class="go">qux  one    1.266143</span>
+<span class="go">qux  one   -0.251905</span>
 <span class="go">bar  two    0.299368</span>
 <span class="go">baz  two    1.063327</span>
-<span class="go">foo  two   -0.251905</span>
-<span class="go">qux  two    0.206053</span>
+<span class="go">foo  two    0.206053</span>
+<span class="go">qux  two   -2.213588</span>
 <span class="go">dtype: float64</span>
 </pre></div>
 </div>
@@ -1795,55 +1795,55 @@ return a copy of the data rather than a view:</p>
 <span class="g g-Whitespace">   </span><span class="mi">1992</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
 <span class="g g-Whitespace">   </span><span class="mi">1993</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_slice</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7131,</span> in <span class="ni">Index.slice_indexer</span><span class="nt">(self, start, end, step)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7080</span> <span class="k">def</span><span class="w"> </span><span class="nf">slice_indexer</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">7081</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">7082</span>     <span class="n">start</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">7083</span>     <span class="n">end</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">7084</span>     <span class="n">step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">7085</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">slice</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">7086</span><span class="w">     </span><span class="sd">"""</span>
-<span class="g g-Whitespace">   </span><span class="mi">7087</span><span class="sd">     Compute the slice indexer for input labels and step.</span>
-<span class="g g-Whitespace">   </span><span class="mi">7088</span><span class="sd"> </span>
-<span class="sd">   (...)   7129     slice(1, 3, None)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7130</span><span class="sd">     """</span>
-<span class="ne">-&gt; </span><span class="mi">7131</span>     <span class="n">start_slice</span><span class="p">,</span> <span class="n">end_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slice_locs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7133</span>     <span class="c1"># return a slice</span>
-<span class="g g-Whitespace">   </span><span class="mi">7134</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_scalar</span><span class="p">(</span><span class="n">start_slice</span><span class="p">):</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7149,</span> in <span class="ni">Index.slice_indexer</span><span class="nt">(self, start, end, step)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7098</span> <span class="k">def</span><span class="w"> </span><span class="nf">slice_indexer</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">7099</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">7100</span>     <span class="n">start</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">7101</span>     <span class="n">end</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">7102</span>     <span class="n">step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">7103</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">slice</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7104</span><span class="w">     </span><span class="sd">"""</span>
+<span class="g g-Whitespace">   </span><span class="mi">7105</span><span class="sd">     Compute the slice indexer for input labels and step.</span>
+<span class="g g-Whitespace">   </span><span class="mi">7106</span><span class="sd"> </span>
+<span class="sd">   (...)   7147     slice(1, 3, None)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7148</span><span class="sd">     """</span>
+<span class="ne">-&gt; </span><span class="mi">7149</span>     <span class="n">start_slice</span><span class="p">,</span> <span class="n">end_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slice_locs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7151</span>     <span class="c1"># return a slice</span>
+<span class="g g-Whitespace">   </span><span class="mi">7152</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_scalar</span><span class="p">(</span><span class="n">start_slice</span><span class="p">):</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/multi.py:3530,</span> in <span class="ni">MultiIndex.slice_locs</span><span class="nt">(self, start, end, step)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3477</span><span class="w"> </span><span class="sd">"""</span>
-<span class="g g-Whitespace">   </span><span class="mi">3478</span><span class="sd"> For an ordered MultiIndex, compute the slice locations for input</span>
-<span class="g g-Whitespace">   </span><span class="mi">3479</span><span class="sd"> labels.</span>
-<span class="sd">   (...)   3526                       sequence of such.</span>
-<span class="g g-Whitespace">   </span><span class="mi">3527</span><span class="sd"> """</span>
-<span class="g g-Whitespace">   </span><span class="mi">3528</span> <span class="c1"># This function adds nothing to its parent implementation (the magic</span>
-<span class="g g-Whitespace">   </span><span class="mi">3529</span> <span class="c1"># happens in get_slice_bound method), but it adds meaningful doc.</span>
-<span class="ne">-&gt; </span><span class="mi">3530</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">slice_locs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/multi.py:3531,</span> in <span class="ni">MultiIndex.slice_locs</span><span class="nt">(self, start, end, step)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3478</span><span class="w"> </span><span class="sd">"""</span>
+<span class="g g-Whitespace">   </span><span class="mi">3479</span><span class="sd"> For an ordered MultiIndex, compute the slice locations for input</span>
+<span class="g g-Whitespace">   </span><span class="mi">3480</span><span class="sd"> labels.</span>
+<span class="sd">   (...)   3527                       sequence of such.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3528</span><span class="sd"> """</span>
+<span class="g g-Whitespace">   </span><span class="mi">3529</span> <span class="c1"># This function adds nothing to its parent implementation (the magic</span>
+<span class="g g-Whitespace">   </span><span class="mi">3530</span> <span class="c1"># happens in get_slice_bound method), but it adds meaningful doc.</span>
+<span class="ne">-&gt; </span><span class="mi">3531</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">slice_locs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7422,</span> in <span class="ni">Index.slice_locs</span><span class="nt">(self, start, end, step)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7420</span> <span class="n">start_slice</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">7421</span> <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">7422</span>     <span class="n">start_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_slice_bound</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="s2">"left"</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7423</span> <span class="k">if</span> <span class="n">start_slice</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">7424</span>     <span class="n">start_slice</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7440,</span> in <span class="ni">Index.slice_locs</span><span class="nt">(self, start, end, step)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7438</span> <span class="n">start_slice</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">7439</span> <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">7440</span>     <span class="n">start_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_slice_bound</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="s2">"left"</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7441</span> <span class="k">if</span> <span class="n">start_slice</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7442</span>     <span class="n">start_slice</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/multi.py:3472,</span> in <span class="ni">MultiIndex.get_slice_bound</span><span class="nt">(self, label, side)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3470</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">3471</span>     <span class="n">label</span> <span class="o">=</span> <span class="p">(</span><span class="n">label</span><span class="p">,)</span>
-<span class="ne">-&gt; </span><span class="mi">3472</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partial_tup_index</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="n">side</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3473</span> <span class="n">result</span> <span class="o">=</span> <span class="n">maybe_unbox_numpy_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3474</span> <span class="k">return</span> <span class="n">result</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/multi.py:3473,</span> in <span class="ni">MultiIndex.get_slice_bound</span><span class="nt">(self, label, side)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3471</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3472</span>     <span class="n">label</span> <span class="o">=</span> <span class="p">(</span><span class="n">label</span><span class="p">,)</span>
+<span class="ne">-&gt; </span><span class="mi">3473</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partial_tup_index</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="n">side</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3474</span> <span class="n">result</span> <span class="o">=</span> <span class="n">maybe_unbox_numpy_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3475</span> <span class="k">return</span> <span class="n">result</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/multi.py:3540,</span> in <span class="ni">MultiIndex._partial_tup_index</span><span class="nt">(self, tup, side)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3538</span>     <span class="n">_raise_key_length_error</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlevels</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3539</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lexsort_depth</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3540</span>     <span class="k">raise</span> <span class="n">UnsortedIndexError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">3541</span>         <span class="sa">f</span><span class="s2">"Key length (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span><span class="si">}</span><span class="s2">) was greater than MultiIndex lexsort depth "</span>
-<span class="g g-Whitespace">   </span><span class="mi">3542</span>         <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_lexsort_depth</span><span class="si">}</span><span class="s2">)"</span>
-<span class="g g-Whitespace">   </span><span class="mi">3543</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3545</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3546</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/multi.py:3541,</span> in <span class="ni">MultiIndex._partial_tup_index</span><span class="nt">(self, tup, side)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3539</span>     <span class="n">_raise_key_length_error</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlevels</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3540</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lexsort_depth</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3541</span>     <span class="k">raise</span> <span class="n">UnsortedIndexError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3542</span>         <span class="sa">f</span><span class="s2">"Key length (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span><span class="si">}</span><span class="s2">) was greater than MultiIndex lexsort depth "</span>
+<span class="g g-Whitespace">   </span><span class="mi">3543</span>         <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_lexsort_depth</span><span class="si">}</span><span class="s2">)"</span>
+<span class="g g-Whitespace">   </span><span class="mi">3544</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3546</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3547</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 <span class="ne">UnsortedIndexError</span>: 'Key length (2) was greater than MultiIndex lexsort depth (1)'
 </pre></div>
@@ -1975,8 +1975,8 @@ faster than fancy indexing.</p>
 <span class="gp">In [146]: </span><span class="o">%</span><span class="k">timeit</span> arr[indexer]
 <span class="gp">   .....: </span><span class="o">%</span><span class="k">timeit</span> arr.take(indexer, axis=0)
 <span class="gp">   .....: </span>
-<span class="go">128 us +- 1.87 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
-<span class="go">27.3 us +- 1.55 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
+<span class="go">159 us +- 1.94 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
+<span class="go">35 us +- 1.07 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [147]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">arr</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
@@ -1984,8 +1984,8 @@ faster than fancy indexing.</p>
 <span class="gp">In [148]: </span><span class="o">%</span><span class="k">timeit</span> ser.iloc[indexer]
 <span class="gp">   .....: </span><span class="o">%</span><span class="k">timeit</span> ser.take(indexer)
 <span class="gp">   .....: </span>
-<span class="go">37.6 us +- 2.58 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
-<span class="go">36.6 us +- 3.08 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
+<span class="go">71.8 us +- 1.92 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
+<span class="go">65.9 us +- 3.23 us per loop (mean +- std. dev. of 7 runs, 10,000 loops each)</span>
 </pre></div>
 </div>
 </section>
@@ -2668,40 +2668,40 @@ normal Python <code class="docutils literal notranslate"><span class="pre">list<
 <span class="g g-Whitespace">   </span><span class="mi">1992</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
 <span class="g g-Whitespace">   </span><span class="mi">1993</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_slice</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7131,</span> in <span class="ni">Index.slice_indexer</span><span class="nt">(self, start, end, step)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7080</span> <span class="k">def</span><span class="w"> </span><span class="nf">slice_indexer</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">7081</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">7082</span>     <span class="n">start</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">7083</span>     <span class="n">end</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">7084</span>     <span class="n">step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">7085</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">slice</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">7086</span><span class="w">     </span><span class="sd">"""</span>
-<span class="g g-Whitespace">   </span><span class="mi">7087</span><span class="sd">     Compute the slice indexer for input labels and step.</span>
-<span class="g g-Whitespace">   </span><span class="mi">7088</span><span class="sd"> </span>
-<span class="sd">   (...)   7129     slice(1, 3, None)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7130</span><span class="sd">     """</span>
-<span class="ne">-&gt; </span><span class="mi">7131</span>     <span class="n">start_slice</span><span class="p">,</span> <span class="n">end_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slice_locs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7133</span>     <span class="c1"># return a slice</span>
-<span class="g g-Whitespace">   </span><span class="mi">7134</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_scalar</span><span class="p">(</span><span class="n">start_slice</span><span class="p">):</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7149,</span> in <span class="ni">Index.slice_indexer</span><span class="nt">(self, start, end, step)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7098</span> <span class="k">def</span><span class="w"> </span><span class="nf">slice_indexer</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">7099</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">7100</span>     <span class="n">start</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">7101</span>     <span class="n">end</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">7102</span>     <span class="n">step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">7103</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">slice</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7104</span><span class="w">     </span><span class="sd">"""</span>
+<span class="g g-Whitespace">   </span><span class="mi">7105</span><span class="sd">     Compute the slice indexer for input labels and step.</span>
+<span class="g g-Whitespace">   </span><span class="mi">7106</span><span class="sd"> </span>
+<span class="sd">   (...)   7147     slice(1, 3, None)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7148</span><span class="sd">     """</span>
+<span class="ne">-&gt; </span><span class="mi">7149</span>     <span class="n">start_slice</span><span class="p">,</span> <span class="n">end_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slice_locs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7151</span>     <span class="c1"># return a slice</span>
+<span class="g g-Whitespace">   </span><span class="mi">7152</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_scalar</span><span class="p">(</span><span class="n">start_slice</span><span class="p">):</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7422,</span> in <span class="ni">Index.slice_locs</span><span class="nt">(self, start, end, step)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7420</span> <span class="n">start_slice</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">7421</span> <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">7422</span>     <span class="n">start_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_slice_bound</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="s2">"left"</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7423</span> <span class="k">if</span> <span class="n">start_slice</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">7424</span>     <span class="n">start_slice</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7440,</span> in <span class="ni">Index.slice_locs</span><span class="nt">(self, start, end, step)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7438</span> <span class="n">start_slice</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">7439</span> <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">7440</span>     <span class="n">start_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_slice_bound</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="s2">"left"</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7441</span> <span class="k">if</span> <span class="n">start_slice</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7442</span>     <span class="n">start_slice</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7309,</span> in <span class="ni">Index.get_slice_bound</span><span class="nt">(self, label, side)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7306</span>         <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">7307</span>             <span class="c1"># sorting would not make the bound comparable</span>
-<span class="g g-Whitespace">   </span><span class="mi">7308</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_raise_invalid_indexer</span><span class="p">(</span><span class="s2">"slice"</span><span class="p">,</span> <span class="n">original_label</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">7309</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">7310</span>         <span class="sa">f</span><span class="s2">"Cannot get </span><span class="si">{</span><span class="n">side</span><span class="si">}</span><span class="s2"> slice bound for non-monotonic index "</span>
-<span class="g g-Whitespace">   </span><span class="mi">7311</span>         <span class="sa">f</span><span class="s2">"with a missing label </span><span class="si">{</span><span class="n">original_label</span><span class="si">!r}</span><span class="s2">. "</span>
-<span class="g g-Whitespace">   </span><span class="mi">7312</span>         <span class="s2">"Either sort the index or specify an existing label."</span>
-<span class="g g-Whitespace">   </span><span class="mi">7313</span>     <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">7314</span> <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">7315</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">CategoricalDtype</span><span class="p">):</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7327,</span> in <span class="ni">Index.get_slice_bound</span><span class="nt">(self, label, side)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7324</span>         <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7325</span>             <span class="c1"># sorting would not make the bound comparable</span>
+<span class="g g-Whitespace">   </span><span class="mi">7326</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_raise_invalid_indexer</span><span class="p">(</span><span class="s2">"slice"</span><span class="p">,</span> <span class="n">original_label</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">7327</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">7328</span>         <span class="sa">f</span><span class="s2">"Cannot get </span><span class="si">{</span><span class="n">side</span><span class="si">}</span><span class="s2"> slice bound for non-monotonic index "</span>
+<span class="g g-Whitespace">   </span><span class="mi">7329</span>         <span class="sa">f</span><span class="s2">"with a missing label </span><span class="si">{</span><span class="n">original_label</span><span class="si">!r}</span><span class="s2">. "</span>
+<span class="g g-Whitespace">   </span><span class="mi">7330</span>         <span class="s2">"Either sort the index or specify an existing label."</span>
+<span class="g g-Whitespace">   </span><span class="mi">7331</span>     <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">7332</span> <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7333</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">CategoricalDtype</span><span class="p">):</span>
 
 <span class="ne">KeyError</span>: 'Cannot get left slice bound for non-monotonic index with a missing label 0. Either sort the index or specify an existing label.'
 
@@ -2756,38 +2756,38 @@ normal Python <code class="docutils literal notranslate"><span class="pre">list<
 <span class="g g-Whitespace">   </span><span class="mi">1992</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
 <span class="g g-Whitespace">   </span><span class="mi">1993</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_slice</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7131,</span> in <span class="ni">Index.slice_indexer</span><span class="nt">(self, start, end, step)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7080</span> <span class="k">def</span><span class="w"> </span><span class="nf">slice_indexer</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">7081</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">7082</span>     <span class="n">start</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">7083</span>     <span class="n">end</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">7084</span>     <span class="n">step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">7085</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">slice</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">7086</span><span class="w">     </span><span class="sd">"""</span>
-<span class="g g-Whitespace">   </span><span class="mi">7087</span><span class="sd">     Compute the slice indexer for input labels and step.</span>
-<span class="g g-Whitespace">   </span><span class="mi">7088</span><span class="sd"> </span>
-<span class="sd">   (...)   7129     slice(1, 3, None)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7130</span><span class="sd">     """</span>
-<span class="ne">-&gt; </span><span class="mi">7131</span>     <span class="n">start_slice</span><span class="p">,</span> <span class="n">end_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slice_locs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7133</span>     <span class="c1"># return a slice</span>
-<span class="g g-Whitespace">   </span><span class="mi">7134</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_scalar</span><span class="p">(</span><span class="n">start_slice</span><span class="p">):</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7149,</span> in <span class="ni">Index.slice_indexer</span><span class="nt">(self, start, end, step)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7098</span> <span class="k">def</span><span class="w"> </span><span class="nf">slice_indexer</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">7099</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">7100</span>     <span class="n">start</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">7101</span>     <span class="n">end</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">7102</span>     <span class="n">step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">7103</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">slice</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7104</span><span class="w">     </span><span class="sd">"""</span>
+<span class="g g-Whitespace">   </span><span class="mi">7105</span><span class="sd">     Compute the slice indexer for input labels and step.</span>
+<span class="g g-Whitespace">   </span><span class="mi">7106</span><span class="sd"> </span>
+<span class="sd">   (...)   7147     slice(1, 3, None)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7148</span><span class="sd">     """</span>
+<span class="ne">-&gt; </span><span class="mi">7149</span>     <span class="n">start_slice</span><span class="p">,</span> <span class="n">end_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slice_locs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7151</span>     <span class="c1"># return a slice</span>
+<span class="g g-Whitespace">   </span><span class="mi">7152</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_scalar</span><span class="p">(</span><span class="n">start_slice</span><span class="p">):</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7428,</span> in <span class="ni">Index.slice_locs</span><span class="nt">(self, start, end, step)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7426</span> <span class="n">end_slice</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">7427</span> <span class="k">if</span> <span class="n">end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">7428</span>     <span class="n">end_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_slice_bound</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="s2">"right"</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7429</span> <span class="k">if</span> <span class="n">end_slice</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">7430</span>     <span class="n">end_slice</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7446,</span> in <span class="ni">Index.slice_locs</span><span class="nt">(self, start, end, step)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7444</span> <span class="n">end_slice</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">7445</span> <span class="k">if</span> <span class="n">end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">7446</span>     <span class="n">end_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_slice_bound</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="s2">"right"</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7447</span> <span class="k">if</span> <span class="n">end_slice</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7448</span>     <span class="n">end_slice</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7329,</span> in <span class="ni">Index.get_slice_bound</span><span class="nt">(self, label, side)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7327</span>     <span class="n">slc</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">maybe_booleans_to_slice</span><span class="p">(</span><span class="n">slc</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="s2">"u1"</span><span class="p">))</span>  <span class="c1"># type: ignore[assignment]</span>
-<span class="g g-Whitespace">   </span><span class="mi">7328</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">slc</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">7329</span>         <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">7330</span>             <span class="sa">f</span><span class="s2">"Cannot get </span><span class="si">{</span><span class="n">side</span><span class="si">}</span><span class="s2"> slice bound for non-unique "</span>
-<span class="g g-Whitespace">   </span><span class="mi">7331</span>             <span class="sa">f</span><span class="s2">"label: </span><span class="si">{</span><span class="n">original_label</span><span class="si">!r}</span><span class="s2">"</span>
-<span class="g g-Whitespace">   </span><span class="mi">7332</span>         <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7334</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">slc</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">7335</span>     <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s2">"left"</span><span class="p">:</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7347,</span> in <span class="ni">Index.get_slice_bound</span><span class="nt">(self, label, side)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7345</span>     <span class="n">slc</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">maybe_booleans_to_slice</span><span class="p">(</span><span class="n">slc</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="s2">"u1"</span><span class="p">))</span>  <span class="c1"># type: ignore[assignment]</span>
+<span class="g g-Whitespace">   </span><span class="mi">7346</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">slc</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">7347</span>         <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">7348</span>             <span class="sa">f</span><span class="s2">"Cannot get </span><span class="si">{</span><span class="n">side</span><span class="si">}</span><span class="s2"> slice bound for non-unique "</span>
+<span class="g g-Whitespace">   </span><span class="mi">7349</span>             <span class="sa">f</span><span class="s2">"label: </span><span class="si">{</span><span class="n">original_label</span><span class="si">!r}</span><span class="s2">"</span>
+<span class="g g-Whitespace">   </span><span class="mi">7350</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7352</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">slc</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">7353</span>     <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s2">"left"</span><span class="p">:</span>
 
 <span class="ne">KeyError</span>: 'Cannot get right slice bound for non-unique label: 3'
 </pre></div>
