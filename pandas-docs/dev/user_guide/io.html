@@ -2547,7 +2547,7 @@ value will be an iterable object of type <code class="docutils literal notransla
 <span class="gp">   .....: </span>    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
 <span class="gp">   .....: </span>        <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7f90cf45abd0&gt;</span>
+<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7f6b0eb4e660&gt;</span>
 <span class="go">          0         1         2         3</span>
 <span class="go">0 -1.294524  0.413738  0.276662 -0.472035</span>
 <span class="go">1 -0.013960 -0.362543 -0.006154 -0.923061</span>
@@ -7829,7 +7829,7 @@ Implementation Status</a>
 documentation.</p>
 <p>Where an ADBC driver is not available or may be missing functionality,
 users should opt for installing SQLAlchemy alongside their database driver library.
-Examples of such drivers are <a class="reference external" href="https://www.psycopg.org/">psycopg2</a>
+Examples of such drivers are <a class="reference external" href="https://www.psycopg.org/psycopg3/docs/">psycopg 3</a>
 for PostgreSQL or <a class="reference external" href="https://github.com/PyMySQL/PyMySQL">pymysql</a> for MySQL.
 For <a class="reference external" href="https://docs.python.org/3/library/sqlite3.html">SQLite</a> this is
 included in Python’s standard library by default.
@@ -8386,7 +8386,7 @@ Specifying this will return an iterator through chunks of the query result:</p>
 usage. Most database drivers fetch the complete result set into client
 memory before the first chunk is produced. Actually streaming the result
 requires a server-side cursor, which with SQLAlchemy is requested with the
-<code class="docutils literal notranslate"><span class="pre">stream_results</span></code> execution option (supported by, e.g., the psycopg2 and
+<code class="docutils literal notranslate"><span class="pre">stream_results</span></code> execution option (supported by, e.g., the psycopg and
 pymysql drivers; drivers without server-side cursor support ignore it):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span><span class="o">.</span><span class="n">execution_options</span><span class="p">(</span><span class="n">stream_results</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s2">"SELECT * FROM data_chunks"</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
@@ -8402,7 +8402,11 @@ object from database URI. You only need to create the engine once per database y
 connecting to.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_engine</span>
 
-<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">"postgresql://scott:tiger@localhost:5432/mydatabase"</span><span class="p">)</span>
+<span class="c1"># PostgreSQL using the psycopg 3 driver:</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">"postgresql+psycopg://scott:tiger@localhost:5432/mydatabase"</span><span class="p">)</span>
+
+<span class="c1"># or using the psycopg2 driver:</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">"postgresql+psycopg2://scott:tiger@localhost:5432/mydatabase"</span><span class="p">)</span>
 
 <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">"mysql+mysqldb://scott:tiger@localhost/foo"</span><span class="p">)</span>
 
@@ -8417,6 +8421,14 @@ connecting to.</p>
 <span class="c1"># or absolute, starting with a slash:</span>
 <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">"sqlite:////absolute/path/to/foo.db"</span><span class="p">)</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> pip extra (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;pandas[postgresql]&quot;</span></code>) installs
+psycopg2, not psycopg 3. To use the <code class="docutils literal notranslate"><span class="pre">postgresql+psycopg</span></code> dialect with
+SQLAlchemy, install psycopg 3 separately, e.g.
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;psycopg[binary]&quot;</span></code>. See
+<a class="reference internal" href="../getting_started/install.html#install-optional-dependencies"><span class="std std-ref">Optional dependencies</span></a> for the full list of SQL dependencies.</p>
 </div>
 <p>For more information see the examples the SQLAlchemy <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/engines.html">documentation</a></p>
 </section>
