@@ -670,7 +670,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">dtype_backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/parsers/readers.py#L1382-L1951"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_csv" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/parsers/readers.py#L1382-L1954"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_csv" title="Link to this definition">#</a></dt>
 <dd><p>Read a comma-separated values (csv) file into DataFrame.</p>
 <p>Also supports optionally iterating or breaking of the file
 into chunks.</p>
@@ -706,12 +706,15 @@ when <code class="docutils literal notranslate"><span class="pre">skip_blank_lin
 line of data rather than the first line of the file. Valid arguments
 are:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">int</span></code>: line index at which column labels are read.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span></code>: line index at which column labels are read. Rows above
+it will be skipped and do not appear in the result.</p></li>
 <li><p>Sequence of <code class="docutils literal notranslate"><span class="pre">int</span></code>: line indices at which column labels are read
 and combined into a <a class="reference internal" href="pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> on the columns,
-e.g. <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">3]</span></code>. Intervening rows that are not specified will
-be skipped (e.g. row 2 in this example). The levels follow the
-order of the sequence, so <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">0]</span></code> puts row 1 in level 0.</p></li>
+e.g. <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">3]</span></code>. Rows above <code class="docutils literal notranslate"><span class="pre">min(header)</span></code>, as well as
+intervening rows that are not specified, will be skipped and do
+not appear in the result (e.g. <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">4]</span></code> skips rows 0 and 3).
+The levels follow the order of the sequence, so <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">0]</span></code> puts
+row 1 in level 0.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: no row in the file is interpreted as column labels.
 Columns are labelled by integer position, or by the values passed
 to <code class="docutils literal notranslate"><span class="pre">names</span></code> when provided. Use this for files with no header

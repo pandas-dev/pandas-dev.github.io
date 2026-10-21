@@ -652,7 +652,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">engine_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/excel/_base.py#L166-L561"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_excel" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/excel/_base.py#L166-L563"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_excel" title="Link to this definition">#</a></dt>
 <dd><p>Read an Excel file into a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
 <p>Supports <cite>xls</cite>, <cite>xlsx</cite>, <cite>xlsm</cite>, <cite>xlsb</cite>, <cite>odf</cite>, <cite>ods</cite> and <cite>odt</cite> file extensions
 read from a local filesystem or URL. Supports an option to read
@@ -692,7 +692,9 @@ as a dict of <cite>DataFrame</cite></p></li>
 <dt><strong>header</strong><span class="classifier">int, list of int, default 0</span></dt><dd><p>Row (0-indexed) to use for the column labels of the parsed
 DataFrame. If a list of integers is passed those row positions will
 be combined into a <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code>, with levels in the order given.
-Use None if there is no header.</p>
+Rows before the first header row are skipped and do not appear in
+the result; when a list is passed, rows between the listed positions
+are skipped as well. Use None if there is no header.</p>
 </dd>
 <dt><strong>names</strong><span class="classifier">array-like, default None</span></dt><dd><p>List of column names to use. If file contains no header row,
 then you should explicitly pass header=None.</p>

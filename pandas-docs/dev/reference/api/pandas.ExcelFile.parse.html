@@ -643,7 +643,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">**kwds</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/excel/_base.py#L1736-L1929"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.ExcelFile.parse" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/excel/_base.py#L1738-L1933"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.ExcelFile.parse" title="Link to this definition">#</a></dt>
 <dd><p>Parse specified sheet(s) into a DataFrame.</p>
 <div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 3.1.0: </span>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">pd.read_excel()</span></code> instead.</p>
@@ -662,7 +662,9 @@ each sheet.</p>
 <dt><strong>header</strong><span class="classifier">int, list of int, default 0</span></dt><dd><p>Row (0-indexed) to use for the column labels of the parsed
 DataFrame. If a list of integers is passed those row positions will
 be combined into a <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code>, with levels in the order given.
-Use None if there is no header.</p>
+Rows before the first header row are skipped and do not appear in
+the result; when a list is passed, rows between the listed positions
+are skipped as well. Use None if there is no header.</p>
 </dd>
 <dt><strong>names</strong><span class="classifier">array-like, default None</span></dt><dd><p>List of column names to use. If file contains no header row,
 then you should explicitly pass header=None.</p>
