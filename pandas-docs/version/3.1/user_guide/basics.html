@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Essential basic functionality &#8212; pandas 3.1.0rc0 documentation</title>
+    <title>Essential basic functionality &#8212; pandas 3.1.0 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=43ae7b94"></script>
+    <script src="../_static/documentation_options.js?v=561c2658"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -57,7 +57,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.20.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.1 (rc)';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.1';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -142,8 +142,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0rc0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0rc0 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0 documentation - Home"/>
   
   
 </a></div>
@@ -842,7 +842,7 @@ either match on the <em>index</em> or <em>columns</em> via the <strong>axis</str
 <p>When operating with a plain Python list, pandas aligns it to the <strong>columns</strong>
 of the DataFrame (not the rows); to broadcast row-wise, pass <code class="docutils literal notranslate"><span class="pre">axis=0</span></code> to
 the explicit method, e.g. <code class="docutils literal notranslate"><span class="pre">df.add([1,</span> <span class="pre">2,</span> <span class="pre">3],</span> <span class="pre">axis=0)</span></code>.</p>
-<p>Series and Index also support the <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#divmod" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">divmod()</span></code></a> builtin. This function takes
+<p>Series and Index also support the <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#divmod" title="(in Python v3.15)"><code class="xref py py-func docutils literal notranslate"><span class="pre">divmod()</span></code></a> builtin. This function takes
 the floor division and modulo operation at the same time returning a two-tuple
 of the same type as the left hand side. For example:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
@@ -905,7 +905,7 @@ of the same type as the left hand side. For example:</p>
 <span class="gh">Out[38]: </span><span class="go">Index([0, 1, 2, 0, 1, 2, 0, 1, 2, 0], dtype='int64')</span>
 </pre></div>
 </div>
-<p>We can also do elementwise <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#divmod" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">divmod()</span></code></a>:</p>
+<p>We can also do elementwise <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#divmod" title="(in Python v3.15)"><code class="xref py py-func docutils literal notranslate"><span class="pre">divmod()</span></code></a>:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [39]: </span><span class="n">div</span><span class="p">,</span> <span class="n">rem</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
 
 <span class="gp">In [40]: </span><span class="n">div</span>
@@ -1186,15 +1186,15 @@ raise a ValueError:</p>
 <span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>  <span class="c1"># type: ignore[override]</span>
 <span class="ne">---&gt; </span><span class="mi">45</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cmp_method</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">eq</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:7452,</span> in <span class="ni">Series._cmp_method</span><span class="nt">(self, other, op)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7448</span>     <span class="k">def</span><span class="w"> </span><span class="nf">_cmp_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Series</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">7449</span>         <span class="n">res_name</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">get_op_result_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7450</span> 
-<span class="g g-Whitespace">   </span><span class="mi">7451</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Series</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indexed_same</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">7452</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Can only compare identically-labeled Series objects"</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7453</span> 
-<span class="g g-Whitespace">   </span><span class="mi">7454</span>         <span class="n">lvalues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span>
-<span class="g g-Whitespace">   </span><span class="mi">7455</span>         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lvalues</span><span class="p">,</span> <span class="n">ExtensionArray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">lvalues</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="nb">object</span><span class="p">:</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:7362,</span> in <span class="ni">Series._cmp_method</span><span class="nt">(self, other, op)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7358</span>     <span class="k">def</span><span class="w"> </span><span class="nf">_cmp_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Series</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7359</span>         <span class="n">res_name</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">get_op_result_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7360</span> 
+<span class="g g-Whitespace">   </span><span class="mi">7361</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Series</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indexed_same</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">7362</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Can only compare identically-labeled Series objects"</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7363</span> 
+<span class="g g-Whitespace">   </span><span class="mi">7364</span>         <span class="n">lvalues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span>
+<span class="g g-Whitespace">   </span><span class="mi">7365</span>         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lvalues</span><span class="p">,</span> <span class="n">ExtensionArray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">lvalues</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="nb">object</span><span class="p">:</span>
 
 <span class="ne">ValueError</span>: Can only compare identically-labeled Series objects
 
@@ -1214,15 +1214,15 @@ raise a ValueError:</p>
 <span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>  <span class="c1"># type: ignore[override]</span>
 <span class="ne">---&gt; </span><span class="mi">45</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cmp_method</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">eq</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:7452,</span> in <span class="ni">Series._cmp_method</span><span class="nt">(self, other, op)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7448</span>     <span class="k">def</span><span class="w"> </span><span class="nf">_cmp_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Series</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">7449</span>         <span class="n">res_name</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">get_op_result_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7450</span> 
-<span class="g g-Whitespace">   </span><span class="mi">7451</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Series</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indexed_same</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">7452</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Can only compare identically-labeled Series objects"</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">7453</span> 
-<span class="g g-Whitespace">   </span><span class="mi">7454</span>         <span class="n">lvalues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span>
-<span class="g g-Whitespace">   </span><span class="mi">7455</span>         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lvalues</span><span class="p">,</span> <span class="n">ExtensionArray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">lvalues</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="nb">object</span><span class="p">:</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:7362,</span> in <span class="ni">Series._cmp_method</span><span class="nt">(self, other, op)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7358</span>     <span class="k">def</span><span class="w"> </span><span class="nf">_cmp_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Series</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">7359</span>         <span class="n">res_name</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">get_op_result_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7360</span> 
+<span class="g g-Whitespace">   </span><span class="mi">7361</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Series</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indexed_same</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">7362</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Can only compare identically-labeled Series objects"</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7363</span> 
+<span class="g g-Whitespace">   </span><span class="mi">7364</span>         <span class="n">lvalues</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span>
+<span class="g g-Whitespace">   </span><span class="mi">7365</span>         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lvalues</span><span class="p">,</span> <span class="n">ExtensionArray</span><span class="p">)</span> <span class="ow">and</span> <span class="n">lvalues</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="nb">object</span><span class="p">:</span>
 
 <span class="ne">ValueError</span>: Can only compare identically-labeled Series objects
 </pre></div>
@@ -3443,7 +3443,7 @@ This will return a Series, indexed like the existing Series.</p>
 </pre></div>
 </div>
 <p>You can also format datetime values as strings with <a class="reference internal" href="../reference/api/pandas.Series.dt.strftime.html#pandas.Series.dt.strftime" title="pandas.Series.dt.strftime"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.dt.strftime()</span></code></a> which
-supports the same format as the standard <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime.strftime" title="(in Python v3.14)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">strftime()</span></code></a>.</p>
+supports the same format as the standard <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime.strftime" title="(in Python v3.15)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">strftime()</span></code></a>.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># DatetimeIndex</span>
 <span class="gp">In [293]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"20130101"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 
@@ -4079,13 +4079,13 @@ documentation sections for more on each type.</p>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="text.html#text"><span class="std std-ref">Strings</span></a></p></td>
 <td colspan="2"><p><a class="reference internal" href="../reference/api/pandas.StringDtype.html#pandas.StringDtype" title="pandas.StringDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">StringDtype</span></code></a></p></td>
-<td colspan="2"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p></td>
+<td colspan="2"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p></td>
 <td><p><a class="reference internal" href="../reference/api/pandas.arrays.StringArray.html#pandas.arrays.StringArray" title="pandas.arrays.StringArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.StringArray</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">'string'</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../reference/arrays.html#api-arrays-bool"><span class="std std-ref">Boolean (with NA)</span></a></p></td>
 <td colspan="2"><p><a class="reference internal" href="../reference/api/pandas.BooleanDtype.html#pandas.BooleanDtype" title="pandas.BooleanDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">BooleanDtype</span></code></a></p></td>
-<td colspan="2"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td colspan="2"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
 <td><p><a class="reference internal" href="../reference/api/pandas.arrays.BooleanArray.html#pandas.arrays.BooleanArray" title="pandas.arrays.BooleanArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.BooleanArray</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">'boolean'</span></code></p></td>
 </tr>

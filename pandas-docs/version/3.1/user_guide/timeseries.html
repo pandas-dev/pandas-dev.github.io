@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Time series / date functionality &#8212; pandas 3.1.0rc0 documentation</title>
+    <title>Time series / date functionality &#8212; pandas 3.1.0 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
-    <script src="../_static/documentation_options.js?v=43ae7b94"></script>
+    <script src="../_static/documentation_options.js?v=561c2658"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -55,7 +55,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.20.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://pandas.pydata.org/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.1 (rc)';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.1';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -140,8 +140,8 @@
       
     
     
-    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0rc0 documentation - Home"/>
-    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0rc0 documentation - Home"/>
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="pandas 3.1.0 documentation - Home"/>
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark pst-js-only" alt="pandas 3.1.0 documentation - Home"/>
   
   
 </a></div>
@@ -688,7 +688,8 @@ performing the above tasks and more.</p>
 </div>
 <p>The default resolution for date times and time deltas is microsecond (“us”), though second (“s”),
 millisecond (“ms”), and nanosecond (“ns”) are also supported. The resolution can be changed using
-<a class="reference internal" href="../reference/api/pandas.Series.dt.as_unit.html#pandas.Series.dt.as_unit" title="pandas.Series.dt.as_unit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">as_unit()</span></code></a>.</p>
+<a class="reference internal" href="../reference/api/pandas.Series.dt.as_unit.html#pandas.Series.dt.as_unit" title="pandas.Series.dt.as_unit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">as_unit()</span></code></a>. Arithmetic keeps the resolution of its operands, see
+<a class="reference internal" href="timedeltas.html#timedeltas-unit-preserving-arithmetic"><span class="std std-ref">Timedelta arithmetic</span></a>.</p>
 <p>For time series data, it’s conventional to represent the time component in the index of a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>
 so manipulations can be performed with respect to the time element.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2000"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
@@ -1061,7 +1062,7 @@ as timezone-naive timestamps and then localize to the appropriate timezone:</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Conversion of float epoch times can lead to inaccurate and unexpected results.
-<a class="reference external" href="https://docs.python.org/3/tutorial/floatingpoint.html#tut-fp-issues" title="(in Python v3.14)"><span class="xref std std-ref">Python floats</span></a> have about 15 digits precision in
+<a class="reference external" href="https://docs.python.org/3/tutorial/floatingpoint.html#tut-fp-issues" title="(in Python v3.15)"><span class="xref std std-ref">Python floats</span></a> have about 15 digits precision in
 decimal. Rounding during conversion from float to high precision <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> is
 unavoidable. The only way to achieve exact precision is to use a fixed-width
 types (e.g. an int64).</p>
@@ -3372,7 +3373,7 @@ or calendars with additional rules.</p>
 <span class="gp">In [312]: </span><span class="n">cal</span><span class="o">.</span><span class="n">rules</span>
 <span class="gh">Out[312]: </span>
 <span class="go">[Holiday: Memorial Day (month=5, day=31, offset=&lt;DateOffset: weekday=MO(-1)&gt;),</span>
-<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7fe88dd28360&gt;),</span>
+<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7fbd1fc14a40&gt;),</span>
 <span class="go"> Holiday: Columbus Day (month=10, day=1, offset=&lt;DateOffset: weekday=MO(+2)&gt;)]</span>
 
 <span class="gp">In [313]: </span><span class="n">new_cal</span> <span class="o">=</span> <span class="n">HolidayCalendarFactory</span><span class="p">(</span><span class="s2">"NewExampleCalendar"</span><span class="p">,</span> <span class="n">cal</span><span class="p">,</span> <span class="n">USLaborDay</span><span class="p">)</span>
@@ -3381,7 +3382,7 @@ or calendars with additional rules.</p>
 <span class="gh">Out[314]: </span>
 <span class="go">[Holiday: Labor Day (month=9, day=1, offset=&lt;DateOffset: weekday=MO(+1)&gt;),</span>
 <span class="go"> Holiday: Memorial Day (month=5, day=31, offset=&lt;DateOffset: weekday=MO(-1)&gt;),</span>
-<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7fe88dd28360&gt;),</span>
+<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7fbd1fc14a40&gt;),</span>
 <span class="go"> Holiday: Columbus Day (month=10, day=1, offset=&lt;DateOffset: weekday=MO(+2)&gt;)]</span>
 </pre></div>
 </div>
@@ -3488,7 +3489,7 @@ documented in the <a class="reference internal" href="missing_data.html#missing-
 <section id="converting-to-python-datetimes">
 <h3>Converting to Python datetimes<a class="headerlink" href="#converting-to-python-datetimes" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code> can be converted to an array of Python native
-<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a> objects using the <code class="docutils literal notranslate"><span class="pre">to_pydatetime</span></code> method.</p>
+<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a> objects using the <code class="docutils literal notranslate"><span class="pre">to_pydatetime</span></code> method.</p>
 </section>
 </section>
 <section id="resampling">
@@ -3869,7 +3870,7 @@ level of <code class="docutils literal notranslate"><span class="pre">MultiIndex
 <section id="iterating-through-groups">
 <span id="timeseries-iterating-label"></span><h3>Iterating through groups<a class="headerlink" href="#iterating-through-groups" title="Link to this heading">#</a></h3>
 <p>With the <code class="docutils literal notranslate"><span class="pre">Resampler</span></code> object in hand, iterating through the grouped data is very
-natural and functions similarly to <a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.groupby" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">itertools.groupby()</span></code></a>:</p>
+natural and functions similarly to <a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.groupby" title="(in Python v3.15)"><code class="xref py py-func docutils literal notranslate"><span class="pre">itertools.groupby()</span></code></a>:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [365]: </span><span class="n">small</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span>
 <span class="gp">   .....: </span>    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
@@ -4114,8 +4115,8 @@ frequency. Arithmetic is not allowed between <code class="docutils literal notra
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
 <span class="nn">File pandas/_libs/tslibs/period.pyx:2241,</span> in <span class="ni">pandas._libs.tslibs.period._Period._add_timedeltalike_scalar</span><span class="nt">()</span>
 <span class="ne">-&gt; </span><span class="mi">2241</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
-<span class="nn">File pandas/_libs/tslibs/timedeltas.pyx:299,</span> in <span class="ni">pandas._libs.tslibs.timedeltas.delta_to_nanoseconds</span><span class="nt">()</span>
-<span class="ne">--&gt; </span><span class="mi">299</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/tslibs/timedeltas.pyx:300,</span> in <span class="ni">pandas._libs.tslibs.timedeltas.delta_to_nanoseconds</span><span class="nt">()</span>
+<span class="ne">--&gt; </span><span class="mi">300</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
 <span class="nn">File pandas/_libs/tslibs/np_datetime.pyx:827,</span> in <span class="ni">pandas._libs.tslibs.np_datetime.convert_reso</span><span class="nt">()</span>
 <span class="ne">--&gt; </span><span class="mi">827</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
 <span class="ne">ValueError</span>: Cannot losslessly convert units
@@ -4582,7 +4583,7 @@ then you can use a <code class="docutils literal notranslate"><span class="pre">
 <section id="time-zone-handling">
 <span id="timeseries-timezone"></span><h2>Time zone handling<a class="headerlink" href="#time-zone-handling" title="Link to this heading">#</a></h2>
 <p>pandas provides rich support for working with timestamps in different time
-zones using the <code class="docutils literal notranslate"><span class="pre">zoneinfo</span></code>, <code class="docutils literal notranslate"><span class="pre">pytz</span></code> and <code class="docutils literal notranslate"><span class="pre">dateutil</span></code> libraries or <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timezone" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.timezone</span></code></a>
+zones using the <code class="docutils literal notranslate"><span class="pre">zoneinfo</span></code>, <code class="docutils literal notranslate"><span class="pre">pytz</span></code> and <code class="docutils literal notranslate"><span class="pre">dateutil</span></code> libraries or <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timezone" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.timezone</span></code></a>
 objects from the standard library.</p>
 <section id="working-with-time-zones">
 <h3>Working with time zones<a class="headerlink" href="#working-with-time-zones" title="Link to this heading">#</a></h3>
@@ -4600,7 +4601,7 @@ You can either pass <code class="docutils literal notranslate"><span class="pre"
 Olson time zone strings will return <code class="docutils literal notranslate"><span class="pre">zoneinfo</span></code> time zone objects by default.
 To return <code class="docutils literal notranslate"><span class="pre">dateutil</span></code> time zone objects, append <code class="docutils literal notranslate"><span class="pre">dateutil/</span></code> before the string.</p>
 <ul class="simple">
-<li><p>For <code class="docutils literal notranslate"><span class="pre">zoneinfo</span></code>, a list of available timezones are available from <a class="reference external" href="https://docs.python.org/3/library/zoneinfo.html#zoneinfo.available_timezones" title="(in Python v3.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">zoneinfo.available_timezones()</span></code></a>.</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">zoneinfo</span></code>, a list of available timezones are available from <a class="reference external" href="https://docs.python.org/3/library/zoneinfo.html#zoneinfo.available_timezones" title="(in Python v3.15)"><code class="xref py py-func docutils literal notranslate"><span class="pre">zoneinfo.available_timezones()</span></code></a>.</p></li>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">pytz</span></code> is installed (optional), you can find a list of common (and less common)
 time zones using <code class="docutils literal notranslate"><span class="pre">pytz.all_timezones</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dateutil</span></code> uses the OS time zones so there isn’t a fixed list available. For
@@ -4852,21 +4853,21 @@ twice within one day (“clocks fall back”). The following options are availab
 <span class="g g-Whitespace">     </span><span class="mi">84</span>     <span class="n">flags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ndarray</span><span class="o">.</span><span class="n">flags</span>
 <span class="g g-Whitespace">     </span><span class="mi">85</span>     <span class="n">flat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="s2">"K"</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/datetimes.py:1117,</span> in <span class="ni">DatetimeArray.tz_localize</span><span class="nt">(self, tz, ambiguous, nonexistent)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1114</span>     <span class="n">tz</span> <span class="o">=</span> <span class="n">timezones</span><span class="o">.</span><span class="n">maybe_get_tz</span><span class="p">(</span><span class="n">tz</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1115</span>     <span class="c1"># Convert to UTC</span>
-<span class="ne">-&gt; </span><span class="mi">1117</span>     <span class="n">new_dates</span> <span class="o">=</span> <span class="n">tzconversion</span><span class="o">.</span><span class="n">tz_localize_to_utc</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1118</span>         <span class="bp">self</span><span class="o">.</span><span class="n">asi8</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1119</span>         <span class="n">tz</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1120</span>         <span class="n">ambiguous</span><span class="o">=</span><span class="n">ambiguous</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1121</span>         <span class="n">nonexistent</span><span class="o">=</span><span class="n">nonexistent</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1122</span>         <span class="n">creso</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_creso</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1123</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1124</span> <span class="n">new_dates_dt64</span> <span class="o">=</span> <span class="n">new_dates</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="sa">f</span><span class="s2">"M8[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1125</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tz_to_dtype</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/datetimes.py:1115,</span> in <span class="ni">DatetimeArray.tz_localize</span><span class="nt">(self, tz, ambiguous, nonexistent)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1112</span>     <span class="n">tz</span> <span class="o">=</span> <span class="n">timezones</span><span class="o">.</span><span class="n">maybe_get_tz</span><span class="p">(</span><span class="n">tz</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1113</span>     <span class="c1"># Convert to UTC</span>
+<span class="ne">-&gt; </span><span class="mi">1115</span>     <span class="n">new_dates</span> <span class="o">=</span> <span class="n">tzconversion</span><span class="o">.</span><span class="n">tz_localize_to_utc</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1116</span>         <span class="bp">self</span><span class="o">.</span><span class="n">asi8</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1117</span>         <span class="n">tz</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1118</span>         <span class="n">ambiguous</span><span class="o">=</span><span class="n">ambiguous</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1119</span>         <span class="n">nonexistent</span><span class="o">=</span><span class="n">nonexistent</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1120</span>         <span class="n">creso</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_creso</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1121</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1122</span> <span class="n">new_dates_dt64</span> <span class="o">=</span> <span class="n">new_dates</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="sa">f</span><span class="s2">"M8[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1123</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tz_to_dtype</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
 
-<span class="nn">File pandas/_libs/tslibs/tzconversion.pyx:430,</span> in <span class="ni">pandas._libs.tslibs.tzconversion.tz_localize_to_utc</span><span class="nt">()</span>
-<span class="ne">--&gt; </span><span class="mi">430</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/tslibs/tzconversion.pyx:441,</span> in <span class="ni">pandas._libs.tslibs.tzconversion.tz_localize_to_utc</span><span class="nt">()</span>
+<span class="ne">--&gt; </span><span class="mi">441</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
 <span class="ne">ValueError</span>: Cannot infer dst time from 2011-11-06 01:00:00, try using the 'ambiguous' argument
 </pre></div>
 </div>
@@ -4936,21 +4937,21 @@ can be controlled by the <code class="docutils literal notranslate"><span class=
 <span class="g g-Whitespace">     </span><span class="mi">84</span>     <span class="n">flags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ndarray</span><span class="o">.</span><span class="n">flags</span>
 <span class="g g-Whitespace">     </span><span class="mi">85</span>     <span class="n">flat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="s2">"K"</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/datetimes.py:1117,</span> in <span class="ni">DatetimeArray.tz_localize</span><span class="nt">(self, tz, ambiguous, nonexistent)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1114</span>     <span class="n">tz</span> <span class="o">=</span> <span class="n">timezones</span><span class="o">.</span><span class="n">maybe_get_tz</span><span class="p">(</span><span class="n">tz</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1115</span>     <span class="c1"># Convert to UTC</span>
-<span class="ne">-&gt; </span><span class="mi">1117</span>     <span class="n">new_dates</span> <span class="o">=</span> <span class="n">tzconversion</span><span class="o">.</span><span class="n">tz_localize_to_utc</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1118</span>         <span class="bp">self</span><span class="o">.</span><span class="n">asi8</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1119</span>         <span class="n">tz</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1120</span>         <span class="n">ambiguous</span><span class="o">=</span><span class="n">ambiguous</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1121</span>         <span class="n">nonexistent</span><span class="o">=</span><span class="n">nonexistent</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1122</span>         <span class="n">creso</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_creso</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1123</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1124</span> <span class="n">new_dates_dt64</span> <span class="o">=</span> <span class="n">new_dates</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="sa">f</span><span class="s2">"M8[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1125</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tz_to_dtype</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/datetimes.py:1115,</span> in <span class="ni">DatetimeArray.tz_localize</span><span class="nt">(self, tz, ambiguous, nonexistent)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1112</span>     <span class="n">tz</span> <span class="o">=</span> <span class="n">timezones</span><span class="o">.</span><span class="n">maybe_get_tz</span><span class="p">(</span><span class="n">tz</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1113</span>     <span class="c1"># Convert to UTC</span>
+<span class="ne">-&gt; </span><span class="mi">1115</span>     <span class="n">new_dates</span> <span class="o">=</span> <span class="n">tzconversion</span><span class="o">.</span><span class="n">tz_localize_to_utc</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1116</span>         <span class="bp">self</span><span class="o">.</span><span class="n">asi8</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1117</span>         <span class="n">tz</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1118</span>         <span class="n">ambiguous</span><span class="o">=</span><span class="n">ambiguous</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1119</span>         <span class="n">nonexistent</span><span class="o">=</span><span class="n">nonexistent</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1120</span>         <span class="n">creso</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_creso</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1121</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1122</span> <span class="n">new_dates_dt64</span> <span class="o">=</span> <span class="n">new_dates</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="sa">f</span><span class="s2">"M8[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1123</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tz_to_dtype</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
 
-<span class="nn">File pandas/_libs/tslibs/tzconversion.pyx:516,</span> in <span class="ni">pandas._libs.tslibs.tzconversion.tz_localize_to_utc</span><span class="nt">()</span>
-<span class="ne">--&gt; </span><span class="mi">516</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/tslibs/tzconversion.pyx:530,</span> in <span class="ni">pandas._libs.tslibs.tzconversion.tz_localize_to_utc</span><span class="nt">()</span>
+<span class="ne">--&gt; </span><span class="mi">530</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
 <span class="ne">ValueError</span>: 2015-03-29 02:30:00 is a nonexistent time due to daylight savings time. Try using the 'nonexistent' argument.
 </pre></div>
 </div>
