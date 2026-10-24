@@ -945,6 +945,7 @@ Optional libraries below the lowest tested version may still work, but are not c
 <section id="i-o">
 <h3>I/O<a class="headerlink" href="#i-o" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p><a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">engine=&quot;pyarrow&quot;</span></code> now raises <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> for the unsupported <code class="docutils literal notranslate"><span class="pre">encoding_errors</span></code> with bytes or file input instead of silently ignoring it (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/71298">GH 71298</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> repr and <a class="reference internal" href="../reference/api/pandas.DataFrame.to_string.html#pandas.DataFrame.to_string" title="pandas.DataFrame.to_string"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_string()</span></code></a> where numeric column labels of differing widths were misaligned with their column’s values (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/8300">GH 8300</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a> silently misparsing non-ASCII <code class="docutils literal notranslate"><span class="pre">thousands</span></code> and <code class="docutils literal notranslate"><span class="pre">decimal</span></code> markers with the C engine; these now fall back to the Python engine with a <a class="reference internal" href="../reference/api/pandas.errors.ParserWarning.html#pandas.errors.ParserWarning" title="pandas.errors.ParserWarning"><code class="xref py py-class docutils literal notranslate"><span class="pre">errors.ParserWarning</span></code></a>, or raise <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> if <code class="docutils literal notranslate"><span class="pre">engine=&quot;c&quot;</span></code> is explicitly specified (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/71158">GH 71158</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a> where a <code class="docutils literal notranslate"><span class="pre">dtype</span></code> given for a <code class="docutils literal notranslate"><span class="pre">parse_dates</span></code> column undid the date parsing, returning strings, objects, integers or categories instead of datetimes (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/57512">GH 57512</a>)</p></li>
@@ -1097,7 +1098,7 @@ Optional libraries below the lowest tested version may still work, but are not c
 </section>
 <section id="contributors">
 <span id="whatsnew-320-contributors"></span><h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">#</a></h2>
-<p>A total of 59 people contributed patches to this release.  People with a
+<p>A total of 60 people contributed patches to this release.  People with a
 “+” by their names contributed a patch for the first time.
 </p>
 <ul class="simple">
@@ -1108,6 +1109,7 @@ Optional libraries below the lowest tested version may still work, but are not c
 <li><p>Aarya2004 +</p></li>
 <li><p>Abhishek Kumar +</p></li>
 <li><p>Aidan Feldman</p></li>
+<li><p>Ammar Hassona +</p></li>
 <li><p>Aniruktha +</p></li>
 <li><p>Anushka Dudhe +</p></li>
 <li><p>Atik +</p></li>
