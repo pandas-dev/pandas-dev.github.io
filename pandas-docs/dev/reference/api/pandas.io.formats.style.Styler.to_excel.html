@@ -617,7 +617,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">autofilter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/formats/style.py#L527-L712"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.io.formats.style.Styler.to_excel" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/formats/style.py#L527-L694"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.io.formats.style.Styler.to_excel" title="Link to this definition">#</a></dt>
 <dd><p>Write Styler to an Excel sheet.</p>
 <p>To write a single Styler to an Excel .xlsx file it is only necessary to
 specify a target file name. To write to multiple sheets it is necessary to
@@ -706,14 +706,6 @@ data without rewriting the whole workbook.</p>
 <p>pandas will check the number of rows, columns,
 and cell character count does not exceed Excel’s limitations.
 All other limitations must be checked by the user.</p>
-<p>Styles from <a class="reference internal" href="pandas.io.formats.style.Styler.set_table_styles.html#pandas.io.formats.style.Styler.set_table_styles" title="pandas.io.formats.style.Styler.set_table_styles"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Styler.set_table_styles()</span></code></a> and
-<a class="reference internal" href="pandas.io.formats.style.Styler.set_td_classes.html#pandas.io.formats.style.Styler.set_td_classes" title="pandas.io.formats.style.Styler.set_td_classes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Styler.set_td_classes()</span></code></a> are not exported, and only a subset of CSS
-properties is supported; see
-<a class="reference internal" href="../../user_guide/style.html"><span class="doc">Table Visualization</span></a>.
-Display formatting from <a class="reference internal" href="pandas.io.formats.style.Styler.format.html#pandas.io.formats.style.Styler.format" title="pandas.io.formats.style.Styler.format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Styler.format()</span></code></a> and hiding from
-<a class="reference internal" href="pandas.io.formats.style.Styler.hide.html#pandas.io.formats.style.Styler.hide" title="pandas.io.formats.style.Styler.hide"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Styler.hide()</span></code></a> are ignored. To control how values are displayed in
-Excel, set an Excel format code with the <code class="docutils literal notranslate"><span class="pre">number-format</span></code> property,
-writing <code class="docutils literal notranslate"><span class="pre">§</span></code> in place of Excel’s <code class="docutils literal notranslate"><span class="pre">;</span></code> section separator.</p>
 <p class="rubric">Examples</p>
 <p>Create, write to and save a workbook:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
@@ -745,15 +737,6 @@ necessary to specify an ExcelWriter object:</p>
 you can pass the <cite>engine</cite> keyword (the default engine is
 automatically chosen depending on the file extension):</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df1</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">"output1.xlsx"</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">"xlsxwriter"</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>To set Excel number formats, here showing negative totals in red:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"share"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">],</span> <span class="s2">"total"</span><span class="p">:</span> <span class="p">[</span><span class="mf">1234.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">99.0</span><span class="p">]})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">styler</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="s2">"number-format: 0.0%;"</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"share"</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">styler</span> <span class="o">=</span> <span class="n">styler</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="s2">"number-format: #,##0.00§[Red]-#,##0.00;"</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"total"</span><span class="p">]</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">styler</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">"styled.xlsx"</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
