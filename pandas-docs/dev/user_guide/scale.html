@@ -562,11 +562,13 @@ for datasets that fit in memory.</p>
 <section id="load-less-data">
 <h2>Load less data<a class="headerlink" href="#load-less-data" title="Link to this heading">#</a></h2>
 <p>Suppose our raw dataset on disk has many columns.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
 
-<span class="gp">In [2]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">In [2]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
-<span class="gp">In [3]: </span><span class="k">def</span><span class="w"> </span><span class="nf">make_timeseries</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">"2000-01-01"</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">"2000-12-31"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"1D"</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="gp">In [3]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="gp">In [4]: </span><span class="k">def</span><span class="w"> </span><span class="nf">make_timeseries</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">"2000-01-01"</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">"2000-12-31"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"1D"</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="gp">   ...: </span>    <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"timestamp"</span><span class="p">)</span>
 <span class="gp">   ...: </span>    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
 <span class="gp">   ...: </span>    <span class="n">state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
@@ -582,16 +584,16 @@ for datasets that fit in memory.</p>
 <span class="gp">   ...: </span>    <span class="k">return</span> <span class="n">df</span>
 <span class="gp">   ...: </span>
 
-<span class="gp">In [4]: </span><span class="n">timeseries</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">In [5]: </span><span class="n">timeseries</span> <span class="o">=</span> <span class="p">[</span>
 <span class="gp">   ...: </span>    <span class="n">make_timeseries</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">"1min"</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="gp">   ...: </span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="gp">   ...: </span><span class="p">]</span>
 <span class="gp">   ...: </span>
 
-<span class="gp">In [5]: </span><span class="n">ts_wide</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">timeseries</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">In [6]: </span><span class="n">ts_wide</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">timeseries</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="gp">In [6]: </span><span class="n">ts_wide</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="gh">Out[6]: </span>
+<span class="gp">In [7]: </span><span class="n">ts_wide</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[7]: </span>
 <span class="go">                     id_0 name_0       x_0  ...   name_9       x_9       y_9</span>
 <span class="go">timestamp                                   ...                             </span>
 <span class="go">2000-01-01 00:00:00   977  Alice -0.821225  ...  Charlie -0.957208 -0.757508</span>
@@ -602,15 +604,17 @@ for datasets that fit in memory.</p>
 
 <span class="go">[5 rows x 40 columns]</span>
 
-<span class="gp">In [7]: </span><span class="n">ts_wide</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">"timeseries_wide.parquet"</span><span class="p">)</span>
+<span class="gp">In [8]: </span><span class="n">tmpdir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">(</span><span class="n">ignore_cleanup_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">In [9]: </span><span class="n">ts_wide</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">tmpdir</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/timeseries_wide.parquet"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To load the columns we want, we have two options.
 Option 1 loads in all the data and then filters to what we need.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"id_0"</span><span class="p">,</span> <span class="s2">"name_0"</span><span class="p">,</span> <span class="s2">"x_0"</span><span class="p">,</span> <span class="s2">"y_0"</span><span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"id_0"</span><span class="p">,</span> <span class="s2">"name_0"</span><span class="p">,</span> <span class="s2">"x_0"</span><span class="p">,</span> <span class="s2">"y_0"</span><span class="p">]</span>
 
-<span class="gp">In [9]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">"timeseries_wide.parquet"</span><span class="p">)[</span><span class="n">columns</span><span class="p">]</span>
-<span class="gh">Out[9]: </span>
+<span class="gp">In [11]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">tmpdir</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/timeseries_wide.parquet"</span><span class="p">)[</span><span class="n">columns</span><span class="p">]</span>
+<span class="gh">Out[11]: </span>
 <span class="go">                     id_0 name_0       x_0       y_0</span>
 <span class="go">timestamp                                           </span>
 <span class="go">2000-01-01 00:00:00   977  Alice -0.821225  0.906222</span>
@@ -629,8 +633,8 @@ Option 1 loads in all the data and then filters to what we need.</p>
 </pre></div>
 </div>
 <p>Option 2 only loads the columns we request.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">"timeseries_wide.parquet"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
-<span class="gh">Out[10]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">tmpdir</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/timeseries_wide.parquet"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+<span class="gh">Out[12]: </span>
 <span class="go">                     id_0 name_0       x_0       y_0</span>
 <span class="go">timestamp                                           </span>
 <span class="go">2000-01-01 00:00:00   977  Alice -0.821225  0.906222</span>
@@ -660,14 +664,16 @@ to read a subset of columns.</p>
 especially true for text data columns with relatively few unique values (commonly
 referred to as “low-cardinality” data). By using more efficient data types, you
 can store larger datasets in memory.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">ts</span> <span class="o">=</span> <span class="n">make_timeseries</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">"30s"</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">ts</span> <span class="o">=</span> <span class="n">make_timeseries</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">"30s"</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="gp">In [12]: </span><span class="n">ts</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">"timeseries.parquet"</span><span class="p">)</span>
+<span class="gp">In [14]: </span><span class="n">tmpdir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">(</span><span class="n">ignore_cleanup_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="gp">In [13]: </span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">"timeseries.parquet"</span><span class="p">)</span>
+<span class="gp">In [15]: </span><span class="n">ts</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">tmpdir</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/timeseries.parquet"</span><span class="p">)</span>
 
-<span class="gp">In [14]: </span><span class="n">ts</span>
-<span class="gh">Out[14]: </span>
+<span class="gp">In [16]: </span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">tmpdir</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/timeseries.parquet"</span><span class="p">)</span>
+
+<span class="gp">In [17]: </span><span class="n">ts</span>
+<span class="gh">Out[17]: </span>
 <span class="go">                       id     name         x         y</span>
 <span class="go">timestamp                                             </span>
 <span class="go">2000-01-01 00:00:00  1041    Alice  0.889987  0.281011</span>
@@ -687,8 +693,8 @@ can store larger datasets in memory.</p>
 </div>
 <p>Now, let’s inspect the data types and memory usage to see where we should focus our
 attention.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">ts</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[15]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">ts</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[18]: </span>
 <span class="go">id        int64</span>
 <span class="go">name        str</span>
 <span class="go">x       float64</span>
@@ -696,8 +702,8 @@ attention.</p>
 <span class="go">dtype: object</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="n">ts</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># memory usage in bytes</span>
-<span class="gh">Out[16]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">ts</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># memory usage in bytes</span>
+<span class="gh">Out[19]: </span>
 <span class="go">Index     8409608</span>
 <span class="go">id        8409608</span>
 <span class="go">name     13667585</span>
@@ -710,12 +716,12 @@ attention.</p>
 few unique values, so it’s a good candidate for converting to a
 <a class="reference internal" href="../reference/api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Categorical</span></code></a>. With a <a class="reference internal" href="../reference/api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Categorical</span></code></a>, we store each unique name once and use
 space-efficient integers to know which specific name is used in each row.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="n">ts2</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">ts2</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-<span class="gp">In [18]: </span><span class="n">ts2</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts2</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"category"</span><span class="p">)</span>
+<span class="gp">In [21]: </span><span class="n">ts2</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts2</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"category"</span><span class="p">)</span>
 
-<span class="gp">In [19]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[19]: </span>
+<span class="gp">In [22]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[22]: </span>
 <span class="go">Index    8409608</span>
 <span class="go">id       8409608</span>
 <span class="go">name     1051240</span>
@@ -726,12 +732,12 @@ space-efficient integers to know which specific name is used in each row.</p>
 </div>
 <p>We can go a bit further and downcast the numeric columns to their smallest types
 using <a class="reference internal" href="../reference/api/pandas.to_numeric.html#pandas.to_numeric" title="pandas.to_numeric"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_numeric()</span></code></a>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">ts2</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ts2</span><span class="p">[</span><span class="s2">"id"</span><span class="p">],</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"unsigned"</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">ts2</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ts2</span><span class="p">[</span><span class="s2">"id"</span><span class="p">],</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"unsigned"</span><span class="p">)</span>
 
-<span class="gp">In [21]: </span><span class="n">ts2</span><span class="p">[[</span><span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">ts2</span><span class="p">[[</span><span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"float"</span><span class="p">)</span>
+<span class="gp">In [24]: </span><span class="n">ts2</span><span class="p">[[</span><span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">ts2</span><span class="p">[[</span><span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"float"</span><span class="p">)</span>
 
-<span class="gp">In [22]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[22]: </span>
+<span class="gp">In [25]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[25]: </span>
 <span class="go">id        uint16</span>
 <span class="go">name    category</span>
 <span class="go">x        float32</span>
@@ -739,8 +745,8 @@ using <a class="reference internal" href="../reference/api/pandas.to_numeric.htm
 <span class="go">dtype: object</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[23]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[26]: </span>
 <span class="go">Index    8409608</span>
 <span class="go">id       2102402</span>
 <span class="go">name     1051240</span>
@@ -749,9 +755,9 @@ using <a class="reference internal" href="../reference/api/pandas.to_numeric.htm
 <span class="go">dtype: int64</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">reduction</span> <span class="o">=</span> <span class="n">ts2</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">ts</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">reduction</span> <span class="o">=</span> <span class="n">ts2</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">ts</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
-<span class="gp">In [25]: </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">reduction</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="gp">In [28]: </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">reduction</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="go">0.42</span>
 </pre></div>
 </div>
@@ -773,19 +779,17 @@ coordination between chunks. For more complicated workflows, you’re better off
 </div>
 <p>Suppose we have an even larger “logical dataset” on disk that’s a directory of parquet
 files. Each file in the directory represents a different year of the entire dataset.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
 
-<span class="gp">In [27]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="gp">In [30]: </span><span class="n">N</span> <span class="o">=</span> <span class="mi">12</span>
 
-<span class="gp">In [28]: </span><span class="n">N</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="gp">In [31]: </span><span class="n">starts</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"20</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">&gt;02d</span><span class="si">}</span><span class="s2">-01-01"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
 
-<span class="gp">In [29]: </span><span class="n">starts</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"20</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">&gt;02d</span><span class="si">}</span><span class="s2">-01-01"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+<span class="gp">In [32]: </span><span class="n">ends</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"20</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">&gt;02d</span><span class="si">}</span><span class="s2">-12-13"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
 
-<span class="gp">In [30]: </span><span class="n">ends</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"20</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">&gt;02d</span><span class="si">}</span><span class="s2">-12-13"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+<span class="gp">In [33]: </span><span class="n">tmpdir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">(</span><span class="n">ignore_cleanup_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="gp">In [31]: </span><span class="n">tmpdir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">(</span><span class="n">ignore_cleanup_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="gp">In [32]: </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">starts</span><span class="p">,</span> <span class="n">ends</span><span class="p">)):</span>
+<span class="gp">In [34]: </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">starts</span><span class="p">,</span> <span class="n">ends</span><span class="p">)):</span>
 <span class="gp">   ....: </span>    <span class="n">ts</span> <span class="o">=</span> <span class="n">make_timeseries</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"1min"</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
 <span class="gp">   ....: </span>    <span class="n">ts</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">tmpdir</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/ts-</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">0&gt;2d</span><span class="si">}</span><span class="s2">.parquet"</span><span class="p">)</span>
 <span class="gp">   ....: </span>
@@ -810,7 +814,7 @@ files. Each file in the directory represents a different year of the entire data
 workflow is the single largest chunk, plus a small series storing the unique value
 counts up to this point. As long as each individual file fits in memory, this will
 work for arbitrary-sized datasets.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [33]: </span><span class="o">%%time</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [35]: </span><span class="o">%%time</span>
 <span class="gp">   ....: </span><span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">tmpdir</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/ts*.parquet"</span><span class="p">)</span>
 <span class="gp">   ....: </span><span class="n">counts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 <span class="gp">   ....: </span><span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
@@ -818,9 +822,9 @@ work for arbitrary-sized datasets.</p>
 <span class="gp">   ....: </span>    <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(),</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">   ....: </span><span class="n">counts</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 <span class="gp">   ....: </span>
-<span class="go">CPU times: user 550 ms, sys: 19.2 ms, total: 570 ms</span>
-<span class="go">Wall time: 549 ms</span>
-<span class="gh">Out[33]: </span>
+<span class="go">CPU times: user 584 ms, sys: 24.5 ms, total: 608 ms</span>
+<span class="go">Wall time: 586 ms</span>
+<span class="gh">Out[35]: </span>
 <span class="go">name</span>
 <span class="go">Alice      1994645</span>
 <span class="go">Bob        1993692</span>
