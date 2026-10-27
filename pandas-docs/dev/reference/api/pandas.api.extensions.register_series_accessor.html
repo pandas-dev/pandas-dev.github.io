@@ -557,7 +557,7 @@
 <h1>pandas.api.extensions.register_series_accessor<a class="headerlink" href="#pandas-api-extensions-register-series-accessor" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.api.extensions.register_series_accessor">
-<span class="sig-prename descclassname"><span class="pre">pandas.api.extensions.</span></span><span class="sig-name descname"><span class="pre">register_series_accessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/accessor.py#L385-L454"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.register_series_accessor" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.api.extensions.</span></span><span class="sig-name descname"><span class="pre">register_series_accessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/accessor.py#L392-L465"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.register_series_accessor" title="Link to this definition">#</a></dt>
 <dd><p>Register a custom accessor on Series objects.</p>
 <p>Use as a decorator to add a custom namespace accessor to Series,
 allowing domain-specific methods to be called via <code class="docutils literal notranslate"><span class="pre">ser.&lt;name&gt;</span></code>.</p>
@@ -606,6 +606,9 @@ needed.</p></li>
 </ul>
 </li>
 </ul>
+<p>A new accessor instance is created on each attribute access, so state
+stored on the accessor is not retained. Store per-object metadata in
+<a class="reference internal" href="pandas.Series.attrs.html#pandas.Series.attrs" title="pandas.Series.attrs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Series.attrs</span></code></a> instead.</p>
 <p class="rubric">Examples</p>
 <p>An accessor that only accepts integers could
 have a class defined like this:</p>
