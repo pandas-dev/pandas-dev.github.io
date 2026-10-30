@@ -1125,6 +1125,7 @@ Optional libraries below the lowest tested version may still work, but are not c
 <li><p>Bug in calling a generalized ufunc on a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> raising <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> when it reduced <code class="docutils literal notranslate"><span class="pre">object</span></code> data to a single object pandas does not recognize as a scalar, e.g. <code class="docutils literal notranslate"><span class="pre">shapely.geometrycollections</span></code> returning a geometry (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/71109">GH 71109</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.DataFrame.eval.html#pandas.DataFrame.eval" title="pandas.DataFrame.eval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.eval()</span></code></a>, and <a class="reference internal" href="../reference/api/pandas.DataFrame.query.html#pandas.DataFrame.query" title="pandas.DataFrame.query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.query()</span></code></a> raising on some <code class="docutils literal notranslate"><span class="pre">datetime64</span></code> and <code class="docutils literal notranslate"><span class="pre">timedelta64</span></code> operations, e.g. <code class="docutils literal notranslate"><span class="pre">df.query(&quot;time</span> <span class="pre">&gt;</span> <span class="pre">&#64;now</span> <span class="pre">-</span> <span class="pre">&#64;delta&quot;)</span></code>, and returning <code class="docutils literal notranslate"><span class="pre">float32</span></code> for a <code class="docutils literal notranslate"><span class="pre">float32</span></code> column times a <code class="docutils literal notranslate"><span class="pre">np.timedelta64</span></code> (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/30729">GH 30729</a>, <a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/52559">GH 52559</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.replace.html#pandas.DataFrame.replace" title="pandas.DataFrame.replace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.replace()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.replace.html#pandas.Series.replace" title="pandas.Series.replace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.replace()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code> and a list-like or dict <code class="docutils literal notranslate"><span class="pre">to_replace</span></code> using memory proportional to the number of values to replace times the length of the data, raising <code class="docutils literal notranslate"><span class="pre">MemoryError</span></code> for large mappings (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/25816">GH 25816</a>)</p></li>
+<li><p>Bug where configuration options and pandas’ C extension modules could be left uninitialized when running under Python’s global lazy imports mode (<code class="docutils literal notranslate"><span class="pre">-X</span> <span class="pre">lazy_imports=all</span></code>) (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/71173">GH 71173</a>)</p></li>
 </ul>
 <ul class="simple">
 <li></li>
@@ -1134,7 +1135,7 @@ Optional libraries below the lowest tested version may still work, but are not c
 </section>
 <section id="contributors">
 <span id="whatsnew-320-contributors"></span><h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading">#</a></h2>
-<p>A total of 71 people contributed patches to this release.  People with a
+<p>A total of 72 people contributed patches to this release.  People with a
 “+” by their names contributed a patch for the first time.
 </p>
 <ul class="simple">
@@ -1184,6 +1185,7 @@ Optional libraries below the lowest tested version may still work, but are not c
 <li><p>Mohd Maaz Khan +</p></li>
 <li><p>N3verm1nd</p></li>
 <li><p>Natalia Mokeeva</p></li>
+<li><p>Noah</p></li>
 <li><p>Odysseas Yiakoumis +</p></li>
 <li><p>Parman Mohammadalizadeh +</p></li>
 <li><p>Richard Shadrach</p></li>
