@@ -1160,12 +1160,13 @@ via <code class="docutils literal notranslate"><span class="pre">object</span></
 </section>
 <section id="thread-safety">
 <span id="gotchas-thread-safety"></span><h2>Thread-safety<a class="headerlink" href="#thread-safety" title="Link to this heading">#</a></h2>
-<p>pandas is not 100% thread safe. The known issues relate to
-the <a class="reference internal" href="../reference/api/pandas.DataFrame.copy.html#pandas.DataFrame.copy" title="pandas.DataFrame.copy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">copy()</span></code></a> method. If you are doing a lot of copying of
-<a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> objects shared among threads, we recommend holding locks inside
-the threads where the data copying occurs.</p>
-<p>See <a class="reference external" href="https://stackoverflow.com/questions/13592618/python-pandas-dataframe-thread-safe">this link</a>
-for more information.</p>
+<p>pandas objects are not safe to mutate while another thread is reading or
+writing them. This applies to all operations, not just <a class="reference internal" href="../reference/api/pandas.DataFrame.copy.html#pandas.DataFrame.copy" title="pandas.DataFrame.copy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">copy()</span></code></a>.
+If threads share a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> and any of them modifies it, guard every
+access with a lock, or give each thread its own copy made under that lock.</p>
+<p>Options are global: <a class="reference internal" href="../reference/api/pandas.set_option.html#pandas.set_option" title="pandas.set_option"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_option()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.option_context.html#pandas.option_context" title="pandas.option_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">option_context()</span></code></a> in one thread
+affect every other thread, including where pandas sets an option internally, as
+<a class="reference internal" href="../reference/api/pandas.DataFrame.to_string.html#pandas.DataFrame.to_string" title="pandas.DataFrame.to_string"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_string()</span></code></a> does for <code class="docutils literal notranslate"><span class="pre">max_colwidth</span></code>.</p>
 </section>
 <section id="byte-ordering-issues">
 <h2>Byte-ordering issues<a class="headerlink" href="#byte-ordering-issues" title="Link to this heading">#</a></h2>
