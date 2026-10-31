@@ -863,7 +863,7 @@ produce either:</p>
 <li><p>A <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>, in the case of a <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> in the columns.</p></li>
 </ul>
 <p>If the columns have a <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a>, you can choose which level to stack. The
-stacked level becomes the new lowest level in a <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> on the columns:</p>
+stacked level becomes the new inner-most level of the row index:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="n">stacked</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
 
 <span class="gp">In [26]: </span><span class="n">stacked</span>
@@ -943,7 +943,7 @@ while <a class="reference internal" href="../reference/api/pandas.DataFrame.stac
 <span class="go">1 a  1.024180</span>
 <span class="go">  b  0.569605</span>
 
-<span class="gp">In [34]: </span><span class="nb">all</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span> <span class="o">==</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">())</span>
+<span class="gp">In [34]: </span><span class="n">df</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">())</span>
 <span class="gh">Out[34]: </span><span class="go">True</span>
 </pre></div>
 </div>
@@ -1391,7 +1391,7 @@ specify <code class="docutils literal notranslate"><span class="pre">drop_first=
 </pre></div>
 </div>
 <p><a class="reference internal" href="../reference/api/pandas.from_dummies.html#pandas.from_dummies" title="pandas.from_dummies"><code class="xref py py-func docutils literal notranslate"><span class="pre">from_dummies()</span></code></a> converts the output of <a class="reference internal" href="../reference/api/pandas.get_dummies.html#pandas.get_dummies" title="pandas.get_dummies"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_dummies()</span></code></a> back into
-a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> of categorical values from indicator values.</p>
+a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> of categorical values from indicator values.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [89]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"prefix_a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">"prefix_b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
 
 <span class="gp">In [90]: </span><span class="n">df</span>
