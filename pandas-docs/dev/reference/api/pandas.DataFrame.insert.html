@@ -767,7 +767,7 @@
 <h1>pandas.DataFrame.insert<a class="headerlink" href="#pandas-dataframe-insert" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.DataFrame.insert">
-<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_duplicates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L6231-L6316"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.insert" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_duplicates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L6231-L6318"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.insert" title="Link to this definition">#</a></dt>
 <dd><p>Insert column into DataFrame at specified location.</p>
 <p>Raises a ValueError if <cite>column</cite> is already contained in the DataFrame,
 unless <cite>allow_duplicates</cite> is set to True.</p>
@@ -778,7 +778,9 @@ unless <cite>allow_duplicates</cite> is set to True.</p>
 </dd>
 <dt><strong>column</strong><span class="classifier">str, number, or hashable object</span></dt><dd><p>Label of the inserted column.</p>
 </dd>
-<dt><strong>value</strong><span class="classifier">Scalar, Series, or array-like</span></dt><dd><p>Content of the inserted column.</p>
+<dt><strong>value</strong><span class="classifier">Scalar, Series, or array-like</span></dt><dd><p>Content of the inserted column. A Series is aligned to the
+DataFrame’s index: index labels missing from <code class="docutils literal notranslate"><span class="pre">value</span></code> become
+missing values, and labels of <code class="docutils literal notranslate"><span class="pre">value</span></code> not in the index are dropped.</p>
 </dd>
 <dt><strong>allow_duplicates</strong><span class="classifier">bool, default False</span></dt><dd><p>Allow duplicate column labels to be created.</p>
 </dd>
@@ -810,7 +812,7 @@ unless <cite>allow_duplicates</cite> is set to True.</p>
 <span class="go">1   100     2      99     4</span>
 </pre></div>
 </div>
-<p>Notice that pandas uses index alignment in case of <cite>value</cite> from type <cite>Series</cite>:</p>
+<p>A Series is aligned on the index:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"col0"</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
 <span class="go">   col0  col1  col1  newcol  col2</span>
