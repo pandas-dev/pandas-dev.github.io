@@ -909,7 +909,7 @@
 <dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/generic.py#L8239-L8461"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.interpolate" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/generic.py#L8239-L8469"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.interpolate" title="Link to this definition">#</a></dt>
 <dd><p>Fill NaN values using an interpolation method.</p>
 <p>Please note that only <code class="docutils literal notranslate"><span class="pre">method='linear'</span></code> is supported for
 DataFrame/Series with a MultiIndex.</p>
@@ -928,7 +928,7 @@ of the DataFrame’s index to linearly calculate missing values.</p></li>
 <li><p>‘values’: Interpolation based on the numerical values
 in the DataFrame, treating them as equally spaced along the index.</p></li>
 <li><p>‘nearest’, ‘zero’, ‘slinear’, ‘quadratic’, ‘cubic’,
-‘barycentric’, ‘polynomial’: Passed to
+‘polynomial’: Passed to
 <cite>scipy.interpolate.interp1d</cite>, whereas ‘spline’ is passed to
 <cite>scipy.interpolate.UnivariateSpline</cite>. These methods use the numerical
 values of the index.  Both ‘polynomial’ and ‘spline’ require that
@@ -936,9 +936,9 @@ you also specify an <cite>order</cite> (int), e.g.
 <code class="docutils literal notranslate"><span class="pre">df.interpolate(method='polynomial',</span> <span class="pre">order=5)</span></code>. Note that,
 <cite>slinear</cite> method in Pandas refers to the Scipy first order <cite>spline</cite>
 instead of Pandas first order <cite>spline</cite>.</p></li>
-<li><p>‘krogh’, ‘piecewise_polynomial’, ‘spline’, ‘pchip’, ‘akima’,
-‘cubicspline’: Wrappers around the SciPy interpolation methods of
-similar names. See <cite>Notes</cite>.</p></li>
+<li><p>‘barycentric’, ‘krogh’, ‘piecewise_polynomial’, ‘spline’,
+‘pchip’, ‘akima’, ‘cubicspline’: Wrappers around the SciPy
+interpolation methods of similar names. See <cite>Notes</cite>.</p></li>
 <li><p>‘from_derivatives’: Refers to
 <cite>scipy.interpolate.BPoly.from_derivatives</cite>.</p></li>
 </ul>
@@ -967,7 +967,14 @@ the valid values.</p>
 <dt><strong>**kwargs</strong><span class="classifier">optional</span></dt><dd><p>Keyword arguments to pass on to the interpolating function. Not
 all methods use them: the <code class="docutils literal notranslate"><span class="pre">'linear'</span></code>, <code class="docutils literal notranslate"><span class="pre">'time'</span></code>, <code class="docutils literal notranslate"><span class="pre">'index'</span></code>,
 and <code class="docutils literal notranslate"><span class="pre">'values'</span></code> methods use NumPy and ignore any extra keyword
-arguments (for example, <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code>).</p>
+arguments (for example, <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code>) other than
+<code class="docutils literal notranslate"><span class="pre">fill_value=&quot;extrapolate&quot;</span></code>.</p>
+<p>NaNs before the first or after the last valid value are filled
+with the nearest valid value by the NumPy-based methods and left
+as NaN by the <cite>scipy.interpolate.interp1d</cite> methods. Pass
+<code class="docutils literal notranslate"><span class="pre">fill_value=&quot;extrapolate&quot;</span></code> to extrapolate them instead. Leading
+NaNs are only filled when <code class="docutils literal notranslate"><span class="pre">limit_direction</span></code> is ‘backward’ or
+‘both’.</p>
 </dd>
 </dl>
 </dd>
