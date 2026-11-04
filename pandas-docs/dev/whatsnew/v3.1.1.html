@@ -716,6 +716,7 @@ including other versions of pandas.</p>
 <span id="whatsnew-311-bugs"></span><h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Fixed <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> when using dateutil timezones such as <code class="docutils literal notranslate"><span class="pre">&quot;dateutil/US/Pacific&quot;</span></code> with python-dateutil 3.0 (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/71459">GH 71459</a>)</p></li>
+<li><p>Fixed bug in string methods using regex patterns on PyArrow-backed string dtypes where <code class="docutils literal notranslate"><span class="pre">\s</span></code> incorrectly did not match (and <code class="docutils literal notranslate"><span class="pre">\S</span></code> matched) whitespace such as <code class="docutils literal notranslate"><span class="pre">&quot;\x0b&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;\x1c&quot;</span></code> in all-ASCII data (<a class="extlink-issue reference external" href="https://github.com/pandas-dev/pandas/issues/70991">GH 70991</a>)</p></li>
 </ul>
 <section id="build">
 <span id="whatsnew-311-packaging-build"></span><h3>Build<a class="headerlink" href="#build" title="Link to this heading">#</a></h3>
