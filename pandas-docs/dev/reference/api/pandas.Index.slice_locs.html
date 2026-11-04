@@ -803,7 +803,7 @@
 <h1>pandas.Index.slice_locs<a class="headerlink" href="#pandas-index-slice-locs" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.Index.slice_locs">
-<span class="sig-prename descclassname"><span class="pre">Index.</span></span><span class="sig-name descname"><span class="pre">slice_locs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/base.py#L7362-L7477"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Index.slice_locs" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Index.</span></span><span class="sig-name descname"><span class="pre">slice_locs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/base.py#L7362-L7493"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Index.slice_locs" title="Link to this definition">#</a></dt>
 <dd><p>Compute slice locations for input labels.</p>
 <p>This method determines the integer start and end positions for a
 label-based slice, which is useful for translating label-based
@@ -815,14 +815,16 @@ slicing into positional slicing on the underlying data.</p>
 </dd>
 <dt><strong>end</strong><span class="classifier">label, default None</span></dt><dd><p>If None, defaults to the end.</p>
 </dd>
-<dt><strong>step</strong><span class="classifier">int, defaults None</span></dt><dd><p>If None, defaults to 1.</p>
+<dt><strong>step</strong><span class="classifier">int, defaults None</span></dt><dd><p>If None, defaults to 1. Only the sign is used: a negative <code class="docutils literal notranslate"><span class="pre">step</span></code>
+gives bounds for a reversed slice.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>tuple[int, int]</dt><dd><p>Returns a tuple of two integers representing the slice locations for the
-input labels within the index.</p>
+input labels within the index. Use them together with <code class="docutils literal notranslate"><span class="pre">step</span></code>, as
+<code class="docutils literal notranslate"><span class="pre">slice(start,</span> <span class="pre">end,</span> <span class="pre">step)</span></code>.</p>
 </dd>
 </dl>
 </dd>
@@ -833,6 +835,8 @@ input labels within the index.</p>
 <dt><a class="reference internal" href="pandas.Index.get_loc.html#pandas.Index.get_loc" title="pandas.Index.get_loc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Index.get_loc</span></code></a></dt><dd><p>Get location for a single label.</p>
 </dd>
 <dt><a class="reference internal" href="pandas.Index.get_slice_bound.html#pandas.Index.get_slice_bound" title="pandas.Index.get_slice_bound"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Index.get_slice_bound</span></code></a></dt><dd><p>Calculate the slice bound for a single label; used internally by <code class="docutils literal notranslate"><span class="pre">slice_locs</span></code> for each of <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code>.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Index.slice_indexer.html#pandas.Index.slice_indexer" title="pandas.Index.slice_indexer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Index.slice_indexer</span></code></a></dt><dd><p>Compute the slice for input labels, including <code class="docutils literal notranslate"><span class="pre">step</span></code>.</p>
 </dd>
 </dl>
 </div>
@@ -855,6 +859,18 @@ positions:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="s2">"bcde"</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">slice_locs</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">"a"</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">"c"</span><span class="p">)</span>
 <span class="go">(0, 2)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">step</span></code> only sets the direction; apply it to the returned bounds:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="s2">"abcde"</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">slice_locs</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">"b"</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">"d"</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">(1, 4)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">Index(['b', 'd'], dtype='str')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">slice_locs</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">"d"</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">"b"</span><span class="p">,</span> <span class="n">step</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">(3, 0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">Index(['d', 'c', 'b'], dtype='str')</span>
 </pre></div>
 </div>
 </dd></dl>
