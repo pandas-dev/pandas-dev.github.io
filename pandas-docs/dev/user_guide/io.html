@@ -2019,41 +2019,16 @@ too many fields will raise an error by default:</p>
 <span class="g g-Whitespace">    </span><span class="mi">300</span>             <span class="n">chunks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_low_memory_column_labels</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">301</span>         <span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/_libs/parsers.pyx:1049,</span> in <span class="ni">pandas._libs.parsers.TextReader.read_low_memory</span><span class="nt">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1047</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1048</span>     <span class="bp">self</span><span class="o">.</span><span class="n">lm_chunk_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1049</span>     <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_rows</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer_lines</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1051</span>         <span class="k">break</span>
-
-<span class="nn">File ~/work/pandas/pandas/pandas/_libs/parsers.pyx:1190,</span> in <span class="ni">pandas._libs.parsers.TextReader._read_rows</span><span class="nt">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1188</span> <span class="n">buffered_lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">lines</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser_start</span>
-<span class="g g-Whitespace">   </span><span class="mi">1189</span> <span class="k">if</span> <span class="n">buffered_lines</span> <span class="o">&lt;</span> <span class="n">irows</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1190</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_tokenize_rows</span><span class="p">(</span><span class="n">irows</span> <span class="o">-</span> <span class="n">buffered_lines</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1191</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1192</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">skipfooter</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-
-<span class="nn">File ~/work/pandas/pandas/pandas/_libs/parsers.pyx:1157,</span> in <span class="ni">pandas._libs.parsers.TextReader._tokenize_rows</span><span class="nt">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1155</span>         <span class="n">status</span> <span class="o">=</span> <span class="n">tokenize_nrows</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="p">,</span> <span class="n">nrows</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoding_errors</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1156</span> 
-<span class="ne">-&gt; </span><span class="mi">1157</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_tokenize_status</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1158</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1159</span> <span class="n">cdef</span> <span class="n">_warn_parser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">object</span> <span class="n">msg</span><span class="p">):</span>
-
-<span class="nn">File ~/work/pandas/pandas/pandas/_libs/parsers.pyx:1178,</span> in <span class="ni">pandas._libs.parsers.TextReader._check_tokenize_status</span><span class="nt">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1176</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1177</span>         <span class="k">if</span> <span class="n">status</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1178</span>             <span class="n">raise_parser_error</span><span class="p">(</span><span class="s2">"Error tokenizing data"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1179</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1180</span>     <span class="c1">#  -&gt; dict[int, "ArrayLike"]</span>
-
-<span class="nn">File ~/work/pandas/pandas/pandas/_libs/parsers.pyx:4469,</span> in <span class="ni">pandas._libs.parsers.raise_parser_error</span><span class="nt">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">4467</span>     <span class="n">message</span> <span class="o">+=</span> <span class="s2">"no error message set"</span>
-<span class="g g-Whitespace">   </span><span class="mi">4468</span> 
-<span class="ne">-&gt; </span><span class="mi">4469</span> <span class="k">raise</span> <span class="n">ParserError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4470</span> 
-<span class="g g-Whitespace">   </span><span class="mi">4471</span> 
-
+<span class="nn">File pandas/_libs/parsers.pyx:1049,</span> in <span class="ni">pandas._libs.parsers.TextReader.read_low_memory</span><span class="nt">()</span>
+<span class="ne">-&gt; </span><span class="mi">1049</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/parsers.pyx:1190,</span> in <span class="ni">pandas._libs.parsers.TextReader._read_rows</span><span class="nt">()</span>
+<span class="ne">-&gt; </span><span class="mi">1190</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/parsers.pyx:1157,</span> in <span class="ni">pandas._libs.parsers.TextReader._tokenize_rows</span><span class="nt">()</span>
+<span class="ne">-&gt; </span><span class="mi">1157</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/parsers.pyx:1178,</span> in <span class="ni">pandas._libs.parsers.TextReader._check_tokenize_status</span><span class="nt">()</span>
+<span class="ne">-&gt; </span><span class="mi">1178</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+<span class="nn">File pandas/_libs/parsers.pyx:4469,</span> in <span class="ni">pandas._libs.parsers.raise_parser_error</span><span class="nt">()</span>
+<span class="ne">-&gt; </span><span class="mi">4469</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
 <span class="ne">ParserError</span>: Error tokenizing data. C error: Expected 3 fields in line 3, saw 4
 </pre></div>
 </div>
@@ -2529,16 +2504,16 @@ class of the csv module. For this, you have to specify <code class="docutils lit
 <span class="gp">In [208]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"tmp2.csv"</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="gh">Out[208]: </span>
 <span class="go">          0         1         2         3</span>
-<span class="go">0  0.555713 -1.223282 -1.450642  0.897600</span>
-<span class="go">1  2.048054  1.579145 -1.198990 -1.397570</span>
-<span class="go">2  1.042002  0.510824 -1.900585  0.307899</span>
-<span class="go">3  0.961009 -0.011754 -0.632152  0.352296</span>
-<span class="go">4 -0.056088 -0.323382  0.873672 -2.033703</span>
-<span class="go">5  0.666345  1.498827  2.897208  0.204013</span>
-<span class="go">6 -1.319656 -0.224790 -0.055491 -1.104996</span>
-<span class="go">7 -0.605106 -2.306832 -0.466432 -1.160481</span>
-<span class="go">8 -1.369572 -1.151528  1.682292  0.570325</span>
-<span class="go">9  1.257612  1.667699 -0.475006 -2.145861</span>
+<span class="go">0  0.469112 -0.282863 -1.509059 -1.135632</span>
+<span class="go">1  1.212112 -0.173215  0.119209 -1.044236</span>
+<span class="go">2 -0.861849 -2.104569 -0.494929  1.071804</span>
+<span class="go">3  0.721555 -0.706771 -1.039575  0.271860</span>
+<span class="go">4 -0.424972  0.567020  0.276232 -1.087401</span>
+<span class="go">5 -0.673690  0.113648 -1.478427  0.524988</span>
+<span class="go">6  0.404705  0.577046 -1.715002 -1.039268</span>
+<span class="go">7 -0.370647 -1.157892 -1.344312  0.844885</span>
+<span class="go">8  1.075770 -0.109050  1.643563 -1.469388</span>
+<span class="go">9  0.357021 -0.674600 -1.776904 -0.968914</span>
 </pre></div>
 </div>
 </section>
@@ -2560,16 +2535,16 @@ rather than reading the entire file into memory, such as the following:</p>
 <span class="gp">In [212]: </span><span class="n">table</span>
 <span class="gh">Out[212]: </span>
 <span class="go">          0         1         2         3</span>
-<span class="go">0 -1.294266  0.833517 -1.284508 -1.194911</span>
-<span class="go">1 -0.476626  0.164135 -0.143885 -0.384832</span>
-<span class="go">2  1.100872  0.650728 -0.375448  0.551834</span>
-<span class="go">3  1.133608 -0.221709 -0.626874 -0.644573</span>
-<span class="go">4 -1.100251 -0.730239  1.455404 -1.212999</span>
-<span class="go">5 -1.183110 -1.387966  0.908781  0.243323</span>
-<span class="go">6  2.124481  1.232869  0.153496 -1.175995</span>
-<span class="go">7 -0.923921 -0.365768 -0.707248 -0.110331</span>
-<span class="go">8  0.271493 -1.974140  0.891832  0.922154</span>
-<span class="go">9  0.915800  2.232607 -0.147799 -2.738233</span>
+<span class="go">0 -1.294524  0.413738  0.276662 -0.472035</span>
+<span class="go">1 -0.013960 -0.362543 -0.006154 -0.923061</span>
+<span class="go">2  0.895717  0.805244 -1.206412  2.565646</span>
+<span class="go">3  1.431256  1.340309 -1.170299 -0.226169</span>
+<span class="go">4  0.410835  0.813850  0.132003 -0.827317</span>
+<span class="go">5 -0.076467 -1.187678  1.130127 -1.436737</span>
+<span class="go">6 -1.413681  1.607920  1.024180  0.569605</span>
+<span class="go">7  0.875906 -2.211372  0.974466 -2.006747</span>
+<span class="go">8 -0.410001 -0.078638  0.545952 -1.219217</span>
+<span class="go">9 -1.226825  0.769804 -1.281247 -0.727707</span>
 </pre></div>
 </div>
 <p>By specifying a <code class="docutils literal notranslate"><span class="pre">chunksize</span></code> to <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a> as a context manager, the return
@@ -2579,20 +2554,20 @@ value will be an iterable object of type <code class="docutils literal notransla
 <span class="gp">   .....: </span>    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
 <span class="gp">   .....: </span>        <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7f2081839af0&gt;</span>
+<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7f8b57ce4d10&gt;</span>
 <span class="go">          0         1         2         3</span>
-<span class="go">0 -1.294266  0.833517 -1.284508 -1.194911</span>
-<span class="go">1 -0.476626  0.164135 -0.143885 -0.384832</span>
-<span class="go">2  1.100872  0.650728 -0.375448  0.551834</span>
-<span class="go">3  1.133608 -0.221709 -0.626874 -0.644573</span>
+<span class="go">0 -1.294524  0.413738  0.276662 -0.472035</span>
+<span class="go">1 -0.013960 -0.362543 -0.006154 -0.923061</span>
+<span class="go">2  0.895717  0.805244 -1.206412  2.565646</span>
+<span class="go">3  1.431256  1.340309 -1.170299 -0.226169</span>
 <span class="go">          0         1         2         3</span>
-<span class="go">4 -1.100251 -0.730239  1.455404 -1.212999</span>
-<span class="go">5 -1.183110 -1.387966  0.908781  0.243323</span>
-<span class="go">6  2.124481  1.232869  0.153496 -1.175995</span>
-<span class="go">7 -0.923921 -0.365768 -0.707248 -0.110331</span>
+<span class="go">4  0.410835  0.813850  0.132003 -0.827317</span>
+<span class="go">5 -0.076467 -1.187678  1.130127 -1.436737</span>
+<span class="go">6 -1.413681  1.607920  1.024180  0.569605</span>
+<span class="go">7  0.875906 -2.211372  0.974466 -2.006747</span>
 <span class="go">          0         1         2         3</span>
-<span class="go">8  0.271493 -1.974140  0.891832  0.922154</span>
-<span class="go">9  0.915800  2.232607 -0.147799 -2.738233</span>
+<span class="go">8 -0.410001 -0.078638  0.545952 -1.219217</span>
+<span class="go">9 -1.226825  0.769804 -1.281247 -0.727707</span>
 </pre></div>
 </div>
 <p>Specifying <code class="docutils literal notranslate"><span class="pre">iterator=True</span></code> will also return the <code class="docutils literal notranslate"><span class="pre">TextFileReader</span></code> object:</p>
@@ -2600,11 +2575,11 @@ value will be an iterable object of type <code class="docutils literal notransla
 <span class="gp">   .....: </span>    <span class="nb">print</span><span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">get_chunk</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 <span class="gp">   .....: </span>
 <span class="go">          0         1         2         3</span>
-<span class="go">0 -1.294266  0.833517 -1.284508 -1.194911</span>
-<span class="go">1 -0.476626  0.164135 -0.143885 -0.384832</span>
-<span class="go">2  1.100872  0.650728 -0.375448  0.551834</span>
-<span class="go">3  1.133608 -0.221709 -0.626874 -0.644573</span>
-<span class="go">4 -1.100251 -0.730239  1.455404 -1.212999</span>
+<span class="go">0 -1.294524  0.413738  0.276662 -0.472035</span>
+<span class="go">1 -0.013960 -0.362543 -0.006154 -0.923061</span>
+<span class="go">2  0.895717  0.805244 -1.206412  2.565646</span>
+<span class="go">3  1.431256  1.340309 -1.170299 -0.226169</span>
+<span class="go">4  0.410835  0.813850  0.132003 -0.827317</span>
 </pre></div>
 </div>
 </section>
@@ -2942,7 +2917,7 @@ This can be <code class="docutils literal notranslate"><span class="pre">None</s
 <span class="gp">In [216]: </span><span class="n">json</span> <span class="o">=</span> <span class="n">dfj</span><span class="o">.</span><span class="n">to_json</span><span class="p">()</span>
 
 <span class="gp">In [217]: </span><span class="n">json</span>
-<span class="gh">Out[217]: </span><span class="go">'{"A":{"0":-0.5554772923,"1":0.7766091348,"2":0.1458701815,"3":-0.7607210528,"4":0.5837791576},"B":{"0":1.200608743,"1":-2.0181596461,"2":1.0361773126,"3":-0.5084982223,"4":0.321393555}}'</span>
+<span class="gh">Out[217]: </span><span class="go">'{"A":{"0":-0.1213062281,"1":0.6957746499,"2":0.9597255933,"3":-0.6199759194,"4":-0.7323393705},"B":{"0":-0.0978826728,"1":0.3417343559,"2":-1.1103361029,"3":0.1497483186,"4":0.6877383895}}'</span>
 </pre></div>
 </div>
 <section id="orient-options">
@@ -3038,14 +3013,14 @@ label ordering use the <code class="docutils literal notranslate"><span class="p
 <span class="gp">In [233]: </span><span class="n">json</span> <span class="o">=</span> <span class="n">dfd</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">date_format</span><span class="o">=</span><span class="s2">"iso"</span><span class="p">)</span>
 
 <span class="gp">In [234]: </span><span class="n">json</span>
-<span class="gh">Out[234]: </span><span class="go">'{"date":{"0":"2013-01-01T00:00:00.000","1":"2013-01-01T00:00:00.000","2":"2013-01-01T00:00:00.000","3":"2013-01-01T00:00:00.000","4":"2013-01-01T00:00:00.000"},"B":{"0":1.1990757159,"1":-0.0133092534,"2":-0.235694838,"3":1.8105140418,"4":1.7710076301},"A":{"0":-0.5112692442,"1":-0.0729303842,"2":-1.3922257201,"3":0.8256473804,"4":-0.5855511163}}'</span>
+<span class="gh">Out[234]: </span><span class="go">'{"date":{"0":"2013-01-01T00:00:00.000","1":"2013-01-01T00:00:00.000","2":"2013-01-01T00:00:00.000","3":"2013-01-01T00:00:00.000","4":"2013-01-01T00:00:00.000"},"B":{"0":0.403309524,"1":0.3016244523,"2":-1.3698493577,"3":1.4626960492,"4":-0.8265909164},"A":{"0":0.1764443426,"1":-0.1549507744,"2":-2.1798606054,"3":-0.9542078401,"4":-1.7431609117}}'</span>
 </pre></div>
 </div>
 <p>Writing in ISO date format, with microseconds:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [235]: </span><span class="n">json</span> <span class="o">=</span> <span class="n">dfd</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">date_format</span><span class="o">=</span><span class="s2">"iso"</span><span class="p">,</span> <span class="n">date_unit</span><span class="o">=</span><span class="s2">"us"</span><span class="p">)</span>
 
 <span class="gp">In [236]: </span><span class="n">json</span>
-<span class="gh">Out[236]: </span><span class="go">'{"date":{"0":"2013-01-01T00:00:00.000000","1":"2013-01-01T00:00:00.000000","2":"2013-01-01T00:00:00.000000","3":"2013-01-01T00:00:00.000000","4":"2013-01-01T00:00:00.000000"},"B":{"0":1.1990757159,"1":-0.0133092534,"2":-0.235694838,"3":1.8105140418,"4":1.7710076301},"A":{"0":-0.5112692442,"1":-0.0729303842,"2":-1.3922257201,"3":0.8256473804,"4":-0.5855511163}}'</span>
+<span class="gh">Out[236]: </span><span class="go">'{"date":{"0":"2013-01-01T00:00:00.000000","1":"2013-01-01T00:00:00.000000","2":"2013-01-01T00:00:00.000000","3":"2013-01-01T00:00:00.000000","4":"2013-01-01T00:00:00.000000"},"B":{"0":0.403309524,"1":0.3016244523,"2":-1.3698493577,"3":1.4626960492,"4":-0.8265909164},"A":{"0":0.1764443426,"1":-0.1549507744,"2":-2.1798606054,"3":-0.9542078401,"4":-1.7431609117}}'</span>
 </pre></div>
 </div>
 <p>Writing to a file, with a date index and a date column:</p>
@@ -3064,7 +3039,7 @@ label ordering use the <code class="docutils literal notranslate"><span class="p
 <span class="gp">In [243]: </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"test.json"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
 <span class="gp">   .....: </span>    <span class="nb">print</span><span class="p">(</span><span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 <span class="gp">   .....: </span>
-<span class="go">{"A":{"2013-01-01T00:00:00.000":-0.5554772923,"2013-01-02T00:00:00.000":0.7766091348,"2013-01-03T00:00:00.000":0.1458701815,"2013-01-04T00:00:00.000":-0.7607210528,"2013-01-05T00:00:00.000":0.5837791576},"B":{"2013-01-01T00:00:00.000":1.200608743,"2013-01-02T00:00:00.000":-2.0181596461,"2013-01-03T00:00:00.000":1.0361773126,"2013-01-04T00:00:00.000":-0.5084982223,"2013-01-05T00:00:00.000":0.321393555},"date":{"2013-01-01T00:00:00.000":"2013-01-01T00:00:00.000","2013-01-02T00:00:00.000":"2013-01-01T00:00:00.000","2013-01-03T00:00:00.000":"2013-01-01T00:00:00.000","2013-01-04T00:00:00.000":"2013-01-01T00:00:00.000","2013-01-05T00:00:00.000":"2013-01-01T00:00:00.000"},"ints":{"2013-01-01T00:00:00.000":0,"2013-01-02T00:00:00.000":1,"2013-01-03T00:00:00.000":2,"2013-01-04T00:00:00.000":3,"2013-01-05T00:00:00.000":4},"bools":{"2013-01-01T00:00:00.000":true,"2013-01-02T00:00:00.000":true,"2013-01-03T00:00:00.000":true,"2013-01-04T00:00:00.000":true,"2013-01-05T00:00:00.000":true}}</span>
+<span class="go">{"A":{"2013-01-01T00:00:00.000":-0.1213062281,"2013-01-02T00:00:00.000":0.6957746499,"2013-01-03T00:00:00.000":0.9597255933,"2013-01-04T00:00:00.000":-0.6199759194,"2013-01-05T00:00:00.000":-0.7323393705},"B":{"2013-01-01T00:00:00.000":-0.0978826728,"2013-01-02T00:00:00.000":0.3417343559,"2013-01-03T00:00:00.000":-1.1103361029,"2013-01-04T00:00:00.000":0.1497483186,"2013-01-05T00:00:00.000":0.6877383895},"date":{"2013-01-01T00:00:00.000":"2013-01-01T00:00:00.000","2013-01-02T00:00:00.000":"2013-01-01T00:00:00.000","2013-01-03T00:00:00.000":"2013-01-01T00:00:00.000","2013-01-04T00:00:00.000":"2013-01-01T00:00:00.000","2013-01-05T00:00:00.000":"2013-01-01T00:00:00.000"},"ints":{"2013-01-01T00:00:00.000":0,"2013-01-02T00:00:00.000":1,"2013-01-03T00:00:00.000":2,"2013-01-04T00:00:00.000":3,"2013-01-05T00:00:00.000":4},"bools":{"2013-01-01T00:00:00.000":true,"2013-01-02T00:00:00.000":true,"2013-01-03T00:00:00.000":true,"2013-01-04T00:00:00.000":true,"2013-01-05T00:00:00.000":true}}</span>
 </pre></div>
 </div>
 </section>
@@ -3212,22 +3187,22 @@ preserve string-like numbers (e.g. ‘1’, ‘2’) in an axes.</p>
 <span class="gp">In [246]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">json</span><span class="p">))</span>
 <span class="gh">Out[246]: </span>
 <span class="go">        date         B         A</span>
-<span class="go">0 2013-01-01  1.199076 -0.511269</span>
-<span class="go">1 2013-01-01 -0.013309 -0.072930</span>
-<span class="go">2 2013-01-01 -0.235695 -1.392226</span>
-<span class="go">3 2013-01-01  1.810514  0.825647</span>
-<span class="go">4 2013-01-01  1.771008 -0.585551</span>
+<span class="go">0 2013-01-01  0.403310  0.176444</span>
+<span class="go">1 2013-01-01  0.301624 -0.154951</span>
+<span class="go">2 2013-01-01 -1.369849 -2.179861</span>
+<span class="go">3 2013-01-01  1.462696 -0.954208</span>
+<span class="go">4 2013-01-01 -0.826591 -1.743161</span>
 </pre></div>
 </div>
 <p>Reading from a file:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [247]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">"test.json"</span><span class="p">)</span>
 <span class="gh">Out[247]: </span>
 <span class="go">                   A         B       date  ints  bools</span>
-<span class="go">2013-01-01 -0.555477  1.200609 2013-01-01     0   True</span>
-<span class="go">2013-01-02  0.776609 -2.018160 2013-01-01     1   True</span>
-<span class="go">2013-01-03  0.145870  1.036177 2013-01-01     2   True</span>
-<span class="go">2013-01-04 -0.760721 -0.508498 2013-01-01     3   True</span>
-<span class="go">2013-01-05  0.583779  0.321394 2013-01-01     4   True</span>
+<span class="go">2013-01-01 -0.121306 -0.097883 2013-01-01     0   True</span>
+<span class="go">2013-01-02  0.695775  0.341734 2013-01-01     1   True</span>
+<span class="go">2013-01-03  0.959726 -1.110336 2013-01-01     2   True</span>
+<span class="go">2013-01-04 -0.619976  0.149748 2013-01-01     3   True</span>
+<span class="go">2013-01-05 -0.732339  0.687738 2013-01-01     4   True</span>
 </pre></div>
 </div>
 <p>Don’t convert any data (but still convert axes and dates):</p>
@@ -3304,11 +3279,11 @@ preserve string-like numbers (e.g. ‘1’, ‘2’) in an axes.</p>
 <span class="gp">In [263]: </span><span class="n">dfju</span>
 <span class="gh">Out[263]: </span>
 <span class="go">                   A         B       date  ints  bools</span>
-<span class="go">2013-01-01 -0.555477  1.200609 2013-01-01     0   True</span>
-<span class="go">2013-01-02  0.776609 -2.018160 2013-01-01     1   True</span>
-<span class="go">2013-01-03  0.145870  1.036177 2013-01-01     2   True</span>
-<span class="go">2013-01-04 -0.760721 -0.508498 2013-01-01     3   True</span>
-<span class="go">2013-01-05  0.583779  0.321394 2013-01-01     4   True</span>
+<span class="go">2013-01-01 -0.121306 -0.097883 2013-01-01     0   True</span>
+<span class="go">2013-01-02  0.695775  0.341734 2013-01-01     1   True</span>
+<span class="go">2013-01-03  0.959726 -1.110336 2013-01-01     2   True</span>
+<span class="go">2013-01-04 -0.619976  0.149748 2013-01-01     3   True</span>
+<span class="go">2013-01-05 -0.732339  0.687738 2013-01-01     4   True</span>
 
 <span class="go"># Let pandas detect the correct precision</span>
 <span class="gp">In [264]: </span><span class="n">dfju</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">json</span><span class="p">))</span>
@@ -3316,11 +3291,11 @@ preserve string-like numbers (e.g. ‘1’, ‘2’) in an axes.</p>
 <span class="gp">In [265]: </span><span class="n">dfju</span>
 <span class="gh">Out[265]: </span>
 <span class="go">                   A         B       date  ints  bools</span>
-<span class="go">2013-01-01 -0.555477  1.200609 2013-01-01     0   True</span>
-<span class="go">2013-01-02  0.776609 -2.018160 2013-01-01     1   True</span>
-<span class="go">2013-01-03  0.145870  1.036177 2013-01-01     2   True</span>
-<span class="go">2013-01-04 -0.760721 -0.508498 2013-01-01     3   True</span>
-<span class="go">2013-01-05  0.583779  0.321394 2013-01-01     4   True</span>
+<span class="go">2013-01-01 -0.121306 -0.097883 2013-01-01     0   True</span>
+<span class="go">2013-01-02  0.695775  0.341734 2013-01-01     1   True</span>
+<span class="go">2013-01-03  0.959726 -1.110336 2013-01-01     2   True</span>
+<span class="go">2013-01-04 -0.619976  0.149748 2013-01-01     3   True</span>
+<span class="go">2013-01-05 -0.732339  0.687738 2013-01-01     4   True</span>
 
 <span class="go"># Or specify that all timestamps are in nanoseconds</span>
 <span class="gp">In [266]: </span><span class="n">dfju</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">json</span><span class="p">),</span> <span class="n">date_unit</span><span class="o">=</span><span class="s2">"ns"</span><span class="p">)</span>
@@ -3328,11 +3303,11 @@ preserve string-like numbers (e.g. ‘1’, ‘2’) in an axes.</p>
 <span class="gp">In [267]: </span><span class="n">dfju</span>
 <span class="gh">Out[267]: </span>
 <span class="go">                   A         B       date  ints  bools</span>
-<span class="go">2013-01-01 -0.555477  1.200609 2013-01-01     0   True</span>
-<span class="go">2013-01-02  0.776609 -2.018160 2013-01-01     1   True</span>
-<span class="go">2013-01-03  0.145870  1.036177 2013-01-01     2   True</span>
-<span class="go">2013-01-04 -0.760721 -0.508498 2013-01-01     3   True</span>
-<span class="go">2013-01-05  0.583779  0.321394 2013-01-01     4   True</span>
+<span class="go">2013-01-01 -0.121306 -0.097883 2013-01-01     0   True</span>
+<span class="go">2013-01-02  0.695775  0.341734 2013-01-01     1   True</span>
+<span class="go">2013-01-03  0.959726 -1.110336 2013-01-01     2   True</span>
+<span class="go">2013-01-04 -0.619976  0.149748 2013-01-01     3   True</span>
+<span class="go">2013-01-05 -0.732339  0.687738 2013-01-01     4   True</span>
 </pre></div>
 </div>
 <p>By setting the <code class="docutils literal notranslate"><span class="pre">dtype_backend</span></code> argument you can control the default dtypes used for the resulting DataFrame.</p>
@@ -3968,8 +3943,8 @@ will render the raw HTML into the environment.</p>
 <span class="gp">In [327]: </span><span class="n">df</span>
 <span class="gh">Out[327]: </span>
 <span class="go">          0         1</span>
-<span class="go">0 -1.273343 -0.185027</span>
-<span class="go">1 -0.632220 -0.177101</span>
+<span class="go">0 -0.345352  1.314232</span>
+<span class="go">1  0.690579  0.995761</span>
 
 <span class="gp">In [328]: </span><span class="n">html</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>
 
@@ -3985,13 +3960,13 @@ will render the raw HTML into the environment.</p>
 <span class="go">  &lt;tbody&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;0&lt;/th&gt;</span>
-<span class="go">      &lt;td&gt;-1.273343&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;-0.185027&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;-0.345352&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;1.314232&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;1&lt;/th&gt;</span>
-<span class="go">      &lt;td&gt;-0.632220&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;-0.177101&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;0.690579&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;0.995761&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">  &lt;/tbody&gt;</span>
 <span class="go">&lt;/table&gt;</span>
@@ -4014,11 +3989,11 @@ will render the raw HTML into the environment.</p>
 <span class="go">  &lt;tbody&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;0&lt;/th&gt;</span>
-<span class="go">      &lt;td&gt;-1.273343&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;-0.345352&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;1&lt;/th&gt;</span>
-<span class="go">      &lt;td&gt;-0.632220&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;0.690579&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">  &lt;/tbody&gt;</span>
 <span class="go">&lt;/table&gt;</span>
@@ -4043,13 +4018,13 @@ point values:</p>
 <span class="go">  &lt;tbody&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;0&lt;/th&gt;</span>
-<span class="go">      &lt;td&gt;-1.2733429051&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;-0.1850272795&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;-0.3453521949&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;1.3142323796&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;1&lt;/th&gt;</span>
-<span class="go">      &lt;td&gt;-0.6322201297&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;-0.1771006177&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;0.6905793352&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;0.9957609037&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">  &lt;/tbody&gt;</span>
 <span class="go">&lt;/table&gt;</span>
@@ -4074,13 +4049,13 @@ off:</p>
 <span class="go">  &lt;tbody&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;td&gt;0&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;-1.273343&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;-0.185027&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;-0.345352&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;1.314232&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;td&gt;1&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;-0.632220&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;-0.177101&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;0.690579&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;0.995761&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">  &lt;/tbody&gt;</span>
 <span class="go">&lt;/table&gt;</span>
@@ -4104,13 +4079,13 @@ table CSS classes. Note that these classes are <em>appended</em> to the existing
 <span class="go">  &lt;tbody&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;0&lt;/th&gt;</span>
-<span class="go">      &lt;td&gt;-1.273343&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;-0.185027&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;-0.345352&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;1.314232&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;1&lt;/th&gt;</span>
-<span class="go">      &lt;td&gt;-0.632220&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;-0.177101&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;0.690579&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;0.995761&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">  &lt;/tbody&gt;</span>
 <span class="go">&lt;/table&gt;</span>
@@ -4177,17 +4152,17 @@ that contain URLs.</p>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;0&lt;/th&gt;</span>
 <span class="go">      &lt;td&gt;&amp;amp;&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;1.115404&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;2.396780&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;1&lt;/th&gt;</span>
 <span class="go">      &lt;td&gt;&amp;lt;&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;-1.940454&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;0.014871&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;2&lt;/th&gt;</span>
 <span class="go">      &lt;td&gt;&amp;gt;&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;0.495187&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;3.357427&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">  &lt;/tbody&gt;</span>
 <span class="go">&lt;/table&gt;</span>
@@ -4212,17 +4187,17 @@ that contain URLs.</p>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;0&lt;/th&gt;</span>
 <span class="go">      &lt;td&gt;&amp;&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;1.115404&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;2.396780&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;1&lt;/th&gt;</span>
 <span class="go">      &lt;td&gt;&lt;&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;-1.940454&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;0.014871&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">    &lt;tr&gt;</span>
 <span class="go">      &lt;th&gt;2&lt;/th&gt;</span>
 <span class="go">      &lt;td&gt;&gt;&lt;/td&gt;</span>
-<span class="go">      &lt;td&gt;0.495187&lt;/td&gt;</span>
+<span class="go">      &lt;td&gt;3.357427&lt;/td&gt;</span>
 <span class="go">    &lt;/tr&gt;</span>
 <span class="go">  &lt;/tbody&gt;</span>
 <span class="go">&lt;/table&gt;</span>
@@ -5634,17 +5609,17 @@ the underlying compression library.</p>
 <span class="gp">In [419]: </span><span class="n">df</span>
 <span class="gh">Out[419]: </span>
 <span class="go">            A    B                   C</span>
-<span class="go">0    0.309282  foo 2013-01-01 00:00:00</span>
-<span class="go">1   -1.179552  foo 2013-01-01 00:00:01</span>
-<span class="go">2    1.550406  foo 2013-01-01 00:00:02</span>
-<span class="go">3   -0.745062  foo 2013-01-01 00:00:03</span>
-<span class="go">4    0.199680  foo 2013-01-01 00:00:04</span>
+<span class="go">0   -0.317441  foo 2013-01-01 00:00:00</span>
+<span class="go">1   -1.236269  foo 2013-01-01 00:00:01</span>
+<span class="go">2    0.896171  foo 2013-01-01 00:00:02</span>
+<span class="go">3   -0.487602  foo 2013-01-01 00:00:03</span>
+<span class="go">4   -0.082240  foo 2013-01-01 00:00:04</span>
 <span class="go">..        ...  ...                 ...</span>
-<span class="go">995  0.636074  foo 2013-01-01 00:16:35</span>
-<span class="go">996  0.653886  foo 2013-01-01 00:16:36</span>
-<span class="go">997  1.480126  foo 2013-01-01 00:16:37</span>
-<span class="go">998  0.460219  foo 2013-01-01 00:16:38</span>
-<span class="go">999 -0.827656  foo 2013-01-01 00:16:39</span>
+<span class="go">995 -0.171092  foo 2013-01-01 00:16:35</span>
+<span class="go">996  1.786173  foo 2013-01-01 00:16:36</span>
+<span class="go">997 -0.575189  foo 2013-01-01 00:16:37</span>
+<span class="go">998  0.820750  foo 2013-01-01 00:16:38</span>
+<span class="go">999 -1.256530  foo 2013-01-01 00:16:39</span>
 
 <span class="go">[1000 rows x 3 columns]</span>
 </pre></div>
@@ -5657,17 +5632,17 @@ the underlying compression library.</p>
 <span class="gp">In [422]: </span><span class="n">rt</span>
 <span class="gh">Out[422]: </span>
 <span class="go">            A    B                   C</span>
-<span class="go">0    0.309282  foo 2013-01-01 00:00:00</span>
-<span class="go">1   -1.179552  foo 2013-01-01 00:00:01</span>
-<span class="go">2    1.550406  foo 2013-01-01 00:00:02</span>
-<span class="go">3   -0.745062  foo 2013-01-01 00:00:03</span>
-<span class="go">4    0.199680  foo 2013-01-01 00:00:04</span>
+<span class="go">0   -0.317441  foo 2013-01-01 00:00:00</span>
+<span class="go">1   -1.236269  foo 2013-01-01 00:00:01</span>
+<span class="go">2    0.896171  foo 2013-01-01 00:00:02</span>
+<span class="go">3   -0.487602  foo 2013-01-01 00:00:03</span>
+<span class="go">4   -0.082240  foo 2013-01-01 00:00:04</span>
 <span class="go">..        ...  ...                 ...</span>
-<span class="go">995  0.636074  foo 2013-01-01 00:16:35</span>
-<span class="go">996  0.653886  foo 2013-01-01 00:16:36</span>
-<span class="go">997  1.480126  foo 2013-01-01 00:16:37</span>
-<span class="go">998  0.460219  foo 2013-01-01 00:16:38</span>
-<span class="go">999 -0.827656  foo 2013-01-01 00:16:39</span>
+<span class="go">995 -0.171092  foo 2013-01-01 00:16:35</span>
+<span class="go">996  1.786173  foo 2013-01-01 00:16:36</span>
+<span class="go">997 -0.575189  foo 2013-01-01 00:16:37</span>
+<span class="go">998  0.820750  foo 2013-01-01 00:16:38</span>
+<span class="go">999 -1.256530  foo 2013-01-01 00:16:39</span>
 
 <span class="go">[1000 rows x 3 columns]</span>
 </pre></div>
@@ -5680,17 +5655,17 @@ the underlying compression library.</p>
 <span class="gp">In [425]: </span><span class="n">rt</span>
 <span class="gh">Out[425]: </span>
 <span class="go">            A    B                   C</span>
-<span class="go">0    0.309282  foo 2013-01-01 00:00:00</span>
-<span class="go">1   -1.179552  foo 2013-01-01 00:00:01</span>
-<span class="go">2    1.550406  foo 2013-01-01 00:00:02</span>
-<span class="go">3   -0.745062  foo 2013-01-01 00:00:03</span>
-<span class="go">4    0.199680  foo 2013-01-01 00:00:04</span>
+<span class="go">0   -0.317441  foo 2013-01-01 00:00:00</span>
+<span class="go">1   -1.236269  foo 2013-01-01 00:00:01</span>
+<span class="go">2    0.896171  foo 2013-01-01 00:00:02</span>
+<span class="go">3   -0.487602  foo 2013-01-01 00:00:03</span>
+<span class="go">4   -0.082240  foo 2013-01-01 00:00:04</span>
 <span class="go">..        ...  ...                 ...</span>
-<span class="go">995  0.636074  foo 2013-01-01 00:16:35</span>
-<span class="go">996  0.653886  foo 2013-01-01 00:16:36</span>
-<span class="go">997  1.480126  foo 2013-01-01 00:16:37</span>
-<span class="go">998  0.460219  foo 2013-01-01 00:16:38</span>
-<span class="go">999 -0.827656  foo 2013-01-01 00:16:39</span>
+<span class="go">995 -0.171092  foo 2013-01-01 00:16:35</span>
+<span class="go">996  1.786173  foo 2013-01-01 00:16:36</span>
+<span class="go">997 -0.575189  foo 2013-01-01 00:16:37</span>
+<span class="go">998  0.820750  foo 2013-01-01 00:16:38</span>
+<span class="go">999 -1.256530  foo 2013-01-01 00:16:39</span>
 
 <span class="go">[1000 rows x 3 columns]</span>
 </pre></div>
@@ -5703,17 +5678,17 @@ the underlying compression library.</p>
 <span class="gp">In [428]: </span><span class="n">rt</span>
 <span class="gh">Out[428]: </span>
 <span class="go">            A    B                   C</span>
-<span class="go">0    0.309282  foo 2013-01-01 00:00:00</span>
-<span class="go">1   -1.179552  foo 2013-01-01 00:00:01</span>
-<span class="go">2    1.550406  foo 2013-01-01 00:00:02</span>
-<span class="go">3   -0.745062  foo 2013-01-01 00:00:03</span>
-<span class="go">4    0.199680  foo 2013-01-01 00:00:04</span>
+<span class="go">0   -0.317441  foo 2013-01-01 00:00:00</span>
+<span class="go">1   -1.236269  foo 2013-01-01 00:00:01</span>
+<span class="go">2    0.896171  foo 2013-01-01 00:00:02</span>
+<span class="go">3   -0.487602  foo 2013-01-01 00:00:03</span>
+<span class="go">4   -0.082240  foo 2013-01-01 00:00:04</span>
 <span class="go">..        ...  ...                 ...</span>
-<span class="go">995  0.636074  foo 2013-01-01 00:16:35</span>
-<span class="go">996  0.653886  foo 2013-01-01 00:16:36</span>
-<span class="go">997  1.480126  foo 2013-01-01 00:16:37</span>
-<span class="go">998  0.460219  foo 2013-01-01 00:16:38</span>
-<span class="go">999 -0.827656  foo 2013-01-01 00:16:39</span>
+<span class="go">995 -0.171092  foo 2013-01-01 00:16:35</span>
+<span class="go">996  1.786173  foo 2013-01-01 00:16:36</span>
+<span class="go">997 -0.575189  foo 2013-01-01 00:16:37</span>
+<span class="go">998  0.820750  foo 2013-01-01 00:16:38</span>
+<span class="go">999 -1.256530  foo 2013-01-01 00:16:39</span>
 
 <span class="go">[1000 rows x 3 columns]</span>
 
@@ -5723,17 +5698,17 @@ the underlying compression library.</p>
 
 <span class="gp">In [431]: </span><span class="n">rt</span>
 <span class="gh">Out[431]: </span>
-<span class="go">0      0.309282</span>
-<span class="go">1     -1.179552</span>
-<span class="go">2      1.550406</span>
-<span class="go">3     -0.745062</span>
-<span class="go">4      0.199680</span>
+<span class="go">0     -0.317441</span>
+<span class="go">1     -1.236269</span>
+<span class="go">2      0.896171</span>
+<span class="go">3     -0.487602</span>
+<span class="go">4     -0.082240</span>
 <span class="go">         ...   </span>
-<span class="go">995    0.636074</span>
-<span class="go">996    0.653886</span>
-<span class="go">997    1.480126</span>
-<span class="go">998    0.460219</span>
-<span class="go">999   -0.827656</span>
+<span class="go">995   -0.171092</span>
+<span class="go">996    1.786173</span>
+<span class="go">997   -0.575189</span>
+<span class="go">998    0.820750</span>
+<span class="go">999   -1.256530</span>
 <span class="go">Name: A, Length: 1000, dtype: float64</span>
 </pre></div>
 </div>
@@ -5802,27 +5777,27 @@ dict:</p>
 <span class="gp">In [441]: </span><span class="n">store</span><span class="p">[</span><span class="s2">"df"</span><span class="p">]</span>
 <span class="gh">Out[441]: </span>
 <span class="go">                   A         B         C</span>
-<span class="go">2000-01-01 -2.106459 -0.125586  0.794430</span>
-<span class="go">2000-01-02  0.083455  0.005509  0.830121</span>
-<span class="go">2000-01-03  0.939463 -0.456230  1.017059</span>
-<span class="go">2000-01-04  0.849760 -1.048044 -0.757149</span>
-<span class="go">2000-01-05  0.090051  1.412299 -0.132735</span>
-<span class="go">2000-01-06  0.030297 -0.853846 -0.287861</span>
-<span class="go">2000-01-07 -0.512713  0.013561 -0.387918</span>
-<span class="go">2000-01-08 -0.611612 -0.026390  0.280749</span>
+<span class="go">2000-01-01  0.858644 -0.851236  1.058006</span>
+<span class="go">2000-01-02 -0.080372 -1.268121  1.561967</span>
+<span class="go">2000-01-03  0.816983  1.965656 -1.169408</span>
+<span class="go">2000-01-04  0.712795 -0.062433  0.736755</span>
+<span class="go">2000-01-05 -0.298721 -1.988045  1.475308</span>
+<span class="go">2000-01-06  1.103675  1.382242 -0.650762</span>
+<span class="go">2000-01-07 -0.729161 -0.142928 -1.063038</span>
+<span class="go">2000-01-08 -1.005977  0.465222 -0.094517</span>
 
 <span class="go"># dotted (attribute) access provides get as well</span>
 <span class="gp">In [442]: </span><span class="n">store</span><span class="o">.</span><span class="n">df</span>
 <span class="gh">Out[442]: </span>
 <span class="go">                   A         B         C</span>
-<span class="go">2000-01-01 -2.106459 -0.125586  0.794430</span>
-<span class="go">2000-01-02  0.083455  0.005509  0.830121</span>
-<span class="go">2000-01-03  0.939463 -0.456230  1.017059</span>
-<span class="go">2000-01-04  0.849760 -1.048044 -0.757149</span>
-<span class="go">2000-01-05  0.090051  1.412299 -0.132735</span>
-<span class="go">2000-01-06  0.030297 -0.853846 -0.287861</span>
-<span class="go">2000-01-07 -0.512713  0.013561 -0.387918</span>
-<span class="go">2000-01-08 -0.611612 -0.026390  0.280749</span>
+<span class="go">2000-01-01  0.858644 -0.851236  1.058006</span>
+<span class="go">2000-01-02 -0.080372 -1.268121  1.561967</span>
+<span class="go">2000-01-03  0.816983  1.965656 -1.169408</span>
+<span class="go">2000-01-04  0.712795 -0.062433  0.736755</span>
+<span class="go">2000-01-05 -0.298721 -1.988045  1.475308</span>
+<span class="go">2000-01-06  1.103675  1.382242 -0.650762</span>
+<span class="go">2000-01-07 -0.729161 -0.142928 -1.063038</span>
+<span class="go">2000-01-08 -1.005977  0.465222 -0.094517</span>
 </pre></div>
 </div>
 <p>Deletion of the object specified by the key:</p>
@@ -6037,14 +6012,14 @@ enable <code class="docutils literal notranslate"><span class="pre">put/append/t
 <span class="gp">In [466]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df"</span><span class="p">)</span>
 <span class="gh">Out[466]: </span>
 <span class="go">                   A         B         C</span>
-<span class="go">2000-01-01 -2.106459 -0.125586  0.794430</span>
-<span class="go">2000-01-02  0.083455  0.005509  0.830121</span>
-<span class="go">2000-01-03  0.939463 -0.456230  1.017059</span>
-<span class="go">2000-01-04  0.849760 -1.048044 -0.757149</span>
-<span class="go">2000-01-05  0.090051  1.412299 -0.132735</span>
-<span class="go">2000-01-06  0.030297 -0.853846 -0.287861</span>
-<span class="go">2000-01-07 -0.512713  0.013561 -0.387918</span>
-<span class="go">2000-01-08 -0.611612 -0.026390  0.280749</span>
+<span class="go">2000-01-01  0.858644 -0.851236  1.058006</span>
+<span class="go">2000-01-02 -0.080372 -1.268121  1.561967</span>
+<span class="go">2000-01-03  0.816983  1.965656 -1.169408</span>
+<span class="go">2000-01-04  0.712795 -0.062433  0.736755</span>
+<span class="go">2000-01-05 -0.298721 -1.988045  1.475308</span>
+<span class="go">2000-01-06  1.103675  1.382242 -0.650762</span>
+<span class="go">2000-01-07 -0.729161 -0.142928 -1.063038</span>
+<span class="go">2000-01-08 -1.005977  0.465222 -0.094517</span>
 
 <span class="go"># the type of stored data</span>
 <span class="gp">In [467]: </span><span class="n">store</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">_v_attrs</span><span class="o">.</span><span class="n">pandas_type</span>
@@ -6108,25 +6083,25 @@ will yield a tuple for each group key along with the relative keys of its conten
 <span class="go">GROUP: /foo</span>
 <span class="go">KEY: /df</span>
 <span class="go">                   A         B         C</span>
-<span class="go">2000-01-01 -2.106459 -0.125586  0.794430</span>
-<span class="go">2000-01-02  0.083455  0.005509  0.830121</span>
-<span class="go">2000-01-03  0.939463 -0.456230  1.017059</span>
-<span class="go">2000-01-04  0.849760 -1.048044 -0.757149</span>
-<span class="go">2000-01-05  0.090051  1.412299 -0.132735</span>
-<span class="go">2000-01-06  0.030297 -0.853846 -0.287861</span>
-<span class="go">2000-01-07 -0.512713  0.013561 -0.387918</span>
-<span class="go">2000-01-08 -0.611612 -0.026390  0.280749</span>
+<span class="go">2000-01-01  0.858644 -0.851236  1.058006</span>
+<span class="go">2000-01-02 -0.080372 -1.268121  1.561967</span>
+<span class="go">2000-01-03  0.816983  1.965656 -1.169408</span>
+<span class="go">2000-01-04  0.712795 -0.062433  0.736755</span>
+<span class="go">2000-01-05 -0.298721 -1.988045  1.475308</span>
+<span class="go">2000-01-06  1.103675  1.382242 -0.650762</span>
+<span class="go">2000-01-07 -0.729161 -0.142928 -1.063038</span>
+<span class="go">2000-01-08 -1.005977  0.465222 -0.094517</span>
 <span class="go">GROUP: /foo/bar</span>
 <span class="go">KEY: /foo/bar/bah</span>
 <span class="go">                   A         B         C</span>
-<span class="go">2000-01-01 -2.106459 -0.125586  0.794430</span>
-<span class="go">2000-01-02  0.083455  0.005509  0.830121</span>
-<span class="go">2000-01-03  0.939463 -0.456230  1.017059</span>
-<span class="go">2000-01-04  0.849760 -1.048044 -0.757149</span>
-<span class="go">2000-01-05  0.090051  1.412299 -0.132735</span>
-<span class="go">2000-01-06  0.030297 -0.853846 -0.287861</span>
-<span class="go">2000-01-07 -0.512713  0.013561 -0.387918</span>
-<span class="go">2000-01-08 -0.611612 -0.026390  0.280749</span>
+<span class="go">2000-01-01  0.858644 -0.851236  1.058006</span>
+<span class="go">2000-01-02 -0.080372 -1.268121  1.561967</span>
+<span class="go">2000-01-03  0.816983  1.965656 -1.169408</span>
+<span class="go">2000-01-04  0.712795 -0.062433  0.736755</span>
+<span class="go">2000-01-05 -0.298721 -1.988045  1.475308</span>
+<span class="go">2000-01-06  1.103675  1.382242 -0.650762</span>
+<span class="go">2000-01-07 -0.729161 -0.142928 -1.063038</span>
+<span class="go">2000-01-08 -1.005977  0.465222 -0.094517</span>
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -6180,14 +6155,14 @@ will yield a tuple for each group key along with the relative keys of its conten
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [478]: </span><span class="n">store</span><span class="p">[</span><span class="s2">"foo/bar/bah"</span><span class="p">]</span>
 <span class="gh">Out[478]: </span>
 <span class="go">                   A         B         C</span>
-<span class="go">2000-01-01 -2.106459 -0.125586  0.794430</span>
-<span class="go">2000-01-02  0.083455  0.005509  0.830121</span>
-<span class="go">2000-01-03  0.939463 -0.456230  1.017059</span>
-<span class="go">2000-01-04  0.849760 -1.048044 -0.757149</span>
-<span class="go">2000-01-05  0.090051  1.412299 -0.132735</span>
-<span class="go">2000-01-06  0.030297 -0.853846 -0.287861</span>
-<span class="go">2000-01-07 -0.512713  0.013561 -0.387918</span>
-<span class="go">2000-01-08 -0.611612 -0.026390  0.280749</span>
+<span class="go">2000-01-01  0.858644 -0.851236  1.058006</span>
+<span class="go">2000-01-02 -0.080372 -1.268121  1.561967</span>
+<span class="go">2000-01-03  0.816983  1.965656 -1.169408</span>
+<span class="go">2000-01-04  0.712795 -0.062433  0.736755</span>
+<span class="go">2000-01-05 -0.298721 -1.988045  1.475308</span>
+<span class="go">2000-01-06  1.103675  1.382242 -0.650762</span>
+<span class="go">2000-01-07 -0.729161 -0.142928 -1.063038</span>
+<span class="go">2000-01-08 -1.005977  0.465222 -0.094517</span>
 </pre></div>
 </div>
 </div>
@@ -6228,14 +6203,14 @@ on disk for missing values (which converts to/from <code class="docutils literal
 <span class="gp">In [483]: </span><span class="n">df_mixed1</span>
 <span class="gh">Out[483]: </span>
 <span class="go">          A         B         C  string  int  bool datetime64</span>
-<span class="go">0  0.710774 -1.007239  0.643619  string    1  True 2001-01-02</span>
-<span class="go">1 -0.564453 -1.451744 -0.913266  string    1  True 2001-01-02</span>
-<span class="go">2  0.049654  1.891604  0.991399  string    1  True 2001-01-02</span>
-<span class="go">3       NaN       NaN  1.552851     NaN    1  True        NaT</span>
-<span class="go">4       NaN       NaN  0.929233     NaN    1  True        NaT</span>
-<span class="go">5  1.343195 -0.784875 -1.230662  string    1  True 2001-01-02</span>
-<span class="go">6  0.270250 -0.344667 -0.274585  string    1  True 2001-01-02</span>
-<span class="go">7  1.267425 -0.500132  1.717635  string    1  True 2001-01-02</span>
+<span class="go">0  0.013747 -1.166078 -1.292080  string    1  True 2001-01-02</span>
+<span class="go">1 -0.712009  0.247572  1.526911  string    1  True 2001-01-02</span>
+<span class="go">2 -0.645096  1.687406  0.288504  string    1  True 2001-01-02</span>
+<span class="go">3       NaN       NaN  0.097771     NaN    1  True        NaT</span>
+<span class="go">4       NaN       NaN  1.536408     NaN    1  True        NaT</span>
+<span class="go">5 -0.023202  0.043702  0.926790  string    1  True 2001-01-02</span>
+<span class="go">6  2.359782  0.088224 -0.676448  string    1  True 2001-01-02</span>
+<span class="go">7 -0.143428 -0.813360 -0.179724  string    1  True 2001-01-02</span>
 
 <span class="gp">In [484]: </span><span class="n">df_mixed1</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 <span class="gh">Out[484]: </span>
@@ -6284,16 +6259,16 @@ storing/selecting from homogeneous index <code class="docutils literal notransla
 <span class="gh">Out[488]: </span>
 <span class="go">                  A         B         C</span>
 <span class="go">foo bar                                </span>
-<span class="go">foo one   -0.476318 -0.269424 -0.204086</span>
-<span class="go">    two    0.832890 -0.828964 -1.650264</span>
-<span class="go">    three  1.921156  1.243484 -0.127243</span>
-<span class="go">bar one   -1.590889 -0.075164 -0.044117</span>
-<span class="go">    two   -0.648232 -0.007123 -1.361809</span>
-<span class="go">baz two   -0.083933 -2.602269  1.021258</span>
-<span class="go">    three -0.309851 -0.223795  1.457084</span>
-<span class="go">qux one   -0.509598  0.679996 -0.671844</span>
-<span class="go">    two   -0.837378 -0.530572  1.462636</span>
-<span class="go">    three  2.488957  0.445713 -0.388387</span>
+<span class="go">foo one   -1.303456 -0.642994 -0.649456</span>
+<span class="go">    two    1.012694  0.414147  1.950460</span>
+<span class="go">    three  1.094544 -0.802899 -0.583343</span>
+<span class="go">bar one    0.410395  0.618321  0.560398</span>
+<span class="go">    two    1.434027 -0.033270  0.343197</span>
+<span class="go">baz two   -1.646063 -0.695847 -0.429156</span>
+<span class="go">    three -0.244688 -1.428229 -0.138691</span>
+<span class="go">qux one    1.866184 -1.446617  0.036660</span>
+<span class="go">    two   -1.660522  0.929553 -1.298649</span>
+<span class="go">    three  3.565769  0.682402  1.041927</span>
 
 <span class="gp">In [489]: </span><span class="n">store</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"df_mi"</span><span class="p">,</span> <span class="n">df_mi</span><span class="p">)</span>
 
@@ -6301,24 +6276,24 @@ storing/selecting from homogeneous index <code class="docutils literal notransla
 <span class="gh">Out[490]: </span>
 <span class="go">                  A         B         C</span>
 <span class="go">foo bar                                </span>
-<span class="go">foo one   -0.476318 -0.269424 -0.204086</span>
-<span class="go">    two    0.832890 -0.828964 -1.650264</span>
-<span class="go">    three  1.921156  1.243484 -0.127243</span>
-<span class="go">bar one   -1.590889 -0.075164 -0.044117</span>
-<span class="go">    two   -0.648232 -0.007123 -1.361809</span>
-<span class="go">baz two   -0.083933 -2.602269  1.021258</span>
-<span class="go">    three -0.309851 -0.223795  1.457084</span>
-<span class="go">qux one   -0.509598  0.679996 -0.671844</span>
-<span class="go">    two   -0.837378 -0.530572  1.462636</span>
-<span class="go">    three  2.488957  0.445713 -0.388387</span>
+<span class="go">foo one   -1.303456 -0.642994 -0.649456</span>
+<span class="go">    two    1.012694  0.414147  1.950460</span>
+<span class="go">    three  1.094544 -0.802899 -0.583343</span>
+<span class="go">bar one    0.410395  0.618321  0.560398</span>
+<span class="go">    two    1.434027 -0.033270  0.343197</span>
+<span class="go">baz two   -1.646063 -0.695847 -0.429156</span>
+<span class="go">    three -0.244688 -1.428229 -0.138691</span>
+<span class="go">qux one    1.866184 -1.446617  0.036660</span>
+<span class="go">    two   -1.660522  0.929553 -1.298649</span>
+<span class="go">    three  3.565769  0.682402  1.041927</span>
 
 <span class="go"># the levels are automatically included as data columns</span>
 <span class="gp">In [491]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df_mi"</span><span class="p">,</span> <span class="s2">"foo=bar"</span><span class="p">)</span>
 <span class="gh">Out[491]: </span>
 <span class="go">                A         B         C</span>
 <span class="go">foo bar                              </span>
-<span class="go">bar one -1.590889 -0.075164 -0.044117</span>
-<span class="go">    two -0.648232 -0.007123 -1.361809</span>
+<span class="go">bar one  0.410395  0.618321  0.560398</span>
+<span class="go">    two  1.434027 -0.033270  0.343197</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -6420,24 +6395,25 @@ variable.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [494]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"dfq"</span><span class="p">,</span> <span class="s2">"index&gt;pd.Timestamp('20130104') &amp; columns=['A', 'B']"</span><span class="p">)</span>
 <span class="gh">Out[494]: </span>
 <span class="go">                   A         B</span>
-<span class="go">2013-01-05  1.527974  0.424019</span>
-<span class="go">2013-01-06 -0.225563 -0.171155</span>
-<span class="go">2013-01-07  1.988079 -0.043073</span>
-<span class="go">2013-01-08 -1.947327  0.858733</span>
-<span class="go">2013-01-09 -0.380609 -0.990172</span>
-<span class="go">2013-01-10 -0.728418 -0.294171</span>
+<span class="go">2013-01-05 -0.830545 -0.457071</span>
+<span class="go">2013-01-06  0.431186  1.049421</span>
+<span class="go">2013-01-07  0.617509 -0.811230</span>
+<span class="go">2013-01-08  0.947422 -0.671233</span>
+<span class="go">2013-01-09 -0.183798 -1.211230</span>
+<span class="go">2013-01-10  0.361428  0.887304</span>
 </pre></div>
 </div>
 <p>Use inline column reference.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [495]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"dfq"</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">"A&gt;0 or C&gt;0"</span><span class="p">)</span>
 <span class="gh">Out[495]: </span>
 <span class="go">                   A         B         C         D</span>
-<span class="go">2013-01-01  0.365526  0.444513  0.545060 -1.935161</span>
-<span class="go">2013-01-04  0.116436 -1.200267  0.289593 -0.138872</span>
-<span class="go">2013-01-05  1.527974  0.424019 -0.406560  0.934902</span>
-<span class="go">2013-01-07  1.988079 -0.043073  0.030362 -0.963082</span>
-<span class="go">2013-01-08 -1.947327  0.858733  1.066707  2.264575</span>
-<span class="go">2013-01-10 -0.728418 -0.294171  0.662724  0.034122</span>
+<span class="go">2013-01-02  0.658179  0.362814 -0.917897  0.010165</span>
+<span class="go">2013-01-03  0.905122  1.848731 -1.184241  0.932053</span>
+<span class="go">2013-01-05 -0.830545 -0.457071  1.565581  1.148032</span>
+<span class="go">2013-01-06  0.431186  1.049421  0.383309  0.595013</span>
+<span class="go">2013-01-07  0.617509 -0.811230 -2.088563 -1.393500</span>
+<span class="go">2013-01-08  0.947422 -0.671233 -0.847097 -1.187785</span>
+<span class="go">2013-01-10  0.361428  0.887304  0.266457 -0.399641</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">columns</span></code> keyword can be supplied to select a list of columns to be
@@ -6446,14 +6422,14 @@ returned, this is equivalent to passing a
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [496]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df"</span><span class="p">,</span> <span class="s2">"columns=['A', 'B']"</span><span class="p">)</span>
 <span class="gh">Out[496]: </span>
 <span class="go">                   A         B</span>
-<span class="go">2000-01-01 -2.106459 -0.125586</span>
-<span class="go">2000-01-02  0.083455  0.005509</span>
-<span class="go">2000-01-03  0.939463 -0.456230</span>
-<span class="go">2000-01-04  0.849760 -1.048044</span>
-<span class="go">2000-01-05  0.090051  1.412299</span>
-<span class="go">2000-01-06  0.030297 -0.853846</span>
-<span class="go">2000-01-07 -0.512713  0.013561</span>
-<span class="go">2000-01-08 -0.611612 -0.026390</span>
+<span class="go">2000-01-01  0.858644 -0.851236</span>
+<span class="go">2000-01-02 -0.080372 -1.268121</span>
+<span class="go">2000-01-03  0.816983  1.965656</span>
+<span class="go">2000-01-04  0.712795 -0.062433</span>
+<span class="go">2000-01-05 -0.298721 -1.988045</span>
+<span class="go">2000-01-06  1.103675  1.382242</span>
+<span class="go">2000-01-07 -0.729161 -0.142928</span>
+<span class="go">2000-01-08 -1.005977  0.465222</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -6542,7 +6518,7 @@ specified in the format: <code class="docutils literal notranslate"><span class=
 <span class="gh">Out[504]: </span>
 <span class="go">                A         B         C</span>
 <span class="go">foo bar                              </span>
-<span class="go">baz two -0.083933 -2.602269  1.021258</span>
+<span class="go">baz two -1.646063 -0.695847 -0.429156</span>
 </pre></div>
 </div>
 <p>If the <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> levels names are <code class="docutils literal notranslate"><span class="pre">None</span></code>, the levels are automatically made available via
@@ -6558,16 +6534,16 @@ the <code class="docutils literal notranslate"><span class="pre">level_n</span><
 <span class="gp">In [507]: </span><span class="n">df_mi_2</span>
 <span class="gh">Out[507]: </span>
 <span class="go">                  A         B         C</span>
-<span class="go">foo one    0.856795  2.267104 -1.373043</span>
-<span class="go">    two    0.937436  0.112244  0.278515</span>
-<span class="go">    three -0.393139 -0.211467  0.216927</span>
-<span class="go">bar one   -0.150072 -0.602576 -0.357253</span>
-<span class="go">    two    0.815487 -0.818194 -1.337484</span>
-<span class="go">baz two   -0.233165 -0.255604 -0.869517</span>
-<span class="go">    three  0.168922 -0.766684  0.761787</span>
-<span class="go">qux one   -1.023574 -1.083189 -0.493171</span>
-<span class="go">    two    0.565859 -0.867265 -0.322227</span>
-<span class="go">    three  0.698190 -1.289306 -1.004601</span>
+<span class="go">foo one   -0.219582  1.186860 -1.437189</span>
+<span class="go">    two    0.053768  1.872644 -1.469813</span>
+<span class="go">    three -0.564201  0.876341  0.407749</span>
+<span class="go">bar one   -0.232583  0.179812  0.922152</span>
+<span class="go">    two   -1.820952 -0.641360  2.133239</span>
+<span class="go">baz two   -0.941248 -0.136307 -1.271305</span>
+<span class="go">    three -0.099774 -0.061438 -0.845172</span>
+<span class="go">qux one    0.465793  0.756995 -0.541690</span>
+<span class="go">    two   -0.802241  0.877657 -2.553831</span>
+<span class="go">    three  0.094899 -2.319519  0.293601</span>
 
 <span class="gp">In [508]: </span><span class="n">store</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"df_mi_2"</span><span class="p">,</span> <span class="n">df_mi_2</span><span class="p">)</span>
 
@@ -6575,7 +6551,7 @@ the <code class="docutils literal notranslate"><span class="pre">level_n</span><
 <span class="gp">In [509]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df_mi_2"</span><span class="p">,</span> <span class="s2">"level_0=foo and level_1=two"</span><span class="p">)</span>
 <span class="gh">Out[509]: </span>
 <span class="go">                A         B         C</span>
-<span class="go">foo two  0.937436  0.112244  0.278515</span>
+<span class="go">foo two  0.053768  1.872644 -1.469813</span>
 </pre></div>
 </div>
 </section>
@@ -6673,14 +6649,14 @@ be <code class="docutils literal notranslate"><span class="pre">data_columns</sp
 <span class="gp">In [530]: </span><span class="n">df_dc</span>
 <span class="gh">Out[530]: </span>
 <span class="go">                   A         B         C string string2</span>
-<span class="go">2000-01-01 -2.106459 -0.125586  0.794430    foo    cool</span>
-<span class="go">2000-01-02  0.083455  1.000000  1.000000    foo    cool</span>
-<span class="go">2000-01-03  0.939463  1.000000  1.000000    foo    cool</span>
-<span class="go">2000-01-04  0.849760 -1.048044 -0.757149    foo    cool</span>
-<span class="go">2000-01-05  0.090051  1.412299 -0.132735    NaN    cool</span>
-<span class="go">2000-01-06  0.030297 -0.853846 -0.287861    NaN    cool</span>
-<span class="go">2000-01-07 -0.512713  0.013561 -0.387918    foo    cool</span>
-<span class="go">2000-01-08 -0.611612 -0.026390  0.280749    bar    cool</span>
+<span class="go">2000-01-01  0.858644 -0.851236  1.058006    foo    cool</span>
+<span class="go">2000-01-02 -0.080372  1.000000  1.000000    foo    cool</span>
+<span class="go">2000-01-03  0.816983  1.000000  1.000000    foo    cool</span>
+<span class="go">2000-01-04  0.712795 -0.062433  0.736755    foo    cool</span>
+<span class="go">2000-01-05 -0.298721 -1.988045  1.475308    NaN    cool</span>
+<span class="go">2000-01-06  1.103675  1.382242 -0.650762    NaN    cool</span>
+<span class="go">2000-01-07 -0.729161 -0.142928 -1.063038    foo    cool</span>
+<span class="go">2000-01-08 -1.005977  0.465222 -0.094517    bar    cool</span>
 
 <span class="go"># on-disk operations</span>
 <span class="gp">In [531]: </span><span class="n">store</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"df_dc"</span><span class="p">,</span> <span class="n">df_dc</span><span class="p">,</span> <span class="n">data_columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"string"</span><span class="p">,</span> <span class="s2">"string2"</span><span class="p">])</span>
@@ -6688,24 +6664,24 @@ be <code class="docutils literal notranslate"><span class="pre">data_columns</sp
 <span class="gp">In [532]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df_dc"</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s2">"B &gt; 0"</span><span class="p">)</span>
 <span class="gh">Out[532]: </span>
 <span class="go">                   A         B         C string string2</span>
-<span class="go">2000-01-02  0.083455  1.000000  1.000000    foo    cool</span>
-<span class="go">2000-01-03  0.939463  1.000000  1.000000    foo    cool</span>
-<span class="go">2000-01-05  0.090051  1.412299 -0.132735    NaN    cool</span>
-<span class="go">2000-01-07 -0.512713  0.013561 -0.387918    foo    cool</span>
+<span class="go">2000-01-02 -0.080372  1.000000  1.000000    foo    cool</span>
+<span class="go">2000-01-03  0.816983  1.000000  1.000000    foo    cool</span>
+<span class="go">2000-01-06  1.103675  1.382242 -0.650762    NaN    cool</span>
+<span class="go">2000-01-08 -1.005977  0.465222 -0.094517    bar    cool</span>
 
 <span class="go"># getting creative</span>
 <span class="gp">In [533]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df_dc"</span><span class="p">,</span> <span class="s2">"B &gt; 0 &amp; C &gt; 0 &amp; string == foo"</span><span class="p">)</span>
 <span class="gh">Out[533]: </span>
 <span class="go">                   A    B    C string string2</span>
-<span class="go">2000-01-02  0.083455  1.0  1.0    foo    cool</span>
-<span class="go">2000-01-03  0.939463  1.0  1.0    foo    cool</span>
+<span class="go">2000-01-02 -0.080372  1.0  1.0    foo    cool</span>
+<span class="go">2000-01-03  0.816983  1.0  1.0    foo    cool</span>
 
 <span class="go"># this is in-memory version of this type of selection</span>
 <span class="gp">In [534]: </span><span class="n">df_dc</span><span class="p">[(</span><span class="n">df_dc</span><span class="o">.</span><span class="n">B</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_dc</span><span class="o">.</span><span class="n">C</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_dc</span><span class="o">.</span><span class="n">string</span> <span class="o">==</span> <span class="s2">"foo"</span><span class="p">)]</span>
 <span class="gh">Out[534]: </span>
 <span class="go">                   A    B    C string string2</span>
-<span class="go">2000-01-02  0.083455  1.0  1.0    foo    cool</span>
-<span class="go">2000-01-03  0.939463  1.0  1.0    foo    cool</span>
+<span class="go">2000-01-02 -0.080372  1.0  1.0    foo    cool</span>
+<span class="go">2000-01-03  0.816983  1.0  1.0    foo    cool</span>
 
 <span class="go"># we have automagically created this index and the B/C/string/string2</span>
 <span class="go"># columns are stored separately as ``PyTables`` columns</span>
@@ -6745,16 +6721,16 @@ The default is 50,000 rows returned in a chunk.</p>
 <span class="gp">   .....: </span>    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="gp">   .....: </span>
 <span class="go">                   A         B         C</span>
-<span class="go">2000-01-01 -2.106459 -0.125586  0.794430</span>
-<span class="go">2000-01-02  0.083455  0.005509  0.830121</span>
-<span class="go">2000-01-03  0.939463 -0.456230  1.017059</span>
+<span class="go">2000-01-01  0.858644 -0.851236  1.058006</span>
+<span class="go">2000-01-02 -0.080372 -1.268121  1.561967</span>
+<span class="go">2000-01-03  0.816983  1.965656 -1.169408</span>
 <span class="go">                   A         B         C</span>
-<span class="go">2000-01-04  0.849760 -1.048044 -0.757149</span>
-<span class="go">2000-01-05  0.090051  1.412299 -0.132735</span>
-<span class="go">2000-01-06  0.030297 -0.853846 -0.287861</span>
+<span class="go">2000-01-04  0.712795 -0.062433  0.736755</span>
+<span class="go">2000-01-05 -0.298721 -1.988045  1.475308</span>
+<span class="go">2000-01-06  1.103675  1.382242 -0.650762</span>
 <span class="go">                   A         B         C</span>
-<span class="go">2000-01-07 -0.512713  0.013561 -0.387918</span>
-<span class="go">2000-01-08 -0.611612 -0.026390  0.280749</span>
+<span class="go">2000-01-07 -0.729161 -0.142928 -1.063038</span>
+<span class="go">2000-01-08 -1.005977  0.465222 -0.094517</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -6869,17 +6845,17 @@ These do not currently accept the <code class="docutils literal notranslate"><sp
 <span class="gp">In [550]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df_coord"</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
 <span class="gh">Out[550]: </span>
 <span class="go">                   0         1</span>
-<span class="go">2002-01-02  0.283255  1.455313</span>
-<span class="go">2002-01-03 -0.262003  0.215120</span>
-<span class="go">2002-01-04  0.586507 -0.622944</span>
-<span class="go">2002-01-05  0.676361 -0.278666</span>
-<span class="go">2002-01-06  1.177312 -0.604717</span>
+<span class="go">2002-01-02  0.007717  1.168386</span>
+<span class="go">2002-01-03  0.759328 -0.638934</span>
+<span class="go">2002-01-04 -1.154018 -0.324071</span>
+<span class="go">2002-01-05 -0.804551 -1.280593</span>
+<span class="go">2002-01-06 -0.047208  1.260503</span>
 <span class="go">...              ...       ...</span>
-<span class="go">2002-09-22 -0.173745 -1.051463</span>
-<span class="go">2002-09-23 -1.197506 -1.131308</span>
-<span class="go">2002-09-24  0.014709 -0.579337</span>
-<span class="go">2002-09-25 -0.213253  1.677993</span>
-<span class="go">2002-09-26  1.283194 -2.407438</span>
+<span class="go">2002-09-22 -1.139583  0.344316</span>
+<span class="go">2002-09-23 -0.760643 -1.306704</span>
+<span class="go">2002-09-24  0.059018  1.775482</span>
+<span class="go">2002-09-25  1.242255 -0.055457</span>
+<span class="go">2002-09-26  0.410317  2.194489</span>
 
 <span class="go">[268 rows x 2 columns]</span>
 </pre></div>
@@ -6904,17 +6880,17 @@ a datetimeindex which are 5.</p>
 <span class="gp">In [555]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df_mask"</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
 <span class="gh">Out[555]: </span>
 <span class="go">                   0         1</span>
-<span class="go">2000-05-01 -0.984338  0.197312</span>
-<span class="go">2000-05-02 -1.402752 -1.960533</span>
-<span class="go">2000-05-03 -0.491096  1.886369</span>
-<span class="go">2000-05-04  0.835688  0.305157</span>
-<span class="go">2000-05-05  0.678906  1.019710</span>
+<span class="go">2000-05-01  1.479511  0.516433</span>
+<span class="go">2000-05-02 -0.334984 -1.493537</span>
+<span class="go">2000-05-03  0.900321  0.049695</span>
+<span class="go">2000-05-04  0.614266 -1.077151</span>
+<span class="go">2000-05-05  0.233881  0.493246</span>
 <span class="go">...              ...       ...</span>
-<span class="go">2002-05-27 -0.841389  1.179723</span>
-<span class="go">2002-05-28  0.075341  0.246462</span>
-<span class="go">2002-05-29  1.032340  1.889158</span>
-<span class="go">2002-05-30 -1.188606  1.701865</span>
-<span class="go">2002-05-31 -0.703765  0.233754</span>
+<span class="go">2002-05-27  0.294122  0.457407</span>
+<span class="go">2002-05-28 -1.102535  1.215650</span>
+<span class="go">2002-05-29 -0.432911  0.753606</span>
+<span class="go">2002-05-30 -1.105212  2.311877</span>
+<span class="go">2002-05-31  2.567296  2.610691</span>
 
 <span class="go">[93 rows x 2 columns]</span>
 </pre></div>
@@ -6981,26 +6957,26 @@ results.</p>
 <span class="gp">In [562]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df1_mt"</span><span class="p">)</span>
 <span class="gh">Out[562]: </span>
 <span class="go">                   A         B</span>
-<span class="go">2000-01-01  0.977714 -0.797692</span>
+<span class="go">2000-01-01  0.162291 -0.430489</span>
 <span class="go">2000-01-02       NaN       NaN</span>
-<span class="go">2000-01-03  0.235858  0.295523</span>
-<span class="go">2000-01-04 -2.233534  0.916869</span>
-<span class="go">2000-01-05 -0.231602  0.577288</span>
-<span class="go">2000-01-06 -1.581689  0.120115</span>
-<span class="go">2000-01-07 -0.276952 -0.797005</span>
-<span class="go">2000-01-08  0.879640 -1.187171</span>
+<span class="go">2000-01-03  0.429207 -1.099274</span>
+<span class="go">2000-01-04  1.869081 -1.466039</span>
+<span class="go">2000-01-05  0.092130 -1.726280</span>
+<span class="go">2000-01-06  0.266901 -0.036854</span>
+<span class="go">2000-01-07 -0.517871 -0.990317</span>
+<span class="go">2000-01-08 -0.231342  0.557402</span>
 
 <span class="gp">In [563]: </span><span class="n">store</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"df2_mt"</span><span class="p">)</span>
 <span class="gh">Out[563]: </span>
 <span class="go">                   C         D         E         F  foo</span>
-<span class="go">2000-01-01 -0.154610  1.244943  0.812867  0.353616  bar</span>
-<span class="go">2000-01-02  0.549026  0.081443  1.369944  0.174592  bar</span>
-<span class="go">2000-01-03 -1.379854  0.337689 -1.639642 -0.288199  bar</span>
-<span class="go">2000-01-04 -0.228421  1.633060  0.036697  0.971104  bar</span>
-<span class="go">2000-01-05 -2.096200 -0.554087 -1.024219 -1.268332  bar</span>
-<span class="go">2000-01-06  1.130371 -1.288485  0.854306 -0.450927  bar</span>
-<span class="go">2000-01-07  0.871690 -1.621049  0.477485 -0.230393  bar</span>
-<span class="go">2000-01-08 -1.583600 -0.204409 -0.614786  0.090874  bar</span>
+<span class="go">2000-01-01 -2.502042  0.668149  0.460708  1.834518  bar</span>
+<span class="go">2000-01-02  0.130441 -0.608465  0.439872  0.506364  bar</span>
+<span class="go">2000-01-03 -1.069546  1.236277  0.116634 -1.772519  bar</span>
+<span class="go">2000-01-04  0.137462  0.313939  0.748471 -0.943009  bar</span>
+<span class="go">2000-01-05  0.836517  2.049798  0.562167  0.189952  bar</span>
+<span class="go">2000-01-06  1.112750 -0.151596  1.503311  0.939470  bar</span>
+<span class="go">2000-01-07 -0.294348  0.335844 -0.794159  1.495614  bar</span>
+<span class="go">2000-01-08  0.860312 -0.538674 -0.541986 -1.759606  bar</span>
 
 <span class="go"># as a multiple</span>
 <span class="gp">In [564]: </span><span class="n">store</span><span class="o">.</span><span class="n">select_as_multiple</span><span class="p">(</span>
@@ -7010,8 +6986,9 @@ results.</p>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 <span class="gh">Out[564]: </span>
-<span class="go">                   A         B         C         D         E         F  foo</span>
-<span class="go">2000-01-03  0.235858  0.295523 -1.379854  0.337689 -1.639642 -0.288199  bar</span>
+<span class="go">Empty DataFrame</span>
+<span class="go">Columns: [A, B, C, D, E, F, foo]</span>
+<span class="go">Index: []</span>
 </pre></div>
 </div>
 </section>
@@ -7243,14 +7220,14 @@ manner.</p>
 <span class="gp">In [566]: </span><span class="n">dfcat</span>
 <span class="gh">Out[566]: </span>
 <span class="go">   A         B</span>
-<span class="go">0  a  0.659759</span>
-<span class="go">1  a -0.622656</span>
-<span class="go">2  b  0.075134</span>
-<span class="go">3  b  0.000177</span>
-<span class="go">4  c -0.810604</span>
-<span class="go">5  d  0.964223</span>
-<span class="go">6  b  0.316342</span>
-<span class="go">7  a  0.380655</span>
+<span class="go">0  a -1.520478</span>
+<span class="go">1  a -1.069391</span>
+<span class="go">2  b -0.551981</span>
+<span class="go">3  b  0.452407</span>
+<span class="go">4  c  0.409257</span>
+<span class="go">5  d  0.301911</span>
+<span class="go">6  b -0.640843</span>
+<span class="go">7  a -2.253022</span>
 
 <span class="gp">In [567]: </span><span class="n">dfcat</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[567]: </span>
@@ -7267,10 +7244,10 @@ manner.</p>
 <span class="gp">In [571]: </span><span class="n">result</span>
 <span class="gh">Out[571]: </span>
 <span class="go">   A         B</span>
-<span class="go">2  b  0.075134</span>
-<span class="go">3  b  0.000177</span>
-<span class="go">4  c -0.810604</span>
-<span class="go">6  b  0.316342</span>
+<span class="go">2  b -0.551981</span>
+<span class="go">3  b  0.452407</span>
+<span class="go">4  c  0.409257</span>
+<span class="go">6  b -0.640843</span>
 
 <span class="gp">In [572]: </span><span class="n">result</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[572]: </span>
@@ -8384,29 +8361,29 @@ Specifying this will return an iterator through chunks of the query result:</p>
 <span class="gp">   .....: </span>    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
 <span class="gp">   .....: </span>
 <span class="go">          a         b         c</span>
-<span class="go">0 -0.219650  1.033307  1.453098</span>
-<span class="go">1  0.902698  1.518171 -1.278897</span>
-<span class="go">2  2.308109  1.302077 -0.030631</span>
-<span class="go">3  0.301455 -0.309147  0.147371</span>
-<span class="go">4 -0.706650 -2.267780  1.629083</span>
+<span class="go">0 -0.395347 -0.822726 -0.363777</span>
+<span class="go">1  1.676124 -0.908102 -1.391346</span>
+<span class="go">2 -1.094269  0.278380  1.205899</span>
+<span class="go">3  1.503443  0.932171 -0.709459</span>
+<span class="go">4 -0.645944 -1.351389  0.132023</span>
 <span class="go">          a         b         c</span>
-<span class="go">0 -2.106507 -0.720403 -0.515719</span>
-<span class="go">1 -0.282115  0.433101 -0.729399</span>
-<span class="go">2  1.595472 -0.456574  0.349366</span>
-<span class="go">3  0.170662 -0.848290  0.911333</span>
-<span class="go">4  0.607015  0.094920  0.463553</span>
+<span class="go">0  0.210427  0.192202  0.661949</span>
+<span class="go">1  1.690629 -1.046044  0.618697</span>
+<span class="go">2 -0.013863  1.314289  1.951611</span>
+<span class="go">3 -1.485026  0.304662  1.194757</span>
+<span class="go">4 -0.446717  0.528496 -0.657575</span>
 <span class="go">          a         b         c</span>
-<span class="go">0  0.059701 -0.637359 -0.383061</span>
-<span class="go">1  0.207999  0.364340  1.583008</span>
-<span class="go">2  1.689930 -0.242718  0.112029</span>
-<span class="go">3 -0.689024 -1.179293  1.027344</span>
-<span class="go">4 -0.061199 -0.381298  0.153261</span>
+<span class="go">0 -0.876654  0.336252  0.172668</span>
+<span class="go">1  0.337684 -0.411202 -0.828394</span>
+<span class="go">2 -0.244413  1.094948  0.087183</span>
+<span class="go">3  1.125934 -1.480095  1.205944</span>
+<span class="go">4 -0.451849  0.452214 -2.208192</span>
 <span class="go">          a         b         c</span>
-<span class="go">0 -2.033632  0.027068 -2.703884</span>
-<span class="go">1 -1.113497  0.433005 -1.278624</span>
-<span class="go">2 -0.653675  0.204411 -0.027614</span>
-<span class="go">3 -1.044562 -0.107022 -1.031036</span>
-<span class="go">4 -0.481203  0.431928  1.093131</span>
+<span class="go">0 -2.061019  0.044184 -0.017118</span>
+<span class="go">1  1.248959 -0.675595 -1.908296</span>
+<span class="go">2 -0.125934  1.491974  0.648726</span>
+<span class="go">3  0.391214  0.438609  1.634248</span>
+<span class="go">4  1.208707 -1.535740  1.620399</span>
 </pre></div>
 </div>
 <div class="admonition note" id="io-sql-chunksize">
@@ -8587,16 +8564,16 @@ be used to read the file incrementally.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [646]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="s2">"stata.dta"</span><span class="p">)</span>
 <span class="gh">Out[646]: </span>
 <span class="go">   index         A         B</span>
-<span class="go">0      0 -1.369751  1.008169</span>
-<span class="go">1      1  0.080123 -0.512447</span>
-<span class="go">2      2  1.311259 -2.369906</span>
-<span class="go">3      3 -0.963672 -0.111390</span>
-<span class="go">4      4 -0.142797 -1.227060</span>
-<span class="go">5      5  2.074974  1.152937</span>
-<span class="go">6      6 -0.935615 -0.225794</span>
-<span class="go">7      7 -0.109866 -1.225938</span>
-<span class="go">8      8 -0.537667  0.071139</span>
-<span class="go">9      9  0.607985 -0.789995</span>
+<span class="go">0      0 -0.165614  0.490482</span>
+<span class="go">1      1 -0.637829  0.067091</span>
+<span class="go">2      2 -0.242577  1.348038</span>
+<span class="go">3      3  0.647699 -0.644937</span>
+<span class="go">4      4  0.625771  0.918376</span>
+<span class="go">5      5  0.401781 -1.488919</span>
+<span class="go">6      6 -0.981845 -0.046882</span>
+<span class="go">7      7 -0.306796  0.877025</span>
+<span class="go">8      8 -0.336606  0.624747</span>
+<span class="go">9      9 -1.582600  0.806340</span>
 </pre></div>
 </div>
 <p>Specifying a <code class="docutils literal notranslate"><span class="pre">chunksize</span></code> yields a
