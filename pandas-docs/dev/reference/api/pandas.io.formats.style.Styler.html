@@ -612,7 +612,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">formatter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/formats/style.py#L82-L4235"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.io.formats.style.Styler" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/formats/style.py#L82-L4240"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.io.formats.style.Styler" title="Link to this definition">#</a></dt>
 <dd><p>Helps style a DataFrame or Series according to the data with HTML and CSS.</p>
 <p>This class provides methods for styling and formatting a Pandas DataFrame or Series.
 The styled output can be rendered as HTML or LaTeX, and it supports CSS-based
@@ -726,6 +726,10 @@ See the Jinja2 documentation on escaping HTML for more.</p>
 <code class="docutils literal notranslate"><span class="pre">Styler.apply</span></code> or <code class="docutils literal notranslate"><span class="pre">Styler.map</span></code>. Style functions should
 return values with strings containing CSS <code class="docutils literal notranslate"><span class="pre">'attr:</span> <span class="pre">value'</span></code> that will
 be applied to the indicated cells.</p>
+<p>Styling methods such as <code class="docutils literal notranslate"><span class="pre">Styler.map</span></code> and <code class="docutils literal notranslate"><span class="pre">Styler.format</span></code> modify the
+<code class="docutils literal notranslate"><span class="pre">Styler</span></code> in place and return it, to allow method chaining. Style functions
+are evaluated lazily at render time, so a faulty one stays queued until
+<code class="docutils literal notranslate"><span class="pre">Styler.clear</span></code> resets the Styler.</p>
 <p>If using in the Jupyter notebook, Styler has defined a <code class="docutils literal notranslate"><span class="pre">_repr_html_</span></code>
 to automatically render itself. Otherwise call Styler.to_html to get
 the generated HTML.</p>
