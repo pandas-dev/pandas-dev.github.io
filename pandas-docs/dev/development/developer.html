@@ -617,13 +617,19 @@ above.</p>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">numpy_type</span></code> is the physical storage type of the column, which is the
 result of <code class="docutils literal notranslate"><span class="pre">str(dtype)</span></code> for the underlying NumPy array that holds the data. So
-for <code class="docutils literal notranslate"><span class="pre">datetimetz</span></code> this is <code class="docutils literal notranslate"><span class="pre">datetime64[ns]</span></code> and for categorical, it may be
-any of the supported integer categorical types.</p>
+for <code class="docutils literal notranslate"><span class="pre">datetimetz</span></code> this is e.g. <code class="docutils literal notranslate"><span class="pre">datetime64[ns]</span></code> or <code class="docutils literal notranslate"><span class="pre">datetime64[us]</span></code>, and
+for categorical, it may be any of the supported integer categorical types.</p>
+<p>For other extension dtypes, <code class="docutils literal notranslate"><span class="pre">numpy_type</span></code> is typically <code class="docutils literal notranslate"><span class="pre">str(dtype)</span></code> of the
+extension dtype itself (e.g. <code class="docutils literal notranslate"><span class="pre">'Int64'</span></code>, <code class="docutils literal notranslate"><span class="pre">'boolean'</span></code>, <code class="docutils literal notranslate"><span class="pre">'string'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'period[D]'</span></code>), so that readers can restore it with
+<a class="reference internal" href="../reference/api/pandas.api.types.pandas_dtype.html#pandas.api.types.pandas_dtype" title="pandas.api.types.pandas_dtype"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.api.types.pandas_dtype()</span></code></a>.
+<code class="docutils literal notranslate"><span class="pre">pandas_type</span></code> is then a best-effort logical type, e.g. <code class="docutils literal notranslate"><span class="pre">'int64'</span></code> for
+<code class="docutils literal notranslate"><span class="pre">Int64</span></code> or <code class="docutils literal notranslate"><span class="pre">'object'</span></code> for <code class="docutils literal notranslate"><span class="pre">period[D]</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">metadata</span></code> field is <code class="docutils literal notranslate"><span class="pre">None</span></code> except for:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">datetimetz</span></code>: <code class="docutils literal notranslate"><span class="pre">{'timezone':</span> <span class="pre">zone,</span> <span class="pre">'unit':</span> <span class="pre">'ns'}</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">{'timezone',</span>
+<li><p><code class="docutils literal notranslate"><span class="pre">datetimetz</span></code>: <code class="docutils literal notranslate"><span class="pre">{'timezone':</span> <span class="pre">zone,</span> <span class="pre">'unit':</span> <span class="pre">'ns'}</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">{'timezone':</span>
 <span class="pre">'America/New_York',</span> <span class="pre">'unit':</span> <span class="pre">'ns'}</span></code>. The <code class="docutils literal notranslate"><span class="pre">'unit'</span></code> is optional, and if
-omitted it is assumed to be nanoseconds.</p></li>
+omitted it is given by <code class="docutils literal notranslate"><span class="pre">numpy_type</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">categorical</span></code>: <code class="docutils literal notranslate"><span class="pre">{'num_categories':</span> <span class="pre">K,</span> <span class="pre">'ordered':</span> <span class="pre">is_ordered,</span> <span class="pre">'type':</span> <span class="pre">$TYPE}</span></code></p>
 <ul>
 <li><p>Here <code class="docutils literal notranslate"><span class="pre">'type'</span></code> is optional, and can be a nested pandas type specification
@@ -644,7 +650,7 @@ in <code class="docutils literal notranslate"><span class="pre">BYTE_ARRAY</span
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">timedelta</span></code>: <code class="docutils literal notranslate"><span class="pre">{'unit':</span> <span class="pre">'ns'}</span></code>. The <code class="docutils literal notranslate"><span class="pre">'unit'</span></code> is optional, and if omitted
-it is assumed to be nanoseconds. This metadata is optional altogether</p></li>
+it is given by <code class="docutils literal notranslate"><span class="pre">numpy_type</span></code>. This metadata is optional altogether</p></li>
 </ul>
 <p>For types other than these, the <code class="docutils literal notranslate"><span class="pre">'metadata'</span></code> key can be
 omitted. Implementations can assume <code class="docutils literal notranslate"><span class="pre">None</span></code> if the key is not present.</p>
