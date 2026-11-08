@@ -777,6 +777,13 @@ passed to <code class="docutils literal notranslate"><span class="pre">numpy.bus
 <span class="go">Timestamp('2022-08-08 10:00:00')</span>
 </pre></div>
 </div>
+<p>Each hour is 60 minutes of business time; any part of an hour that does
+not fit before closing continues from the next opening.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ts</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">CustomBusinessHour</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">"09:30"</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">"16:00"</span><span class="p">)</span>
+<span class="go">Timestamp('2022-08-08 10:00:00')</span>
+</pre></div>
+</div>
 <p>You can divide your business day hours into several parts.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">CustomBusinessHour</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="p">[</span><span class="s2">"06:00"</span><span class="p">,</span> <span class="s2">"10:00"</span><span class="p">,</span> <span class="s2">"15:00"</span><span class="p">],</span>
