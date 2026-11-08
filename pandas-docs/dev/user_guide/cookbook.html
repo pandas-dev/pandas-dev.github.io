@@ -1927,20 +1927,17 @@ and <code class="docutils literal notranslate"><span class="pre">(&quot;s_PC&quo
 <span class="gp">   .....: </span>    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">aList</span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [185]: </span><span class="n">df_orgz</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
-<span class="gp">   .....: </span>    <span class="p">{</span><span class="n">ind</span><span class="p">:</span> <span class="n">row</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">SeriesFromSubList</span><span class="p">)</span> <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()}</span>
-<span class="gp">   .....: </span><span class="p">)</span>
-<span class="gp">   .....: </span>
+<span class="gp">In [185]: </span><span class="n">df_orgz</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">SeriesFromSubList</span><span class="p">)</span>
 
 <span class="gp">In [186]: </span><span class="n">df_orgz</span>
 <span class="gh">Out[186]: </span>
-<span class="go">         0     1     2     3</span>
-<span class="go">I   A    2     4     8  16.0</span>
-<span class="go">    B    a     b     c   NaN</span>
-<span class="go">II  A  100   200   NaN   NaN</span>
-<span class="go">    B   jj    kk   NaN   NaN</span>
-<span class="go">III A   10  20.0  30.0   NaN</span>
-<span class="go">    B  ccc   NaN   NaN   NaN</span>
+<span class="go">           0      1     2     3</span>
+<span class="go">I   A      2      4     8  16.0</span>
+<span class="go">    B      a      b     c   NaN</span>
+<span class="go">II  A  100.0  200.0   NaN   NaN</span>
+<span class="go">    B     jj     kk   NaN   NaN</span>
+<span class="go">III A   10.0   20.0  30.0   NaN</span>
+<span class="go">    B    ccc    NaN   NaN   NaN</span>
 </pre></div>
 </div>
 <p><a class="reference external" href="https://stackoverflow.com/questions/19121854/using-rolling-apply-on-a-dataframe-object">Rolling apply with a DataFrame returning a Series</a></p>
@@ -2391,8 +2388,8 @@ of the individual frames into a list, and then combine the frames in the list us
 <span class="gp">   .....: </span><span class="n">ds</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="gp">   .....: </span><span class="o">%</span><span class="k">timeit</span> pd.to_datetime(ds)
 <span class="gp">   .....: </span>
-<span class="go">3.73 ms +- 253 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
-<span class="go">3.52 ms +- 287 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">2.84 ms +- 57.8 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">2.19 ms +- 223 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 </section>

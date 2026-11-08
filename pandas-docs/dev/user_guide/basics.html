@@ -3185,16 +3185,8 @@ over the “keys” of the objects.</p>
 </div>
 <p>pandas objects also have the dict-like <a class="reference internal" href="../reference/api/pandas.DataFrame.items.html#pandas.DataFrame.items" title="pandas.DataFrame.items"><code class="xref py py-meth docutils literal notranslate"><span class="pre">items()</span></code></a> method to
 iterate over the (key, value) pairs.</p>
-<p>To iterate over the rows of a DataFrame, you can use the following methods:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="../reference/api/pandas.DataFrame.iterrows.html#pandas.DataFrame.iterrows" title="pandas.DataFrame.iterrows"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iterrows()</span></code></a>: Iterate over the rows of a DataFrame as (index, Series) pairs.
-This converts the rows to Series objects, which can change the dtypes and has some
-performance implications.</p></li>
-<li><p><a class="reference internal" href="../reference/api/pandas.DataFrame.itertuples.html#pandas.DataFrame.itertuples" title="pandas.DataFrame.itertuples"><code class="xref py py-meth docutils literal notranslate"><span class="pre">itertuples()</span></code></a>: Iterate over the rows of a DataFrame
-as namedtuples of the values.  This is a lot faster than
-<a class="reference internal" href="../reference/api/pandas.DataFrame.iterrows.html#pandas.DataFrame.iterrows" title="pandas.DataFrame.iterrows"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iterrows()</span></code></a>, and is in most cases preferable to use
-to iterate over the values of a DataFrame.</p></li>
-</ul>
+<p>To iterate over the rows of a DataFrame, you can use <a class="reference internal" href="../reference/api/pandas.DataFrame.itertuples.html#pandas.DataFrame.itertuples" title="pandas.DataFrame.itertuples"><code class="xref py py-meth docutils literal notranslate"><span class="pre">itertuples()</span></code></a>,
+which iterates over the rows as namedtuples of the values.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Iterating through pandas objects is generally <strong>slow</strong>. In many cases,
@@ -3218,21 +3210,6 @@ examples of this approach.</p></li>
 This is not guaranteed to work in all cases. Depending on the
 data types, the iterator returns a copy and not a view, and writing
 to it will have no effect!</p>
-<p>For example, in the following case setting the value has no effect:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [266]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">]})</span>
-
-<span class="gp">In [267]: </span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-<span class="gp">   .....: </span>    <span class="n">row</span><span class="p">[</span><span class="s2">"a"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="gp">   .....: </span>
-
-<span class="gp">In [268]: </span><span class="n">df</span>
-<span class="gh">Out[268]: </span>
-<span class="go">   a  b</span>
-<span class="go">0  1  a</span>
-<span class="go">1  2  b</span>
-<span class="go">2  3  c</span>
-</pre></div>
-</div>
 </div>
 <section id="items">
 <h3>items<a class="headerlink" href="#items" title="Link to this heading">#</a></h3>
@@ -3243,7 +3220,9 @@ through key-value pairs:</p>
 <li><p><strong>DataFrame</strong>: (column, Series) pairs</p></li>
 </ul>
 <p>For example:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [269]: </span><span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">ser</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [266]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">]})</span>
+
+<span class="gp">In [267]: </span><span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">ser</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
 <span class="gp">   .....: </span>    <span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
 <span class="gp">   .....: </span>    <span class="nb">print</span><span class="p">(</span><span class="n">ser</span><span class="p">)</span>
 <span class="gp">   .....: </span>
@@ -3260,94 +3239,14 @@ through key-value pairs:</p>
 </pre></div>
 </div>
 </section>
-<section id="iterrows">
-<span id="basics-iterrows"></span><h3>iterrows<a class="headerlink" href="#iterrows" title="Link to this heading">#</a></h3>
-<p><a class="reference internal" href="../reference/api/pandas.DataFrame.iterrows.html#pandas.DataFrame.iterrows" title="pandas.DataFrame.iterrows"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iterrows()</span></code></a> allows you to iterate through the rows of a
-DataFrame as Series objects. It returns an iterator yielding each
-index value along with a Series containing the data in each row:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [270]: </span><span class="k">for</span> <span class="n">row_index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-<span class="gp">   .....: </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row_index</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
-<span class="gp">   .....: </span>
-<span class="go">0</span>
-<span class="go">a    1</span>
-<span class="go">b    a</span>
-<span class="go">Name: 0, dtype: object</span>
-<span class="go">1</span>
-<span class="go">a    2</span>
-<span class="go">b    b</span>
-<span class="go">Name: 1, dtype: object</span>
-<span class="go">2</span>
-<span class="go">a    3</span>
-<span class="go">b    c</span>
-<span class="go">Name: 2, dtype: object</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Because <a class="reference internal" href="../reference/api/pandas.DataFrame.iterrows.html#pandas.DataFrame.iterrows" title="pandas.DataFrame.iterrows"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iterrows()</span></code></a> returns a Series for each row,
-it does <strong>not</strong> preserve dtypes across the rows (dtypes are
-preserved across columns for DataFrames). For example,</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [271]: </span><span class="n">df_orig</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"int"</span><span class="p">,</span> <span class="s2">"float"</span><span class="p">])</span>
-
-<span class="gp">In [272]: </span><span class="n">df_orig</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[272]: </span>
-<span class="go">int        int64</span>
-<span class="go">float    float64</span>
-<span class="go">dtype: object</span>
-
-<span class="gp">In [273]: </span><span class="n">row</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">df_orig</span><span class="o">.</span><span class="n">iterrows</span><span class="p">())[</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="gp">In [274]: </span><span class="n">row</span>
-<span class="gh">Out[274]: </span>
-<span class="go">int      1.0</span>
-<span class="go">float    1.5</span>
-<span class="go">Name: 0, dtype: float64</span>
-</pre></div>
-</div>
-<p>All values in <code class="docutils literal notranslate"><span class="pre">row</span></code>, returned as a Series, are now upcasted
-to floats, also the original integer value in column <code class="docutils literal notranslate"><span class="pre">x</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [275]: </span><span class="n">row</span><span class="p">[</span><span class="s2">"int"</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
-<span class="gh">Out[275]: </span><span class="go">dtype('float64')</span>
-
-<span class="gp">In [276]: </span><span class="n">df_orig</span><span class="p">[</span><span class="s2">"int"</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
-<span class="gh">Out[276]: </span><span class="go">dtype('int64')</span>
-</pre></div>
-</div>
-<p>To preserve dtypes while iterating over the rows, it is better
-to use <a class="reference internal" href="../reference/api/pandas.DataFrame.itertuples.html#pandas.DataFrame.itertuples" title="pandas.DataFrame.itertuples"><code class="xref py py-meth docutils literal notranslate"><span class="pre">itertuples()</span></code></a> which returns namedtuples of the values
-and which is generally much faster than <a class="reference internal" href="../reference/api/pandas.DataFrame.iterrows.html#pandas.DataFrame.iterrows" title="pandas.DataFrame.iterrows"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iterrows()</span></code></a>.</p>
-</div>
-<p>For instance, a contrived way to transpose the DataFrame would be:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [277]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"x"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"y"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
-
-<span class="gp">In [278]: </span><span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
-<span class="go">   x  y</span>
-<span class="go">0  1  4</span>
-<span class="go">1  2  5</span>
-<span class="go">2  3  6</span>
-
-<span class="gp">In [279]: </span><span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-<span class="go">   0  1  2</span>
-<span class="go">x  1  2  3</span>
-<span class="go">y  4  5  6</span>
-
-<span class="gp">In [280]: </span><span class="n">df2_t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">idx</span><span class="p">:</span> <span class="n">values</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">df2</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()})</span>
-
-<span class="gp">In [281]: </span><span class="nb">print</span><span class="p">(</span><span class="n">df2_t</span><span class="p">)</span>
-<span class="go">   0  1  2</span>
-<span class="go">x  1  2  3</span>
-<span class="go">y  4  5  6</span>
-</pre></div>
-</div>
-</section>
 <section id="itertuples">
-<h3>itertuples<a class="headerlink" href="#itertuples" title="Link to this heading">#</a></h3>
+<span id="basics-iterrows"></span><h3>itertuples<a class="headerlink" href="#itertuples" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="../reference/api/pandas.DataFrame.itertuples.html#pandas.DataFrame.itertuples" title="pandas.DataFrame.itertuples"><code class="xref py py-meth docutils literal notranslate"><span class="pre">itertuples()</span></code></a> method will return an iterator
 yielding a namedtuple for each row in the DataFrame. The first element
 of the tuple will be the row’s corresponding index value, while the
 remaining values are the row values.</p>
 <p>For instance:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [282]: </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [268]: </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
 <span class="gp">   .....: </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 <span class="gp">   .....: </span>
 <span class="go">Pandas(Index=0, a=1, b='a')</span>
@@ -3357,8 +3256,7 @@ remaining values are the row values.</p>
 </div>
 <p>This method does not convert the row to a Series object; it merely
 returns the values inside a namedtuple. Therefore,
-<a class="reference internal" href="../reference/api/pandas.DataFrame.itertuples.html#pandas.DataFrame.itertuples" title="pandas.DataFrame.itertuples"><code class="xref py py-meth docutils literal notranslate"><span class="pre">itertuples()</span></code></a> preserves the data type of the values
-and is generally faster than <a class="reference internal" href="../reference/api/pandas.DataFrame.iterrows.html#pandas.DataFrame.iterrows" title="pandas.DataFrame.iterrows"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iterrows()</span></code></a>.</p>
+<a class="reference internal" href="../reference/api/pandas.DataFrame.itertuples.html#pandas.DataFrame.itertuples" title="pandas.DataFrame.itertuples"><code class="xref py py-meth docutils literal notranslate"><span class="pre">itertuples()</span></code></a> preserves the data type of the values.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The column names will be renamed to positional names if they are
@@ -3373,34 +3271,34 @@ With a large number of columns (&gt;255), regular tuples are returned.</p>
 <em>values</em> of the Series, if it is a datetime/period like Series.
 This will return a Series, indexed like the existing Series.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># datetime</span>
-<span class="gp">In [283]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"20130101 09:10:12"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="gp">In [269]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"20130101 09:10:12"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 
-<span class="gp">In [284]: </span><span class="n">s</span>
-<span class="gh">Out[284]: </span>
+<span class="gp">In [270]: </span><span class="n">s</span>
+<span class="gh">Out[270]: </span>
 <span class="go">0   2013-01-01 09:10:12</span>
 <span class="go">1   2013-01-02 09:10:12</span>
 <span class="go">2   2013-01-03 09:10:12</span>
 <span class="go">3   2013-01-04 09:10:12</span>
 <span class="go">dtype: datetime64[us]</span>
 
-<span class="gp">In [285]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span>
-<span class="gh">Out[285]: </span>
+<span class="gp">In [271]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span>
+<span class="gh">Out[271]: </span>
 <span class="go">0    9</span>
 <span class="go">1    9</span>
 <span class="go">2    9</span>
 <span class="go">3    9</span>
 <span class="go">dtype: int32</span>
 
-<span class="gp">In [286]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">second</span>
-<span class="gh">Out[286]: </span>
+<span class="gp">In [272]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">second</span>
+<span class="gh">Out[272]: </span>
 <span class="go">0    12</span>
 <span class="go">1    12</span>
 <span class="go">2    12</span>
 <span class="go">3    12</span>
 <span class="go">dtype: int32</span>
 
-<span class="gp">In [287]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
-<span class="gh">Out[287]: </span>
+<span class="gp">In [273]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
+<span class="gh">Out[273]: </span>
 <span class="go">0    1</span>
 <span class="go">1    2</span>
 <span class="go">2    3</span>
@@ -3409,30 +3307,30 @@ This will return a Series, indexed like the existing Series.</p>
 </pre></div>
 </div>
 <p>This enables nice expressions like this:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [288]: </span><span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span>
-<span class="gh">Out[288]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [274]: </span><span class="n">s</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span>
+<span class="gh">Out[274]: </span>
 <span class="go">1   2013-01-02 09:10:12</span>
 <span class="go">dtype: datetime64[us]</span>
 </pre></div>
 </div>
 <p>You can easily produce tz aware transformations:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [289]: </span><span class="n">stz</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="s2">"US/Eastern"</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [275]: </span><span class="n">stz</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="s2">"US/Eastern"</span><span class="p">)</span>
 
-<span class="gp">In [290]: </span><span class="n">stz</span>
-<span class="gh">Out[290]: </span>
+<span class="gp">In [276]: </span><span class="n">stz</span>
+<span class="gh">Out[276]: </span>
 <span class="go">0   2013-01-01 09:10:12-05:00</span>
 <span class="go">1   2013-01-02 09:10:12-05:00</span>
 <span class="go">2   2013-01-03 09:10:12-05:00</span>
 <span class="go">3   2013-01-04 09:10:12-05:00</span>
 <span class="go">dtype: datetime64[us, US/Eastern]</span>
 
-<span class="gp">In [291]: </span><span class="n">stz</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz</span>
-<span class="gh">Out[291]: </span><span class="go">zoneinfo.ZoneInfo(key='US/Eastern')</span>
+<span class="gp">In [277]: </span><span class="n">stz</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz</span>
+<span class="gh">Out[277]: </span><span class="go">zoneinfo.ZoneInfo(key='US/Eastern')</span>
 </pre></div>
 </div>
 <p>You can also chain these types of operations:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [292]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="s2">"UTC"</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s2">"US/Eastern"</span><span class="p">)</span>
-<span class="gh">Out[292]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [278]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="s2">"UTC"</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_convert</span><span class="p">(</span><span class="s2">"US/Eastern"</span><span class="p">)</span>
+<span class="gh">Out[278]: </span>
 <span class="go">0   2013-01-01 04:10:12-05:00</span>
 <span class="go">1   2013-01-02 04:10:12-05:00</span>
 <span class="go">2   2013-01-03 04:10:12-05:00</span>
@@ -3443,18 +3341,18 @@ This will return a Series, indexed like the existing Series.</p>
 <p>You can also format datetime values as strings with <a class="reference internal" href="../reference/api/pandas.Series.dt.strftime.html#pandas.Series.dt.strftime" title="pandas.Series.dt.strftime"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.dt.strftime()</span></code></a> which
 supports the same format as the standard <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime.strftime" title="(in Python v3.15)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">strftime()</span></code></a>.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># DatetimeIndex</span>
-<span class="gp">In [293]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"20130101"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="gp">In [279]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"20130101"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 
-<span class="gp">In [294]: </span><span class="n">s</span>
-<span class="gh">Out[294]: </span>
+<span class="gp">In [280]: </span><span class="n">s</span>
+<span class="gh">Out[280]: </span>
 <span class="go">0   2013-01-01</span>
 <span class="go">1   2013-01-02</span>
 <span class="go">2   2013-01-03</span>
 <span class="go">3   2013-01-04</span>
 <span class="go">dtype: datetime64[us]</span>
 
-<span class="gp">In [295]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%Y/%m/</span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span>
-<span class="gh">Out[295]: </span>
+<span class="gp">In [281]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%Y/%m/</span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span>
+<span class="gh">Out[281]: </span>
 <span class="go">0    2013/01/01</span>
 <span class="go">1    2013/01/02</span>
 <span class="go">2    2013/01/03</span>
@@ -3463,18 +3361,18 @@ supports the same format as the standard <a class="reference external" href="htt
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># PeriodIndex</span>
-<span class="gp">In [296]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">period_range</span><span class="p">(</span><span class="s2">"20130101"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="gp">In [282]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">period_range</span><span class="p">(</span><span class="s2">"20130101"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 
-<span class="gp">In [297]: </span><span class="n">s</span>
-<span class="gh">Out[297]: </span>
+<span class="gp">In [283]: </span><span class="n">s</span>
+<span class="gh">Out[283]: </span>
 <span class="go">0    2013-01-01</span>
 <span class="go">1    2013-01-02</span>
 <span class="go">2    2013-01-03</span>
 <span class="go">3    2013-01-04</span>
 <span class="go">dtype: period[D]</span>
 
-<span class="gp">In [298]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%Y/%m/</span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span>
-<span class="gh">Out[298]: </span>
+<span class="gp">In [284]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%Y/%m/</span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span>
+<span class="gh">Out[284]: </span>
 <span class="go">0    2013/01/01</span>
 <span class="go">1    2013/01/02</span>
 <span class="go">2    2013/01/03</span>
@@ -3484,26 +3382,26 @@ supports the same format as the standard <a class="reference external" href="htt
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">.dt</span></code> accessor works for period and timedelta dtypes.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># period</span>
-<span class="gp">In [299]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">period_range</span><span class="p">(</span><span class="s2">"20130101"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">))</span>
+<span class="gp">In [285]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">period_range</span><span class="p">(</span><span class="s2">"20130101"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">))</span>
 
-<span class="gp">In [300]: </span><span class="n">s</span>
-<span class="gh">Out[300]: </span>
+<span class="gp">In [286]: </span><span class="n">s</span>
+<span class="gh">Out[286]: </span>
 <span class="go">0    2013-01-01</span>
 <span class="go">1    2013-01-02</span>
 <span class="go">2    2013-01-03</span>
 <span class="go">3    2013-01-04</span>
 <span class="go">dtype: period[D]</span>
 
-<span class="gp">In [301]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
-<span class="gh">Out[301]: </span>
+<span class="gp">In [287]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="gh">Out[287]: </span>
 <span class="go">0    2013</span>
 <span class="go">1    2013</span>
 <span class="go">2    2013</span>
 <span class="go">3    2013</span>
 <span class="go">dtype: int64</span>
 
-<span class="gp">In [302]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
-<span class="gh">Out[302]: </span>
+<span class="gp">In [288]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
+<span class="gh">Out[288]: </span>
 <span class="go">0    1</span>
 <span class="go">1    2</span>
 <span class="go">2    3</span>
@@ -3512,34 +3410,34 @@ supports the same format as the standard <a class="reference external" href="htt
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># timedelta</span>
-<span class="gp">In [303]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="s2">"1 day 00:00:05"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"s"</span><span class="p">))</span>
+<span class="gp">In [289]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="s2">"1 day 00:00:05"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"s"</span><span class="p">))</span>
 
-<span class="gp">In [304]: </span><span class="n">s</span>
-<span class="gh">Out[304]: </span>
+<span class="gp">In [290]: </span><span class="n">s</span>
+<span class="gh">Out[290]: </span>
 <span class="go">0   1 days 00:00:05</span>
 <span class="go">1   1 days 00:00:06</span>
 <span class="go">2   1 days 00:00:07</span>
 <span class="go">3   1 days 00:00:08</span>
 <span class="go">dtype: timedelta64[us]</span>
 
-<span class="gp">In [305]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">days</span>
-<span class="gh">Out[305]: </span>
+<span class="gp">In [291]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">days</span>
+<span class="gh">Out[291]: </span>
 <span class="go">0    1</span>
 <span class="go">1    1</span>
 <span class="go">2    1</span>
 <span class="go">3    1</span>
 <span class="go">dtype: int64</span>
 
-<span class="gp">In [306]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">seconds</span>
-<span class="gh">Out[306]: </span>
+<span class="gp">In [292]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">seconds</span>
+<span class="gh">Out[292]: </span>
 <span class="go">0    5</span>
 <span class="go">1    6</span>
 <span class="go">2    7</span>
 <span class="go">3    8</span>
 <span class="go">dtype: int32</span>
 
-<span class="gp">In [307]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">components</span>
-<span class="gh">Out[307]: </span>
+<span class="gp">In [293]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">components</span>
+<span class="gh">Out[293]: </span>
 <span class="go">   days  hours  minutes  seconds  milliseconds  microseconds  nanoseconds</span>
 <span class="go">0     1      0        0        5             0             0            0</span>
 <span class="go">1     1      0        0        6             0             0            0</span>
@@ -3560,13 +3458,13 @@ exclude missing/NA values automatically. These are accessed via the Series’s
 <code class="docutils literal notranslate"><span class="pre">str</span></code> attribute and generally have names matching the equivalent (scalar)
 built-in string methods. For example:</p>
 <blockquote>
-<div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [308]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+<div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [294]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"Aaba"</span><span class="p">,</span> <span class="s2">"Baca"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">"CABA"</span><span class="p">,</span> <span class="s2">"dog"</span><span class="p">,</span> <span class="s2">"cat"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"string"</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [309]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-<span class="gh">Out[309]: </span>
+<span class="gp">In [295]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="gh">Out[295]: </span>
 <span class="go">0       a</span>
 <span class="go">1       b</span>
 <span class="go">2       c</span>
@@ -3600,7 +3498,7 @@ sorting by column values, and sorting by a combination of both.</p>
 <span id="basics-sort-index"></span><h3>By index<a class="headerlink" href="#by-index" title="Link to this heading">#</a></h3>
 <p>The <a class="reference internal" href="../reference/api/pandas.Series.sort_index.html#pandas.Series.sort_index" title="pandas.Series.sort_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.sort_index()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.sort_index.html#pandas.DataFrame.sort_index" title="pandas.DataFrame.sort_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.sort_index()</span></code></a> methods are
 used to sort a pandas object by its index levels.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [310]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [296]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span>
 <span class="gp">   .....: </span>        <span class="s2">"one"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">]),</span>
 <span class="gp">   .....: </span>        <span class="s2">"two"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">]),</span>
@@ -3609,13 +3507,13 @@ used to sort a pandas object by its index levels.</p>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [311]: </span><span class="n">unsorted_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
+<span class="gp">In [297]: </span><span class="n">unsorted_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"d"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"three"</span><span class="p">,</span> <span class="s2">"two"</span><span class="p">,</span> <span class="s2">"one"</span><span class="p">]</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [312]: </span><span class="n">unsorted_df</span>
-<span class="gh">Out[312]: </span>
+<span class="gp">In [298]: </span><span class="n">unsorted_df</span>
+<span class="gh">Out[298]: </span>
 <span class="go">      three       two       one</span>
 <span class="go">a       NaN -1.152244  0.562973</span>
 <span class="go">d -0.252916 -0.109597       NaN</span>
@@ -3623,24 +3521,24 @@ used to sort a pandas object by its index levels.</p>
 <span class="go">b -0.098217  0.009797 -1.299504</span>
 
 <span class="go"># DataFrame</span>
-<span class="gp">In [313]: </span><span class="n">unsorted_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
-<span class="gh">Out[313]: </span>
+<span class="gp">In [299]: </span><span class="n">unsorted_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="gh">Out[299]: </span>
 <span class="go">      three       two       one</span>
 <span class="go">a       NaN -1.152244  0.562973</span>
 <span class="go">b -0.098217  0.009797 -1.299504</span>
 <span class="go">c  1.273388 -0.167123  0.640382</span>
 <span class="go">d -0.252916 -0.109597       NaN</span>
 
-<span class="gp">In [314]: </span><span class="n">unsorted_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="gh">Out[314]: </span>
+<span class="gp">In [300]: </span><span class="n">unsorted_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gh">Out[300]: </span>
 <span class="go">      three       two       one</span>
 <span class="go">d -0.252916 -0.109597       NaN</span>
 <span class="go">c  1.273388 -0.167123  0.640382</span>
 <span class="go">b -0.098217  0.009797 -1.299504</span>
 <span class="go">a       NaN -1.152244  0.562973</span>
 
-<span class="gp">In [315]: </span><span class="n">unsorted_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="gh">Out[315]: </span>
+<span class="gp">In [301]: </span><span class="n">unsorted_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[301]: </span>
 <span class="go">        one     three       two</span>
 <span class="go">a  0.562973       NaN -1.152244</span>
 <span class="go">d       NaN -0.252916 -0.109597</span>
@@ -3648,8 +3546,8 @@ used to sort a pandas object by its index levels.</p>
 <span class="go">b -1.299504 -0.098217  0.009797</span>
 
 <span class="go"># Series</span>
-<span class="gp">In [316]: </span><span class="n">unsorted_df</span><span class="p">[</span><span class="s2">"three"</span><span class="p">]</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
-<span class="gh">Out[316]: </span>
+<span class="gp">In [302]: </span><span class="n">unsorted_df</span><span class="p">[</span><span class="s2">"three"</span><span class="p">]</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="gh">Out[302]: </span>
 <span class="go">a         NaN</span>
 <span class="go">b   -0.098217</span>
 <span class="go">c    1.273388</span>
@@ -3660,13 +3558,13 @@ used to sort a pandas object by its index levels.</p>
 <p id="basics-sort-index-key">Sorting by index also supports a <code class="docutils literal notranslate"><span class="pre">key</span></code> parameter that takes a callable
 function to apply to the index being sorted. For <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> objects,
 the key is applied per-level to the levels specified by <code class="docutils literal notranslate"><span class="pre">level</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [317]: </span><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"B"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"c"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [303]: </span><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"B"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"c"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="nb">list</span><span class="p">(</span><span class="s2">"ab"</span><span class="p">)</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [318]: </span><span class="n">s1</span>
-<span class="gh">Out[318]: </span>
+<span class="gp">In [304]: </span><span class="n">s1</span>
+<span class="gh">Out[304]: </span>
 <span class="go">     c</span>
 <span class="go">a b   </span>
 <span class="go">B 1  2</span>
@@ -3674,16 +3572,16 @@ the key is applied per-level to the levels specified by <code class="docutils li
 <span class="go">C 3  4</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [319]: </span><span class="n">s1</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">"a"</span><span class="p">)</span>
-<span class="gh">Out[319]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [305]: </span><span class="n">s1</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">"a"</span><span class="p">)</span>
+<span class="gh">Out[305]: </span>
 <span class="go">     c</span>
 <span class="go">a b   </span>
 <span class="go">B 1  2</span>
 <span class="go">C 3  4</span>
 <span class="go">a 2  3</span>
 
-<span class="gp">In [320]: </span><span class="n">s1</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">"a"</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">idx</span><span class="p">:</span> <span class="n">idx</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-<span class="gh">Out[320]: </span>
+<span class="gp">In [306]: </span><span class="n">s1</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">"a"</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">idx</span><span class="p">:</span> <span class="n">idx</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<span class="gh">Out[306]: </span>
 <span class="go">     c</span>
 <span class="go">a b   </span>
 <span class="go">a 2  3</span>
@@ -3699,13 +3597,13 @@ the key is applied per-level to the levels specified by <code class="docutils li
 <a class="reference internal" href="../reference/api/pandas.DataFrame.sort_values.html#pandas.DataFrame.sort_values" title="pandas.DataFrame.sort_values"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.sort_values()</span></code></a> method is used to sort a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> by its column or row values.
 The optional <code class="docutils literal notranslate"><span class="pre">by</span></code> parameter to <a class="reference internal" href="../reference/api/pandas.DataFrame.sort_values.html#pandas.DataFrame.sort_values" title="pandas.DataFrame.sort_values"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.sort_values()</span></code></a> may used to specify one or more columns
 to use to determine the sorted order.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [321]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [307]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span><span class="s2">"one"</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">"two"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s2">"three"</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [322]: </span><span class="n">df1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">"two"</span><span class="p">)</span>
-<span class="gh">Out[322]: </span>
+<span class="gp">In [308]: </span><span class="n">df1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">"two"</span><span class="p">)</span>
+<span class="gh">Out[308]: </span>
 <span class="go">   one  two  three</span>
 <span class="go">0    2    1      5</span>
 <span class="go">2    1    2      3</span>
@@ -3714,8 +3612,8 @@ to use to determine the sorted order.</p>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">by</span></code> parameter can take a list of column names, e.g.:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [323]: </span><span class="n">df1</span><span class="p">[[</span><span class="s2">"one"</span><span class="p">,</span> <span class="s2">"two"</span><span class="p">,</span> <span class="s2">"three"</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">"one"</span><span class="p">,</span> <span class="s2">"two"</span><span class="p">])</span>
-<span class="gh">Out[323]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [309]: </span><span class="n">df1</span><span class="p">[[</span><span class="s2">"one"</span><span class="p">,</span> <span class="s2">"two"</span><span class="p">,</span> <span class="s2">"three"</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">"one"</span><span class="p">,</span> <span class="s2">"two"</span><span class="p">])</span>
+<span class="gh">Out[309]: </span>
 <span class="go">   one  two  three</span>
 <span class="go">2    1    2      3</span>
 <span class="go">1    1    3      4</span>
@@ -3725,10 +3623,10 @@ to use to determine the sorted order.</p>
 </div>
 <p>These methods have special treatment of NA values via the <code class="docutils literal notranslate"><span class="pre">na_position</span></code>
 argument:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [324]: </span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [310]: </span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="gp">In [325]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
-<span class="gh">Out[325]: </span>
+<span class="gp">In [311]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+<span class="gh">Out[311]: </span>
 <span class="go">0       A</span>
 <span class="go">3    Aaba</span>
 <span class="go">1       B</span>
@@ -3740,8 +3638,8 @@ argument:</p>
 <span class="go">5    &lt;NA&gt;</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [326]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">na_position</span><span class="o">=</span><span class="s2">"first"</span><span class="p">)</span>
-<span class="gh">Out[326]: </span>
+<span class="gp">In [312]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">na_position</span><span class="o">=</span><span class="s2">"first"</span><span class="p">)</span>
+<span class="gh">Out[312]: </span>
 <span class="go">2    &lt;NA&gt;</span>
 <span class="go">5    &lt;NA&gt;</span>
 <span class="go">0       A</span>
@@ -3756,18 +3654,18 @@ argument:</p>
 </div>
 <p id="basics-sort-value-key">Sorting also supports a <code class="docutils literal notranslate"><span class="pre">key</span></code> parameter that takes a callable function
 to apply to the values being sorted.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [327]: </span><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">"B"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [313]: </span><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">"B"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [328]: </span><span class="n">s1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
-<span class="gh">Out[328]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [314]: </span><span class="n">s1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+<span class="gh">Out[314]: </span>
 <span class="go">0    B</span>
 <span class="go">2    C</span>
 <span class="go">1    a</span>
 <span class="go">dtype: str</span>
 
-<span class="gp">In [329]: </span><span class="n">s1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-<span class="gh">Out[329]: </span>
+<span class="gp">In [315]: </span><span class="n">s1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<span class="gh">Out[315]: </span>
 <span class="go">1    a</span>
 <span class="go">0    B</span>
 <span class="go">2    C</span>
@@ -3778,18 +3676,18 @@ to apply to the values being sorted.</p>
 or array of the same shape with the transformed values. For <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> objects,
 the key is applied per column, so the key should still expect a Series and return
 a Series, e.g.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [330]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"B"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [316]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"B"</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [331]: </span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">"a"</span><span class="p">)</span>
-<span class="gh">Out[331]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [317]: </span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">"a"</span><span class="p">)</span>
+<span class="gh">Out[317]: </span>
 <span class="go">   a  b</span>
 <span class="go">0  B  1</span>
 <span class="go">2  C  3</span>
 <span class="go">1  a  2</span>
 
-<span class="gp">In [332]: </span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">"a"</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">col</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-<span class="gh">Out[332]: </span>
+<span class="gp">In [318]: </span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">"a"</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">col</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<span class="gh">Out[318]: </span>
 <span class="go">   a  b</span>
 <span class="go">1  a  2</span>
 <span class="go">0  B  1</span>
@@ -3804,18 +3702,18 @@ different columns.</p>
 <p>Strings passed as the <code class="docutils literal notranslate"><span class="pre">by</span></code> parameter to <a class="reference internal" href="../reference/api/pandas.DataFrame.sort_values.html#pandas.DataFrame.sort_values" title="pandas.DataFrame.sort_values"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.sort_values()</span></code></a> may
 refer to either columns or index level names.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># Build MultiIndex</span>
-<span class="gp">In [333]: </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+<span class="gp">In [319]: </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[(</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s2">"b"</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s2">"b"</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s2">"b"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [334]: </span><span class="n">idx</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"first"</span><span class="p">,</span> <span class="s2">"second"</span><span class="p">]</span>
+<span class="gp">In [320]: </span><span class="n">idx</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"first"</span><span class="p">,</span> <span class="s2">"second"</span><span class="p">]</span>
 
 <span class="go"># Build DataFrame</span>
-<span class="gp">In [335]: </span><span class="n">df_multi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)},</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
+<span class="gp">In [321]: </span><span class="n">df_multi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"A"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)},</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
 
-<span class="gp">In [336]: </span><span class="n">df_multi</span>
-<span class="gh">Out[336]: </span>
+<span class="gp">In [322]: </span><span class="n">df_multi</span>
+<span class="gh">Out[322]: </span>
 <span class="go">              A</span>
 <span class="go">first second   </span>
 <span class="go">a     1       6</span>
@@ -3827,8 +3725,8 @@ refer to either columns or index level names.</p>
 </pre></div>
 </div>
 <p>Sort by ‘second’ (index) and ‘A’ (column)</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [337]: </span><span class="n">df_multi</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">"second"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">])</span>
-<span class="gh">Out[337]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [323]: </span><span class="n">df_multi</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">"second"</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">])</span>
+<span class="gh">Out[323]: </span>
 <span class="go">              A</span>
 <span class="go">first second   </span>
 <span class="go">b     1       1</span>
@@ -3850,24 +3748,24 @@ ambiguity error in a future version.</p>
 <span id="basics-searchsorted"></span><h3>searchsorted<a class="headerlink" href="#searchsorted" title="Link to this heading">#</a></h3>
 <p>Series has the <a class="reference internal" href="../reference/api/pandas.Series.searchsorted.html#pandas.Series.searchsorted" title="pandas.Series.searchsorted"><code class="xref py py-meth docutils literal notranslate"><span class="pre">searchsorted()</span></code></a> method, which works similarly to
 <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.searchsorted.html#numpy.ndarray.searchsorted" title="(in NumPy v2.5)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.ndarray.searchsorted()</span></code></a>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [338]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [324]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
-<span class="gp">In [339]: </span><span class="n">ser</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="gh">Out[339]: </span><span class="go">array([0, 2])</span>
+<span class="gp">In [325]: </span><span class="n">ser</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gh">Out[325]: </span><span class="go">array([0, 2])</span>
 
-<span class="gp">In [340]: </span><span class="n">ser</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
-<span class="gh">Out[340]: </span><span class="go">array([0, 3])</span>
+<span class="gp">In [326]: </span><span class="n">ser</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gh">Out[326]: </span><span class="go">array([0, 3])</span>
 
-<span class="gp">In [341]: </span><span class="n">ser</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">side</span><span class="o">=</span><span class="s2">"right"</span><span class="p">)</span>
-<span class="gh">Out[341]: </span><span class="go">array([1, 3])</span>
+<span class="gp">In [327]: </span><span class="n">ser</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">side</span><span class="o">=</span><span class="s2">"right"</span><span class="p">)</span>
+<span class="gh">Out[327]: </span><span class="go">array([1, 3])</span>
 
-<span class="gp">In [342]: </span><span class="n">ser</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">side</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span>
-<span class="gh">Out[342]: </span><span class="go">array([0, 2])</span>
+<span class="gp">In [328]: </span><span class="n">ser</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">side</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span>
+<span class="gh">Out[328]: </span><span class="go">array([0, 2])</span>
 
-<span class="gp">In [343]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">In [329]: </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 
-<span class="gp">In [344]: </span><span class="n">ser</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">sorter</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">ser</span><span class="p">))</span>
-<span class="gh">Out[344]: </span><span class="go">array([0, 2])</span>
+<span class="gp">In [330]: </span><span class="n">ser</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">sorter</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">ser</span><span class="p">))</span>
+<span class="gh">Out[330]: </span><span class="go">array([0, 2])</span>
 </pre></div>
 </div>
 </section>
@@ -3876,10 +3774,10 @@ ambiguity error in a future version.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Series</span></code> has the <a class="reference internal" href="../reference/api/pandas.Series.nsmallest.html#pandas.Series.nsmallest" title="pandas.Series.nsmallest"><code class="xref py py-meth docutils literal notranslate"><span class="pre">nsmallest()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.nlargest.html#pandas.Series.nlargest" title="pandas.Series.nlargest"><code class="xref py py-meth docutils literal notranslate"><span class="pre">nlargest()</span></code></a> methods which return the
 smallest or largest <span class="math notranslate nohighlight">\(n\)</span> values. For a large <code class="docutils literal notranslate"><span class="pre">Series</span></code> this can be much
 faster than sorting the entire Series and calling <code class="docutils literal notranslate"><span class="pre">head(n)</span></code> on the result.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [345]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [331]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 
-<span class="gp">In [346]: </span><span class="n">s</span>
-<span class="gh">Out[346]: </span>
+<span class="gp">In [332]: </span><span class="n">s</span>
+<span class="gh">Out[332]: </span>
 <span class="go">0    2</span>
 <span class="go">1    0</span>
 <span class="go">2    3</span>
@@ -3892,8 +3790,8 @@ faster than sorting the entire Series and calling <code class="docutils literal 
 <span class="go">9    4</span>
 <span class="go">dtype: int64</span>
 
-<span class="gp">In [347]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
-<span class="gh">Out[347]: </span>
+<span class="gp">In [333]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+<span class="gh">Out[333]: </span>
 <span class="go">1    0</span>
 <span class="go">4    1</span>
 <span class="go">0    2</span>
@@ -3906,15 +3804,15 @@ faster than sorting the entire Series and calling <code class="docutils literal 
 <span class="go">6    9</span>
 <span class="go">dtype: int64</span>
 
-<span class="gp">In [348]: </span><span class="n">s</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="gh">Out[348]: </span>
+<span class="gp">In [334]: </span><span class="n">s</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gh">Out[334]: </span>
 <span class="go">1    0</span>
 <span class="go">4    1</span>
 <span class="go">0    2</span>
 <span class="go">dtype: int64</span>
 
-<span class="gp">In [349]: </span><span class="n">s</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="gh">Out[349]: </span>
+<span class="gp">In [335]: </span><span class="n">s</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gh">Out[335]: </span>
 <span class="go">6    9</span>
 <span class="go">8    8</span>
 <span class="go">3    7</span>
@@ -3922,7 +3820,7 @@ faster than sorting the entire Series and calling <code class="docutils literal 
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> also has the <code class="docutils literal notranslate"><span class="pre">nlargest</span></code> and <code class="docutils literal notranslate"><span class="pre">nsmallest</span></code> methods.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [350]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [336]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span>
 <span class="gp">   .....: </span>        <span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
 <span class="gp">   .....: </span>        <span class="s2">"b"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"abdceff"</span><span class="p">),</span>
@@ -3931,15 +3829,15 @@ faster than sorting the entire Series and calling <code class="docutils literal 
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [351]: </span><span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">)</span>
-<span class="gh">Out[351]: </span>
+<span class="gp">In [337]: </span><span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">)</span>
+<span class="gh">Out[337]: </span>
 <span class="go">    a  b    c</span>
 <span class="go">5  11  f  3.0</span>
 <span class="go">3  10  c  3.2</span>
 <span class="go">4   8  e  NaN</span>
 
-<span class="gp">In [352]: </span><span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">])</span>
-<span class="gh">Out[352]: </span>
+<span class="gp">In [338]: </span><span class="n">df</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">])</span>
+<span class="gh">Out[338]: </span>
 <span class="go">    a  b    c</span>
 <span class="go">5  11  f  3.0</span>
 <span class="go">3  10  c  3.2</span>
@@ -3947,15 +3845,15 @@ faster than sorting the entire Series and calling <code class="docutils literal 
 <span class="go">2   1  d  4.0</span>
 <span class="go">6  -1  f  4.0</span>
 
-<span class="gp">In [353]: </span><span class="n">df</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">)</span>
-<span class="gh">Out[353]: </span>
+<span class="gp">In [339]: </span><span class="n">df</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">)</span>
+<span class="gh">Out[339]: </span>
 <span class="go">   a  b    c</span>
 <span class="go">0 -2  a  1.0</span>
 <span class="go">1 -1  b  2.0</span>
 <span class="go">6 -1  f  4.0</span>
 
-<span class="gp">In [354]: </span><span class="n">df</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">])</span>
-<span class="gh">Out[354]: </span>
+<span class="gp">In [340]: </span><span class="n">df</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">])</span>
+<span class="gh">Out[340]: </span>
 <span class="go">   a  b    c</span>
 <span class="go">0 -2  a  1.0</span>
 <span class="go">1 -1  b  2.0</span>
@@ -3969,13 +3867,13 @@ faster than sorting the entire Series and calling <code class="docutils literal 
 <span id="basics-multiindex-sorting"></span><h3>Sorting by a MultiIndex column<a class="headerlink" href="#sorting-by-a-multiindex-column" title="Link to this heading">#</a></h3>
 <p>You must be explicit about sorting when the column is a MultiIndex, and fully specify
 all levels to <code class="docutils literal notranslate"><span class="pre">by</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [355]: </span><span class="n">df1</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [341]: </span><span class="n">df1</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[(</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"one"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"two"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"b"</span><span class="p">,</span> <span class="s2">"three"</span><span class="p">)]</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [356]: </span><span class="n">df1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">(</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"two"</span><span class="p">))</span>
-<span class="gh">Out[356]: </span>
+<span class="gp">In [342]: </span><span class="n">df1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">(</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"two"</span><span class="p">))</span>
+<span class="gh">Out[342]: </span>
 <span class="go">    a         b</span>
 <span class="go">  one two three</span>
 <span class="go">0   2   1     5</span>
@@ -4101,7 +3999,7 @@ be avoided to the extent possible (for performance and interoperability with
 other libraries and methods. See <a class="reference internal" href="#basics-object-conversion"><span class="std std-ref">object conversion</span></a>).</p>
 <p>A convenient <a class="reference internal" href="../reference/api/pandas.DataFrame.dtypes.html#pandas.DataFrame.dtypes" title="pandas.DataFrame.dtypes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dtypes</span></code></a> attribute for DataFrame returns a Series
 with the data type of each column.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [357]: </span><span class="n">dft</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [343]: </span><span class="n">dft</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span>
 <span class="gp">   .....: </span>        <span class="s2">"A"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
 <span class="gp">   .....: </span>        <span class="s2">"B"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -4114,15 +4012,15 @@ with the data type of each column.</p>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [358]: </span><span class="n">dft</span>
-<span class="gh">Out[358]: </span>
+<span class="gp">In [344]: </span><span class="n">dft</span>
+<span class="gh">Out[344]: </span>
 <span class="go">          A  B    C          D    E      F  G</span>
 <span class="go">0  0.035962  1  foo 2001-01-02  1.0  False  1</span>
 <span class="go">1  0.701379  1  foo 2001-01-02  1.0  False  1</span>
 <span class="go">2  0.281885  1  foo 2001-01-02  1.0  False  1</span>
 
-<span class="gp">In [359]: </span><span class="n">dft</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[359]: </span>
+<span class="gp">In [345]: </span><span class="n">dft</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[345]: </span>
 <span class="go">A           float64</span>
 <span class="go">B             int64</span>
 <span class="go">C               str</span>
@@ -4134,16 +4032,16 @@ with the data type of each column.</p>
 </pre></div>
 </div>
 <p>On a <code class="docutils literal notranslate"><span class="pre">Series</span></code> object, use the <a class="reference internal" href="../reference/api/pandas.Series.dtype.html#pandas.Series.dtype" title="pandas.Series.dtype"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dtype</span></code></a> attribute.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [360]: </span><span class="n">dft</span><span class="p">[</span><span class="s2">"A"</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
-<span class="gh">Out[360]: </span><span class="go">dtype('float64')</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [346]: </span><span class="n">dft</span><span class="p">[</span><span class="s2">"A"</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
+<span class="gh">Out[346]: </span><span class="go">dtype('float64')</span>
 </pre></div>
 </div>
 <p>If a pandas object contains data with multiple dtypes <em>in a single column</em>, the
 dtype of the column will be chosen to accommodate all of the data types
 (<code class="docutils literal notranslate"><span class="pre">object</span></code> is the most general).</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># these ints are coerced to floats</span>
-<span class="gp">In [361]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">])</span>
-<span class="gh">Out[361]: </span>
+<span class="gp">In [347]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">])</span>
+<span class="gh">Out[347]: </span>
 <span class="go">0    1.0</span>
 <span class="go">1    2.0</span>
 <span class="go">2    3.0</span>
@@ -4153,8 +4051,8 @@ dtype of the column will be chosen to accommodate all of the data types
 <span class="go">dtype: float64</span>
 
 <span class="go"># string data forces an ``object`` dtype</span>
-<span class="gp">In [362]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="s2">"foo"</span><span class="p">])</span>
-<span class="gh">Out[362]: </span>
+<span class="gp">In [348]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="s2">"foo"</span><span class="p">])</span>
+<span class="gh">Out[348]: </span>
 <span class="go">0      1</span>
 <span class="go">1      2</span>
 <span class="go">2      3</span>
@@ -4165,8 +4063,8 @@ dtype of the column will be chosen to accommodate all of the data types
 </div>
 <p>The number of columns of each type in a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> can be found by calling
 <code class="docutils literal notranslate"><span class="pre">DataFrame.dtypes.value_counts()</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [363]: </span><span class="n">dft</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-<span class="gh">Out[363]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [349]: </span><span class="n">dft</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="gh">Out[349]: </span>
 <span class="go">float64           1</span>
 <span class="go">int64             1</span>
 <span class="go">str               1</span>
@@ -4181,10 +4079,10 @@ dtype of the column will be chosen to accommodate all of the data types
 If a dtype is passed (either directly via the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> keyword, a passed <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>,
 or a passed <code class="docutils literal notranslate"><span class="pre">Series</span></code>), then it will be preserved in DataFrame operations. Furthermore,
 different numeric dtypes will <strong>NOT</strong> be combined. The following example will give you a taste.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [364]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [350]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"float64"</span><span class="p">)</span>
 
-<span class="gp">In [365]: </span><span class="n">df1</span>
-<span class="gh">Out[365]: </span>
+<span class="gp">In [351]: </span><span class="n">df1</span>
+<span class="gh">Out[351]: </span>
 <span class="go">          A</span>
 <span class="go">0  0.224364</span>
 <span class="go">1  1.890546</span>
@@ -4195,12 +4093,12 @@ different numeric dtypes will <strong>NOT</strong> be combined. The following ex
 <span class="go">6 -0.011736</span>
 <span class="go">7 -0.399073</span>
 
-<span class="gp">In [366]: </span><span class="n">df1</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[366]: </span>
+<span class="gp">In [352]: </span><span class="n">df1</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[352]: </span>
 <span class="go">A    float64</span>
 <span class="go">dtype: object</span>
 
-<span class="gp">In [367]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">In [353]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span>
 <span class="gp">   .....: </span>        <span class="s2">"A"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"float32"</span><span class="p">),</span>
 <span class="gp">   .....: </span>        <span class="s2">"B"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">8</span><span class="p">)),</span>
@@ -4209,8 +4107,8 @@ different numeric dtypes will <strong>NOT</strong> be combined. The following ex
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [368]: </span><span class="n">df2</span>
-<span class="gh">Out[368]: </span>
+<span class="gp">In [354]: </span><span class="n">df2</span>
+<span class="gh">Out[354]: </span>
 <span class="go">          A         B    C</span>
 <span class="go">0  0.823270  0.256090   26</span>
 <span class="go">1  1.607861  1.426469   86</span>
@@ -4221,8 +4119,8 @@ different numeric dtypes will <strong>NOT</strong> be combined. The following ex
 <span class="go">6 -0.040865 -1.956850  184</span>
 <span class="go">7 -0.357346 -0.714337  206</span>
 
-<span class="gp">In [369]: </span><span class="n">df2</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[369]: </span>
+<span class="gp">In [355]: </span><span class="n">df2</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[355]: </span>
 <span class="go">A    float32</span>
 <span class="go">B    float64</span>
 <span class="go">C      uint8</span>
@@ -4234,25 +4132,25 @@ different numeric dtypes will <strong>NOT</strong> be combined. The following ex
 <p>By default integer types are <code class="docutils literal notranslate"><span class="pre">int64</span></code> and float types are <code class="docutils literal notranslate"><span class="pre">float64</span></code>,
 <em>regardless</em> of platform (32-bit or 64-bit).
 The following will all result in <code class="docutils literal notranslate"><span class="pre">int64</span></code> dtypes.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [370]: </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">])</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[370]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [356]: </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"a"</span><span class="p">])</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[356]: </span>
 <span class="go">a    int64</span>
 <span class="go">dtype: object</span>
 
-<span class="gp">In [371]: </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[371]: </span>
+<span class="gp">In [357]: </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[357]: </span>
 <span class="go">a    int64</span>
 <span class="go">dtype: object</span>
 
-<span class="gp">In [372]: </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[372]: </span>
+<span class="gp">In [358]: </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[358]: </span>
 <span class="go">a    int64</span>
 <span class="go">dtype: object</span>
 </pre></div>
 </div>
 <p>Note that Numpy will choose <em>platform-dependent</em> types when creating arrays.
 The following <strong>WILL</strong> result in <code class="docutils literal notranslate"><span class="pre">int32</span></code> on 32-bit platform.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [373]: </span><span class="n">frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [359]: </span><span class="n">frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
 </pre></div>
 </div>
 </section>
@@ -4260,10 +4158,10 @@ The following <strong>WILL</strong> result in <code class="docutils literal notr
 <h3>upcasting<a class="headerlink" href="#upcasting" title="Link to this heading">#</a></h3>
 <p>Types can potentially be <em>upcasted</em> when combined with other types, meaning they are promoted
 from the current type (e.g. <code class="docutils literal notranslate"><span class="pre">int</span></code> to <code class="docutils literal notranslate"><span class="pre">float</span></code>).</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [374]: </span><span class="n">df3</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">reindex_like</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">df2</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [360]: </span><span class="n">df3</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">reindex_like</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">df2</span>
 
-<span class="gp">In [375]: </span><span class="n">df3</span>
-<span class="gh">Out[375]: </span>
+<span class="gp">In [361]: </span><span class="n">df3</span>
+<span class="gh">Out[361]: </span>
 <span class="go">          A         B      C</span>
 <span class="go">0  1.047634  0.256090   26.0</span>
 <span class="go">1  3.498407  1.426469   86.0</span>
@@ -4274,8 +4172,8 @@ from the current type (e.g. <code class="docutils literal notranslate"><span cla
 <span class="go">6 -0.052601 -1.956850  184.0</span>
 <span class="go">7 -0.756419 -0.714337  206.0</span>
 
-<span class="gp">In [376]: </span><span class="n">df3</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[376]: </span>
+<span class="gp">In [362]: </span><span class="n">df3</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[362]: </span>
 <span class="go">A    float64</span>
 <span class="go">B    float64</span>
 <span class="go">C    float64</span>
@@ -4285,8 +4183,8 @@ from the current type (e.g. <code class="docutils literal notranslate"><span cla
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.to_numpy.html#pandas.DataFrame.to_numpy" title="pandas.DataFrame.to_numpy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_numpy()</span></code></a> will return the <em>lower-common-denominator</em> of the dtypes, meaning
 the dtype that can accommodate <strong>ALL</strong> of the types in the resulting homogeneous dtyped NumPy array. This can
 force some <em>upcasting</em>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [377]: </span><span class="n">df3</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">dtype</span>
-<span class="gh">Out[377]: </span><span class="go">dtype('float64')</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [363]: </span><span class="n">df3</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">dtype</span>
+<span class="gh">Out[363]: </span><span class="go">dtype('float64')</span>
 </pre></div>
 </div>
 </section>
@@ -4297,8 +4195,8 @@ even if the dtype was unchanged (pass <code class="docutils literal notranslate"
 exception if the astype operation is invalid.</p>
 <p>Upcasting is always according to the <strong>NumPy</strong> rules. If two different dtypes are involved in an operation,
 then the more <em>general</em> one will be used as the result of the operation.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [378]: </span><span class="n">df3</span>
-<span class="gh">Out[378]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [364]: </span><span class="n">df3</span>
+<span class="gh">Out[364]: </span>
 <span class="go">          A         B      C</span>
 <span class="go">0  1.047634  0.256090   26.0</span>
 <span class="go">1  3.498407  1.426469   86.0</span>
@@ -4309,16 +4207,16 @@ then the more <em>general</em> one will be used as the result of the operation.<
 <span class="go">6 -0.052601 -1.956850  184.0</span>
 <span class="go">7 -0.756419 -0.714337  206.0</span>
 
-<span class="gp">In [379]: </span><span class="n">df3</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[379]: </span>
+<span class="gp">In [365]: </span><span class="n">df3</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[365]: </span>
 <span class="go">A    float64</span>
 <span class="go">B    float64</span>
 <span class="go">C    float64</span>
 <span class="go">dtype: object</span>
 
 <span class="go"># conversion of dtypes</span>
-<span class="gp">In [380]: </span><span class="n">df3</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"float32"</span><span class="p">)</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[380]: </span>
+<span class="gp">In [366]: </span><span class="n">df3</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"float32"</span><span class="p">)</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[366]: </span>
 <span class="go">A    float32</span>
 <span class="go">B    float32</span>
 <span class="go">C    float32</span>
@@ -4326,19 +4224,19 @@ then the more <em>general</em> one will be used as the result of the operation.<
 </pre></div>
 </div>
 <p>Convert a subset of columns to a specified type using <a class="reference internal" href="../reference/api/pandas.DataFrame.astype.html#pandas.DataFrame.astype" title="pandas.DataFrame.astype"><code class="xref py py-meth docutils literal notranslate"><span class="pre">astype()</span></code></a>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [381]: </span><span class="n">dft</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">"c"</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [367]: </span><span class="n">dft</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">"c"</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]})</span>
 
-<span class="gp">In [382]: </span><span class="n">dft</span><span class="p">[[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dft</span><span class="p">[[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="gp">In [368]: </span><span class="n">dft</span><span class="p">[[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dft</span><span class="p">[[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 
-<span class="gp">In [383]: </span><span class="n">dft</span>
-<span class="gh">Out[383]: </span>
+<span class="gp">In [369]: </span><span class="n">dft</span>
+<span class="gh">Out[369]: </span>
 <span class="go">   a  b  c</span>
 <span class="go">0  1  4  7</span>
 <span class="go">1  2  5  8</span>
 <span class="go">2  3  6  9</span>
 
-<span class="gp">In [384]: </span><span class="n">dft</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[384]: </span>
+<span class="gp">In [370]: </span><span class="n">dft</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[370]: </span>
 <span class="go">a    uint8</span>
 <span class="go">b    uint8</span>
 <span class="go">c    int64</span>
@@ -4346,19 +4244,19 @@ then the more <em>general</em> one will be used as the result of the operation.<
 </pre></div>
 </div>
 <p>Convert certain columns to a specific dtype by passing a dict to <a class="reference internal" href="../reference/api/pandas.DataFrame.astype.html#pandas.DataFrame.astype" title="pandas.DataFrame.astype"><code class="xref py py-meth docutils literal notranslate"><span class="pre">astype()</span></code></a>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [385]: </span><span class="n">dft1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">"c"</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [371]: </span><span class="n">dft1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">"c"</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]})</span>
 
-<span class="gp">In [386]: </span><span class="n">dft1</span> <span class="o">=</span> <span class="n">dft1</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">})</span>
+<span class="gp">In [372]: </span><span class="n">dft1</span> <span class="o">=</span> <span class="n">dft1</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">})</span>
 
-<span class="gp">In [387]: </span><span class="n">dft1</span>
-<span class="gh">Out[387]: </span>
+<span class="gp">In [373]: </span><span class="n">dft1</span>
+<span class="gh">Out[373]: </span>
 <span class="go">       a  b    c</span>
 <span class="go">0   True  4  7.0</span>
 <span class="go">1  False  5  8.0</span>
 <span class="go">2   True  6  9.0</span>
 
-<span class="gp">In [388]: </span><span class="n">dft1</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[388]: </span>
+<span class="gp">In [374]: </span><span class="n">dft1</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[374]: </span>
 <span class="go">a       bool</span>
 <span class="go">b      int64</span>
 <span class="go">c    float64</span>
@@ -4369,18 +4267,18 @@ then the more <em>general</em> one will be used as the result of the operation.<
 <p class="admonition-title">Note</p>
 <p>When trying to convert a subset of columns to a specified type using <a class="reference internal" href="../reference/api/pandas.DataFrame.astype.html#pandas.DataFrame.astype" title="pandas.DataFrame.astype"><code class="xref py py-meth docutils literal notranslate"><span class="pre">astype()</span></code></a>  and <a class="reference internal" href="../reference/api/pandas.DataFrame.loc.html#pandas.DataFrame.loc" title="pandas.DataFrame.loc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loc()</span></code></a>, upcasting occurs.</p>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.loc.html#pandas.DataFrame.loc" title="pandas.DataFrame.loc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">loc()</span></code></a> tries to fit in what we are assigning to the current dtypes, while <code class="docutils literal notranslate"><span class="pre">[]</span></code> will overwrite them taking the dtype from the right hand side. Therefore the following piece of code produces the unintended result.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [389]: </span><span class="n">dft</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">"c"</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [375]: </span><span class="n">dft</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"a"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">"b"</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">"c"</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]})</span>
 
-<span class="gp">In [390]: </span><span class="n">dft</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[390]: </span>
+<span class="gp">In [376]: </span><span class="n">dft</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[376]: </span>
 <span class="go">a    uint8</span>
 <span class="go">b    uint8</span>
 <span class="go">dtype: object</span>
 
-<span class="gp">In [391]: </span><span class="n">dft</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dft</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="gp">In [377]: </span><span class="n">dft</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dft</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 
-<span class="gp">In [392]: </span><span class="n">dft</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[392]: </span>
+<span class="gp">In [378]: </span><span class="n">dft</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[378]: </span>
 <span class="go">a    int64</span>
 <span class="go">b    int64</span>
 <span class="go">c    int64</span>
@@ -4396,9 +4294,9 @@ In cases where the data is already of the correct type, but stored in an <code c
 <a class="reference internal" href="../reference/api/pandas.DataFrame.infer_objects.html#pandas.DataFrame.infer_objects" title="pandas.DataFrame.infer_objects"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.infer_objects()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.infer_objects.html#pandas.Series.infer_objects" title="pandas.Series.infer_objects"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.infer_objects()</span></code></a> methods can be used to soft convert
 to the correct type.</p>
 <blockquote>
-<div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [393]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [379]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
 
-<span class="gp">In [394]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">In [380]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[</span>
 <span class="gp">   .....: </span>        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
 <span class="gp">   .....: </span>        <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">],</span>
@@ -4407,16 +4305,16 @@ to the correct type.</p>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [395]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">T</span>
+<span class="gp">In [381]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">T</span>
 
-<span class="gp">In [396]: </span><span class="n">df</span>
-<span class="gh">Out[396]: </span>
+<span class="gp">In [382]: </span><span class="n">df</span>
+<span class="gh">Out[382]: </span>
 <span class="go">   0  1                    2</span>
 <span class="go">0  1  a  2016-03-02 00:00:00</span>
 <span class="go">1  2  b  2016-03-02 00:00:00</span>
 
-<span class="gp">In [397]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[397]: </span>
+<span class="gp">In [383]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[383]: </span>
 <span class="go">0    object</span>
 <span class="go">1    object</span>
 <span class="go">2    object</span>
@@ -4427,8 +4325,8 @@ to the correct type.</p>
 <p>Because the data was transposed the original inference stored all columns as object, which
 <code class="docutils literal notranslate"><span class="pre">infer_objects</span></code> will correct.</p>
 <blockquote>
-<div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [398]: </span><span class="n">df</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">()</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[398]: </span>
+<div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [384]: </span><span class="n">df</span><span class="o">.</span><span class="n">infer_objects</span><span class="p">()</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[384]: </span>
 <span class="go">0             int64</span>
 <span class="go">1               str</span>
 <span class="go">2    datetime64[us]</span>
@@ -4440,28 +4338,28 @@ to the correct type.</p>
 hard conversion of objects to a specified type:</p>
 <ul>
 <li><p><a class="reference internal" href="../reference/api/pandas.to_numeric.html#pandas.to_numeric" title="pandas.to_numeric"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_numeric()</span></code></a> (conversion to numeric dtypes)</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [399]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"1.1"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [385]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"1.1"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 
-<span class="gp">In [400]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-<span class="gh">Out[400]: </span><span class="go">array([1.1, 2. , 3. ])</span>
+<span class="gp">In [386]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="gh">Out[386]: </span><span class="go">array([1.1, 2. , 3. ])</span>
 </pre></div>
 </div>
 </li>
 <li><p><a class="reference internal" href="../reference/api/pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_datetime()</span></code></a> (conversion to datetime objects)</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [401]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [387]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
 
-<span class="gp">In [402]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"2016-07-09"</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2016</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+<span class="gp">In [388]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"2016-07-09"</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2016</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
 
-<span class="gp">In [403]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-<span class="gh">Out[403]: </span><span class="go">DatetimeIndex(['2016-07-09', '2016-03-02'], dtype='datetime64[us]', freq=None)</span>
+<span class="gp">In [389]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="gh">Out[389]: </span><span class="go">DatetimeIndex(['2016-07-09', '2016-03-02'], dtype='datetime64[us]', freq=None)</span>
 </pre></div>
 </div>
 </li>
 <li><p><a class="reference internal" href="../reference/api/pandas.to_timedelta.html#pandas.to_timedelta" title="pandas.to_timedelta"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_timedelta()</span></code></a> (conversion to timedelta objects)</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [404]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"5us"</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">"1day"</span><span class="p">)]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [390]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"5us"</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">"1day"</span><span class="p">)]</span>
 
-<span class="gp">In [405]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-<span class="gh">Out[405]: </span>
+<span class="gp">In [391]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="gh">Out[391]: </span>
 <span class="go">TimedeltaIndex(['0 days 00:00:00.000005', '1 days 00:00:00.000000'],</span>
 <span class="go">               dtype='timedelta64[us]', freq=None)</span>
 </pre></div>
@@ -4474,83 +4372,83 @@ will be raised during the conversion process. However, if <code class="docutils 
 will convert problematic elements to <code class="docutils literal notranslate"><span class="pre">pd.NaT</span></code> (for datetime and timedelta) or <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> (for numeric). This might be
 useful if you are reading in data which is mostly of the desired dtype (e.g. numeric, datetime), but occasionally has
 non-conforming elements intermixed that you want to represent as missing:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [406]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [392]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
 
-<span class="gp">In [407]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"apple"</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2016</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+<span class="gp">In [393]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"apple"</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2016</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
 
-<span class="gp">In [408]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span><span class="p">)</span>
-<span class="gh">Out[408]: </span><span class="go">DatetimeIndex(['NaT', '2016-03-02'], dtype='datetime64[us]', freq=None)</span>
+<span class="gp">In [394]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span><span class="p">)</span>
+<span class="gh">Out[394]: </span><span class="go">DatetimeIndex(['NaT', '2016-03-02'], dtype='datetime64[us]', freq=None)</span>
 
-<span class="gp">In [409]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"apple"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">In [395]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"apple"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 
-<span class="gp">In [410]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span><span class="p">)</span>
-<span class="gh">Out[410]: </span><span class="go">array([nan,  2.,  3.])</span>
+<span class="gp">In [396]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span><span class="p">)</span>
+<span class="gh">Out[396]: </span><span class="go">array([nan,  2.,  3.])</span>
 
-<span class="gp">In [411]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"apple"</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">"1day"</span><span class="p">)]</span>
+<span class="gp">In [397]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"apple"</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">"1day"</span><span class="p">)]</span>
 
-<span class="gp">In [412]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span><span class="p">)</span>
-<span class="gh">Out[412]: </span><span class="go">TimedeltaIndex([NaT, '1 days'], dtype='timedelta64[us]', freq=None)</span>
+<span class="gp">In [398]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span><span class="p">)</span>
+<span class="gh">Out[398]: </span><span class="go">TimedeltaIndex([NaT, '1 days'], dtype='timedelta64[us]', freq=None)</span>
 </pre></div>
 </div>
 <p>In addition to object conversion, <a class="reference internal" href="../reference/api/pandas.to_numeric.html#pandas.to_numeric" title="pandas.to_numeric"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_numeric()</span></code></a> provides another argument <code class="docutils literal notranslate"><span class="pre">downcast</span></code>, which gives the
 option of downcasting the newly (or already) numeric data to a smaller dtype, which can conserve memory:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [413]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"1"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [399]: </span><span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"1"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 
-<span class="gp">In [414]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"integer"</span><span class="p">)</span>  <span class="c1"># smallest signed int dtype</span>
-<span class="gh">Out[414]: </span><span class="go">array([1, 2, 3], dtype=int8)</span>
+<span class="gp">In [400]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"integer"</span><span class="p">)</span>  <span class="c1"># smallest signed int dtype</span>
+<span class="gh">Out[400]: </span><span class="go">array([1, 2, 3], dtype=int8)</span>
 
-<span class="gp">In [415]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"signed"</span><span class="p">)</span>  <span class="c1"># same as 'integer'</span>
-<span class="gh">Out[415]: </span><span class="go">array([1, 2, 3], dtype=int8)</span>
+<span class="gp">In [401]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"signed"</span><span class="p">)</span>  <span class="c1"># same as 'integer'</span>
+<span class="gh">Out[401]: </span><span class="go">array([1, 2, 3], dtype=int8)</span>
 
-<span class="gp">In [416]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"unsigned"</span><span class="p">)</span>  <span class="c1"># smallest unsigned int dtype</span>
-<span class="gh">Out[416]: </span><span class="go">array([1, 2, 3], dtype=uint8)</span>
+<span class="gp">In [402]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"unsigned"</span><span class="p">)</span>  <span class="c1"># smallest unsigned int dtype</span>
+<span class="gh">Out[402]: </span><span class="go">array([1, 2, 3], dtype=uint8)</span>
 
-<span class="gp">In [417]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"float"</span><span class="p">)</span>  <span class="c1"># smallest float dtype</span>
-<span class="gh">Out[417]: </span><span class="go">array([1., 2., 3.], dtype=float32)</span>
+<span class="gp">In [403]: </span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">"float"</span><span class="p">)</span>  <span class="c1"># smallest float dtype</span>
+<span class="gh">Out[403]: </span><span class="go">array([1., 2., 3.], dtype=float32)</span>
 </pre></div>
 </div>
 <p>As these methods apply only to one-dimensional arrays, lists or scalars; they cannot be used directly on multi-dimensional objects such
 as DataFrames. However, with <a class="reference internal" href="../reference/api/pandas.DataFrame.apply.html#pandas.DataFrame.apply" title="pandas.DataFrame.apply"><code class="xref py py-meth docutils literal notranslate"><span class="pre">apply()</span></code></a>, we can “apply” the function over each column efficiently:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [418]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [404]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
 
-<span class="gp">In [419]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">"2016-07-09"</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2016</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"O"</span><span class="p">)</span>
+<span class="gp">In [405]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">"2016-07-09"</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2016</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"O"</span><span class="p">)</span>
 
-<span class="gp">In [420]: </span><span class="n">df</span>
-<span class="gh">Out[420]: </span>
+<span class="gp">In [406]: </span><span class="n">df</span>
+<span class="gh">Out[406]: </span>
 <span class="go">            0                    1</span>
 <span class="go">0  2016-07-09  2016-03-02 00:00:00</span>
 <span class="go">1  2016-07-09  2016-03-02 00:00:00</span>
 
-<span class="gp">In [421]: </span><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">)</span>
-<span class="gh">Out[421]: </span>
+<span class="gp">In [407]: </span><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">)</span>
+<span class="gh">Out[407]: </span>
 <span class="go">           0          1</span>
 <span class="go">0 2016-07-09 2016-03-02</span>
 <span class="go">1 2016-07-09 2016-03-02</span>
 
-<span class="gp">In [422]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">"1.1"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"O"</span><span class="p">)</span>
+<span class="gp">In [408]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">"1.1"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"O"</span><span class="p">)</span>
 
-<span class="gp">In [423]: </span><span class="n">df</span>
-<span class="gh">Out[423]: </span>
+<span class="gp">In [409]: </span><span class="n">df</span>
+<span class="gh">Out[409]: </span>
 <span class="go">     0  1  2</span>
 <span class="go">0  1.1  2  3</span>
 <span class="go">1  1.1  2  3</span>
 
-<span class="gp">In [424]: </span><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">)</span>
-<span class="gh">Out[424]: </span>
+<span class="gp">In [410]: </span><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">)</span>
+<span class="gh">Out[410]: </span>
 <span class="go">     0  1  2</span>
 <span class="go">0  1.1  2  3</span>
 <span class="go">1  1.1  2  3</span>
 
-<span class="gp">In [425]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">"5us"</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">"1day"</span><span class="p">)]]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"O"</span><span class="p">)</span>
+<span class="gp">In [411]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">"5us"</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">"1day"</span><span class="p">)]]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"O"</span><span class="p">)</span>
 
-<span class="gp">In [426]: </span><span class="n">df</span>
-<span class="gh">Out[426]: </span>
+<span class="gp">In [412]: </span><span class="n">df</span>
+<span class="gh">Out[412]: </span>
 <span class="go">     0                1</span>
 <span class="go">0  5us  1 days 00:00:00</span>
 <span class="go">1  5us  1 days 00:00:00</span>
 
-<span class="gp">In [427]: </span><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">)</span>
-<span class="gh">Out[427]: </span>
+<span class="gp">In [413]: </span><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">)</span>
+<span class="gh">Out[413]: </span>
 <span class="go">                       0      1</span>
 <span class="go">0 0 days 00:00:00.000005 1 days</span>
 <span class="go">1 0 days 00:00:00.000005 1 days</span>
@@ -4562,12 +4460,12 @@ as DataFrames. However, with <a class="reference internal" href="../reference/ap
 <p>Performing selection operations on <code class="docutils literal notranslate"><span class="pre">integer</span></code> type data can easily upcast the data to <code class="docutils literal notranslate"><span class="pre">floating</span></code>.
 The dtype of the input data will be preserved in cases where <code class="docutils literal notranslate"><span class="pre">nans</span></code> are not introduced.
 See also <a class="reference internal" href="gotchas.html#gotchas-intna"><span class="std std-ref">Support for integer NA</span></a>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [428]: </span><span class="n">dfi</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"int32"</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [414]: </span><span class="n">dfi</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"int32"</span><span class="p">)</span>
 
-<span class="gp">In [429]: </span><span class="n">dfi</span><span class="p">[</span><span class="s2">"E"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">In [415]: </span><span class="n">dfi</span><span class="p">[</span><span class="s2">"E"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="gp">In [430]: </span><span class="n">dfi</span>
-<span class="gh">Out[430]: </span>
+<span class="gp">In [416]: </span><span class="n">dfi</span>
+<span class="gh">Out[416]: </span>
 <span class="go">   A  B    C  E</span>
 <span class="go">0  1  0   26  1</span>
 <span class="go">1  3  1   86  1</span>
@@ -4578,18 +4476,18 @@ See also <a class="reference internal" href="gotchas.html#gotchas-intna"><span c
 <span class="go">6  0 -1  184  1</span>
 <span class="go">7  0  0  206  1</span>
 
-<span class="gp">In [431]: </span><span class="n">dfi</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[431]: </span>
+<span class="gp">In [417]: </span><span class="n">dfi</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[417]: </span>
 <span class="go">A    int32</span>
 <span class="go">B    int32</span>
 <span class="go">C    int32</span>
 <span class="go">E    int64</span>
 <span class="go">dtype: object</span>
 
-<span class="gp">In [432]: </span><span class="n">casted</span> <span class="o">=</span> <span class="n">dfi</span><span class="p">[</span><span class="n">dfi</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="gp">In [418]: </span><span class="n">casted</span> <span class="o">=</span> <span class="n">dfi</span><span class="p">[</span><span class="n">dfi</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
 
-<span class="gp">In [433]: </span><span class="n">casted</span>
-<span class="gh">Out[433]: </span>
+<span class="gp">In [419]: </span><span class="n">casted</span>
+<span class="gh">Out[419]: </span>
 <span class="go">     A    B    C  E</span>
 <span class="go">0  1.0  NaN   26  1</span>
 <span class="go">1  3.0  1.0   86  1</span>
@@ -4600,8 +4498,8 @@ See also <a class="reference internal" href="gotchas.html#gotchas-intna"><span c
 <span class="go">6  NaN  NaN  184  1</span>
 <span class="go">7  NaN  NaN  206  1</span>
 
-<span class="gp">In [434]: </span><span class="n">casted</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[434]: </span>
+<span class="gp">In [420]: </span><span class="n">casted</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[420]: </span>
 <span class="go">A    float64</span>
 <span class="go">B    float64</span>
 <span class="go">C      int32</span>
@@ -4610,21 +4508,21 @@ See also <a class="reference internal" href="gotchas.html#gotchas-intna"><span c
 </pre></div>
 </div>
 <p>While float dtypes are unchanged.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [435]: </span><span class="n">dfa</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [421]: </span><span class="n">dfa</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-<span class="gp">In [436]: </span><span class="n">dfa</span><span class="p">[</span><span class="s2">"A"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfa</span><span class="p">[</span><span class="s2">"A"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"float32"</span><span class="p">)</span>
+<span class="gp">In [422]: </span><span class="n">dfa</span><span class="p">[</span><span class="s2">"A"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfa</span><span class="p">[</span><span class="s2">"A"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"float32"</span><span class="p">)</span>
 
-<span class="gp">In [437]: </span><span class="n">dfa</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[437]: </span>
+<span class="gp">In [423]: </span><span class="n">dfa</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[423]: </span>
 <span class="go">A    float32</span>
 <span class="go">B    float64</span>
 <span class="go">C    float64</span>
 <span class="go">dtype: object</span>
 
-<span class="gp">In [438]: </span><span class="n">casted</span> <span class="o">=</span> <span class="n">dfa</span><span class="p">[</span><span class="n">df2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="gp">In [424]: </span><span class="n">casted</span> <span class="o">=</span> <span class="n">dfa</span><span class="p">[</span><span class="n">df2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
 
-<span class="gp">In [439]: </span><span class="n">casted</span>
-<span class="gh">Out[439]: </span>
+<span class="gp">In [425]: </span><span class="n">casted</span>
+<span class="gh">Out[425]: </span>
 <span class="go">          A         B      C</span>
 <span class="go">0  1.047634  0.256090   26.0</span>
 <span class="go">1  3.498407  1.426469   86.0</span>
@@ -4635,8 +4533,8 @@ See also <a class="reference internal" href="gotchas.html#gotchas-intna"><span c
 <span class="go">6       NaN       NaN  184.0</span>
 <span class="go">7       NaN       NaN  206.0</span>
 
-<span class="gp">In [440]: </span><span class="n">casted</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[440]: </span>
+<span class="gp">In [426]: </span><span class="n">casted</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[426]: </span>
 <span class="go">A    float32</span>
 <span class="go">B    float64</span>
 <span class="go">C    float64</span>
@@ -4651,7 +4549,7 @@ See also <a class="reference internal" href="gotchas.html#gotchas-intna"><span c
 based on their <code class="docutils literal notranslate"><span class="pre">dtype</span></code>.</p>
 <p>First, let’s create a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with a slew of different
 dtypes:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [441]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [427]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">{</span>
 <span class="gp">   .....: </span>        <span class="s2">"string"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">),</span>
 <span class="gp">   .....: </span>        <span class="s2">"int64"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
@@ -4665,16 +4563,16 @@ dtypes:</p>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [442]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"tdeltas"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dates</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
+<span class="gp">In [428]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"tdeltas"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dates</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
 
-<span class="gp">In [443]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"uint64"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"u8"</span><span class="p">)</span>
+<span class="gp">In [429]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"uint64"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"u8"</span><span class="p">)</span>
 
-<span class="gp">In [444]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"other_dates"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"20130101"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">In [430]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"other_dates"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"20130101"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
-<span class="gp">In [445]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"tz_aware_dates"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"20130101"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">"US/Eastern"</span><span class="p">)</span>
+<span class="gp">In [431]: </span><span class="n">df</span><span class="p">[</span><span class="s2">"tz_aware_dates"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"20130101"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">"US/Eastern"</span><span class="p">)</span>
 
-<span class="gp">In [446]: </span><span class="n">df</span>
-<span class="gh">Out[446]: </span>
+<span class="gp">In [432]: </span><span class="n">df</span>
+<span class="gh">Out[432]: </span>
 <span class="go">  string  int64  uint8  ...  uint64 other_dates            tz_aware_dates</span>
 <span class="go">0      a      1      3  ...       3  2013-01-01 2013-01-01 00:00:00-05:00</span>
 <span class="go">1      b      2      4  ...       4  2013-01-02 2013-01-02 00:00:00-05:00</span>
@@ -4684,8 +4582,8 @@ dtypes:</p>
 </pre></div>
 </div>
 <p>And the dtypes:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [447]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[447]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [433]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[433]: </span>
 <span class="go">string                                   str</span>
 <span class="go">int64                                  int64</span>
 <span class="go">uint8                                  uint8</span>
@@ -4705,8 +4603,8 @@ dtypes:</p>
 say “give me the columns <em>with</em> these dtypes” (<code class="docutils literal notranslate"><span class="pre">include</span></code>) and/or “give the
 columns <em>without</em> these dtypes” (<code class="docutils literal notranslate"><span class="pre">exclude</span></code>).</p>
 <p>For example, to select <code class="docutils literal notranslate"><span class="pre">bool</span></code> columns:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [448]: </span><span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="nb">bool</span><span class="p">])</span>
-<span class="gh">Out[448]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [434]: </span><span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="nb">bool</span><span class="p">])</span>
+<span class="gh">Out[434]: </span>
 <span class="go">   bool1  bool2</span>
 <span class="go">0   True  False</span>
 <span class="go">1  False   True</span>
@@ -4714,8 +4612,8 @@ columns <em>without</em> these dtypes” (<code class="docutils literal notransl
 </pre></div>
 </div>
 <p>You can also pass the name of a dtype in the <a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html">NumPy dtype hierarchy</a>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [449]: </span><span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">"bool"</span><span class="p">])</span>
-<span class="gh">Out[449]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [435]: </span><span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">"bool"</span><span class="p">])</span>
+<span class="gh">Out[435]: </span>
 <span class="go">   bool1  bool2</span>
 <span class="go">0   True  False</span>
 <span class="go">1  False   True</span>
@@ -4725,8 +4623,8 @@ columns <em>without</em> these dtypes” (<code class="docutils literal notransl
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.select_dtypes.html#pandas.DataFrame.select_dtypes" title="pandas.DataFrame.select_dtypes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">select_dtypes()</span></code></a> also works with generic dtypes.</p>
 <p>For example, to select all numeric and boolean columns while excluding unsigned
 integers:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [450]: </span><span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">"number"</span><span class="p">,</span> <span class="s2">"bool"</span><span class="p">],</span> <span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="s2">"unsignedinteger"</span><span class="p">])</span>
-<span class="gh">Out[450]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [436]: </span><span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">"number"</span><span class="p">,</span> <span class="s2">"bool"</span><span class="p">],</span> <span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="s2">"unsignedinteger"</span><span class="p">])</span>
+<span class="gh">Out[436]: </span>
 <span class="go">   int64  float64  bool1  bool2 tdeltas</span>
 <span class="go">0      1      4.0   True  False     NaT</span>
 <span class="go">1      2      5.0  False   True  1 days</span>
@@ -4734,8 +4632,8 @@ integers:</p>
 </pre></div>
 </div>
 <p>To select string columns include <code class="docutils literal notranslate"><span class="pre">str</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [451]: </span><span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span>
-<span class="gh">Out[451]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [437]: </span><span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span>
+<span class="gh">Out[437]: </span>
 <span class="go">  string</span>
 <span class="go">0      a</span>
 <span class="go">1      b</span>
@@ -4751,7 +4649,7 @@ how to write code that works with both versions.</p>
 </div>
 <p>To see all the child dtypes of a generic <code class="docutils literal notranslate"><span class="pre">dtype</span></code> like <code class="docutils literal notranslate"><span class="pre">numpy.number</span></code> you
 can define a function that returns a tree of child dtypes:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [452]: </span><span class="k">def</span><span class="w"> </span><span class="nf">subdtypes</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [438]: </span><span class="k">def</span><span class="w"> </span><span class="nf">subdtypes</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
 <span class="gp">   .....: </span>    <span class="n">subs</span> <span class="o">=</span> <span class="n">dtype</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span>
 <span class="gp">   .....: </span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">subs</span><span class="p">:</span>
 <span class="gp">   .....: </span>        <span class="k">return</span> <span class="n">dtype</span>
@@ -4760,8 +4658,8 @@ can define a function that returns a tree of child dtypes:</p>
 </pre></div>
 </div>
 <p>All NumPy dtypes are subclasses of <code class="docutils literal notranslate"><span class="pre">numpy.generic</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [453]: </span><span class="n">subdtypes</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">)</span>
-<span class="gh">Out[453]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [439]: </span><span class="n">subdtypes</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">)</span>
+<span class="gh">Out[439]: </span>
 <span class="go">[numpy.generic,</span>
 <span class="go"> [[numpy.number,</span>
 <span class="go">   [[numpy.integer,</span>
@@ -4896,7 +4794,6 @@ NumPy hierarchy and won’t show up with the above function.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration">Iteration</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#items">items</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterrows">iterrows</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#itertuples">itertuples</a></li>
 </ul>
 </li>
