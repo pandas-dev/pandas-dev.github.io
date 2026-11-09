@@ -1036,6 +1036,9 @@ columns:</p>
 <span class="go">dtype: object</span>
 </pre></div>
 </div>
+<p>Complex numbers are not inferred and are read as strings by default. To parse
+them, pass a complex dtype, e.g. <code class="docutils literal notranslate"><span class="pre">dtype={&quot;a&quot;:</span> <span class="pre">&quot;complex128&quot;}</span></code>; both the <code class="docutils literal notranslate"><span class="pre">(1+2j)</span></code>
+form written by <a class="reference internal" href="../reference/api/pandas.DataFrame.to_csv.html#pandas.DataFrame.to_csv" title="pandas.DataFrame.to_csv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_csv()</span></code></a> and bare <code class="docutils literal notranslate"><span class="pre">1+2j</span></code> are accepted.</p>
 <p>Fortunately, pandas offers more than one way to ensure that your column(s)
 contain only one <code class="docutils literal notranslate"><span class="pre">dtype</span></code>. If you’re unfamiliar with these concepts, you can
 see <a class="reference internal" href="basics.html#basics-dtypes"><span class="std std-ref">here</span></a> to learn more about dtypes, and
@@ -2208,7 +2211,7 @@ after a delimiter:</p>
 <p>The parsers make every attempt to “do the right thing” and not be fragile. Type
 inference is a pretty big deal. If a column can be coerced to integer dtype
 without altering the contents, the parser will do so. Any non-numeric
-columns will come through as object dtype as with the rest of pandas objects.</p>
+columns will come through as strings.</p>
 </section>
 <section id="quoting-and-escape-characters">
 <span id="io-quoting"></span><h3>Quoting and Escape Characters<a class="headerlink" href="#quoting-and-escape-characters" title="Link to this heading">#</a></h3>
@@ -2554,7 +2557,7 @@ value will be an iterable object of type <code class="docutils literal notransla
 <span class="gp">   .....: </span>    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
 <span class="gp">   .....: </span>        <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7f89dd2afd70&gt;</span>
+<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7efcc7570aa0&gt;</span>
 <span class="go">          0         1         2         3</span>
 <span class="go">0 -1.294524  0.413738  0.276662 -0.472035</span>
 <span class="go">1 -0.013960 -0.362543 -0.006154 -0.923061</span>
