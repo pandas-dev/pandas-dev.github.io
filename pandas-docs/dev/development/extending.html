@@ -595,6 +595,14 @@ applies only to certain dtypes.</p>
 <p>A new accessor instance is created each time the attribute is accessed, so
 state stored on an accessor is not retained. Use <a class="reference internal" href="../reference/api/pandas.DataFrame.attrs.html#pandas.DataFrame.attrs" title="pandas.DataFrame.attrs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DataFrame.attrs</span></code></a> or
 <a class="reference internal" href="../reference/api/pandas.Series.attrs.html#pandas.Series.attrs" title="pandas.Series.attrs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Series.attrs</span></code></a> for per-object metadata.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">register_*_accessor</span></code> decorators add the accessor to every <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Series</span></code> or <code class="docutils literal notranslate"><span class="pre">Index</span></code>. To add or override an accessor on a single class, such
+as a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> subclass, assign a <a class="reference internal" href="../reference/api/pandas.api.extensions.Accessor.html#pandas.api.extensions.Accessor" title="pandas.api.extensions.Accessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.api.extensions.Accessor</span></code></a>
+as a class attribute instead:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">GeoDataFrame</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">extensions</span><span class="o">.</span><span class="n">Accessor</span><span class="p">(</span><span class="s2">"plot"</span><span class="p">,</span> <span class="n">GeoPlotAccessor</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="extension-types">
 <span id="extending-extension-types"></span><h2>Extension types<a class="headerlink" href="#extension-types" title="Link to this heading">#</a></h2>
