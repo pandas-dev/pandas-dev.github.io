@@ -2557,7 +2557,7 @@ value will be an iterable object of type <code class="docutils literal notransla
 <span class="gp">   .....: </span>    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
 <span class="gp">   .....: </span>        <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7ff4427abfe0&gt;</span>
+<span class="go">&lt;pandas.io.parsers.readers.TextFileReader object at 0x7f92bb36cf50&gt;</span>
 <span class="go">          0         1         2         3</span>
 <span class="go">0 -1.294524  0.413738  0.276662 -0.472035</span>
 <span class="go">1 -0.013960 -0.362543 -0.006154 -0.923061</span>
@@ -3526,19 +3526,22 @@ spec. This table shows the mapping from pandas types:</p>
 <tr class="row-odd"><td><p>float64</p></td>
 <td><p>number</p></td>
 </tr>
-<tr class="row-even"><td><p>bool</p></td>
+<tr class="row-even"><td><p>complex128</p></td>
+<td><p>object</p></td>
+</tr>
+<tr class="row-odd"><td><p>bool</p></td>
 <td><p>boolean</p></td>
 </tr>
-<tr class="row-odd"><td><p>datetime64[ns]</p></td>
+<tr class="row-even"><td><p>datetime64[ns]</p></td>
 <td><p>datetime</p></td>
 </tr>
-<tr class="row-even"><td><p>timedelta64[ns]</p></td>
+<tr class="row-odd"><td><p>timedelta64[ns]</p></td>
 <td><p>duration</p></td>
 </tr>
-<tr class="row-odd"><td><p>categorical</p></td>
+<tr class="row-even"><td><p>categorical</p></td>
 <td><p>any</p></td>
 </tr>
-<tr class="row-even"><td><p>object</p></td>
+<tr class="row-odd"><td><p>object</p></td>
 <td><p>str</p></td>
 </tr>
 </tbody>
@@ -3718,7 +3721,8 @@ the generated schema will contain an additional <code class="docutils literal no
 for extension types (e.g. <code class="docutils literal notranslate"><span class="pre">read_json(df.to_json(orient=&quot;table&quot;),</span> <span class="pre">orient=&quot;table&quot;)</span></code>).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">extDtype</span></code> key carries the name of the extension, if you have properly registered
 the <code class="docutils literal notranslate"><span class="pre">ExtensionDtype</span></code>, pandas will use said name to perform a lookup into the registry
-and re-convert the serialized data into your custom dtype.</p>
+and re-convert the serialized data into your custom dtype. Complex columns also use
+this key, with the name of their NumPy dtype.</p>
 </section>
 </section>
 <section id="html">
