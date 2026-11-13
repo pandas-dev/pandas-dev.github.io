@@ -803,7 +803,7 @@
 <h1>pandas.Index<a class="headerlink" href="#pandas-index" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pandas.Index">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">Index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tupleize_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/base.py#L322-L8314"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Index" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">Index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tupleize_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/base.py#L322-L8322"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Index" title="Link to this definition">#</a></dt>
 <dd><p>Immutable sequence used for indexing and alignment.</p>
 <p>The basic object storing axis labels for all pandas objects.</p>
 <div class="versionchanged">
@@ -827,9 +827,12 @@ Set to False to avoid copying array input at your own risk (if you
 know the input data won’t be modified elsewhere).
 Set to True to force copying Series/Index input up front.</p>
 </dd>
-<dt><strong>name</strong><span class="classifier">object</span></dt><dd><p>Name to be stored in the index.</p>
+<dt><strong>name</strong><span class="classifier">object</span></dt><dd><p>Name to be stored in the index. If a MultiIndex is created, a tuple
+with one name per level.</p>
 </dd>
-<dt><strong>tupleize_cols</strong><span class="classifier">bool (default: True)</span></dt><dd><p>When True, attempt to create a MultiIndex if possible.</p>
+<dt><strong>tupleize_cols</strong><span class="classifier">bool, default True</span></dt><dd><p>When True, a non-empty list (or other non-array iterable) of tuples
+becomes a MultiIndex, unless <code class="docutils literal notranslate"><span class="pre">dtype</span></code> is an extension or datetime-like
+dtype.</p>
 </dd>
 </dl>
 </dd>
@@ -872,6 +875,12 @@ not altered in the same way. To force object dtype, pass <code class="docutils l
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"uint8"</span><span class="p">)</span>
 <span class="go">Index([1, 2, 3], dtype='uint8')</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([(</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s2">"b"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">name</span><span class="o">=</span><span class="p">(</span><span class="s2">"letter"</span><span class="p">,</span> <span class="s2">"number"</span><span class="p">))</span>
+<span class="go">MultiIndex([('a', 1),</span>
+<span class="go">            ('b', 2)],</span>
+<span class="go">           names=['letter', 'number'])</span>
 </pre></div>
 </div>
 <p class="rubric">Attributes</p>
