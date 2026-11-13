@@ -668,21 +668,21 @@ of the <code class="docutils literal notranslate"><span class="pre">NA</span></c
 <p>On the other hand, <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">&amp;</span> <span class="pre">NA</span></code> is <code class="docutils literal notranslate"><span class="pre">NA</span></code>. The result depends on whether
 the <code class="docutils literal notranslate"><span class="pre">NA</span></code> really is <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>, since <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">&amp;</span> <span class="pre">True</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>,
 but <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">&amp;</span> <span class="pre">False</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, so we can’t determine the output.</p>
-<p>This differs from how <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> behaves in logical operations. pandas treated
-<code class="docutils literal notranslate"><span class="pre">np.nan</span></code> is <em>always false in the output</em>.</p>
+<p>This differs from how <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> behaves in an object-dtype Series, where it
+counts as <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">or</span></code></p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"object"</span><span class="p">)</span> <span class="o">|</span> <span class="kc">True</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"object"</span><span class="p">)</span> <span class="o">|</span> <span class="kc">False</span>
 <span class="gh">Out[8]: </span>
 <span class="go">0     True</span>
-<span class="go">1     True</span>
+<span class="go">1    False</span>
 <span class="go">2    False</span>
 <span class="go">dtype: bool</span>
 
-<span class="gp">In [9]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"boolean"</span><span class="p">)</span> <span class="o">|</span> <span class="kc">True</span>
+<span class="gp">In [9]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">"boolean"</span><span class="p">)</span> <span class="o">|</span> <span class="kc">False</span>
 <span class="gh">Out[9]: </span>
-<span class="go">0    True</span>
-<span class="go">1    True</span>
-<span class="go">2    True</span>
+<span class="go">0     True</span>
+<span class="go">1    False</span>
+<span class="go">2     &lt;NA&gt;</span>
 <span class="go">dtype: boolean</span>
 </pre></div>
 </div>
