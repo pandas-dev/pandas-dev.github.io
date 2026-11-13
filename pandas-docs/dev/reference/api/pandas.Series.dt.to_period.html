@@ -908,7 +908,7 @@
 <h1>pandas.Series.dt.to_period<a class="headerlink" href="#pandas-series-dt-to-period" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.Series.dt.to_period">
-<span class="sig-prename descclassname"><span class="pre">Series.dt.</span></span><span class="sig-name descname"><span class="pre">to_period</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/arrays/datetimes.py#L1250-L1326"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.dt.to_period" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Series.dt.</span></span><span class="sig-name descname"><span class="pre">to_period</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/arrays/datetimes.py#L1250-L1332"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.dt.to_period" title="Link to this definition">#</a></dt>
 <dd><p>Cast to PeriodArray/PeriodIndex at a particular frequency.</p>
 <p>Converts DatetimeArray/Index to PeriodArray/PeriodIndex.</p>
 <dl class="field-list simple">
@@ -942,6 +942,10 @@ so that a frequency cannot be inferred.</p>
 </dd>
 </dl>
 </div>
+<p class="rubric">Notes</p>
+<p>A multiplied <code class="docutils literal notranslate"><span class="pre">freq</span></code> does not bin timestamps: with <code class="docutils literal notranslate"><span class="pre">&quot;2h&quot;</span></code>, each
+timestamp maps to the 2-hour period starting at its own hour. For
+aligned 2-hour bins, use <code class="docutils literal notranslate"><span class="pre">floor(&quot;2h&quot;).to_period(&quot;2h&quot;)</span></code>.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="p">{</span><span class="s2">"y"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span>

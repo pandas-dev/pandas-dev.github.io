@@ -839,10 +839,19 @@ If value is datetime, freq is required.</p>
 </dd>
 </dl>
 </div>
+<p class="rubric">Notes</p>
+<p>A multiplied <code class="docutils literal notranslate"><span class="pre">freq</span></code> such as <code class="docutils literal notranslate"><span class="pre">&quot;2Q&quot;</span></code> sets only the length of the span:
+the period starts at the base unit (here, the quarter) containing
+<code class="docutils literal notranslate"><span class="pre">value</span></code>, not on a fixed grid. See <a class="reference internal" href="../../user_guide/timeseries.html#timeseries-periods"><span class="std std-ref">Time span representation</span></a>.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">period</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s1">'2012-1-1'</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'D'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">period</span>
 <span class="go">Period('2012-01-01', 'D')</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">&quot;2Q&quot;</span></code> period can start in any quarter:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s2">"2017-05-01"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"2Q"</span><span class="p">)</span>
+<span class="go">Period('2017Q2', '2Q-DEC')</span>
 </pre></div>
 </div>
 <p class="rubric">Attributes</p>

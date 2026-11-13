@@ -801,6 +801,10 @@ based on the specified frequency.</p>
 </dd>
 </dl>
 </div>
+<p class="rubric">Notes</p>
+<p>A multiplied <code class="docutils literal notranslate"><span class="pre">freq</span></code> does not bin timestamps: with <code class="docutils literal notranslate"><span class="pre">&quot;2h&quot;</span></code>, the
+result is the 2-hour period starting at this timestamp’s hour. For an
+aligned 2-hour bin, use <code class="docutils literal notranslate"><span class="pre">ts.floor(&quot;2h&quot;).to_period(&quot;2h&quot;)</span></code>.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">'2020-03-14T15:32:52.192548651'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Year end frequency</span>
