@@ -644,6 +644,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.cat.html">pandas.Series.cat</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.dt.html">pandas.Series.dt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.sparse.html">pandas.Series.sparse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.interval.html">pandas.Series.interval</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.DataFrame.sparse.html">pandas.DataFrame.sparse</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.Index.str.html">pandas.Index.str</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.dt.date.html">pandas.Series.dt.date</a></li>
@@ -778,6 +779,15 @@
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.sparse.sp_values.html">pandas.Series.sparse.sp_values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.sparse.from_coo.html">pandas.Series.sparse.from_coo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.sparse.to_coo.html">pandas.Series.sparse.to_coo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.interval.left.html">pandas.Series.interval.left</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.interval.right.html">pandas.Series.interval.right</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.interval.mid.html">pandas.Series.interval.mid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.interval.length.html">pandas.Series.interval.length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.interval.is_empty.html">pandas.Series.interval.is_empty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.interval.closed.html">pandas.Series.interval.closed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.interval.contains.html">pandas.Series.interval.contains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.interval.overlaps.html">pandas.Series.interval.overlaps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.interval.set_closed.html">pandas.Series.interval.set_closed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.list.flatten.html">pandas.Series.list.flatten</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.list.len.html">pandas.Series.list.len</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/pandas.Series.list.__getitem__.html">pandas.Series.list.__getitem__</a></li>
@@ -1557,10 +1567,13 @@ to specific data types.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Series.sparse.html#pandas.Series.sparse" title="pandas.Series.sparse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.sparse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.DataFrame.sparse.html#pandas.DataFrame.sparse" title="pandas.DataFrame.sparse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.sparse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Series.interval.html#pandas.Series.interval" title="pandas.Series.interval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.interval</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Index.str.html#pandas.Index.str" title="pandas.Index.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Index.str</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.DataFrame.sparse.html#pandas.DataFrame.sparse" title="pandas.DataFrame.sparse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.sparse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Index.str.html#pandas.Index.str" title="pandas.Index.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Index.str</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -1585,10 +1598,13 @@ to specific data types.</p>
 <tr class="row-odd"><td><p>Sparse</p></td>
 <td><p><a class="reference internal" href="#api-series-sparse"><span class="std std-ref">sparse</span></a></p></td>
 </tr>
-<tr class="row-even"><td><p>PyArrow list</p></td>
+<tr class="row-even"><td><p>Interval</p></td>
+<td><p><a class="reference internal" href="#api-series-interval"><span class="std std-ref">interval</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>PyArrow list</p></td>
 <td><p><a class="reference internal" href="#api-series-list"><span class="std std-ref">list</span></a></p></td>
 </tr>
-<tr class="row-odd"><td><p>PyArrow struct</p></td>
+<tr class="row-even"><td><p>PyArrow struct</p></td>
 <td><p><a class="reference internal" href="#api-series-struct"><span class="std std-ref">struct</span></a></p></td>
 </tr>
 </tbody>
@@ -2077,6 +2093,48 @@ the <code class="docutils literal notranslate"><span class="pre">Series.cat</spa
 </table>
 </div>
 </section>
+<section id="interval-accessor">
+<span id="api-series-interval"></span><h3>Interval accessor<a class="headerlink" href="#interval-accessor" title="Link to this heading">#</a></h3>
+<p>Interval-dtype specific methods and attributes are available under
+the <code class="docutils literal notranslate"><span class="pre">Series.interval</span></code> accessor.</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Series.interval.left.html#pandas.Series.interval.left" title="pandas.Series.interval.left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.interval.left</span></code></a></p></td>
+<td><p>Return the left endpoints of each Interval in the IntervalArray as an Index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Series.interval.right.html#pandas.Series.interval.right" title="pandas.Series.interval.right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.interval.right</span></code></a></p></td>
+<td><p>Return the right endpoints of each Interval in the IntervalArray as an Index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Series.interval.mid.html#pandas.Series.interval.mid" title="pandas.Series.interval.mid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.interval.mid</span></code></a></p></td>
+<td><p>Return the midpoint of each Interval in the IntervalArray as an Index.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Series.interval.length.html#pandas.Series.interval.length" title="pandas.Series.interval.length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.interval.length</span></code></a></p></td>
+<td><p>Return an Index with entries denoting the length of each Interval.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Series.interval.is_empty.html#pandas.Series.interval.is_empty" title="pandas.Series.interval.is_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.interval.is_empty</span></code></a></p></td>
+<td><p>Indicates if an interval is empty, meaning it contains no points.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Series.interval.closed.html#pandas.Series.interval.closed" title="pandas.Series.interval.closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.interval.closed</span></code></a></p></td>
+<td><p>String describing the inclusive side the intervals.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Series.interval.contains.html#pandas.Series.interval.contains" title="pandas.Series.interval.contains"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.interval.contains</span></code></a>(other)</p></td>
+<td><p>Check elementwise if the Intervals contain the value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Series.interval.overlaps.html#pandas.Series.interval.overlaps" title="pandas.Series.interval.overlaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.interval.overlaps</span></code></a>(other)</p></td>
+<td><p>Check elementwise if an Interval overlaps the values in the IntervalArray.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Series.interval.set_closed.html#pandas.Series.interval.set_closed" title="pandas.Series.interval.set_closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.interval.set_closed</span></code></a>(closed)</p></td>
+<td><p>Return an identical IntervalArray closed on the specified side.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 <section id="list-accessor">
 <span id="api-series-list"></span><h3>List accessor<a class="headerlink" href="#list-accessor" title="Link to this heading">#</a></h3>
 <p>Arrow list-dtype specific methods and attributes are provided under the
@@ -2330,6 +2388,9 @@ specific plotting methods of the form <code class="docutils literal notranslate"
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-accessor">Sparse accessor</a><ul class="nav section-nav flex-column">
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interval-accessor">Interval accessor</a><ul class="nav section-nav flex-column">
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-accessor">List accessor</a></li>
