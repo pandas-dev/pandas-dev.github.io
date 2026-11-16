@@ -643,7 +643,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">autofilter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/generic.py#L2151-L2323"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.to_excel" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/generic.py#L2151-L2335"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.to_excel" title="Link to this definition">#</a></dt>
 <dd><p>Write object to an Excel sheet.</p>
 <p>To write a single object to an Excel .xlsx file it is only necessary to
 specify a target file name. To write to multiple sheets it is necessary to
@@ -730,6 +730,18 @@ data without rewriting the whole workbook.</p>
 <p>pandas will check the number of rows, columns,
 and cell character count does not exceed Excel’s limitations.
 All other limitations must be checked by the user.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Both <code class="docutils literal notranslate"><span class="pre">openpyxl</span></code> and <code class="docutils literal notranslate"><span class="pre">xlsxwriter</span></code> write strings starting with
+<code class="docutils literal notranslate"><span class="pre">=</span></code> as formulas, which Excel evaluates when the file is opened.
+Writing untrusted data this way can lead to formula injection, and
+such strings do not round-trip through <a class="reference internal" href="pandas.read_excel.html#pandas.read_excel" title="pandas.read_excel"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_excel()</span></code></a>.
+<code class="docutils literal notranslate"><span class="pre">xlsxwriter</span></code> writes them as text when
+<code class="docutils literal notranslate"><span class="pre">engine_kwargs={&quot;options&quot;:</span> <span class="pre">{&quot;strings_to_formulas&quot;:</span> <span class="pre">False}}</span></code> is
+passed to <a class="reference internal" href="pandas.ExcelWriter.html#pandas.ExcelWriter" title="pandas.ExcelWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExcelWriter</span></code></a>, or to <code class="docutils literal notranslate"><span class="pre">to_excel</span></code> with a file path,
+but still writes <code class="docutils literal notranslate"><span class="pre">{=...}</span></code> strings as array formulas; <code class="docutils literal notranslate"><span class="pre">openpyxl</span></code>
+has no equivalent option.</p>
+</div>
 <p class="rubric">Examples</p>
 <p>Create, write to and save a workbook:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>

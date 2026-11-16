@@ -617,7 +617,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">autofilter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/formats/style.py#L532-L717"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.io.formats.style.Styler.to_excel" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/formats/style.py#L532-L723"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.io.formats.style.Styler.to_excel" title="Link to this definition">#</a></dt>
 <dd><p>Write Styler to an Excel sheet.</p>
 <p>To write a single Styler to an Excel .xlsx file it is only necessary to
 specify a target file name. To write to multiple sheets it is necessary to
@@ -714,6 +714,12 @@ Display formatting from <a class="reference internal" href="pandas.io.formats.st
 values are displayed in Excel, set an Excel format code with the
 <code class="docutils literal notranslate"><span class="pre">number-format</span></code> property, writing <code class="docutils literal notranslate"><span class="pre">§</span></code> in place of Excel’s <code class="docutils literal notranslate"><span class="pre">;</span></code> section
 separator.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Strings starting with <code class="docutils literal notranslate"><span class="pre">=</span></code> may be written as formulas; see
+<a class="reference internal" href="pandas.DataFrame.to_excel.html#pandas.DataFrame.to_excel" title="pandas.DataFrame.to_excel"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.DataFrame.to_excel()</span></code></a>. Any workaround options must be
+passed to <a class="reference internal" href="pandas.ExcelWriter.html#pandas.ExcelWriter" title="pandas.ExcelWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.ExcelWriter</span></code></a>.</p>
+</div>
 <p class="rubric">Examples</p>
 <p>Create, write to and save a workbook:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
