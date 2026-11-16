@@ -908,13 +908,18 @@
 <h1>pandas.Series.to_timestamp<a class="headerlink" href="#pandas-series-to-timestamp" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.Series.to_timestamp">
-<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">to_timestamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">how</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'start'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/series.py#L7223-L7300"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.to_timestamp" title="Link to this definition">#</a></dt>
-<dd><p>Cast to DatetimeIndex of Timestamps, at <em>beginning</em> of period.</p>
+<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">to_timestamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">how</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'start'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/series.py#L7223-L7306"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.to_timestamp" title="Link to this definition">#</a></dt>
+<dd><p>Cast to DatetimeIndex of Timestamps, by default at <em>beginning</em> of period.</p>
 <p>This can be changed to the <em>end</em> of the period, by specifying <cite>how=”e”</cite>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>freq</strong><span class="classifier">str, default frequency of PeriodIndex</span></dt><dd><p>Desired frequency.</p>
+<dt><strong>freq</strong><span class="classifier">str or DateOffset, optional</span></dt><dd><p>Target frequency. By default the result is exactly the start (or end)
+of each period. With <code class="docutils literal notranslate"><span class="pre">how=&quot;start&quot;</span></code>, the result is the start of
+<code class="docutils literal notranslate"><span class="pre">asfreq(freq,</span> <span class="pre">how=&quot;start&quot;)</span></code>, except that a <code class="docutils literal notranslate"><span class="pre">freq</span></code> coarser than
+daily gives midnight on that period’s last day, so
+<code class="docutils literal notranslate"><span class="pre">to_timestamp(&quot;M&quot;)</span></code> gives month-end dates. With <code class="docutils literal notranslate"><span class="pre">how=&quot;end&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">freq</span></code> only affects the resolution (‘ns’ gives nanosecond unit).</p>
 </dd>
 <dt><strong>how</strong><span class="classifier">{‘start’, ‘end’, ‘s’, ‘e’}, default ‘start’</span></dt><dd><p>Convention for converting period to timestamp; start of period
 vs. end. Case-insensitive.</p>
@@ -966,7 +971,8 @@ for more details.</p>
 <span class="go">Freq: YS-JAN, dtype: int64</span>
 </pre></div>
 </div>
-<p>Using <cite>freq</cite> which is the offset that the Timestamps will have</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">freq=&quot;M&quot;</span></code>, each timestamp is the last day of the period’s first
+month</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s2</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">to_timestamp</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">"M"</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">s2</span>

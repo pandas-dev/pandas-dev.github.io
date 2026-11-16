@@ -786,8 +786,12 @@ unit.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>freq</strong><span class="classifier">str or DateOffset</span></dt><dd><p>Target frequency. Default is ‘D’ if self._freq is week or
-longer and ‘S’ otherwise.</p>
+<dt><strong>freq</strong><span class="classifier">str or DateOffset, optional</span></dt><dd><p>Target frequency. By default the result is exactly the start (or end)
+of each period. With <code class="docutils literal notranslate"><span class="pre">how=&quot;start&quot;</span></code>, the result is the start of
+<code class="docutils literal notranslate"><span class="pre">asfreq(freq,</span> <span class="pre">how=&quot;start&quot;)</span></code>, except that a <code class="docutils literal notranslate"><span class="pre">freq</span></code> coarser than
+daily gives midnight on that period’s last day, so
+<code class="docutils literal notranslate"><span class="pre">to_timestamp(&quot;M&quot;)</span></code> gives month-end dates. With <code class="docutils literal notranslate"><span class="pre">how=&quot;end&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">freq</span></code> only affects the resolution (‘ns’ gives nanosecond unit).</p>
 </dd>
 <dt><strong>how</strong><span class="classifier">{‘start’, ‘end’, ‘s’, ‘e’}, default ‘start’</span></dt><dd><p>Whether to use the start or end of the period. Case-insensitive.</p>
 </dd>
@@ -815,6 +819,11 @@ longer and ‘S’ otherwise.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">timestamp</span> <span class="o">=</span> <span class="n">period</span><span class="o">.</span><span class="n">to_timestamp</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">timestamp</span>
 <span class="go">Timestamp('2023-01-01 00:00:00')</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">freq</span></code> coarser than daily gives the last day of the period:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s2">"2023-01"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"M"</span><span class="p">)</span><span class="o">.</span><span class="n">to_timestamp</span><span class="p">(</span><span class="s2">"M"</span><span class="p">)</span>
+<span class="go">Timestamp('2023-01-31 00:00:00')</span>
 </pre></div>
 </div>
 </dd></dl>

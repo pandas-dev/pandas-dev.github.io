@@ -806,15 +806,19 @@
 <h1>pandas.PeriodIndex.to_timestamp<a class="headerlink" href="#pandas-periodindex-to-timestamp" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.PeriodIndex.to_timestamp">
-<span class="sig-prename descclassname"><span class="pre">PeriodIndex.</span></span><span class="sig-name descname"><span class="pre">to_timestamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">how</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'start'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/period.py#L219-L278"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.PeriodIndex.to_timestamp" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">PeriodIndex.</span></span><span class="sig-name descname"><span class="pre">to_timestamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">how</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'start'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/period.py#L219-L288"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.PeriodIndex.to_timestamp" title="Link to this definition">#</a></dt>
 <dd><p>Cast to DatetimeIndex.</p>
 <p>If possible, gives microsecond-unit DatetimeIndex. Otherwise
 gives nanosecond unit.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>freq</strong><span class="classifier">str or DateOffset, optional</span></dt><dd><p>Target frequency. The default is ‘D’ for week or longer,
-‘s’ otherwise.</p>
+<dt><strong>freq</strong><span class="classifier">str or DateOffset, optional</span></dt><dd><p>Target frequency. By default the result is exactly the start (or end)
+of each period. With <code class="docutils literal notranslate"><span class="pre">how=&quot;start&quot;</span></code>, the result is the start of
+<code class="docutils literal notranslate"><span class="pre">asfreq(freq,</span> <span class="pre">how=&quot;start&quot;)</span></code>, except that a <code class="docutils literal notranslate"><span class="pre">freq</span></code> coarser than
+daily gives midnight on that period’s last day, so
+<code class="docutils literal notranslate"><span class="pre">to_timestamp(&quot;M&quot;)</span></code> gives month-end dates. With <code class="docutils literal notranslate"><span class="pre">how=&quot;end&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">freq</span></code> only affects the resolution (‘ns’ gives nanosecond unit).</p>
 </dd>
 <dt><strong>how</strong><span class="classifier">{‘start’, ‘end’, ‘s’, ‘e’}, default ‘start’</span></dt><dd><p>Whether to use the start or end of the time period being converted.
 Case-insensitive.</p>
@@ -854,6 +858,12 @@ Case-insensitive.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">to_timestamp</span><span class="p">()</span>
 <span class="go">DatetimeIndex(['2023-01-01', '2023-02-01', '2023-03-01'],</span>
 <span class="go">dtype='datetime64[us]', freq='MS')</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">freq</span></code> coarser than daily gives the last day of each period:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">to_timestamp</span><span class="p">(</span><span class="s2">"M"</span><span class="p">)</span>
+<span class="go">DatetimeIndex(['2023-01-31', '2023-02-28', '2023-03-31'],</span>
+<span class="go">dtype='datetime64[us]', freq='ME')</span>
 </pre></div>
 </div>
 <p>The frequency will not be inferred if the index contains less than

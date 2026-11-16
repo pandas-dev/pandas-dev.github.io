@@ -767,13 +767,18 @@
 <h1>pandas.DataFrame.to_timestamp<a class="headerlink" href="#pandas-dataframe-to-timestamp" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.DataFrame.to_timestamp">
-<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">to_timestamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">how</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'start'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L19924-L20010"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.to_timestamp" title="Link to this definition">#</a></dt>
-<dd><p>Cast PeriodIndex to DatetimeIndex of timestamps, at <em>beginning</em> of period.</p>
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">to_timestamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">how</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'start'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L19924-L20016"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.to_timestamp" title="Link to this definition">#</a></dt>
+<dd><p>Cast PeriodIndex to DatetimeIndex, by default at <em>beginning</em> of period.</p>
 <p>This can be changed to the <em>end</em> of the period, by specifying <cite>how=”e”</cite>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>freq</strong><span class="classifier">str, default frequency of PeriodIndex</span></dt><dd><p>Desired frequency.</p>
+<dt><strong>freq</strong><span class="classifier">str or DateOffset, optional</span></dt><dd><p>Target frequency. By default the result is exactly the start (or end)
+of each period. With <code class="docutils literal notranslate"><span class="pre">how=&quot;start&quot;</span></code>, the result is the start of
+<code class="docutils literal notranslate"><span class="pre">asfreq(freq,</span> <span class="pre">how=&quot;start&quot;)</span></code>, except that a <code class="docutils literal notranslate"><span class="pre">freq</span></code> coarser than
+daily gives midnight on that period’s last day, so
+<code class="docutils literal notranslate"><span class="pre">to_timestamp(&quot;M&quot;)</span></code> gives month-end dates. With <code class="docutils literal notranslate"><span class="pre">how=&quot;end&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">freq</span></code> only affects the resolution (‘ns’ gives nanosecond unit).</p>
 </dd>
 <dt><strong>how</strong><span class="classifier">{‘start’, ‘end’, ‘s’, ‘e’}, default ‘start’</span></dt><dd><p>Convention for converting period to timestamp; start of period
 vs. end. Case-insensitive.</p>
@@ -828,7 +833,8 @@ for more details.</p>
 <span class="go">DatetimeIndex(['2023-01-01', '2024-01-01'], dtype='datetime64[us]', freq=None)</span>
 </pre></div>
 </div>
-<p>Using <cite>freq</cite> which is the offset that the Timestamps will have</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">freq=&quot;M&quot;</span></code>, each timestamp is the last day of the period’s first
+month</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">to_timestamp</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">"M"</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span>
