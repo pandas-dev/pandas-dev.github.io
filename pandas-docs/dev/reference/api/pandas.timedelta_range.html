@@ -593,12 +593,13 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">periods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">closed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">closed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">inclusive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/timedeltas.py#L936-L1081"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.timedelta_range" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/timedeltas.py#L940-L1111"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.timedelta_range" title="Link to this definition">#</a></dt>
 <dd><p>Return a fixed frequency TimedeltaIndex with day as the default.</p>
 <p>This function generates a sequence of evenly spaced timedelta values
 between the specified bounds, using day as the default frequency.</p>
@@ -617,8 +618,11 @@ nanoseconds, regardless of <code class="docutils literal notranslate"><span clas
 </dd>
 <dt><strong>name</strong><span class="classifier">Hashable, default None</span></dt><dd><p>Name of the resulting TimedeltaIndex.</p>
 </dd>
-<dt><strong>closed</strong><span class="classifier">str, default None</span></dt><dd><p>Make the interval closed with respect to the given frequency to
+<dt><strong>closed</strong><span class="classifier">{None, ‘left’, ‘right’}, default None</span></dt><dd><p>Make the interval closed with respect to the given frequency to
 the ‘left’, ‘right’, or both sides (None).</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 3.2.0: </span>Use <code class="docutils literal notranslate"><span class="pre">inclusive</span></code> instead.</p>
+</div>
 </dd>
 <dt><strong>unit</strong><span class="classifier">{‘s’, ‘ms’, ‘us’, ‘ns’, None}, default None</span></dt><dd><p>Specify the desired resolution of the result.
 If not specified, this is inferred from the ‘start’, ‘end’, and ‘freq’
@@ -626,6 +630,11 @@ using the same inference as <a class="reference internal" href="pandas.Timedelta
 resolution of the three that are provided.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">Added in version 2.0.0.</span></p>
+</div>
+</dd>
+<dt><strong>inclusive</strong><span class="classifier">{“both”, “neither”, “left”, “right”}, default “both”</span></dt><dd><p>Include boundaries; whether to set each bound as closed or open.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.2.0.</span></p>
 </div>
 </dd>
 </dl>
@@ -661,9 +670,9 @@ If <code class="docutils literal notranslate"><span class="pre">freq</span></cod
 <span class="go">               dtype='timedelta64[us]', freq='D')</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">closed</span></code> parameter specifies which endpoint is included.  The default
-behavior is to include both endpoints.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">"1 day"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">"right"</span><span class="p">)</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">inclusive</span></code> parameter specifies which endpoints are included.  The
+default behavior is to include both endpoints.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">"1 day"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">inclusive</span><span class="o">=</span><span class="s2">"right"</span><span class="p">)</span>
 <span class="go">TimedeltaIndex(['2 days', '3 days', '4 days'],</span>
 <span class="go">               dtype='timedelta64[us]', freq='D')</span>
 </pre></div>
