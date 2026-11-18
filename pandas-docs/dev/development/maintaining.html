@@ -889,28 +889,30 @@ scripts/push_tag_for_release.sh<span class="w"> </span><span class="m">3</span>.
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>After releasing the first release candidate of a new version:</p>
-<ul class="simple">
-<li><p>Create a maintenance branch. For example:</p></li>
-</ul>
+<p>After releasing the first release candidate of a new version
+(or whenever branching, if that happens before the RC):</p>
+<ul>
+<li><p>Create a maintenance branch. For example:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
 git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="m">3</span>.1.x
 git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span><span class="m">3</span>.1.x
 </pre></div>
 </div>
-<ul class="simple">
+</li>
 <li><p>Start the development of the next version on <code class="docutils literal notranslate"><span class="pre">main</span></code>
-by pushing an empty commit and a <code class="docutils literal notranslate"><span class="pre">dev0</span></code> tag, e.g. for 3.2.0</p></li>
-</ul>
+by pushing an empty commit and a <code class="docutils literal notranslate"><span class="pre">dev0</span></code> tag, e.g. for 3.2.0</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
-git<span class="w"> </span>commit<span class="w"> </span>--allow-empty<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Start 3.2.0"</span>
-git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>v3.2.0.dev0<span class="w"> </span>-m<span class="w"> </span><span class="s2">"DEV: Start 3.2.0"</span>
+git<span class="w"> </span>commit<span class="w"> </span>--allow-empty<span class="w"> </span>-m<span class="w"> </span><span class="s2">"DEV: Start 3.2.0 development"</span>
+git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>v3.2.0.dev0<span class="w"> </span>-m<span class="w"> </span><span class="s2">"DEV: Start 3.2.0 development"</span>
 git<span class="w"> </span>push<span class="w"> </span>upstream<span class="w"> </span>main<span class="w"> </span>--follow-tags
 </pre></div>
 </div>
-<ul class="simple">
+</li>
 <li><p>Update the GitHub milestone for the final release of the RC to backport
 to the maintenance branch (e.g., 3.1.x).</p></li>
+<li><p>Create a new whatsnew file for the next feature release (e.g. for 3.2.0, when branching 3.1.x).</p></li>
+<li><p>Enable CI on the maintenance branch (see <a class="github reference external" href="https://github.com/pandas-dev/pandas/pull/70030">pandas-dev/pandas#70030</a> as an example).</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">web/pandas/versions.json</span></code> to include the RC version in the dropdown (see <a class="github reference external" href="https://github.com/pandas-dev/pandas/pull/69983">pandas-dev/pandas#69983</a> as an example).</p></li>
 </ul>
 </div>
 <p>The release automation will then:</p>
@@ -918,54 +920,31 @@ to the maintenance branch (e.g., 3.1.x).</p></li>
 <li><p>Upload the source distribution and wheels to <a class="reference external" href="https://pypi.org/project/pandas/#history">PyPI</a> via
 <a class="reference external" href="https://docs.pypi.org/trusted-publishers/">“Trusted Publishing”</a></p></li>
 <li><p>Create a draft <a class="reference external" href="https://github.com/pandas-dev/pandas/releases">GitHub release</a> with the source distribution.</p>
-<blockquote>
-<div><div class="admonition note">
+<div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>By default, the new Github release will be marked as the latest release.
 For patch releases for an older version, unmark it as the latest release on the Github release page.</p>
 </div>
-</div></blockquote>
 </li>
-<li><p>Create an <a class="reference external" href="https://github.com/conda-forge/pandas-feedstock/pulls">automated conda-forge PR</a> from the new Github release.
+<li><p>Create an <a class="reference external" href="https://github.com/conda-forge/pandas-feedstock/pulls">automated conda-forge PR</a> from the new PyPI release.
 This PR will need to be merged manually once its CI is green in order to generate conda-forge packages.</p>
-<blockquote>
-<div><div class="admonition tip">
+<div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The automated conda-forge PR usually takes a while to generate. You can manually open
 an <a class="reference external" href="https://github.com/conda-forge/pandas-feedstock/issues">issue</a> titled <code class="docutils literal notranslate"><span class="pre">&#64;conda-forge-admin,</span> <span class="pre">please</span> <span class="pre">update</span> <span class="pre">version</span></code>
 to manually trigger the conda-forge PR.</p>
 </div>
-</div></blockquote>
 </li>
 </ul>
-<p>Then finally, verify that the upload to PyPI was successful, review the release
-notes of the GitHub release, and then publish the GitHub release.</p>
+<p>Then <strong>finally</strong>, verify that the upload to PyPI was successful, review the release
+notes of the GitHub release, and then <strong>publish the GitHub release</strong>.</p>
 </section>
 <section id="post-release">
 <h3>Post-Release<a class="headerlink" href="#post-release" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Update symlinks to stable documentation by logging in to our web server, and
-editing <code class="docutils literal notranslate"><span class="pre">/var/www/html/pandas-docs/stable</span></code> to point to <code class="docutils literal notranslate"><span class="pre">version/&lt;X.Y&gt;</span></code>
-for major and minor releases, or <code class="docutils literal notranslate"><span class="pre">version/&lt;X.Y&gt;</span></code> to <code class="docutils literal notranslate"><span class="pre">version/&lt;patch&gt;</span></code> for
-patch releases. The exact instructions are (replace the example version numbers by
-the appropriate ones for the version you are releasing):</p>
-<ul class="simple">
-<li><p>Log in to the server and use the correct user.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/var/www/html/pandas-docs/</span></code></p></li>
-<li><p>For a major or minor release (assuming the <code class="docutils literal notranslate"><span class="pre">/version/2.1.0/</span></code> docs have been uploaded to the server):</p>
-<ul>
-<li><p>Create a new X.Y symlink to X.Y.Z: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">version;</span> <span class="pre">ln</span> <span class="pre">-sfn</span> <span class="pre">2.1.0</span> <span class="pre">2.1</span></code></p></li>
-<li><p>Update stable symlink to point to X.Y: <code class="docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-sfn</span> <span class="pre">version/2.1</span> <span class="pre">stable</span></code></p></li>
-</ul>
-</li>
-<li><p>For a patch release (assuming the <code class="docutils literal notranslate"><span class="pre">/version/2.1.3/</span></code> docs have been uploaded to the server):</p>
-<ul>
-<li><p>Update the X.Y symlink to the new X.Y.Z patch version: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">version;</span> <span class="pre">ln</span> <span class="pre">-sfn</span> <span class="pre">2.1.3</span> <span class="pre">2.1</span></code></p></li>
-<li><p>(the stable symlink should already be pointing to the correct X.Y version)</p></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><p>Verify that the docs have been correctly built and deployed (<a class="github reference external" href="https://github.com/pandas-dev/pandas-dev.github.io/">pandas-dev/pandas-dev.github.io</a>,
+there should be a commit “Update site for pandas X.X”), and that the stable documentation
+points to the correct version.</p></li>
 <li><p>If releasing a major or minor release, open a PR in our source code to update
 <code class="docutils literal notranslate"><span class="pre">web/pandas/versions.json</span></code>, to have the desired versions in the documentation
 dropdown menu.</p></li>
