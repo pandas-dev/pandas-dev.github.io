@@ -779,8 +779,8 @@
 <dt class="sig sig-object py" id="pandas.Timedelta.to_pytimedelta">
 <span class="sig-prename descclassname"><span class="pre">Timedelta.</span></span><span class="sig-name descname"><span class="pre">to_pytimedelta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pandas.Timedelta.to_pytimedelta" title="Link to this definition">#</a></dt>
 <dd><p>Convert a pandas Timedelta object into a python <code class="docutils literal notranslate"><span class="pre">datetime.timedelta</span></code> object.</p>
-<p>Timedelta objects are internally saved as numpy datetime64[ns] dtype.
-Use to_pytimedelta() to convert to object dtype.</p>
+<p><code class="docutils literal notranslate"><span class="pre">datetime.timedelta</span></code> has microsecond resolution, so any sub-microsecond
+component is rounded to the nearest microsecond.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -795,8 +795,6 @@ Use to_pytimedelta() to convert to object dtype.</p>
 </dd>
 </dl>
 </div>
-<p class="rubric">Notes</p>
-<p>Any nanosecond resolution will be lost.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">td</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s1">'3D'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">td</span>
