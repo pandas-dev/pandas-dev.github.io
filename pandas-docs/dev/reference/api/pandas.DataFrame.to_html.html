@@ -636,6 +636,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">index_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">justify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">max_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">min_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">max_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">show_dimensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">decimal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>,</dd>
@@ -649,14 +650,14 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L3224-L3446"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.to_html" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/frame.py#L3208-L3437"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.to_html" title="Link to this definition">#</a></dt>
 <dd><p>Render a DataFrame as an HTML table.</p>
 <p>Converts the DataFrame into an HTML <code class="docutils literal notranslate"><span class="pre">&lt;table&gt;</span></code> element. The resulting
 HTML can be written to a file or returned as a string. This is useful
 for embedding tabular data in web pages or HTML-based reports.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
+<dd class="field-odd"><dl>
 <dt><strong>buf</strong><span class="classifier">str, Path or StringIO-like, optional, default None</span></dt><dd><p>Buffer to write to. If None, the output is returned as a string.</p>
 </dd>
 <dt><strong>columns</strong><span class="classifier">array-like, optional, default None</span></dt><dd><p>The subset of columns to write. Writes all columns by default.</p>
@@ -704,6 +705,12 @@ of the box. Valid values are</p>
 </ul>
 </dd>
 <dt><strong>max_rows</strong><span class="classifier">int, optional</span></dt><dd><p>Maximum number of rows to display in the console.</p>
+</dd>
+<dt><strong>min_rows</strong><span class="classifier">int, optional</span></dt><dd><p>The number of rows to display in a truncated table (when number
+of rows is above <cite>max_rows</cite>).</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.2.0.</span></p>
+</div>
 </dd>
 <dt><strong>max_cols</strong><span class="classifier">int, optional</span></dt><dd><p>Maximum number of columns to display in the console.</p>
 </dd>
