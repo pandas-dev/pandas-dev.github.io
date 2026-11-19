@@ -1144,18 +1144,18 @@ using integers in a <code class="docutils literal notranslate"><span class="pre"
 <span class="g g-Whitespace">   </span><span class="mi">2074</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
 <span class="g g-Whitespace">   </span><span class="mi">2075</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_slice</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimes.py:2340,</span> in <span class="ni">DatetimeIndex.slice_indexer</span><span class="nt">(self, start, end, step)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2332</span> <span class="c1"># GH#33146 if start and end are combinations of str and None and Index is not</span>
-<span class="g g-Whitespace">   </span><span class="mi">2333</span> <span class="c1"># monotonic, we can not use Index.slice_indexer because it does not honor the</span>
-<span class="g g-Whitespace">   </span><span class="mi">2334</span> <span class="c1"># actual elements, is only searching for start and end</span>
-<span class="g g-Whitespace">   </span><span class="mi">2335</span> <span class="k">if</span> <span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2336</span>     <span class="n">check_str_or_none</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2337</span>     <span class="ow">or</span> <span class="n">check_str_or_none</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2338</span>     <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_monotonic_increasing</span>
-<span class="g g-Whitespace">   </span><span class="mi">2339</span> <span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">2340</span>     <span class="k">return</span> <span class="n">Index</span><span class="o">.</span><span class="n">slice_indexer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2342</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2343</span> <span class="n">in_index</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimes.py:2341,</span> in <span class="ni">DatetimeIndex.slice_indexer</span><span class="nt">(self, start, end, step)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2333</span> <span class="c1"># GH#33146 if start and end are combinations of str and None and Index is not</span>
+<span class="g g-Whitespace">   </span><span class="mi">2334</span> <span class="c1"># monotonic, we can not use Index.slice_indexer because it does not honor the</span>
+<span class="g g-Whitespace">   </span><span class="mi">2335</span> <span class="c1"># actual elements, is only searching for start and end</span>
+<span class="g g-Whitespace">   </span><span class="mi">2336</span> <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2337</span>     <span class="n">check_str_or_none</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2338</span>     <span class="ow">or</span> <span class="n">check_str_or_none</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2339</span>     <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_monotonic_increasing</span>
+<span class="g g-Whitespace">   </span><span class="mi">2340</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">2341</span>     <span class="k">return</span> <span class="n">Index</span><span class="o">.</span><span class="n">slice_indexer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2343</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2344</span> <span class="n">in_index</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:7185,</span> in <span class="ni">Index.slice_indexer</span><span class="nt">(self, start, end, step)</span>
 <span class="g g-Whitespace">   </span><span class="mi">7134</span> <span class="k">def</span><span class="w"> </span><span class="nf">slice_indexer</span><span class="p">(</span>
@@ -1188,16 +1188,16 @@ using integers in a <code class="docutils literal notranslate"><span class="pre"
 <span class="g g-Whitespace">   </span><span class="mi">7346</span> <span class="c1"># we need to look up the label</span>
 <span class="g g-Whitespace">   </span><span class="mi">7347</span> <span class="k">try</span><span class="p">:</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimes.py:2300,</span> in <span class="ni">DatetimeIndex._maybe_cast_slice_bound</span><span class="nt">(self, label, side)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2291</span>     <span class="n">label</span> <span class="o">=</span> <span class="n">Timestamp</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">to_pydatetime</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">2292</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2293</span>         <span class="c1"># GH#35830 deprecate last remaining inconsistent date treatment</span>
-<span class="g g-Whitespace">   </span><span class="mi">2294</span>         <span class="s2">"Slicing with a datetime.date object is deprecated. "</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">2297</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(),</span>
-<span class="g g-Whitespace">   </span><span class="mi">2298</span>     <span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2300</span> <span class="n">label</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_maybe_cast_slice_bound</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">side</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2301</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">_assert_tzawareness_compat</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2302</span> <span class="k">return</span> <span class="n">Timestamp</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimes.py:2301,</span> in <span class="ni">DatetimeIndex._maybe_cast_slice_bound</span><span class="nt">(self, label, side)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2292</span>     <span class="n">label</span> <span class="o">=</span> <span class="n">Timestamp</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">to_pydatetime</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">2293</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2294</span>         <span class="c1"># GH#35830 deprecate last remaining inconsistent date treatment</span>
+<span class="g g-Whitespace">   </span><span class="mi">2295</span>         <span class="s2">"Slicing with a datetime.date object is deprecated. "</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">2298</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(),</span>
+<span class="g g-Whitespace">   </span><span class="mi">2299</span>     <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2301</span> <span class="n">label</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_maybe_cast_slice_bound</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">side</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2302</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">_assert_tzawareness_compat</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2303</span> <span class="k">return</span> <span class="n">Timestamp</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/datetimelike.py:629,</span> in <span class="ni">DatetimeIndexOpsMixin._maybe_cast_slice_bound</span><span class="nt">(self, label, side)</span>
 <span class="g g-Whitespace">    </span><span class="mi">627</span>     <span class="k">return</span> <span class="n">lower</span> <span class="k">if</span> <span class="n">side</span> <span class="o">==</span> <span class="s2">"left"</span> <span class="k">else</span> <span class="n">upper</span>
@@ -1671,11 +1671,11 @@ A list of indexers where any element is out of bounds will raise an
 <span class="g g-Whitespace">   </span><span class="mi">2489</span> <span class="k">except</span> <span class="ne">IndexError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">2490</span>     <span class="c1"># re-raise with different error message, e.g. test_getitem_ndarray_3d</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:4208,</span> in <span class="ni">NDFrame.take</span><span class="nt">(self, indices, axis, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4206</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4207</span> 
-<span class="ne">-&gt; </span><span class="mi">4208</span>         <span class="n">new_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">take</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">4209</span>             <span class="n">indices</span><span class="p">,</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:4207,</span> in <span class="ni">NDFrame.take</span><span class="nt">(self, indices, axis, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4205</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4206</span> 
+<span class="ne">-&gt; </span><span class="mi">4207</span>         <span class="n">new_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">take</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">4208</span>             <span class="n">indices</span><span class="p">,</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/internals/managers.py:1105,</span> in <span class="ni">BaseBlockManager.take</span><span class="nt">(self, indexer, axis, verify)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1104</span> <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
@@ -1940,24 +1940,24 @@ without using a temporary variable.</p>
 <span class="g g-Whitespace">   </span><span class="mi">6103</span><span class="s2">             method=method,</span>
 <span class="g g-Whitespace">   </span><span class="mi">6104</span><span class="s2">             level=level,</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5613,</span> in <span class="ni">NDFrame.reindex</span><span class="nt">(self, labels, index, columns, axis, method, copy, level, fill_value, limit, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5609</span><span class="s2">         if self._needs_reindex_multi(axes, method, level):</span>
-<span class="g g-Whitespace">   </span><span class="mi">5610</span><span class="s2">             return self._reindex_multi(axes, fill_value)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5611</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">5612</span><span class="s2">         # perform the reindex on the axes</span>
-<span class="ne">-&gt; </span><span class="mi">5613</span><span class="s2">         return self._reindex_axes(</span>
-<span class="g g-Whitespace">   </span><span class="mi">5614</span><span class="s2">             axes, level, limit, tolerance, method, fill_value</span>
-<span class="g g-Whitespace">   </span><span class="mi">5615</span><span class="s2">         ).__finalize__(self, method="reindex")</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5612,</span> in <span class="ni">NDFrame.reindex</span><span class="nt">(self, labels, index, columns, axis, method, copy, level, fill_value, limit, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5608</span><span class="s2">         if self._needs_reindex_multi(axes, method, level):</span>
+<span class="g g-Whitespace">   </span><span class="mi">5609</span><span class="s2">             return self._reindex_multi(axes, fill_value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5610</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">5611</span><span class="s2">         # perform the reindex on the axes</span>
+<span class="ne">-&gt; </span><span class="mi">5612</span><span class="s2">         return self._reindex_axes(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5613</span><span class="s2">             axes, level, limit, tolerance, method, fill_value</span>
+<span class="g g-Whitespace">   </span><span class="mi">5614</span><span class="s2">         ).__finalize__(self, method="reindex")</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5635,</span> in <span class="ni">NDFrame._reindex_axes</span><span class="nt">(self, axes, level, limit, tolerance, method, fill_value)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5631</span><span class="s2">             if labels is None:</span>
-<span class="g g-Whitespace">   </span><span class="mi">5632</span><span class="s2">                 continue</span>
-<span class="g g-Whitespace">   </span><span class="mi">5633</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">5634</span><span class="s2">             ax = self._get_axis(a)</span>
-<span class="ne">-&gt; </span><span class="mi">5635</span><span class="s2">             new_index, indexer = ax.reindex(</span>
-<span class="g g-Whitespace">   </span><span class="mi">5636</span><span class="s2">                 labels, level=level, limit=limit, tolerance=tolerance, method=method</span>
-<span class="g g-Whitespace">   </span><span class="mi">5637</span><span class="s2">             )</span>
-<span class="g g-Whitespace">   </span><span class="mi">5638</span><span class="s2"> </span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5634,</span> in <span class="ni">NDFrame._reindex_axes</span><span class="nt">(self, axes, level, limit, tolerance, method, fill_value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5630</span><span class="s2">             if labels is None:</span>
+<span class="g g-Whitespace">   </span><span class="mi">5631</span><span class="s2">                 continue</span>
+<span class="g g-Whitespace">   </span><span class="mi">5632</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">5633</span><span class="s2">             ax = self._get_axis(a)</span>
+<span class="ne">-&gt; </span><span class="mi">5634</span><span class="s2">             new_index, indexer = ax.reindex(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5635</span><span class="s2">                 labels, level=level, limit=limit, tolerance=tolerance, method=method</span>
+<span class="g g-Whitespace">   </span><span class="mi">5636</span><span class="s2">             )</span>
+<span class="g g-Whitespace">   </span><span class="mi">5637</span><span class="s2"> </span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4479,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4476</span><span class="s2">     raise ValueError("cannot handle a non-unique multi-index!")</span>
@@ -1998,24 +1998,24 @@ axis, and then reindex.</p>
 <span class="g g-Whitespace">   </span><span class="mi">6103</span><span class="s2">             method=method,</span>
 <span class="g g-Whitespace">   </span><span class="mi">6104</span><span class="s2">             level=level,</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5613,</span> in <span class="ni">NDFrame.reindex</span><span class="nt">(self, labels, index, columns, axis, method, copy, level, fill_value, limit, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5609</span><span class="s2">         if self._needs_reindex_multi(axes, method, level):</span>
-<span class="g g-Whitespace">   </span><span class="mi">5610</span><span class="s2">             return self._reindex_multi(axes, fill_value)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5611</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">5612</span><span class="s2">         # perform the reindex on the axes</span>
-<span class="ne">-&gt; </span><span class="mi">5613</span><span class="s2">         return self._reindex_axes(</span>
-<span class="g g-Whitespace">   </span><span class="mi">5614</span><span class="s2">             axes, level, limit, tolerance, method, fill_value</span>
-<span class="g g-Whitespace">   </span><span class="mi">5615</span><span class="s2">         ).__finalize__(self, method="reindex")</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5612,</span> in <span class="ni">NDFrame.reindex</span><span class="nt">(self, labels, index, columns, axis, method, copy, level, fill_value, limit, tolerance)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5608</span><span class="s2">         if self._needs_reindex_multi(axes, method, level):</span>
+<span class="g g-Whitespace">   </span><span class="mi">5609</span><span class="s2">             return self._reindex_multi(axes, fill_value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5610</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">5611</span><span class="s2">         # perform the reindex on the axes</span>
+<span class="ne">-&gt; </span><span class="mi">5612</span><span class="s2">         return self._reindex_axes(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5613</span><span class="s2">             axes, level, limit, tolerance, method, fill_value</span>
+<span class="g g-Whitespace">   </span><span class="mi">5614</span><span class="s2">         ).__finalize__(self, method="reindex")</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5635,</span> in <span class="ni">NDFrame._reindex_axes</span><span class="nt">(self, axes, level, limit, tolerance, method, fill_value)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5631</span><span class="s2">             if labels is None:</span>
-<span class="g g-Whitespace">   </span><span class="mi">5632</span><span class="s2">                 continue</span>
-<span class="g g-Whitespace">   </span><span class="mi">5633</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">5634</span><span class="s2">             ax = self._get_axis(a)</span>
-<span class="ne">-&gt; </span><span class="mi">5635</span><span class="s2">             new_index, indexer = ax.reindex(</span>
-<span class="g g-Whitespace">   </span><span class="mi">5636</span><span class="s2">                 labels, level=level, limit=limit, tolerance=tolerance, method=method</span>
-<span class="g g-Whitespace">   </span><span class="mi">5637</span><span class="s2">             )</span>
-<span class="g g-Whitespace">   </span><span class="mi">5638</span><span class="s2"> </span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:5634,</span> in <span class="ni">NDFrame._reindex_axes</span><span class="nt">(self, axes, level, limit, tolerance, method, fill_value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5630</span><span class="s2">             if labels is None:</span>
+<span class="g g-Whitespace">   </span><span class="mi">5631</span><span class="s2">                 continue</span>
+<span class="g g-Whitespace">   </span><span class="mi">5632</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">5633</span><span class="s2">             ax = self._get_axis(a)</span>
+<span class="ne">-&gt; </span><span class="mi">5634</span><span class="s2">             new_index, indexer = ax.reindex(</span>
+<span class="g g-Whitespace">   </span><span class="mi">5635</span><span class="s2">                 labels, level=level, limit=limit, tolerance=tolerance, method=method</span>
+<span class="g g-Whitespace">   </span><span class="mi">5636</span><span class="s2">             )</span>
+<span class="g g-Whitespace">   </span><span class="mi">5637</span><span class="s2"> </span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:4479,</span> in <span class="ni">Index.reindex</span><span class="nt">(self, target, method, level, limit, tolerance)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4476</span><span class="s2">     raise ValueError("cannot handle a non-unique multi-index!")</span>
@@ -3093,7 +3093,7 @@ having to specify which frame you’re interested in querying</p>
 <span class="gp">In [280]: </span><span class="n">expr</span> <span class="o">=</span> <span class="s1">'0.0 &lt;= a &lt;= c &lt;= 0.5'</span>
 
 <span class="gp">In [281]: </span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="p">[</span><span class="n">df</span><span class="p">,</span> <span class="n">df2</span><span class="p">])</span>
-<span class="gh">Out[281]: </span><span class="go">&lt;map at 0x7eff1e1fb1c0&gt;</span>
+<span class="gh">Out[281]: </span><span class="go">&lt;map at 0x7f86fce6bf40&gt;</span>
 </pre></div>
 </div>
 </section>

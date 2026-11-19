@@ -809,24 +809,37 @@
 <dl>
 <dd><em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">end_time</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">include_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">include_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">include_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">include_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">inclusive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/datetimes.py#L2455-L2519"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.indexer_between_time" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/indexes/datetimes.py#L2456-L2554"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DatetimeIndex.indexer_between_time" title="Link to this definition">#</a></dt>
 <dd><p>Return index locations of values between particular times of day.</p>
 <p>This method returns the integer indices of the DatetimeIndex entries
 whose time-of-day components fall within the specified range.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
+<dd class="field-odd"><dl>
 <dt><strong>start_time, end_time</strong><span class="classifier">datetime.time, str</span></dt><dd><p>Time passed either as object (datetime.time) or as string in
 appropriate format (“%H:%M”, “%H%M”, “%I:%M%p”, “%I%M%p”,
 “%H:%M:%S”, “%H%M%S”, “%I:%M:%S%p”,”%I%M%S%p”).</p>
 </dd>
 <dt><strong>include_start</strong><span class="classifier">bool, default True</span></dt><dd><p>Include boundaries; whether to set start bound as closed or open.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 3.2.0: </span>Use <code class="docutils literal notranslate"><span class="pre">inclusive</span></code> instead.</p>
+</div>
 </dd>
 <dt><strong>include_end</strong><span class="classifier">bool, default True</span></dt><dd><p>Include boundaries; whether to set end bound as closed or open.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 3.2.0: </span>Use <code class="docutils literal notranslate"><span class="pre">inclusive</span></code> instead.</p>
+</div>
+</dd>
+<dt><strong>inclusive</strong><span class="classifier">{“both”, “neither”, “left”, “right”}, default “both”</span></dt><dd><p>Include boundaries; whether to set each bound as closed or open.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.2.0.</span></p>
+</div>
 </dd>
 </dl>
 </dd>
@@ -852,7 +865,7 @@ appropriate format (“%H:%M”, “%H%M”, “%I:%M%p”, “%I%M%p”,
 <span class="go">DatetimeIndex(['2023-01-01 00:00:00', '2023-01-01 01:00:00',</span>
 <span class="go">                   '2023-01-01 02:00:00', '2023-01-01 03:00:00'],</span>
 <span class="go">                  dtype='datetime64[us]', freq='h')</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">indexer_between_time</span><span class="p">(</span><span class="s2">"00:00"</span><span class="p">,</span> <span class="s2">"2:00"</span><span class="p">,</span> <span class="n">include_end</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">indexer_between_time</span><span class="p">(</span><span class="s2">"00:00"</span><span class="p">,</span> <span class="s2">"2:00"</span><span class="p">,</span> <span class="n">inclusive</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span>
 <span class="go">array([0, 1])</span>
 </pre></div>
 </div>
