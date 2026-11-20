@@ -2749,6 +2749,12 @@ as <code class="docutils literal notranslate"><span class="pre">BusinessHour</sp
 </pre></div>
 </div>
 </section>
+<section id="writing-your-own-offset">
+<span id="timeseries-custom-offsets"></span><h3>Writing your own offset<a class="headerlink" href="#writing-your-own-offset" title="Link to this heading">#</a></h3>
+<p>To define an offset none of the built-in ones cover, subclass
+<a class="reference internal" href="../reference/api/pandas.tseries.offsets.BaseOffset.html#pandas.tseries.offsets.BaseOffset" title="pandas.tseries.offsets.BaseOffset"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseOffset</span></code></a>. Its docstring lists the methods to
+override and gives an example.</p>
+</section>
 <section id="offset-aliases">
 <span id="timeseries-offset-aliases"></span><h3>Offset aliases<a class="headerlink" href="#offset-aliases" title="Link to this heading">#</a></h3>
 <p>A number of string aliases are given to useful common time series
@@ -3392,7 +3398,7 @@ or calendars with additional rules.</p>
 <span class="gp">In [314]: </span><span class="n">cal</span><span class="o">.</span><span class="n">rules</span>
 <span class="gh">Out[314]: </span>
 <span class="go">[Holiday: Memorial Day (month=5, day=31, offset=&lt;DateOffset: weekday=MO(-1)&gt;),</span>
-<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f8f223500e0&gt;),</span>
+<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7faf531640e0&gt;),</span>
 <span class="go"> Holiday: Columbus Day (month=10, day=1, offset=&lt;DateOffset: weekday=MO(+2)&gt;)]</span>
 
 <span class="gp">In [315]: </span><span class="n">new_cal</span> <span class="o">=</span> <span class="n">HolidayCalendarFactory</span><span class="p">(</span><span class="s2">"NewExampleCalendar"</span><span class="p">,</span> <span class="n">cal</span><span class="p">,</span> <span class="n">USLaborDay</span><span class="p">)</span>
@@ -3401,7 +3407,7 @@ or calendars with additional rules.</p>
 <span class="gh">Out[316]: </span>
 <span class="go">[Holiday: Labor Day (month=9, day=1, offset=&lt;DateOffset: weekday=MO(+1)&gt;),</span>
 <span class="go"> Holiday: Memorial Day (month=5, day=31, offset=&lt;DateOffset: weekday=MO(-1)&gt;),</span>
-<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7f8f223500e0&gt;),</span>
+<span class="go"> Holiday: July 4th (month=7, day=4, observance=&lt;function nearest_workday at 0x7faf531640e0&gt;),</span>
 <span class="go"> Holiday: Columbus Day (month=10, day=1, offset=&lt;DateOffset: weekday=MO(+2)&gt;)]</span>
 </pre></div>
 </div>
@@ -5248,6 +5254,7 @@ information (e.g. when converting back to a Series), use
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-business-days">Custom business days</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#business-hour">Business hour</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-business-hour">Custom business hour</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-your-own-offset">Writing your own offset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#offset-aliases">Offset aliases</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#period-aliases">Period aliases</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-aliases">Combining aliases</a></li>

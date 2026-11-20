@@ -681,7 +681,8 @@
 <dd><p>Base class for all pandas date offsets.</p>
 <p>Every offset in <code class="docutils literal notranslate"><span class="pre">pandas.tseries.offsets</span></code> is a subclass of <code class="docutils literal notranslate"><span class="pre">BaseOffset</span></code>,
 so <code class="docutils literal notranslate"><span class="pre">isinstance(obj,</span> <span class="pre">BaseOffset)</span></code> is the way to check whether an object is
-a pandas offset. <code class="docutils literal notranslate"><span class="pre">BaseOffset</span></code> is not meant to be instantiated directly.</p>
+a pandas offset. <code class="docutils literal notranslate"><span class="pre">BaseOffset</span></code> is not meant to be instantiated directly;
+to write your own offset, subclass it as described in the Notes.</p>
 <p class="rubric">Attributes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
@@ -703,6 +704,24 @@ a pandas offset. <code class="docutils literal notranslate"><span class="pre">Ba
 </dd>
 </dl>
 </div>
+<p class="rubric">Notes</p>
+<p>A subclass defines:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_add_datetime(self,</span> <span class="pre">other)</span></code>, which receives a <a class="reference internal" href="pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> and
+returns the <a class="reference internal" href="pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> <code class="docutils literal notranslate"><span class="pre">self.n</span></code> steps away. As in the built-in
+offsets, for <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;</span> <span class="pre">0</span></code> rolling back onto the offset counts as the first
+step, and <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">==</span> <span class="pre">0</span></code> rolls forward. This implements <code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">-</span></code> and
+is used by <a class="reference internal" href="pandas.date_range.html#pandas.date_range" title="pandas.date_range"><code class="xref py py-func docutils literal notranslate"><span class="pre">date_range()</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_on_offset(self,</span> <span class="pre">dt)</span></code>, which <code class="docutils literal notranslate"><span class="pre">rollback</span></code>, <code class="docutils literal notranslate"><span class="pre">rollforward</span></code> and
+<a class="reference internal" href="pandas.date_range.html#pandas.date_range" title="pandas.date_range"><code class="xref py py-func docutils literal notranslate"><span class="pre">date_range()</span></code></a> use to tell whether <code class="docutils literal notranslate"><span class="pre">dt</span></code> already falls on the offset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_prefix</span></code>, the name shown in the offset’s <code class="docutils literal notranslate"><span class="pre">freqstr</span></code>. It is not
+registered as a frequency string, so pass the offset object itself as
+<code class="docutils literal notranslate"><span class="pre">freq</span></code>.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">-</span></code> honor <code class="docutils literal notranslate"><span class="pre">normalize=True</span></code> only if <code class="docutils literal notranslate"><span class="pre">_add_datetime</span></code> checks
+<code class="docutils literal notranslate"><span class="pre">self.normalize</span></code>. Adding a custom offset to a <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or
+<a class="reference internal" href="pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code></a> applies it one element at a time and emits a
+<a class="reference internal" href="pandas.errors.PerformanceWarning.html#pandas.errors.PerformanceWarning" title="pandas.errors.PerformanceWarning"><code class="xref py py-class docutils literal notranslate"><span class="pre">PerformanceWarning</span></code></a>.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">Hour</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">n</span>
 <span class="go">5</span>
@@ -712,6 +731,34 @@ a pandas offset. <code class="docutils literal notranslate"><span class="pre">Ba
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">BDay</span><span class="p">(),</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">BaseOffset</span><span class="p">)</span>
 <span class="go">True</span>
+</pre></div>
+</div>
+<p>An offset stepping through dekads, the periods starting on the 1st, 11th
+and 21st of each month (it ignores <code class="docutils literal notranslate"><span class="pre">normalize</span></code>):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">Dekad</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">BaseOffset</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">_prefix</span> <span class="o">=</span> <span class="s2">"DEKAD"</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="nf">_add_datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="n">slot</span> <span class="o">=</span> <span class="nb">min</span><span class="p">((</span><span class="n">other</span><span class="o">.</span><span class="n">day</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">day</span> <span class="o">!=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">slot</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">... </span>        <span class="n">months</span><span class="p">,</span> <span class="n">slot</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">slot</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">result</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">DateOffset</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="n">months</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">day</span><span class="o">=</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">slot</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="nf">is_on_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">dt</span><span class="o">.</span><span class="n">day</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2024-01-25"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ts</span> <span class="o">+</span> <span class="n">Dekad</span><span class="p">()</span>
+<span class="go">Timestamp('2024-02-01 00:00:00')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ts</span> <span class="o">-</span> <span class="n">Dekad</span><span class="p">()</span>
+<span class="go">Timestamp('2024-01-21 00:00:00')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Dekad</span><span class="p">()</span><span class="o">.</span><span class="n">rollback</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+<span class="go">Timestamp('2024-01-21 00:00:00')</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2024-01-05"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">Dekad</span><span class="p">())</span>
+<span class="go">DatetimeIndex(['2024-01-11', '2024-01-21', '2024-02-01', '2024-02-11'],</span>
+<span class="go">              dtype='datetime64[us]', freq='DEKAD')</span>
 </pre></div>
 </div>
 <p class="rubric">Attributes</p>
