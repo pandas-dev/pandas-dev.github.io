@@ -669,12 +669,13 @@ of a CI job.</p>
 <li><p><a class="reference external" href="https://pixi.prefix.dev/latest/installation/">Install pixi</a></p></li>
 <li><p>Pick one of the environments defined in <code class="docutils literal notranslate"><span class="pre">pixi.toml</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">py313</span></code>. To reproduce a
 CI job, use the <code class="docutils literal notranslate"><span class="pre">environment</span></code> of that job in <code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code>; most job names
-include it. Some jobs also set environment variables such as <code class="docutils literal notranslate"><span class="pre">PANDAS_FUTURE</span></code> or <code class="docutils literal notranslate"><span class="pre">LANG</span></code>;
-see <code class="docutils literal notranslate"><span class="pre">.github/workflows/unit-tests.yml</span></code> and <code class="docutils literal notranslate"><span class="pre">.github/actions/run-tests/action.yml</span></code>.</p></li>
+include it. Some jobs also pass a <code class="docutils literal notranslate"><span class="pre">pandas_future</span></code> value to <code class="docutils literal notranslate"><span class="pre">ci-test-pandas</span></code> or set
+environment variables such as <code class="docutils literal notranslate"><span class="pre">LANG</span></code>; see <code class="docutils literal notranslate"><span class="pre">.github/workflows/unit-tests.yml</span></code>.
+<code class="docutils literal notranslate"><span class="pre">pixi</span> <span class="pre">task</span> <span class="pre">list</span></code> describes each task.</p></li>
 <li><p>In place of Step 3 below, build pandas and run tests with the tasks CI uses:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>py313<span class="w"> </span>build-pandas<span class="w"> </span>--editable
-pixi<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>py313<span class="w"> </span>ci-test-pandas<span class="w"> </span><span class="s2">"-m not single_cpu"</span><span class="w"> </span>auto<span class="w"> </span>pandas/tests/frame
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pixi<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>py313<span class="w"> </span>build-pandas
+pixi<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>py313<span class="w"> </span>ci-test-pandas<span class="w"> </span><span class="s2">"not single_cpu"</span><span class="w"> </span>auto<span class="w"> </span>pandas/tests/frame
 
 <span class="c1"># Or activate the environment and use it as usual</span>
 pixi<span class="w"> </span>shell<span class="w"> </span>-e<span class="w"> </span>py313
