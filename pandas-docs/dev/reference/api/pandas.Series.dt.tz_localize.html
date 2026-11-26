@@ -908,10 +908,10 @@
 <h1>pandas.Series.dt.tz_localize<a class="headerlink" href="#pandas-series-dt-tz-localize" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.Series.dt.tz_localize">
-<span class="sig-prename descclassname"><span class="pre">Series.dt.</span></span><span class="sig-name descname"><span class="pre">tz_localize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambiguous</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonexistent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/arrays/datetimes.py#L946-L1121"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.dt.tz_localize" title="Link to this definition">#</a></dt>
-<dd><p>Localize tz-naive Datetime Array/Index to tz-aware Datetime Array/Index.</p>
-<p>This method takes a time zone (tz) naive Datetime Array/Index object
-and makes this time zone aware. It does not move the time to another
+<span class="sig-prename descclassname"><span class="pre">Series.dt.</span></span><span class="sig-name descname"><span class="pre">tz_localize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambiguous</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonexistent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/arrays/datetimes.py#L931-L1110"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.dt.tz_localize" title="Link to this definition">#</a></dt>
+<dd><p>Localize tz-naive datetimes to tz-aware datetimes.</p>
+<p>This method takes time zone (tz) naive datetime values
+and makes them time zone aware. It does not move the time to another
 time zone.</p>
 <p>This method can also be used to do the inverse – to create a time
 zone unaware object from an aware object. To that end, pass <cite>tz=None</cite>.</p>
@@ -919,8 +919,8 @@ zone unaware object from an aware object. To that end, pass <cite>tz=None</cite>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>tz</strong><span class="classifier">str, zoneinfo.ZoneInfo, pytz.timezone, dateutil.tz.tzfile, datetime.tzinfo or None</span></dt><dd><p>Time zone to attach to the tz-naive timestamps; the wall time is
-preserved. Passing <code class="docutils literal notranslate"><span class="pre">None</span></code> detaches the time zone from a tz-aware
-Array/Index, returning a tz-naive result with the same wall time.</p>
+preserved. Passing <code class="docutils literal notranslate"><span class="pre">None</span></code> detaches the time zone from tz-aware
+values, returning a tz-naive result with the same wall time.</p>
 </dd>
 <dt><strong>ambiguous</strong><span class="classifier">‘infer’, ‘NaT’, bool array, default ‘raise’</span></dt><dd><p>When clocks moved backward due to DST, ambiguous times may arise.
 For example in Central European Time (UTC+01), when going from
@@ -956,13 +956,13 @@ nonexistent times.</p></li>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>Same type as self</dt><dd><p>Array/Index converted to the specified time zone.</p>
+<dt>Series or DatetimeArray</dt><dd><p>The values localized to the specified time zone.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt>TypeError</dt><dd><p>If the Datetime Array/Index is tz-aware and tz is not None.</p>
+<dt>TypeError</dt><dd><p>If the values are tz-aware and tz is not None.</p>
 </dd>
 </dl>
 </dd>
@@ -970,32 +970,37 @@ nonexistent times.</p></li>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="pandas.DatetimeIndex.tz_convert.html#pandas.DatetimeIndex.tz_convert" title="pandas.DatetimeIndex.tz_convert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatetimeIndex.tz_convert</span></code></a></dt><dd><p>Convert tz-aware DatetimeIndex from one time zone to another.</p>
+<dt><a class="reference internal" href="pandas.Series.dt.tz_convert.html#pandas.Series.dt.tz_convert" title="pandas.Series.dt.tz_convert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.dt.tz_convert</span></code></a></dt><dd><p>Convert tz-aware datetimes from one time zone to another.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DatetimeIndex.tz_localize.html#pandas.DatetimeIndex.tz_localize" title="pandas.DatetimeIndex.tz_localize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatetimeIndex.tz_localize</span></code></a></dt><dd><p>Localize a tz-naive DatetimeIndex.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tz_naive</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'2018-03-01 09:00'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tz_naive</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">'2018-03-01 09:00'</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tz_naive</span>
-<span class="go">DatetimeIndex(['2018-03-01 09:00:00', '2018-03-02 09:00:00',</span>
-<span class="go">               '2018-03-03 09:00:00'],</span>
-<span class="go">              dtype='datetime64[us]', freq='D')</span>
+<span class="go">0   2018-03-01 09:00:00</span>
+<span class="go">1   2018-03-02 09:00:00</span>
+<span class="go">2   2018-03-03 09:00:00</span>
+<span class="go">dtype: datetime64[us]</span>
 </pre></div>
 </div>
-<p>Localize DatetimeIndex in US/Eastern time zone:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tz_aware</span> <span class="o">=</span> <span class="n">tz_naive</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="s1">'US/Eastern'</span><span class="p">)</span>
+<p>Localize in US/Eastern time zone:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tz_aware</span> <span class="o">=</span> <span class="n">tz_naive</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="n">tz</span><span class="o">=</span><span class="s1">'US/Eastern'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tz_aware</span>
-<span class="go">DatetimeIndex(['2018-03-01 09:00:00-05:00', '2018-03-02 09:00:00-05:00',</span>
-<span class="go">               '2018-03-03 09:00:00-05:00'],</span>
-<span class="go">              dtype='datetime64[us, US/Eastern]', freq='D')</span>
+<span class="go">0   2018-03-01 09:00:00-05:00</span>
+<span class="go">1   2018-03-02 09:00:00-05:00</span>
+<span class="go">2   2018-03-03 09:00:00-05:00</span>
+<span class="go">dtype: datetime64[us, US/Eastern]</span>
 </pre></div>
 </div>
 <p>With <code class="docutils literal notranslate"><span class="pre">tz=None</span></code> we can remove the time zone information while
 preserving the wall time (no conversion to UTC):</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tz_aware</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-<span class="go">DatetimeIndex(['2018-03-01 09:00:00', '2018-03-02 09:00:00',</span>
-<span class="go">               '2018-03-03 09:00:00'],</span>
-<span class="go">              dtype='datetime64[us]', freq='D')</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tz_aware</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="go">0   2018-03-01 09:00:00</span>
+<span class="go">1   2018-03-02 09:00:00</span>
+<span class="go">2   2018-03-03 09:00:00</span>
+<span class="go">dtype: datetime64[us]</span>
 </pre></div>
 </div>
 <p>Be careful with DST changes. When there is sequential data, pandas can

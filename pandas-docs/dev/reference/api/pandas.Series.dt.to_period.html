@@ -908,9 +908,10 @@
 <h1>pandas.Series.dt.to_period<a class="headerlink" href="#pandas-series-dt-to-period" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.Series.dt.to_period">
-<span class="sig-prename descclassname"><span class="pre">Series.dt.</span></span><span class="sig-name descname"><span class="pre">to_period</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/arrays/datetimes.py#L1235-L1317"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.dt.to_period" title="Link to this definition">#</a></dt>
-<dd><p>Cast to PeriodArray/PeriodIndex at a particular frequency.</p>
-<p>Converts DatetimeArray/Index to PeriodArray/PeriodIndex.</p>
+<span class="sig-prename descclassname"><span class="pre">Series.dt.</span></span><span class="sig-name descname"><span class="pre">to_period</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/arrays/datetimes.py#L1226-L1304"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.dt.to_period" title="Link to this definition">#</a></dt>
+<dd><p>Cast the datetimes to periods at a particular frequency.</p>
+<p>Each datetime is mapped to the period of the given frequency that
+contains it.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -921,14 +922,14 @@ Will be inferred by default.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>PeriodArray/PeriodIndex</dt><dd><p>Immutable ndarray holding ordinal values at a particular frequency.</p>
+<dt>Series or PeriodArray</dt><dd><p>The values as periods of the given frequency.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt>ValueError</dt><dd><p>When converting a DatetimeArray/Index with non-regular values,
-so that a frequency cannot be inferred.</p>
+<dt>ValueError</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">freq</span></code> is None and a frequency cannot be inferred from the
+values.</p>
 </dd>
 </dl>
 </dd>
@@ -936,37 +937,32 @@ so that a frequency cannot be inferred.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="pandas.PeriodIndex.html#pandas.PeriodIndex" title="pandas.PeriodIndex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PeriodIndex</span></code></a></dt><dd><p>Immutable ndarray holding ordinal values.</p>
+<dt><a class="reference internal" href="pandas.DatetimeIndex.to_period.html#pandas.DatetimeIndex.to_period" title="pandas.DatetimeIndex.to_period"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatetimeIndex.to_period</span></code></a></dt><dd><p>Cast a DatetimeIndex to a PeriodIndex.</p>
 </dd>
-<dt><a class="reference internal" href="pandas.DatetimeIndex.to_pydatetime.html#pandas.DatetimeIndex.to_pydatetime" title="pandas.DatetimeIndex.to_pydatetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatetimeIndex.to_pydatetime</span></code></a></dt><dd><p>Return DatetimeIndex as object.</p>
+<dt><a class="reference internal" href="pandas.Series.dt.start_time.html#pandas.Series.dt.start_time" title="pandas.Series.dt.start_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.dt.start_time</span></code></a></dt><dd><p>Get the start of each period as a datetime.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Notes</p>
 <p>A multiplied <code class="docutils literal notranslate"><span class="pre">freq</span></code> does not bin timestamps: with <code class="docutils literal notranslate"><span class="pre">&quot;2h&quot;</span></code>, each
 timestamp maps to the 2-hour period starting at its own hour. For
-aligned 2-hour bins, use <code class="docutils literal notranslate"><span class="pre">floor(&quot;2h&quot;).to_period(&quot;2h&quot;)</span></code>.</p>
+aligned 2-hour bins, use <code class="docutils literal notranslate"><span class="pre">ser.dt.floor(&quot;2h&quot;).dt.to_period(&quot;2h&quot;)</span></code>.</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="p">{</span><span class="s2">"y"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span>
-<span class="gp">... </span>    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
-<span class="gp">... </span>        <span class="p">[</span>
-<span class="gp">... </span>            <span class="s2">"2000-03-31 00:00:00"</span><span class="p">,</span>
-<span class="gp">... </span>            <span class="s2">"2000-05-31 00:00:00"</span><span class="p">,</span>
-<span class="gp">... </span>            <span class="s2">"2000-08-31 00:00:00"</span><span class="p">,</span>
-<span class="gp">... </span>        <span class="p">]</span>
-<span class="gp">... </span>    <span class="p">),</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">"M"</span><span class="p">)</span>
-<span class="go">PeriodIndex(['2000-03', '2000-05', '2000-08'],</span>
-<span class="go">            dtype='period[M]')</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">"2000-03-31"</span><span class="p">,</span> <span class="s2">"2000-05-31"</span><span class="p">,</span> <span class="s2">"2000-08-31"</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">"M"</span><span class="p">)</span>
+<span class="go">0    2000-03</span>
+<span class="go">1    2000-05</span>
+<span class="go">2    2000-08</span>
+<span class="go">dtype: period[M]</span>
 </pre></div>
 </div>
 <p>Infer the daily frequency</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2017-01-01"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">to_period</span><span class="p">()</span>
-<span class="go">PeriodIndex(['2017-01-01', '2017-01-02'],</span>
-<span class="go">            dtype='period[D]')</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">"2017-01-01"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">()</span>
+<span class="go">0    2017-01-01</span>
+<span class="go">1    2017-01-02</span>
+<span class="go">2    2017-01-03</span>
+<span class="go">dtype: period[D]</span>
 </pre></div>
 </div>
 </dd></dl>

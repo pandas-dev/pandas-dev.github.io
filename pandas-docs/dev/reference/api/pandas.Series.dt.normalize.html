@@ -908,7 +908,7 @@
 <h1>pandas.Series.dt.normalize<a class="headerlink" href="#pandas-series-dt-normalize" title="Link to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.Series.dt.normalize">
-<span class="sig-prename descclassname"><span class="pre">Series.dt.</span></span><span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/arrays/datetimes.py#L1154-L1196"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.dt.normalize" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Series.dt.</span></span><span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/arrays/datetimes.py#L1143-L1187"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.dt.normalize" title="Link to this definition">#</a></dt>
 <dd><p>Convert times to midnight.</p>
 <p>The time component of the date-time is converted to midnight i.e.
 00:00:00. This is useful in cases, when the time does not matter.
@@ -936,19 +936,21 @@ name and index. DatetimeIndex will have the same name.</p>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">start</span><span class="o">=</span><span class="s2">"2014-08-01 10:00"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"h"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">"Asia/Calcutta"</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">start</span><span class="o">=</span><span class="s2">"2014-08-01 10:00"</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"h"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tz</span><span class="o">=</span><span class="s2">"Asia/Calcutta"</span>
+<span class="gp">... </span>    <span class="p">)</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span>
-<span class="go">DatetimeIndex(['2014-08-01 10:00:00+05:30',</span>
-<span class="go">               '2014-08-01 11:00:00+05:30',</span>
-<span class="go">               '2014-08-01 12:00:00+05:30'],</span>
-<span class="go">                dtype='datetime64[us, Asia/Calcutta]', freq='h')</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">idx</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
-<span class="go">DatetimeIndex(['2014-08-01 00:00:00+05:30',</span>
-<span class="go">               '2014-08-01 00:00:00+05:30',</span>
-<span class="go">               '2014-08-01 00:00:00+05:30'],</span>
-<span class="go">               dtype='datetime64[us, Asia/Calcutta]', freq=None)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span>
+<span class="go">0   2014-08-01 10:00:00+05:30</span>
+<span class="go">1   2014-08-01 11:00:00+05:30</span>
+<span class="go">2   2014-08-01 12:00:00+05:30</span>
+<span class="go">dtype: datetime64[us, Asia/Calcutta]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
+<span class="go">0   2014-08-01 00:00:00+05:30</span>
+<span class="go">1   2014-08-01 00:00:00+05:30</span>
+<span class="go">2   2014-08-01 00:00:00+05:30</span>
+<span class="go">dtype: datetime64[us, Asia/Calcutta]</span>
 </pre></div>
 </div>
 </dd></dl>

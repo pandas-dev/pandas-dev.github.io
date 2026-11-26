@@ -916,7 +916,9 @@ a Timestamp of ‘2020-01-01 00:00:00’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt>Timestamp</dt><dd></dd>
+<dt>Timestamp or Series</dt><dd><p>A Timestamp for a Period, or a Series of datetimes when called
+through <code class="docutils literal notranslate"><span class="pre">Series.dt</span></code>.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -934,6 +936,7 @@ a Timestamp of ‘2020-01-01 00:00:00’.</p>
 </dl>
 </div>
 <p class="rubric">Examples</p>
+<p>For Period:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">period</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Period</span><span class="p">(</span><span class="s1">'2012-1-1'</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">'D'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">period</span>
 <span class="go">Period('2012-01-01', 'D')</span>
@@ -945,6 +948,15 @@ a Timestamp of ‘2020-01-01 00:00:00’.</p>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">period</span><span class="o">.</span><span class="n">end_time</span>
 <span class="go">Timestamp('2012-01-01 23:59:59.999999')</span>
+</pre></div>
+</div>
+<p>For Series:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">period_range</span><span class="p">(</span><span class="s2">"2020-01"</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"M"</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ser</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">start_time</span>
+<span class="go">0   2020-01-01</span>
+<span class="go">1   2020-02-01</span>
+<span class="go">2   2020-03-01</span>
+<span class="go">dtype: datetime64[us]</span>
 </pre></div>
 </div>
 </dd></dl>
