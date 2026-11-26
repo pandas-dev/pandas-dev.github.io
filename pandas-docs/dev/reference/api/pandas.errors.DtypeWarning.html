@@ -601,11 +601,10 @@
 <h1>pandas.errors.DtypeWarning<a class="headerlink" href="#pandas-errors-dtypewarning" title="Link to this heading">#</a></h1>
 <dl class="py exception">
 <dt class="sig sig-object py" id="pandas.errors.DtypeWarning">
-<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.errors.</span></span><span class="sig-name descname"><span class="pre">DtypeWarning</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/errors/__init__.py#L333-L388"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.errors.DtypeWarning" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pandas.errors.</span></span><span class="sig-name descname"><span class="pre">DtypeWarning</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/errors/__init__.py#L333-L391"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.errors.DtypeWarning" title="Link to this definition">#</a></dt>
 <dd><p>Warning raised when reading different dtypes in a column from a file.</p>
-<p>Raised for a dtype incompatibility. This can happen whenever <cite>read_csv</cite>
-or <cite>read_table</cite> encounter non-uniform dtypes in a column(s) of a given
-CSV file.</p>
+<p>Raised when <cite>read_csv</cite> or <cite>read_table</cite> cannot re-read a column whose chunks
+inferred different dtypes, and concatenating them mixes types.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
@@ -616,11 +615,11 @@ CSV file.</p>
 </dl>
 </div>
 <p class="rubric">Notes</p>
-<p>This warning is issued when dealing with larger files because the dtype
-checking happens per chunk read.</p>
-<p>Despite the warning, the CSV file is read with mixed types in a single
-column which will be an object type. See the examples below to better
-understand this issue.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">low_memory=True</span></code> (the default) dtypes are inferred per chunk, and a
+column whose chunks disagree is re-read in one pass. This warning is issued
+where the column cannot be re-read, e.g. from a pipe or in a later chunk of
+an iterating read. The column is then returned with mixed types, such as an
+object column.</p>
 <p class="rubric">Examples</p>
 <p>This example creates and reads a large CSV file with a column that contains
 <cite>int</cite> and <cite>str</cite>.</p>
@@ -631,7 +630,12 @@ understand this issue.</p>
 <span class="gp">... </span>    <span class="p">}</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"test.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"test.csv"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A script run as <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">test.csv</span> <span class="pre">|</span> <span class="pre">python</span> <span class="pre">script.py</span></code> reads it from a pipe,
+which cannot be rewound:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># DtypeWarning: Columns (0: a) have mixed types</span>
 </pre></div>
 </div>

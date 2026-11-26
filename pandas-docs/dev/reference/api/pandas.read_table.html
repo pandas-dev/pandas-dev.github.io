@@ -670,7 +670,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">dtype_backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;no_default&gt;</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/parsers/readers.py#L2014-L2578"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_table" title="Link to this definition">#</a></dt>
+<span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/io/parsers/readers.py#L2013-L2579"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_table" title="Link to this definition">#</a></dt>
 <dd><p>Read general delimited file into DataFrame.</p>
 <p>Also supports optionally iterating or breaking of the file
 into chunks.</p>
@@ -993,15 +993,17 @@ as described in pyarrow documentation: <a class="reference external" href="https
 </div>
 </dd>
 <dt><strong>low_memory</strong><span class="classifier">bool, default True</span></dt><dd><p>Internally process the file in chunks, resulting in lower memory use
-while parsing, but possibly mixed type inference. Because each chunk
-is type-inferred independently, the same literal can be parsed as an
-<code class="docutils literal notranslate"><span class="pre">int</span></code> in one chunk and a <code class="docutils literal notranslate"><span class="pre">str</span></code> in another; after concatenation the
-column has <code class="docutils literal notranslate"><span class="pre">object</span></code> dtype and contains both representations, so
-comparisons such as <code class="docutils literal notranslate"><span class="pre">df[&quot;col&quot;]</span> <span class="pre">==</span> <span class="pre">12345</span></code> or
-<code class="docutils literal notranslate"><span class="pre">df[&quot;col&quot;]</span> <span class="pre">==</span> <span class="pre">&quot;12345&quot;</span></code> will match only a subset of the rows holding
-that value. A <a class="reference internal" href="pandas.errors.DtypeWarning.html#pandas.errors.DtypeWarning" title="pandas.errors.DtypeWarning"><code class="xref py py-class docutils literal notranslate"><span class="pre">DtypeWarning</span></code></a> is emitted when
-this occurs. To ensure no mixed types either set <code class="docutils literal notranslate"><span class="pre">False</span></code>, or specify
-the type with the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> parameter.
+while parsing. Each chunk is type-inferred independently, and a column
+whose chunks disagree is re-read in one pass, so the result matches
+<code class="docutils literal notranslate"><span class="pre">low_memory=False</span></code>; that re-read needs at least as much memory as
+<code class="docutils literal notranslate"><span class="pre">low_memory=False</span></code> and reads the source again, which for a remote
+file means a second download. Where the column cannot be re-read (e.g. from a
+pipe, or in a later chunk of an iterating read), its chunks are
+concatenated instead, which can silently round integers beyond the
+<code class="docutils literal notranslate"><span class="pre">int64</span></code> range to <code class="docutils literal notranslate"><span class="pre">float64</span></code>, or give an <code class="docutils literal notranslate"><span class="pre">object</span></code> column holding
+both <code class="docutils literal notranslate"><span class="pre">12345</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;12345&quot;</span></code> with a
+<a class="reference internal" href="pandas.errors.DtypeWarning.html#pandas.errors.DtypeWarning" title="pandas.errors.DtypeWarning"><code class="xref py py-class docutils literal notranslate"><span class="pre">DtypeWarning</span></code></a>. Specifying the type with
+the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> parameter avoids both the re-read and the warning.
 Note that the entire file is read into a single <a class="reference internal" href="pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>
 regardless, use the <code class="docutils literal notranslate"><span class="pre">chunksize</span></code> or <code class="docutils literal notranslate"><span class="pre">iterator</span></code> parameter
 to return the data in
